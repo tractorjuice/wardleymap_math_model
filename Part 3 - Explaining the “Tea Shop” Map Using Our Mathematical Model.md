@@ -1,4 +1,3 @@
-```markdown
 # Explaining the “Tea Shop” Map Using Our Mathematical Model
 
 This explanation highlights **why** the kettle evolves from a **custom** solution into a **commodity** product, along with the pros and cons of each approach. We’ll reference our **Visibility vs. Evolution** framework and **dependency graph** model throughout.
@@ -130,4 +129,3 @@ puts “Power” near the bottom and “Cup of Tea” near the top.
    - A custom kettle can offer unique features but also increases cost, risk, and may require specialized infrastructure.
 
 Overall, **the Wardley Map** clarifies how each component—**including the Kettle**—delivers **value** to the end users while illustrating **where** standardization (commodity) is beneficial and **where** custom solutions might differentiate or innovate.
-```
