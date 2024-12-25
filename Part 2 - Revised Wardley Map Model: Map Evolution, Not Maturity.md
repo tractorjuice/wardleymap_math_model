@@ -1,113 +1,124 @@
-# Explaining the “API Monetisation” Wardley Map via the Mathematical Model
+# Revised Wardley Map Model: “Map Evolution, Not Maturity”
 
-Below is a step-by-step explanation of the provided Wardley Map using our **mathematical framework** for Wardley Maps. Recall the two core axes:
-
-- **Vertical (Value Chain / Visibility)**: 
-  > ![](https://latex.codecogs.com/png.latex?y_i%20%3D%20V(c_i))  
-  typically measured by **distance from the User**—more visible components are near the top, more “invisible” or back-end components near the bottom.
-
-- **Horizontal (Evolution)**: 
-  > ![](https://latex.codecogs.com/png.latex?x_i%20%3D%20E(c_i)%20%3D%20%5Cfrac%7B%5Cmathrm%7Bubiq%7D(c_i)%20+%20%5Cmathrm%7Bcert%7D(c_i)%7D%7B2%7D)  
-  representing movement from **Genesis** (left) → **Commodity** (right), driven by how **ubiquitous** and **well-understood** each component is in the broader market.
+Below is an **updated** mathematical model that reflects the insight from  
+[“Map Evolution, Not Maturity”](https://medium.com/mappingpractice/map-evolution-not-maturity-bae6ea1a2743).  
+In other words, **Evolution** isn’t merely “age” or “time in market,” but rather how **competition** (supply & demand) drives a component from a novel idea to a widely available commodity.  
 
 ---
 
-## 1. Identifying the Main Clusters on the Map
+## 1. Original Setup (Recap)
 
-1. **Top / Visible**  
-   - **User**, **Developer**, **API Publisher**, **Application**, **Payments**, **Custom GPT**  
-   These are highly visible in delivering value. They appear near the top on the vertical axis:
-   - A short *graph distance* from the end user (User → Developer/Payments, etc.).
-   - Therefore, their vertical coordinate ![](https://latex.codecogs.com/png.latex?y_i) is relatively **high**.
+We have a set of **components**:
 
-2. **Bottom / Less Visible**  
-   - **Python Code**, **Prompts**, **LLM** (Large Language Model), **Development Machine**, **Linux**, **Cloud**  
-   These are “behind the scenes” or infrastructural pieces, far from direct end-user awareness, placed lower on the vertical axis. 
-   - A longer *distance* from user-facing nodes → lower ![](https://latex.codecogs.com/png.latex?V(c_i)).
+![](https://latex.codecogs.com/png.latex?%5Cmathcal%7BC%7D%20%3D%20%5C%7Bc_1%2C%20c_2%2C%20%5Cdots%2C%20c_n%5C%7D)
 
-3. **Intermediate / Mid-Stack**  
-   - Tools & frameworks like **LangChain**, **LangSmith**, **OpenAPI Generator**, **FastAPI**, **Authentication** (Clerk), etc.  
-   They’re consumed by developers or the application but not typically by end users directly, so they land somewhere in the middle on visibility.
+along with **dependencies** forming a directed graph. An edge
 
----
+![](https://latex.codecogs.com/png.latex?(c_i%2C%20c_j)%20%5Cin%20%5Cmathcal%7BE%7D)
 
-## 2. Evolution (Left to Right)
+means  
+![](https://latex.codecogs.com/png.latex?c_i)  
+depends on  
+![](https://latex.codecogs.com/png.latex?c_j).
 
-### Left Side: **Genesis / Custom-Built**  
-- **Python Code**, **Prompts**, **wardleymap Python Package**  
-  - These appear at or near **Genesis** or **Custom-Built**. Possibly:
-    - **Limited ubiquity** (not widely packaged as an “out-of-the-box” solution).  
-    - **Lower certainty** (still specialized or custom usage).
+We also define two mappings:
 
-### Middle: **Products**  
-- **LangChain**, **LangSmith**, **OpenAPI Generator**, **FastAPI**  
-  - These are known libraries or frameworks. Their:
-    - **Ubiquity**: moderate (growing developer communities).
-    - **Certainty**: moderate (they have established best practices but are still evolving).  
-  - Hence, they’re placed in the **Product** range—beyond pure custom but not fully commoditized.
+1. **Visibility** (vertical axis)  
+   ![](https://latex.codecogs.com/png.latex?V(c_i))  
+   — how obvious or “close” a component is to the user.
 
-### Right Side: **Commodity / Utility**  
-- **Cloud**, **DNS**, **Linux**, **Stripe** (payments), **OpenAI** (arguably becoming standard for AI), **Java**  
-  - Common, widely-available, well-understood, reliable solutions.  
-  - **High ubiquity** + **high certainty** → near the **Commodity** edge.
+2. **Evolution** (horizontal axis)  
+   ![](https://latex.codecogs.com/png.latex?E(c_i))  
+   — how far along the path from novel/uncertain to commodity/standardized a component is.
+
+Each component becomes a point:
+
+![](https://latex.codecogs.com/png.latex?M(c_i)%20%3D%20%5Cbigl(E(c_i)%2C%20V(c_i)%5Cbigr))
 
 ---
 
-## 3. Placing Components Using Our Formulas
+## 2. Visibility (Vertical)
 
-For each component ![](https://latex.codecogs.com/png.latex?c_i):
+One way to measure **visibility**:
 
-1. **Visibility**  
-   ![](https://latex.codecogs.com/png.latex?y_i%20%3D%20V(c_i)%20%3D%201%20-%20%5Cfrac%7B%5Cmathrm%7Bdist%7D(c_i)%7D%7B%5Cmax_%7Bc_j%7D%20%5Cmathrm%7Bdist%7D(c_j)%7D).  
-   - If “dist” = *graph distance* to the User node, then `Python Code` (several steps away) gets a lower \(y_i\) than `Documentation` (fewer steps away).
+1. Let  
+   ![](https://latex.codecogs.com/png.latex?%5Cmathrm%7Bdist%7D(c_i))  
+   be the shortest path distance from the **User** to  
+   ![](https://latex.codecogs.com/png.latex?c_i).  
 
-2. **Evolution**  
-   ![](https://latex.codecogs.com/png.latex?x_i%20%3D%20E(c_i)%20%3D%20%5Cfrac%7B%5Cmathrm%7Bubiq%7D(c_i)%20+%20%5Cmathrm%7Bcert%7D(c_i)%7D%7B2%7D).  
-   - `Cloud`: High ubiquity (used worldwide) + high certainty (stable best practices) → \(x_i \approx 1.0\).  
-   - `Prompts`: Possibly custom, experimental, less standardized → \(x_i \approx 0.2\) or 0.3, more to the left.
+2. Normalize this distance to produce  
+   ![](https://latex.codecogs.com/png.latex?V(c_i)):  
 
----
+   ![](https://latex.codecogs.com/png.latex?V(c_i)%20%3D%201%20-%20%5Cfrac%7B%5Cmathrm%7Bdist%7D(c_i)%7D%7B%5Cmax%5Cmathrm%7Bdist%7D(c_j)%7D).
 
-## 4. Dependency Lines
+- If  
+  ![](https://latex.codecogs.com/png.latex?c_i)  
+  is the user, then distance is 0 → **visibility** = 1.  
+- If  
+  ![](https://latex.codecogs.com/png.latex?c_i)  
+  is far from the user,  
+  ![](https://latex.codecogs.com/png.latex?V(c_i))  
+  approaches 0.
 
-Each line shows **which components depend on which**. For example:
-- **“Application” depends on “API Gateway,” “Authentication,” and “Payments.”**  
-  - In the graph model, that means `(Application, Payments) ∈ E` or `(App, Gateway) ∈ E`, etc.  
-- The lines from **Python Code** to **Prompts** show how the code might rely on custom prompt logic.  
-
-When reading the map:
-- Start from the **top** (User, Developer) and trace downward to see **what** each user-facing service depends upon, eventually reaching **commodities** (Cloud, Linux, DNS) at the bottom right.
-
----
-
-## 5. Key Takeaways
-
-1. **User-Facing vs. Infrastructure**  
-   - Top nodes (e.g., “User,” “Developer,” “Payments,” “API Publisher”) are highly visible, short distance to user → near top of the map.
-
-2. **Novel / Custom vs. Commodity**  
-   - Left side (e.g., “Python Code,” “Prompts”) → more custom, less standardized.  
-   - Right side (e.g., “Cloud,” “DNS,” “Stripe”) → widely available, well-understood.
-
-3. **Strategic Considerations**  
-   - **Invest or Differentiate** in items more to the left (e.g., your unique AI prompts, custom GPT workflows).  
-   - **Leverage or Outsource** items on the right (e.g., major cloud providers, open-source standards) since they’re commodity-like.
+Hence, the **vertical coordinate** is:  
+![](https://latex.codecogs.com/png.latex?y_i%20%3D%20V(c_i)).
 
 ---
 
-## 6. Conclusion
+## 3. Evolution (Horizontal) — Updated
 
-Using the math model:
+Per the article, **Evolution** shouldn’t be reduced to “maturity” or “time in market.” Instead, it’s driven by:
 
-1. **Vertical**:  
-   ![](https://latex.codecogs.com/png.latex?y_i%20%3D%20V(c_i))  
-   is determined by the “distance to the user”—the fewer edges from “User,” the higher up you appear.
+- **Ubiquity** (how widespread a component is, i.e. supply & demand competition)  
+- **Certainty** (how standardized or well-understood it is)
 
-2. **Horizontal**:  
-   ![](https://latex.codecogs.com/png.latex?x_i%20%3D%20%5Cfrac%7B%5Cmathrm%7Bubiq%7D(c_i)%20+%20%5Cmathrm%7Bcert%7D(c_i)%7D%7B2%7D)  
-   is driven by supply/demand competition: how **ubiquitous** and **certain** a component has become in the market.
+Let  
+![](https://latex.codecogs.com/png.latex?%5Cmathrm%7Bubiq%7D(c_i))  
+and  
+![](https://latex.codecogs.com/png.latex?%5Cmathrm%7Bcert%7D(c_i))  
+both range in  
+![](https://latex.codecogs.com/png.latex?[0%2C%201]).  
 
-In this **API Monetisation** map, you can see:
-- **High-visibility** items near the top (Developer, User, Documentation).  
-- **Core infrastructure** and **utilities** near the bottom-right (Cloud, DNS, Linux).  
-- **Mid-level frameworks** scattered around the mid-to-right range (FastAPI, LangChain, OpenAPI Generator) as they’re semi-standard but still evolving.
+- 0 = rare, unknown, no best practices  
+- 1 = commodity, ubiquitous, highly standardized
+
+Then define:
+
+![](https://latex.codecogs.com/png.latex?E(c_i)%20%3D%20%5Cfrac%7B%5Cmathrm%7Bubiq%7D(c_i)%20+%20%5Cmathrm%7Bcert%7D(c_i)%7D%7B2%7D).
+
+1. Low ubiquity + low certainty → near 0 (leftmost = “Genesis / Custom”).  
+2. High ubiquity + high certainty → near 1 (rightmost = “Commodity / Utility”).
+
+Thus, the **horizontal coordinate** is:  
+![](https://latex.codecogs.com/png.latex?x_i%20%3D%20E(c_i)).
+
+---
+
+## 4. Final Coordinates
+
+Each component  
+![](https://latex.codecogs.com/png.latex?c_i)  
+sits at:
+
+![](https://latex.codecogs.com/png.latex?M(c_i)%20%3D%20%28E(c_i)%2C%20V(c_i)%29).
+
+- **Left → Right** = Movement from novel, uncertain to widespread, standardized.  
+- **Bottom → Top** = Movement from invisible to user to highly visible.
+
+---
+
+## 5. Interpretation & Rationale
+
+- **Evolution** tracks market‐driven changes in **certainty** & **ubiquity**, reflecting how competition shifts components over time.  
+- **Visibility** helps you see how these components relate to user needs and **where** each sits in the overall value chain.
+
+**Strategic Takeaway**:  
+1. **Innovate** on the left (high uncertainty, potential for differentiation).  
+2. **Leverage commodities** on the right (high ubiquity, low risk, lower cost).  
+3. Watch how components **move** horizontally over time as the market evolves.
+
+---
+
+### Conclusion
+
+By incorporating **ubiquity** and **certainty** into the **Evolution** function, we align with the principle that **“Evolution is driven by competitive forces, not just age.”** This helps teams build **Wardley Maps** that better capture real‐world dynamics of how components shift from **Genesis** to **Utility** as they become ubiquitous and well understood.
