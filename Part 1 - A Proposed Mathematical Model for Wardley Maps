@@ -1,0 +1,162 @@
+A Proposed Mathematical Model for Wardley Maps
+Below is one way to formalize the concepts behind a Wardley Map using mathematical notation. Real‐world Wardley Maps are more art than strict science—so this isn’t a “canonical” formula, but rather a demonstration of how you might model the two key axes (value chain and evolution) and the dependencies among components.
+
+
+1. Define the Set of Components
+Let
+
+be the set of all components in your system (for example, "User," "API," "Cloud," "Database," etc.).
+
+We also have a special component
+
+that represents the end user (the top of the value chain).
+
+
+2. Dependencies as a Directed Graph
+We define a directed graph
+
+,
+
+where
+
+is the set of dependencies. A directed edge
+
+
+
+means that
+
+depends on
+.
+
+In a Wardley Map diagram, you typically draw a line from a node to the node it consumes or depends on.
+For instance, if the "User" depends on the "Application," there would be an edge from User to Application.
+
+
+3. Value Chain Axis (Vertical)
+In a Wardley Map, the vertical axis goes from Invisible (bottom) to Visible (top), reflecting how obvious a component is to the user. One way to quantify this is via graph distance from the "User" node:
+
+Reverse the edges or otherwise define a way to measure “distance to the user.”
+
+Let
+
+be the shortest path length from
+
+to
+.
+(If no path exists, define
+.)
+
+“Normalize” these distances to get a value in
+.
+For example:
+
+.
+
+ means the component is at distance 0 (it is the user).
+ means it’s as far away from the user as any component in the system (very “invisible”).
+
+Hence, the vertical coordinate of each component
+
+can be:
+
+.
+
+
+4. Evolution Axis (Horizontal)
+Wardley Maps place components along a left-to-right axis that represents evolution: from new/novel/custom (left) to standardized commodity or utility (right). We can model it with a function
+
+that returns a value in
+.
+Example Definition of :
+Suppose
+
+is how long
+
+has existed or how widely it’s adopted:
+
+A simple log scale might be:
+
+.
+
+If  is very small,
+.
+If  is as large as any component in the system,
+.
+
+Hence, the horizontal coordinate of each component
+
+can be:
+
+.
+
+
+5. Plotting the Wardley Map
+Each component
+
+is then mapped to a point
+
+on a 2D plane:
+
+.
+
+ (horizontal) = how evolved
+
+is (from novel to commodity).
+ (vertical) = how visible
+
+is to the user (from invisible to very visible).
+
+The edges
+
+remain the same: if
+,
+draw a line or arrow from
+
+to
+.
+
+In symbolic form:
+
+
+
+
+6. Interpretation and Caveats
+Subjectivity
+
+Deciding how “visible” a component is or how “evolved” it is involves subjective judgment. The functions
+
+and
+
+above are simply illustrative ways to encode those judgments.
+
+Graph Topology
+
+The “distance” calculation for
+
+depends on how you structure dependencies. Some people cluster items by how close they are to the user’s needs or do a topological sort.
+
+Evolving Over Time
+
+A key principle of Wardley Mapping is that components move rightward over time as they evolve from “Genesis” to “Commodity.” In a dynamic model,
+
+might change over time, shifting components to the right as they mature.
+
+No Single ‘Correct’ Formula
+
+Different teams use different heuristics or scoring systems. The equations above provide a mathematical scaffold to show how you might turn Wardley Map thinking into coordinates and a dependency graph.
+
+
+Final Takeaway
+A Wardley Map can be seen as:
+
+A directed graph of components and their dependencies.
+A pair of mapping functions —
+
+for “visibility” and
+
+for “evolution” — that place each component on a 2D plane:
+.
+A visualization in which edges are drawn from each component to the components it depends on.
+
+By combining value chain (vertical) and evolution (horizontal), you get a holistic view of where to innovate, where to commoditize, and how everything ties back to user needs.
+
