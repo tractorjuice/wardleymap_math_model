@@ -1,162 +1,89 @@
-A Proposed Mathematical Model for Wardley Maps
-Below is one way to formalize the concepts behind a Wardley Map using mathematical notation. Real‐world Wardley Maps are more art than strict science—so this isn’t a “canonical” formula, but rather a demonstration of how you might model the two key axes (value chain and evolution) and the dependencies among components.
+```markdown
+# Working Out the “Evolution” Value for a Single Component
 
+Below is a **fully marked-down** explanation, with **all** the relevant LaTeX replaced by Codecogs **PNG** images. This ensures proper rendering without any “\( \in [0,1]\)” text artifacts.
 
-1. Define the Set of Components
-Let
+---
 
-be the set of all components in your system (for example, "User," "API," "Cloud," "Database," etc.).
+## 1. Model Recap
 
-We also have a special component
+We use the following formula for **Evolution**:
 
-that represents the end user (the top of the value chain).
+![](https://latex.codecogs.com/png.latex?E%28c_i%29%20%3D%20%5Cfrac%7B%5Cmathrm%7Bubiq%7D%28c_i%29%20+%20%5Cmathrm%7Bcert%7D%28c_i%29%7D%7B2%7D)
 
+Where:
 
-2. Dependencies as a Directed Graph
-We define a directed graph
+- ![](https://latex.codecogs.com/png.latex?%5Cmathrm%7Bubiq%7D%28c_i%29) ![](https://latex.codecogs.com/png.latex?%5Cin%20%5B0%2C1%5D):  
+  - **0** means extremely rare or unknown in the market.  
+  - **1** means widely available, used everywhere.
 
-,
+- ![](https://latex.codecogs.com/png.latex?%5Cmathrm%7Bcert%7D%28c_i%29) ![](https://latex.codecogs.com/png.latex?%5Cin%20%5B0%2C1%5D):  
+  - **0** means highly uncertain, no stable best practices, “frontier” territory.  
+  - **1** means fully standardized, best practices well understood.
 
-where
+Thus, **Evolution** is the average of two **key factors**: **ubiquity** and **certainty**.
 
-is the set of dependencies. A directed edge
+---
 
+## 2. Example: “AI-Enhanced Kettle”
 
+Let’s say you have an **AI-Enhanced Kettle** that uses humidity sensors and AI to adjust the boil temperature. You want to **place** it on your Wardley Map.
 
-means that
+### 2.1. Ubiquity
 
-depends on
-.
+- It’s only in a few specialty stores, so it’s **not** widespread.  
+- You might assign ![](https://latex.codecogs.com/png.latex?%5Cmathrm%7Bubiq%7D%28AI%5Ctext{-}Kettle%29) = 0.2.
 
-In a Wardley Map diagram, you typically draw a line from a node to the node it consumes or depends on.
-For instance, if the "User" depends on the "Application," there would be an edge from User to Application.
+### 2.2. Certainty
 
+- There are **no** clear industry standards for AI-based kettle features; it’s new.  
+- You might assign ![](https://latex.codecogs.com/png.latex?%5Cmathrm%7Bcert%7D%28AI%5Ctext{-}Kettle%29) = 0.3.
 
-3. Value Chain Axis (Vertical)
-In a Wardley Map, the vertical axis goes from Invisible (bottom) to Visible (top), reflecting how obvious a component is to the user. One way to quantify this is via graph distance from the "User" node:
+### 2.3. Compute Evolution
 
-Reverse the edges or otherwise define a way to measure “distance to the user.”
+Using
 
-Let
+![](https://latex.codecogs.com/png.latex?E%28AI%5Ctext{-}Kettle%29%20%3D%20%5Cfrac%7B%5Cmathrm%7Bubiq%7D%28AI%5Ctext{-}Kettle%29%20+%20%5Cmathrm%7Bcert%7D%28AI%5Ctext{-}Kettle%29%7D%7B2%7D),
 
-be the shortest path length from
+we have:
 
-to
-.
-(If no path exists, define
-.)
+![](https://latex.codecogs.com/png.latex?E%28AI%5Ctext{-}Kettle%29%20%3D%20%5Cfrac%7B0.2%20+%200.3%7D%7B2%7D%20%3D%200.25).
 
-“Normalize” these distances to get a value in
-.
-For example:
+Hence, **Evolution** = **0.25**.
 
-.
+---
 
- means the component is at distance 0 (it is the user).
- means it’s as far away from the user as any component in the system (very “invisible”).
+## 3. Interpretation
 
-Hence, the vertical coordinate of each component
+- A value of **0.25** indicates your kettle is still **far left** on the “Genesis → Commodity” continuum.  
+- **Low ubiquity** = not common in stores or homes yet.  
+- **Low/moderate certainty** = no well-established best practices or standards.
 
-can be:
+Therefore, it resides in a **custom / emerging** zone, not yet a stable or widely adopted product.
 
-.
+---
 
+## 4. Changing Over Time
 
-4. Evolution Axis (Horizontal)
-Wardley Maps place components along a left-to-right axis that represents evolution: from new/novel/custom (left) to standardized commodity or utility (right). We can model it with a function
+If **market adoption** increases (ubiquity ↗) and **standardization** (certainty ↗) solidifies, the AI-Kettle’s **evolution** moves rightward:
 
-that returns a value in
-.
-Example Definition of :
-Suppose
+- Suppose after 2 years, you measure:
+  - ![](https://latex.codecogs.com/png.latex?%5Cmathrm%7Bubiq%7D%28AI%5Ctext{-}Kettle%29%20%3D%200.7)  
+  - ![](https://latex.codecogs.com/png.latex?%5Cmathrm%7Bcert%7D%28AI%5Ctext{-}Kettle%29%20%3D%200.6)
 
-is how long
+Then:
 
-has existed or how widely it’s adopted:
+![](https://latex.codecogs.com/png.latex?E%28AI%5Ctext{-}Kettle%29%20%3D%20%5Cfrac%7B0.7%20+%200.6%7D%7B2%7D%20%3D%200.65),
 
-A simple log scale might be:
+positioning it closer to a **product / commodity** status.
 
-.
+---
 
-If  is very small,
-.
-If  is as large as any component in the system,
-.
+## 5. Summary
 
-Hence, the horizontal coordinate of each component
+1. Determine ![](https://latex.codecogs.com/png.latex?%5Cmathrm%7Bubiq%7D%28c_i%29) ![](https://latex.codecogs.com/png.latex?%5Cin%20%5B0%2C1%5D).  
+2. Determine ![](https://latex.codecogs.com/png.latex?%5Cmathrm%7Bcert%7D%28c_i%29) ![](https://latex.codecogs.com/png.latex?%5Cin%20%5B0%2C1%5D).  
+3. Calculate ![](https://latex.codecogs.com/png.latex?E%28c_i%29%20%3D%20%5Cfrac%7B%5Cmathrm%7Bubiq%7D%28c_i%29%20+%20%5Cmathrm%7Bcert%7D%28c_i%29%7D%7B2%7D).
 
-can be:
-
-.
-
-
-5. Plotting the Wardley Map
-Each component
-
-is then mapped to a point
-
-on a 2D plane:
-
-.
-
- (horizontal) = how evolved
-
-is (from novel to commodity).
- (vertical) = how visible
-
-is to the user (from invisible to very visible).
-
-The edges
-
-remain the same: if
-,
-draw a line or arrow from
-
-to
-.
-
-In symbolic form:
-
-
-
-
-6. Interpretation and Caveats
-Subjectivity
-
-Deciding how “visible” a component is or how “evolved” it is involves subjective judgment. The functions
-
-and
-
-above are simply illustrative ways to encode those judgments.
-
-Graph Topology
-
-The “distance” calculation for
-
-depends on how you structure dependencies. Some people cluster items by how close they are to the user’s needs or do a topological sort.
-
-Evolving Over Time
-
-A key principle of Wardley Mapping is that components move rightward over time as they evolve from “Genesis” to “Commodity.” In a dynamic model,
-
-might change over time, shifting components to the right as they mature.
-
-No Single ‘Correct’ Formula
-
-Different teams use different heuristics or scoring systems. The equations above provide a mathematical scaffold to show how you might turn Wardley Map thinking into coordinates and a dependency graph.
-
-
-Final Takeaway
-A Wardley Map can be seen as:
-
-A directed graph of components and their dependencies.
-A pair of mapping functions —
-
-for “visibility” and
-
-for “evolution” — that place each component on a 2D plane:
-.
-A visualization in which edges are drawn from each component to the components it depends on.
-
-By combining value chain (vertical) and evolution (horizontal), you get a holistic view of where to innovate, where to commoditize, and how everything ties back to user needs.
-
+The result ![](https://latex.codecogs.com/png.latex?E%28c_i%29) defines how far along your component is on the **“Genesis → Commodity”** scale, providing a clear **horizontal** coordinate on your **Wardley Map**. 
+```
