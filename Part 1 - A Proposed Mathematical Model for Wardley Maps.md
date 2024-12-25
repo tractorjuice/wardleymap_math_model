@@ -1,4 +1,3 @@
-```markdown
 # Working Out the “Evolution” Value for a Single Component
 
 Below is a **fully marked-down** explanation, with **all** the relevant LaTeX replaced by Codecogs **PNG** images. This ensures proper rendering without any “\( \in [0,1]\)” text artifacts.
@@ -85,5 +84,4 @@ positioning it closer to a **product / commodity** status.
 2. Determine ![](https://latex.codecogs.com/png.latex?%5Cmathrm%7Bcert%7D%28c_i%29) ![](https://latex.codecogs.com/png.latex?%5Cin%20%5B0%2C1%5D).  
 3. Calculate ![](https://latex.codecogs.com/png.latex?E%28c_i%29%20%3D%20%5Cfrac%7B%5Cmathrm%7Bubiq%7D%28c_i%29%20+%20%5Cmathrm%7Bcert%7D%28c_i%29%7D%7B2%7D).
 
-The result ![](https://latex.codecogs.com/png.latex?E%28c_i%29) defines how far along your component is on the **“Genesis → Commodity”** scale, providing a clear **horizontal** coordinate on your **Wardley Map**. 
-```
+The result ![](https://latex.codecogs.com/png.latex?E%28c_i%29) defines how far along your component is on the **“Genesis → Commodity”** scale, providing a clear **horizontal** coordinate on your **Wardley Map**.
