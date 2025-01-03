@@ -1,6 +1,6 @@
 # Example Scenario Using the Two “Whys” in the Wardley Strategy Cycle
 
-Below is a **toy example** illustrating how **Why of Purpose** and **Why of Movement** might evolve in a discrete‐time, Wardley‐style model. This example is intentionally simplified to show how each step (OODA) might look in practice.
+Below is a **example** illustrating how **Why of Purpose** and **Why of Movement** might evolve in a discrete‐time, Wardley‐style model. This example is intentionally simplified to show how each step (OODA) might look in practice.
 
 ---
 
@@ -133,4 +133,4 @@ With the updated states, we run **Observe → Orient → Decide → Act** again,
 3. Each cycle of **Observe → Orient → Decide → Act** leads to **state updates** (both external and internal) plus incremental **refinement** of the two whys.  
 4. By capturing this in a formal model, you could attempt to optimize decisions for maximum “strategic utility” (for instance, balancing speed to market vs. advanced features vs. runway constraints).
 
-In this toy scenario, we see **how** and **why** the organization’s near‐term tactics (why of movement) change over time, while the overarching mission (why of purpose) remains the guiding star—both embedded in a Wardley‐style cycle of **continuous sensing and adaptation**.
+In this scenario, we see **how** and **why** the organization’s near‐term tactics (why of movement) change over time, while the overarching mission (why of purpose) remains the guiding star—both embedded in a Wardley‐style cycle of **continuous sensing and adaptation**.
