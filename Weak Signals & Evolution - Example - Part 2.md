@@ -23,37 +23,37 @@ We have four readiness variables, each ranging from 0 to 1:
 
 Each evolves with a logistic equation of the form:
 
-![Equation](https://latex.codecogs.com/png.latex?\dpi{110}\frac{dX}{dt}%20=%20\alpha_X%20X(t)\bigl(1%20-%20X(t)\bigr),%20X%20\in%20\{C,%20T,%20S,%20A\}).
+```
+dX/dt = α_X * X(t) * (1 - X(t))   (for X in {C, T, S, A})
+```
+
+*(You can use the same form with different α-values for each variable.)*
 
 ### 1.2 Initial Conditions
 
 Suppose we start at \( t = 0 \) with:
 
-\[
-\begin{aligned}
-C(0) &= 0.10 \quad (\text{The concept is just starting to be recognized}),\\
-T(0) &= 0.25 \quad (\text{Some basic tech is available, but not mature}),\\
-S(0) &= 0.30 \quad (\text{The activity is somewhat standardized}),\\
-A(0) &= 0.20 \quad (\text{Moderate dissatisfaction with existing solutions}).
-\end{aligned}
-\]
+- \( C(0) = 0.10 \) (The concept is just starting to be recognized)
+- \( T(0) = 0.25 \) (Some basic tech is available, but not mature)
+- \( S(0) = 0.30 \) (The activity is somewhat standardized)
+- \( A(0) = 0.20 \) (Moderate dissatisfaction with existing solutions)
 
 ### 1.3 Growth Rates
 
 We pick growth rate parameters (\(\alpha_X\)) to reflect how quickly each variable moves toward 1:
 
-\[
-\alpha_C = 0.08, \quad
-\alpha_T = 0.12, \quad
-\alpha_S = 0.05, \quad
-\alpha_A = 0.10.
-\]
+- \(\alpha_C = 0.08\)
+- \(\alpha_T = 0.12\)
+- \(\alpha_S = 0.05\)
+- \(\alpha_A = 0.10\)
 
 *(Interpretation: Technology readiness \(T\) grows faster than concept readiness \(C\), etc.)*
 
 ### 1.4 Overall Readiness Function
 
-![R(t)](https://latex.codecogs.com/png.latex?\dpi{110}R(t)%20=%20C(t)%20T(t)%20S(t)%20A(t)).
+\[
+R(t) = C(t)\,T(t)\,S(t)\,A(t).
+\]
 
 We define a threshold \(\theta = 0.65\). If \( R(t) \) crosses \( 0.65 \), we assume the market is ready to **transition** from “product” to “commodity.”
 
@@ -70,9 +70,9 @@ We track:
 
 They must sum to 1:
 
-\[
-P_{\mathrm{op}}(t) + P_{\mathrm{use}}(t) = 1.
-\]
+```
+P_op(t) + P_use(t) = 1
+```
 
 ### 2.2 Logistic Curve for \(P_{\mathrm{use}}(t)\)
 
@@ -83,15 +83,25 @@ We pick parameters:
 
 So:
 
-![Puse(t)](https://latex.codecogs.com/png.latex?\dpi{110}P_{\mathrm{use}}(t)%20=%20\frac{1}{1%20+%20e^{-0.9%28t%20-%2012%29}}).
+\[
+P_{\mathrm{use}}(t) 
+= 
+\frac{1}{1 + e^{-\,0.9\,\bigl(t - 12\bigr)}}.
+\]
 
 Then:
 
-![Pop(t)](https://latex.codecogs.com/png.latex?\dpi{110}P_{\mathrm{op}}(t)%20=%201%20-%20P_{\mathrm{use}}(t)).
+\[
+P_{\mathrm{op}}(t) 
+= 
+1 - P_{\mathrm{use}}(t).
+\]
 
 ### 2.3 The “Weak Signal” Metric
 
-![Delta(t)](https://latex.codecogs.com/png.latex?\dpi{110}\Delta(t)%20=%20\frac{d}{dt}\bigl[P_{\mathrm{use}}(t)\bigr]).
+\[
+\Delta(t) = \frac{d}{dt}\bigl[P_{\mathrm{use}}(t)\bigr].
+\]
 
 When \(\Delta(t)\) **peaks**, it indicates the **fastest** growth in “use-focused” publications—often a strong sign that commoditization is imminent.
 
@@ -99,7 +109,7 @@ When \(\Delta(t)\) **peaks**, it indicates the **fastest** growth in “use-focu
 
 ## 3. Numerical Simulation
 
-> Here’s a simple qualitative walkthrough; in practice, you’d use a short script (Python, MATLAB, R, etc.) to solve these equations numerically (e.g., via Euler or Runge-Kutta methods).
+> Here’s a simple qualitative walkthrough. In practice, you’d use a script (Python, MATLAB, R, etc.) to solve these equations numerically (e.g., via Euler or Runge-Kutta methods).
 
 1. **Time Span**: Simulate from \( t = 0 \) to \( t = 20 \).  
 2. **Integration**: At each time step, update \(C(t), T(t), S(t), A(t)\) based on their logistic derivatives.  
@@ -111,31 +121,31 @@ When \(\Delta(t)\) **peaks**, it indicates the **fastest** growth in “use-focu
 
 Let’s say we get the following rough storyline:
 
-- **At \( t=0 \)**:  
+- **At \( t=0 \)**  
   - \( R(0) = 0.10 \times 0.25 \times 0.30 \times 0.20 = 0.0015 \). (Very low—market is nowhere near commoditization.)  
   - \( P_{\mathrm{use}}(0) \approx 0.0 \) (almost all publications are about how to run/maintain the product).
 
-- **By \( t=8 \)**:  
+- **By \( t=8 \)**  
   - \( C(8)\approx 0.30, \, T(8)\approx 0.50, \, S(8)\approx 0.40, \, A(8)\approx 0.35. \)  
-  - \( R(8)\approx 0.30 \times 0.50 \times 0.40 \times 0.35 \approx 0.021 \). (Still low, but growing.)  
-  - \( P_{\mathrm{use}}(8) \approx 0.25 \). (Publications about usage are still the minority, but starting to appear.)
+  - \( R(8)\approx 0.30 \times 0.50 \times 0.40 \times 0.35 \approx 0.021. \) (Still low, but growing.)  
+  - \( P_{\mathrm{use}}(8) \approx 0.25. \) (Usage-focused publications are still a minority, but increasing.)
 
-- **At \( t=12 \)**:  
+- **At \( t=12 \)**  
   - \( C(12)\approx 0.55, \, T(12)\approx 0.70, \, S(12)\approx 0.48, \, A(12)\approx 0.60. \)  
   - \( R(12) \approx 0.55 \times 0.70 \times 0.48 \times 0.60 \approx 0.111. \)  
-  - \( P_{\mathrm{use}}(12) = 0.5 \). (Exactly half the publications focus on usage, half on operations.)  
-  - \(\Delta(12)\) is near its **peak**, indicating a rapid shift to usage-oriented conversation.
+  - \( P_{\mathrm{use}}(12) = 0.5. \) (Exactly half the publications now focus on usage, half on operations.)  
+  - \(\Delta(12)\) is near its **peak**, indicating a rapid shift toward usage-oriented conversation.
 
-- **At \( t=14 \)**:  
+- **At \( t=14 \)**  
   - \( C(14)\approx 0.65, \, T(14)\approx 0.80, \, S(14)\approx 0.52, \, A(14)\approx 0.70. \)  
-  - \( R(14) \approx 0.65 \times 0.80 \times 0.52 \times 0.70 \approx 0.190. \) (Approaching the threshold.)  
-  - \( P_{\mathrm{use}}(14) \approx 0.73 \). (Majority now talk about use, less about operation.)
+  - \( R(14)\approx 0.65 \times 0.80 \times 0.52 \times 0.70 \approx 0.190. \) (Approaching the threshold.)  
+  - \( P_{\mathrm{use}}(14) \approx 0.73. \) (Majority of publications now talk about usage.)
 
-- **At \( t=16 \)**:  
+- **At \( t=16 \)**  
   - \( C(16)\approx 0.72, \, T(16)\approx 0.87, \, S(16)\approx 0.56, \, A(16)\approx 0.80. \)  
-  - \( R(16) \approx 0.72 \times 0.87 \times 0.56 \times 0.80 \approx 0.280. \)  
-  - **Now \( R(16) > 0.65 \) (our chosen threshold) ⇒ The system is “ready.”**  
-  - \( P_{\mathrm{use}}(16) \approx 0.88 \). (Publications heavily favor usage perspective.)
+  - \( R(16)\approx 0.72 \times 0.87 \times 0.56 \times 0.80 \approx 0.280. \)  
+  - **Now \( R(16) > 0.65 \) ⇒ The system is “ready.”**  
+  - \( P_{\mathrm{use}}(16) \approx 0.88. \) (Publications heavily favor usage perspective.)
 
 *(Note: The numeric values above are made-up but consistent with the growth rates and threshold we proposed.)*
 
@@ -151,7 +161,7 @@ Let’s say we get the following rough storyline:
    - The peak in \(\Delta(t)\) is a leading indicator that the commodity mindset is forming.
 
 3. **Strategic Takeaways**  
-   - **Before** \( t=16 \), organizations that anticipate commoditization could **invest** in higher-value layers or prepare to **outsource** the soon-to-be-commodity function.  
+   - **Before** \( t=16 \), organizations anticipating commoditization could **invest** in higher-value layers or prepare to **outsource** the soon-to-be-commodity function.  
    - **After** \( t=16 \), the conversation about unique features or custom operations might hold less value—because the market sees the activity as a **utility**.
 
 ---
@@ -162,7 +172,7 @@ Let’s say we get the following rough storyline:
   In reality, you’d gather data on:
   1. How widely accepted the **concept** is (surveys, industry reports).  
   2. Current **technology** maturity (analyst reports, patents).  
-  3. **Suitability** in terms of market standardization, user adoption, regulatory frameworks.  
+  3. **Suitability** (market standardization, user adoption, regulatory frameworks).  
   4. **Attitude** (pain points, dissatisfaction, cost sensitivity).
 
 - **Calibrate Parameters**  
