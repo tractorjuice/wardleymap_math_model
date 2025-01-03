@@ -1,154 +1,119 @@
-Below is one way to wrap the Wardley “strategy cycle” into a (somewhat simplified) discrete‐time, dynamical‐systems model. The idea is to capture the cyclical nature of **Observe → Orient → Decide → Act**, while incorporating Sun Tzu’s Five Factors (purpose, climate, landscape, doctrine, leadership) and Wardley’s “two whys” (why of purpose, why of movement). Of course, real‐world strategy is far more nuanced, but this at least sketches one mathematical formalization.
+```md
+# A Possible Mathematical Model for the Wardley Strategy Cycle
+
+Below is one way to capture the Wardley “strategy cycle” in a **discrete‐time, dynamical‐systems** style model—mixing John Boyd’s OODA Loop, Sun Tzu’s Five Factors, and Wardley’s “two whys.” Real‐world strategy is, of course, far more nuanced, but this sketch illustrates one mathematical formalization.
 
 ---
 
 ## 1. State Variables
 
-We’ll model the organization and its environment at discrete time steps \(t = 0, 1, 2, \dots\). Let
+Let time evolve in discrete steps ![](https://latex.codecogs.com/png.latex?t%20%3D%200%2C%201%2C%202%2C%20%5Cdots). Define:
 
-- \(X(t)\) = **external (environmental) state** at time \(t\).  
-  - This might encode things like market conditions, competitor positions, user behaviors, technology shifts, etc.
+- **External (environmental) state**  
+  ![](https://latex.codecogs.com/png.latex?X%28t%29)  
+  This represents market conditions, competitor positions, user behavior, tech shifts, etc.
 
-- \(Y(t)\) = **internal (organizational) state** at time \(t\).  
-  - This might include resources, competencies, structures, culture, and so on.
+- **Internal (organizational) state**  
+  ![](https://latex.codecogs.com/png.latex?Y%28t%29)  
+  This could include resources, competencies, structures, culture, and more.
 
-- \(P(t)\) = **“why of purpose”** at time \(t\).  
-  - A stable or slowly evolving expression of the organization’s overarching mission or reason for being.
+- **Why of Purpose**  
+  ![](https://latex.codecogs.com/png.latex?P%28t%29)  
+  The overarching mission or reason for the organization’s existence.
 
-- \(M(t)\) = **“why of movement”** at time \(t\).  
-  - A more tactical rationale: why we are moving from one state to another in the near term.
+- **Why of Movement**  
+  ![](https://latex.codecogs.com/png.latex?M%28t%29)  
+  The tactical rationale for _how_ and _why_ you move from one state to another in the near term.
 
-We can also decompose the internal/external states further if we wish to track **Sun Tzu’s Five Factors**:
+To align with **Sun Tzu’s Five Factors**:
 
-1. **Purpose** \(\to P(t)\) (already a separate variable).  
-2. **Climate** \(\subseteq X(t)\) (environmental trends, external constraints).  
-3. **Landscape** \(\subseteq X(t)\) (value‐chain positions, competitor mapping, user segments).  
-4. **Doctrine** \(\subseteq Y(t)\) (organizational principles/best practices).  
-5. **Leadership** \(\subseteq Y(t)\) (leadership style, decision‐making structure).
+1. **Purpose** → already captured by ![](https://latex.codecogs.com/png.latex?P%28t%29).  
+2. **Climate** → part of ![](https://latex.codecogs.com/png.latex?X%28t%29) (external forces, market trends).  
+3. **Landscape** → also part of ![](https://latex.codecogs.com/png.latex?X%28t%29) (competitor maps, value chains).  
+4. **Doctrine** → included in ![](https://latex.codecogs.com/png.latex?Y%28t%29) (principles, best practices).  
+5. **Leadership** → also embedded in ![](https://latex.codecogs.com/png.latex?Y%28t%29) (decision‐making structure, style).
 
 ---
 
-## 2. The OODA‐Based Cycle
+## 2. OODA‐Based Cycle
 
-We want to capture the four steps **Observe**, **Orient**, **Decide**, and **Act** in each time step. One approach:
+We capture **Observe → Orient → Decide → Act** as four functions each step.
 
 1. **Observe**  
-   \[
-   O(t) \;=\; \mathrm{Obs}\bigl(X(t), Y(t)\bigr)
-   \]  
-   A function \(\mathrm{Obs}\) that extracts relevant data from both the external and internal state.  
+   ![](https://latex.codecogs.com/png.latex?O%28t%29%20%3D%20%5Cmathrm%7BObs%7D%28X%28t%29%2C%20Y%28t%29%29)  
+   A function extracting relevant data from both external and internal states.
 
 2. **Orient**  
-   \[
-   R(t) \;=\; \mathrm{Ori}\!\bigl(O(t), P(t), M(t)\bigr)
-   \]  
-   A function \(\mathrm{Ori}\) that incorporates the current observation \(O(t)\), the long‐term mission \(P(t)\), and short‐term rationale \(M(t)\) into an updated “mental model” \(R(t)\).  
+   ![](https://latex.codecogs.com/png.latex?R%28t%29%20%3D%20%5Cmathrm%7BOri%7D%28O%28t%29%2C%20P%28t%29%2C%20M%28t%29%29)  
+   Incorporates the observation plus the two whys (purpose and movement) into an updated “mental model.”
 
 3. **Decide**  
-   \[
-   D(t) \;=\; \mathrm{Dec}\!\bigl(R(t)\bigr)
-   \]  
-   A function \(\mathrm{Dec}\) that maps the oriented model \(R(t)\) into a decision or plan \(D(t)\). Decision logic might also consider risk, cost, payoff estimates, or constraints from doctrine and leadership structures.  
+   ![](https://latex.codecogs.com/png.latex?D%28t%29%20%3D%20%5Cmathrm%7BDec%7D%28R%28t%29%29)  
+   A function that produces a decision or plan based on the oriented model ![](https://latex.codecogs.com/png.latex?R%28t%29).
 
 4. **Act**  
-   \[
-   A(t) \;=\; \mathrm{Act}\!\bigl(D(t)\bigr)
-   \]  
-   A function \(\mathrm{Act}\) that converts the decision into an actual, real‐world action \(A(t)\).  
+   ![](https://latex.codecogs.com/png.latex?A%28t%29%20%3D%20%5Cmathrm%7BAct%7D%28D%28t%29%29)  
+   A function that converts the decision into a real‐world action ![](https://latex.codecogs.com/png.latex?A%28t%29).
 
 ---
 
 ## 3. Evolution of the System
 
-Once we have chosen an action \(A(t)\), both the environment and the organization’s internal state **update** for the next cycle:
+After **Act**, both external and internal states update:
 
-\[
-\bigl(X(t+1),\,Y(t+1)\bigr) \;=\; T\!\bigl(X(t),\,Y(t),\,A(t)\bigr).
-\]
+![](https://latex.codecogs.com/png.latex?%5BX%28t%2B1%29%2C%20Y%28t%2B1%29%5D%20%3D%20T%28X%28t%29%2C%20Y%28t%29%2C%20A%28t%29%29)
 
-Here, \(T\) is a transition function that models:
+where ![](https://latex.codecogs.com/png.latex?T) captures how the environment and organization change in response to the action ![](https://latex.codecogs.com/png.latex?A%28t%29).
 
-- How the environment responds to our action (e.g., changes in market share, competitor responses).  
-- How our own organization changes internally (e.g., resource consumption, morale shift, knowledge gained).  
+We also update our “two whys”:
 
-We also want to update the two whys:
+![](https://latex.codecogs.com/png.latex?P%28t%2B1%29%20%3D%20%5Cmathrm%7BUpdatePurpose%7D%28P%28t%29%2C%20X%28t%2B1%29%2C%20Y%28t%2B1%29%29)
 
-\[
-P(t+1) \;=\; \mathrm{UpdatePurpose}\bigl(P(t), Y(t+1), X(t+1)\bigr),
-\]
-\[
-M(t+1) \;=\; \mathrm{UpdateMovement}\bigl(M(t), D(t), A(t)\bigr).
-\]
+![](https://latex.codecogs.com/png.latex?M%28t%2B1%29%20%3D%20%5Cmathrm%7BUpdateMovement%7D%28M%28t%29%2C%20D%28t%29%2C%20A%28t%29%29)
 
-- The **why of purpose** may evolve slowly—if at all—based on major strategic pivots or external shocks.  
-- The **why of movement** may update more frequently, reflecting ongoing tactical reasoning behind each step.
+- **Why of Purpose** may evolve slowly (rare major pivots).  
+- **Why of Movement** updates frequently, explaining tactical rationale for each move.
 
 ---
 
 ## 4. Possible Objective Functions
 
-To make it more of an **optimization** problem, define an objective or “fitness” function:
+To make it an **optimization** problem, define a utility or performance function:
 
-\[
-J = \sum_{t=0}^{T-1} U\!\bigl(X(t), Y(t), P(t)\bigr),
-\]
+![](https://latex.codecogs.com/png.latex?J%20%3D%20%5Csum_%7Bt%3D0%7D%5E%7BT-1%7D%20U%28X%28t%29%2C%20Y%28t%29%2C%20P%28t%29%29)
 
-where \(U\) measures how well the system is performing given the purpose \(P(t)\). You could also penalize decisions misaligned with the organization’s doctrine or leadership constraints:
+where ![](https://latex.codecogs.com/png.latex?U) measures strategic performance. We can also penalize misalignment with doctrine or leadership constraints:
 
-\[
-J = \sum_{t=0}^{T-1} 
-\Bigl[
-  U\!\bigl(X(t), Y(t), P(t)\bigr)
-  \;-\;\lambda \,\mathrm{Penalty}\!\bigl(D(t), \text{Doctrine}, \text{Leadership}\bigr)
-\Bigr].
-\]
+![](https://latex.codecogs.com/png.latex?J%20%3D%20%5Csum_%7Bt%3D0%7D%5E%7BT-1%7D%20%5B%20U%28X%28t%29%2C%20Y%28t%29%2C%20P%28t%29%29%20-%20%5Clambda%20%5Cmathrm%7BPenalty%7D%28D%28t%29%2C%20%5Ctext%7BDoctrine%7D%2C%20%5Ctext%7BLeadership%7D%29%20%5D)
 
-Under this formulation, the \(\mathrm{Dec}\) function in “Decide” might attempt:
+The **Decide** step might pick ![](https://latex.codecogs.com/png.latex?D%28t%29) to maximize expected future utility:
 
-\[
-D(t) 
-= \underset{d}{\mathrm{arg\,max}} 
-\;\mathbb{E}\Bigl[\,U\!\bigl(X(t+1), Y(t+1), P(t+1)\bigr) \,\big|\; X(t), Y(t), P(t), M(t)\Bigr]
-\]
+![](https://latex.codecogs.com/png.latex?D%28t%29%20%3D%20%5Cunderset%7Bd%7D%7B%5Cmathrm%7Barg%5C%2Cmax%7D%7D%5C%2C%20%5Cmathbb%7BE%7D%5BU%28X%28t%2B1%29%2C%20Y%28t%2B1%29%2C%20P%28t%2B1%29%29%20%7C%20X%28t%29%2C%20Y%28t%29%2C%20P%28t%29%2C%20M%28t%29%5D)
 
-subject to various constraints. This is akin to a **closed‐loop control** or **model‐predictive control** approach.
+subject to constraints (e.g., doctrine, leadership).
 
 ---
 
-## 5. Tying It Back to Sun Tzu’s Five Factors
+## 5. Tying It All Together
 
-1. **Purpose**: Already captured as \(P(t)\).  
-2. **Climate**: Part of \(X(t)\).  
-3. **Landscape**: Also part of \(X(t)\).  
-4. **Doctrine**: Baked into the internal structure \(Y(t)\) and the penalty/feasibility constraints in \(\mathrm{Dec}\).  
-5. **Leadership**: Reflected in how \(\mathrm{Dec}\) is computed, how decisions are authorized, and how the penalty (or feasibility constraints) is shaped.
+- **Sun Tzu’s Five Factors** appear as internal/external states or constraints.  
+- **Wardley’s Two Whys** →  
+  ![](https://latex.codecogs.com/png.latex?P%28t%29) (purpose) and  
+  ![](https://latex.codecogs.com/png.latex?M%28t%29) (movement).  
+- The **OODA loop** runs as a closed‐loop cycle:
 
----
+  1. ![](https://latex.codecogs.com/png.latex?O%28t%29%20%3D%20%5Cmathrm%7BObs%7D%28X%28t%29%2C%20Y%28t%29%29)
+  2. ![](https://latex.codecogs.com/png.latex?R%28t%29%20%3D%20%5Cmathrm%7BOri%7D%28O%28t%29%2C%20P%28t%29%2C%20M%28t%29%29)
+  3. ![](https://latex.codecogs.com/png.latex?D%28t%29%20%3D%20%5Cmathrm%7BDec%7D%28R%28t%29%29)
+  4. ![](https://latex.codecogs.com/png.latex?A%28t%29%20%3D%20%5Cmathrm%7BAct%7D%28D%28t%29%29)
+  5. ![](https://latex.codecogs.com/png.latex?%5BX%28t%2B1%29%2C%20Y%28t%2B1%29%5D%20%3D%20T%28X%28t%29%2C%20Y%28t%29%2C%20A%28t%29%29)
+  6. ![](https://latex.codecogs.com/png.latex?P%28t%2B1%29%20%3D%20%5Cmathrm%7BUpdatePurpose%7D%28P%28t%29%2C%20X%28t%2B1%29%2C%20Y%28t%2B1%29%29%2C%20%20M%28t%2B1%29%20%3D%20%5Cmathrm%7BUpdateMovement%7D%28M%28t%29%2C%20D%28t%29%2C%20A%28t%29%29
 
-## 6. Summary Diagram
-
-Putting it all together in one cycle step:
-
-1. **Observe**: \(O(t) = \mathrm{Obs}(X(t),\,Y(t))\)
-2. **Orient**: \(R(t) = \mathrm{Ori}\bigl(O(t),\,P(t),\,M(t)\bigr)\)
-3. **Decide**: \(D(t) = \mathrm{Dec}\bigl(R(t)\bigr)\)
-4. **Act**: \(A(t) = \mathrm{Act}\bigl(D(t)\bigr)\)
-5. **State Update**: \(\bigl[X(t+1),\,Y(t+1)\bigr] = T\bigl(X(t),\,Y(t),\,A(t)\bigr)\)
-6. **Purpose/Movement Update**:
-   \[
-   P(t+1) = \mathrm{UpdatePurpose}\bigl(P(t), X(t+1), Y(t+1)\bigr), \quad
-   M(t+1) = \mathrm{UpdateMovement}\bigl(M(t), D(t), A(t)\bigr).
-   \]
-
-Repeat for \(t = t+1\).
+**Repeat for** ![](https://latex.codecogs.com/png.latex?t%20%5Cto%20t%2B1).
 
 ---
 
-## Concluding Remarks
+## 6. Conclusion
 
-1. **Discrete‐time cycles** capture the iterative, feedback‐driven nature of Wardley’s strategy cycle, reminiscent of Boyd’s OODA loop.  
-2. **Sun Tzu’s Five Factors** naturally become parts of your internal (\(Y\)) and external (\(X\)) state or shape constraints and utility.  
-3. **Wardley’s Two Whys** (\(P(t)\) and \(M(t)\)) enter as either explicit state variables or parameters in your decision/orientation functions.  
-4. The entire loop becomes a **closed‐loop dynamical system** in which we can formalize “strategy” as an ongoing series of decisions that evolve with the environment.
-
-No single formula will perfectly represent all the richness of strategy, but this model gives you a starting point: a way to encode strategic considerations in an iterative, math‐friendly structure.
+This discrete‐time model casts the Wardley strategy cycle (with OODA, Sun Tzu’s five factors, and Wardley’s two whys) as a **closed‐loop dynamical system**. By specifying how the organization observes, orients, decides, and acts—and how its states update—one can apply everything from **control theory** to **reinforcement learning** to formalize strategic decision‐making. Of course, real strategy is more nuanced, but this provides a framework for systematic analysis.
+```
