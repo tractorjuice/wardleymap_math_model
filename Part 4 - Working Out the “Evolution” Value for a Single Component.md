@@ -1,7 +1,5 @@
 # Working Out the “Evolution” Value for a Single Component
 
-Below is a **fully marked-down** explanation, with **all** the relevant LaTeX replaced by Codecogs **PNG** images. This ensures proper rendering without any “\( \in [0,1]\)” text artifacts.
-
 ---
 
 ## 1. Model Recap
