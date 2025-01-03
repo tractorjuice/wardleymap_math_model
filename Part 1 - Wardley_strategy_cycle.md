@@ -1,4 +1,3 @@
-```md
 # A Possible Mathematical Model for the Wardley Strategy Cycle
 
 Below is one way to capture the Wardley “strategy cycle” in a **discrete‐time, dynamical‐systems** style model—mixing John Boyd’s OODA Loop, Sun Tzu’s Five Factors, and Wardley’s “two whys.” Real‐world strategy is, of course, far more nuanced, but this sketch illustrates one mathematical formalization.
@@ -116,4 +115,3 @@ subject to constraints (e.g., doctrine, leadership).
 ## 6. Conclusion
 
 This discrete‐time model casts the Wardley strategy cycle (with OODA, Sun Tzu’s five factors, and Wardley’s two whys) as a **closed‐loop dynamical system**. By specifying how the organization observes, orients, decides, and acts—and how its states update—one can apply everything from **control theory** to **reinforcement learning** to formalize strategic decision‐making. Of course, real strategy is more nuanced, but this provides a framework for systematic analysis.
-```
