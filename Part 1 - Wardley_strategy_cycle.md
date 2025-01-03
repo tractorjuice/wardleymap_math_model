@@ -106,7 +106,7 @@ subject to constraints (e.g., doctrine, leadership).
   3. ![](https://latex.codecogs.com/png.latex?D%28t%29%20%3D%20%5Cmathrm%7BDec%7D%28R%28t%29%29)
   4. ![](https://latex.codecogs.com/png.latex?A%28t%29%20%3D%20%5Cmathrm%7BAct%7D%28D%28t%29%29)
   5. ![](https://latex.codecogs.com/png.latex?%5BX%28t%2B1%29%2C%20Y%28t%2B1%29%5D%20%3D%20T%28X%28t%29%2C%20Y%28t%29%2C%20A%28t%29%29)
-  6. ![](https://latex.codecogs.com/png.latex?P%28t%2B1%29%20%3D%20%5Cmathrm%7BUpdatePurpose%7D%28P%28t%29%2C%20X%28t%2B1%29%2C%20Y%28t%2B1%29%29%2C%20%20M%28t%2B1%29%20%3D%20%5Cmathrm%7BUpdateMovement%7D%28M%28t%29%2C%20D%28t%29%2C%20A%28t%29%29
+  6. ![](https://latex.codecogs.com/png.latex?P%28t%2B1%29%20%3D%20%5Cmathrm%7BUpdatePurpose%7D%28P%28t%29%2C%20X%28t%2B1%29%2C%20Y%28t%2B1%29%29%2C%20%20M%28t%2B1%29%20%3D%20%5Cmathrm%7BUpdateMovement%7D%28M%28t%29%2C%20D%28t%29%2C%20A%28t%29%29)
 
 **Repeat for** ![](https://latex.codecogs.com/png.latex?t%20%5Cto%20t%2B1).
 
