@@ -13,18 +13,18 @@ We denote four time-dependent variables (each scaled between 0 and 1):
 
 Each variable evolves over time. A common approach is to use a **logistic growth** function. For example:
 
-**Equation (1)**  
+**Concept readiness**  
 ![Equation 1](https://latex.codecogs.com/png.latex?\dpi{110}\frac{dC}{dt}%20=%20\alpha_{C}C(t)\bigl(1%20-%20C(t)\bigr))
 
 Similarly, we define:
 
-**Equation (2)**  
+**Technology readiness**  
 ![Equation 2](https://latex.codecogs.com/png.latex?\dpi{110}\frac{dT}{dt}%20=%20\alpha_{T}T(t)\bigl(1%20-%20T(t)\bigr))
 
-**Equation (3)**  
+**Suitability**  
 ![Equation 3](https://latex.codecogs.com/png.latex?\dpi{110}\frac{dS}{dt}%20=%20\alpha_{S}S(t)\bigl(1%20-%20S(t)\bigr))
 
-**Equation (4)**  
+**Attitude**  
 ![Equation 4](https://latex.codecogs.com/png.latex?\dpi{110}\frac{dA}{dt}%20=%20\alpha_{A}A(t)\bigl(1%20-%20A(t)\bigr))
 
 Each (![ \alpha ](https://latex.codecogs.com/svg.latex?\alpha)) is a positive parameter that governs the rate of change for each variable.
