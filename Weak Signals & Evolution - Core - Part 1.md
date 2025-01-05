@@ -1,7 +1,5 @@
 # A Simple Math Model for Evolution from Product to Commodity
 
-Below is a **markdown** version of the math model, with **LaTeX** equations embedded using [CodeCogs](https://latex.codecogs.com). Each equation is displayed as an inline image.
-
 ---
 
 ## 1. Four Conditions as “Readiness” Variables
