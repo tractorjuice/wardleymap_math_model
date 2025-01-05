@@ -8,10 +8,10 @@ Below is a **markdown** version of the math model, with **LaTeX** equations embe
 
 We denote four time-dependent variables (each scaled between 0 and 1):
 
-- \( C(t) \) = **Concept readiness**  
-- \( T(t) \) = **Technology readiness**  
-- \( S(t) \) = **Suitability**  
-- \( A(t) \) = **Attitude**  
+- ![C(t)](https://latex.codecogs.com/svg.latex?C(t)) = **Concept readiness**  
+- ![T(t)](https://latex.codecogs.com/svg.latex?T(t)) = **Technology readiness**  
+- ![S(t)](https://latex.codecogs.com/svg.latex?S(t)) = **Suitability**  
+- ![A(t)](https://latex.codecogs.com/svg.latex?A(t)) = **Attitude**
 
 Each variable evolves over time. A common approach is to use a **logistic growth** function. For example:
 
@@ -40,9 +40,9 @@ We combine the four conditions into a single **readiness** function:
 **Equation (5)**  
 ![Equation 5](https://latex.codecogs.com/png.latex?\dpi{110}R(t)%20=%20C(t)T(t)S(t)A(t))
 
-Because \(C(t)\), \(T(t)\), \(S(t)\), and \(A(t)\) are each in \([0, 1]\), their product \(R(t)\) also lies between 0 and 1.
+Because ![C(t)](https://latex.codecogs.com/svg.latex?C(t)), ![T(t)](https://latex.codecogs.com/svg.latex?T(t)), ![S(t)](https://latex.codecogs.com/svg.latex?S(t)), and ![A(t)](https://latex.codecogs.com/svg.latex?A(t)) are each in ![\\[0, 1\\]](https://latex.codecogs.com/svg.latex?[0,1]), their product ![R(t)](https://latex.codecogs.com/svg.latex?R(t)) also lies between 0 and 1.
 
-We define a **threshold** \(\theta\) (for example, \(\theta = 0.7\)) such that:
+We define a **threshold** ![\theta](https://latex.codecogs.com/svg.latex?\theta) (for example, ![\theta = 0.7](https://latex.codecogs.com/svg.latex?\theta%20=%200.7)) such that:
 
 > If \( R(t) \ge \theta \), then the system is **ripe** for a transition from product to commodity.
 
