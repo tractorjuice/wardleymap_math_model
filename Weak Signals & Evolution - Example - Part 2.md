@@ -61,8 +61,9 @@ We define a threshold \(\theta = 0.65\). If \( R(t) \) crosses \( 0.65 \), we as
 
 We track:
 
-- \( P_{\mathrm{op}}(t) \): fraction of publications about **operation/maintenance/feature**  
-- \( P_{\mathrm{use}}(t) \): fraction of publications about **use/application/outcome**
+- ![P_op](https://latex.codecogs.com/png.latex?P_%7B%5Cmathrm%7Bop%7D%7D%28t%29): fraction of publications about operation/maintenance/feature
+- ![P_use](https://latex.codecogs.com/png.latex?P_%7B%5Cmathrm%7Buse%7D%7D%28t%29): fraction of publications about use/application/outcome
+
 
 They must sum to 1:
 
