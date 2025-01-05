@@ -93,10 +93,39 @@ When ![Delta(t)](https://latex.codecogs.com/png.latex?\Delta(t)) **peaks**, it i
 
 ## 3. Numerical Simulation
 
-Track Publications: Evaluate ![P_use(t)](https://latex.codecogs.com/png.latex?P_{\mathrm{use}}(t)) and ![Delta(t)](https://latex.codecogs.com/png.latex?\Delta(t)) at each step.
+> Here’s a simple qualitative walkthrough. In practice, you’d use a script (Python, MATLAB, R, etc.) to solve these equations numerically (e.g., via Euler or Runge-Kutta methods).
+
+1. **Time Span**: Simulate from ![t=0](https://latex.codecogs.com/png.latex?t=0) to ![t=20](https://latex.codecogs.com/png.latex?t=20).  
+2. **Integration**: At each time step, update ![C(t)](https://latex.codecogs.com/png.latex?C(t)), ![T(t)](https://latex.codecogs.com/png.latex?T(t)), ![S(t)](https://latex.codecogs.com/png.latex?S(t)), ![A(t)](https://latex.codecogs.com/png.latex?A(t)) based on their logistic derivatives.  
+3. **Compute ![R(t)](https://latex.codecogs.com/png.latex?R(t))**: Multiply the four values at each time step.  
+4. **Compare ![R(t)](https://latex.codecogs.com/png.latex?R(t)) to ![theta=0.65](https://latex.codecogs.com/png.latex?\theta=0.65)**: Check whether ![R(t)](https://latex.codecogs.com/png.latex?R(t)) reaches or exceeds the threshold.  
+5. **Track Publications**: Evaluate ![P_use(t)](https://latex.codecogs.com/png.latex?P_{\mathrm{use}}(t)) and ![Delta(t)](https://latex.codecogs.com/png.latex?\Delta(t)) at each step.
+
+---
+
+## 4. Interpretation
+
+1. **Readiness Over Time**  
+   - Initially, ![R(t)](https://latex.codecogs.com/png.latex?R(t)) was tiny. By around ![t=16](https://latex.codecogs.com/png.latex?t=16), it surpassed the threshold ![theta=0.65](https://latex.codecogs.com/png.latex?\theta=0.65).  
+   - This marks when the market collectively treats the activity as **standardized**—a sign of **commoditization**.
+
+2. **Publications**  
+   - The peak in ![Delta(t)](https://latex.codecogs.com/png.latex?\Delta(t)) signals rapid growth in use-focused publications—a key indicator of commoditization.  
+
+3. **Strategic Takeaways**  
+   - Before ![t=16](https://latex.codecogs.com/png.latex?t=16), organizations can **invest** in high-value areas or prepare to **outsource**.  
+   - After commoditization, innovation and customization hold less value as the activity becomes a **utility**.
+
+---
+
+## 5. Adapting to Real-World Scenarios
+
+- **Data Collection**: Gather data on concept acceptance, technology maturity, market standardization, and user attitudes.  
+- **Calibrate Parameters**: Adjust growth rates based on observed industry trends.  
+- **Monitor Progress**: Re-estimate readiness levels periodically to adjust strategies proactively.
 
 ---
 
 ## Conclusion
 
-By combining real data on readiness factors and watching weak signals in publications, strategists can anticipate and capitalize on upcoming commoditization in their industries or technology domains.
+By combining real data on readiness factors and observing weak signals in publications, strategists can anticipate and capitalize on commoditization trends in their industries.
