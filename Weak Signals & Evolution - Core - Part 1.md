@@ -27,7 +27,7 @@ Similarly, we define:
 **Equation (4)**  
 ![Equation 4](https://latex.codecogs.com/png.latex?\dpi{110}\frac{dA}{dt}%20=%20\alpha_{A}A(t)\bigl(1%20-%20A(t)\bigr))
 
-Each \(\alpha\) is a positive parameter that governs the rate of change for each variable.
+Each (![ \alpha ](https://latex.codecogs.com/svg.latex?\alpha)) is a positive parameter that governs the rate of change for each variable.
 
 ---
 
