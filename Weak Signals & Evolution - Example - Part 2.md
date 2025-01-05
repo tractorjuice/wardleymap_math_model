@@ -101,7 +101,8 @@ When \(\Delta(t)\) **peaks**, it indicates the **fastest** growth in “use-focu
 2. **Integration**: At each time step, update \(C(t)\), \(T(t)\), \(S(t)\), \(A(t)\) based on their logistic derivatives.  
 3. **Compute \( R(t) \)**: Multiply the four values at each time step.  
 4. **Compare \( R(t) \) to \(\theta\)**: Check whether \( R(t) \) reaches or exceeds \( 0.65 \).  
-5. **Track Publications**: Evaluate \( P_{\mathrm{use}}(t) \) and \(\Delta(t)\) at each step.
+5. **Track Publications**: Evaluate ![P_use(t)](https://latex.codecogs.com/png.latex?P_%7B%5Cmathrm%7Buse%7D%7D%28t%29) and ![Delta(t)](https://latex.codecogs.com/png.latex?%5CDelta%28t%29) at each step.
+
 
 ### 3.1 Hypothetical Results
 
