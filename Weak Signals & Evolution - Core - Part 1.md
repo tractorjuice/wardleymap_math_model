@@ -35,7 +35,7 @@ Each (![ \alpha ](https://latex.codecogs.com/svg.latex?\alpha)) is a positive pa
 
 We combine the four conditions into a single **readiness** function:
 
-**Equation (5)**  
+**Readiness**  
 ![Equation 5](https://latex.codecogs.com/png.latex?\dpi{110}R(t)%20=%20C(t)T(t)S(t)A(t))
 
 Because ![C(t)](https://latex.codecogs.com/svg.latex?C(t)), ![T(t)](https://latex.codecogs.com/svg.latex?T(t)), ![S(t)](https://latex.codecogs.com/svg.latex?S(t)), and ![A(t)](https://latex.codecogs.com/svg.latex?A(t)) are each in ![\\[0, 1\\]](https://latex.codecogs.com/svg.latex?[0,1]), their product ![R(t)](https://latex.codecogs.com/svg.latex?R(t)) also lies between 0 and 1.
