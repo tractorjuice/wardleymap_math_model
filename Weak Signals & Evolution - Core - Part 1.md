@@ -44,7 +44,7 @@ Because ![C(t)](https://latex.codecogs.com/svg.latex?C(t)), ![T(t)](https://late
 
 We define a **threshold** ![\theta](https://latex.codecogs.com/svg.latex?\theta) (for example, ![\theta = 0.7](https://latex.codecogs.com/svg.latex?\theta%20=%200.7)) such that:
 
-> If \( R(t) \ge \theta \), then the system is **ripe** for a transition from product to commodity.
+> If ![R(t) \ge \theta](https://latex.codecogs.com/svg.latex?R(t)%20\ge%20\theta), then the system is **ripe** for a transition from product to commodity.
 
 ---
 
@@ -55,13 +55,13 @@ We define a **threshold** ![\theta](https://latex.codecogs.com/svg.latex?\theta)
 We split publications into two broad categories:
 
 1. **Operation/Maintenance/Feature Differentiation**  
-   Denote the fraction of total publications as \( P_{\mathrm{op}}(t) \).  
+   Denote the fraction of total publications as ![P_{\mathrm{op}}(t)](https://latex.codecogs.com/svg.latex?P_{\mathrm{op}}(t)).  
 2. **Use/Application/Outcome Focus**  
-   Denote this fraction as \( P_{\mathrm{use}}(t) \).
+   Denote this fraction as ![P_{\mathrm{use}}(t)](https://latex.codecogs.com/svg.latex?P_{\mathrm{use}}(t)).
 
 Because these two categories cover most relevant publications, we assume:
 
-> \( P_{\mathrm{op}}(t) + P_{\mathrm{use}}(t) = 1 \).
+> ![P_{\mathrm{op}}(t) + P_{\mathrm{use}}(t) = 1](https://latex.codecogs.com/svg.latex?P_{\mathrm{op}}(t)%20+%20P_{\mathrm{use}}(t)%20=%201).
 
 ### 3.2 Logistic Shift in Publication Focus
 
