@@ -38,12 +38,12 @@ Suppose we start at \( t = 0 \) with:
 
 ### 1.3 Growth Rates
 
-We pick growth rate parameters (\(\alpha_X\)) to reflect how quickly each variable moves toward 1:
+We pick growth rate parameters (![alpha_X](https://latex.codecogs.com/png.latex?%5Calpha_X)) to reflect how quickly each variable moves toward 1:
 
-- \(\alpha_C = 0.08\)
-- \(\alpha_T = 0.12\)
-- \(\alpha_S = 0.05\)
-- \(\alpha_A = 0.10\)
+- ![alpha_C](https://latex.codecogs.com/png.latex?%5Calpha_C) = 0.08
+- ![alpha_T](https://latex.codecogs.com/png.latex?%5Calpha_T) = 0.12
+- ![alpha_S](https://latex.codecogs.com/png.latex?%5Calpha_S) = 0.05
+- ![alpha_A](https://latex.codecogs.com/png.latex?%5Calpha_A) = 0.10
 
 *(Interpretation: Technology readiness \(T\) grows faster than concept readiness \(C\), etc.)*
 
