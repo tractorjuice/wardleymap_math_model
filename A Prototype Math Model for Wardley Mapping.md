@@ -1,4 +1,3 @@
-```markdown
 # A Prototype Math Model for Wardley Mapping
 
 Below is a **prototype** of how one might formalize aspects of **Wardley Mapping** within a mathematical model. Note that **Wardley Mapping** was originally conceived by Simon Wardley as a visual and conceptual technique—not as a purely quantitative or algorithmic framework—so any “math model” will necessarily be a **stylized abstraction** of the real practice. Nevertheless, creating such a model can help clarify assumptions, enable simulations, and potentially guide strategic decision-making in a more formal manner.
@@ -218,4 +217,3 @@ By **translating** the conceptual elements of Wardley Mapping into states, inves
 - Incorporates **strategic interactions** (investments, open-sourcing, competition) in a game-theoretic or agent-based simulation framework.
 
 Such a model can help with **scenario testing**, **simulation-based planning**, and deeper analysis of **how organizational choices** might shift the map. However, it is crucial to remember that **Wardley Maps** were designed primarily as a **visual sense-making tool**—the rigor of a math model should augment, not overshadow, the map’s original purpose of helping teams see where their strategic components are heading and why that matters.
-```
