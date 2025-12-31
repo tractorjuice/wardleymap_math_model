@@ -1,6 +1,6 @@
 # Wardley Map Generator Prompt
 
-Use this prompt to create a mathematically-grounded Wardley Map for any domain, system, or business scenario. Outputs in OWM (Online Wardley Maps) format compatible with [onlinewardleymaps.com](https://onlinewardleymaps.com).
+Use this prompt to create a mathematically-grounded Wardley Map for any domain, system, or business scenario. Outputs in OWM (Online Wardley Maps) format compatible with [create.wardleymaps.ai](https://create.wardleymaps.ai/).
 
 ---
 
