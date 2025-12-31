@@ -1,7 +1,6 @@
-
 # Wardley Map Generator Prompt
 
-Use this prompt to create a mathematically-grounded Wardley Map for any domain, system, or business scenario.
+Use this prompt to create a mathematically-grounded Wardley Map for any domain, system, or business scenario. Outputs in OWM (Online Wardley Maps) format compatible with [onlinewardleymaps.com](https://onlinewardleymaps.com).
 
 ---
 
@@ -44,7 +43,7 @@ Calculate visibility using graph distance from the user:
 This ensures:
 - User need: ν = 1.0 (d=0)
 - Direct dependencies: ν = 0.5 (d=1)
-- Second level: ν = 0.33 (d=2)
+- Second level: ν ≈ 0.33 (d=2)
 - Third level: ν = 0.25 (d=3)
 - And so on...
 
@@ -74,56 +73,55 @@ Calculate strategic indicators:
 **Dependency Risk:** R(a,b) = ν(a) × (1 - ε(b))
 - High R = visible component depends on immature foundation = risk
 
-### 6. Output Format
+### 6. Output in OWM Format
 
-Provide the map in this structured format:
+Output the map in OWM (Online Wardley Maps) format. This format uses [visibility, evolution] coordinates where both values are between 0 and 1.
 
-```yaml
-wardley_map:
-  name: "[Map Name]"
-  anchor: "[User Need]"
+**OWM Syntax:**
+- `title Map Title` - The map title
+- `anchor Anchor Name [visibility, evolution]` - The user need (top of map)
+- `component Component Name [visibility, evolution]` - Each component
+- `Component A->Component B` - Dependency arrows (A depends on B)
+- `evolve Component Name target_evolution` - Show evolution movement
+- `note Note text [visibility, evolution]` - Add annotations
+- `style wardley` - Use Wardley styling
 
-  components:
-    - name: "[Component Name]"
-      visibility: [0-1]
-      evolution: [0-1]
-      stage: "[Genesis|Custom|Product|Commodity]"
-      depends_on: ["Component1", "Component2"]
+**Template:**
+```owm
+title [Map Name]
+style wardley
 
-  metrics:
-    differentiation_pressure:
-      - component: "[Name]"
-        score: [0-1]
-    commodity_leverage:
-      - component: "[Name]"
-        score: [0-1]
-    dependency_risks:
-      - edge: "[A] → [B]"
-        score: [0-1]
+// Anchor (user need)
+anchor [User Need] [visibility, evolution]
 
-  strategic_insights:
-    - "[Insight based on metrics]"
+// Components by visibility layer
+component [Component 1] [visibility, evolution]
+component [Component 2] [visibility, evolution]
+component [Component 3] [visibility, evolution]
+// ... more components
+
+// Dependencies (component -> what it depends on)
+[User Need]->[Component 1]
+[Component 1]->[Component 2]
+[Component 1]->[Component 3]
+// ... more dependencies
+
+// Evolution movements (optional)
+evolve [Component Name] [target_evolution]
+
+// Strategic notes (optional)
+note High differentiation opportunity [0.7, 0.2]
+note Commodity candidate [0.2, 0.85]
 ```
 
-### 7. Visual Representation
+### 7. Strategic Analysis
 
-Also provide an ASCII representation:
+After the OWM output, provide:
 
-```
-Visibility (ν)
-    1.0 |  [User Need]
-        |
-    0.5 |     [Component A]
-        |
-    0.33|        [B]    [C]
-        |
-    0.25|           [D]
-        |
-    0.0 +---------------------------
-        0    0.25   0.5   0.75   1.0
-             Genesis Custom Product Commodity
-                    Evolution (ε) →
-```
+1. **Top 3 Differentiation Opportunities** (highest D scores)
+2. **Top 3 Commodity/Outsource Candidates** (highest K scores)
+3. **Top 3 Dependency Risks** (highest R scores)
+4. **Recommended Strategic Moves**
 
 ---
 
@@ -134,18 +132,63 @@ Now analyze the following scenario and create a Wardley Map:
 
 ---
 
-## Example Usage
+## Example Output
 
-**Input Scenario:**
-> "An e-commerce company selling handmade crafts online. They need to handle product listings, payments, shipping, and customer service."
+For an e-commerce handmade crafts business:
 
-**The prompt will generate:**
-1. Components like: Customer Need, Online Storefront, Product Catalog, Payment Processing, Shipping Integration, Customer Support, Cloud Hosting, etc.
-2. Dependencies showing how each component relates
-3. Calculated visibility based on distance from customer
-4. Evolution estimates based on market maturity signals
-5. Strategic metrics highlighting opportunities and risks
-6. Structured YAML output and ASCII visualization
+```owm
+title Handmade Crafts E-Commerce
+style wardley
+
+// Anchor - User Need
+anchor Customer Purchase [0.95, 0.58]
+
+// High visibility components
+component Online Storefront [0.78, 0.62]
+component Product Discovery [0.75, 0.45]
+component Shopping Cart [0.72, 0.71]
+
+// Mid visibility components
+component Product Catalog [0.55, 0.52]
+component Artisan Onboarding [0.52, 0.35]
+component Payment Processing [0.50, 0.82]
+component Order Management [0.48, 0.55]
+
+// Lower visibility components
+component Shipping Integration [0.35, 0.72]
+component Inventory System [0.32, 0.48]
+component Customer Support [0.30, 0.45]
+
+// Infrastructure
+component Cloud Hosting [0.18, 0.89]
+component Database [0.15, 0.85]
+component CDN [0.12, 0.92]
+
+// Dependencies
+Customer Purchase->Online Storefront
+Online Storefront->Product Discovery
+Online Storefront->Shopping Cart
+Online Storefront->Product Catalog
+Product Discovery->Product Catalog
+Shopping Cart->Payment Processing
+Shopping Cart->Order Management
+Product Catalog->Inventory System
+Product Catalog->Artisan Onboarding
+Order Management->Shipping Integration
+Order Management->Inventory System
+Customer Support->Order Management
+Online Storefront->Cloud Hosting
+Product Catalog->Database
+Online Storefront->CDN
+
+// Evolution targets
+evolve Artisan Onboarding 0.55
+evolve Product Discovery 0.60
+
+// Strategic notes
+note Differentiation opportunity [0.65, 0.30]
+note Outsource candidate [0.25, 0.88]
+```
 
 ---
 
@@ -153,22 +196,52 @@ Now analyze the following scenario and create a Wardley Map:
 
 Add these to the prompt for specific needs:
 
-**For dynamics/time evolution:**
+**For evolution over time:**
 ```
-Also model how components might evolve over 2 years using:
-dε/dt = r × (1 - ε)
+Show future evolution using:
+evolve [Component] [target_evolution]
+
+Model movement using: dε/dt = r × (1 - ε)
 Where r = baseline_pressure + your_actions - friction
 ```
 
-**For uncertainty:**
+**For inertia indicators:**
 ```
-Express confidence in positions using Beta distributions:
-ε(v) ~ Beta(α, β) where mean = α/(α+β)
-Include uncertainty ranges in output.
+Add inertia markers for components resistant to change:
+component [Name] [vis, evo] inertia
 ```
 
-**For competitive analysis:**
+**For build/buy decisions:**
 ```
-Include competitor positions on the same map.
-Identify where competitors are investing.
+Mark components with build/buy annotations:
+build [Component Name]
+buy [Component Name]
+outsource [Component Name]
 ```
+
+**For pipelines:**
+```
+Group related components:
+pipeline [Component] [start_evo, end_evo]
+```
+
+---
+
+## OWM Format Reference
+
+| Element | Syntax | Example |
+|---------|--------|---------|
+| Title | `title Name` | `title My Map` |
+| Style | `style wardley` | `style wardley` |
+| Anchor | `anchor Name [v, e]` | `anchor Customer Need [0.95, 0.5]` |
+| Component | `component Name [v, e]` | `component API [0.45, 0.72]` |
+| Dependency | `A->B` | `Website->API` |
+| Evolution | `evolve Name target` | `evolve API 0.85` |
+| Note | `note Text [v, e]` | `note Risk area [0.5, 0.3]` |
+| Pipeline | `pipeline Name [s, e]` | `pipeline Platform [0.3, 0.8]` |
+| Inertia | `component Name [v, e] inertia` | `component Legacy [0.4, 0.3] inertia` |
+| Label | `component Name [v, e] label [-x, y]` | `component API [0.5, 0.7] label [-10, 5]` |
+
+Coordinates: `[visibility, evolution]` where both are 0-1 scale.
+- Visibility: 1.0 = top (user-facing), 0.0 = bottom (infrastructure)
+- Evolution: 0.0 = genesis (left), 1.0 = commodity (right)
