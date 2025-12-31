@@ -16,7 +16,7 @@ along with **dependencies** forming a directed graph. An edge
 
 $(c_i, c_j) \in \mathcal{E}$
 
-means $c_i$ depends on $c_j$.
+means **$c_i$** depends on **$c_j$**.
 
 We also define two mappings:
 

@@ -10,7 +10,7 @@ This explanation highlights **why** the kettle evolves from a **custom** solutio
    We define a set of components $\mathcal{C} = \{ c_1, c_2, \dots, c_n \}$, each representing an element in delivering value (e.g., "Kettle," "Power," "Water").
 
 2. **Dependencies**
-   A directed edge $(c_i, c_j) \in \mathcal{E}$ means "$c_i$ depends on $c_j$." In the Tea Shop example:
+   A directed edge $(c_i, c_j) \in \mathcal{E}$ means "**$c_i$** depends on **$c_j$**." In the Tea Shop example:
    - "Kettle" depends on "Power."
    - "Cup of Tea" depends on "Hot Water," etc.
 

@@ -42,7 +42,7 @@ Additionally, each component $i$ has **dependencies** on other components. Let
 
 $$\mathcal{D} \subseteq \mathcal{C} \times \mathcal{C}$$
 
-be a set of directed edges. A pair $(i, j) \in \mathcal{D}$ means "Component $i$ **uses** or **depends on** component $j$."
+be a set of directed edges. A pair $(i, j) \in \mathcal{D}$ means "Component **$i$** uses or depends on component **$j$**."
 
 
 ---
