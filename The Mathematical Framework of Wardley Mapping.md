@@ -38,25 +38,25 @@ The mathematical formalization of Wardley Mapping requires a robust and consiste
 
 We define a Wardley Map as a directed graph W = (C, E, P) where C represents the set of components, E represents the edges (dependencies) between components, and P represents the positioning function that maps components to coordinates in the value chain space.
 
-- C = {c₁, c₂, ..., cₙ} represents the set of all components in the map
-- E ⊆ C × C represents the set of directed edges between components
-- P: C → [0,1] × [0,1] maps components to their (value, evolution) coordinates
+- C = {c$_1$, c$_2$, ..., c$_n$} represents the set of all components in the map
+- E $\subseteq$ C $\times$ C represents the set of directed edges between components
+- P: C → [0,1] $\times$ [0,1] maps components to their (value, evolution) coordinates
 - V(c): C → [0,1] represents the value axis position of a component
 - E(c): C → [0,1] represents the evolution axis position of a component
 
-The evolution axis is divided into four canonical phases: Genesis (α), Custom-Built (β), Product (γ), and Commodity (δ). These phases are mathematically represented as intervals within the [0,1] range of the evolution axis.
+The evolution axis is divided into four canonical phases: Genesis ($\alpha$), Custom-Built ($\beta$), Product ($\gamma$), and Commodity ($\delta$). These phases are mathematically represented as intervals within the [0,1] range of the evolution axis.
 
-- Genesis (α): [0, 0.25)
-- Custom-Built (β): [0.25, 0.50)
-- Product (γ): [0.50, 0.75)
-- Commodity (δ): [0.75, 1.0]
+- Genesis ($\alpha$): [0, 0.25)
+- Custom-Built ($\beta$): [0.25, 0.50)
+- Product ($\gamma$): [0.50, 0.75)
+- Commodity ($\delta$): [0.75, 1.0]
 
-For temporal analysis, we introduce the time parameter t, allowing us to represent the evolution of components and their relationships over time: P(c,t): C × T → [0,1] × [0,1]. This enables the mathematical modeling of component movement and strategic change.
+For temporal analysis, we introduce the time parameter t, allowing us to represent the evolution of components and their relationships over time: P(c,t): C $\times$ T → [0,1] $\times$ [0,1]. This enables the mathematical modeling of component movement and strategic change.
 
-- Movement vectors: M(c,t) = ∂P(c,t)/∂t
-- Evolutionary pressure: F(c,t) = ∑ᵢ wᵢfᵢ(c,t)
-- Component inertia: I(c) ∈ [0,∞)
-- Dependency strength: D(cᵢ,cⱼ) ∈ [0,1]
+- Movement vectors: M(c,t) = $\partial$P(c,t)/$\partial$t
+- Evolutionary pressure: F(c,t) = $\sum$$_i$ w$_i$f$_i$(c,t)
+- Component inertia: I(c) $\in$ [0,$\infty$)
+- Dependency strength: D(c$_i$,c$_j$) $\in$ [0,1]
 
 > The introduction of rigorous mathematical notation transforms Wardley Mapping from a qualitative tool into a powerful quantitative framework for strategic analysis, observes a senior government strategist.
 
@@ -277,7 +277,7 @@ Network dynamics and flow analysis form a crucial mathematical foundation for un
 
 > The application of network flow mathematics to Wardley Mapping has revolutionised our ability to predict and optimise value chain performance in government digital transformations, notes a senior government strategist.
 
-The mathematical framework for network dynamics in Wardley Mapping primarily utilises directed graphs G = (V,E), where V represents components and E represents the relationships between them. Flow analysis introduces capacity functions c(e) for each edge e ∈ E, representing the maximum possible flow of value between components.
+The mathematical framework for network dynamics in Wardley Mapping primarily utilises directed graphs G = (V,E), where V represents components and E represents the relationships between them. Flow analysis introduces capacity functions c(e) for each edge e $\in$ E, representing the maximum possible flow of value between components.
 
 - Maximum Flow Analysis: Utilising Ford-Fulkerson and Push-relabel algorithms to determine optimal value delivery paths
 - Minimum Cut Theorems: Identifying critical vulnerabilities and bottlenecks in value chains
@@ -288,10 +288,10 @@ When applying these concepts to Wardley Maps, we must consider both the static a
 
 The mathematical representation of flow dynamics in Wardley Maps can be expressed through the Flow Conservation Law: Σ f(in) = Σ f(out) for all internal nodes, where f represents the flow function. This fundamental principle ensures consistency in value transfer across the map.
 
-- Flow Capacity Constraints: 0 ≤ f(e) ≤ c(e) for all edges e ∈ E
+- Flow Capacity Constraints: 0 $\leq$ f(e) $\leq$ c(e) for all edges e $\in$ E
 - Value Conservation: Σ f(s,v) = Σ f(v,t) for all vertices v
-- Evolution Dynamics: dc/dt = α(p,t) where α represents the evolution function
-- Feedback Mechanisms: r(t) = β(f,t) where β captures the system response
+- Evolution Dynamics: dc/dt = $\alpha$(p,t) where $\alpha$ represents the evolution function
+- Feedback Mechanisms: r(t) = $\beta$(f,t) where $\beta$ captures the system response
 
 > The integration of network flow mathematics with Wardley Mapping has enabled us to quantify strategic decisions with unprecedented precision, transforming our approach to digital service delivery, explains a leading public sector transformation expert.
 
@@ -315,8 +315,8 @@ In the context of Wardley Mapping, centrality measures help identify critical co
 The mathematical formulation of centrality in value chains can be expressed through adjacency matrices and network graphs, where each component's centrality score (C) is calculated based on its position and connections within the network. For a value chain with n components, the generalised centrality measure can be expressed as C(i) = f(A,i), where A represents the adjacency matrix and i is the component index.
 
 - Degree Centrality: CD(i) = Σj aij where aij represents connections in the adjacency matrix
-- Betweenness Centrality: CB(i) = Σst (σst(i)/σst) where σst represents shortest paths
-- Eigenvector Centrality: CE(i) = 1/λ Σj aij xj where λ is the largest eigenvalue
+- Betweenness Centrality: CB(i) = Σst ($\sigma$st(i)/$\sigma$st) where $\sigma$st represents shortest paths
+- Eigenvector Centrality: CE(i) = 1/$\lambda$ Σj aij xj where $\lambda$ is the largest eigenvalue
 - Closeness Centrality: CC(i) = n-1/Σj d(i,j) where d(i,j) represents geodesic distances
 
 These mathematical frameworks enable strategic decision-makers to identify critical components that require additional investment, protection, or optimization. In government contexts, this approach has proven particularly valuable for infrastructure planning and digital service architecture decisions.
@@ -340,7 +340,7 @@ The topological approach enables us to identify and quantify critical structural
 
 The mathematical formalization of dependency analysis through topology provides several key advantages. First, it allows for the identification of structural vulnerabilities in value chains through the analysis of homology groups. Second, it enables the quantification of resilience through persistent homology calculations. Third, it facilitates the prediction of evolutionary patterns based on topological invariants.
 
-- Homology Group Analysis: H₀ for connected components, H₁ for cycles, H₂ for voids
+- Homology Group Analysis: H$_0$ for connected components, H$_1$ for cycles, H$_2$ for voids
 - Persistence Diagrams: Visualizing the lifespan of topological features
 - Bottleneck Distance: Measuring similarity between dependency structures
 - Sheaf Theory: Analyzing local-to-global dependency properties
@@ -399,10 +399,10 @@ The mathematical foundation of Strategic Decision Matrices in Wardley Mapping bu
 
 - Utility Functions: U(s,e) where s represents strategic choice and e represents evolutionary stage
 - Payoff Matrices: P[m,n] capturing outcomes for m strategies across n evolutionary stages
-- Risk Coefficients: R(α,β) incorporating uncertainty in evolution prediction
+- Risk Coefficients: R($\alpha$,$\beta$) incorporating uncertainty in evolution prediction
 - Strategic Dominance Vectors: D(s) measuring relative advantage of each strategy
 
-The implementation of Strategic Decision Matrices requires careful consideration of the temporal aspects of evolution. We express this through time-dependent utility functions: U(s,e,t) = U(s,e) * δ(t), where δ(t) represents a discount factor accounting for the increasing uncertainty in longer-term predictions.
+The implementation of Strategic Decision Matrices requires careful consideration of the temporal aspects of evolution. We express this through time-dependent utility functions: U(s,e,t) = U(s,e) * $\delta$(t), where $\delta$(t) represents a discount factor accounting for the increasing uncertainty in longer-term predictions.
 
 - Immediate Strategic Value (ISV): Calculated through instantaneous utility evaluation
 - Evolution-Adjusted Return (EAR): Incorporating predicted movement along the evolution axis
@@ -413,7 +413,7 @@ The matrix formulation allows for the incorporation of multiple stakeholder pers
 
 > The mathematical rigour brought by strategic decision matrices has enabled us to justify and communicate complex strategic choices to diverse stakeholders with unprecedented clarity, observes a chief strategy officer at a major public sector organisation.
 
-The integration with Nash Equilibrium concepts provides a framework for analysing stable strategic positions within the evolutionary landscape. We define equilibrium states as those where no unilateral deviation in strategy would yield higher utility, expressed mathematically as: U(s*,e) ≥ U(s,e) for all alternative strategies s, given evolutionary state e.
+The integration with Nash Equilibrium concepts provides a framework for analysing stable strategic positions within the evolutionary landscape. We define equilibrium states as those where no unilateral deviation in strategy would yield higher utility, expressed mathematically as: U(s*,e) $\geq$ U(s,e) for all alternative strategies s, given evolutionary state e.
 
 
 
@@ -454,7 +454,7 @@ Evolutionary Game Theory (EGT) provides a powerful mathematical framework for an
 The mathematical formulation of EGT in Wardley Mapping contexts focuses on three key elements: strategy spaces representing possible evolutionary positions, payoff functions that quantify the relative advantages of different positions, and replicator dynamics that model how populations of components evolve over time.
 
 - Strategy Spaces: Defined as S = {genesis, custom, product, commodity} representing the four evolutionary stages
-- Payoff Functions: π(si, sj) representing the utility gained by a component in stage si interacting with components in stage sj
+- Payoff Functions: $\pi$(si, sj) representing the utility gained by a component in stage si interacting with components in stage sj
 - Replicator Dynamics: dx/dt = x[f(x) - φ(x)] where x represents the population distribution across stages
 - Evolutionary Stable Strategies (ESS): Solutions that resist invasion by alternative strategies
 
@@ -521,7 +521,7 @@ The mathematical formulation of fitness landscapes in Wardley Mapping employs NK
 
 - Local Optima Detection: ∇F(x) = 0 and negative definite Hessian matrix
 - Path Optimization: Dynamic programming algorithms for optimal evolution trajectories
-- Landscape Correlation: C(s) = <F(x)F(x+s)> - <F(x)>²
+- Landscape Correlation: C(s) = <F(x)F(x+s)> - <F(x)>$^2$
 - Ruggedness Index: R = -ln|C(1)/C(0)|
 - Evolution Speed: dx/dt = η∇F(x), where η is the learning rate
 
@@ -537,17 +537,17 @@ In the mathematical framework of Wardley Mapping, mutation and selection process
 
 > The mathematical modelling of mutation and selection in value chains provides us with predictive capabilities that qualitative mapping alone could never achieve, notes a leading strategist in public sector digital transformation.
 
-The mutation process in Wardley Mapping can be mathematically represented through stochastic differential equations that capture both incremental improvements and radical innovations. The basic mutation rate μ(x,t) for a component at position x at time t can be expressed as a function of its current evolutionary state and environmental pressures.
+The mutation process in Wardley Mapping can be mathematically represented through stochastic differential equations that capture both incremental improvements and radical innovations. The basic mutation rate $\mu$(x,t) for a component at position x at time t can be expressed as a function of its current evolutionary state and environmental pressures.
 
-- Continuous Mutation Functions: μc(x,t) = αe^(-βx) + γ, where α represents innovation pressure, β the resistance to change, and γ the baseline mutation rate
-- Discrete Mutation Events: Poisson process with rate λ(x,t) for sudden technological breakthroughs
+- Continuous Mutation Functions: $\mu$c(x,t) = $\alpha$e^(-$\beta$x) + $\gamma$, where $\alpha$ represents innovation pressure, $\beta$ the resistance to change, and $\gamma$ the baseline mutation rate
+- Discrete Mutation Events: Poisson process with rate $\lambda$(x,t) for sudden technological breakthroughs
 - Selection Pressure Variables: S(x,t) incorporating market demands and competitive forces
 - Fitness Landscape Gradients: ∇F(x,t) determining evolutionary trajectories
 
 Selection processes in Wardley Mapping operate through fitness functions that determine which mutations are likely to succeed in the marketplace. These can be modelled using Price's equation adapted for technological evolution, incorporating both direct and indirect selection effects.
 
 - Selection Coefficient: s = (w1 - w0)/w0, where w represents fitness values
-- Population Dynamics: dP/dt = rP(1 - P/K) + μ(x,t)P
+- Population Dynamics: dP/dt = rP(1 - P/K) + $\mu$(x,t)P
 - Competitive Exclusion Principles: max{si} determines dominant variants
 - Coevolutionary Feedback Loops: coupled differential equations for interacting components
 
@@ -567,10 +567,10 @@ Coevolutionary systems represent a critical framework for understanding the comp
 
 The mathematical representation of coevolutionary systems in Wardley Mapping employs coupled differential equations that capture the mutual influence between components. These equations typically take the form of Lotka-Volterra systems, modified to account for the specific characteristics of technological and organisational evolution within value chains.
 
-- Coupled Evolution Equations: dx/dt = αx(1-x/K) - βxy, dy/dt = γxy - δy
+- Coupled Evolution Equations: dx/dt = $\alpha$x(1-x/K) - $\beta$xy, dy/dt = $\gamma$xy - $\delta$y
 - Fitness Landscape Coupling: F(x,y) = Σ w_ij(x_i, y_j)
 - Interaction Matrices: M_ij representing component dependencies
-- Rate Constants: α, β, γ, δ for evolution speeds
+- Rate Constants: $\alpha$, $\beta$, $\gamma$, $\delta$ for evolution speeds
 
 The application of coevolutionary mathematics to Wardley Mapping reveals several key patterns in value chain evolution. Components frequently demonstrate predator-prey relationships, competitive exclusion, or mutualistic development, all of which can be quantified through appropriate mathematical models.
 
@@ -658,10 +658,10 @@ The fundamental approach to competition modeling in Wardley Mapping utilises dif
 - Replicator Dynamics: Modeling market share evolution over time
 - Fitness Landscape Mathematics: Quantifying competitive advantage
 
-The mathematical representation of competition in Wardley Maps employs a modified form of the generalised competition coefficient matrix (α_ij), where each element represents the competitive impact of component i on component j. This framework allows for asymmetric competition effects and incorporates evolution-dependent interaction strengths.
+The mathematical representation of competition in Wardley Maps employs a modified form of the generalised competition coefficient matrix ($\alpha$_ij), where each element represents the competitive impact of component i on component j. This framework allows for asymmetric competition effects and incorporates evolution-dependent interaction strengths.
 
-- Competition Intensity Function: CI(x,y) = Σ(α_ij * N_i * N_j)
-- Market Share Evolution: dN_i/dt = r_i * N_i * (1 - Σ(α_ij * N_j))
+- Competition Intensity Function: CI(x,y) = Σ($\alpha$_ij * N_i * N_j)
+- Market Share Evolution: dN_i/dt = r_i * N_i * (1 - Σ($\alpha$_ij * N_j))
 - Competitive Pressure Vector: P(x,y) = ∇CI(x,y)
 - Strategic Stability Index: S = det(J_ij) where J is the Jacobian matrix
 
@@ -691,9 +691,9 @@ The fundamental price evolution pattern in Wardley Mapping follows a modified si
 - Product Phase: Linear price reduction with decreased volatility
 - Commodity Phase: Asymptotic approach to marginal cost following logarithmic decay
 
-The mathematical framework incorporates three key components for analysing price evolution: the base evolution function, market friction coefficients, and competition multipliers. These elements combine to form the comprehensive price evolution equation: P(t) = B(t) × F(m) × C(n), where B(t) is the base evolution function, F(m) represents market friction, and C(n) accounts for competitive effects.
+The mathematical framework incorporates three key components for analysing price evolution: the base evolution function, market friction coefficients, and competition multipliers. These elements combine to form the comprehensive price evolution equation: P(t) = B(t) $\times$ F(m) $\times$ C(n), where B(t) is the base evolution function, F(m) represents market friction, and C(n) accounts for competitive effects.
 
-Market friction coefficients are particularly crucial in government contexts, where regulatory requirements and procurement processes can significantly impact price evolution trajectories. The friction function F(m) typically takes the form: F(m) = 1 + μ∑(Ri), where μ represents the base friction coefficient and Ri represents individual regulatory impact factors.
+Market friction coefficients are particularly crucial in government contexts, where regulatory requirements and procurement processes can significantly impact price evolution trajectories. The friction function F(m) typically takes the form: F(m) = 1 + $\mu$$\sum$(Ri), where $\mu$ represents the base friction coefficient and Ri represents individual regulatory impact factors.
 
 - Regulatory Impact Analysis: F(m) calculations for compliance requirements
 - Procurement Cycle Effects: Periodic pricing functions with administrative delays
@@ -702,7 +702,7 @@ Market friction coefficients are particularly crucial in government contexts, wh
 
 > Understanding the mathematical patterns of price evolution has enabled our department to achieve 47% cost reduction in technology procurement through strategic timing of investments, reveals a public sector chief technology officer.
 
-The competition multiplier C(n) introduces game theory elements into the price evolution model, representing the impact of market participants on price trajectories. This is expressed as C(n) = (1 - α)^n, where n represents the number of significant competitors and α represents the competition intensity factor. In public sector applications, this multiplier often requires modification to account for limited supplier pools and framework agreements.
+The competition multiplier C(n) introduces game theory elements into the price evolution model, representing the impact of market participants on price trajectories. This is expressed as C(n) = (1 - $\alpha$)^n, where n represents the number of significant competitors and $\alpha$ represents the competition intensity factor. In public sector applications, this multiplier often requires modification to account for limited supplier pools and framework agreements.
 
 
 
@@ -714,7 +714,7 @@ Dependency matrices represent a critical mathematical tool for quantifying and a
 
 > The introduction of dependency matrices to Wardley Mapping bridges the gap between intuitive visual representation and quantitative strategic analysis, enabling data-driven decision making in evolutionary strategy, notes a leading government strategy advisor.
 
-In mathematical terms, a dependency matrix D for a Wardley Map with n components is represented as an n×n matrix where each element dij represents the strength or nature of dependency between components i and j. These dependencies can be weighted to reflect varying degrees of coupling, from 0 (no dependency) to 1 (complete dependency), or can incorporate more complex numerical representations to capture different types of relationships.
+In mathematical terms, a dependency matrix D for a Wardley Map with n components is represented as an n$\times$n matrix where each element dij represents the strength or nature of dependency between components i and j. These dependencies can be weighted to reflect varying degrees of coupling, from 0 (no dependency) to 1 (complete dependency), or can incorporate more complex numerical representations to capture different types of relationships.
 
 - Direct Dependencies: Represented by non-zero elements dij where component i directly depends on component j
 - Indirect Dependencies: Calculated through matrix multiplication to reveal hidden relationships
@@ -744,17 +744,17 @@ Correlation analysis serves as a fundamental mathematical tool for quantifying t
 
 In the context of Wardley Mapping, correlation analysis examines three primary dimensions: movement correlation, value correlation, and evolutionary correlation. These dimensions provide a comprehensive framework for understanding how components interact and influence each other throughout their lifecycle stages.
 
-- Movement Correlation (ρm): Measures the degree to which components move together along the evolution axis
-- Value Correlation (ρv): Quantifies the relationship between components' value metrics
-- Evolutionary Correlation (ρe): Analyses the synchronisation of evolutionary phases between components
+- Movement Correlation ($\rho$m): Measures the degree to which components move together along the evolution axis
+- Value Correlation ($\rho$v): Quantifies the relationship between components' value metrics
+- Evolutionary Correlation ($\rho$e): Analyses the synchronisation of evolutionary phases between components
 
 The mathematical framework employs Pearson's correlation coefficient as the primary metric, adapted for the specific context of Wardley Mapping. For any two components (i,j), the correlation coefficient is calculated across multiple observations over time, incorporating both position and movement vectors.
 
-The correlation matrix R for a set of n components is defined as an n×n symmetric matrix where each element rij represents the correlation coefficient between components i and j. This matrix provides a comprehensive view of the relationship network within the value chain.
+The correlation matrix R for a set of n components is defined as an n$\times$n symmetric matrix where each element rij represents the correlation coefficient between components i and j. This matrix provides a comprehensive view of the relationship network within the value chain.
 
 - Positive correlations (rij > 0) indicate components that evolve or move together
 - Negative correlations (rij < 0) suggest inverse relationships or competitive dynamics
-- Near-zero correlations (rij ≈ 0) identify independent or unrelated components
+- Near-zero correlations (rij $\approx$ 0) identify independent or unrelated components
 - Strong correlations (|rij| > 0.7) highlight critical dependencies requiring strategic attention
 
 Advanced correlation analysis incorporates time-lagged correlations to identify lead-lag relationships between components, enabling predictive insights into component evolution. This is particularly valuable in public sector strategic planning, where understanding the ripple effects of policy changes is crucial.
@@ -779,7 +779,7 @@ The implementation of causality testing in Wardley Mapping draws from establishe
 - Intervention Analysis: Assesses the impact of strategic changes on component relationships
 - Counterfactual Testing: Evaluates alternative scenarios to strengthen causal inference
 
-The mathematical framework for causality testing in Wardley Mapping employs a rigorous set of statistical tests and probability measures. The fundamental equation for testing causal relationships between components A and B can be expressed as: P(B|do(A)) ≠ P(B), where do(A) represents an intervention on component A. This formulation allows for the quantification of causal effects while controlling for confounding variables.
+The mathematical framework for causality testing in Wardley Mapping employs a rigorous set of statistical tests and probability measures. The fundamental equation for testing causal relationships between components A and B can be expressed as: P(B|do(A)) $\neq$ P(B), where do(A) represents an intervention on component A. This formulation allows for the quantification of causal effects while controlling for confounding variables.
 
 > The integration of causal inference methods with Wardley Mapping has transformed our ability to predict and influence strategic outcomes in complex governmental systems, explains a leading public sector transformation expert.
 
@@ -863,7 +863,7 @@ Random Walk Models serve as a fundamental mathematical framework for understandi
 
 > The application of Random Walk Models to Wardley Mapping has revolutionised our ability to quantify uncertainty in strategic planning, particularly when dealing with emerging technologies, notes a leading government strategy advisor.
 
-In the context of Wardley Mapping, Random Walk Models can be formalised using the equation X(t+1) = X(t) + ε(t), where X(t) represents a component's position on the evolution axis at time t, and ε(t) represents a random displacement governed by a probability distribution. This mathematical representation enables us to model both gradual evolutionary changes and sudden technological breakthroughs.
+In the context of Wardley Mapping, Random Walk Models can be formalised using the equation X(t+1) = X(t) + $\varepsilon$(t), where X(t) represents a component's position on the evolution axis at time t, and $\varepsilon$(t) represents a random displacement governed by a probability distribution. This mathematical representation enables us to model both gradual evolutionary changes and sudden technological breakthroughs.
 
 - Simple Random Walk: Models basic component evolution with equal probability of forward or backward movement
 - Biased Random Walk: Incorporates market forces and technological trends through directional bias
@@ -873,8 +873,8 @@ In the context of Wardley Mapping, Random Walk Models can be formalised using th
 The implementation of Random Walk Models in Wardley Mapping requires careful consideration of boundary conditions. Components cannot evolve beyond the commodity phase or regress before genesis. These constraints can be mathematically represented through reflecting barriers in the model, using modified transition probabilities near the boundaries.
 
 - Transition Probability Matrix P(i,j) defining movement probabilities between evolution stages
-- Variance σ² calculations for evolution rate uncertainty
-- Mean drift μ estimation from historical component data
+- Variance $\sigma$$^2$ calculations for evolution rate uncertainty
+- Mean drift $\mu$ estimation from historical component data
 - Boundary condition functions B(x) for evolution constraints
 
 The power of Random Walk Models lies in their ability to generate probability distributions for future component positions. This enables strategic planners to quantify uncertainty and make risk-adjusted decisions. By running multiple simulations, we can create heat maps of likely evolution trajectories and identify critical decision points.
@@ -924,7 +924,7 @@ In the context of Wardley Mapping, jump processes are modelled using Lévy proce
 - Lévy flight applications in innovation diffusion
 - State-space jump models for component transitions
 
-The mathematical formulation of jump processes in Wardley Mapping employs stochastic differential equations with jump terms. For a component's evolution position Y(t), we typically model this as dY(t) = μdt + σdW(t) + dJ(t), where J(t) represents the pure jump process, capturing discontinuous transitions in evolution.
+The mathematical formulation of jump processes in Wardley Mapping employs stochastic differential equations with jump terms. For a component's evolution position Y(t), we typically model this as dY(t) = $\mu$dt + $\sigma$dW(t) + dJ(t), where J(t) represents the pure jump process, capturing discontinuous transitions in evolution.
 
 - Characteristic functions for jump size distribution
 - Intensity parameters for jump frequency
@@ -1043,7 +1043,7 @@ The mathematical foundation for confidence interval calculations in Wardley Mapp
 
 The calculation of confidence intervals typically follows a structured process that begins with the collection and normalisation of historical evolution data. This data is then used to estimate parameters for the underlying statistical models, which may include drift rates, volatility measures, and correlation structures between components.
 
-- Standard Error Calculations: σ/√n for sample means of evolution rates
+- Standard Error Calculations: $\sigma$/$\sqrt$n for sample means of evolution rates
 - Z-score and t-statistic applications for interval estimation
 - Variance-covariance matrix incorporation for multivariate evolution
 - Time-series specific confidence bound adjustments
@@ -1076,9 +1076,9 @@ The fundamental application of LP in Wardley Mapping centres on optimising the p
 The mathematical formulation typically involves defining an objective function that represents strategic value, subject to constraints that reflect real-world limitations. For instance, the evolution of components can be represented as decision variables (x_i) bounded between 0 and 1, where 0 represents genesis and 1 represents commoditization.
 
 - Objective Function: Maximize Σ(v_i * x_i) where v_i represents the strategic value of component i
-- Evolution Constraints: 0 ≤ x_i ≤ 1 for all components
-- Dependency Constraints: x_i ≥ x_j - ε for dependent components
-- Resource Constraints: Σ(c_i * x_i) ≤ B where B represents the total budget
+- Evolution Constraints: 0 $\leq$ x_i $\leq$ 1 for all components
+- Dependency Constraints: x_i $\geq$ x_j - $\varepsilon$ for dependent components
+- Resource Constraints: Σ(c_i * x_i) $\leq$ B where B represents the total budget
 
 Advanced applications incorporate multi-period optimization, allowing for the planning of evolutionary trajectories over time. This temporal dimension adds complexity but provides more realistic strategic planning capabilities, particularly for government and large-scale enterprise implementations.
 
@@ -1105,7 +1105,7 @@ The mathematical formulation of DP in Wardley Mapping contexts typically involve
 - Value Functions: Strategic benefit and competitive advantage metrics
 - Optimal Policy: Sequence of decisions maximising long-term strategic value
 
-The Bellman equation forms the cornerstone of our DP approach in Wardley Mapping, expressing the relationship between the value of a strategic position at one stage and the optimal decisions leading to future stages. This recursive relationship can be expressed mathematically as V(s) = max{R(s,a) + γΣP(s'|s,a)V(s')}, where V(s) represents the value of state s, R(s,a) the immediate reward of action a in state s, and γ the discount factor for future value.
+The Bellman equation forms the cornerstone of our DP approach in Wardley Mapping, expressing the relationship between the value of a strategic position at one stage and the optimal decisions leading to future stages. This recursive relationship can be expressed mathematically as V(s) = max{R(s,a) + $\gamma$ΣP(s'|s,a)V(s')}, where V(s) represents the value of state s, R(s,a) the immediate reward of action a in state s, and $\gamma$ the discount factor for future value.
 
 Implementation of DP models in Wardley Mapping requires careful consideration of the curse of dimensionality. As the number of components and possible strategic moves increases, the state space grows exponentially. To address this challenge, we employ various approximation techniques and state space reduction methods, including value function approximation and state aggregation.
 
@@ -1129,11 +1129,11 @@ Multi-objective optimization represents a critical advancement in the mathematic
 
 - Pareto Efficiency: Identifying non-dominated solutions across multiple strategic objectives
 - Weighted Sum Method: Combining multiple objectives into a single optimization function
-- ε-constraint Method: Converting multi-objective problems into single-objective constraints
+- $\varepsilon$-constraint Method: Converting multi-objective problems into single-objective constraints
 - Goal Programming: Setting target levels for each objective and minimizing deviations
 - Evolutionary Algorithms: Utilizing population-based approaches for complex trade-offs
 
-The mathematical formulation of multi-objective optimization in Wardley Mapping typically takes the form: minimize F(x) = [f₁(x), f₂(x), ..., fₖ(x)], subject to x ∈ S, where each function fᵢ represents distinct strategic objectives such as cost reduction, innovation potential, or market position advancement. The solution space S encompasses feasible strategic moves within the map's evolution axis.
+The mathematical formulation of multi-objective optimization in Wardley Mapping typically takes the form: minimize F(x) = [f$_1$(x), f$_2$(x), ..., fₖ(x)], subject to x $\in$ S, where each function f$_i$ represents distinct strategic objectives such as cost reduction, innovation potential, or market position advancement. The solution space S encompasses feasible strategic moves within the map's evolution axis.
 
 When applying multi-objective optimization to Wardley Maps, we must consider the temporal dimension of component evolution. This necessitates the incorporation of dynamic optimization techniques that account for the changing landscape over time. The mathematical framework must handle both spatial positioning on the map and temporal evolution patterns.
 
