@@ -1,13 +1,13 @@
 # Example Scenario Using the Two "Whys" in the Wardley Strategy Cycle
 
-Below is a **example** illustrating how **Why of Purpose** and **Why of Movement** might evolve in a discrete‐time, Wardley‐style model. This example is intentionally simplified to show how each step (OODA) might look in practice.
+Below is an **example** illustrating how **Why of Purpose** and **Why of Movement** might evolve in a discrete-time, Wardley-style model. This example is intentionally simplified to show how each step (OODA) might look in practice.
 
 ---
 
 ## Initial Setup (Time $t = 0$)
 
 - **External State** $X(0)$ =
-  - _Market Demand_: moderate but growing for small‐business accounting software
+  - _Market Demand_: moderate but growing for small-business accounting software
   - _Competitor Behavior_: one major competitor has 60% market share
 
 - **Internal State** $Y(0)$ =
@@ -22,7 +22,7 @@ Below is a **example** illustrating how **Why of Purpose** and **Why of Movement
 
 - **Why of Movement** $M(0)$ =
   - _Current Rationale_: **"Focus on building a minimum viable product (MVP) for basic accounting features to onboard our first paying customers."**
-  - This is more tactical—it explains the near‐term reason behind our chosen direction (building an MVP).
+  - This is more tactical—it explains the near-term reason behind our chosen direction (building an MVP).
 
 ---
 
@@ -52,7 +52,7 @@ $$R(0) = \mathrm{Ori}(O(0), P(0), M(0))$$
 $$D(0) = \mathrm{Dec}(R(0))$$
 
 - **Decision**: _Allocate 80% of dev resources to building an MVP for invoicing & expense tracking; 20% on marketing to attract early adopters._
-- This aligns with our near‐term rationale (MVP first) and our overall mission.
+- This aligns with our near-term rationale (MVP first) and our overall mission.
 
 ### 4. Act
 
@@ -81,7 +81,7 @@ $$[X(1), Y(1)] = T(X(0), Y(0), A(0))$$
 $$P(1) = \mathrm{UpdatePurpose}(P(0), X(1), Y(1))$$
 
 - **Why of Purpose** $P(1)$: Remains mostly unchanged. We still want "to simplify finance for small businesses."
-  - Possibly we refine the wording: "Focus on micro‐businesses with fewer than 10 employees."
+  - Possibly we refine the wording: "Focus on micro-businesses with fewer than 10 employees."
 
 $$M(1) = \mathrm{UpdateMovement}(M(0), D(0), A(0))$$
 
@@ -105,7 +105,7 @@ With the updated states, we run **Observe → Orient → Decide → Act** again,
 
    $$R(1) = \mathrm{Ori}(O(1), P(1), M(1))$$
 
-   - Incorporate updated "why of purpose": still about small‐business finance.
+   - Incorporate updated "why of purpose": still about small-business finance.
    - Incorporate updated "why of movement": we're building an MVP but might need analytics next.
 
 3. **Decide**
@@ -128,11 +128,11 @@ With the updated states, we run **Observe → Orient → Decide → Act** again,
 
    $$[X(2), Y(2)] = T(X(1), Y(1), A(1))$$
 
-   - **External** $X(2)$: A few more sign‐ups from local groups, competitor is marketing their analytics heavily.
+   - **External** $X(2)$: A few more sign-ups from local groups, competitor is marketing their analytics heavily.
    - **Internal** $Y(2)$: MVP ~50% complete, runway 10 months, user interest in analytics is moderate but growing.
 
 6. **Update "Two Whys"**
-   - **Why of Purpose** $P(2)$: Still consistent—"Empower micro‐businesses." (No radical pivot yet.)
+   - **Why of Purpose** $P(2)$: Still consistent—"Empower micro-businesses." (No radical pivot yet.)
    - **Why of Movement** $M(2)$:
      _"We must finish core accounting to deliver value quickly, yet we're beginning analytics to stay relevant."_
 
@@ -140,9 +140,9 @@ With the updated states, we run **Observe → Orient → Decide → Act** again,
 
 ## Observations
 
-1. **Why of Purpose** ($P(t)$) remains mostly stable, adjusting only slightly to clarify or refine scope (micro‐businesses).
-2. **Why of Movement** ($M(t)$) evolves more rapidly, reflecting short‐term tactical shifts—finishing the MVP, deciding whether to add analytics, etc.
+1. **Why of Purpose** $P(t)$ remains mostly stable, adjusting only slightly to clarify or refine scope (micro-businesses).
+2. **Why of Movement** $M(t)$ evolves more rapidly, reflecting short-term tactical shifts—finishing the MVP, deciding whether to add analytics, etc.
 3. Each cycle of **Observe → Orient → Decide → Act** leads to **state updates** (both external and internal) plus incremental **refinement** of the two whys.
 4. By capturing this in a formal model, you could attempt to optimize decisions for maximum "strategic utility" (for instance, balancing speed to market vs. advanced features vs. runway constraints).
 
-In this scenario, we see **how** and **why** the organization's near‐term tactics (why of movement) change over time, while the overarching mission (why of purpose) remains the guiding star—both embedded in a Wardley‐style cycle of **continuous sensing and adaptation**.
+In this scenario, we see **how** and **why** the organization's near-term tactics (why of movement) change over time, while the overarching mission (why of purpose) remains the guiding star—both embedded in a Wardley-style cycle of **continuous sensing and adaptation**.

@@ -83,7 +83,7 @@ $$M(c_i) = (E(c_i), V(c_i))$$
 
 ## 5. Interpretation & Rationale
 
-- **Evolution** tracks market‐driven changes in **certainty** & **ubiquity**, reflecting how competition shifts components over time.
+- **Evolution** tracks market-driven changes in **certainty** & **ubiquity**, reflecting how competition shifts components over time.
 - **Visibility** helps you see how these components relate to user needs and **where** each sits in the overall value chain.
 
 **Strategic Takeaway**:
@@ -95,4 +95,4 @@ $$M(c_i) = (E(c_i), V(c_i))$$
 
 ### Conclusion
 
-By incorporating **ubiquity** and **certainty** into the **Evolution** function, we align with the principle that **"Evolution is driven by competitive forces, not just age."** This helps teams build **Wardley Maps** that better capture real‐world dynamics of how components shift from **Genesis** to **Utility** as they become ubiquitous and well understood.
+By incorporating **ubiquity** and **certainty** into the **Evolution** function, we align with the principle that **"Evolution is driven by competitive forces, not just age."** This helps teams build **Wardley Maps** that better capture real-world dynamics of how components shift from **Genesis** to **Utility** as they become ubiquitous and well understood.
