@@ -37,7 +37,6 @@ This formalization enables:
 ### Core Model
 | Document | Description |
 |----------|-------------|
-| [Part 1 - Core Mathematical Model](Part%201%20-%20Core%20Mathematical%20Model%20for%20Wardley%20Mapping.md) | The formal tuple model $\mathcal{M} = (V, E, u, \nu, \varepsilon, t)$ with computed visibility, evolution scoring, and derived metrics |
 | [A Prototype Math Model for Wardley Mapping](A%20Prototype%20Math%20Model%20for%20Wardley%20Mapping.md) | Exploratory prototype introducing S-curve evolution dynamics and game-theoretic extensions |
 
 ### Comprehensive Framework
@@ -54,6 +53,7 @@ This formalization enables:
 ### Progressive Series
 | Document | Description |
 |----------|-------------|
+| [Part 1 - Core Mathematical Model](Part%201%20-%20Core%20Mathematical%20Model%20for%20Wardley%20Mapping.md) | The formal tuple model $\mathcal{M} = (V, E, u, \nu, \varepsilon, t)$ with computed visibility, evolution scoring, and derived metrics |
 | [Part 2 - Revised Model: Map Evolution, Not Maturity](Part%202%20-%20Revised%20Wardley%20Map%20Model%3A%20Map%20Evolution%2C%20Not%20Maturity.md) | Refining the evolution axis interpretation |
 | [Part 3 - Explaining the Tea Shop Map](Part%203%20-%20Explaining%20the%20Tea%20Shop%20Map%20Using%20Our%20Mathematical%20Model.md) | Applying the model to a classic Wardley Map example |
 | [Part 4 - Working Out Evolution Values](Part%204%20-%20Working%20Out%20the%20Evolution%20Value%20for%20a%20Single%20Component.md) | Methods for computing evolution scores |
@@ -67,6 +67,11 @@ This formalization enables:
 | [Weak Signals & Evolution - Core](Weak%20Signals%20%26%20Evolution%20-%20Core%20-%20Part%201.md) | Detecting and modeling weak signals |
 | [Weak Signals & Evolution - Example](Weak%20Signals%20%26%20Evolution%20-%20Example%20-%20Part%202.md) | Applied example of weak signal detection |
 | [Reimagining Wardley Maps: Layer-Based Visibility](Reimagining%20Wardley%20Maps%3A%20Layer-Based%20Visibility%20and%20Sigmoid%20Evolution.md) | Alternative visibility model using layers |
+
+### Tools & Prompts
+| Document | Description |
+|----------|-------------|
+| [Wardley Map Generator Prompt](prompts/wardley_map_generator.md) | AI prompt for generating Wardley Maps in OWM format compatible with [create.wardleymaps.ai](https://create.wardleymaps.ai) |
 
 ## Key Formulas
 
