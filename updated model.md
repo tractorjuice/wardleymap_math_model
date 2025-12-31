@@ -23,7 +23,7 @@ Where:
 
 - $V$ is a set of components (capabilities, activities, data, systems, suppliers, practices, etc.).
 - $E \subseteq V \times V$ is a set of directed dependency edges.
-  - An edge $(a,b) \in E$ means "$a$ depends on $b$".
+  - An edge $(a,b) \in E$ means "$a \text{ depends on } b$".
 - $u \in V$ is the anchor node representing the **user / user need**.
 - $\nu: V \to [0,1]$ assigns each component a **visibility score** (Y-axis).
 - $\varepsilon: V \to [0,1]$ assigns each component an **evolution score** (X-axis).
