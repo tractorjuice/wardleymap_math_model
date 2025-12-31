@@ -37,8 +37,8 @@ This formalization enables:
 ### Core Model
 | Document | Description |
 |----------|-------------|
-| [A Prototype Math Model for Wardley Mapping](A%20Prototype%20Math%20Model%20for%20Wardley%20Mapping.md) | Foundational prototype introducing S-curve evolution dynamics and game-theoretic extensions |
-| [updated model.md](updated%20model.md) | Refined mathematical model with computed visibility, evolution scoring, and derived metrics |
+| [Part 1 - Core Mathematical Model](Part%201%20-%20Core%20Mathematical%20Model%20for%20Wardley%20Mapping.md) | The formal tuple model $\mathcal{M} = (V, E, u, \nu, \varepsilon, t)$ with computed visibility, evolution scoring, and derived metrics |
+| [A Prototype Math Model for Wardley Mapping](A%20Prototype%20Math%20Model%20for%20Wardley%20Mapping.md) | Exploratory prototype introducing S-curve evolution dynamics and game-theoretic extensions |
 
 ### Comprehensive Framework
 | Document | Description |

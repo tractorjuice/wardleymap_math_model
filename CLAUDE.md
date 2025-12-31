@@ -10,7 +10,7 @@ This is a documentation-only research repository containing mathematical models 
 
 The repository contains research documents exploring how to formalize Wardley Mapping mathematically:
 
-- **Core Mathematical Model** (`updated model.md`, `A Prototype Math Model for Wardley Mapping.md`): Defines a Wardley Map as a tuple $\mathcal{M} = (V, E, u, \nu, \varepsilon, t)$ where V is components, E is dependency edges, $\nu$ is visibility function (Y-axis), and $\varepsilon$ is evolution function (X-axis)
+- **Core Mathematical Model** (`Part 1 - Core Mathematical Model for Wardley Mapping.md`, `A Prototype Math Model for Wardley Mapping.md`): Defines a Wardley Map as a tuple $\mathcal{M} = (V, E, u, \nu, \varepsilon, t)$ where V is components, E is dependency edges, $\nu$ is visibility function (Y-axis), and $\varepsilon$ is evolution function (X-axis)
 
 - **Comprehensive Framework** (`The Mathematical Framework of Wardley Mapping.md`): Extended treatment covering graph theory, game theory, probability, and machine learning applications
 
