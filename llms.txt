@@ -1,0 +1,54 @@
+# Mathematical Models for Wardley Mapping
+
+> A research repository formalizing [Wardley Mapping](https://learnwardleymapping.com/) as a quantitative mathematical framework. A Wardley Map is modeled as a tuple $\mathcal{M} = (V, E, u, \nu, \varepsilon, t)$ — components $V$, dependency edges $E$, anchor user node $u$, visibility function $\nu$ (Y-axis), evolution function $\varepsilon$ (X-axis), and time $t$ — enabling computation, simulation, and data-driven strategic decision-making.
+
+This is a documentation-only repository (no code, build system, or tests). It contains markdown documents that develop the mathematical theory behind Wardley Mapping, covering graph theory, S-curve evolution dynamics, game theory, probability, and machine learning applications. Mathematical notation uses GitHub-native LaTeX (`$...$` inline, `$$...$$` display).
+
+Key conventions:
+- **Visibility (Y-axis)**: $\nu(v) = 1/(1+d(v))$ where $d(v)$ is graph distance from the user node.
+- **Evolution (X-axis)**: $\varepsilon(v) \in [0,1]$ mapped to stages — Genesis $[0, 0.25)$, Custom $[0.25, 0.5)$, Product $[0.5, 0.75)$, Commodity $[0.75, 1]$.
+- **Evolution dynamics**: S-curve $d\varepsilon/dt = r(1-\varepsilon)$.
+- **Dependencies**: directed graph where $(a,b) \in E$ means "a depends on b", with constraint $\nu(a) \ge \nu(b)$.
+
+## Overview
+
+- [README](README.md): Repository overview, key formulas (visibility, evolution dynamics, decision metrics), and an index of all documents.
+- [CLAUDE.md](CLAUDE.md): Guidance for working with the repository, including content structure and notation conventions.
+
+## Core Mathematical Model
+
+- [A Prototype Math Model for Wardley Mapping](A%20Prototype%20Math%20Model%20for%20Wardley%20Mapping.md): Exploratory prototype introducing S-curve evolution dynamics and game-theoretic extensions.
+- [Part 1 - Core Mathematical Model for Wardley Mapping](Part%201%20-%20Core%20Mathematical%20Model%20for%20Wardley%20Mapping.md): The formal tuple model $\mathcal{M} = (V, E, u, \nu, \varepsilon, t)$ with computed visibility, evolution scoring, and derived decision metrics.
+- [Part 2 - Revised Wardley Map Model: Map Evolution, Not Maturity](Part%202%20-%20Revised%20Wardley%20Map%20Model%3A%20Map%20Evolution%2C%20Not%20Maturity.md): Refines the evolution axis interpretation, distinguishing evolution from maturity.
+- [Part 3 - Explaining the Tea Shop Map Using Our Mathematical Model](Part%203%20-%20Explaining%20the%20Tea%20Shop%20Map%20Using%20Our%20Mathematical%20Model.md): Applies the model to Simon Wardley's classic Tea Shop example.
+- [Part 4 - Working Out the Evolution Value for a Single Component](Part%204%20-%20Working%20Out%20the%20Evolution%20Value%20for%20a%20Single%20Component.md): Methods for computing evolution scores for individual components.
+- [Part 5 - Extending Wardley Maps: Layer-Based Visibility and Sigmoid Evolution](Part%205%20-%20Extending%20Wardley%20Maps%3A%20Layer-Based%20Visibility%20and%20Sigmoid%20Evolution.md): Extended model with discrete visibility layers and sigmoid evolution.
+
+## Comprehensive Framework
+
+- [The Mathematical Framework of Wardley Mapping](The%20Mathematical%20Framework%20of%20Wardley%20Mapping.md): Extended treatment covering graph theory, game theory, probability, and machine learning applications to Wardley Maps.
+- [Reimagining Wardley Maps: Layer-Based Visibility and Sigmoid Evolution](Reimagining%20Wardley%20Maps%3A%20Layer-Based%20Visibility%20and%20Sigmoid%20Evolution.md): Alternative visibility model using discrete layers paired with sigmoid evolution curves.
+
+## Strategy and Gameplay
+
+- [Strategic Mastery: Creating Math Models for Wardley Mapping Gameplays](Strategic%20Mastery%3A%20Creating%20Math%20Models%20for%20Wardley%20Mapping%20Gameplays.md): Quantitative approaches to strategic plays and decision-making using Wardley's gameplay catalogue.
+- [Mathematical Models for Wardley Mapping Gameplay: A Quantitative Approach to Strategic Decision Making](Mathematical%20Models%20for%20Wardley%20Mapping%20Gameplay%3A%20A%20Quantitative%20Approach%20to%20Strategic%20Decision%20Making.md): Detailed methodology for modeling strategic gameplays mathematically.
+
+## Strategy Cycle
+
+- [Wardley Strategy Cycle - Core Model - Part 1](Wardley%20Strategy%20Cycle%20-%20Core%20Model%20-%20Part%201.md): Mathematical model of the Wardley Strategy Cycle (purpose, landscape, climate, doctrine, leadership).
+- [Wardley Strategy Cycle - Example - Part 2](Wardley%20Strategy%20Cycle%20-%20Example%20-%20Part%202.md): Applied worked example of the strategy cycle model.
+
+## Weak Signals and Evolution
+
+- [Weak Signals & Evolution - Core - Part 1](Weak%20Signals%20%26%20Evolution%20-%20Core%20-%20Part%201.md): Mathematical framework for detecting and modeling weak signals in component evolution.
+- [Weak Signals & Evolution - Example - Part 2](Weak%20Signals%20%26%20Evolution%20-%20Example%20-%20Part%202.md): Applied worked example of weak signal detection.
+
+## Tools and Prompts
+
+- [Wardley Map Generator Prompt](prompts/wardley_map_generator.md): AI prompt for generating Wardley Maps in OWM (Online Wardley Maps) format compatible with [create.wardleymaps.ai](https://create.wardleymaps.ai).
+
+## Optional
+
+- [Wardley Mapping (external)](https://learnwardleymapping.com/): Simon Wardley's original qualitative framework, the conceptual foundation for this work.
+- [Online Wardley Maps (external)](https://onlinewardleymaps.com/): Free tool for creating Wardley Maps in OWM text format.
