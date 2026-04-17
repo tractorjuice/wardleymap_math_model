@@ -16,6 +16,14 @@ The repository contains research documents exploring how to formalize Wardley Ma
 
 - **Inertia** (`Inertia - Forms of Resistance to Evolution.md`): Enumerates the 17 forms of inertia Wardley publishes (14 consumer + 3 supplier) and replaces the single $c_v(t)$ scalar from Part 1's dynamics with a structured sum. Note: FUD, Lobbying, and Bundling are **gameplays**, not inertia — don't confuse the taxonomies.
 
+- **Multi-Wave Evolution** (`Multi-Wave Evolution and Punctuated Equilibrium.md`): Replaces the single-logistic dynamics with per-generation S-curves, cross-generation cannibalisation, and chasms. Matches Wardley's "evolution is multi-wave" framing.
+
+- **Component Types** (`Component Types and the Type Function.md`): Extends the tuple with $\tau: V \to \{A, P, D, K\}$ and type-dependent evolution rates. Adds the "practices co-evolve with activities" constraint.
+
+- **Gameplay Catalogue** (`Gameplay Catalogue - 61 Plays with Math-Model Effects.md`): Wardley's 61 gameplays across 12 categories, each with a structured effect on the math model's parameters.
+
+- **Doctrine** (`Doctrine - 40 Principles as Model Constraints.md`): Wardley's 40 doctrine principles across 4 phases and 6 categories, with math-model readings showing which principles are constraints on the model and which are organisational practices outside it.
+
 - **Comprehensive Framework** (`The Mathematical Framework of Wardley Mapping.md`): Extended treatment covering graph theory, game theory, probability, and machine learning applications
 
 - **Strategy & Gameplay** (`Strategic Mastery: Creating Math Models for Wardley Mapping Gameplays.md`, `Mathematical Models for Wardley Mapping Gameplay...`): Quantitative approaches to strategic decision-making

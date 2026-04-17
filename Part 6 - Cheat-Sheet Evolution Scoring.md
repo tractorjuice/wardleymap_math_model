@@ -8,7 +8,7 @@ Part 4's $(\mathrm{ubiq} + \mathrm{cert})/2$ formula uses 2 of the 19 rows. This
 
 ## 1. The cheat sheet
 
-Reproduced from [Learn Wardley Mapping — Landscape](https://learnwardleymapping.com/landscape/), which transcribes Simon Wardley's original table (Figure 17 in [*Finding a Path*](https://medium.com/wardleymaps/finding-a-path-cdb1249078c0), cross-referenced against [*What's in a Wardley Map and the need for a cheat sheet*](https://blog.gardeviance.org/2016/04/whats-in-wardley-map-and-need-for-cheat.html) and the [Evolve tool](https://hiredthought.com/2019/02/04/evolve-a-quick-reference-for-wardley-mapping/)).
+Reproduced from Simon Wardley's original cheat-sheet table (Figure 17 in [*Finding a Path*](https://medium.com/wardleymaps/finding-a-path-cdb1249078c0), and discussed in [*What's in a Wardley Map and the need for a cheat sheet*](https://blog.gardeviance.org/2016/04/whats-in-wardley-map-and-need-for-cheat.html)). The [Evolve tool](https://hiredthought.com/2019/02/04/evolve-a-quick-reference-for-wardley-mapping/) operationalises the same table.
 
 | # | Characteristic | I — Genesis | II — Custom Built | III — Product (+rental) | IV — Commodity (+utility) |
 |---|---|---|---|---|---|

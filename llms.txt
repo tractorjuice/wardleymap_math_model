@@ -1,6 +1,6 @@
 # Mathematical Models for Wardley Mapping
 
-> A research repository formalizing [Wardley Mapping](https://learnwardleymapping.com/) as a quantitative mathematical framework. A Wardley Map is modeled as a tuple $\mathcal{M} = (V, E, U, \nu, \varepsilon, t)$ — components $V$, dependency edges $E$, anchor set $U \subseteq V$ (one or more user-need nodes), visibility function $\nu$ (Y-axis), evolution function $\varepsilon$ (X-axis), and time $t$ — enabling computation, simulation, and data-driven strategic decision-making.
+> A research repository formalizing [Wardley Mapping](https://medium.com/wardleymaps) as a quantitative mathematical framework. A Wardley Map is modeled as a tuple $\mathcal{M} = (V, E, U, \nu, \varepsilon, t)$ — components $V$, dependency edges $E$, anchor set $U \subseteq V$ (one or more user-need nodes), visibility function $\nu$ (Y-axis), evolution function $\varepsilon$ (X-axis), and time $t$ — enabling computation, simulation, and data-driven strategic decision-making.
 
 This is a documentation-only repository (no code, build system, or tests). It contains markdown documents that develop the mathematical theory behind Wardley Mapping, covering graph theory, S-curve evolution dynamics, game theory, probability, and machine learning applications. Mathematical notation uses GitHub-native LaTeX (`$...$` inline, `$$...$$` display).
 
@@ -25,6 +25,10 @@ Key conventions:
 - [Part 5 - Extending Wardley Maps: Layer-Based Visibility and Sigmoid Evolution](Part%205%20-%20Extending%20Wardley%20Maps%3A%20Layer-Based%20Visibility%20and%20Sigmoid%20Evolution.md): Extended model with discrete visibility layers and sigmoid evolution.
 - [Part 6 - Cheat-Sheet Evolution Scoring](Part%206%20-%20Cheat-Sheet%20Evolution%20Scoring.md): Wardley's canonical 19-row evolution cheat sheet reproduced in full, with a formal scoring procedure that produces $\varepsilon(v)$ with an uncertainty estimate from per-row disagreement.
 - [Inertia - Forms of Resistance to Evolution](Inertia%20-%20Forms%20of%20Resistance%20to%20Evolution.md): Enumerates Wardley's 17 forms of inertia (14 consumer + 3 supplier) and replaces the single $c_v(t)$ drag scalar with a structured sum over severities $\iota_i$ and weights $\lambda_i$.
+- [Multi-Wave Evolution and Punctuated Equilibrium](Multi-Wave%20Evolution%20and%20Punctuated%20Equilibrium.md): Replaces Part 1's single-logistic dynamics with a multi-generation model — each component has multiple diffusion waves separated by chasms, matching Wardley's "Map Evolution, Not Maturity" framing. Includes the Peace/War/Wonder cycle.
+- [Component Types and the Type Function](Component%20Types%20and%20the%20Type%20Function.md): Extends the tuple with $\tau: V \to \{A, P, D, K\}$ (Activities, Practices, Data, Knowledge), gives type-dependent evolution rates ($r_A > r_P > r_D > r_K$), and formalizes the climatic pattern "practices co-evolve with activities".
+- [Gameplay Catalogue - 61 Plays with Math-Model Effects](Gameplay%20Catalogue%20-%2061%20Plays%20with%20Math-Model%20Effects.md): Wardley's 61 gameplays across 12 categories (Basic Operations, User Perception, Accelerators, Deaccelerators, Dealing with Toxicity, Market, Defensive, Attacking, Ecosystem, Competitor, Positional, Poison), each with a structured mechanism mapping to $r_v, c_v, \nu, \varepsilon$ or $E$ transformations.
+- [Doctrine - 40 Principles as Model Constraints](Doctrine%20-%2040%20Principles%20as%20Model%20Constraints.md): Wardley's 40 doctrine principles organized into 4 phases (Stop Self-Destructive Behaviour, Becoming More Context Aware, Better for Less, Continuously Evolving) and 6 categories, with a math-model reading of each as a constraint on the mapping process.
 
 ## Comprehensive Framework
 
@@ -51,5 +55,6 @@ Key conventions:
 
 ## Optional
 
-- [Wardley Mapping (external)](https://learnwardleymapping.com/): Simon Wardley's original qualitative framework, the conceptual foundation for this work.
+- [Wardley Maps (external, Simon Wardley's Medium book)](https://medium.com/wardleymaps): Simon Wardley's original qualitative framework, the conceptual foundation for this work.
+- [Bits or pieces? (external, Simon Wardley's blog)](https://blog.gardeviance.org/): Wardley's blog with primary-source posts on climatic patterns, doctrine, inertia, and gameplay.
 - [Online Wardley Maps (external)](https://onlinewardleymaps.com/): Free tool for creating Wardley Maps in OWM text format.

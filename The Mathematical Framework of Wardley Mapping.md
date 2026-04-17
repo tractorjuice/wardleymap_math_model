@@ -1,14 +1,14 @@
 # The Mathematical Framework of Wardley Mapping: A Quantitative Approach to Strategic Evolution
 
+> **Tone caveat.** This is a long reference treatment written in an earlier, more expansive tone. It surveys many mathematical techniques that *could* be applied to Wardley Mapping — graph theory, game theory, stochastic processes, ML — but most of what it describes is not validated against outcomes. Read as a menu of possibilities, not as established method. The rest of this repo (Parts 1–6, Extensions, Gameplay Catalogue, Doctrine) is the more disciplined core. Simon Wardley has not endorsed any quantitative formalisation of his framework; treat everything below as a stylised research direction.
+
 ## Introduction to Mathematical Wardley Mapping
 
 ### Foundations and Prerequisites
 
 #### Core Concepts of Wardley Mapping
 
-At the foundation of Mathematical Wardley Mapping lies a set of essential concepts that form the bedrock of strategic analysis and evolution mapping. These core concepts, when understood through a mathematical lens, provide a robust framework for quantitative strategic decision-making in complex organisational environments.
-
-> The transformation of Wardley Mapping from a purely visual tool to a mathematical framework represents one of the most significant advances in strategic planning methodology of the past decade, notes a leading strategic advisor to UK government departments.
+At the foundation of Mathematical Wardley Mapping lies a set of essential concepts that form the bedrock of strategic analysis and evolution mapping. These core concepts, when understood through a mathematical lens, provide a framework for quantitative strategic exploration in complex organisational environments.
 
 - Value Chain Components: The fundamental elements that represent discrete business functions, capabilities, or activities within an organisation
 - Evolution Axis: The horizontal progression from genesis through custom-built, product, and commodity stages, now quantifiable through specific metrics
@@ -26,7 +26,7 @@ Understanding these core concepts through a mathematical framework enables the a
 - Temporal Dynamics: Equations describing movement and evolution over time
 - Strategic Calculations: Formulae for determining optimal positioning and timing
 
-> The mathematical framework has transformed Wardley Mapping from an art to a science, enabling precise measurement and prediction of strategic outcomes in ways previously thought impossible, observes a senior strategist at a major public sector organisation.
+A mathematical framework makes parts of Wardley Mapping explicit, repeatable, and machine-processable. It does not turn it into a predictive science — Wardley's own climatic patterns state *"you cannot measure evolution over time or adoption,"* and the model here remains a tool for scenario exploration rather than forecast.
 
 
 

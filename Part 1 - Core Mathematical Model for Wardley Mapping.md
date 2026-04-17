@@ -51,7 +51,7 @@ From here, the "picture" becomes math: the axes are just functions over the grap
 
 ## 3) The Y-axis (Visibility): position in the value chain
 
-Visibility in a Wardley Map is a **judgment about value chain position**, not a pure graph property. Wardley frames it as "visibility to the user, which is a natural outcome of a component's relative position within the value chain, **manually adjusted as needed**" ([learnwardleymapping.com/landscape](https://learnwardleymapping.com/landscape/)).
+Visibility in a Wardley Map is a **judgment about value chain position**, not a pure graph property. Wardley treats it as a natural outcome of a component's relative position within the value chain, manually adjusted by the mapper as needed — see his writing on [mapping terms](https://blog.gardeviance.org/2016/04/on-mapping-and-terms-that-i-use.html).
 
 So in the mathematical model, $\nu(v) \in [0,1]$ is the **primitive** — assigned by the mapper. What follows are ways to **seed** $\nu$ computationally. The mapper is free to override the seed when judgment about value to the user disagrees with topology.
 
@@ -171,8 +171,8 @@ Let strategy act through the rate:
 $$r_v(t)=r_{0,v} + u_v(t) - c_v(t)$$
 
 - $r_{0,v}$: baseline evolutionary pressure (market forces)
-- $u_v(t)$: your actions (standardize, productize, platformize, outsource, open-source) — see the gameplay catalogue for a richer action vector
-- $c_v(t)$: inertia (see the Inertia doc for Wardley's 16 forms, which this scalar flattens)
+- $u_v(t)$: your actions (standardize, productize, platformize, outsource, open-source) — see the [Gameplay Catalogue](Gameplay%20Catalogue%20-%2061%20Plays%20with%20Math-Model%20Effects.md) for a richer action vector
+- $c_v(t)$: inertia (see the [Inertia doc](Inertia%20-%20Forms%20of%20Resistance%20to%20Evolution.md) for Wardley's 17 forms, which this scalar flattens)
 
 Now your "plays" become levers — but remember the caveat: this simulates a plausible path, it does not predict evolution.
 
@@ -195,7 +195,7 @@ This supports "error bars" on a map and makes debate concrete:
 
 ## 7) Derived metrics: turn the map into decision signals
 
-> **Note on authority.** The three metrics below — differentiation pressure, commodity leverage, dependency risk — are **heuristics proposed by this repository**, not concepts from Simon Wardley's own writing. They're simple products of $\nu$ and $\varepsilon$ that tend to highlight regions of a map a strategist would flag anyway. Use them as prompts for attention, not as validated decision criteria. Wardley's catalogue of plays and his doctrine are the authoritative strategic primitives; see the Gameplay docs and doctrine pages on [learnwardleymapping.com](https://learnwardleymapping.com/).
+> **Note on authority.** The three metrics below — differentiation pressure, commodity leverage, dependency risk — are **heuristics proposed by this repository**, not concepts from Simon Wardley's own writing. They're simple products of $\nu$ and $\varepsilon$ that tend to highlight regions of a map a strategist would flag anyway. Use them as prompts for attention, not as validated decision criteria. Wardley's catalogue of plays and his doctrine are the authoritative strategic primitives; see the [Gameplay Catalogue](Gameplay%20Catalogue%20-%2061%20Plays%20with%20Math-Model%20Effects.md) and [Doctrine](Doctrine%20-%2040%20Principles%20as%20Model%20Constraints.md) docs in this repo.
 
 Once everything is numeric, you can compute helpful scores.
 
