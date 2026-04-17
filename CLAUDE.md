@@ -10,7 +10,11 @@ This is a documentation-only research repository containing mathematical models 
 
 The repository contains research documents exploring how to formalize Wardley Mapping mathematically:
 
-- **Core Mathematical Model** (`Part 1 - Core Mathematical Model for Wardley Mapping.md`, `A Prototype Math Model for Wardley Mapping.md`): Defines a Wardley Map as a tuple $\mathcal{M} = (V, E, u, \nu, \varepsilon, t)$ where V is components, E is dependency edges, $\nu$ is visibility function (Y-axis), and $\varepsilon$ is evolution function (X-axis)
+- **Core Mathematical Model** (`Part 1 - Core Mathematical Model for Wardley Mapping.md`, `A Prototype Math Model for Wardley Mapping.md`): Defines a Wardley Map as a tuple $\mathcal{M} = (V, E, U, \nu, \varepsilon, t)$ where V is components, E is dependency edges, U ⊆ V is the anchor set (one or more user-need nodes), $\nu$ is visibility function (Y-axis), and $\varepsilon$ is evolution function (X-axis)
+
+- **Cheat-Sheet Scoring** (`Part 6 - Cheat-Sheet Evolution Scoring.md`): Reproduces Wardley's canonical 19-row evolution cheat sheet and formalizes the scoring procedure as $\varepsilon(v) = \sum_r w_r \cdot m(s_r(v))$ with an uncertainty estimate from per-row disagreement.
+
+- **Inertia** (`Inertia - Forms of Resistance to Evolution.md`): Enumerates the 17 forms of inertia Wardley publishes (14 consumer + 3 supplier) and replaces the single $c_v(t)$ scalar from Part 1's dynamics with a structured sum. Note: FUD, Lobbying, and Bundling are **gameplays**, not inertia — don't confuse the taxonomies.
 
 - **Comprehensive Framework** (`The Mathematical Framework of Wardley Mapping.md`): Extended treatment covering graph theory, game theory, probability, and machine learning applications
 
@@ -21,8 +25,8 @@ The repository contains research documents exploring how to formalize Wardley Ma
 ## Key Mathematical Concepts
 
 - **Visibility (Y-axis)**: Computed as distance from user node, typically $\nu(v) = 1/(1+d(v))$ where $d(v)$ is graph distance
-- **Evolution (X-axis)**: Continuous score $\varepsilon(v) \in [0,1]$ mapping to stages: Genesis $[0,0.25)$, Custom $[0.25,0.5)$, Product $[0.5,0.75)$, Commodity $[0.75,1]$
-- **Evolution Dynamics**: S-curve model $d\varepsilon/dt = r(1-\varepsilon)$ where $r$ incorporates market forces and strategic actions
+- **Evolution (X-axis)**: Continuous score $\varepsilon(v) \in [0,1]$ mapping to stages: Genesis $[0,0.25)$, Custom Built $[0.25,0.5)$, Product (+rental) $[0.5,0.75)$, Commodity (+utility) $[0.75,1]$. Canonical determination is by cheat sheet, not by time — see the climatic pattern *"you cannot measure evolution over time or adoption."*
+- **Evolution Dynamics**: logistic S-curve $d\varepsilon/dt = r\varepsilon(1-\varepsilon)$ where $r$ incorporates market forces and strategic actions. The repo labels this as a stylized extension; Wardley's own climatic patterns say *"you cannot measure evolution over time or adoption."*
 - **Dependencies**: Directed graph where $(a,b) \in E$ means "a depends on b", with constraint $\nu(a) \ge \nu(b)$
 
 ## Working with This Repository

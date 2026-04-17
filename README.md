@@ -15,12 +15,12 @@ Components are connected by dependency relationships forming a value chain.
 
 This repository explores how to formalize these concepts mathematically. A Wardley Map becomes:
 
-$$\mathcal{M} = (V, E, u, \nu, \varepsilon, t)$$
+$$\mathcal{M} = (V, E, U, \nu, \varepsilon, t)$$
 
 Where:
 - $V$ = set of components
 - $E \subseteq V \times V$ = directed dependency edges
-- $u \in V$ = anchor node (user need)
+- $U \subseteq V$ = anchor set (one or more user-need nodes)
 - $\nu: V \to [0,1]$ = visibility function (Y-axis)
 - $\varepsilon: V \to [0,1]$ = evolution function (X-axis)
 - $t$ = time parameter for dynamics
@@ -57,7 +57,8 @@ This formalization enables:
 | [Part 2 - Revised Model: Map Evolution, Not Maturity](Part%202%20-%20Revised%20Wardley%20Map%20Model%3A%20Map%20Evolution%2C%20Not%20Maturity.md) | Refining the evolution axis interpretation |
 | [Part 3 - Explaining the Tea Shop Map](Part%203%20-%20Explaining%20the%20Tea%20Shop%20Map%20Using%20Our%20Mathematical%20Model.md) | Applying the model to a classic Wardley Map example |
 | [Part 4 - Working Out Evolution Values](Part%204%20-%20Working%20Out%20the%20Evolution%20Value%20for%20a%20Single%20Component.md) | Methods for computing evolution scores |
-| [Part 5 - Layer-Based Visibility and Sigmoid Evolution](Part%205%20-%20Extending%20Wardley%20Maps%3A%20Layer-Based%20Visibility%20and%20Sigmoid%20Evolution.md) | Extended model with visibility layers |
+| [Part 5 - Layer-Based Visibility and Sigmoid Evolution](Part%205%20-%20Extending%20Wardley%20Maps%3A%20Layer-Based%20Visibility%20and%20Sigmoid%20Evolution.md) | Extended model using discrete dependency layers for visibility and a sigmoid (logistic) curve for evolution |
+| [Part 6 - Cheat-Sheet Evolution Scoring](Part%206%20-%20Cheat-Sheet%20Evolution%20Scoring.md) | Wardley's canonical 19-row cheat sheet with a formal scoring procedure that produces $\varepsilon(v)$ with uncertainty |
 
 ### Specialized Topics
 | Document | Description |
@@ -66,7 +67,7 @@ This formalization enables:
 | [Wardley Strategy Cycle - Example](Wardley%20Strategy%20Cycle%20-%20Example%20-%20Part%202.md) | Applied example of strategy cycles |
 | [Weak Signals & Evolution - Core](Weak%20Signals%20%26%20Evolution%20-%20Core%20-%20Part%201.md) | Detecting and modeling weak signals |
 | [Weak Signals & Evolution - Example](Weak%20Signals%20%26%20Evolution%20-%20Example%20-%20Part%202.md) | Applied example of weak signal detection |
-| [Reimagining Wardley Maps: Layer-Based Visibility](Reimagining%20Wardley%20Maps%3A%20Layer-Based%20Visibility%20and%20Sigmoid%20Evolution.md) | Alternative visibility model using layers |
+| [Inertia - Forms of Resistance to Evolution](Inertia%20-%20Forms%20of%20Resistance%20to%20Evolution.md) | Wardley's 17 forms of inertia (consumer + supplier) with a structured drag term replacing the single $c_v(t)$ scalar |
 
 ### Tools & Prompts
 | Document | Description |
@@ -81,19 +82,21 @@ $$\nu(v) = \frac{1}{1 + d(v)}$$
 
 where $d(v)$ is the shortest path length from user to component.
 
-**Evolution dynamics (S-curve):**
+**Evolution dynamics (logistic S-curve):**
 
-$$\frac{d\varepsilon}{dt} = r(t) \cdot (1 - \varepsilon(t))$$
+$$\frac{d\varepsilon}{dt} = r(t) \cdot \varepsilon(t) \cdot (1 - \varepsilon(t))$$
 
 where $r(t)$ incorporates market forces and strategic actions.
 
-**Evolution stages:**
+> **Caveat.** Wardley's climatic patterns state *"you cannot measure evolution over time or adoption."* The ODE above is a stylized extension for simulation and scenario exploration, not a Wardley-endorsed forecast model.
+
+**Evolution stages** (canonical names, quartile bands are conventional):
 - Genesis: $[0, 0.25)$
 - Custom Built: $[0.25, 0.50)$
-- Product: $[0.50, 0.75)$
-- Commodity: $[0.75, 1.0]$
+- Product (+rental): $[0.50, 0.75)$
+- Commodity (+utility): $[0.75, 1.0]$
 
-**Decision metrics:**
+**Decision metrics** (heuristics proposed in this repo — not canonical Wardley concepts):
 - Differentiation pressure: $D(v) = \nu(v) \cdot (1 - \varepsilon(v))$
 - Commodity leverage: $K(v) = (1 - \nu(v)) \cdot \varepsilon(v)$
 - Dependency risk: $R(a,b) = \nu(a) \cdot (1 - \varepsilon(b))$

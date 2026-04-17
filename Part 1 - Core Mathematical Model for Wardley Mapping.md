@@ -17,14 +17,14 @@ This article introduces a **math-first model** of a Wardley Map so you can:
 
 We model a Wardley Map as a tuple:
 
-$$\mathcal{M} = (V, E, u, \nu, \varepsilon, t)$$
+$$\mathcal{M} = (V, E, U, \nu, \varepsilon, t)$$
 
 Where:
 
 - $V$ is a set of components (capabilities, activities, data, systems, suppliers, practices, etc.).
 - $E \subseteq V \times V$ is a set of directed dependency edges.
   - An edge $(a,b) \in E$ means "**a** depends on **b**".
-- $u \in V$ is the anchor node representing the **user / user need**.
+- $U \subseteq V$ is the **anchor set** — one or more user-need nodes. Real maps routinely have multiple user needs (e.g., *business* and *public* in Wardley's Tea Shop example), so $|U| \ge 1$. When $|U|=1$ we often write the single element as $u$.
 - $\nu: V \to [0,1]$ assigns each component a **visibility score** (Y-axis).
 - $\varepsilon: V \to [0,1]$ assigns each component an **evolution score** (X-axis).
 - $t$ is time (optional; used if you want dynamics).
@@ -49,21 +49,24 @@ From here, the "picture" becomes math: the axes are just functions over the grap
 
 ---
 
-## 3) The Y-axis (Visibility) as distance from the user
+## 3) The Y-axis (Visibility): position in the value chain
 
-The visibility axis can be made computable by using **graph distance from the user**.
+Visibility in a Wardley Map is a **judgment about value chain position**, not a pure graph property. Wardley frames it as "visibility to the user, which is a natural outcome of a component's relative position within the value chain, **manually adjusted as needed**" ([learnwardleymapping.com/landscape](https://learnwardleymapping.com/landscape/)).
 
-### 3.1 Shortest dependency distance
-Define:
+So in the mathematical model, $\nu(v) \in [0,1]$ is the **primitive** — assigned by the mapper. What follows are ways to **seed** $\nu$ computationally. The mapper is free to override the seed when judgment about value to the user disagrees with topology.
 
-$$d(v) = \min \{\text{path length}(u \to v)\}$$
+### 3.1 Seed: shortest dependency distance
+
+Define distance from the anchor set $U$ (one or more user-need nodes):
+
+$$d(v) = \min_{u \in U} \{\text{path length}(u \to v)\}$$
 
 Interpretation:
-- $d(u)=0$
-- Things directly supporting the user have $d=1$
+- $d(u)=0$ for any $u \in U$
+- Things directly supporting a user need have $d=1$
 - Deeper dependencies have larger $d$
 
-### 3.2 Map distance to a [0,1] visibility score
+### 3.2 Map distance to a [0,1] visibility seed
 Two simple choices:
 
 **Option A: reciprocal decay**
@@ -93,66 +96,85 @@ $$\min_{\nu:V\to[0,1]} \sum_{(a,b)\in E} \left(\nu(a) - \nu(b) - \delta\right)^2
 
 This gives a consistent vertical layout even in messy graphs.
 
+### 3.4 Which option should I use?
+
+| Option | Formula | Use when |
+|---|---|---|
+| **A. Reciprocal decay** | $\nu(v) = \frac{1}{1+d(v)}$ | Default choice. Simple, smooth, parameter-free. Works well for tree-like value chains where distances are small. |
+| **B. Exponential decay** | $\nu(v) = e^{-\alpha d(v)}$ | Deep graphs where you want to tune the vertical spread. Larger $\alpha$ pushes deep nodes closer to 0; smaller $\alpha$ keeps the chain visible. |
+| **C. Constraint optimization** | minimize the quadratic above | Graphs with cross-links or shortcuts that break the "deeper = lower" rule. Produces a layout that respects every edge constraint even when raw distances don't. |
+
+Default to A unless you have a specific reason to switch. If the resulting map violates $\nu(a) \ge \nu(b)$ for some edge $(a,b)$ (a "shortcut" above its dependency), move to C.
+
+An alternative layer-based formulation — counting discrete dependency layers rather than raw distance — is covered in Part 5.
+
+### 3.5 Override: the mapper has the final word
+
+Whichever option produces the seed, the mapper may adjust any $\nu(v)$ by hand to reflect judgment about value chain position that the topology doesn't capture. Examples:
+
+- A component is technically a deep dependency but the user *thinks* about it (e.g., a branded payment widget) — raise its $\nu$.
+- A component is reachable directly from the user but is architecturally invisible (e.g., a CDN) — lower its $\nu$.
+
+The only hard rule is the edge constraint $\nu(a) \ge \nu(b)$ for every dependency $(a,b)$. Within that, $\nu$ is a judgment call that the math seeds but does not dictate.
+
 ---
 
-## 4) The X-axis (Evolution) as a continuous maturity score
+## 4) The X-axis (Evolution) as a continuous score
 
-The evolution axis can be modeled as a **continuous score** $\varepsilon(v)\in[0,1]$, then optionally bucketed into classic stages.
+> **Evolution is not maturity.** Wardley spent a Medium post arguing this: ["Map Evolution, Not Maturity"](https://medium.com/mappingpractice/map-evolution-not-maturity-bae6ea1a2743). Maturity tracks a single product's diffusion curve; evolution tracks the shifting *certainty and ubiquity of an underlying act* across multiple product generations. A model that scores evolution as "how mature is this" is making the error Wardley warns against.
+
+The evolution axis is a **continuous score** $\varepsilon(v)\in[0,1]$, then optionally bucketed into classic stages.
 
 ### 4.1 Stage bands (optional)
-You can interpret $[0,1]$ as stages:
 
-- Genesis: $[0, 0.25)$
-- Custom Built: $[0.25, 0.5)$
-- Product: $[0.5, 0.75)$
-- Commodity/Utility: $[0.75, 1]$
+Wardley's four canonical stages (the parenthesized suffixes are part of the names):
 
-This keeps the familiar Wardley language while remaining quantitative.
+- **Genesis**: $[0, 0.25)$
+- **Custom Built**: $[0.25, 0.5)$
+- **Product (+rental)**: $[0.5, 0.75)$
+- **Commodity (+utility)**: $[0.75, 1]$
+
+Stage III covers both products and rental/licensing; Stage IV covers both commoditization and utility services (electricity, cloud). The boundaries are conventional — Wardley himself does not fix them at exact quartiles.
 
 ### 4.2 Estimating evolution from observable signals
-Let $x(v)\in\mathbb{R}^k$ be measurable signals for a component, for example:
 
-- standardization level (interfaces, specs, compliance)
-- number of suppliers / substitutes
-- price transparency
-- change rate (high change tends to be less evolved)
-- ubiquity (how widely used it is)
-- switching costs (often correlate with maturity patterns)
+The canonical way to estimate $\varepsilon(v)$ is Wardley's **cheat sheet** — a table of characteristic dimensions (ubiquity, certainty, publication type, user perception, etc.) with per-stage descriptors. See **Part 6 — Cheat-sheet evolution scoring** for the full table and a formal scoring procedure.
 
-Then define a score:
+For a quick numeric seed, let $x(v)\in\mathbb{R}^k$ be measurable signals — e.g. standardization level, number of suppliers, price transparency, change rate, ubiquity-in-market, switching costs. Then:
 
 $$\varepsilon(v) = \sigma(w^\top x(v)) = \frac{1}{1 + e^{-w^\top x(v)}}$$
 
-Where:
-- $w$ are weights you define (or learn from examples),
-- $\sigma$ squashes the score into $[0,1]$.
-
-This makes evolution:
-- explicit,
-- repeatable,
-- calibratable.
+Where $w$ are weights (defined or learned) and $\sigma$ squashes to $[0,1]$. This gives an explicit, repeatable, calibratable number — but it is a **seed**, not the canonical placement. Always cross-check against the cheat sheet; if the two disagree, trust the cheat sheet.
 
 ---
 
 ## 5) Dynamics: make evolution move over time
 
-If you want to model how maps change, treat evolution as a dynamical system. A simple monotone "drift right" model is:
+> **Caveat up front.** Wardley is explicit — one of his 23 climatic patterns states *"you cannot measure evolution over time or adoption."* Evolution is determined against the cheat sheet (ubiquity, certainty, publication type, user perception, etc. — see Part 6), not by a clock. The ODE below is a **stylized extension** for simulation and scenario exploration only. Treat it as a what-if tool, not a forecast, and don't let it override cheat-sheet judgment.
 
-$$\frac{d\varepsilon_v}{dt} = r_v(t)\,(1-\varepsilon_v(t)), \quad r_v(t)\ge 0$$
+If you want to model how maps might change, treat evolution as a dynamical system. The standard **logistic (S-curve)** form is:
+
+$$\frac{d\varepsilon_v}{dt} = r_v(t)\,\varepsilon_v(t)\,(1-\varepsilon_v(t)), \quad r_v(t)\ge 0$$
 
 Interpretation:
-- Movement is faster when something is immature.
-- It slows as it approaches commodity.
+- Movement is slow at both extremes (nothing to spread from near 0, saturated near 1).
+- Movement is fastest near the middle, where adoption momentum peaks.
+
+This produces the canonical S-shape. If you want a simpler "bounded drift right" instead — monotone approach to 1 with no inflection — drop the $\varepsilon_v$ factor:
+
+$$\frac{d\varepsilon_v}{dt} = r_v(t)\,(1-\varepsilon_v(t))$$
+
+(This is exponential approach to 1, not an S-curve. Use it when you don't want the slow-start phase.)
 
 Let strategy act through the rate:
 
 $$r_v(t)=r_{0,v} + u_v(t) - c_v(t)$$
 
 - $r_{0,v}$: baseline evolutionary pressure (market forces)
-- $u_v(t)$: your actions (standardize, productize, platformize, outsource, open-source)
-- $c_v(t)$: constraints/friction (regulation, inertia, lack of standards, supply limits)
+- $u_v(t)$: your actions (standardize, productize, platformize, outsource, open-source) — see the gameplay catalogue for a richer action vector
+- $c_v(t)$: inertia (see the Inertia doc for Wardley's 16 forms, which this scalar flattens)
 
-Now your "plays" become levers.
+Now your "plays" become levers — but remember the caveat: this simulates a plausible path, it does not predict evolution.
 
 ---
 
@@ -172,6 +194,8 @@ This supports "error bars" on a map and makes debate concrete:
 ---
 
 ## 7) Derived metrics: turn the map into decision signals
+
+> **Note on authority.** The three metrics below — differentiation pressure, commodity leverage, dependency risk — are **heuristics proposed by this repository**, not concepts from Simon Wardley's own writing. They're simple products of $\nu$ and $\varepsilon$ that tend to highlight regions of a map a strategist would flag anyway. Use them as prompts for attention, not as validated decision criteria. Wardley's catalogue of plays and his doctrine are the authoritative strategic primitives; see the Gameplay docs and doctrine pages on [learnwardleymapping.com](https://learnwardleymapping.com/).
 
 Once everything is numeric, you can compute helpful scores.
 

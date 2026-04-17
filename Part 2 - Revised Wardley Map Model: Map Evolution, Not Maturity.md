@@ -10,23 +10,23 @@ In other words, **Evolution** isn't merely "age" or "time in market," but rather
 
 We have a set of **components**:
 
-$$\mathcal{C} = \{c_1, c_2, \dots, c_n\}$$
+$$V = \{c_1, c_2, \dots, c_n\}$$
 
 along with **dependencies** forming a directed graph. An edge
 
-$(c_i, c_j) \in \mathcal{E}$
+$(c_i, c_j) \in E$
 
 means **$c_i$** depends on **$c_j$**.
 
-We also define two mappings:
+We also define two mappings (matching the canonical notation from Part 1):
 
-1. **Visibility** (vertical axis) $V(c_i)$ — how obvious or "close" a component is to the user.
+1. **Visibility** (vertical axis) $\nu(c_i)$ — how obvious or "close" a component is to the user.
 
-2. **Evolution** (horizontal axis) $E(c_i)$ — how far along the path from novel/uncertain to commodity/standardized a component is.
+2. **Evolution** (horizontal axis) $\varepsilon(c_i)$ — how far along the path from novel/uncertain to commodity/standardized a component is.
 
 Each component becomes a point:
 
-$$M(c_i) = \bigl(E(c_i), V(c_i)\bigr)$$
+$$M(c_i) = \bigl(\varepsilon(c_i), \nu(c_i)\bigr)$$
 
 ---
 
@@ -36,14 +36,16 @@ One way to measure **visibility**:
 
 1. Let $\mathrm{dist}(c_i)$ be the shortest path distance from the **User** to $c_i$.
 
-2. Normalize this distance to produce $V(c_i)$:
+2. Normalize this distance to produce $\nu(c_i)$:
 
-   $$V(c_i) = 1 - \frac{\mathrm{dist}(c_i)}{\max \mathrm{dist}(c_j)}$$
+   $$\nu(c_i) = 1 - \frac{\mathrm{dist}(c_i)}{\max \mathrm{dist}(c_j)}$$
 
 - If $c_i$ is the user, then distance is 0 → **visibility** = 1.
-- If $c_i$ is far from the user, $V(c_i)$ approaches 0.
+- If $c_i$ is far from the user, $\nu(c_i)$ approaches 0.
 
-Hence, the **vertical coordinate** is: $y_i = V(c_i)$.
+Hence, the **vertical coordinate** is: $y_i = \nu(c_i)$.
+
+> This is the normalized-distance option. Part 1 also describes reciprocal decay $\nu(v) = 1/(1+d(v))$ and a constraint-satisfying optimization form; the choice depends on your graph structure (see Part 1, §3).
 
 ---
 
@@ -61,12 +63,12 @@ Let $\mathrm{ubiq}(c_i)$ and $\mathrm{cert}(c_i)$ both range in $[0, 1]$.
 
 Then define:
 
-$$E(c_i) = \frac{\mathrm{ubiq}(c_i) + \mathrm{cert}(c_i)}{2}$$
+$$\varepsilon(c_i) = \frac{\mathrm{ubiq}(c_i) + \mathrm{cert}(c_i)}{2}$$
 
 1. Low ubiquity + low certainty → near 0 (leftmost = "Genesis / Custom").
 2. High ubiquity + high certainty → near 1 (rightmost = "Commodity / Utility").
 
-Thus, the **horizontal coordinate** is: $x_i = E(c_i)$.
+Thus, the **horizontal coordinate** is: $x_i = \varepsilon(c_i)$.
 
 ---
 
@@ -74,7 +76,7 @@ Thus, the **horizontal coordinate** is: $x_i = E(c_i)$.
 
 Each component $c_i$ sits at:
 
-$$M(c_i) = (E(c_i), V(c_i))$$
+$$M(c_i) = (\varepsilon(c_i), \nu(c_i))$$
 
 - **Left → Right** = Movement from novel, uncertain to widespread, standardized.
 - **Bottom → Top** = Movement from invisible to user to highly visible.

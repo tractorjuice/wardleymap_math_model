@@ -36,20 +36,20 @@ The mathematical formalization of Wardley Mapping requires a robust and consiste
 
 > The absence of standardized mathematical notation has been one of the primary barriers to advancing Wardley Mapping from an art to a science, notes a leading researcher in strategic mathematics.
 
-We define a Wardley Map as a directed graph $W = (C, E, P)$ where $C$ represents the set of components, $E$ represents the edges (dependencies) between components, and $P$ represents the positioning function that maps components to coordinates in the value chain space.
+We define a Wardley Map as a directed graph $W = (V, E, P)$ where $V$ represents the set of components (vertices), $E$ represents the edges (dependencies) between components, and $P$ represents the positioning function that maps components to coordinates in the value chain space.
 
-- $C = \{c_1, c_2, ..., c_n\}$ represents the set of all components in the map
-- $E \subseteq C \times C$ represents the set of directed edges between components
-- $P: C \to [0,1] \times [0,1]$ maps components to their (value, evolution) coordinates
-- $V(c): C \to [0,1]$ represents the value axis position of a component
-- $E(c): C \to [0,1]$ represents the evolution axis position of a component
+- $V = \{c_1, c_2, ..., c_n\}$ represents the set of all components in the map
+- $E \subseteq V \times V$ represents the set of directed edges between components
+- $P: V \to [0,1] \times [0,1]$ maps components to their (visibility, evolution) coordinates
+- $\nu(c): V \to [0,1]$ is the **visibility function** (value axis position)
+- $\varepsilon(c): V \to [0,1]$ is the **evolution function** (evolution axis position)
 
-The evolution axis is divided into four canonical phases: Genesis ($\alpha$), Custom-Built ($\beta$), Product ($\gamma$), and Commodity ($\delta$). These phases are mathematically represented as intervals within the $[0,1]$ range of the evolution axis.
+The evolution axis is divided into four canonical phases, represented as intervals within the $[0,1]$ range:
 
-- Genesis ($\alpha$): $[0, 0.25)$
-- Custom-Built ($\beta$): $[0.25, 0.50)$
-- Product ($\gamma$): $[0.50, 0.75)$
-- Commodity ($\delta$): $[0.75, 1.0]$
+- Genesis: $[0, 0.25)$
+- Custom-Built: $[0.25, 0.50)$
+- Product: $[0.50, 0.75)$
+- Commodity: $[0.75, 1.0]$
 
 For temporal analysis, we introduce the time parameter $t$, allowing us to represent the evolution of components and their relationships over time: $P(c,t): C \times T \to [0,1] \times [0,1]$. This enables the mathematical modeling of component movement and strategic change.
 
@@ -215,11 +215,11 @@ Mathematical representation standards form the cornerstone of transforming Wardl
 
 > The standardisation of mathematical notation in Wardley Mapping represents a crucial step forward in strategic planning, enabling us to move from intuitive decision-making to data-driven strategy execution, notes a leading government strategy advisor.
 
-- Component Notation: $C(x,y,t)$ representing position $(x,y)$ at time $t$
-- Evolution Functions: $E(C,t)$ describing component movement along the evolution axis
-- Dependency Relations: $D(C_i,C_j)$ expressing relationships between components
-- Value Chain Functions: $V(C)$ quantifying value flow through the system
-- Strategic Intent Vectors: $S(C,t)$ representing directional movement intentions
+- Component Notation: $c(x,y,t)$ representing position $(x,y)$ at time $t$
+- Evolution Functions: $\varepsilon(c,t)$ describing component movement along the evolution axis
+- Dependency Relations: $D(c_i,c_j)$ expressing relationships between components
+- Value Chain Functions: $\nu(c)$ quantifying value flow through the system
+- Strategic Intent Vectors: $S(c,t)$ representing directional movement intentions
 
 The standardisation framework incorporates fundamental mathematical concepts from topology, graph theory, and vector calculus. Each component on a Wardley Map is represented as a node in a directed graph, with its position defined by coordinates in a two-dimensional space. The evolution axis is treated as a continuous function, allowing for differential analysis of component movement and strategic change.
 
@@ -601,8 +601,8 @@ The mathematical representation of supply and demand within Wardley Maps introdu
 
 - Supply Elasticity Function: $E_s(x) = \frac{\Delta S/S}{\Delta P/P}$, measuring component adaptability
 - Demand Elasticity Function: $E_d(x) = \frac{\Delta D/D}{\Delta P/P}$, quantifying market responsiveness
-- Evolution Rate Function: $dE/dt = f(S,D)$, expressing movement along the x-axis
-- Value Chain Position Function: $V(t) = g(S,D)$, determining vertical positioning
+- Evolution Rate Function: $d\varepsilon/dt = f(S,D)$, expressing movement along the x-axis
+- Value Chain Position Function: $\nu(t) = g(S,D)$, determining vertical positioning
 
 The interaction between supply and demand functions creates a dynamic equilibrium model that helps predict component movement. When $S(x,y,t) > D(x,y,t)$, components tend to commoditise more rapidly, accelerating their rightward movement along the evolution axis. Conversely, when $D(x,y,t) > S(x,y,t)$, components may experience increased value chain positioning and slower evolution rates.
 

@@ -1,91 +1,152 @@
-## 1. Vertical Axis: Layer-Based Visibility
+# Extending Wardley Maps: Layer-Based Visibility and Sigmoid Evolution
 
-### 1.1. Counting Layers Above Each Node
+Wardley Maps are a powerful tool for visualizing **value chains** and **strategic evolution**. Part 1 established the core model with graph-distance visibility and a continuous evolution score. This part explores two refinements that better fit real-world systems:
 
-Instead of the simple "distance from the user" approach, you could measure **how many 'layers' of nodes** exist above a given component in the value chain. One method:
+1. **Layer-Based Visibility** on the vertical axis
+2. A **Sigmoid (S-Curve) Evolution** function for the horizontal axis
 
-1. Perform a **topological sort** (or multiple sorts if multiple user entry points exist).
-2. Identify each node's **layer number** — i.e., how many layers of dependencies sit above it.
-
-Then define a **visibility function** $V(c_i) = 1 - \frac{\ell(c_i)}{\max\ell(c_j)}$, where:
-
-- $\ell(c_i) = 0$ if the component **is** the user (or top-level user proxy).
-- $\max_{c_j}\ell(c_j)$ is the maximum layer index in the **entire** graph (the "deepest" node).
-
-> **Rationale**:
-> - **Visibility** becomes "How many steps are you from direct user interaction, in terms of discrete layers of dependencies?"
-> - The user node(s) have $V \approx 1$, the deepest nodes near $V \approx 0$.
-> - You can also adapt it per **value stream**, if each user defines a different top-level context.
+These adaptations help when the dependency graph has multiple value streams, layered dependencies, or when adoption follows an S-curve rather than a linear progression.
 
 ---
 
-## 2. Horizontal Axis: Sigmoid (Logistic) Evolution
+## 1. Recap: The Essentials of Wardley Maps
 
-### 2.1. Why a Sigmoid?
+### 1.1. Basic Coordinates
 
-Wardley's "Genesis → Commodity" progression often follows **S-curve adoption**:
-- **Slow** adoption at first (new, uncertain).
-- **Accelerated** in the middle.
-- **Flattening** near saturation (commodity).
+A Wardley Map places components $v \in V$ in two dimensions:
 
-A **logistic (sigmoid) function** matches this shape. Consider something like:
+- **Vertical axis ($\nu$, visibility)**: How "close" each component is to the user. The user (or customer) is typically at the top, deep infrastructure at the bottom.
+- **Horizontal axis ($\varepsilon$, evolution)**: Tracks progression from a **new, unproven** or **custom-built** stage (far left) to a **ubiquitous**, **standardized**, **commodity** state (far right).
 
-$$E(c_i) = \frac{1}{1 + \exp[-\alpha(\mathrm{input}_i - \beta)]}$$
+### 1.2. Traditional Approach (from Part 1)
+
+1. **Visibility** is often approximated by graph distance from the user node, e.g. $\nu(v) = 1/(1+d(v))$.
+2. **Evolution** may be scored by a simple function like $\varepsilon(v) = (\mathrm{ubiq}(v) + \mathrm{cert}(v))/2$, combining how widespread ("ubiquity") and well-understood ("certainty") a component is.
+
+These linear formulations can over-simplify reality when you have multiple value streams or when adoption follows an S-curve.
+
+---
+
+## 2. Layer-Based Visibility
+
+### 2.1. Why Layers?
+
+In many systems, simply counting graph distance to the user is too coarse. Components may share dependencies; a user-facing system might have multiple value streams. Rather than just counting edges, identify **discrete layers** of dependencies.
+
+- **Layer 0**: The user (or top-level "user" proxy).
+- **Layer 1**: Components directly consumed by the user.
+- **Layer 2**: Components that feed Layer 1, etc.
+
+### 2.2. Implementation
+
+1. **Topological sort** the dependency graph (or do a BFS from the user node $u$).
+2. Assign each component $v$ a **layer index** $\ell(v)$ based on how many layers sit between it and the user.
+3. Define visibility as:
+
+$$\nu(v) = 1 - \frac{\ell(v)}{\max_{v' \in V} \ell(v')}$$
+
+- Components closer to the user (lower $\ell$) get higher $\nu$.
+- Deep infrastructure with high $\ell$ gets lower $\nu$.
+
+### 2.3. Value Streams
+
+When multiple user types or product flows exist, you can:
+
+- **Focus** each Wardley Map on one user type at a time (reassigning layers for that user's perspective).
+- Or unify them into a single map — but note each user might have a different maximum layer count.
+
+This ensures the vertical axis truly reflects how the user sees the system layers, rather than a purely numeric "distance."
+
+---
+
+## 3. Sigmoid (S-Curve) Evolution
+
+### 3.1. The S-Curve in Real Adoption
+
+Wardley observes that components evolve from **Genesis** to **Utility** following an **S-curve**: slow uptake at first, rapid adoption in the middle, flattening as the market saturates. This is well modeled by the **logistic (sigmoid) function**.
+
+### 3.2. The Logistic Function
+
+A common logistic form is:
+
+$$\varepsilon(v) = \frac{1}{1 + \exp[-\alpha(\mathrm{input}(v) - \beta)]}$$
 
 Where:
-- **input** might be some combination of **ubiquity** and **certainty**.
-- $\alpha > 0$ controls **steepness** of the S-curve.
-- $\beta$ shifts the **center** along the input axis.
 
-### 2.2. Normalizing Inputs
+- $\mathrm{input}(v)$ might be $\mathrm{ubiq}(v) + \mathrm{cert}(v)$ (or another combination).
+- $\alpha > 0$ sets the **steepness** of the curve.
+- $\beta$ sets the **midpoint**.
 
-First, combine **ubiquity** (U) and **certainty** (C) into a single value. For example:
+### 3.3. Normalizing Inputs
 
-$$\mathrm{input}_i = w_1 \cdot U(c_i) + w_2 \cdot C(c_i)$$
+A weighted combination of ubiquity and certainty works well:
 
-Then plug into the logistic equation:
+$$\mathrm{input}(v) = w_1 \cdot \mathrm{ubiq}(v) + w_2 \cdot \mathrm{cert}(v)$$
 
-$$E(c_i) = \frac{1}{1 + \exp[-\alpha(\mathrm{input}_i - \beta)]}$$
+Then:
 
-- Large $\alpha$ ⇒ sharp transition.
-- $\beta$ ⇒ sets the midpoint of the S-curve.
+1. If $\mathrm{input}(v) \approx \beta$, we're around the **midpoint** of the S-curve.
+2. Above that, we rapidly approach the **commodity** end. Below that, we remain in **custom** or **genesis** territory.
 
-Hence, the evolution axis better represents an **accelerating** shift from custom to commodity.
-
----
-
-## 3. Value Stream–Specific Vertical Scale
-
-You mentioned the vertical scale is **relative to each value stream**. When you have multiple user "entry points" or varied service flows:
-
-1. Choose **one** user node (or a small set) for each value stream.
-2. Compute layers/distances only for the **subgraph** relevant to that stream.
-3. The result: each value chain has a top at $V = 1$ (the user), and a bottom near $V = 0$ for the farthest hidden infrastructure.
-
-Sometimes you **merge** all users into a single "map," but for clarity you might produce **partial** maps, each focusing on a different user journey.
+Large $\alpha$ produces a sharp transition; small $\alpha$ produces a gentle one.
 
 ---
 
-## 4. Summary
+## 4. Combining the Ideas
 
-1. **Layer-based (or distance-based) Vertical**
+**Layer-based vertical** + **sigmoid-based horizontal** = a more accurate representation:
 
-   $$V(c_i) = 1 - \frac{\ell(c_i)}{\max\ell(c_j)}$$
+- **Vertical**: Clarifies how many "layers" a component is removed from direct user interaction.
+- **Horizontal**: Reflects **S-curve adoption** patterns rather than a simplistic linear scale.
 
-   or
+---
 
-   $$V(c_i) = 1 - \frac{d(\text{User}, c_i)}{d_{\mathrm{max}}}$$
+## 5. Practical Steps
 
-2. **Sigmoid-based Horizontal**
+1. **Define your value stream(s)**
+   - Identify which user(s) you want to map.
+   - Extract relevant components and dependencies for that user flow.
 
-   $$E(c_i) = \frac{1}{1 + \exp[-\alpha(\mathrm{input}_i - \beta)]}$$
+2. **Layer assignment**
+   - Perform a BFS or topological sort from the user node $u$.
+   - $\ell(v)$ = how many layers from user to $v$.
+   - $\nu(v) = 1 - \ell(v) / \max_{v'} \ell(v')$.
 
-   $$\mathrm{input}_i = w_1 \cdot U(c_i) + w_2 \cdot C(c_i)$$
+3. **Adoption data**
+   - Rate each component's **ubiquity** (0 = rare, 1 = widespread).
+   - Rate each component's **certainty** (0 = unproven, 1 = fully standardized).
 
-3. **Normalize**
-   - Adjust $\alpha$ and $\beta$ to match real-world adoption patterns.
+4. **Sigmoid evolution**
+   - Combine those scores, feed them into a logistic function.
+   - Tune $\alpha$ and $\beta$ to match your domain's adoption dynamics.
 
-4. **Value Stream–Specific**
-   - Each user or user group can define a separate "distance" or layer scale if needed.
+5. **Plot the map**
+   - Each component → $(\varepsilon(v), \nu(v))$.
+   - Draw dependencies accordingly.
 
-By combining **layer-based visibility** (vertical) and **sigmoid-based evolution** (horizontal), you can achieve a **more realistic** Wardley Map that mirrors **S-curve adoption** while respecting the **unique value streams** and **layering** of your system.
+---
+
+## 6. Advantages and Caveats
+
+### 6.1. Advantages
+
+1. **Layered clarity**: The vertical axis is more intuitive (Layer 1, Layer 2, etc.).
+2. **Realistic adoption**: The S-curve captures how technology actually transitions.
+3. **Value stream focus**: Different user flows, each with its own layering, can be mapped precisely.
+
+### 6.2. Caveats
+
+1. **Data collection**: More overhead in computing layers and determining logistic parameters.
+2. **Subjectivity**: Deciding $\alpha$, $\beta$, or the weighting of ubiquity vs. certainty remains subjective.
+3. **Multiple maps**: If you have many user types, you may generate multiple partial Wardley Maps.
+
+---
+
+## 7. Conclusion
+
+When the default Wardley Map approach feels too simplistic — especially with layered systems or S-curve adoption dynamics — consider:
+
+1. **Layer-based** vertical scaling for each user.
+2. A **sigmoid** function for the horizontal evolution measure.
+
+These refinements better match real-world user journeys (vertical) and more accurately reflect market and technology evolution (horizontal), leading to more robust strategic insights when deciding where to innovate and how to leverage commodities in your value chain.

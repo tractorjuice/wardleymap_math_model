@@ -7,31 +7,31 @@ This explanation highlights **why** the kettle evolves from a **custom** solutio
 ## 1. Our Wardley Map Model (Quick Recap)
 
 1. **Components**
-   We define a set of components $\mathcal{C} = \{ c_1, c_2, \dots, c_n \}$, each representing an element in delivering value (e.g., "Kettle," "Power," "Water").
+   We define a set of components $V = \{ c_1, c_2, \dots, c_n \}$, each representing an element in delivering value (e.g., "Kettle," "Power," "Water").
 
 2. **Dependencies**
-   A directed edge $(c_i, c_j) \in \mathcal{E}$ means "**$c_i$** depends on **$c_j$**." In the Tea Shop example:
+   A directed edge $(c_i, c_j) \in E$ means "**$c_i$** depends on **$c_j$**." In the Tea Shop example:
    - "Kettle" depends on "Power."
    - "Cup of Tea" depends on "Hot Water," etc.
 
 3. **Visibility (Vertical Axis)**
-   We assign each component a **visibility** score, $V(c_i)$, based on **graph distance** from the user:
+   We assign each component a **visibility** score, $\nu(c_i)$, based on **graph distance** from the user:
    - Let $\mathrm{dist}(c_i)$ be the shortest path distance from the user (or top-level need) to $c_i$.
    - Then normalize:
 
-     $$V(c_i) = 1 - \frac{\mathrm{dist}(c_i)}{\max_{c_j}\mathrm{dist}(c_j)}$$
+     $$\nu(c_i) = 1 - \frac{\mathrm{dist}(c_i)}{\max_{c_j}\mathrm{dist}(c_j)}$$
 
    - Components **closer** to the user appear **higher** on the map.
 
 4. **Evolution (Horizontal Axis)**
-   We define each component's **evolution** via $E(c_i)$, measuring how **ubiquitous** and **well-understood** it is (not just "age"):
+   We define each component's **evolution** via $\varepsilon(c_i)$, measuring how **ubiquitous** and **well-understood** it is (not just "age"):
    - $\mathrm{ubiq}(c_i)$ = how widespread the component is in the market.
    - $\mathrm{cert}(c_i)$ = how standardized or certain it is (well-known best practices).
    - We combine them:
 
-     $$E(c_i) = \frac{\mathrm{ubiq}(c_i) + \mathrm{cert}(c_i)}{2}$$
+     $$\varepsilon(c_i) = \frac{\mathrm{ubiq}(c_i) + \mathrm{cert}(c_i)}{2}$$
 
-Putting it all together, each component $c_i$ maps to $(E(c_i), V(c_i))$.
+Putting it all together, each component $c_i$ maps to $(\varepsilon(c_i), \nu(c_i))$.
 
 ---
 
@@ -75,7 +75,7 @@ Between these layers, we see elements like **Kettle**, **Cup**, **Tea**, and **H
 
 By applying our **Evolution** function,
 
-$$E(\text{Kettle}) = \frac{\mathrm{ubiq}(\text{Kettle})+\mathrm{cert}(\text{Kettle})}{2}$$
+$$\varepsilon(\text{Kettle}) = \frac{\mathrm{ubiq}(\text{Kettle})+\mathrm{cert}(\text{Kettle})}{2}$$
 
 we see that high **ubiquity** (common product on the market) and moderate/high **certainty** (safety standards, known design) push it well into the "product" zone.
 
@@ -105,7 +105,7 @@ In terms of our **distance** measure:
 
 Thus,
 
-$$y_i = V(c_i) = 1-\frac{\mathrm{dist}(c_i)}{\max \mathrm{dist}(c_j)}$$
+$$y_i = \nu(c_i) = 1-\frac{\mathrm{dist}(c_i)}{\max \mathrm{dist}(c_j)}$$
 
 puts "Power" near the bottom and "Cup of Tea" near the top.
 
