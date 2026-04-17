@@ -1,0 +1,76 @@
+# wardley-map — Claude Code Skill
+
+A portable Claude Code skill that generates Wardley Maps from a scenario description using a formal mathematical model. The output is OWM-format text (compatible with [create.wardleymaps.ai](https://create.wardleymaps.ai) and [onlinewardleymaps.com](https://onlinewardleymaps.com)) plus a strategic analysis grounded in Wardley's cheat sheet, 61 gameplays, and 40 doctrine principles.
+
+## Install
+
+**For one project only:**
+
+```bash
+mkdir -p .claude/skills
+cp -r path/to/wardley-map .claude/skills/
+```
+
+**For all your projects:**
+
+```bash
+mkdir -p ~/.claude/skills
+cp -r path/to/wardley-map ~/.claude/skills/
+```
+
+Either path makes the skill discoverable by Claude Code. No restart needed.
+
+## Use
+
+In a Claude Code session:
+
+```
+/wardley-map a small e-commerce platform selling handmade crafts
+```
+
+Claude will produce:
+
+1. An OWM-format map with anchor(s), components, visibility/evolution coordinates, and dependencies.
+2. A strategic analysis: top differentiation opportunities, commodity candidates, dependency risks, suggested Wardley gameplays (named from the 61-play catalogue), and doctrine violations if any.
+
+If you invoke `/wardley-map` with no arguments, Claude will ask for a scenario description first.
+
+## What's in this skill
+
+- `SKILL.md` — the skill body (math model + procedure + OWM output format).
+- `cheat-sheet.md` — full 19-row Wardley evolution cheat sheet.
+- `gameplays.md` — all 61 gameplays in 12 categories.
+- `doctrine.md` — all 40 doctrine principles in 4 phases.
+- `inertia.md` — the 17 forms of resistance.
+
+The skill is self-contained; you don't need the parent repository to use it.
+
+## What the skill implements
+
+| Aspect | Implementation |
+|---|---|
+| Tuple | `M = (V, E, U, ν, ε, t)` — anchor *set* `U ⊆ V`, optional time |
+| Visibility | Judgment primitive seeded by `1/(1+d(v))`; hard rule `ν(a) ≥ ν(b)` for edges |
+| Evolution | Cheat-sheet scoring (4-row quick; 19-row full in `cheat-sheet.md`) |
+| Stages | Genesis / Custom Built / Product (+rental) / Commodity (+utility) |
+| Dynamics | Logistic S-curve `dε/dt = rε(1-ε)` — labeled as scenario, not forecast |
+| Strategic moves | Named from the 61-play catalogue in `gameplays.md` |
+| Doctrine check | Flags violations against the 40 principles in `doctrine.md` |
+| Inertia | 17 structured forms in `inertia.md` |
+
+## Caveats
+
+1. **Not a forecast tool.** Wardley's climatic pattern is *"you cannot measure evolution over time or adoption."* Evolution trajectories from this skill are scenarios for exploration, not predictions.
+2. **D, K, R metrics are heuristics.** Differentiation pressure, commodity leverage, and dependency risk are proposed by this skill's math model, not canonical Wardley concepts.
+3. **Mapper judgment wins.** Graph-distance visibility and cheat-sheet scoring produce *seeds*. A human mapper's judgment about value-chain position may override them.
+4. **Market-relative ubiquity.** Score "ubiquity" against a named market; there's no universal scale.
+
+## Origin
+
+This skill is derived from [wardleymap_math_model](https://github.com/tractorjuice/wardleymap_math_model), a documentation-only repository that formalises Wardley Mapping as a mathematical model. The skill is a self-contained distillation of the operational parts of that repo.
+
+Wardley Mapping itself is Simon Wardley's framework — see his [Medium book](https://medium.com/wardleymaps) and [blog](https://blog.gardeviance.org/) for primary sources. Wardley has not endorsed quantitative formalisations of his framework; treat this skill as an aid for disciplined mapping, not a substitute for Wardley's thinking.
+
+## Licence
+
+Inherits the parent repository's terms. Uses Wardley's cheat sheet, doctrine, and gameplays — which are CC-BY-SA — with attribution.

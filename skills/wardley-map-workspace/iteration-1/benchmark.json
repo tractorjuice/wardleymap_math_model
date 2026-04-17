@@ -1,0 +1,423 @@
+{
+  "metadata": {
+    "skill_name": "wardley-map",
+    "skill_path": "<path/to/skill>",
+    "executor_model": "<model-name>",
+    "analyzer_model": "<model-name>",
+    "timestamp": "2026-04-17T22:38:47Z",
+    "evals_run": [
+      0,
+      1,
+      2
+    ],
+    "runs_per_configuration": 3
+  },
+  "runs": [
+    {
+      "eval_id": 1,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 8,
+        "failed": 0,
+        "total": 8,
+        "time_seconds": 100.1,
+        "tokens": 29965,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Output contains an OWM-format block",
+          "passed": true,
+          "evidence": "OWM block found"
+        },
+        {
+          "text": "Uses TWO anchors (two 'anchor' lines) for the two user types",
+          "passed": true,
+          "evidence": "2 anchors: ['client (job poster)', 'freelancer (bidder)']"
+        },
+        {
+          "text": "Both anchors represent distinct roles (e.g., client and freelancer)",
+          "passed": true,
+          "evidence": "anchors: ['client (job poster)', 'freelancer (bidder)']"
+        },
+        {
+          "text": "Both anchors at high visibility (>=0.9)",
+          "passed": true,
+          "evidence": "anchors: ['client (job poster)', 'freelancer (bidder)']"
+        },
+        {
+          "text": "A platform/matching/marketplace component exists",
+          "passed": true,
+          "evidence": "found"
+        },
+        {
+          "text": "Strategic analysis recognizes the two-sided dynamic",
+          "passed": true,
+          "evidence": "found"
+        },
+        {
+          "text": "Gives specific invest/outsource recommendations per component",
+          "passed": true,
+          "evidence": "found build/outsource terms"
+        },
+        {
+          "text": "Cites at least one specific Wardley gameplay by name",
+          "passed": true,
+          "evidence": "cites: Focus on user needs, Open Approaches, Exploiting Network Effects"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 2,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 8,
+        "failed": 0,
+        "total": 8,
+        "time_seconds": 120.4,
+        "tokens": 32016,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Output contains an OWM-format block",
+          "passed": true,
+          "evidence": "OWM block found"
+        },
+        {
+          "text": "At least 5 components identified",
+          "passed": true,
+          "evidence": "46 components"
+        },
+        {
+          "text": "Every component has coordinates in [0,1]",
+          "passed": true,
+          "evidence": "all 48 coordinates in [0,1]"
+        },
+        {
+          "text": "Strategic analysis gives build/buy/outsource recommendations",
+          "passed": true,
+          "evidence": "all three terms found"
+        },
+        {
+          "text": "Payment processing at Product-to-Commodity (epsilon >= 0.6)",
+          "passed": true,
+          "evidence": "Payment Processing at epsilon=0.85"
+        },
+        {
+          "text": "Cloud infrastructure at Commodity/utility (epsilon >= 0.8)",
+          "passed": true,
+          "evidence": "Cloud Compute at epsilon=0.95"
+        },
+        {
+          "text": "Cites at least one specific Wardley gameplay by name",
+          "passed": true,
+          "evidence": "cites: Focus on user needs, Education, Open Approaches"
+        },
+        {
+          "text": "Caveat present that evolution is scenario not forecast",
+          "passed": true,
+          "evidence": "found"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 0,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.8889,
+        "passed": 8,
+        "failed": 1,
+        "total": 9,
+        "time_seconds": 68.3,
+        "tokens": 26570,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Output contains an OWM-format block",
+          "passed": true,
+          "evidence": "OWM block found"
+        },
+        {
+          "text": "Has a customer/user anchor at high visibility (>=0.9)",
+          "passed": true,
+          "evidence": "customer at vis=0.98"
+        },
+        {
+          "text": "At least 5 components identified",
+          "passed": true,
+          "evidence": "16 components"
+        },
+        {
+          "text": "Every component has [visibility, evolution] coordinates in [0,1]",
+          "passed": true,
+          "evidence": "all 17 coordinates in [0,1]"
+        },
+        {
+          "text": "Visibility constraint respected: for every edge a->b, nu(a) >= nu(b)",
+          "passed": true,
+          "evidence": "all 18 edges respect nu(a) >= nu(b)"
+        },
+        {
+          "text": "Uses canonical stage naming (+utility or +rental appears)",
+          "passed": false,
+          "evidence": "neither +utility nor +rental found"
+        },
+        {
+          "text": "Strategic analysis present (covers D, K, R)",
+          "passed": true,
+          "evidence": "found strategic terms"
+        },
+        {
+          "text": "Cites at least one specific Wardley gameplay by name",
+          "passed": true,
+          "evidence": "cites: Focus on user needs, Channel Conflict, Education"
+        },
+        {
+          "text": "Caveat present that evolution is not time/maturity (scenario not forecast)",
+          "passed": true,
+          "evidence": "found scenario/forecast/climatic caveat"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 1,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.375,
+        "passed": 3,
+        "failed": 5,
+        "total": 8,
+        "time_seconds": 89.2,
+        "tokens": 19440,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Output contains an OWM-format block",
+          "passed": false,
+          "evidence": "no OWM structure"
+        },
+        {
+          "text": "Uses TWO anchors (two 'anchor' lines) for the two user types",
+          "passed": false,
+          "evidence": "0 anchors: []"
+        },
+        {
+          "text": "Both anchors represent distinct roles (e.g., client and freelancer)",
+          "passed": false,
+          "evidence": "anchors: []"
+        },
+        {
+          "text": "Both anchors at high visibility (>=0.9)",
+          "passed": false,
+          "evidence": "anchors: []"
+        },
+        {
+          "text": "A platform/matching/marketplace component exists",
+          "passed": false,
+          "evidence": "not found"
+        },
+        {
+          "text": "Strategic analysis recognizes the two-sided dynamic",
+          "passed": true,
+          "evidence": "found"
+        },
+        {
+          "text": "Gives specific invest/outsource recommendations per component",
+          "passed": true,
+          "evidence": "found build/outsource terms"
+        },
+        {
+          "text": "Cites at least one specific Wardley gameplay by name",
+          "passed": true,
+          "evidence": "cites: Differentiation"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 2,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.5,
+        "passed": 4,
+        "failed": 4,
+        "total": 8,
+        "time_seconds": 82.4,
+        "tokens": 18332,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Output contains an OWM-format block",
+          "passed": true,
+          "evidence": "OWM block found"
+        },
+        {
+          "text": "At least 5 components identified",
+          "passed": false,
+          "evidence": "0 components"
+        },
+        {
+          "text": "Every component has coordinates in [0,1]",
+          "passed": false,
+          "evidence": "no coordinates parsed"
+        },
+        {
+          "text": "Strategic analysis gives build/buy/outsource recommendations",
+          "passed": true,
+          "evidence": "all three terms found"
+        },
+        {
+          "text": "Payment processing at Product-to-Commodity (epsilon >= 0.6)",
+          "passed": false,
+          "evidence": "no payment component found"
+        },
+        {
+          "text": "Cloud infrastructure at Commodity/utility (epsilon >= 0.8)",
+          "passed": false,
+          "evidence": "no cloud/hosting component found"
+        },
+        {
+          "text": "Cites at least one specific Wardley gameplay by name",
+          "passed": true,
+          "evidence": "cites: Differentiation"
+        },
+        {
+          "text": "Caveat present that evolution is scenario not forecast",
+          "passed": true,
+          "evidence": "found"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 0,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.1111,
+        "passed": 1,
+        "failed": 8,
+        "total": 9,
+        "time_seconds": 49.9,
+        "tokens": 16709,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Output contains an OWM-format block",
+          "passed": false,
+          "evidence": "no OWM structure"
+        },
+        {
+          "text": "Has a customer/user anchor at high visibility (>=0.9)",
+          "passed": false,
+          "evidence": "no customer/user anchor"
+        },
+        {
+          "text": "At least 5 components identified",
+          "passed": false,
+          "evidence": "0 components"
+        },
+        {
+          "text": "Every component has [visibility, evolution] coordinates in [0,1]",
+          "passed": false,
+          "evidence": "no coordinates parsed"
+        },
+        {
+          "text": "Visibility constraint respected: for every edge a->b, nu(a) >= nu(b)",
+          "passed": false,
+          "evidence": "no edges parsed"
+        },
+        {
+          "text": "Uses canonical stage naming (+utility or +rental appears)",
+          "passed": false,
+          "evidence": "neither +utility nor +rental found"
+        },
+        {
+          "text": "Strategic analysis present (covers D, K, R)",
+          "passed": false,
+          "evidence": "strategic analysis terms missing"
+        },
+        {
+          "text": "Cites at least one specific Wardley gameplay by name",
+          "passed": true,
+          "evidence": "cites: Differentiation, Alliances"
+        },
+        {
+          "text": "Caveat present that evolution is not time/maturity (scenario not forecast)",
+          "passed": false,
+          "evidence": "no evolution caveat"
+        }
+      ],
+      "notes": []
+    }
+  ],
+  "run_summary": {
+    "with_skill": {
+      "pass_rate": {
+        "mean": 0.963,
+        "stddev": 0.0641,
+        "min": 0.8889,
+        "max": 1.0
+      },
+      "time_seconds": {
+        "mean": 96.2667,
+        "stddev": 26.2607,
+        "min": 68.3,
+        "max": 120.4
+      },
+      "tokens": {
+        "mean": 29517.0,
+        "stddev": 2750.5012,
+        "min": 26570,
+        "max": 32016
+      }
+    },
+    "without_skill": {
+      "pass_rate": {
+        "mean": 0.3287,
+        "stddev": 0.1985,
+        "min": 0.1111,
+        "max": 0.5
+      },
+      "time_seconds": {
+        "mean": 73.8333,
+        "stddev": 21.0039,
+        "min": 49.9,
+        "max": 89.2
+      },
+      "tokens": {
+        "mean": 18160.3333,
+        "stddev": 1373.5692,
+        "min": 16709,
+        "max": 19440
+      }
+    },
+    "delta": {
+      "pass_rate": "+0.63",
+      "time_seconds": "+22.4",
+      "tokens": "+11357"
+    }
+  },
+  "notes": []
+}

@@ -18,7 +18,7 @@ Key conventions:
 ## Core Mathematical Model
 
 - [A Prototype Math Model for Wardley Mapping](A%20Prototype%20Math%20Model%20for%20Wardley%20Mapping.md): Exploratory prototype introducing S-curve evolution dynamics and game-theoretic extensions.
-- [Part 1 - Core Mathematical Model for Wardley Mapping](Part%201%20-%20Core%20Mathematical%20Model%20for%20Wardley%20Mapping.md): The formal tuple model $\mathcal{M} = (V, E, u, \nu, \varepsilon, t)$ with computed visibility, evolution scoring, and derived decision metrics.
+- [Part 1 - Core Mathematical Model for Wardley Mapping](Part%201%20-%20Core%20Mathematical%20Model%20for%20Wardley%20Mapping.md): The formal tuple model $\mathcal{M} = (V, E, U, \nu, \varepsilon, t)$ with computed visibility, evolution scoring, and derived decision metrics (flagged as repo-proposed heuristics, not canonical Wardley concepts).
 - [Part 2 - Revised Wardley Map Model: Map Evolution, Not Maturity](Part%202%20-%20Revised%20Wardley%20Map%20Model%3A%20Map%20Evolution%2C%20Not%20Maturity.md): Refines the evolution axis interpretation, distinguishing evolution from maturity.
 - [Part 3 - Explaining the Tea Shop Map Using Our Mathematical Model](Part%203%20-%20Explaining%20the%20Tea%20Shop%20Map%20Using%20Our%20Mathematical%20Model.md): Applies the model to Simon Wardley's classic Tea Shop example.
 - [Part 4 - Working Out the Evolution Value for a Single Component](Part%204%20-%20Working%20Out%20the%20Evolution%20Value%20for%20a%20Single%20Component.md): Methods for computing evolution scores for individual components.
@@ -52,6 +52,7 @@ Key conventions:
 ## Tools and Prompts
 
 - [Wardley Map Generator Prompt](prompts/wardley_map_generator.md): AI prompt for generating Wardley Maps in OWM (Online Wardley Maps) format compatible with [create.wardleymaps.ai](https://create.wardleymaps.ai).
+- [`wardley-map` Claude Code skill](skills/wardley-map/): Self-contained portable skill package (SKILL.md + cheat-sheet.md + gameplays.md + doctrine.md + inertia.md). Install to `~/.claude/skills/wardley-map/` and invoke `/wardley-map <scenario>`.
 
 ## Optional
 

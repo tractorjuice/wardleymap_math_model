@@ -1,0 +1,15 @@
+{
+  "eval_id": 2,
+  "eval_name": "saas-invoicing",
+  "prompt": "I'm building a SaaS for automated invoicing aimed at small businesses. Map the components and tell me what to build, buy, or outsource.",
+  "assertions": [
+    {"text": "Output contains an OWM-format block"},
+    {"text": "At least 5 components identified"},
+    {"text": "Every component has [visibility, evolution] coordinates in [0,1]"},
+    {"text": "Strategic analysis gives build/buy/outsource recommendations per relevant component"},
+    {"text": "Payment processing correctly placed at Product-to-Commodity stage (epsilon >= 0.6)"},
+    {"text": "Cloud infrastructure correctly placed at Commodity/utility stage (epsilon >= 0.8)"},
+    {"text": "Cites at least one specific Wardley gameplay by name (from the 61-play catalogue)"},
+    {"text": "Caveat present that evolution is scenario not forecast"}
+  ]
+}

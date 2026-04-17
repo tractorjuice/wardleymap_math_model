@@ -1,0 +1,52 @@
+{
+  "eval_id": "eval-freelance-marketplace",
+  "config": "old_skill",
+  "summary": {
+    "passed": 8,
+    "failed": 0,
+    "total": 8,
+    "pass_rate": 1.0
+  },
+  "expectations": [
+    {
+      "text": "Output contains an OWM-format block",
+      "passed": true,
+      "evidence": "OWM block found"
+    },
+    {
+      "text": "Uses TWO anchors (two 'anchor' lines) for the two user types",
+      "passed": true,
+      "evidence": "2 anchors: ['client gets work done', 'freelancer wins paid work']"
+    },
+    {
+      "text": "Both anchors represent distinct roles (e.g., client and freelancer)",
+      "passed": true,
+      "evidence": "anchors: ['client gets work done', 'freelancer wins paid work']"
+    },
+    {
+      "text": "Both anchors at high visibility (>=0.9)",
+      "passed": true,
+      "evidence": "anchors: ['client gets work done', 'freelancer wins paid work']"
+    },
+    {
+      "text": "A platform/matching/marketplace component exists",
+      "passed": true,
+      "evidence": "found"
+    },
+    {
+      "text": "Strategic analysis recognizes the two-sided dynamic",
+      "passed": true,
+      "evidence": "found"
+    },
+    {
+      "text": "Gives specific invest/outsource recommendations per component",
+      "passed": true,
+      "evidence": "found build/outsource terms"
+    },
+    {
+      "text": "Cites at least one specific Wardley gameplay by name",
+      "passed": true,
+      "evidence": "cites: Focus on user needs, Structure & Culture, Open Approaches"
+    }
+  ]
+}

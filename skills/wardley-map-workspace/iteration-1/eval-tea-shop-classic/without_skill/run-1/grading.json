@@ -1,0 +1,57 @@
+{
+  "eval_id": "eval-tea-shop-classic",
+  "config": "without_skill",
+  "summary": {
+    "passed": 1,
+    "failed": 8,
+    "total": 9,
+    "pass_rate": 0.1111
+  },
+  "expectations": [
+    {
+      "text": "Output contains an OWM-format block",
+      "passed": false,
+      "evidence": "no OWM structure"
+    },
+    {
+      "text": "Has a customer/user anchor at high visibility (>=0.9)",
+      "passed": false,
+      "evidence": "no customer/user anchor"
+    },
+    {
+      "text": "At least 5 components identified",
+      "passed": false,
+      "evidence": "0 components"
+    },
+    {
+      "text": "Every component has [visibility, evolution] coordinates in [0,1]",
+      "passed": false,
+      "evidence": "no coordinates parsed"
+    },
+    {
+      "text": "Visibility constraint respected: for every edge a->b, nu(a) >= nu(b)",
+      "passed": false,
+      "evidence": "no edges parsed"
+    },
+    {
+      "text": "Uses canonical stage naming (+utility or +rental appears)",
+      "passed": false,
+      "evidence": "neither +utility nor +rental found"
+    },
+    {
+      "text": "Strategic analysis present (covers D, K, R)",
+      "passed": false,
+      "evidence": "strategic analysis terms missing"
+    },
+    {
+      "text": "Cites at least one specific Wardley gameplay by name",
+      "passed": true,
+      "evidence": "cites: Differentiation, Alliances"
+    },
+    {
+      "text": "Caveat present that evolution is not time/maturity (scenario not forecast)",
+      "passed": false,
+      "evidence": "no evolution caveat"
+    }
+  ]
+}

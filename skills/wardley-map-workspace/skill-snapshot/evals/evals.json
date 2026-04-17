@@ -1,0 +1,57 @@
+{
+  "skill_name": "wardley-map",
+  "evals": [
+    {
+      "id": 0,
+      "name": "tea-shop-classic",
+      "prompt": "Map a small tea shop business that serves cups of tea to customers, needs to handle payment, and sources tea leaves from suppliers.",
+      "expected_output": "An OWM-format Wardley Map with a customer anchor, 5+ components, and a strategic analysis section naming Wardley gameplays.",
+      "files": [],
+      "assertions": [
+        {"text": "Output contains an OWM-format block"},
+        {"text": "Has a customer/user anchor at high visibility (>=0.9)"},
+        {"text": "At least 5 components identified"},
+        {"text": "Every component has coordinates in [0,1]"},
+        {"text": "Visibility constraint respected for all edges"},
+        {"text": "Uses canonical stage naming"},
+        {"text": "Strategic analysis present (D, K, R)"},
+        {"text": "Cites at least one specific Wardley gameplay by name"},
+        {"text": "Caveat present that evolution is scenario not forecast"}
+      ]
+    },
+    {
+      "id": 1,
+      "name": "freelance-marketplace",
+      "prompt": "Create a Wardley Map for a freelance marketplace where clients post jobs, freelancers bid on them, and the platform takes a cut. Include a strategic analysis of where the platform should invest vs outsource.",
+      "expected_output": "An OWM-format Wardley Map with TWO anchors (client, freelancer), both at high visibility. Platform/matching infrastructure sits between them. Strategic analysis recognizes the two-sided dynamic.",
+      "files": [],
+      "assertions": [
+        {"text": "Output contains an OWM-format block"},
+        {"text": "Uses TWO anchors (two 'anchor' lines)"},
+        {"text": "Both anchors represent distinct roles (client and freelancer)"},
+        {"text": "Both anchors at high visibility (>=0.9)"},
+        {"text": "A platform/matching component exists as intermediate layer"},
+        {"text": "Strategic analysis recognizes two-sided dynamic"},
+        {"text": "Gives specific invest/outsource recommendations per component"},
+        {"text": "Cites at least one specific Wardley gameplay by name"}
+      ]
+    },
+    {
+      "id": 2,
+      "name": "saas-invoicing",
+      "prompt": "I'm building a SaaS for automated invoicing aimed at small businesses. Map the components and tell me what to build, buy, or outsource.",
+      "expected_output": "An OWM-format Wardley Map with 5+ components each with coordinates. Strategic analysis gives per-component build/buy/outsource calls and cites specific Wardley gameplays by name.",
+      "files": [],
+      "assertions": [
+        {"text": "Output contains an OWM-format block"},
+        {"text": "At least 5 components identified"},
+        {"text": "Every component has coordinates in [0,1]"},
+        {"text": "Strategic analysis gives build/buy/outsource recommendations"},
+        {"text": "Payment processing at Product-to-Commodity stage (epsilon >= 0.6)"},
+        {"text": "Cloud infrastructure at Commodity/utility (epsilon >= 0.8)"},
+        {"text": "Cites at least one specific Wardley gameplay by name"},
+        {"text": "Caveat present that evolution is scenario not forecast"}
+      ]
+    }
+  ]
+}

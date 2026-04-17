@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eval Set Review - wardley-map</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&family=Lora:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Lora', Georgia, serif; background: #faf9f5; padding: 2rem; color: #141413; }
+    h1 { font-family: 'Poppins', sans-serif; margin-bottom: 0.5rem; font-size: 1.5rem; }
+    .description { color: #b0aea5; margin-bottom: 1.5rem; font-style: italic; max-width: 900px; }
+    .controls { margin-bottom: 1rem; display: flex; gap: 0.5rem; }
+    .btn { font-family: 'Poppins', sans-serif; padding: 0.5rem 1rem; border: none; border-radius: 6px; cursor: pointer; font-size: 0.875rem; font-weight: 500; }
+    .btn-add { background: #6a9bcc; color: white; }
+    .btn-add:hover { background: #5889b8; }
+    .btn-export { background: #d97757; color: white; }
+    .btn-export:hover { background: #c4613f; }
+    table { width: 100%; max-width: 1100px; border-collapse: collapse; background: white; border-radius: 6px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+    th { font-family: 'Poppins', sans-serif; background: #141413; color: #faf9f5; padding: 0.75rem 1rem; text-align: left; font-size: 0.875rem; }
+    td { padding: 0.75rem 1rem; border-bottom: 1px solid #e8e6dc; vertical-align: top; }
+    tr:nth-child(even) td { background: #faf9f5; }
+    tr:hover td { background: #f3f1ea; }
+    .section-header td { background: #e8e6dc; font-family: 'Poppins', sans-serif; font-weight: 500; font-size: 0.8rem; color: #141413; text-transform: uppercase; letter-spacing: 0.05em; }
+    .query-input { width: 100%; padding: 0.4rem; border: 1px solid #e8e6dc; border-radius: 4px; font-size: 0.875rem; font-family: 'Lora', Georgia, serif; resize: vertical; min-height: 60px; }
+    .query-input:focus { outline: none; border-color: #d97757; box-shadow: 0 0 0 2px rgba(217,119,87,0.15); }
+    .toggle { position: relative; display: inline-block; width: 44px; height: 24px; }
+    .toggle input { opacity: 0; width: 0; height: 0; }
+    .toggle .slider { position: absolute; inset: 0; background: #b0aea5; border-radius: 24px; cursor: pointer; transition: 0.2s; }
+    .toggle .slider::before { content: ""; position: absolute; width: 18px; height: 18px; left: 3px; bottom: 3px; background: white; border-radius: 50%; transition: 0.2s; }
+    .toggle input:checked + .slider { background: #d97757; }
+    .toggle input:checked + .slider::before { transform: translateX(20px); }
+    .btn-delete { background: #c44; color: white; padding: 0.3rem 0.6rem; border: none; border-radius: 4px; cursor: pointer; font-size: 0.75rem; font-family: 'Poppins', sans-serif; }
+    .btn-delete:hover { background: #a33; }
+    .summary { margin-top: 1rem; color: #b0aea5; font-size: 0.875rem; }
+  </style>
+</head>
+<body>
+  <h1>Eval Set Review: <span id="skill-name">wardley-map</span></h1>
+  <p class="description">Current description: <span id="skill-desc">Generate a Wardley Map from a scenario description using a formal mathematical model. Produces OWM-format output and strategic analysis grounded in Wardley's cheat sheet, 61 gameplays, and 40 doctrine principles. Use when the user wants a Wardley Map of a system, business, or domain, or asks to "map" something strategically.</span></p>
+
+  <div class="controls">
+    <button class="btn btn-add" onclick="addRow()">+ Add Query</button>
+    <button class="btn btn-export" onclick="exportEvalSet()">Export Eval Set</button>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th style="width:65%">Query</th>
+        <th style="width:18%">Should Trigger</th>
+        <th style="width:10%">Actions</th>
+      </tr>
+    </thead>
+    <tbody id="eval-body"></tbody>
+  </table>
+
+  <p class="summary" id="summary"></p>
+
+  <script>
+    const EVAL_DATA = [
+  {"query": "I'm about to present to the board on our platform strategy next Tuesday. Can you put together a visualisation of our value chain showing what's custom-built vs commodity? We're a B2B legal-tech SaaS.", "should_trigger": true},
+  {"query": "ok so I need to understand where we should be investing our engineering budget in 2026. We're a logistics startup, roughly Series B. Help me think through what layers of our stack are commoditized vs where we should double down.", "should_trigger": true},
+  {"query": "map our competitive landscape — we run an e-scooter rental service in Berlin, competing with Lime and Voi. Where are the evolution frontiers?", "should_trigger": true},
+  {"query": "I keep hearing about Wardley mapping from my CTO. Can you walk me through what ours would look like for our accounts-payable automation product?", "should_trigger": true},
+  {"query": "strategic positioning exercise for our roadmap. our core thing is property management software for landlords. what moves should we be considering given the market?", "should_trigger": true},
+  {"query": "I need to figure out build vs buy for our identity verification component. We're a fintech onboarding SMBs. give me the wider context across all our components too.", "should_trigger": true},
+  {"query": "help me visualise the value chain of our grocery delivery service — from the user need through to the dark store infra.", "should_trigger": true},
+  {"query": "We just closed Series A. Need to articulate to the board where our strategic moat is. Can you help me do a proper landscape analysis of our med-tech diagnostics platform?", "should_trigger": true},
+  {"query": "put a wardley map together for a neobank targeting gig workers — clients are the riders and the bank is licensed in the UK", "should_trigger": true},
+  {"query": "help me think through where each part of our value chain sits on the genesis-commodity spectrum — we sell observability tooling to DevOps teams at mid-market SaaS co's.", "should_trigger": true},
+  {"query": "Can you draw me a flowchart of the user journey for our signup flow? First screen is email, then OTP, then a payment page.", "should_trigger": false},
+  {"query": "Help me write a positioning statement for our product — Geoffrey Moore style. For [target customer] who [pain] our product is a [category] that [benefit].", "should_trigger": false},
+  {"query": "I need a data pipeline diagram showing how events flow from our Kafka topics through to Snowflake. Mermaid output please.", "should_trigger": false},
+  {"query": "Can you build me a skills matrix of my team — rows are people, columns are competencies, each cell is a level rating 1-5. I'll share the list in a moment.", "should_trigger": false},
+  {"query": "Show me a MECE breakdown of the reasons SMB customers churn from our accounting SaaS in the first 90 days.", "should_trigger": false},
+  {"query": "I need a swimlane diagram of our order-to-cash process with the responsible team per step — Sales, CS, Finance, Ops.", "should_trigger": false},
+  {"query": "Can you help me think through porter's five forces for our regional cloud hosting market? We're based in Brazil.", "should_trigger": false},
+  {"query": "make a grid of build/buy decisions for the components I send you — just a two-column markdown table, no coordinates or visualisation.", "should_trigger": false},
+  {"query": "quick question — what's the difference between a Wardley map and a value stream map? We keep getting them mixed up.", "should_trigger": false},
+  {"query": "I have this really messy architecture diagram from our consultants. Can you clean it up and make it render properly in Excalidraw?", "should_trigger": false}
+]
+;
+
+    let evalItems = [...EVAL_DATA];
+
+    function render() {
+      const tbody = document.getElementById('eval-body');
+      tbody.innerHTML = '';
+
+      // Sort: should-trigger first, then should-not-trigger
+      const sorted = evalItems
+        .map((item, origIdx) => ({ ...item, origIdx }))
+        .sort((a, b) => (b.should_trigger ? 1 : 0) - (a.should_trigger ? 1 : 0));
+
+      let lastGroup = null;
+      sorted.forEach(item => {
+        const group = item.should_trigger ? 'trigger' : 'no-trigger';
+        if (group !== lastGroup) {
+          const headerRow = document.createElement('tr');
+          headerRow.className = 'section-header';
+          headerRow.innerHTML = `<td colspan="3">${item.should_trigger ? 'Should Trigger' : 'Should NOT Trigger'}</td>`;
+          tbody.appendChild(headerRow);
+          lastGroup = group;
+        }
+
+        const idx = item.origIdx;
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td><textarea class="query-input" onchange="updateQuery(${idx}, this.value)">${escapeHtml(item.query)}</textarea></td>
+          <td>
+            <label class="toggle">
+              <input type="checkbox" ${item.should_trigger ? 'checked' : ''} onchange="updateTrigger(${idx}, this.checked)">
+              <span class="slider"></span>
+            </label>
+            <span style="margin-left:8px;font-size:0.8rem;color:#b0aea5">${item.should_trigger ? 'Yes' : 'No'}</span>
+          </td>
+          <td><button class="btn-delete" onclick="deleteRow(${idx})">Delete</button></td>
+        `;
+        tbody.appendChild(tr);
+      });
+      updateSummary();
+    }
+
+    function escapeHtml(text) {
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    }
+
+    function updateQuery(idx, value) { evalItems[idx].query = value; updateSummary(); }
+    function updateTrigger(idx, value) { evalItems[idx].should_trigger = value; render(); }
+    function deleteRow(idx) { evalItems.splice(idx, 1); render(); }
+
+    function addRow() {
+      evalItems.push({ query: '', should_trigger: true });
+      render();
+      const inputs = document.querySelectorAll('.query-input');
+      inputs[inputs.length - 1].focus();
+    }
+
+    function updateSummary() {
+      const trigger = evalItems.filter(i => i.should_trigger).length;
+      const noTrigger = evalItems.filter(i => !i.should_trigger).length;
+      document.getElementById('summary').textContent =
+        `${evalItems.length} queries total: ${trigger} should trigger, ${noTrigger} should not trigger`;
+    }
+
+    function exportEvalSet() {
+      const valid = evalItems.filter(i => i.query.trim() !== '');
+      const data = valid.map(i => ({ query: i.query.trim(), should_trigger: i.should_trigger }));
+      const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'eval_set.json';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+
+    render();
+  </script>
+</body>
+</html>

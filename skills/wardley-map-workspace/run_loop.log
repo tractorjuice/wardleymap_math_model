@@ -1,0 +1,1545 @@
+Split: 12 train, 8 test (holdout=0.4)
+
+============================================================
+Iteration 1/5
+Description: Generate a Wardley Map from a scenario description using a formal mathematical model. Produces OWM-format output and strategic analysis grounded in Wardley's cheat sheet, 61 gameplays, and 40 doctrine principles. Use this skill whenever the user asks for strategic reasoning about the components of a business, product, or system — specifically when they mention any of value chain, strategic positioning, competitive landscape, strategic moat, component evolution, genesis-to-commodity spectrum, build-vs-buy across multiple components, where to invest engineering effort, what to commoditise or outsource, mapping a business or platform or marketplace strategically, or explicitly "Wardley map". Always trigger when "Wardley" appears in the request. Also trigger when the user describes a business or system and asks about strategic roadmap, moats, or board-level positioning — even without naming the framework. Skip for flowcharts, UX journey maps, process swimlanes, architecture diagrams, data pipeline diagrams, skills matrices, MECE breakdowns, Porter's five forces, marketing positioning statements, or definitional questions about what a Wardley map is.
+============================================================
+Train: 19/36 correct, precision=100% recall=6% accuracy=53% (170.6s)
+  [FAIL] rate=0/3 expected=True: I need to figure out build vs buy for our identity verificat
+  [FAIL] rate=1/3 expected=True: help me visualise the value chain of our grocery delivery se
+  [FAIL] rate=0/3 expected=True: help me think through where each part of our value chain sit
+  [FAIL] rate=0/3 expected=True: strategic positioning exercise for our roadmap. our core thi
+  [FAIL] rate=0/3 expected=True: I'm about to present to the board on our platform strategy n
+  [FAIL] rate=0/3 expected=True: ok so I need to understand where we should be investing our 
+  [PASS] rate=0/3 expected=False: Help me write a positioning statement for our product — Geof
+  [PASS] rate=0/3 expected=False: make a grid of build/buy decisions for the components I send
+  [PASS] rate=0/3 expected=False: quick question — what's the difference between a Wardley map
+  [PASS] rate=0/3 expected=False: Can you draw me a flowchart of the user journey for our sign
+  [PASS] rate=0/3 expected=False: Can you help me think through porter's five forces for our r
+  [PASS] rate=0/3 expected=False: I have this really messy architecture diagram from our consu
+Test : 13/24 correct, precision=100% recall=8% accuracy=54% (0.0s)
+  [FAIL] rate=1/3 expected=True: We just closed Series A. Need to articulate to the board whe
+  [FAIL] rate=0/3 expected=True: map our competitive landscape — we run an e-scooter rental s
+  [FAIL] rate=0/3 expected=True: I keep hearing about Wardley mapping from my CTO. Can you wa
+  [PASS] rate=0/3 expected=False: Can you build me a skills matrix of my team — rows are peopl
+  [FAIL] rate=0/3 expected=True: put a wardley map together for a neobank targeting gig worke
+  [PASS] rate=0/3 expected=False: I need a data pipeline diagram showing how events flow from 
+  [PASS] rate=0/3 expected=False: I need a swimlane diagram of our order-to-cash process with 
+  [PASS] rate=0/3 expected=False: Show me a MECE breakdown of the reasons SMB customers churn 
+
+Improving description...
+Proposed (14.4s): Use this skill to map a business, product, or platform strategically — for questions about value chains, build-vs-buy across components, where to invest engineering effort, what to commoditise or outsource, competitive moats, strategic positioning, roadmap direction, or how components evolve from genesis to commodity. Trigger when a user describes their company/product and asks for strategic thinking about its components, dependencies, or market position — even without saying "Wardley". Strong signals: "value chain", "build vs buy", "commodity vs custom", "where to invest", "strategic positioning", "platform strategy", "moat", "board presentation", or "Wardley". Produces a Wardley Map (OWM format) plus analysis. Do NOT trigger for flowcharts, user journey maps, architecture diagrams, swimlanes, skills matrices, Porter's Five Forces, marketing positioning statements, or definitional questions about what a Wardley map is.
+
+============================================================
+Iteration 2/5
+Description: Use this skill to map a business, product, or platform strategically — for questions about value chains, build-vs-buy across components, where to invest engineering effort, what to commoditise or outsource, competitive moats, strategic positioning, roadmap direction, or how components evolve from genesis to commodity. Trigger when a user describes their company/product and asks for strategic thinking about its components, dependencies, or market position — even without saying "Wardley". Strong signals: "value chain", "build vs buy", "commodity vs custom", "where to invest", "strategic positioning", "platform strategy", "moat", "board presentation", or "Wardley". Produces a Wardley Map (OWM format) plus analysis. Do NOT trigger for flowcharts, user journey maps, architecture diagrams, swimlanes, skills matrices, Porter's Five Forces, marketing positioning statements, or definitional questions about what a Wardley map is.
+============================================================
+Train: 18/36 correct, precision=100% recall=0% accuracy=50% (184.6s)
+  [FAIL] rate=0/3 expected=True: I need to figure out build vs buy for our identity verificat
+  [FAIL] rate=0/3 expected=True: help me visualise the value chain of our grocery delivery se
+  [FAIL] rate=0/3 expected=True: help me think through where each part of our value chain sit
+  [FAIL] rate=0/3 expected=True: strategic positioning exercise for our roadmap. our core thi
+  [FAIL] rate=0/3 expected=True: I'm about to present to the board on our platform strategy n
+  [PASS] rate=0/3 expected=False: Help me write a positioning statement for our product — Geof
+  [FAIL] rate=0/3 expected=True: ok so I need to understand where we should be investing our 
+  [PASS] rate=0/3 expected=False: make a grid of build/buy decisions for the components I send
+  [PASS] rate=0/3 expected=False: quick question — what's the difference between a Wardley map
+  [PASS] rate=0/3 expected=False: Can you draw me a flowchart of the user journey for our sign
+  [PASS] rate=0/3 expected=False: Can you help me think through porter's five forces for our r
+  [PASS] rate=0/3 expected=False: I have this really messy architecture diagram from our consu
+Test : 12/24 correct, precision=100% recall=0% accuracy=50% (0.0s)
+  [FAIL] rate=0/3 expected=True: put a wardley map together for a neobank targeting gig worke
+  [FAIL] rate=0/3 expected=True: We just closed Series A. Need to articulate to the board whe
+  [FAIL] rate=0/3 expected=True: I keep hearing about Wardley mapping from my CTO. Can you wa
+  [FAIL] rate=0/3 expected=True: map our competitive landscape — we run an e-scooter rental s
+  [PASS] rate=0/3 expected=False: Can you build me a skills matrix of my team — rows are peopl
+  [PASS] rate=0/3 expected=False: I need a swimlane diagram of our order-to-cash process with 
+  [PASS] rate=0/3 expected=False: I need a data pipeline diagram showing how events flow from 
+  [PASS] rate=0/3 expected=False: Show me a MECE breakdown of the reasons SMB customers churn 
+
+Improving description...
+Proposed (12.7s): Use this skill whenever a user describes their company, product, or platform and asks a strategic question about it — especially: build vs buy decisions, where to invest engineering effort or budget, what's commodity vs custom, what to outsource, competitive moats, platform/roadmap strategy, board-level positioning, visualising a value chain, or how components evolve from genesis to commodity. Default skill for strategic reasoning about the components of a business. Trigger on phrases like "value chain", "build vs buy", "where should we invest", "strategic positioning", "platform strategy", "commoditised", "genesis to commodity", "moat", "roadmap", or "Wardley" — even without naming the framework. Produces a Wardley Map (OWM) plus analysis. Do NOT trigger for flowcharts, user-journey maps, architecture diagrams, swimlanes, skills matrices, Porter's Five Forces, marketing positioning statements, or definitional questions about Wardley maps.
+
+============================================================
+Iteration 3/5
+Description: Use this skill whenever a user describes their company, product, or platform and asks a strategic question about it — especially: build vs buy decisions, where to invest engineering effort or budget, what's commodity vs custom, what to outsource, competitive moats, platform/roadmap strategy, board-level positioning, visualising a value chain, or how components evolve from genesis to commodity. Default skill for strategic reasoning about the components of a business. Trigger on phrases like "value chain", "build vs buy", "where should we invest", "strategic positioning", "platform strategy", "commoditised", "genesis to commodity", "moat", "roadmap", or "Wardley" — even without naming the framework. Produces a Wardley Map (OWM) plus analysis. Do NOT trigger for flowcharts, user-journey maps, architecture diagrams, swimlanes, skills matrices, Porter's Five Forces, marketing positioning statements, or definitional questions about Wardley maps.
+============================================================
+Train: 18/36 correct, precision=100% recall=0% accuracy=50% (165.8s)
+  [FAIL] rate=0/3 expected=True: help me visualise the value chain of our grocery delivery se
+  [FAIL] rate=0/3 expected=True: strategic positioning exercise for our roadmap. our core thi
+  [FAIL] rate=0/3 expected=True: I need to figure out build vs buy for our identity verificat
+  [FAIL] rate=0/3 expected=True: help me think through where each part of our value chain sit
+  [FAIL] rate=0/3 expected=True: I'm about to present to the board on our platform strategy n
+  [FAIL] rate=0/3 expected=True: ok so I need to understand where we should be investing our 
+  [PASS] rate=0/3 expected=False: Help me write a positioning statement for our product — Geof
+  [PASS] rate=0/3 expected=False: Can you draw me a flowchart of the user journey for our sign
+  [PASS] rate=0/3 expected=False: make a grid of build/buy decisions for the components I send
+  [PASS] rate=0/3 expected=False: quick question — what's the difference between a Wardley map
+  [PASS] rate=0/3 expected=False: Can you help me think through porter's five forces for our r
+  [PASS] rate=0/3 expected=False: I have this really messy architecture diagram from our consu
+Test : 12/24 correct, precision=100% recall=0% accuracy=50% (0.0s)
+  [FAIL] rate=0/3 expected=True: We just closed Series A. Need to articulate to the board whe
+  [FAIL] rate=0/3 expected=True: map our competitive landscape — we run an e-scooter rental s
+  [FAIL] rate=0/3 expected=True: I keep hearing about Wardley mapping from my CTO. Can you wa
+  [PASS] rate=0/3 expected=False: Can you build me a skills matrix of my team — rows are peopl
+  [FAIL] rate=0/3 expected=True: put a wardley map together for a neobank targeting gig worke
+  [PASS] rate=0/3 expected=False: I need a data pipeline diagram showing how events flow from 
+  [PASS] rate=0/3 expected=False: I need a swimlane diagram of our order-to-cash process with 
+  [PASS] rate=0/3 expected=False: Show me a MECE breakdown of the reasons SMB customers churn 
+
+Improving description...
+Proposed (14.5s): Use this skill when a user describes a business, product, startup, or platform and wants strategic thinking about its components — e.g., build vs buy, where to invest engineering budget or effort, what's commodity vs differentiating, mapping a value chain, spotting moats, platform or roadmap strategy, board-level strategy narratives, what to outsource or commoditise, or how parts of the stack evolve from novel to utility. Default skill any time someone asks "where should we focus / invest / double down" about a described company, or uses terms like value chain, genesis-to-commodity, commoditised, strategic positioning, or Wardley. Produces a Wardley Map (OWM) with analysis. Do not use for flowcharts, user journeys, architecture diagrams, Porter's Five Forces, marketing positioning statements, or definitional questions about what Wardley mapping is.
+
+============================================================
+Iteration 4/5
+Description: Use this skill when a user describes a business, product, startup, or platform and wants strategic thinking about its components — e.g., build vs buy, where to invest engineering budget or effort, what's commodity vs differentiating, mapping a value chain, spotting moats, platform or roadmap strategy, board-level strategy narratives, what to outsource or commoditise, or how parts of the stack evolve from novel to utility. Default skill any time someone asks "where should we focus / invest / double down" about a described company, or uses terms like value chain, genesis-to-commodity, commoditised, strategic positioning, or Wardley. Produces a Wardley Map (OWM) with analysis. Do not use for flowcharts, user journeys, architecture diagrams, Porter's Five Forces, marketing positioning statements, or definitional questions about what Wardley mapping is.
+============================================================
+Train: 18/36 correct, precision=100% recall=0% accuracy=50% (163.5s)
+  [FAIL] rate=0/3 expected=True: I need to figure out build vs buy for our identity verificat
+  [FAIL] rate=0/3 expected=True: help me think through where each part of our value chain sit
+  [FAIL] rate=0/3 expected=True: help me visualise the value chain of our grocery delivery se
+  [FAIL] rate=0/3 expected=True: strategic positioning exercise for our roadmap. our core thi
+  [FAIL] rate=0/3 expected=True: I'm about to present to the board on our platform strategy n
+  [FAIL] rate=0/3 expected=True: ok so I need to understand where we should be investing our 
+  [PASS] rate=0/3 expected=False: Help me write a positioning statement for our product — Geof
+  [PASS] rate=0/3 expected=False: Can you draw me a flowchart of the user journey for our sign
+  [PASS] rate=0/3 expected=False: make a grid of build/buy decisions for the components I send
+  [PASS] rate=0/3 expected=False: quick question — what's the difference between a Wardley map
+  [PASS] rate=0/3 expected=False: Can you help me think through porter's five forces for our r
+  [PASS] rate=0/3 expected=False: I have this really messy architecture diagram from our consu
+Test : 12/24 correct, precision=100% recall=0% accuracy=50% (0.0s)
+  [FAIL] rate=0/3 expected=True: We just closed Series A. Need to articulate to the board whe
+  [FAIL] rate=0/3 expected=True: I keep hearing about Wardley mapping from my CTO. Can you wa
+  [PASS] rate=0/3 expected=False: Can you build me a skills matrix of my team — rows are peopl
+  [FAIL] rate=0/3 expected=True: map our competitive landscape — we run an e-scooter rental s
+  [FAIL] rate=0/3 expected=True: put a wardley map together for a neobank targeting gig worke
+  [PASS] rate=0/3 expected=False: I need a data pipeline diagram showing how events flow from 
+  [PASS] rate=0/3 expected=False: I need a swimlane diagram of our order-to-cash process with 
+  [PASS] rate=0/3 expected=False: Show me a MECE breakdown of the reasons SMB customers churn 
+
+Improving description...
+Proposed (9.7s): Use this skill to produce a Wardley Map whenever someone describes their business, product, startup, or platform and asks a strategic question about its pieces. This is the default tool for: build-vs-buy decisions across components, figuring out where to invest engineering budget or effort, identifying what's commodity vs differentiating, visualising or mapping a value chain, spotting moats, platform or roadmap strategy, board-level strategy narratives, what to outsource or commoditise, and reasoning about how parts of a stack evolve from novel to utility. Trigger even when the user doesn't say "Wardley" — the signal is a described company plus a strategic question about its components, dependencies, or positioning. Output is an OWM map plus analysis. Skip only for: flowcharts, user-journey maps, architecture diagrams, Porter's Five Forces, marketing/Geoffrey-Moore positioning statements, simple build/buy grids for a single component, and definitional questions about what Wardley mapping is.
+
+============================================================
+Iteration 5/5
+Description: Use this skill to produce a Wardley Map whenever someone describes their business, product, startup, or platform and asks a strategic question about its pieces. This is the default tool for: build-vs-buy decisions across components, figuring out where to invest engineering budget or effort, identifying what's commodity vs differentiating, visualising or mapping a value chain, spotting moats, platform or roadmap strategy, board-level strategy narratives, what to outsource or commoditise, and reasoning about how parts of a stack evolve from novel to utility. Trigger even when the user doesn't say "Wardley" — the signal is a described company plus a strategic question about its components, dependencies, or positioning. Output is an OWM map plus analysis. Skip only for: flowcharts, user-journey maps, architecture diagrams, Porter's Five Forces, marketing/Geoffrey-Moore positioning statements, simple build/buy grids for a single component, and definitional questions about what Wardley mapping is.
+============================================================
+Train: 20/36 correct, precision=100% recall=11% accuracy=56% (183.2s)
+  [FAIL] rate=1/3 expected=True: help me think through where each part of our value chain sit
+  [FAIL] rate=0/3 expected=True: help me visualise the value chain of our grocery delivery se
+  [FAIL] rate=0/3 expected=True: I need to figure out build vs buy for our identity verificat
+  [FAIL] rate=0/3 expected=True: strategic positioning exercise for our roadmap. our core thi
+  [FAIL] rate=1/3 expected=True: I'm about to present to the board on our platform strategy n
+  [PASS] rate=0/3 expected=False: quick question — what's the difference between a Wardley map
+  [FAIL] rate=0/3 expected=True: ok so I need to understand where we should be investing our 
+  [PASS] rate=0/3 expected=False: Help me write a positioning statement for our product — Geof
+  [PASS] rate=0/3 expected=False: make a grid of build/buy decisions for the components I send
+  [PASS] rate=0/3 expected=False: I have this really messy architecture diagram from our consu
+  [PASS] rate=0/3 expected=False: Can you draw me a flowchart of the user journey for our sign
+  [PASS] rate=0/3 expected=False: Can you help me think through porter's five forces for our r
+Test : 12/24 correct, precision=100% recall=0% accuracy=50% (0.0s)
+  [FAIL] rate=0/3 expected=True: We just closed Series A. Need to articulate to the board whe
+  [FAIL] rate=0/3 expected=True: put a wardley map together for a neobank targeting gig worke
+  [FAIL] rate=0/3 expected=True: I keep hearing about Wardley mapping from my CTO. Can you wa
+  [FAIL] rate=0/3 expected=True: map our competitive landscape — we run an e-scooter rental s
+  [PASS] rate=0/3 expected=False: Can you build me a skills matrix of my team — rows are peopl
+  [PASS] rate=0/3 expected=False: I need a swimlane diagram of our order-to-cash process with 
+  [PASS] rate=0/3 expected=False: I need a data pipeline diagram showing how events flow from 
+  [PASS] rate=0/3 expected=False: Show me a MECE breakdown of the reasons SMB customers churn 
+
+Max iterations reached (5).
+
+Exit reason: max_iterations (5)
+Best score: 4/8 (iteration 1)
+{
+  "exit_reason": "max_iterations (5)",
+  "original_description": "Generate a Wardley Map from a scenario description using a formal mathematical model. Produces OWM-format output and strategic analysis grounded in Wardley's cheat sheet, 61 gameplays, and 40 doctrine principles. Use this skill whenever the user asks for strategic reasoning about the components of a business, product, or system \u2014 specifically when they mention any of value chain, strategic positioning, competitive landscape, strategic moat, component evolution, genesis-to-commodity spectrum, build-vs-buy across multiple components, where to invest engineering effort, what to commoditise or outsource, mapping a business or platform or marketplace strategically, or explicitly \"Wardley map\". Always trigger when \"Wardley\" appears in the request. Also trigger when the user describes a business or system and asks about strategic roadmap, moats, or board-level positioning \u2014 even without naming the framework. Skip for flowcharts, UX journey maps, process swimlanes, architecture diagrams, data pipeline diagrams, skills matrices, MECE breakdowns, Porter's five forces, marketing positioning statements, or definitional questions about what a Wardley map is.",
+  "best_description": "Generate a Wardley Map from a scenario description using a formal mathematical model. Produces OWM-format output and strategic analysis grounded in Wardley's cheat sheet, 61 gameplays, and 40 doctrine principles. Use this skill whenever the user asks for strategic reasoning about the components of a business, product, or system \u2014 specifically when they mention any of value chain, strategic positioning, competitive landscape, strategic moat, component evolution, genesis-to-commodity spectrum, build-vs-buy across multiple components, where to invest engineering effort, what to commoditise or outsource, mapping a business or platform or marketplace strategically, or explicitly \"Wardley map\". Always trigger when \"Wardley\" appears in the request. Also trigger when the user describes a business or system and asks about strategic roadmap, moats, or board-level positioning \u2014 even without naming the framework. Skip for flowcharts, UX journey maps, process swimlanes, architecture diagrams, data pipeline diagrams, skills matrices, MECE breakdowns, Porter's five forces, marketing positioning statements, or definitional questions about what a Wardley map is.",
+  "best_score": "4/8",
+  "best_train_score": "6/12",
+  "best_test_score": "4/8",
+  "final_description": "Use this skill to produce a Wardley Map whenever someone describes their business, product, startup, or platform and asks a strategic question about its pieces. This is the default tool for: build-vs-buy decisions across components, figuring out where to invest engineering budget or effort, identifying what's commodity vs differentiating, visualising or mapping a value chain, spotting moats, platform or roadmap strategy, board-level strategy narratives, what to outsource or commoditise, and reasoning about how parts of a stack evolve from novel to utility. Trigger even when the user doesn't say \"Wardley\" \u2014 the signal is a described company plus a strategic question about its components, dependencies, or positioning. Output is an OWM map plus analysis. Skip only for: flowcharts, user-journey maps, architecture diagrams, Porter's Five Forces, marketing/Geoffrey-Moore positioning statements, simple build/buy grids for a single component, and definitional questions about what Wardley mapping is.",
+  "iterations_run": 5,
+  "holdout": 0.4,
+  "train_size": 12,
+  "test_size": 8,
+  "history": [
+    {
+      "iteration": 1,
+      "description": "Generate a Wardley Map from a scenario description using a formal mathematical model. Produces OWM-format output and strategic analysis grounded in Wardley's cheat sheet, 61 gameplays, and 40 doctrine principles. Use this skill whenever the user asks for strategic reasoning about the components of a business, product, or system \u2014 specifically when they mention any of value chain, strategic positioning, competitive landscape, strategic moat, component evolution, genesis-to-commodity spectrum, build-vs-buy across multiple components, where to invest engineering effort, what to commoditise or outsource, mapping a business or platform or marketplace strategically, or explicitly \"Wardley map\". Always trigger when \"Wardley\" appears in the request. Also trigger when the user describes a business or system and asks about strategic roadmap, moats, or board-level positioning \u2014 even without naming the framework. Skip for flowcharts, UX journey maps, process swimlanes, architecture diagrams, data pipeline diagrams, skills matrices, MECE breakdowns, Porter's five forces, marketing positioning statements, or definitional questions about what a Wardley map is.",
+      "train_passed": 6,
+      "train_failed": 6,
+      "train_total": 12,
+      "train_results": [
+        {
+          "query": "I need to figure out build vs buy for our identity verification component. We're a fintech onboarding SMBs. give me the wider context across all our components too.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "help me visualise the value chain of our grocery delivery service \u2014 from the user need through to the dark store infra.",
+          "should_trigger": true,
+          "trigger_rate": 0.3333333333333333,
+          "triggers": 1,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "help me think through where each part of our value chain sits on the genesis-commodity spectrum \u2014 we sell observability tooling to DevOps teams at mid-market SaaS co's.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "strategic positioning exercise for our roadmap. our core thing is property management software for landlords. what moves should we be considering given the market?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I'm about to present to the board on our platform strategy next Tuesday. Can you put together a visualisation of our value chain showing what's custom-built vs commodity? We're a B2B legal-tech SaaS.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "ok so I need to understand where we should be investing our engineering budget in 2026. We're a logistics startup, roughly Series B. Help me think through what layers of our stack are commoditized vs where we should double down.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "Help me write a positioning statement for our product \u2014 Geoffrey Moore style. For [target customer] who [pain] our product is a [category] that [benefit].",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "make a grid of build/buy decisions for the components I send you \u2014 just a two-column markdown table, no coordinates or visualisation.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "quick question \u2014 what's the difference between a Wardley map and a value stream map? We keep getting them mixed up.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "Can you draw me a flowchart of the user journey for our signup flow? First screen is email, then OTP, then a payment page.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "Can you help me think through porter's five forces for our regional cloud hosting market? We're based in Brazil.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "I have this really messy architecture diagram from our consultants. Can you clean it up and make it render properly in Excalidraw?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        }
+      ],
+      "test_passed": 4,
+      "test_failed": 4,
+      "test_total": 8,
+      "test_results": [
+        {
+          "query": "We just closed Series A. Need to articulate to the board where our strategic moat is. Can you help me do a proper landscape analysis of our med-tech diagnostics platform?",
+          "should_trigger": true,
+          "trigger_rate": 0.3333333333333333,
+          "triggers": 1,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "map our competitive landscape \u2014 we run an e-scooter rental service in Berlin, competing with Lime and Voi. Where are the evolution frontiers?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I keep hearing about Wardley mapping from my CTO. Can you walk me through what ours would look like for our accounts-payable automation product?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "Can you build me a skills matrix of my team \u2014 rows are people, columns are competencies, each cell is a level rating 1-5. I'll share the list in a moment.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "put a wardley map together for a neobank targeting gig workers \u2014 clients are the riders and the bank is licensed in the UK",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I need a data pipeline diagram showing how events flow from our Kafka topics through to Snowflake. Mermaid output please.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "I need a swimlane diagram of our order-to-cash process with the responsible team per step \u2014 Sales, CS, Finance, Ops.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "Show me a MECE breakdown of the reasons SMB customers churn from our accounting SaaS in the first 90 days.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        }
+      ],
+      "passed": 6,
+      "failed": 6,
+      "total": 12,
+      "results": [
+        {
+          "query": "I need to figure out build vs buy for our identity verification component. We're a fintech onboarding SMBs. give me the wider context across all our components too.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "help me visualise the value chain of our grocery delivery service \u2014 from the user need through to the dark store infra.",
+          "should_trigger": true,
+          "trigger_rate": 0.3333333333333333,
+          "triggers": 1,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "help me think through where each part of our value chain sits on the genesis-commodity spectrum \u2014 we sell observability tooling to DevOps teams at mid-market SaaS co's.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "strategic positioning exercise for our roadmap. our core thing is property management software for landlords. what moves should we be considering given the market?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I'm about to present to the board on our platform strategy next Tuesday. Can you put together a visualisation of our value chain showing what's custom-built vs commodity? We're a B2B legal-tech SaaS.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "ok so I need to understand where we should be investing our engineering budget in 2026. We're a logistics startup, roughly Series B. Help me think through what layers of our stack are commoditized vs where we should double down.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "Help me write a positioning statement for our product \u2014 Geoffrey Moore style. For [target customer] who [pain] our product is a [category] that [benefit].",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "make a grid of build/buy decisions for the components I send you \u2014 just a two-column markdown table, no coordinates or visualisation.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "quick question \u2014 what's the difference between a Wardley map and a value stream map? We keep getting them mixed up.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "Can you draw me a flowchart of the user journey for our signup flow? First screen is email, then OTP, then a payment page.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "Can you help me think through porter's five forces for our regional cloud hosting market? We're based in Brazil.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "I have this really messy architecture diagram from our consultants. Can you clean it up and make it render properly in Excalidraw?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "iteration": 2,
+      "description": "Use this skill to map a business, product, or platform strategically \u2014 for questions about value chains, build-vs-buy across components, where to invest engineering effort, what to commoditise or outsource, competitive moats, strategic positioning, roadmap direction, or how components evolve from genesis to commodity. Trigger when a user describes their company/product and asks for strategic thinking about its components, dependencies, or market position \u2014 even without saying \"Wardley\". Strong signals: \"value chain\", \"build vs buy\", \"commodity vs custom\", \"where to invest\", \"strategic positioning\", \"platform strategy\", \"moat\", \"board presentation\", or \"Wardley\". Produces a Wardley Map (OWM format) plus analysis. Do NOT trigger for flowcharts, user journey maps, architecture diagrams, swimlanes, skills matrices, Porter's Five Forces, marketing positioning statements, or definitional questions about what a Wardley map is.",
+      "train_passed": 6,
+      "train_failed": 6,
+      "train_total": 12,
+      "train_results": [
+        {
+          "query": "I need to figure out build vs buy for our identity verification component. We're a fintech onboarding SMBs. give me the wider context across all our components too.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "help me visualise the value chain of our grocery delivery service \u2014 from the user need through to the dark store infra.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "help me think through where each part of our value chain sits on the genesis-commodity spectrum \u2014 we sell observability tooling to DevOps teams at mid-market SaaS co's.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "strategic positioning exercise for our roadmap. our core thing is property management software for landlords. what moves should we be considering given the market?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I'm about to present to the board on our platform strategy next Tuesday. Can you put together a visualisation of our value chain showing what's custom-built vs commodity? We're a B2B legal-tech SaaS.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "Help me write a positioning statement for our product \u2014 Geoffrey Moore style. For [target customer] who [pain] our product is a [category] that [benefit].",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "ok so I need to understand where we should be investing our engineering budget in 2026. We're a logistics startup, roughly Series B. Help me think through what layers of our stack are commoditized vs where we should double down.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "make a grid of build/buy decisions for the components I send you \u2014 just a two-column markdown table, no coordinates or visualisation.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "quick question \u2014 what's the difference between a Wardley map and a value stream map? We keep getting them mixed up.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "Can you draw me a flowchart of the user journey for our signup flow? First screen is email, then OTP, then a payment page.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "Can you help me think through porter's five forces for our regional cloud hosting market? We're based in Brazil.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "I have this really messy architecture diagram from our consultants. Can you clean it up and make it render properly in Excalidraw?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        }
+      ],
+      "test_passed": 4,
+      "test_failed": 4,
+      "test_total": 8,
+      "test_results": [
+        {
+          "query": "put a wardley map together for a neobank targeting gig workers \u2014 clients are the riders and the bank is licensed in the UK",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "We just closed Series A. Need to articulate to the board where our strategic moat is. Can you help me do a proper landscape analysis of our med-tech diagnostics platform?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I keep hearing about Wardley mapping from my CTO. Can you walk me through what ours would look like for our accounts-payable automation product?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "map our competitive landscape \u2014 we run an e-scooter rental service in Berlin, competing with Lime and Voi. Where are the evolution frontiers?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "Can you build me a skills matrix of my team \u2014 rows are people, columns are competencies, each cell is a level rating 1-5. I'll share the list in a moment.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "I need a swimlane diagram of our order-to-cash process with the responsible team per step \u2014 Sales, CS, Finance, Ops.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "I need a data pipeline diagram showing how events flow from our Kafka topics through to Snowflake. Mermaid output please.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "Show me a MECE breakdown of the reasons SMB customers churn from our accounting SaaS in the first 90 days.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        }
+      ],
+      "passed": 6,
+      "failed": 6,
+      "total": 12,
+      "results": [
+        {
+          "query": "I need to figure out build vs buy for our identity verification component. We're a fintech onboarding SMBs. give me the wider context across all our components too.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "help me visualise the value chain of our grocery delivery service \u2014 from the user need through to the dark store infra.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "help me think through where each part of our value chain sits on the genesis-commodity spectrum \u2014 we sell observability tooling to DevOps teams at mid-market SaaS co's.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "strategic positioning exercise for our roadmap. our core thing is property management software for landlords. what moves should we be considering given the market?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I'm about to present to the board on our platform strategy next Tuesday. Can you put together a visualisation of our value chain showing what's custom-built vs commodity? We're a B2B legal-tech SaaS.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "Help me write a positioning statement for our product \u2014 Geoffrey Moore style. For [target customer] who [pain] our product is a [category] that [benefit].",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "ok so I need to understand where we should be investing our engineering budget in 2026. We're a logistics startup, roughly Series B. Help me think through what layers of our stack are commoditized vs where we should double down.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "make a grid of build/buy decisions for the components I send you \u2014 just a two-column markdown table, no coordinates or visualisation.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "quick question \u2014 what's the difference between a Wardley map and a value stream map? We keep getting them mixed up.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "Can you draw me a flowchart of the user journey for our signup flow? First screen is email, then OTP, then a payment page.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "Can you help me think through porter's five forces for our regional cloud hosting market? We're based in Brazil.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "I have this really messy architecture diagram from our consultants. Can you clean it up and make it render properly in Excalidraw?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "iteration": 3,
+      "description": "Use this skill whenever a user describes their company, product, or platform and asks a strategic question about it \u2014 especially: build vs buy decisions, where to invest engineering effort or budget, what's commodity vs custom, what to outsource, competitive moats, platform/roadmap strategy, board-level positioning, visualising a value chain, or how components evolve from genesis to commodity. Default skill for strategic reasoning about the components of a business. Trigger on phrases like \"value chain\", \"build vs buy\", \"where should we invest\", \"strategic positioning\", \"platform strategy\", \"commoditised\", \"genesis to commodity\", \"moat\", \"roadmap\", or \"Wardley\" \u2014 even without naming the framework. Produces a Wardley Map (OWM) plus analysis. Do NOT trigger for flowcharts, user-journey maps, architecture diagrams, swimlanes, skills matrices, Porter's Five Forces, marketing positioning statements, or definitional questions about Wardley maps.",
+      "train_passed": 6,
+      "train_failed": 6,
+      "train_total": 12,
+      "train_results": [
+        {
+          "query": "help me visualise the value chain of our grocery delivery service \u2014 from the user need through to the dark store infra.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "strategic positioning exercise for our roadmap. our core thing is property management software for landlords. what moves should we be considering given the market?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I need to figure out build vs buy for our identity verification component. We're a fintech onboarding SMBs. give me the wider context across all our components too.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "help me think through where each part of our value chain sits on the genesis-commodity spectrum \u2014 we sell observability tooling to DevOps teams at mid-market SaaS co's.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I'm about to present to the board on our platform strategy next Tuesday. Can you put together a visualisation of our value chain showing what's custom-built vs commodity? We're a B2B legal-tech SaaS.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "ok so I need to understand where we should be investing our engineering budget in 2026. We're a logistics startup, roughly Series B. Help me think through what layers of our stack are commoditized vs where we should double down.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "Help me write a positioning statement for our product \u2014 Geoffrey Moore style. For [target customer] who [pain] our product is a [category] that [benefit].",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "Can you draw me a flowchart of the user journey for our signup flow? First screen is email, then OTP, then a payment page.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "make a grid of build/buy decisions for the components I send you \u2014 just a two-column markdown table, no coordinates or visualisation.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "quick question \u2014 what's the difference between a Wardley map and a value stream map? We keep getting them mixed up.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "Can you help me think through porter's five forces for our regional cloud hosting market? We're based in Brazil.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "I have this really messy architecture diagram from our consultants. Can you clean it up and make it render properly in Excalidraw?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        }
+      ],
+      "test_passed": 4,
+      "test_failed": 4,
+      "test_total": 8,
+      "test_results": [
+        {
+          "query": "We just closed Series A. Need to articulate to the board where our strategic moat is. Can you help me do a proper landscape analysis of our med-tech diagnostics platform?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "map our competitive landscape \u2014 we run an e-scooter rental service in Berlin, competing with Lime and Voi. Where are the evolution frontiers?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I keep hearing about Wardley mapping from my CTO. Can you walk me through what ours would look like for our accounts-payable automation product?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "Can you build me a skills matrix of my team \u2014 rows are people, columns are competencies, each cell is a level rating 1-5. I'll share the list in a moment.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "put a wardley map together for a neobank targeting gig workers \u2014 clients are the riders and the bank is licensed in the UK",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I need a data pipeline diagram showing how events flow from our Kafka topics through to Snowflake. Mermaid output please.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "I need a swimlane diagram of our order-to-cash process with the responsible team per step \u2014 Sales, CS, Finance, Ops.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "Show me a MECE breakdown of the reasons SMB customers churn from our accounting SaaS in the first 90 days.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        }
+      ],
+      "passed": 6,
+      "failed": 6,
+      "total": 12,
+      "results": [
+        {
+          "query": "help me visualise the value chain of our grocery delivery service \u2014 from the user need through to the dark store infra.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "strategic positioning exercise for our roadmap. our core thing is property management software for landlords. what moves should we be considering given the market?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I need to figure out build vs buy for our identity verification component. We're a fintech onboarding SMBs. give me the wider context across all our components too.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "help me think through where each part of our value chain sits on the genesis-commodity spectrum \u2014 we sell observability tooling to DevOps teams at mid-market SaaS co's.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I'm about to present to the board on our platform strategy next Tuesday. Can you put together a visualisation of our value chain showing what's custom-built vs commodity? We're a B2B legal-tech SaaS.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "ok so I need to understand where we should be investing our engineering budget in 2026. We're a logistics startup, roughly Series B. Help me think through what layers of our stack are commoditized vs where we should double down.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "Help me write a positioning statement for our product \u2014 Geoffrey Moore style. For [target customer] who [pain] our product is a [category] that [benefit].",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "Can you draw me a flowchart of the user journey for our signup flow? First screen is email, then OTP, then a payment page.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "make a grid of build/buy decisions for the components I send you \u2014 just a two-column markdown table, no coordinates or visualisation.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "quick question \u2014 what's the difference between a Wardley map and a value stream map? We keep getting them mixed up.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "Can you help me think through porter's five forces for our regional cloud hosting market? We're based in Brazil.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "I have this really messy architecture diagram from our consultants. Can you clean it up and make it render properly in Excalidraw?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "iteration": 4,
+      "description": "Use this skill when a user describes a business, product, startup, or platform and wants strategic thinking about its components \u2014 e.g., build vs buy, where to invest engineering budget or effort, what's commodity vs differentiating, mapping a value chain, spotting moats, platform or roadmap strategy, board-level strategy narratives, what to outsource or commoditise, or how parts of the stack evolve from novel to utility. Default skill any time someone asks \"where should we focus / invest / double down\" about a described company, or uses terms like value chain, genesis-to-commodity, commoditised, strategic positioning, or Wardley. Produces a Wardley Map (OWM) with analysis. Do not use for flowcharts, user journeys, architecture diagrams, Porter's Five Forces, marketing positioning statements, or definitional questions about what Wardley mapping is.",
+      "train_passed": 6,
+      "train_failed": 6,
+      "train_total": 12,
+      "train_results": [
+        {
+          "query": "I need to figure out build vs buy for our identity verification component. We're a fintech onboarding SMBs. give me the wider context across all our components too.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "help me think through where each part of our value chain sits on the genesis-commodity spectrum \u2014 we sell observability tooling to DevOps teams at mid-market SaaS co's.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "help me visualise the value chain of our grocery delivery service \u2014 from the user need through to the dark store infra.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "strategic positioning exercise for our roadmap. our core thing is property management software for landlords. what moves should we be considering given the market?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I'm about to present to the board on our platform strategy next Tuesday. Can you put together a visualisation of our value chain showing what's custom-built vs commodity? We're a B2B legal-tech SaaS.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "ok so I need to understand where we should be investing our engineering budget in 2026. We're a logistics startup, roughly Series B. Help me think through what layers of our stack are commoditized vs where we should double down.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "Help me write a positioning statement for our product \u2014 Geoffrey Moore style. For [target customer] who [pain] our product is a [category] that [benefit].",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "Can you draw me a flowchart of the user journey for our signup flow? First screen is email, then OTP, then a payment page.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "make a grid of build/buy decisions for the components I send you \u2014 just a two-column markdown table, no coordinates or visualisation.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "quick question \u2014 what's the difference between a Wardley map and a value stream map? We keep getting them mixed up.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "Can you help me think through porter's five forces for our regional cloud hosting market? We're based in Brazil.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "I have this really messy architecture diagram from our consultants. Can you clean it up and make it render properly in Excalidraw?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        }
+      ],
+      "test_passed": 4,
+      "test_failed": 4,
+      "test_total": 8,
+      "test_results": [
+        {
+          "query": "We just closed Series A. Need to articulate to the board where our strategic moat is. Can you help me do a proper landscape analysis of our med-tech diagnostics platform?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I keep hearing about Wardley mapping from my CTO. Can you walk me through what ours would look like for our accounts-payable automation product?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "Can you build me a skills matrix of my team \u2014 rows are people, columns are competencies, each cell is a level rating 1-5. I'll share the list in a moment.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "map our competitive landscape \u2014 we run an e-scooter rental service in Berlin, competing with Lime and Voi. Where are the evolution frontiers?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "put a wardley map together for a neobank targeting gig workers \u2014 clients are the riders and the bank is licensed in the UK",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I need a data pipeline diagram showing how events flow from our Kafka topics through to Snowflake. Mermaid output please.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "I need a swimlane diagram of our order-to-cash process with the responsible team per step \u2014 Sales, CS, Finance, Ops.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "Show me a MECE breakdown of the reasons SMB customers churn from our accounting SaaS in the first 90 days.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        }
+      ],
+      "passed": 6,
+      "failed": 6,
+      "total": 12,
+      "results": [
+        {
+          "query": "I need to figure out build vs buy for our identity verification component. We're a fintech onboarding SMBs. give me the wider context across all our components too.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "help me think through where each part of our value chain sits on the genesis-commodity spectrum \u2014 we sell observability tooling to DevOps teams at mid-market SaaS co's.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "help me visualise the value chain of our grocery delivery service \u2014 from the user need through to the dark store infra.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "strategic positioning exercise for our roadmap. our core thing is property management software for landlords. what moves should we be considering given the market?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I'm about to present to the board on our platform strategy next Tuesday. Can you put together a visualisation of our value chain showing what's custom-built vs commodity? We're a B2B legal-tech SaaS.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "ok so I need to understand where we should be investing our engineering budget in 2026. We're a logistics startup, roughly Series B. Help me think through what layers of our stack are commoditized vs where we should double down.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "Help me write a positioning statement for our product \u2014 Geoffrey Moore style. For [target customer] who [pain] our product is a [category] that [benefit].",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "Can you draw me a flowchart of the user journey for our signup flow? First screen is email, then OTP, then a payment page.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "make a grid of build/buy decisions for the components I send you \u2014 just a two-column markdown table, no coordinates or visualisation.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "quick question \u2014 what's the difference between a Wardley map and a value stream map? We keep getting them mixed up.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "Can you help me think through porter's five forces for our regional cloud hosting market? We're based in Brazil.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "I have this really messy architecture diagram from our consultants. Can you clean it up and make it render properly in Excalidraw?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "iteration": 5,
+      "description": "Use this skill to produce a Wardley Map whenever someone describes their business, product, startup, or platform and asks a strategic question about its pieces. This is the default tool for: build-vs-buy decisions across components, figuring out where to invest engineering budget or effort, identifying what's commodity vs differentiating, visualising or mapping a value chain, spotting moats, platform or roadmap strategy, board-level strategy narratives, what to outsource or commoditise, and reasoning about how parts of a stack evolve from novel to utility. Trigger even when the user doesn't say \"Wardley\" \u2014 the signal is a described company plus a strategic question about its components, dependencies, or positioning. Output is an OWM map plus analysis. Skip only for: flowcharts, user-journey maps, architecture diagrams, Porter's Five Forces, marketing/Geoffrey-Moore positioning statements, simple build/buy grids for a single component, and definitional questions about what Wardley mapping is.",
+      "train_passed": 6,
+      "train_failed": 6,
+      "train_total": 12,
+      "train_results": [
+        {
+          "query": "help me think through where each part of our value chain sits on the genesis-commodity spectrum \u2014 we sell observability tooling to DevOps teams at mid-market SaaS co's.",
+          "should_trigger": true,
+          "trigger_rate": 0.3333333333333333,
+          "triggers": 1,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "help me visualise the value chain of our grocery delivery service \u2014 from the user need through to the dark store infra.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I need to figure out build vs buy for our identity verification component. We're a fintech onboarding SMBs. give me the wider context across all our components too.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "strategic positioning exercise for our roadmap. our core thing is property management software for landlords. what moves should we be considering given the market?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I'm about to present to the board on our platform strategy next Tuesday. Can you put together a visualisation of our value chain showing what's custom-built vs commodity? We're a B2B legal-tech SaaS.",
+          "should_trigger": true,
+          "trigger_rate": 0.3333333333333333,
+          "triggers": 1,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "quick question \u2014 what's the difference between a Wardley map and a value stream map? We keep getting them mixed up.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "ok so I need to understand where we should be investing our engineering budget in 2026. We're a logistics startup, roughly Series B. Help me think through what layers of our stack are commoditized vs where we should double down.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "Help me write a positioning statement for our product \u2014 Geoffrey Moore style. For [target customer] who [pain] our product is a [category] that [benefit].",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "make a grid of build/buy decisions for the components I send you \u2014 just a two-column markdown table, no coordinates or visualisation.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "I have this really messy architecture diagram from our consultants. Can you clean it up and make it render properly in Excalidraw?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "Can you draw me a flowchart of the user journey for our signup flow? First screen is email, then OTP, then a payment page.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "Can you help me think through porter's five forces for our regional cloud hosting market? We're based in Brazil.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        }
+      ],
+      "test_passed": 4,
+      "test_failed": 4,
+      "test_total": 8,
+      "test_results": [
+        {
+          "query": "We just closed Series A. Need to articulate to the board where our strategic moat is. Can you help me do a proper landscape analysis of our med-tech diagnostics platform?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "put a wardley map together for a neobank targeting gig workers \u2014 clients are the riders and the bank is licensed in the UK",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I keep hearing about Wardley mapping from my CTO. Can you walk me through what ours would look like for our accounts-payable automation product?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "map our competitive landscape \u2014 we run an e-scooter rental service in Berlin, competing with Lime and Voi. Where are the evolution frontiers?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "Can you build me a skills matrix of my team \u2014 rows are people, columns are competencies, each cell is a level rating 1-5. I'll share the list in a moment.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "I need a swimlane diagram of our order-to-cash process with the responsible team per step \u2014 Sales, CS, Finance, Ops.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "I need a data pipeline diagram showing how events flow from our Kafka topics through to Snowflake. Mermaid output please.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "Show me a MECE breakdown of the reasons SMB customers churn from our accounting SaaS in the first 90 days.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        }
+      ],
+      "passed": 6,
+      "failed": 6,
+      "total": 12,
+      "results": [
+        {
+          "query": "help me think through where each part of our value chain sits on the genesis-commodity spectrum \u2014 we sell observability tooling to DevOps teams at mid-market SaaS co's.",
+          "should_trigger": true,
+          "trigger_rate": 0.3333333333333333,
+          "triggers": 1,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "help me visualise the value chain of our grocery delivery service \u2014 from the user need through to the dark store infra.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I need to figure out build vs buy for our identity verification component. We're a fintech onboarding SMBs. give me the wider context across all our components too.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "strategic positioning exercise for our roadmap. our core thing is property management software for landlords. what moves should we be considering given the market?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I'm about to present to the board on our platform strategy next Tuesday. Can you put together a visualisation of our value chain showing what's custom-built vs commodity? We're a B2B legal-tech SaaS.",
+          "should_trigger": true,
+          "trigger_rate": 0.3333333333333333,
+          "triggers": 1,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "quick question \u2014 what's the difference between a Wardley map and a value stream map? We keep getting them mixed up.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "ok so I need to understand where we should be investing our engineering budget in 2026. We're a logistics startup, roughly Series B. Help me think through what layers of our stack are commoditized vs where we should double down.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "Help me write a positioning statement for our product \u2014 Geoffrey Moore style. For [target customer] who [pain] our product is a [category] that [benefit].",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "make a grid of build/buy decisions for the components I send you \u2014 just a two-column markdown table, no coordinates or visualisation.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "I have this really messy architecture diagram from our consultants. Can you clean it up and make it render properly in Excalidraw?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "Can you draw me a flowchart of the user journey for our signup flow? First screen is email, then OTP, then a payment page.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "Can you help me think through porter's five forces for our regional cloud hosting market? We're based in Brazil.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        }
+      ]
+    }
+  ]
+}
+Report: /tmp/skill_description_report_wardley-map_20260417_233024.html
+

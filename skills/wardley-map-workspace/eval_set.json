@@ -1,0 +1,82 @@
+[
+  {
+    "query": "I'm about to present to the board on our platform strategy next Tuesday. Can you put together a visualisation of our value chain showing what's custom-built vs commodity? We're a B2B legal-tech SaaS.",
+    "should_trigger": true
+  },
+  {
+    "query": "ok so I need to understand where we should be investing our engineering budget in 2026. We're a logistics startup, roughly Series B. Help me think through what layers of our stack are commoditized vs where we should double down.",
+    "should_trigger": true
+  },
+  {
+    "query": "map our competitive landscape — we run an e-scooter rental service in Berlin, competing with Lime and Voi. Where are the evolution frontiers?",
+    "should_trigger": true
+  },
+  {
+    "query": "I keep hearing about Wardley mapping from my CTO. Can you walk me through what ours would look like for our accounts-payable automation product?",
+    "should_trigger": true
+  },
+  {
+    "query": "strategic positioning exercise for our roadmap. our core thing is property management software for landlords. what moves should we be considering given the market?",
+    "should_trigger": true
+  },
+  {
+    "query": "I need to figure out build vs buy for our identity verification component. We're a fintech onboarding SMBs. give me the wider context across all our components too.",
+    "should_trigger": true
+  },
+  {
+    "query": "help me visualise the value chain of our grocery delivery service — from the user need through to the dark store infra.",
+    "should_trigger": true
+  },
+  {
+    "query": "We just closed Series A. Need to articulate to the board where our strategic moat is. Can you help me do a proper landscape analysis of our med-tech diagnostics platform?",
+    "should_trigger": true
+  },
+  {
+    "query": "put a wardley map together for a neobank targeting gig workers — clients are the riders and the bank is licensed in the UK",
+    "should_trigger": true
+  },
+  {
+    "query": "help me think through where each part of our value chain sits on the genesis-commodity spectrum — we sell observability tooling to DevOps teams at mid-market SaaS co's.",
+    "should_trigger": true
+  },
+  {
+    "query": "Can you draw me a flowchart of the user journey for our signup flow? First screen is email, then OTP, then a payment page.",
+    "should_trigger": false
+  },
+  {
+    "query": "Help me write a positioning statement for our product — Geoffrey Moore style. For [target customer] who [pain] our product is a [category] that [benefit].",
+    "should_trigger": false
+  },
+  {
+    "query": "I need a data pipeline diagram showing how events flow from our Kafka topics through to Snowflake. Mermaid output please.",
+    "should_trigger": false
+  },
+  {
+    "query": "Can you build me a skills matrix of my team — rows are people, columns are competencies, each cell is a level rating 1-5. I'll share the list in a moment.",
+    "should_trigger": false
+  },
+  {
+    "query": "Show me a MECE breakdown of the reasons SMB customers churn from our accounting SaaS in the first 90 days.",
+    "should_trigger": false
+  },
+  {
+    "query": "I need a swimlane diagram of our order-to-cash process with the responsible team per step — Sales, CS, Finance, Ops.",
+    "should_trigger": false
+  },
+  {
+    "query": "Can you help me think through porter's five forces for our regional cloud hosting market? We're based in Brazil.",
+    "should_trigger": false
+  },
+  {
+    "query": "make a grid of build/buy decisions for the components I send you — just a two-column markdown table, no coordinates or visualisation.",
+    "should_trigger": false
+  },
+  {
+    "query": "quick question — what's the difference between a Wardley map and a value stream map? We keep getting them mixed up.",
+    "should_trigger": false
+  },
+  {
+    "query": "I have this really messy architecture diagram from our consultants. Can you clean it up and make it render properly in Excalidraw?",
+    "should_trigger": false
+  }
+]
