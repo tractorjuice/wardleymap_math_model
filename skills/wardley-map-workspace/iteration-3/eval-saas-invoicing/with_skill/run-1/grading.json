@@ -1,0 +1,52 @@
+{
+  "eval_id": "eval-saas-invoicing",
+  "config": "with_skill",
+  "summary": {
+    "passed": 8,
+    "failed": 0,
+    "total": 8,
+    "pass_rate": 1.0
+  },
+  "expectations": [
+    {
+      "text": "Output contains an OWM-format block",
+      "passed": true,
+      "evidence": "OWM block found"
+    },
+    {
+      "text": "At least 5 components identified",
+      "passed": true,
+      "evidence": "30 components"
+    },
+    {
+      "text": "Every component has coordinates in [0,1]",
+      "passed": true,
+      "evidence": "all 32 coordinates in [0,1]"
+    },
+    {
+      "text": "Strategic analysis gives build/buy/outsource recommendations",
+      "passed": true,
+      "evidence": "all three terms found"
+    },
+    {
+      "text": "Payment processing at Product-to-Commodity (epsilon >= 0.6)",
+      "passed": true,
+      "evidence": "Payment Processing (card + ACH + SEPA) at epsilon=0.9"
+    },
+    {
+      "text": "Cloud infrastructure at Commodity/utility (epsilon >= 0.8)",
+      "passed": true,
+      "evidence": "Cloud Compute at epsilon=0.92"
+    },
+    {
+      "text": "Cites at least one specific Wardley gameplay by name",
+      "passed": true,
+      "evidence": "cites: Focus on user needs, Open Approaches, Differentiation"
+    },
+    {
+      "text": "Caveat present that evolution is scenario not forecast",
+      "passed": true,
+      "evidence": "found"
+    }
+  ]
+}
