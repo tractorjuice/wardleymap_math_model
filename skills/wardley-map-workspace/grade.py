@@ -349,3 +349,103 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+def grade_genai_rag(text: str) -> list[dict]:
+    owm = find_owm_block(text)
+    coords = coord_map(owm)
+    ncomp = count_components(owm)
+
+    results = []
+    has_owm = "anchor" in owm and "component" in owm and "->" in owm
+    results.append({"text": "Output contains an OWM-format block", "passed": has_owm,
+                    "evidence": "OWM block found" if has_owm else "no OWM structure"})
+    # Anchor at >=0.9
+    anchor_ok = False
+    anchor_ev = "no anchor"
+    for line in owm.splitlines():
+        m = re.match(r"\s*anchor\s+(.+?)\s*\[\s*([0-9.]+)\s*,", line)
+        if m:
+            if float(m.group(2)) >= 0.9:
+                anchor_ok = True
+                anchor_ev = f"{m.group(1).strip()} at vis={m.group(2)}"
+                break
+    results.append({"text": "Has a user-facing anchor at high visibility (>=0.9)",
+                    "passed": anchor_ok, "evidence": anchor_ev})
+    results.append({"text": "At least 8 components identified (GenAI stack is multi-layered)",
+                    "passed": ncomp >= 8, "evidence": f"{ncomp} components"})
+    ok, ev = check_coords_in_range(owm)
+    results.append({"text": "Every component has coordinates in [0,1]", "passed": ok, "evidence": ev})
+    ok, ev = check_visibility_constraint(owm)
+    results.append({"text": "Visibility constraint respected for all edges",
+                    "passed": ok, "evidence": ev})
+    canon = "(+utility)" in text or "(+rental)" in text
+    results.append({"text": "Uses canonical stage naming (+utility or +rental)",
+                    "passed": canon, "evidence": "found" if canon else "missing"})
+    # LLM API at commodity
+    llm_ok = False
+    llm_ev = "no LLM / GPT / Claude / Gemini / OpenAI / Anthropic component found"
+    for name, (v, e) in coords.items():
+        low = name.lower()
+        if any(k in low for k in ["llm", "gpt", "claude", "gemini", "openai", "anthropic",
+                                    "foundation model", "language model"]):
+            if e >= 0.75:
+                llm_ok = True
+                llm_ev = f"{name} at epsilon={e}"
+                break
+            else:
+                llm_ev = f"{name} at epsilon={e} (below 0.75)"
+    results.append({"text": "LLM API component exists at Commodity/utility (epsilon >= 0.75)",
+                    "passed": llm_ok, "evidence": llm_ev})
+    # Vector DB / retrieval
+    retrieval_ok = any(
+        any(k in name.lower() for k in ["vector", "pinecone", "weaviate", "chroma",
+                                          "qdrant", "retrieval", "retriever", "index"])
+        for name in coords
+    )
+    results.append({"text": "Vector DB or retrieval component exists",
+                    "passed": retrieval_ok,
+                    "evidence": "found" if retrieval_ok else "no vector DB / retrieval found"})
+    # Embedding model
+    embed_ok = any(
+        any(k in name.lower() for k in ["embedding", "embed"])
+        for name in coords
+    )
+    results.append({"text": "Embedding model component exists",
+                    "passed": embed_ok,
+                    "evidence": "found" if embed_ok else "no embedding component"})
+    # Evaluation / observability
+    eval_ok = any(
+        any(k in name.lower() for k in ["eval", "observability", "tracing", "langsmith",
+                                         "monitoring", "metric"])
+        for name in coords
+    )
+    results.append({"text": "Evaluation/observability component exists (GenAI-specific)",
+                    "passed": eval_ok,
+                    "evidence": "found" if eval_ok else "no eval/observability — common gap"})
+    # Build/buy/utility recommendations
+    recs_ok = sum(1 for k in ["build", "buy", "utility", "api", "consume", "rent"]
+                  if k in text.lower()) >= 4
+    results.append({"text": "Build/buy/utility recommendations per relevant component",
+                    "passed": recs_ok, "evidence": "found decision vocabulary" if recs_ok else "missing"})
+    # Gameplay
+    ok, ev = has_gameplay(text)
+    results.append({"text": "Cites at least one specific Wardley gameplay by name",
+                    "passed": ok, "evidence": ev})
+    # Deep placement notes
+    dp_ok = any(k in text.lower() for k in ["deep placement", "deep-placement",
+                                              "initial cheat-sheet", "initial placement",
+                                              "shifted from", "shifted to", "confirmed at",
+                                              "web search", "vendor search"])
+    results.append({"text": "Deep-placement notes present (step 4.5 used)",
+                    "passed": dp_ok, "evidence": "found evidence of deep placement" if dp_ok else "no deep-placement notes"})
+    # Caveat
+    caveat = ("cannot measure evolution" in text.lower() or
+              ("scenario" in text.lower() and "forecast" in text.lower()) or
+              "climatic pattern" in text.lower())
+    results.append({"text": "Caveat present that evolution is scenario not forecast",
+                    "passed": caveat, "evidence": "found" if caveat else "no caveat"})
+    return results
+
+
+GRADERS["eval-genai-rag-platform"] = grade_genai_rag

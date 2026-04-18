@@ -1,0 +1,82 @@
+{
+  "eval_id": "eval-genai-rag-platform",
+  "config": "with_skill",
+  "summary": {
+    "passed": 13,
+    "failed": 1,
+    "total": 14,
+    "pass_rate": 0.9286
+  },
+  "expectations": [
+    {
+      "text": "Output contains an OWM-format block",
+      "passed": true,
+      "evidence": "OWM block found"
+    },
+    {
+      "text": "Has a user-facing anchor at high visibility (>=0.9)",
+      "passed": true,
+      "evidence": "Employee at vis=0.98"
+    },
+    {
+      "text": "At least 8 components identified (GenAI stack is multi-layered)",
+      "passed": true,
+      "evidence": "32 components"
+    },
+    {
+      "text": "Every component has coordinates in [0,1]",
+      "passed": true,
+      "evidence": "all 33 coordinates in [0,1]"
+    },
+    {
+      "text": "Visibility constraint respected for all edges",
+      "passed": false,
+      "evidence": "3/39 edges violate: Vector Index (ANN)(0.48) < Embedding Model(0.5); Document Ingestion Pipeline(0.45) < Embedding Model(0.5); Document Connectors(0.36) < Permissions / ACL Propagation(0.52)"
+    },
+    {
+      "text": "Uses canonical stage naming (+utility or +rental)",
+      "passed": true,
+      "evidence": "found"
+    },
+    {
+      "text": "LLM API component exists at Commodity/utility (epsilon >= 0.75)",
+      "passed": true,
+      "evidence": "LLM Foundation Model (API) at epsilon=0.78"
+    },
+    {
+      "text": "Vector DB or retrieval component exists",
+      "passed": true,
+      "evidence": "found"
+    },
+    {
+      "text": "Embedding model component exists",
+      "passed": true,
+      "evidence": "found"
+    },
+    {
+      "text": "Evaluation/observability component exists (GenAI-specific)",
+      "passed": true,
+      "evidence": "found"
+    },
+    {
+      "text": "Build/buy/utility recommendations per relevant component",
+      "passed": true,
+      "evidence": "found decision vocabulary"
+    },
+    {
+      "text": "Cites at least one specific Wardley gameplay by name",
+      "passed": true,
+      "evidence": "cites: Focus on user needs, Open Approaches, Differentiation"
+    },
+    {
+      "text": "Deep-placement notes present (step 4.5 used)",
+      "passed": true,
+      "evidence": "found evidence of deep placement"
+    },
+    {
+      "text": "Caveat present that evolution is scenario not forecast",
+      "passed": true,
+      "evidence": "found"
+    }
+  ]
+}

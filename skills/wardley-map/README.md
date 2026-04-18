@@ -39,6 +39,7 @@ If you invoke `/wardley-map` with no arguments, Claude will ask for a scenario d
 
 - `SKILL.md` — the skill body (procedure + OWM output format + when to consult each reference).
 - `evals/evals.json` — test cases with assertions used to validate the skill.
+- `scripts/validate_owm.py` — deterministic OWM validator. Checks coordinate ranges, edge endpoint existence, and the `ν(a) ≥ ν(b)` visibility constraint. Called by Step 5.5 before submitting any map.
 - `references/` — bundled reference material the skill loads on demand:
   - `climatic-patterns.md` — 27 patterns across 6 categories.
   - `doctrine.md` — 40 principles across 4 phases.

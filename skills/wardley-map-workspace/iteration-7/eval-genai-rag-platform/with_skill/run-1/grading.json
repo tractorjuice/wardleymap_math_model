@@ -1,0 +1,82 @@
+{
+  "eval_id": "eval-genai-rag-platform",
+  "config": "with_skill",
+  "summary": {
+    "passed": 13,
+    "failed": 1,
+    "total": 14,
+    "pass_rate": 0.9286
+  },
+  "expectations": [
+    {
+      "text": "Output contains an OWM-format block",
+      "passed": true,
+      "evidence": "OWM block found"
+    },
+    {
+      "text": "Has a user-facing anchor at high visibility (>=0.9)",
+      "passed": true,
+      "evidence": "Consultant at vis=0.99"
+    },
+    {
+      "text": "At least 8 components identified (GenAI stack is multi-layered)",
+      "passed": true,
+      "evidence": "27 components"
+    },
+    {
+      "text": "Every component has coordinates in [0,1]",
+      "passed": true,
+      "evidence": "all 29 coordinates in [0,1]"
+    },
+    {
+      "text": "Visibility constraint respected for all edges",
+      "passed": false,
+      "evidence": "1/26 edges violate: Retrieval Orchestration(0.64) < Consultancy Prompt Templates(0.8)"
+    },
+    {
+      "text": "Uses canonical stage naming (+utility or +rental)",
+      "passed": true,
+      "evidence": "found"
+    },
+    {
+      "text": "LLM API component exists at Commodity/utility (epsilon >= 0.75)",
+      "passed": true,
+      "evidence": "LLM (generation) API at epsilon=0.8"
+    },
+    {
+      "text": "Vector DB or retrieval component exists",
+      "passed": true,
+      "evidence": "found"
+    },
+    {
+      "text": "Embedding model component exists",
+      "passed": true,
+      "evidence": "found"
+    },
+    {
+      "text": "Evaluation/observability component exists (GenAI-specific)",
+      "passed": true,
+      "evidence": "found"
+    },
+    {
+      "text": "Build/buy/utility recommendations per relevant component",
+      "passed": true,
+      "evidence": "found decision vocabulary"
+    },
+    {
+      "text": "Cites at least one specific Wardley gameplay by name",
+      "passed": true,
+      "evidence": "cites: Focus on user needs, Education, Open Approaches"
+    },
+    {
+      "text": "Deep-placement notes present (step 4.5 used)",
+      "passed": true,
+      "evidence": "found evidence of deep placement"
+    },
+    {
+      "text": "Caveat present that evolution is scenario not forecast",
+      "passed": true,
+      "evidence": "found"
+    }
+  ]
+}

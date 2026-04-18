@@ -1,0 +1,21 @@
+{
+  "eval_id": 3,
+  "eval_name": "genai-rag-platform",
+  "prompt": "I'm building a GenAI-powered internal knowledge assistant for a 500-person consultancy. Employees ask questions in natural language; the system retrieves from our document corpus (Confluence, SharePoint, past project reports) and generates answers. Map the components and tell me what to build in-house, buy as SaaS, or consume as a utility API.",
+  "assertions": [
+    {"text": "Output contains an OWM-format block"},
+    {"text": "Has a user-facing anchor at high visibility (>=0.9)"},
+    {"text": "At least 8 components identified (GenAI stack is multi-layered)"},
+    {"text": "Every component has coordinates in [0,1]"},
+    {"text": "Visibility constraint respected for all edges"},
+    {"text": "Uses canonical stage naming (+utility or +rental)"},
+    {"text": "LLM API component exists at Commodity/utility stage (epsilon >= 0.75)"},
+    {"text": "Vector DB or retrieval component exists"},
+    {"text": "Embedding model component exists"},
+    {"text": "Evaluation/observability component exists (GenAI-specific concern)"},
+    {"text": "Build/buy/utility recommendations per relevant component"},
+    {"text": "Cites at least one specific Wardley gameplay by name"},
+    {"text": "Deep-placement notes present (step 4.5 used)"},
+    {"text": "Caveat present that evolution is scenario not forecast"}
+  ]
+}

@@ -2,7 +2,7 @@
 name: wardley-map
 description: Generate a Wardley Map from a scenario description using a formal mathematical model. Produces OWM-format output and strategic analysis grounded in Wardley's cheat sheet, 61 gameplays, and 40 doctrine principles. Use this skill whenever the user asks for strategic reasoning about the components of a business, product, or system — specifically when they mention any of value chain, strategic positioning, competitive landscape, strategic moat, component evolution, genesis-to-commodity spectrum, build-vs-buy across multiple components, where to invest engineering effort, what to commoditise or outsource, mapping a business or platform or marketplace strategically, or explicitly "Wardley map". Always trigger when "Wardley" appears in the request. Also trigger when the user describes a business or system and asks about strategic roadmap, moats, or board-level positioning — even without naming the framework. Skip for flowcharts, UX journey maps, process swimlanes, architecture diagrams, data pipeline diagrams, skills matrices, MECE breakdowns, Porter's five forces, marketing positioning statements, or definitional questions about what a Wardley map is.
 argument-hint: <scenario description>
-allowed-tools: Read, Grep, WebSearch, WebFetch
+allowed-tools: Read, Grep, WebSearch, WebFetch, Bash, Write
 ---
 
 # Wardley Map Generator
@@ -116,9 +116,42 @@ Stage III covers products AND rental/licensing; Stage IV covers commodities AND 
 
 After deep placement has moved coordinates around, **re-check two things before you emit the OWM output**. Skipping this is the most common source of quality regressions.
 
-**1. Visibility constraint.** For every edge `(a, b) ∈ E` (i.e., every `A->B` line), confirm `ν(a) ≥ ν(b)`. A component must sit at or above each of its dependencies. If deep placement shifted an `ε` and you also adjusted the `ν` to stay consistent, double-check the neighbouring edges didn't break. One violation in a 20-edge map makes the whole map structurally unreadable.
+**1. Visibility constraint — run the validator, don't walk it mentally.**
 
-Quick mental check: walk every `->` edge in your OWM draft and verify the `ν` on the left side ≥ the `ν` on the right side. If you find a violation, raise the left-hand component's `ν`, or lower the right-hand component's `ν`, until the rule holds. Don't ship a map with a violation.
+Mental edge-walking fails on maps with more than ~20 edges. Past evals show that even with explicit instruction, subagents ship maps with silent violations. So we validate mechanically.
+
+**Procedure (required):**
+
+1. Write your draft OWM block to a temporary file, e.g.:
+   ```bash
+   cat > /tmp/draft.owm <<'EOF'
+   title ...
+   anchor ...
+   component ... [0.8, 0.5]
+   ...
+   A->B
+   EOF
+   ```
+
+2. Run the bundled validator:
+   ```bash
+   python3 "${CLAUDE_SKILL_DIR}/scripts/validate_owm.py" /tmp/draft.owm
+   ```
+
+   (The `CLAUDE_SKILL_DIR` variable resolves to this skill's root directory.)
+
+3. If the validator exits 0, you're done — include the "OK: N components, M edges — no violations" line in your output section g.
+
+4. If it reports violations, fix them (either raise source `ν` or lower target `ν` per the validator's suggestion). **Rerun the validator after every fix** — adjustments cascade and can break neighbouring edges.
+
+5. Keep iterating validator → fix → validator until it exits 0. Only then ship the OWM block.
+
+**Do not submit a map that hasn't been validated.** The validator is fast (< 1 second); running it is not optional. Claiming "I audited all edges" without having run the script has, in past evals, left real violations in the output.
+
+**What the validator checks:**
+- Every component/anchor has coordinates in `[0, 1]`.
+- Every edge endpoint exists as a declared component/anchor (catches typos).
+- For every edge `a->b`, `ν(a) ≥ ν(b)` (the hard rule).
 
 **2. Canonical stage naming in prose.** When you write strategic analysis text and the words "Product" or "Commodity" appear, they should be "Product (+rental)" and "Commodity (+utility)". Scan your analysis before submitting. The bare forms lose the meaning of the stages (Stage III isn't only products — it's products and the rental/licensing business models that share its characteristics; Stage IV covers commodities and utility services).
 
