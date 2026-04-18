@@ -37,11 +37,16 @@ If you invoke `/wardley-map` with no arguments, Claude will ask for a scenario d
 
 ## What's in this skill
 
-- `SKILL.md` — the skill body (math model + procedure + OWM output format).
-- `cheat-sheet.md` — full 19-row Wardley evolution cheat sheet.
-- `gameplays.md` — all 61 gameplays in 12 categories.
-- `doctrine.md` — all 40 doctrine principles in 4 phases.
-- `inertia.md` — the 17 forms of resistance.
+- `SKILL.md` — the skill body (procedure + OWM output format + when to consult each reference).
+- `evals/evals.json` — test cases with assertions used to validate the skill.
+- `references/` — bundled reference material the skill loads on demand:
+  - `climatic-patterns.md` — 27 patterns across 6 categories.
+  - `doctrine.md` — 40 principles across 4 phases.
+  - `evolution-stages.md` — 19-row cheat sheet, scoring procedure, worked examples.
+  - `gameplay-patterns.md` — 61 gameplays with mechanisms and common sequences.
+  - `inertia.md` — 17 structured forms of inertia.
+  - `mapping-examples.md` — three complete worked maps (tea shop, freelance marketplace, SaaS invoicing).
+  - `mathematical-models.md` — the tuple, dynamics, heuristics, type function.
 
 The skill is self-contained; you don't need the parent repository to use it.
 

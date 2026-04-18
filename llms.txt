@@ -52,7 +52,7 @@ Key conventions:
 ## Tools and Prompts
 
 - [Wardley Map Generator Prompt](prompts/wardley_map_generator.md): AI prompt for generating Wardley Maps in OWM (Online Wardley Maps) format compatible with [create.wardleymaps.ai](https://create.wardleymaps.ai).
-- [`wardley-map` Claude Code skill](skills/wardley-map/): Self-contained portable skill package (SKILL.md + cheat-sheet.md + gameplays.md + doctrine.md + inertia.md). Install to `~/.claude/skills/wardley-map/` and invoke `/wardley-map <scenario>`.
+- [`wardley-map` Claude Code skill](skills/wardley-map/): Self-contained portable skill package. `SKILL.md` + `references/` (climatic-patterns, doctrine, evolution-stages, gameplay-patterns, inertia, mapping-examples, mathematical-models). Install to `~/.claude/skills/wardley-map/` and invoke `/wardley-map <scenario>`.
 
 ## Optional
 

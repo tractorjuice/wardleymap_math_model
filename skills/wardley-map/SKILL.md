@@ -134,11 +134,13 @@ After the OWM output, produce:
 
 **c. Top 3 dependency risks R** — edge `(a, b)` and why.
 
-**d. Suggested gameplays** — name each play from Wardley's 61-play catalogue (full list in `gameplays.md`) and which component(s) it targets. Prefer named Wardley plays over generic advice.
+**d. Suggested gameplays** — name each play from Wardley's 61-play catalogue (full list in `references/gameplay-patterns.md`) and which component(s) it targets. Prefer named Wardley plays over generic advice. Cite by number and name (e.g., "#15 Open Approaches on Component X").
 
-**e. Doctrine violations** — if any of Wardley's 40 doctrine principles are clearly violated (missing anchor, unclear user, underspecified Knowledge layer), flag them. Full list in `doctrine.md`.
+**e. Doctrine violations** — if any of Wardley's 40 doctrine principles are clearly violated (missing anchor, unclear user, underspecified Knowledge layer), flag them. Full list in `references/doctrine.md`.
 
-**f. Caveat** — remind the user that evolution trajectories are scenarios, not forecasts. Wardley's climatic pattern: *"you cannot measure evolution over time or adoption."*
+**f. Climatic context** — which of the 27 climatic patterns (see `references/climatic-patterns.md`) are actively shaping this map? Common: #3 Everything evolves, #15–17 Inertia, #27 Product-to-utility punctuated equilibrium.
+
+**g. Caveat** — remind the user that evolution trajectories are scenarios, not forecasts. Wardley's climatic pattern #18: *"you cannot measure evolution over time or adoption."*
 
 ---
 
@@ -151,9 +153,11 @@ If the user explicitly asks for simulated evolution over time, use the logistic 
 where `r = r₀ + u(t) − c(t)`:
 - `r₀`: baseline market pressure
 - `u(t)`: strategic actions (named Wardley gameplays)
-- `c(t)`: inertia (17 forms enumerated in `inertia.md`)
+- `c(t)`: inertia (17 forms enumerated in `references/inertia.md`)
 
 Clamp `r` to be non-negative — evolution is monotonic-forward.
+
+For multi-generation components (e.g., compute: mainframe → PC → cloud), use the multi-wave form from `references/mathematical-models.md` §4 instead of a single S-curve.
 
 Always label output as "scenario, not forecast."
 
@@ -161,10 +165,26 @@ Always label output as "scenario, not forecast."
 
 ## Supporting files in this skill
 
-- `cheat-sheet.md` — Wardley's full 19-row evolution characteristic table
-- `gameplays.md` — all 61 gameplays by category
-- `doctrine.md` — all 40 doctrine principles by phase
-- `inertia.md` — the 17 forms of inertia
-- `README.md` — install instructions for humans
+All reference material lives in `references/`:
 
-The skill is a self-contained package; use `${CLAUDE_SKILL_DIR}` if you need to reference these files from shell commands. From markdown links, relative paths like `[cheat-sheet](cheat-sheet.md)` work.
+- `references/evolution-stages.md` — the four stages, the 19-row cheat sheet, scoring procedure, and worked examples.
+- `references/climatic-patterns.md` — the 27 patterns across 6 categories. Consult when reasoning about how the environment shapes a map.
+- `references/doctrine.md` — the 40 doctrine principles across 4 phases. Consult when checking for doctrine violations in the map.
+- `references/gameplay-patterns.md` — the 61 gameplays with mechanisms and common sequences. Consult when recommending strategic moves.
+- `references/inertia.md` — the 17 forms of resistance to evolution.
+- `references/mathematical-models.md` — the tuple, dynamics (logistic + multi-wave), derived heuristics, gameplay transformations, doctrine-as-constraints. Consult when precise formulation is needed.
+- `references/mapping-examples.md` — three worked Wardley Maps (tea shop, freelance marketplace, SaaS invoicing) showing the full output format the skill should produce.
+
+The top-level `README.md` is for humans installing the skill; ignore it when executing.
+
+The skill is a self-contained package; use `${CLAUDE_SKILL_DIR}/references/<file>.md` to reference files from shell commands. From markdown links, relative paths like `[cheat sheet](references/evolution-stages.md)` work.
+
+### When to read which reference
+
+- **Always skim** `references/mapping-examples.md` first when generating a new map — it anchors the output format.
+- **Read when scoring evolution:** `references/evolution-stages.md` (for the cheat sheet).
+- **Read when recommending moves:** `references/gameplay-patterns.md` (for play names and mechanisms).
+- **Read when flagging doctrine issues:** `references/doctrine.md` (for phase assignments and descriptions).
+- **Read when explaining "why" this evolution/inertia matters:** `references/climatic-patterns.md`.
+- **Read when asked for dynamics or math:** `references/mathematical-models.md`.
+- **Read when inertia comes up:** `references/inertia.md` (for the specific 17 forms).

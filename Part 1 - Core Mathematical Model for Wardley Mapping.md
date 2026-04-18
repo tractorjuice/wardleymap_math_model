@@ -150,7 +150,7 @@ Where $w$ are weights (defined or learned) and $\sigma$ squashes to $[0,1]$. Thi
 
 ## 5) Dynamics: make evolution move over time
 
-> **Caveat up front.** Wardley is explicit — one of his 23 climatic patterns states *"you cannot measure evolution over time or adoption."* Evolution is determined against the cheat sheet (ubiquity, certainty, publication type, user perception, etc. — see Part 6), not by a clock. The ODE below is a **stylized extension** for simulation and scenario exploration only. Treat it as a what-if tool, not a forecast, and don't let it override cheat-sheet judgment.
+> **Caveat up front.** Wardley is explicit — one of his climatic patterns (about 27 in the community consensus list, "about 30" in his own phrasing) states *"you cannot measure evolution over time or adoption."* Evolution is determined against the cheat sheet (ubiquity, certainty, publication type, user perception, etc. — see Part 6), not by a clock. The ODE below is a **stylized extension** for simulation and scenario exploration only. Treat it as a what-if tool, not a forecast, and don't let it override cheat-sheet judgment.
 
 If you want to model how maps might change, treat evolution as a dynamical system. The standard **logistic (S-curve)** form is:
 

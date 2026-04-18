@@ -113,7 +113,7 @@ The repo has 20+ docs. Not all are on the critical path. If you're new:
 | Document | Description |
 |----------|-------------|
 | [Wardley Map Generator Prompt](prompts/wardley_map_generator.md) | AI prompt for generating Wardley Maps in OWM format compatible with [create.wardleymaps.ai](https://create.wardleymaps.ai) |
-| [`wardley-map` Claude Code skill](skills/wardley-map/) | Portable skill package — copy to `~/.claude/skills/` and invoke `/wardley-map <scenario>`. Bundles SKILL.md, the 19-row cheat sheet, 61 gameplays, 40 doctrine principles, and 17 inertia forms as a self-contained reference |
+| [`wardley-map` Claude Code skill](skills/wardley-map/) | Portable skill package — copy to `~/.claude/skills/` and invoke `/wardley-map <scenario>`. `SKILL.md` + `references/` (7 files: climatic-patterns, doctrine, evolution-stages, gameplay-patterns, inertia, mapping-examples, mathematical-models) |
 
 ## Key Formulas
 
