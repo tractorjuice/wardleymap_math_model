@@ -1,0 +1,15 @@
+{
+  "eval_id": 1,
+  "eval_name": "freelance-marketplace",
+  "prompt": "Create a Wardley Map for a freelance marketplace where clients post jobs, freelancers bid on them, and the platform takes a cut. Include a strategic analysis of where the platform should invest vs outsource.",
+  "assertions": [
+    {"text": "Output contains an OWM-format block"},
+    {"text": "Uses TWO anchors (two 'anchor' lines) for the two user types"},
+    {"text": "Both anchors represent distinct roles (e.g., client and freelancer)"},
+    {"text": "Both anchors at high visibility (>=0.9)"},
+    {"text": "A platform/matching/marketplace component exists as intermediate layer"},
+    {"text": "Strategic analysis recognizes the two-sided dynamic (mentions network effects, two-sided market, or gameplay #16 or #45)"},
+    {"text": "Gives specific invest/outsource recommendations per component"},
+    {"text": "Cites at least one specific Wardley gameplay by name"}
+  ]
+}

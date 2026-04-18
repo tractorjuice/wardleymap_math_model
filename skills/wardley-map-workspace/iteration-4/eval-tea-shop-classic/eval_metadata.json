@@ -1,0 +1,16 @@
+{
+  "eval_id": 0,
+  "eval_name": "tea-shop-classic",
+  "prompt": "Map a small tea shop business that serves cups of tea to customers, needs to handle payment, and sources tea leaves from suppliers.",
+  "assertions": [
+    {"text": "Output contains an OWM-format block (title, anchor, component, ->)"},
+    {"text": "Has a customer/user anchor at high visibility (>=0.9)"},
+    {"text": "At least 5 components identified"},
+    {"text": "Every component has [visibility, evolution] coordinates in [0,1]"},
+    {"text": "Visibility constraint respected: for every edge a->b, nu(a) >= nu(b)"},
+    {"text": "Uses canonical stage naming (Commodity (+utility) or Product (+rental) appears in analysis)"},
+    {"text": "Strategic analysis present (covers D, K, R or differentiation/commodity/risk)"},
+    {"text": "Cites at least one specific Wardley gameplay by name (from the 61-play catalogue)"},
+    {"text": "Caveat present that evolution is not time/maturity (scenario not forecast)"}
+  ]
+}

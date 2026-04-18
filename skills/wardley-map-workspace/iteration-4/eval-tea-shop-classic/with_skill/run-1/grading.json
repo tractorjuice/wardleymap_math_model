@@ -1,0 +1,57 @@
+{
+  "eval_id": "eval-tea-shop-classic",
+  "config": "with_skill",
+  "summary": {
+    "passed": 7,
+    "failed": 2,
+    "total": 9,
+    "pass_rate": 0.7778
+  },
+  "expectations": [
+    {
+      "text": "Output contains an OWM-format block",
+      "passed": true,
+      "evidence": "OWM block found"
+    },
+    {
+      "text": "Has a customer/user anchor at high visibility (>=0.9)",
+      "passed": true,
+      "evidence": "customer at vis=0.98"
+    },
+    {
+      "text": "At least 5 components identified",
+      "passed": true,
+      "evidence": "21 components"
+    },
+    {
+      "text": "Every component has [visibility, evolution] coordinates in [0,1]",
+      "passed": true,
+      "evidence": "all 22 coordinates in [0,1]"
+    },
+    {
+      "text": "Visibility constraint respected: for every edge a->b, nu(a) >= nu(b)",
+      "passed": false,
+      "evidence": "1/23 edges violate: Brewing(0.66) < Barista(0.72)"
+    },
+    {
+      "text": "Uses canonical stage naming (+utility or +rental appears)",
+      "passed": false,
+      "evidence": "neither +utility nor +rental found"
+    },
+    {
+      "text": "Strategic analysis present (covers D, K, R)",
+      "passed": true,
+      "evidence": "found strategic terms"
+    },
+    {
+      "text": "Cites at least one specific Wardley gameplay by name",
+      "passed": true,
+      "evidence": "cites: Focus on user needs, Education, Differentiation"
+    },
+    {
+      "text": "Caveat present that evolution is not time/maturity (scenario not forecast)",
+      "passed": true,
+      "evidence": "found scenario/forecast/climatic caveat"
+    }
+  ]
+}

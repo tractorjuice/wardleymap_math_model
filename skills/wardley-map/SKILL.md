@@ -112,6 +112,18 @@ Stage III covers products AND rental/licensing; Stage IV covers commodities AND 
 
 **Always use the parenthesised forms in prose** — write "Product (+rental)" and "Commodity (+utility)", not the bare "Product" / "Commodity". This matters because the suffixes carry meaning: Stage III isn't just "products", it's products *and* the rental/licensing business models that share its characteristics; likewise Stage IV is commodities *and* utility services. Using the bare names in your strategic analysis loses that distinction.
 
+### Step 5.5 — Verification (before writing the OWM block)
+
+After deep placement has moved coordinates around, **re-check two things before you emit the OWM output**. Skipping this is the most common source of quality regressions.
+
+**1. Visibility constraint.** For every edge `(a, b) ∈ E` (i.e., every `A->B` line), confirm `ν(a) ≥ ν(b)`. A component must sit at or above each of its dependencies. If deep placement shifted an `ε` and you also adjusted the `ν` to stay consistent, double-check the neighbouring edges didn't break. One violation in a 20-edge map makes the whole map structurally unreadable.
+
+Quick mental check: walk every `->` edge in your OWM draft and verify the `ν` on the left side ≥ the `ν` on the right side. If you find a violation, raise the left-hand component's `ν`, or lower the right-hand component's `ν`, until the rule holds. Don't ship a map with a violation.
+
+**2. Canonical stage naming in prose.** When you write strategic analysis text and the words "Product" or "Commodity" appear, they should be "Product (+rental)" and "Commodity (+utility)". Scan your analysis before submitting. The bare forms lose the meaning of the stages (Stage III isn't only products — it's products and the rental/licensing business models that share its characteristics; Stage IV covers commodities and utility services).
+
+If in doubt, search-and-replace: bare "Commodity" → "Commodity (+utility)", bare "Product" (when referring to the stage) → "Product (+rental)". Don't rewrite cases where "Product" means the user's actual product, only stage references.
+
 ### Step 6 — Derived heuristics (label as such)
 
 The three metrics below are **heuristics proposed by this skill's math model, not canonical Wardley concepts**. Treat as attention prompts only.
