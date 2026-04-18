@@ -1,0 +1,42 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl -sL --max-time 30 \"https://learnwardleymapping.com/\")",
+      "Bash(curl -sL --max-time 30 \"https://medium.com/mappingpractice/map-evolution-not-maturity-bae6ea1a2743\")",
+      "Bash(curl -sL --max-time 30 \"https://en.wikipedia.org/wiki/Wardley_map\")",
+      "Bash(curl -sL --max-time 30 \"https://wardleypedia.org/mediawiki/index.php/Main_Page\")",
+      "WebFetch(domain:learnwardleymapping.com)",
+      "WebSearch",
+      "WebFetch(domain:blog.gardeviance.org)",
+      "WebFetch(domain:medium.com)",
+      "WebFetch(domain:onlinewardleymaps.com)",
+      "WebFetch(domain:docs.onlinewardleymaps.com)",
+      "WebFetch(domain:hiredthought.com)",
+      "Bash(git add *)",
+      "Bash(git rm *)",
+      "Bash(git commit *)",
+      "Bash(git push *)",
+      "Read(//home/codespace/.claude/plugins/cache/claude-plugins-official/skill-creator/unknown/skills/skill-creator/**)",
+      "Read(//home/codespace/.claude/plugins/cache/claude-plugins-official/skill-creator/unknown/skills/skill-creator/scripts/**)",
+      "Bash(python3 grade.py)",
+      "Bash(python3 -m scripts.aggregate_benchmark /workspaces/wardleymap_math_model/skills/wardley-map-workspace/iteration-1 --skill-name wardley-map)",
+      "Bash(mkdir -p __TRACKED_VAR__/__TRACKED_VAR__/run-1)",
+      "Bash(mv __TRACKED_VAR__/__TRACKED_VAR__/outputs __TRACKED_VAR__/__TRACKED_VAR__/run-1/)",
+      "Bash([ -f \"$eval_dir/$cfg/timing.json\" ])",
+      "Bash(mv __TRACKED_VAR__/__TRACKED_VAR__/timing.json __TRACKED_VAR__/__TRACKED_VAR__/run-1/)",
+      "Bash([ -f \"$eval_dir/$cfg/grading.json\" ])",
+      "Bash(python3 *)",
+      "Read(//home/codespace/**)",
+      "Read(//tmp/**)",
+      "Bash(tee /workspaces/wardleymap_math_model/skills/wardley-map-workspace/run_loop.log)",
+      "Bash(pip install *)",
+      "Bash(bash -ic 'env | grep -iE \"anthropic|api_key\"' echo \"=== secrets folders ===\")",
+      "Read(//run/**)",
+      "Bash(find / -name \"*.env\" -type f)",
+      "Read(//workspaces/wardleymap_math_model/**)",
+      "Read(//home/**)",
+      "Bash(curl -fsSL \"https://api.github.com/repos/tractorjuice/arc-kit/contents/arckit-claude/skills/wardley-mapping\")",
+      "Bash(git check-ignore *)"
+    ]
+  }
+}
