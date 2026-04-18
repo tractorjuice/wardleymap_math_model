@@ -2,7 +2,7 @@
 name: wardley-map
 description: Generate a Wardley Map from a scenario description using a formal mathematical model. Produces OWM-format output and strategic analysis grounded in Wardley's cheat sheet, 61 gameplays, and 40 doctrine principles. Use this skill whenever the user asks for strategic reasoning about the components of a business, product, or system — specifically when they mention any of value chain, strategic positioning, competitive landscape, strategic moat, component evolution, genesis-to-commodity spectrum, build-vs-buy across multiple components, where to invest engineering effort, what to commoditise or outsource, mapping a business or platform or marketplace strategically, or explicitly "Wardley map". Always trigger when "Wardley" appears in the request. Also trigger when the user describes a business or system and asks about strategic roadmap, moats, or board-level positioning — even without naming the framework. Skip for flowcharts, UX journey maps, process swimlanes, architecture diagrams, data pipeline diagrams, skills matrices, MECE breakdowns, Porter's five forces, marketing positioning statements, or definitional questions about what a Wardley map is.
 argument-hint: <scenario description>
-allowed-tools: Read, Grep
+allowed-tools: Read, Grep, WebSearch, WebFetch
 ---
 
 # Wardley Map Generator
@@ -75,6 +75,32 @@ Map stage picks to band midpoints:
 
 Flag components where rows disagree strongly as "in transition" and report the range.
 
+### Step 4.5 — Deep placement (selective research)
+
+After the initial cheat-sheet pass, **do not research every component** — that is expensive and unnecessary for obvious commodities (CDN, cloud compute, SMTP) or obvious Genesis bets the user has told you about. Instead, identify components that warrant a closer look, then do 1–2 targeted searches per flagged component.
+
+**A component should be flagged for deep placement when any of:**
+
+1. **Cheat-sheet rows disagree.** If `Var(ε) > 0.03` across the 4 (or 19) rows you scored, the rows are pointing at different stages — usually a sign of in-transition or of the mapper's priors being shaky.
+2. **Strategically critical.** Top 3 by D (differentiation pressure), top 3 by K (commodity leverage), top 3 by R (dependency risk), or any component with an `evolve` target. Your whole strategy hinges on these placements being right.
+3. **Specialised or recent domain.** Components in regulated industries (health, finance, defence), in markets that formed in the last 2-3 years, or in geographies the model's priors may not cover well.
+4. **User disputes the placement.** If the user's scenario hints at a different stage than the cheat sheet suggests, research before overriding.
+
+**For each flagged component, run 1-2 targeted searches:**
+
+- **Vendor count & concentration:** `[component] vendor landscape [year]`, `[component] market share`. A handful of vendors → Stage II–III; many vendors with a few dominant → Stage III; few commodity utilities dominating → Stage IV.
+- **Publication type:** `[component] research papers recent`, `[component] implementation case studies`. Papers describing the wonder → Stage I. How-to guides and comparisons → Stage III. Operations/ops maintenance guides → Stage IV.
+- **Regulatory status:** `[component] regulation [jurisdiction]`. Emerging regulation is a Stage III → IV signal (industrialisation forces standards).
+- **Open source activity:** `[component] open source`, `[component] CNCF` (or similar foundations). Active open-source standardisation accelerates Stage III → IV transitions.
+
+**Apply findings:**
+
+- If evidence confirms the cheat-sheet placement: note "deep placement confirms Stage X for [component]" — move on.
+- If evidence contradicts: update `ε(v)`. In your strategic analysis, explicitly note what you found and how it shifted the placement (e.g., "initial cheat-sheet score put this at 0.55; vendor-landscape search showed 40+ active vendors and recent CNCF incubation, moving it to 0.72").
+- If evidence is sparse or conflicting: widen the uncertainty range on that component. Plot as a range, not a point.
+
+**Budget:** 3-5 deep placements per map is typical. Don't research every single component — that's both expensive and noise. The map's credibility depends on the key placements being defensible; obvious commodities can stay obvious.
+
 ### Step 5 — Stage bands
 
 - Genesis: [0, 0.25)
@@ -140,7 +166,9 @@ After the OWM output, produce:
 
 **f. Climatic context** — which of the 27 climatic patterns (see `references/climatic-patterns.md`) are actively shaping this map? Common: #3 Everything evolves, #15–17 Inertia, #27 Product-to-utility punctuated equilibrium.
 
-**g. Caveat** — remind the user that evolution trajectories are scenarios, not forecasts. Wardley's climatic pattern #18: *"you cannot measure evolution over time or adoption."*
+**g. Deep-placement notes** — for any component where you ran targeted research (see step 4.5), note what you found and how it shifted the placement. Example: "Fraud Detection — initial cheat-sheet 0.35 (Custom). Vendor search found mature providers (Sift, Stripe Radar) and standardising APIs — shifted to 0.55 (early Product)." List the 2-4 components you did deep placement on. If you did none, say so.
+
+**h. Caveat** — remind the user that evolution trajectories are scenarios, not forecasts. Wardley's climatic pattern #18: *"you cannot measure evolution over time or adoption."*
 
 ---
 
