@@ -122,23 +122,14 @@ Mental edge-walking fails on maps with more than ~20 edges. Past evals show that
 
 **Procedure (required):**
 
-1. Write your draft OWM block to a temporary file, e.g.:
+1. Write your draft OWM block to a workspace-local file (not `/tmp/` — some sandboxes deny writes there). A good pattern is to co-locate it with the final output, e.g., `./draft.owm` or alongside wherever you'll save the map.
+
+2. Run the bundled validator against that file:
    ```bash
-   cat > /tmp/draft.owm <<'EOF'
-   title ...
-   anchor ...
-   component ... [0.8, 0.5]
-   ...
-   A->B
-   EOF
+   python3 "${CLAUDE_SKILL_DIR}/scripts/validate_owm.py" ./draft.owm
    ```
 
-2. Run the bundled validator:
-   ```bash
-   python3 "${CLAUDE_SKILL_DIR}/scripts/validate_owm.py" /tmp/draft.owm
-   ```
-
-   (The `CLAUDE_SKILL_DIR` variable resolves to this skill's root directory.)
+   (The `CLAUDE_SKILL_DIR` variable resolves to this skill's root directory. If it isn't set, use the absolute path to the skill's `scripts/validate_owm.py`.)
 
 3. If the validator exits 0, you're done — include the "OK: N components, M edges — no violations" line in your output section g.
 

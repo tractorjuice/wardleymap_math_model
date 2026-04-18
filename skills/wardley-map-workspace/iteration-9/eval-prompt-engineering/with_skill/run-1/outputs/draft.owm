@@ -1,0 +1,153 @@
+title Production-Grade Prompt Engineering Capability
+style wardley
+
+// Anchors — three user types for this platform capability
+anchor Product Engineer [0.98, 0.55]
+anchor ML/Applied Scientist [0.95, 0.45]
+anchor Product Manager [0.93, 0.60]
+
+// User-facing surfaces
+component Prompt Authoring UI [0.88, 0.55]
+component Prompt Playground [0.86, 0.60]
+component Eval Results Dashboard [0.84, 0.55]
+component Experiment Console (A/B results) [0.82, 0.50]
+component Feedback Capture (thumbs/rating) [0.80, 0.70]
+
+// Prompt lifecycle core
+component Prompt Registry (versioning) [0.74, 0.55]
+component Prompt Deployment / Release Channels [0.70, 0.50]
+component Prompt Template Runtime [0.68, 0.60]
+component Feature Flagging / Traffic Split [0.69, 0.78]
+
+// Evaluation layer
+component Offline Eval Runner [0.62, 0.45]
+component Golden Dataset Curation [0.58, 0.40]
+component LLM-as-Judge Scorers [0.56, 0.35]
+component Human Review Workflow [0.54, 0.30]
+component Heuristic / Regex Scorers [0.52, 0.70]
+component Regression Suites (CI) [0.63, 0.55]
+
+// Observability / telemetry
+component Trace Collection (spans) [0.60, 0.65]
+component Prompt/Response Logging [0.58, 0.70]
+component Token and Cost Metering [0.50, 0.75]
+component Latency / Error Monitoring [0.45, 0.88]
+component PII Redaction on Logs [0.42, 0.55]
+
+// Production routing & runtime
+component LLM Gateway / Model Router [0.55, 0.65]
+component Guardrails (policy / safety) [0.48, 0.45]
+component Semantic / Prompt Cache [0.40, 0.55]
+component Rate Limiting and Quotas [0.38, 0.85]
+
+// Feedback loop
+component Production Trace Sampling [0.59, 0.55]
+component Auto Dataset Mining (from traffic) [0.60, 0.35]
+component Annotation Tooling [0.42, 0.50]
+
+// Foundational data & infra
+component OpenTelemetry Instrumentation [0.35, 0.80]
+component Event Bus / Queue [0.28, 0.90]
+component Data Warehouse (evals + traces) [0.25, 0.85]
+component Object Storage [0.18, 0.92]
+component Cloud Compute [0.15, 0.92]
+component Auth / SSO [0.20, 0.92]
+component Secrets Management [0.18, 0.90]
+
+// Model supply
+component Frontier LLM APIs [0.30, 0.75]
+component Open-weight / Self-hosted LLM [0.25, 0.50]
+component Embedding APIs [0.22, 0.85]
+
+// Knowledge / practice
+component Prompt Eng. Review Practice [0.15, 0.35]
+component Eval Methodology Knowledge [0.10, 0.40]
+
+// Dependencies — anchor edges
+Product Engineer->Prompt Authoring UI
+Product Engineer->Prompt Playground
+Product Engineer->Eval Results Dashboard
+Product Engineer->Experiment Console (A/B results)
+ML/Applied Scientist->Prompt Playground
+ML/Applied Scientist->Eval Results Dashboard
+ML/Applied Scientist->Golden Dataset Curation
+ML/Applied Scientist->Human Review Workflow
+Product Manager->Experiment Console (A/B results)
+Product Manager->Feedback Capture (thumbs/rating)
+Product Manager->Eval Results Dashboard
+
+// Authoring / playground -> registry & runtime
+Prompt Authoring UI->Prompt Registry (versioning)
+Prompt Playground->Prompt Registry (versioning)
+Prompt Playground->LLM Gateway / Model Router
+Prompt Registry (versioning)->Prompt Deployment / Release Channels
+Prompt Deployment / Release Channels->Prompt Template Runtime
+Prompt Deployment / Release Channels->Feature Flagging / Traffic Split
+Prompt Template Runtime->LLM Gateway / Model Router
+
+// Experiment console chain
+Experiment Console (A/B results)->Feature Flagging / Traffic Split
+Experiment Console (A/B results)->Data Warehouse (evals + traces)
+Feature Flagging / Traffic Split->Prompt Template Runtime
+
+// Eval layer
+Eval Results Dashboard->Offline Eval Runner
+Eval Results Dashboard->Regression Suites (CI)
+Offline Eval Runner->Golden Dataset Curation
+Offline Eval Runner->LLM-as-Judge Scorers
+Offline Eval Runner->Heuristic / Regex Scorers
+Offline Eval Runner->Human Review Workflow
+Regression Suites (CI)->Offline Eval Runner
+LLM-as-Judge Scorers->LLM Gateway / Model Router
+Golden Dataset Curation->Object Storage
+Human Review Workflow->Annotation Tooling
+
+// Observability
+Prompt Template Runtime->Trace Collection (spans)
+Trace Collection (spans)->OpenTelemetry Instrumentation
+Trace Collection (spans)->Prompt/Response Logging
+Prompt/Response Logging->PII Redaction on Logs
+Prompt/Response Logging->Data Warehouse (evals + traces)
+Token and Cost Metering->Data Warehouse (evals + traces)
+Latency / Error Monitoring->OpenTelemetry Instrumentation
+
+// Feedback loop
+Feedback Capture (thumbs/rating)->Event Bus / Queue
+Production Trace Sampling->Prompt/Response Logging
+Auto Dataset Mining (from traffic)->Production Trace Sampling
+Auto Dataset Mining (from traffic)->Golden Dataset Curation
+Annotation Tooling->Data Warehouse (evals + traces)
+
+// Runtime deps
+LLM Gateway / Model Router->Frontier LLM APIs
+LLM Gateway / Model Router->Open-weight / Self-hosted LLM
+LLM Gateway / Model Router->Guardrails (policy / safety)
+LLM Gateway / Model Router->Semantic / Prompt Cache
+LLM Gateway / Model Router->Rate Limiting and Quotas
+LLM Gateway / Model Router->Token and Cost Metering
+
+// Embedding use by dataset mining
+Auto Dataset Mining (from traffic)->Embedding APIs
+
+// Infra / auth
+Prompt Authoring UI->Auth / SSO
+Prompt Registry (versioning)->Data Warehouse (evals + traces)
+Prompt Registry (versioning)->Object Storage
+LLM Gateway / Model Router->Secrets Management
+Data Warehouse (evals + traces)->Cloud Compute
+Event Bus / Queue->Cloud Compute
+Object Storage->Cloud Compute
+
+// Knowledge edges
+Golden Dataset Curation->Eval Methodology Knowledge
+LLM-as-Judge Scorers->Eval Methodology Knowledge
+Prompt Authoring UI->Prompt Eng. Review Practice
+
+evolve Prompt Registry (versioning) 0.75
+evolve LLM Gateway / Model Router 0.82
+evolve LLM-as-Judge Scorers 0.55
+evolve Auto Dataset Mining (from traffic) 0.55
+
+note Differentiation zone [0.55, 0.32]
+note Rent — Stage III [0.55, 0.68]
+note Utility — Stage IV [0.20, 0.90]

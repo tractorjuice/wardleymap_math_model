@@ -449,3 +449,110 @@ def grade_genai_rag(text: str) -> list[dict]:
 
 
 GRADERS["eval-genai-rag-platform"] = grade_genai_rag
+
+
+def grade_prompt_engineering(text: str) -> list[dict]:
+    owm = find_owm_block(text)
+    coords = coord_map(owm)
+    ncomp = count_components(owm)
+
+    results = []
+    has_owm = "anchor" in owm and "component" in owm and "->" in owm
+    results.append({"text": "Output contains an OWM-format block", "passed": has_owm,
+                    "evidence": "OWM found" if has_owm else "no OWM structure"})
+    # High-visibility anchor
+    anchor_ok = False
+    anchor_ev = "no anchor"
+    for line in owm.splitlines():
+        m = re.match(r"\s*anchor\s+(.+?)\s*\[\s*([0-9.]+)\s*,", line)
+        if m and float(m.group(2)) >= 0.9:
+            anchor_ok = True
+            anchor_ev = f"{m.group(1).strip()} at vis={m.group(2)}"
+            break
+    results.append({"text": "Has a user-facing anchor at high visibility (>=0.9)",
+                    "passed": anchor_ok, "evidence": anchor_ev})
+    results.append({"text": "At least 8 components identified", "passed": ncomp >= 8,
+                    "evidence": f"{ncomp} components"})
+    ok, ev = check_coords_in_range(owm)
+    results.append({"text": "Every component has coordinates in [0,1]", "passed": ok, "evidence": ev})
+    ok, ev = check_visibility_constraint(owm)
+    results.append({"text": "Visibility constraint respected for all edges (validator clean)",
+                    "passed": ok, "evidence": ev})
+    canon = "(+utility)" in text or "(+rental)" in text
+    results.append({"text": "Uses canonical stage naming (+utility or +rental)",
+                    "passed": canon, "evidence": "found" if canon else "missing"})
+    # LLM API at commodity
+    llm_ok = False
+    llm_ev = "no LLM/foundation-model component found"
+    for name, (v, e) in coords.items():
+        low = name.lower()
+        if any(k in low for k in ["llm", "gpt", "claude", "gemini", "openai",
+                                    "anthropic", "foundation model", "language model",
+                                    "inference api", "model api"]):
+            if e >= 0.75:
+                llm_ok = True
+                llm_ev = f"{name} at epsilon={e}"
+                break
+            else:
+                llm_ev = f"{name} at epsilon={e} (below 0.75)"
+    results.append({"text": "LLM API component at Commodity/utility (epsilon >= 0.75)",
+                    "passed": llm_ok, "evidence": llm_ev})
+    # Prompt registry / versioning
+    registry_ok = any(
+        any(k in name.lower() for k in ["prompt registry", "prompt version",
+                                          "prompt store", "prompt library",
+                                          "prompt repo", "prompt management"])
+        for name in coords
+    )
+    # broader: "prompt" + "version" or "registry" or "template" mentioned in any component name
+    if not registry_ok:
+        registry_ok = any(
+            "prompt" in name.lower() and any(k in name.lower() for k in
+                ["version", "registry", "template", "catalog", "manag"])
+            for name in coords
+        )
+    results.append({"text": "Prompt registry or versioning component exists",
+                    "passed": registry_ok,
+                    "evidence": "found" if registry_ok else "no prompt registry/versioning"})
+    # Eval framework
+    eval_ok = any(
+        any(k in name.lower() for k in ["eval", "evaluation", "test harness",
+                                          "promptfoo", "braintrust", "benchmark"])
+        for name in coords
+    )
+    results.append({"text": "Evaluation framework component exists",
+                    "passed": eval_ok, "evidence": "found" if eval_ok else "missing"})
+    # Observability / tracing
+    obs_ok = any(
+        any(k in name.lower() for k in ["observability", "tracing", "trace",
+                                          "monitor", "langsmith", "langfuse",
+                                          "telemetry", "logging"])
+        for name in coords
+    )
+    results.append({"text": "Observability or tracing component exists",
+                    "passed": obs_ok, "evidence": "found" if obs_ok else "missing"})
+    # Build/buy/utility recs
+    recs_ok = sum(1 for k in ["build", "buy", "utility", "api", "consume", "rent", "saas"]
+                  if k in text.lower()) >= 4
+    results.append({"text": "Build/buy/utility recommendations per relevant component",
+                    "passed": recs_ok, "evidence": "found" if recs_ok else "missing"})
+    # Gameplay
+    ok, ev = has_gameplay(text)
+    results.append({"text": "Cites at least one specific Wardley gameplay by name",
+                    "passed": ok, "evidence": ev})
+    # Deep placement
+    dp_ok = any(k in text.lower() for k in ["deep placement", "deep-placement",
+                                              "initial cheat", "shifted from", "shifted to",
+                                              "confirmed at", "vendor search", "web search"])
+    results.append({"text": "Deep-placement notes present (step 4.5 used)",
+                    "passed": dp_ok, "evidence": "found" if dp_ok else "no deep placement"})
+    # Caveat
+    caveat = ("cannot measure evolution" in text.lower() or
+              ("scenario" in text.lower() and "forecast" in text.lower()) or
+              "climatic pattern" in text.lower())
+    results.append({"text": "Caveat present that evolution is scenario not forecast",
+                    "passed": caveat, "evidence": "found" if caveat else "no caveat"})
+    return results
+
+
+GRADERS["eval-prompt-engineering"] = grade_prompt_engineering

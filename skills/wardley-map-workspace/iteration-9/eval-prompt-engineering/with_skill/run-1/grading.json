@@ -1,0 +1,82 @@
+{
+  "eval_id": "eval-prompt-engineering",
+  "config": "with_skill",
+  "summary": {
+    "passed": 14,
+    "failed": 0,
+    "total": 14,
+    "pass_rate": 1.0
+  },
+  "expectations": [
+    {
+      "text": "Output contains an OWM-format block",
+      "passed": true,
+      "evidence": "OWM found"
+    },
+    {
+      "text": "Has a user-facing anchor at high visibility (>=0.9)",
+      "passed": true,
+      "evidence": "Product Engineer at vis=0.98"
+    },
+    {
+      "text": "At least 8 components identified",
+      "passed": true,
+      "evidence": "39 components"
+    },
+    {
+      "text": "Every component has coordinates in [0,1]",
+      "passed": true,
+      "evidence": "all 42 coordinates in [0,1]"
+    },
+    {
+      "text": "Visibility constraint respected for all edges (validator clean)",
+      "passed": true,
+      "evidence": "all 36 edges respect nu(a) >= nu(b)"
+    },
+    {
+      "text": "Uses canonical stage naming (+utility or +rental)",
+      "passed": true,
+      "evidence": "found"
+    },
+    {
+      "text": "LLM API component at Commodity/utility (epsilon >= 0.75)",
+      "passed": true,
+      "evidence": "Frontier LLM APIs at epsilon=0.75"
+    },
+    {
+      "text": "Prompt registry or versioning component exists",
+      "passed": true,
+      "evidence": "found"
+    },
+    {
+      "text": "Evaluation framework component exists",
+      "passed": true,
+      "evidence": "found"
+    },
+    {
+      "text": "Observability or tracing component exists",
+      "passed": true,
+      "evidence": "found"
+    },
+    {
+      "text": "Build/buy/utility recommendations per relevant component",
+      "passed": true,
+      "evidence": "found"
+    },
+    {
+      "text": "Cites at least one specific Wardley gameplay by name",
+      "passed": true,
+      "evidence": "cites: Focus on user needs, Open Approaches, Exploiting Network Effects"
+    },
+    {
+      "text": "Deep-placement notes present (step 4.5 used)",
+      "passed": true,
+      "evidence": "found"
+    },
+    {
+      "text": "Caveat present that evolution is scenario not forecast",
+      "passed": true,
+      "evidence": "found"
+    }
+  ]
+}
