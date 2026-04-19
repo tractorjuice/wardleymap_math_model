@@ -47,13 +47,31 @@ For each component, list `(a, b)` edges meaning "a depends on b". The dependency
 Visibility is a **judgment about value chain position**, not a pure graph property. Seed from distance, then adjust:
 
     d(v) = min over u ∈ U of { shortest path length from u to v }
-    ν(v) = 1 / (1 + d(v))
+    ν(v) = exp(−0.6 · d(v))          (exponential decay, default)
+
+Seed values at typical depths:
+
+| d(v) | ν seed | Typical meaning |
+|---:|---:|---|
+| 0 | 1.00 | The anchor itself |
+| 1 | 0.55 | Directly user-facing component |
+| 2 | 0.30 | Mid-chain supporting component |
+| 3 | 0.17 | Deep supporting layer |
+| 4 | 0.09 | Infrastructure / utility layer |
+| 5 | 0.05 | Foundational commodity |
+| 6 | 0.03 | Atomic utilities (power, water, DNS) |
+
+**Do not be afraid to place deep infrastructure below ν = 0.1.** Wardley's own maps routinely have components at ν = 0.04 — 0.10 for deep commodity foundations. Our past maps systematically placed infrastructure too high; the exponential default counteracts that.
 
 Then override where judgment disagrees:
-- Raise ν for a component the user thinks about directly even if deep in the graph.
-- Lower ν for a component that's technically close but architecturally invisible.
+- Raise ν for a component the user thinks about directly even if deep in the graph (e.g., a branded payment widget).
+- Lower ν for a component that's technically close but architecturally invisible (e.g., a CDN).
 
-**Hard rule:** for every edge `(a, b) ∈ E`, require `ν(a) ≥ ν(b)`.
+Alternative seeds (use when the default doesn't fit):
+- **Reciprocal decay** `ν(v) = 1 / (1 + d(v))` — gentler; caps deep components at ~0.2. Use for shallow maps where you don't want deep values.
+- **Constraint optimisation** — solve for a full layout that respects every edge constraint, useful when distances violate the hard rule due to shortcuts.
+
+**Hard rule:** for every edge `(a, b) ∈ E`, require `ν(a) ≥ ν(b)`. Enforced by the validator in Step 5.5.
 
 ### Step 4 — Evolution ε (X-axis)
 

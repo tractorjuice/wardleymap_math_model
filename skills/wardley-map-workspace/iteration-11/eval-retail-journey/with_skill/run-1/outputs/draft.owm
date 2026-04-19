@@ -1,0 +1,218 @@
+title Modern Retail Customer Journey
+style wardley
+
+// Anchors — three user perspectives
+anchor Customer [0.99, 0.55]
+anchor Producer / Retailer [0.96, 0.55]
+anchor Society / Regulator [0.93, 0.70]
+
+// Journey stages (user-facing)
+component Need Identification [0.90, 0.40]
+component Discovery / Inspiration [0.86, 0.55]
+component Product Search [0.84, 0.80]
+component Comparison & Evaluation [0.80, 0.55]
+component Purchase Decision [0.78, 0.70]
+component Checkout [0.76, 0.82]
+component Fulfilment (Delivery / Pickup) [0.72, 0.65]
+component Post-purchase Service & Returns [0.68, 0.55]
+
+// Channels
+component Physical Store [0.74, 0.78]
+component E-commerce Website [0.72, 0.85]
+component Mobile App [0.70, 0.80]
+component Social Commerce [0.66, 0.40]
+component Marketplace Platform [0.64, 0.70]
+component Omnichannel Experience [0.62, 0.35]
+
+// Price surface
+component Dynamic Pricing [0.58, 0.55]
+component Promotions & Discounts [0.60, 0.80]
+component Loyalty Programme [0.56, 0.55]
+
+// Convenience surface
+component Click & Collect [0.60, 0.60]
+component Same-day Delivery [0.58, 0.45]
+component One-click Checkout [0.62, 0.65]
+
+// Experience surface
+component Personalisation [0.54, 0.40]
+component Reviews & Ratings [0.56, 0.75]
+component AR / Virtual Try-on [0.50, 0.20]
+component Brand Experience [0.52, 0.45]
+
+// Core platform capabilities
+component Product Catalogue [0.44, 0.75]
+component Search & Recommendations [0.42, 0.60]
+component Customer Data / CRM [0.40, 0.70]
+component Inventory Visibility [0.38, 0.55]
+component Order Management [0.36, 0.75]
+component Fraud Detection [0.42, 0.60]
+component Identity & Auth [0.32, 0.88]
+component Payment Processing [0.30, 0.90]
+
+// Supply and logistics
+component Supply Chain Planning [0.30, 0.55]
+component Logistics Network [0.22, 0.75]
+component Last-mile Delivery [0.18, 0.60]
+component Returns Logistics [0.25, 0.55]
+component Warehouse Operations [0.16, 0.72]
+
+// Data & infrastructure
+component Analytics / BI [0.28, 0.75]
+component Cloud Compute [0.10, 0.92]
+component Object Storage [0.11, 0.92]
+component CDN [0.08, 0.92]
+component Database [0.11, 0.90]
+component Email / SMS / Messaging [0.14, 0.90]
+
+// Societal / regulatory layer (Knowledge)
+component Consumer Protection Law [0.50, 0.85]
+component Data Protection / GDPR [0.46, 0.80]
+component Sustainability / ESG Regulation [0.48, 0.35]
+component Accepted Commerce Practice [0.06, 0.95]
+
+// Utilities
+component Electricity [0.04, 0.98]
+component Internet Access [0.05, 0.95]
+
+// Dependencies
+Customer->Need Identification
+Customer->Discovery / Inspiration
+Customer->Product Search
+Customer->Comparison & Evaluation
+Customer->Purchase Decision
+Customer->Checkout
+Customer->Fulfilment (Delivery / Pickup)
+Customer->Post-purchase Service & Returns
+
+Producer / Retailer->Product Catalogue
+Producer / Retailer->Order Management
+Producer / Retailer->Customer Data / CRM
+Producer / Retailer->Analytics / BI
+Producer / Retailer->Omnichannel Experience
+Producer / Retailer->Promotions & Discounts
+
+Society / Regulator->Consumer Protection Law
+Society / Regulator->Data Protection / GDPR
+Society / Regulator->Sustainability / ESG Regulation
+
+// Discovery and search
+Discovery / Inspiration->Social Commerce
+Discovery / Inspiration->Brand Experience
+Discovery / Inspiration->Personalisation
+Product Search->Search & Recommendations
+Product Search->Product Catalogue
+
+// Comparison
+Comparison & Evaluation->Reviews & Ratings
+Comparison & Evaluation->AR / Virtual Try-on
+Comparison & Evaluation->Dynamic Pricing
+Comparison & Evaluation->Promotions & Discounts
+
+// Purchase
+Purchase Decision->Loyalty Programme
+Purchase Decision->Dynamic Pricing
+
+// Checkout
+Checkout->One-click Checkout
+Checkout->Payment Processing
+Checkout->Fraud Detection
+Checkout->Identity & Auth
+
+// Fulfilment
+Fulfilment (Delivery / Pickup)->Click & Collect
+Fulfilment (Delivery / Pickup)->Same-day Delivery
+Fulfilment (Delivery / Pickup)->Order Management
+Fulfilment (Delivery / Pickup)->Inventory Visibility
+
+// Post-purchase
+Post-purchase Service & Returns->Returns Logistics
+Post-purchase Service & Returns->Customer Data / CRM
+Post-purchase Service & Returns->Email / SMS / Messaging
+
+// Channels to platform
+Physical Store->Inventory Visibility
+Physical Store->Order Management
+Physical Store->Electricity
+E-commerce Website->Product Catalogue
+E-commerce Website->CDN
+E-commerce Website->Cloud Compute
+Mobile App->Product Catalogue
+Mobile App->Identity & Auth
+Mobile App->CDN
+Social Commerce->Product Catalogue
+Marketplace Platform->Product Catalogue
+Marketplace Platform->Search & Recommendations
+Omnichannel Experience->Customer Data / CRM
+Omnichannel Experience->Inventory Visibility
+
+// Experience surface
+Personalisation->Customer Data / CRM
+Personalisation->Search & Recommendations
+Reviews & Ratings->Database
+AR / Virtual Try-on->Cloud Compute
+Brand Experience->Customer Data / CRM
+
+// Price
+Dynamic Pricing->Analytics / BI
+Dynamic Pricing->Database
+Promotions & Discounts->Customer Data / CRM
+Loyalty Programme->Customer Data / CRM
+
+// Convenience
+Click & Collect->Inventory Visibility
+Click & Collect->Order Management
+Same-day Delivery->Last-mile Delivery
+Same-day Delivery->Logistics Network
+One-click Checkout->Identity & Auth
+One-click Checkout->Payment Processing
+
+// Core platform
+Search & Recommendations->Database
+Search & Recommendations->Cloud Compute
+Product Catalogue->Database
+Product Catalogue->Object Storage
+Customer Data / CRM->Database
+Inventory Visibility->Warehouse Operations
+Inventory Visibility->Database
+Order Management->Database
+Order Management->Logistics Network
+Fraud Detection->Customer Data / CRM
+Fraud Detection->Cloud Compute
+Identity & Auth->Database
+Payment Processing->Internet Access
+
+// Supply and logistics
+Supply Chain Planning->Analytics / BI
+Logistics Network->Last-mile Delivery
+Logistics Network->Warehouse Operations
+Last-mile Delivery->Internet Access
+Warehouse Operations->Electricity
+Returns Logistics->Logistics Network
+Returns Logistics->Warehouse Operations
+
+// Infrastructure chain
+Analytics / BI->Database
+Analytics / BI->Cloud Compute
+Cloud Compute->Electricity
+Object Storage->Cloud Compute
+CDN->Internet Access
+Database->Cloud Compute
+Email / SMS / Messaging->Cloud Compute
+
+// Regulation dependencies
+Data Protection / GDPR->Accepted Commerce Practice
+Consumer Protection Law->Accepted Commerce Practice
+Sustainability / ESG Regulation->Accepted Commerce Practice
+
+// Evolve arrows
+evolve Personalisation 0.60
+evolve Same-day Delivery 0.70
+evolve AR / Virtual Try-on 0.50
+evolve Omnichannel Experience 0.60
+evolve Sustainability / ESG Regulation 0.65
+
+// Notes
+note Differentiation zone [0.65, 0.25]
+note Commodity / utility layer [0.15, 0.95]
+note Friction worth reducing [0.75, 0.78]

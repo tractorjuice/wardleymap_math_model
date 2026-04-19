@@ -1,0 +1,169 @@
+title Risk Management in Financial Services
+style wardley
+
+// Anchors — the scenario names four actor classes as users of risk management
+anchor Public [0.99, 0.55]
+anchor Society [0.97, 0.45]
+anchor Corporations [0.96, 0.55]
+anchor Government [0.95, 0.40]
+
+// User-facing financial services (what users actually consume)
+component Retail Banking [0.88, 0.82]
+component Lending [0.85, 0.78]
+component Insurance [0.83, 0.72]
+component Public Services Continuity [0.80, 0.55]
+component Corporate Treasury [0.78, 0.60]
+
+// Perceived and reputational risk — close to users by definition
+component Perceived Risk [0.86, 0.30]
+component Trust in Institutions [0.82, 0.40]
+
+// Risk categories users care about (second layer)
+component Economic Risk [0.72, 0.65]
+component Political Risk [0.68, 0.35]
+component Sovereign Risk [0.66, 0.55]
+component Territorial Risk [0.62, 0.30]
+component Cybersecurity Risk [0.70, 0.48]
+
+// Risk-assessment and signalling services
+component Rating Agencies [0.60, 0.70]
+component Credit Scoring [0.58, 0.82]
+component Actuarial Pricing [0.55, 0.78]
+component Stress Testing [0.46, 0.55]
+component Scenario Analysis [0.50, 0.45]
+
+// Regulatory layer
+component Regulation [0.58, 0.65]
+component Capital Requirements (Basel) [0.48, 0.72]
+component AML / KYC [0.45, 0.78]
+component Consumer Protection Rules [0.43, 0.60]
+component Cyber Disclosure Rules [0.40, 0.30]
+
+// Risk-management practices (mid-chain)
+component Risk Modelling [0.42, 0.55]
+component GenAI Risk Analytics [0.38, 0.15]
+component Climate / ESG Risk Models [0.35, 0.25]
+component Fraud Detection [0.40, 0.65]
+component Geopolitical Intelligence [0.35, 0.30]
+
+// Foundations — data and knowledge
+component Market Data Feeds [0.30, 0.80]
+component Credit Bureaux [0.28, 0.82]
+component Historical Loss Data [0.25, 0.55]
+component Statistical Methods [0.18, 0.88]
+component Payments Rails [0.25, 0.92]
+component Cloud Compute [0.15, 0.92]
+component Identity / Auth [0.20, 0.88]
+component Encryption / PKI [0.18, 0.90]
+
+// Knowledge
+component Finance Theory [0.08, 0.90]
+component Legal Framework [0.06, 0.70]
+
+// Dependencies — user-facing consumption
+Public->Retail Banking
+Public->Lending
+Public->Insurance
+Public->Perceived Risk
+Public->Trust in Institutions
+Society->Public Services Continuity
+Society->Trust in Institutions
+Society->Perceived Risk
+Corporations->Lending
+Corporations->Insurance
+Corporations->Corporate Treasury
+Corporations->Cybersecurity Risk
+Government->Public Services Continuity
+Government->Sovereign Risk
+Government->Regulation
+Government->Political Risk
+
+// User-facing services -> risk categories and signalling
+Retail Banking->Credit Scoring
+Retail Banking->AML / KYC
+Retail Banking->Fraud Detection
+Lending->Credit Scoring
+Lending->Rating Agencies
+Lending->Economic Risk
+Insurance->Actuarial Pricing
+Insurance->Climate / ESG Risk Models
+Insurance->Rating Agencies
+Corporate Treasury->Rating Agencies
+Corporate Treasury->Economic Risk
+Corporate Treasury->Sovereign Risk
+Corporate Treasury->Cybersecurity Risk
+Public Services Continuity->Cybersecurity Risk
+Public Services Continuity->Territorial Risk
+
+// Perception edges
+Perceived Risk->Trust in Institutions
+Trust in Institutions->Regulation
+Trust in Institutions->Rating Agencies
+
+// Risk categories -> analytic services / regulation
+Economic Risk->Scenario Analysis
+Economic Risk->Stress Testing
+Political Risk->Geopolitical Intelligence
+Political Risk->Scenario Analysis
+Sovereign Risk->Rating Agencies
+Sovereign Risk->Scenario Analysis
+Territorial Risk->Geopolitical Intelligence
+Cybersecurity Risk->Cyber Disclosure Rules
+Cybersecurity Risk->Fraud Detection
+
+// Regulation
+Regulation->Capital Requirements (Basel)
+Regulation->AML / KYC
+Regulation->Consumer Protection Rules
+Regulation->Cyber Disclosure Rules
+Capital Requirements (Basel)->Stress Testing
+
+// Signalling services -> models & data
+Rating Agencies->Risk Modelling
+Rating Agencies->Historical Loss Data
+Credit Scoring->Credit Bureaux
+Credit Scoring->Statistical Methods
+Actuarial Pricing->Historical Loss Data
+Actuarial Pricing->Statistical Methods
+Stress Testing->Risk Modelling
+Scenario Analysis->Risk Modelling
+Scenario Analysis->GenAI Risk Analytics
+
+// Risk modelling decomposes
+Risk Modelling->Statistical Methods
+Risk Modelling->Market Data Feeds
+Risk Modelling->Historical Loss Data
+GenAI Risk Analytics->Cloud Compute
+GenAI Risk Analytics->Statistical Methods
+Climate / ESG Risk Models->Statistical Methods
+Climate / ESG Risk Models->Market Data Feeds
+Fraud Detection->Statistical Methods
+Fraud Detection->Identity / Auth
+Geopolitical Intelligence->Market Data Feeds
+
+// Infrastructure
+AML / KYC->Identity / Auth
+Cyber Disclosure Rules->Encryption / PKI
+Payments Rails->Encryption / PKI
+Retail Banking->Payments Rails
+Retail Banking->Cloud Compute
+Insurance->Cloud Compute
+Lending->Cloud Compute
+Corporate Treasury->Payments Rails
+
+// Knowledge grounding
+Risk Modelling->Finance Theory
+Actuarial Pricing->Finance Theory
+Regulation->Legal Framework
+Consumer Protection Rules->Legal Framework
+Capital Requirements (Basel)->Legal Framework
+
+// Evolve arrows — scenarios, not forecasts
+evolve GenAI Risk Analytics 0.50
+evolve Climate / ESG Risk Models 0.55
+evolve Cyber Disclosure Rules 0.60
+evolve Geopolitical Intelligence 0.55
+
+note Differentiation zone [0.45, 0.22]
+note Utility / commodity [0.18, 0.90]
+note Perception frontier [0.85, 0.30]

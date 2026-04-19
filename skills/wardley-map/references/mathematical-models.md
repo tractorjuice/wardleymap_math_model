@@ -33,9 +33,11 @@ Three seed options:
 
 | Option | Formula | Use when |
 |---|---|---|
-| Reciprocal decay | $\nu(v) = 1/(1 + d(v))$ | Default — smooth, parameter-free. |
-| Exponential decay | $\nu(v) = e^{-\alpha d(v)}$ | Deep graphs where vertical spread matters. |
+| **Exponential decay (default)** | $\nu(v) = e^{-\alpha d(v)}$ with $\alpha = 0.6$ | Default — lets deep infrastructure reach $\nu < 0.1$, matching Wardley's own maps. Seeds: d=1→0.55, d=2→0.30, d=3→0.17, d=4→0.09, d=5→0.05. |
+| Reciprocal decay | $\nu(v) = 1/(1 + d(v))$ | Alternative — gentler; caps at $\nu \approx 0.2$ for d=4. Use for shallow maps. |
 | Constraint optimisation | Solve $\min \sum_{(a,b)} (\nu(a) - \nu(b) - \delta)^2$ subject to $0 \le \nu \le 1$ | Graphs with shortcuts that violate the depth rule. |
+
+Default changed from reciprocal to exponential ($\alpha = 0.6$) in response to benchmark testing against Wardley's own published maps (`ai/TRUST`, `retail/connected journey`, etc.). Reciprocal decay systematically compressed deep-infrastructure components to $\nu \ge 0.2$, whereas Wardley routinely places components at $\nu = 0.04 \text{ to } 0.10$. Exponential decay produces the correct depth spread at minimal cost.
 
 ### Hard rule
 

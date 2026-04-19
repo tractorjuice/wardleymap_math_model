@@ -1,0 +1,221 @@
+title Modern Retail Customer Journey
+style wardley
+
+// Anchors (three user types)
+anchor Customer [0.99, 0.55]
+anchor Producer [0.96, 0.55]
+anchor Society [0.95, 0.45]
+
+// User-facing journey steps (what the customer experiences)
+component Need Trigger [0.92, 0.50]
+component Discovery [0.88, 0.60]
+component Consideration [0.85, 0.55]
+component Purchase Decision [0.83, 0.60]
+component Checkout [0.82, 0.78]
+component Fulfilment [0.80, 0.70]
+component Post-Purchase Support [0.78, 0.65]
+
+// Channels (where the journey happens)
+component Physical Store [0.75, 0.82]
+component D2C Website [0.73, 0.78]
+component Online Marketplace [0.72, 0.80]
+component Mobile App [0.70, 0.80]
+component Social Commerce [0.68, 0.60]
+component Voice Commerce [0.62, 0.35]
+component AR / Virtual Try-On [0.60, 0.45]
+
+// Experience enablers (producer-controlled, user-visible)
+component Product Content / Catalogue [0.68, 0.70]
+component Pricing [0.66, 0.70]
+component Reviews & Ratings [0.64, 0.72]
+component Personalisation [0.62, 0.65]
+component Loyalty Programme [0.60, 0.60]
+component Convenience [0.84, 0.55]
+component Customer Experience [0.86, 0.45]
+component Brand [0.80, 0.50]
+
+// Payment stack
+component Payment Method Choice [0.58, 0.75]
+component Buy Now Pay Later [0.55, 0.70]
+component Payment Processing [0.40, 0.92]
+component Card Networks [0.32, 0.94]
+component Fraud Detection [0.45, 0.72]
+
+// Fulfilment & logistics
+component Last-Mile Delivery [0.55, 0.72]
+component Click & Collect [0.52, 0.65]
+component Returns Processing [0.50, 0.60]
+component Warehouse / Fulfilment Centres [0.44, 0.75]
+component Inventory / Stock Availability [0.40, 0.68]
+component Logistics Carriers [0.35, 0.88]
+
+// Discovery & intelligence
+component Search [0.58, 0.85]
+component Recommendation Engine [0.56, 0.65]
+component Advertising / Paid Media [0.54, 0.78]
+component Influencer / Creator Content [0.52, 0.55]
+component Customer Data Platform [0.38, 0.60]
+component Analytics [0.28, 0.80]
+
+// Producer-side activities
+component Merchandising [0.70, 0.55]
+component Assortment Planning [0.48, 0.55]
+component Supplier Relationships [0.38, 0.55]
+
+// Infrastructure (commodity)
+component Identity / Auth [0.28, 0.90]
+component Email / SMS / Push [0.26, 0.90]
+component CDN [0.22, 0.93]
+component Database [0.18, 0.90]
+component Cloud Compute [0.12, 0.92]
+
+// Society-shaped constraints
+component Trust [0.88, 0.40]
+component Sustainability Expectations [0.34, 0.35]
+component Consumer Protection Law [0.30, 0.60]
+component Data Privacy Regulation [0.26, 0.55]
+
+// Dependencies
+Customer->Need Trigger
+Customer->Discovery
+Customer->Consideration
+Customer->Purchase Decision
+Customer->Checkout
+Customer->Fulfilment
+Customer->Post-Purchase Support
+Customer->Customer Experience
+Customer->Trust
+Customer->Convenience
+
+Producer->Brand
+Producer->Customer Experience
+Producer->Merchandising
+Producer->Pricing
+Producer->Product Content / Catalogue
+
+Society->Consumer Protection Law
+Society->Data Privacy Regulation
+Society->Sustainability Expectations
+Society->Trust
+
+// Journey flow
+Need Trigger->Discovery
+Discovery->Consideration
+Consideration->Purchase Decision
+Purchase Decision->Checkout
+Checkout->Fulfilment
+Fulfilment->Post-Purchase Support
+
+// Discovery channels
+Discovery->Physical Store
+Discovery->D2C Website
+Discovery->Online Marketplace
+Discovery->Mobile App
+Discovery->Social Commerce
+Discovery->Voice Commerce
+Discovery->Advertising / Paid Media
+Discovery->Influencer / Creator Content
+Discovery->Search
+
+// Consideration support
+Consideration->Reviews & Ratings
+Consideration->Product Content / Catalogue
+Consideration->Pricing
+Consideration->AR / Virtual Try-On
+Consideration->Recommendation Engine
+Consideration->Personalisation
+
+// Purchase Decision
+Purchase Decision->Pricing
+Purchase Decision->Reviews & Ratings
+Purchase Decision->Loyalty Programme
+Purchase Decision->Inventory / Stock Availability
+
+// Checkout
+Checkout->Payment Method Choice
+Checkout->Fraud Detection
+Checkout->Identity / Auth
+Payment Method Choice->Buy Now Pay Later
+Payment Method Choice->Payment Processing
+Payment Processing->Card Networks
+Buy Now Pay Later->Payment Processing
+Fraud Detection->Analytics
+
+// Fulfilment chain
+Fulfilment->Last-Mile Delivery
+Fulfilment->Click & Collect
+Fulfilment->Warehouse / Fulfilment Centres
+Last-Mile Delivery->Logistics Carriers
+Warehouse / Fulfilment Centres->Inventory / Stock Availability
+Inventory / Stock Availability->Supplier Relationships
+
+// Post-purchase
+Post-Purchase Support->Returns Processing
+Post-Purchase Support->Email / SMS / Push
+Returns Processing->Logistics Carriers
+
+// Channels depend on infra
+Physical Store->Payment Processing
+D2C Website->Cloud Compute
+D2C Website->CDN
+Online Marketplace->Cloud Compute
+Mobile App->Cloud Compute
+Mobile App->Identity / Auth
+Social Commerce->Influencer / Creator Content
+Social Commerce->Payment Processing
+Voice Commerce->Identity / Auth
+AR / Virtual Try-On->Cloud Compute
+
+// Experience and brand
+Customer Experience->Convenience
+Customer Experience->Personalisation
+Customer Experience->Brand
+Customer Experience->Reviews & Ratings
+Brand->Product Content / Catalogue
+Convenience->Fulfilment
+Convenience->Checkout
+
+// Merchandising
+Merchandising->Assortment Planning
+Merchandising->Pricing
+Merchandising->Product Content / Catalogue
+Assortment Planning->Supplier Relationships
+
+// Personalisation depends on data
+Personalisation->Recommendation Engine
+Recommendation Engine->Customer Data Platform
+Customer Data Platform->Analytics
+Customer Data Platform->Database
+Analytics->Database
+
+// Search & discovery infra
+Search->Database
+Search->Cloud Compute
+Advertising / Paid Media->Analytics
+
+// Identity, email infra
+Identity / Auth->Database
+Email / SMS / Push->Cloud Compute
+CDN->Cloud Compute
+Database->Cloud Compute
+
+// Trust is shaped by constraints
+Trust->Consumer Protection Law
+Trust->Data Privacy Regulation
+Trust->Reviews & Ratings
+Trust->Brand
+
+// Society shapes data handling
+Personalisation->Data Privacy Regulation
+Customer Data Platform->Data Privacy Regulation
+Buy Now Pay Later->Consumer Protection Law
+Brand->Sustainability Expectations
+
+evolve AR / Virtual Try-On 0.60
+evolve Voice Commerce 0.55
+evolve Social Commerce 0.75
+evolve Buy Now Pay Later 0.82
+evolve Recommendation Engine 0.80
+
+note Differentiation zone [0.75, 0.30]
+note Utility / commodity [0.20, 0.92]
