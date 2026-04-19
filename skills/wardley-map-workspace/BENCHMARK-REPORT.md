@@ -263,7 +263,50 @@ Band metrics hide a continuous question. Across 358 matched component pairs:
 - *High coverage (55-62%)*: AI trust, healthcare, finance, cybersecurity, retail. Wardley's vocabulary here is concrete-operational.
 - *Low coverage (12-27%)*: personal-fin-inclusion, culture-gender, politics-labour, telecoms-sovereignty, transport-logistics, defence. Wardley's vocabulary here is idiosyncratic or abstract.
 
-### 4.3 Consistency of aggregate metrics across corpus growth
+### 4.3 The time-drift confound
+
+The benchmark treats Wardley's map as ground truth. But Wardley's maps are dated snapshots — 2022 to 2024 for the dated ones in this corpus. Our skill scores in 2026 with 2026 priors. Even with explicit time-pinning in the scenario prompt, subagents can only partially suppress later knowledge. This means **a non-trivial fraction of apparent "disagreement" is legitimate time drift, not skill error.**
+
+A component Wardley placed at ε=0.4 in August 2022 that has genuinely industrialised by 2026 *should* score differently on the cheat sheet now. That's the framework working as intended, not a mistake.
+
+**Evidence for forward drift (we see more industrialised than Wardley):**
+
+| Map | Date | ε-bias |
+|---|---|---:|
+| politics-labour | May 2024 | +0.23 |
+| gaming-economies | Nov 2023 | +0.20 |
+| manufacturing | Feb 2023 | +0.17 |
+| transport-logistics | — | +0.15 |
+| transport-demand | May 2022 | +0.13 |
+| cybersecurity | May 2023 | +0.12 |
+| energy-disruption | Jul 2022 | +0.11 |
+
+Seven dated maps show a consistent forward bias. Political operations, gaming monetisation, manufacturing automation tooling, and cybersecurity all industrialised faster than 2022-2023 Wardley saw — visible in the 2026 scoring.
+
+**Evidence for overshoot (Wardley saw more industrialised than we do):**
+
+| Map | Date | ε-bias |
+|---|---|---:|
+| agriculture-regen | Aug 2022 | −0.20 |
+| telecoms-space | Feb 2023 | −0.19 |
+| defence-intelligence | Mar 2023 | −0.16 |
+| personal-conversational | — | −0.13 |
+
+Four maps go the other way — Wardley placed components further right than their actual 2026 position. Agriculture-regen is the starkest: Wardley thought soil carbon MRV and regenerative supply chains were further along in August 2022 than they turned out to be. Space telecoms and defence intelligence similarly show Wardley ahead of what actually happened.
+
+**Implications:**
+
+1. **The 37% strict-band disagreement is an upper bound on skill error.** Some fraction of the 63% that disagrees with Wardley is time drift — drift that Wardley himself would produce if he re-mapped the domain in 2026. Disentangling "skill disagrees with 2022 Wardley" from "2022 Wardley disagrees with 2026 Wardley" is impossible with this corpus.
+
+2. **The near-zero aggregate ε-bias is a coincidence.** +0.009 average across 25 maps comes partly from positive forward-drift cases and negative overshoot cases cancelling. Per-map bias is substantial in both directions.
+
+3. **Coverage and stage-neighbourhood are less affected.** Time drift mostly shifts ε, not components' names or approximate location. 92% within-one-band is robust to a few stages of drift; it's the strict-band metric that time-drift most damages.
+
+4. **A useful diagnostic.** If the skill were systematically biased (bad priors, poor rubric application), we'd expect the signed ε-bias to be unimodal — all positive or all negative. The fact that it's bimodal (positive on some maps, negative on others, roughly balanced) is consistent with time drift plus idiosyncratic Wardley judgments rather than a systematic skill defect.
+
+The practical takeaway is that benchmark results should be read as *agreement-with-dated-Wardley* rather than *agreement-with-ground-truth*. A mapper scoring a domain in 2026 has, in some cases, more accurate information than the mapper scoring in 2022 — and a benchmark that treats the older map as correct will count that information update as a "miss".
+
+### 4.4 Consistency of aggregate metrics across corpus growth
 
 From n=10 to n=25:
 
