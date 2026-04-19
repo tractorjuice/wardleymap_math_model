@@ -102,7 +102,9 @@ Alternative seeds (use when the default doesn't fit):
 
 **IMPORTANT:** Evolution is NOT maturity and NOT time-based. Wardley's climatic pattern states *"you cannot measure evolution over time or adoption."*
 
-Use a 4-row cheat-sheet subset (full 19-row table in `cheat-sheet.md`):
+**4a. Concrete indicator checklists (fast path).** Read the "Stage indicators — concrete checklists" section of `references/evolution-stages.md`. For each component, check the four indicators (ubiquity / certainty / market / failure-mode) against the four stages. If all four dimensions point to the same stage, record that stage pick and use its band midpoint — skip the 4-row cheat sheet for this component.
+
+**4b. 4-row cheat sheet (fallback when checklists disagree).** When the indicator checklists pick different stages for a component, run the 4-row cheat-sheet subset (full 19-row table in `cheat-sheet.md`):
 
 | Row | Stage I (Genesis) | Stage II (Custom Built) | Stage III (Product +rental) | Stage IV (Commodity +utility) |
 |---|---|---|---|---|

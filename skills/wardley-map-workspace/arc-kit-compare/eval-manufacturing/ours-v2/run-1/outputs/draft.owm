@@ -1,0 +1,164 @@
+title Manufacturing Supply Chain (Feb 2023)
+style wardley
+
+// Two anchors — two distinct user needs
+anchor End-Customer (Cost & Reliability) [0.98, 0.80]
+anchor Supply-Chain Org (Resilience & Agility) [0.97, 0.35]
+
+// User-facing outcomes / differentiators
+component Finished Product Delivery [0.88, 0.70]
+component Order Fulfilment & Lead Time [0.85, 0.55]
+component Aftermarket & Spares [0.80, 0.60]
+component Supplier Risk & Resilience Program [0.82, 0.25]
+component Demand & S&OP Planning [0.78, 0.45]
+component Supply Chain Control Tower [0.75, 0.30]
+component Scenario Modelling & Digital Twin [0.72, 0.22]
+
+// Production
+component Final Assembly [0.68, 0.60]
+component Sub-assembly & Kitting [0.62, 0.65]
+component Contract Manufacturing (EMS/ODM) [0.58, 0.70]
+component Quality & Inspection [0.55, 0.65]
+component Plant MES / Shop-floor Control [0.52, 0.55]
+component Industrial Automation & Robotics [0.48, 0.70]
+component Factory IIoT Sensing [0.40, 0.35]
+component Predictive Maintenance [0.45, 0.35]
+
+// Sourcing
+component Strategic Sourcing & Contracts [0.65, 0.55]
+component Tier-1 Supplier Relationships [0.60, 0.40]
+component Tier-N Supplier Mapping [0.55, 0.25]
+component Dual / Multi-sourcing Strategy [0.52, 0.30]
+component PCBAs & Passives [0.55, 0.78]
+component Semiconductors (MCU/Analog/Power) [0.50, 0.55]
+component Leading-edge Logic Chips [0.48, 0.30]
+component Raw Materials (Steel, Al, Cu, Plastics) [0.45, 0.85]
+component Critical Minerals (Li, Co, Ni, REE) [0.38, 0.25]
+
+// Logistics
+component Ocean Freight [0.35, 0.80]
+component Air Freight [0.32, 0.82]
+component Road & Rail Haulage [0.30, 0.85]
+component Warehousing & 3PL [0.42, 0.75]
+component Customs Brokerage & Trade Compliance [0.38, 0.70]
+component Inventory Buffers & Safety Stock [0.48, 0.55]
+
+// Digital tooling (supply-chain-org facing)
+component ERP (SAP/Oracle) [0.40, 0.75]
+component PLM (Siemens/PTC/Dassault) [0.38, 0.65]
+component Supplier Relationship Mgmt / e-Sourcing [0.48, 0.60]
+component Supply Chain Visibility Platform [0.42, 0.40]
+component AI Demand Forecasting [0.40, 0.30]
+component EDI / API Integration [0.28, 0.75]
+
+// Compliance
+component ESG / Scope-3 Reporting [0.58, 0.30]
+component Conflict-minerals & Forced-labour Due Dil. [0.58, 0.35]
+component Export Controls (ITAR/EAR/China) [0.35, 0.55]
+component IRA / CHIPS Act Compliance [0.68, 0.20]
+
+// Utility / commodity foundations
+component Cloud Compute & Storage [0.18, 0.92]
+component Connectivity (4G/5G/Fibre) [0.15, 0.95]
+component Electricity & Energy [0.10, 0.95]
+component Shipping Containers & Ports [0.20, 0.90]
+
+// Dependencies — End-customer side (cost/reliability)
+End-Customer (Cost & Reliability)->Finished Product Delivery
+End-Customer (Cost & Reliability)->Order Fulfilment & Lead Time
+End-Customer (Cost & Reliability)->Aftermarket & Spares
+Finished Product Delivery->Final Assembly
+Finished Product Delivery->Road & Rail Haulage
+Order Fulfilment & Lead Time->Warehousing & 3PL
+Order Fulfilment & Lead Time->Demand & S&OP Planning
+Aftermarket & Spares->Warehousing & 3PL
+Aftermarket & Spares->Contract Manufacturing (EMS/ODM)
+
+// Dependencies — Supply-chain-org side (resilience/agility)
+Supply-Chain Org (Resilience & Agility)->Supplier Risk & Resilience Program
+Supply-Chain Org (Resilience & Agility)->Supply Chain Control Tower
+Supply-Chain Org (Resilience & Agility)->Scenario Modelling & Digital Twin
+Supply-Chain Org (Resilience & Agility)->Demand & S&OP Planning
+Supply-Chain Org (Resilience & Agility)->Dual / Multi-sourcing Strategy
+Supplier Risk & Resilience Program->Tier-N Supplier Mapping
+Supplier Risk & Resilience Program->Dual / Multi-sourcing Strategy
+Supplier Risk & Resilience Program->Strategic Sourcing & Contracts
+Supply Chain Control Tower->Supply Chain Visibility Platform
+Supply Chain Control Tower->AI Demand Forecasting
+Scenario Modelling & Digital Twin->AI Demand Forecasting
+Scenario Modelling & Digital Twin->Supply Chain Visibility Platform
+Demand & S&OP Planning->AI Demand Forecasting
+Demand & S&OP Planning->ERP (SAP/Oracle)
+Demand & S&OP Planning->Inventory Buffers & Safety Stock
+
+// Production chain
+Final Assembly->Sub-assembly & Kitting
+Final Assembly->Contract Manufacturing (EMS/ODM)
+Final Assembly->Quality & Inspection
+Final Assembly->Plant MES / Shop-floor Control
+Final Assembly->Industrial Automation & Robotics
+Sub-assembly & Kitting->PCBAs & Passives
+Sub-assembly & Kitting->Raw Materials (Steel, Al, Cu, Plastics)
+Contract Manufacturing (EMS/ODM)->Plant MES / Shop-floor Control
+Plant MES / Shop-floor Control->Factory IIoT Sensing
+Predictive Maintenance->Factory IIoT Sensing
+Industrial Automation & Robotics->Electricity & Energy
+Quality & Inspection->PLM (Siemens/PTC/Dassault)
+
+// Sourcing chain
+Strategic Sourcing & Contracts->Tier-1 Supplier Relationships
+Tier-1 Supplier Relationships->Tier-N Supplier Mapping
+Tier-1 Supplier Relationships->Semiconductors (MCU/Analog/Power)
+Tier-1 Supplier Relationships->PCBAs & Passives
+Tier-1 Supplier Relationships->Raw Materials (Steel, Al, Cu, Plastics)
+PCBAs & Passives->Semiconductors (MCU/Analog/Power)
+PCBAs & Passives->Leading-edge Logic Chips
+Semiconductors (MCU/Analog/Power)->Critical Minerals (Li, Co, Ni, REE)
+Leading-edge Logic Chips->Critical Minerals (Li, Co, Ni, REE)
+Raw Materials (Steel, Al, Cu, Plastics)->Critical Minerals (Li, Co, Ni, REE)
+
+// Logistics chain
+Warehousing & 3PL->Ocean Freight
+Warehousing & 3PL->Air Freight
+Warehousing & 3PL->Road & Rail Haulage
+Warehousing & 3PL->Customs Brokerage & Trade Compliance
+Ocean Freight->Shipping Containers & Ports
+Air Freight->Shipping Containers & Ports
+Customs Brokerage & Trade Compliance->Export Controls (ITAR/EAR/China)
+Inventory Buffers & Safety Stock->Warehousing & 3PL
+
+// Digital tooling chain
+ERP (SAP/Oracle)->Cloud Compute & Storage
+PLM (Siemens/PTC/Dassault)->Cloud Compute & Storage
+Supplier Relationship Mgmt / e-Sourcing->ERP (SAP/Oracle)
+Supply Chain Visibility Platform->EDI / API Integration
+Supply Chain Visibility Platform->Cloud Compute & Storage
+AI Demand Forecasting->Cloud Compute & Storage
+EDI / API Integration->Connectivity (4G/5G/Fibre)
+Factory IIoT Sensing->Connectivity (4G/5G/Fibre)
+Plant MES / Shop-floor Control->ERP (SAP/Oracle)
+Strategic Sourcing & Contracts->Supplier Relationship Mgmt / e-Sourcing
+
+// Compliance chain
+ESG / Scope-3 Reporting->Tier-N Supplier Mapping
+ESG / Scope-3 Reporting->Supply Chain Visibility Platform
+Conflict-minerals & Forced-labour Due Dil.->Tier-N Supplier Mapping
+IRA / CHIPS Act Compliance->Strategic Sourcing & Contracts
+IRA / CHIPS Act Compliance->Critical Minerals (Li, Co, Ni, REE)
+
+// Evolve targets
+evolve AI Demand Forecasting 0.55
+evolve Supply Chain Visibility Platform 0.60
+evolve ESG / Scope-3 Reporting 0.60
+evolve Leading-edge Logic Chips 0.55
+evolve Tier-N Supplier Mapping 0.50
+
+// Inertia flags
+component Legacy ERP Customisations [0.45, 0.55] inertia
+
+Legacy ERP Customisations->ERP (SAP/Oracle)
+Demand & S&OP Planning->Legacy ERP Customisations
+
+note BUILD moat zone [0.75, 0.20]
+note RENT / utility [0.15, 0.92]
+note Chip & mineral risk [0.48, 0.22]

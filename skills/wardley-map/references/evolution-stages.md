@@ -80,6 +80,55 @@ Fully standardised. Feature differentiation barely matters; customers care about
 
 ---
 
+## Stage indicators — concrete checklists
+
+Before running the 19-row cheat sheet, use these four-dimension checklists to get a sharp single-stage pick. If all four dimensions land on the same stage, you're done — record the pick and skip the cheat sheet for this component. If they diverge, run the 19-row aggregate to compute ε with variance.
+
+Adapted from arc-kit's `evolution-stages.md`.
+
+### Genesis indicators
+
+- **Ubiquity:** Used by fewer than a handful of organisations; no established market; found only in research labs or cutting-edge pilots; most practitioners have never heard of it.
+- **Certainty:** No agreed-upon approach; each implementation looks completely different; high variance in results; practitioners disagree on fundamentals.
+- **Market:** No commercial offerings; no analysts covering it; no conferences dedicated to it; possibly a single paper or blog post.
+- **Failure mode:** Betting on the wrong approach — you build the wrong thing, the concept doesn't pan out, or a competitor's approach proves fundamentally superior.
+
+### Custom-Built indicators
+
+- **Ubiquity:** A few dozen organisations have built it; mostly in-house implementations; early adopters only; growing word-of-mouth in specialist communities.
+- **Certainty:** Patterns are beginning to emerge; blog posts and conference talks appear; approaches vary but converge around a few patterns.
+- **Market:** Small number of consultancies or niche vendors; no dominant standard; user groups forming; early analyst coverage.
+- **Failure mode:** Building it wrong — your custom implementation has the wrong architecture, accrues technical debt, or gets overtaken by a productised competitor before you've recovered your investment.
+
+### Product (+rental) indicators
+
+- **Ubiquity:** Most large organisations are aware of it; multiple commercial products compete; analyst firms rank vendors; industry press covers it regularly.
+- **Certainty:** Training courses, professional certifications, and established methodologies exist; outcomes are predictable; clear best practices documented.
+- **Market:** Multiple competing vendors with clear feature differentiation; pricing is feature-based; annual comparison reports published; RFP processes are standardised.
+- **Failure mode:** Differentiation failure — failing to stand out from competing products, losing on features, price, or brand while rivals commoditise faster.
+
+### Commodity (+utility) indicators
+
+- **Ubiquity:** Ubiquitous — every organisation uses it; invisible infrastructure; not adopting it would be unusual; pay-per-use or subscription models dominate.
+- **Certainty:** Fully standardised; ISO or formal standards exist; deviating from standard approaches is unusual; operations are predictable and auditable.
+- **Market:** Utility pricing; multiple interchangeable providers; switching costs low; procurement is routine; the component is rarely discussed in strategic terms.
+- **Failure mode:** Operational inefficiency — paying too much, running it in-house when a utility exists, or accumulating operational overhead that commodity providers handle more cheaply.
+
+### Assessment questions (fast diagnostic)
+
+| Question | If Yes → stage |
+|---|---|
+| Is this available as a utility API or cloud service? | Commodity |
+| Can anyone buy this off-the-shelf from multiple vendors? | Product or Commodity |
+| Are there multiple competing approaches with no clear winner? | Custom-Built |
+| Does building this require original research or experimentation? | Genesis |
+| Are there training courses and certifications for this? | Product or Commodity |
+| Would you be the first (or one of very few) to attempt this? | Genesis |
+| Does everyone in the industry just use the same provider? | Commodity |
+| Is this a competitive differentiator for your organisation? | Genesis or Custom-Built |
+
+---
+
 ## The 19-row cheat sheet
 
 Simon Wardley's full characteristic table. For each row, pick the stage that best describes the component in that dimension.

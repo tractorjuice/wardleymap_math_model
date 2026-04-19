@@ -1,0 +1,189 @@
+title Telecoms Sovereignty (October 2022)
+style wardley
+
+// Anchors — three user types
+anchor Nation-State (Security & Control) [0.99, 0.40]
+anchor Citizen (Connectivity) [0.97, 0.70]
+anchor Business (Enterprise Connectivity) [0.96, 0.60]
+
+// State-facing sovereignty controls
+component Supplier Designation Regime (TSA 2021) [0.88, 0.20]
+component Telecoms Security Code of Practice [0.82, 0.30]
+component National Security Review (Ofcom/DCMS) [0.80, 0.22]
+component Lawful Intercept Capability [0.78, 0.55]
+component Critical-Infrastructure Resilience Policy [0.75, 0.25]
+
+// Citizen / business user-facing services
+component Mobile Voice & Data Service [0.88, 0.80]
+component Fixed Broadband Service [0.86, 0.82]
+component Enterprise Private Connectivity [0.80, 0.60]
+component Private 5G Network (Enterprise) [0.70, 0.35]
+component Emergency / Resilient Comms [0.90, 0.50]
+
+// Access layer
+component 5G Radio Access Network (RAN) [0.65, 0.55]
+component OpenRAN Deployment [0.62, 0.30]
+component 4G RAN [0.60, 0.85]
+component Fibre Access (FTTP/FTTH) [0.58, 0.70]
+component DOCSIS / Copper Access [0.55, 0.88]
+
+// Core / control plane
+component 5G Standalone Core [0.50, 0.45]
+component 4G/EPC Core [0.48, 0.80]
+component Network Management & Orchestration [0.45, 0.55]
+component Subscriber Identity (SIM/eSIM) [0.52, 0.78]
+
+// Transport and interconnect
+component National Backbone Transport [0.42, 0.75]
+component Internet Exchange Points (IXPs) [0.38, 0.82]
+component Subsea Cable Systems [0.35, 0.70]
+component Satellite Backhaul (GEO) [0.45, 0.80]
+component LEO Satellite Broadband (Starlink) [0.55, 0.30]
+component BGP Routing / Internet Peering [0.30, 0.88]
+component DNS Infrastructure [0.25, 0.92]
+
+// Spectrum and physical assets
+component Spectrum Allocation (Ofcom) [0.48, 0.72]
+component Mast / Tower Sites [0.40, 0.85]
+component Data Centres & Landing Stations [0.30, 0.78]
+component Grid Electricity / Backup Power [0.15, 0.95]
+
+// Equipment supply chain
+component RAN Vendor Equipment (Ericsson/Nokia/Samsung) [0.32, 0.65]
+component Restricted Vendor Equipment (Huawei legacy) [0.30, 0.70]
+component Optical Transport Equipment [0.22, 0.80]
+component Network Silicon / ASICs [0.15, 0.55]
+component Advanced Semiconductor Fabrication [0.10, 0.40]
+component Semiconductor Industrial Policy (CHIPS / EU Chips) [0.08, 0.22]
+
+// Standards and software
+component 3GPP Standards [0.28, 0.82]
+component O-RAN Alliance Specifications [0.35, 0.35]
+component Network Function Virtualisation (NFV/CNF) [0.30, 0.65]
+
+// Security / trust
+component Threat Intelligence & NCSC Guidance [0.55, 0.40]
+component Post-Quantum / Encryption Stack [0.40, 0.30]
+component Cable & Infrastructure Monitoring [0.32, 0.35]
+
+// Knowledge / workforce
+component Telecoms Engineering Workforce [0.22, 0.50]
+component International Alliances (Five Eyes / NATO) [0.50, 0.45]
+
+// Dependencies — citizen / business / state to user-facing services
+Nation-State (Security & Control)->Supplier Designation Regime (TSA 2021)
+Nation-State (Security & Control)->Telecoms Security Code of Practice
+Nation-State (Security & Control)->National Security Review (Ofcom/DCMS)
+Nation-State (Security & Control)->Lawful Intercept Capability
+Nation-State (Security & Control)->Critical-Infrastructure Resilience Policy
+Nation-State (Security & Control)->Emergency / Resilient Comms
+Nation-State (Security & Control)->International Alliances (Five Eyes / NATO)
+Citizen (Connectivity)->Mobile Voice & Data Service
+Citizen (Connectivity)->Fixed Broadband Service
+Citizen (Connectivity)->Emergency / Resilient Comms
+Business (Enterprise Connectivity)->Enterprise Private Connectivity
+Business (Enterprise Connectivity)->Mobile Voice & Data Service
+Business (Enterprise Connectivity)->Private 5G Network (Enterprise)
+Business (Enterprise Connectivity)->Fixed Broadband Service
+
+// Regime → targets
+Supplier Designation Regime (TSA 2021)->RAN Vendor Equipment (Ericsson/Nokia/Samsung)
+Supplier Designation Regime (TSA 2021)->Restricted Vendor Equipment (Huawei legacy)
+Telecoms Security Code of Practice->5G Radio Access Network (RAN)
+Telecoms Security Code of Practice->5G Standalone Core
+National Security Review (Ofcom/DCMS)->Subsea Cable Systems
+National Security Review (Ofcom/DCMS)->Data Centres & Landing Stations
+Critical-Infrastructure Resilience Policy->Subsea Cable Systems
+Critical-Infrastructure Resilience Policy->Grid Electricity / Backup Power
+Critical-Infrastructure Resilience Policy->Cable & Infrastructure Monitoring
+Lawful Intercept Capability->5G Standalone Core
+Lawful Intercept Capability->4G/EPC Core
+
+// Services → access
+Mobile Voice & Data Service->5G Radio Access Network (RAN)
+Mobile Voice & Data Service->4G RAN
+Mobile Voice & Data Service->5G Standalone Core
+Mobile Voice & Data Service->4G/EPC Core
+Mobile Voice & Data Service->Subscriber Identity (SIM/eSIM)
+Fixed Broadband Service->Fibre Access (FTTP/FTTH)
+Fixed Broadband Service->DOCSIS / Copper Access
+Enterprise Private Connectivity->National Backbone Transport
+Enterprise Private Connectivity->Fibre Access (FTTP/FTTH)
+Private 5G Network (Enterprise)->OpenRAN Deployment
+Private 5G Network (Enterprise)->5G Standalone Core
+Private 5G Network (Enterprise)->Spectrum Allocation (Ofcom)
+Emergency / Resilient Comms->LEO Satellite Broadband (Starlink)
+Emergency / Resilient Comms->Satellite Backhaul (GEO)
+Emergency / Resilient Comms->Mobile Voice & Data Service
+
+// Access → core / transport
+5G Radio Access Network (RAN)->5G Standalone Core
+5G Radio Access Network (RAN)->Mast / Tower Sites
+5G Radio Access Network (RAN)->Spectrum Allocation (Ofcom)
+5G Radio Access Network (RAN)->RAN Vendor Equipment (Ericsson/Nokia/Samsung)
+OpenRAN Deployment->O-RAN Alliance Specifications
+OpenRAN Deployment->Network Silicon / ASICs
+OpenRAN Deployment->Network Function Virtualisation (NFV/CNF)
+OpenRAN Deployment->Mast / Tower Sites
+4G RAN->Mast / Tower Sites
+4G RAN->Spectrum Allocation (Ofcom)
+4G RAN->RAN Vendor Equipment (Ericsson/Nokia/Samsung)
+4G RAN->Restricted Vendor Equipment (Huawei legacy)
+Fibre Access (FTTP/FTTH)->National Backbone Transport
+Fibre Access (FTTP/FTTH)->Optical Transport Equipment
+DOCSIS / Copper Access->National Backbone Transport
+
+// Core / orchestration
+5G Standalone Core->Network Function Virtualisation (NFV/CNF)
+5G Standalone Core->Network Management & Orchestration
+5G Standalone Core->3GPP Standards
+4G/EPC Core->3GPP Standards
+4G/EPC Core->Network Management & Orchestration
+Network Management & Orchestration->Data Centres & Landing Stations
+
+// Transport chain
+National Backbone Transport->Optical Transport Equipment
+National Backbone Transport->Data Centres & Landing Stations
+National Backbone Transport->BGP Routing / Internet Peering
+Internet Exchange Points (IXPs)->BGP Routing / Internet Peering
+Internet Exchange Points (IXPs)->Data Centres & Landing Stations
+Subsea Cable Systems->Data Centres & Landing Stations
+Subsea Cable Systems->Cable & Infrastructure Monitoring
+Satellite Backhaul (GEO)->National Backbone Transport
+LEO Satellite Broadband (Starlink)->Network Silicon / ASICs
+LEO Satellite Broadband (Starlink)->Spectrum Allocation (Ofcom)
+BGP Routing / Internet Peering->DNS Infrastructure
+
+// Equipment → silicon
+RAN Vendor Equipment (Ericsson/Nokia/Samsung)->Network Silicon / ASICs
+RAN Vendor Equipment (Ericsson/Nokia/Samsung)->3GPP Standards
+Restricted Vendor Equipment (Huawei legacy)->Network Silicon / ASICs
+Optical Transport Equipment->Network Silicon / ASICs
+Network Silicon / ASICs->Advanced Semiconductor Fabrication
+Advanced Semiconductor Fabrication->Semiconductor Industrial Policy (CHIPS / EU Chips)
+
+// Physical
+Mast / Tower Sites->Grid Electricity / Backup Power
+Data Centres & Landing Stations->Grid Electricity / Backup Power
+
+// Security / knowledge
+Threat Intelligence & NCSC Guidance->International Alliances (Five Eyes / NATO)
+Lawful Intercept Capability->Threat Intelligence & NCSC Guidance
+Post-Quantum / Encryption Stack->3GPP Standards
+Cable & Infrastructure Monitoring->Data Centres & Landing Stations
+Subscriber Identity (SIM/eSIM)->3GPP Standards
+
+// Workforce underpins access/core build
+5G Radio Access Network (RAN)->Telecoms Engineering Workforce
+5G Standalone Core->Telecoms Engineering Workforce
+OpenRAN Deployment->Telecoms Engineering Workforce
+
+// Evolve arrows — October 2022 forward-looking
+evolve OpenRAN Deployment 0.55
+evolve 5G Standalone Core 0.65
+evolve LEO Satellite Broadband (Starlink) 0.55
+evolve Semiconductor Industrial Policy (CHIPS / EU Chips) 0.45
+evolve Post-Quantum / Encryption Stack 0.50
+
+note Sovereignty moat (build / regulate) [0.78, 0.22]
+note Utility commodity layer [0.18, 0.90]

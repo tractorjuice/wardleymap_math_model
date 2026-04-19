@@ -1,0 +1,208 @@
+title UK Labour Party — Values and Positioning on the Eve of the July 2024 General Election
+style wardley
+
+// Anchors — two user types: the electorate Labour must win, and the members who sustain the party
+anchor Target Voters [0.99, 0.70]
+anchor Party Members [0.95, 0.55]
+
+// =================================================================
+// User-facing offer: what voters and members actually see
+// =================================================================
+
+// Headline offer (manifesto propositions voters encounter directly)
+component Change Slogan [0.92, 0.80]
+component Five Missions [0.88, 0.55]
+component Economic Stability Pledge [0.87, 0.70]
+component Leadership Brand (Starmer) [0.90, 0.45]
+component Party Unity Narrative [0.82, 0.50]
+
+// =================================================================
+// Voter constituencies — the coalition Labour must assemble
+// (placed high — these are the lens through which voters evaluate the offer)
+// =================================================================
+component Red Wall Switchers [0.94, 0.55]
+component Middle-England Switchers [0.93, 0.60]
+component Urban Progressive Base [0.91, 0.85]
+component Public-Sector Workers [0.89, 0.75]
+component Young / Renter Voters [0.86, 0.50]
+component Muslim / Gaza-Concerned Voters [0.84, 0.25]
+
+// =================================================================
+// Headline policy pledges — voter-salient, near-top of chain
+// =================================================================
+component NHS Funding Commitment [0.80, 0.80]
+component Triple Lock Pensions [0.79, 0.90]
+component Immigration Control Posture [0.81, 0.78]
+component Housing Target (1.5m homes) [0.76, 0.45]
+
+// =================================================================
+// Core values layer — Labour's stated moral identity
+// =================================================================
+component Value: Fairness [0.75, 0.88]
+component Value: Opportunity [0.74, 0.85]
+component Value: Community [0.73, 0.80]
+component Value: Responsibility [0.72, 0.70]
+component Value: Equality [0.71, 0.55]
+
+// =================================================================
+// Mid-chain policy levers — the instruments of differentiation or consensus
+// =================================================================
+
+// Shared-consensus terrain with Conservatives (higher ν — headline agenda lines)
+component Education Standards Agenda [0.69, 0.72]
+component Climate / Net Zero Framework [0.70, 0.75]
+component Defence / NATO Commitment [0.67, 0.88]
+component Planning Reform [0.58, 0.40]
+
+// Flagship differentiators (Labour-distinctive mechanisms — below the agenda lines they serve)
+component GB Energy (Public Co) [0.61, 0.30]
+component New Deal for Working People [0.59, 0.35]
+component VAT on Private Schools [0.57, 0.55]
+component Non-Dom Reform [0.55, 0.60]
+
+// =================================================================
+// Media relations (must be above the policies they shape)
+// =================================================================
+component Message Discipline [0.70, 0.60]
+component Broadcast Media Access (BBC/ITV) [0.56, 0.82]
+component Right-Press Neutralisation (Sun/Mail) [0.83, 0.50]
+component Broadsheet Support (Guardian/FT) [0.54, 0.78]
+component Social Media Operation [0.52, 0.70]
+
+// =================================================================
+// Party machinery
+// =================================================================
+component Campaign War Room (LOTO) [0.72, 0.65]
+component Shadow Cabinet [0.50, 0.55]
+component Candidate Selection Control [0.48, 0.45]
+component Constituency Labour Parties [0.46, 0.60]
+component Party Membership Base [0.44, 0.75]
+component Trade Union Link [0.40, 0.40]
+component Donor / Funding Network [0.38, 0.55]
+component Polling & MRP [0.36, 0.80]
+component Ground-Game Doorstep Ops [0.34, 0.82]
+
+// =================================================================
+// Deep foundations — orthodoxies, institutions, knowledge
+// =================================================================
+component Fiscal Rules Commitment [0.30, 0.78]
+component Fiscal Orthodoxy (No Tax Rises) [0.28, 0.85]
+component Think-Tank Policy Pipeline [0.26, 0.60]
+component Labour Party Rulebook [0.22, 0.85]
+component Civil Service Readiness [0.20, 0.80]
+component Electoral System (FPTP) [0.18, 0.95]
+component Public Opinion Data Commons [0.16, 0.92]
+component Macroeconomic Orthodoxy [0.14, 0.90]
+
+// =================================================================
+// Dependencies
+// =================================================================
+
+// Voters depend on the offer
+Target Voters->Change Slogan
+Target Voters->Five Missions
+Target Voters->Economic Stability Pledge
+Target Voters->Leadership Brand (Starmer)
+Target Voters->NHS Funding Commitment
+Target Voters->Housing Target (1.5m homes)
+Target Voters->Immigration Control Posture
+Target Voters->Triple Lock Pensions
+
+// Members depend on values, leadership, and machinery
+Party Members->Leadership Brand (Starmer)
+Party Members->Party Unity Narrative
+Party Members->Value: Equality
+Party Members->Value: Fairness
+Party Members->Party Membership Base
+Party Members->Constituency Labour Parties
+
+// Voter segments → policies and values they care about
+Red Wall Switchers->NHS Funding Commitment
+Red Wall Switchers->Immigration Control Posture
+Red Wall Switchers->Housing Target (1.5m homes)
+Red Wall Switchers->New Deal for Working People
+Middle-England Switchers->Economic Stability Pledge
+Middle-England Switchers->NHS Funding Commitment
+Middle-England Switchers->Education Standards Agenda
+Urban Progressive Base->Value: Equality
+Urban Progressive Base->Climate / Net Zero Framework
+Urban Progressive Base->VAT on Private Schools
+Public-Sector Workers->NHS Funding Commitment
+Public-Sector Workers->Education Standards Agenda
+Public-Sector Workers->New Deal for Working People
+Young / Renter Voters->Housing Target (1.5m homes)
+Young / Renter Voters->Climate / Net Zero Framework
+Young / Renter Voters->GB Energy (Public Co)
+Muslim / Gaza-Concerned Voters->Value: Fairness
+
+// Offer → values and policies
+Change Slogan->Five Missions
+Five Missions->NHS Funding Commitment
+Five Missions->GB Energy (Public Co)
+Five Missions->Housing Target (1.5m homes)
+Five Missions->Education Standards Agenda
+Five Missions->Economic Stability Pledge
+Economic Stability Pledge->Fiscal Rules Commitment
+Economic Stability Pledge->Macroeconomic Orthodoxy
+Leadership Brand (Starmer)->Message Discipline
+Leadership Brand (Starmer)->Shadow Cabinet
+Party Unity Narrative->Candidate Selection Control
+
+// Headline policies → values and foundations
+NHS Funding Commitment->Fiscal Rules Commitment
+NHS Funding Commitment->Civil Service Readiness
+NHS Funding Commitment->Value: Community
+Triple Lock Pensions->Fiscal Orthodoxy (No Tax Rises)
+Immigration Control Posture->Value: Responsibility
+Housing Target (1.5m homes)->Planning Reform
+Housing Target (1.5m homes)->Value: Community
+
+// Values ordering (higher-ν values feed lower-ν values)
+Value: Fairness->Value: Responsibility
+Value: Opportunity->Education Standards Agenda
+Value: Equality->VAT on Private Schools
+
+// Mid-chain policies → foundations
+Planning Reform->Civil Service Readiness
+Climate / Net Zero Framework->GB Energy (Public Co)
+GB Energy (Public Co)->Fiscal Rules Commitment
+New Deal for Working People->Trade Union Link
+Non-Dom Reform->Fiscal Rules Commitment
+VAT on Private Schools->Fiscal Rules Commitment
+Defence / NATO Commitment->Macroeconomic Orthodoxy
+Education Standards Agenda->VAT on Private Schools
+Fiscal Rules Commitment->Fiscal Orthodoxy (No Tax Rises)
+Fiscal Orthodoxy (No Tax Rises)->Macroeconomic Orthodoxy
+
+// Media — Message Discipline is high (directly shapes voter perception); outlets below
+Message Discipline->Broadcast Media Access (BBC/ITV)
+Message Discipline->Broadsheet Support (Guardian/FT)
+Message Discipline->Social Media Operation
+Right-Press Neutralisation (Sun/Mail)->Immigration Control Posture
+Right-Press Neutralisation (Sun/Mail)->Fiscal Rules Commitment
+Broadcast Media Access (BBC/ITV)->Polling & MRP
+
+// Party machinery
+Campaign War Room (LOTO)->Message Discipline
+Campaign War Room (LOTO)->Polling & MRP
+Campaign War Room (LOTO)->Ground-Game Doorstep Ops
+Shadow Cabinet->Think-Tank Policy Pipeline
+Candidate Selection Control->Labour Party Rulebook
+Constituency Labour Parties->Party Membership Base
+Constituency Labour Parties->Ground-Game Doorstep Ops
+Party Membership Base->Labour Party Rulebook
+Trade Union Link->Donor / Funding Network
+Ground-Game Doorstep Ops->Public Opinion Data Commons
+Polling & MRP->Public Opinion Data Commons
+Campaign War Room (LOTO)->Electoral System (FPTP)
+Candidate Selection Control->Electoral System (FPTP)
+
+// Evolution trajectories — where Labour intends to push
+evolve GB Energy (Public Co) 0.55
+evolve New Deal for Working People 0.60
+evolve Housing Target (1.5m homes) 0.65
+evolve Social Media Operation 0.82
+
+note Differentiation zone — flagship policies [0.65, 0.30]
+note Shared-consensus terrain [0.72, 0.82]
+note Commodity machinery — ops, data, platforms [0.28, 0.88]

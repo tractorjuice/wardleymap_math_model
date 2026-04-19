@@ -1,0 +1,165 @@
+title Enterprise Cyber Risk Management (May 2023)
+style wardley
+
+// Two anchors for two user types
+anchor CISO / Board [0.99, 0.55]
+anchor Employee / Business User [0.97, 0.70]
+
+// User-facing outputs / experiences
+component Board Risk Report [0.90, 0.40]
+component Risk Appetite Statement [0.88, 0.35]
+component Regulatory Attestation [0.86, 0.55]
+component Secure Access to Work Apps [0.90, 0.78]
+component Security Awareness Training [0.84, 0.70]
+component Phishing Reporting Button [0.82, 0.75]
+
+// Mid-chain programmes
+component Risk Quantification (FAIR / cyber) [0.72, 0.35]
+component Third-Party / Supply-Chain Risk [0.68, 0.40]
+component Compliance Programme [0.70, 0.60]
+component Control Framework (NIST CSF / ISO 27001) [0.66, 0.75]
+component Cyber Insurance [0.68, 0.60]
+
+// Operational capabilities
+component Security Operations Centre (SOC) [0.60, 0.60]
+component Incident Response (IR) [0.62, 0.55]
+component Threat Intelligence [0.55, 0.55]
+component Vulnerability Management [0.56, 0.70]
+component Red Team / Pen Test [0.56, 0.45]
+component Threat Hunting [0.48, 0.35]
+component Detection Engineering [0.46, 0.30]
+component Purple Team Exercises [0.56, 0.30]
+
+// Identity & access
+component Identity & Access Management (IAM) [0.65, 0.75]
+component Single Sign-On (SSO) [0.55, 0.85]
+component Multi-Factor Authentication (MFA) [0.58, 0.82]
+component Privileged Access Management (PAM) [0.65, 0.65]
+component Identity Governance (IGA) [0.65, 0.55]
+
+// Controls and tooling
+component Endpoint Detection & Response (EDR) [0.42, 0.75]
+component SIEM / Log Aggregation [0.34, 0.80]
+component SOAR / Automation [0.38, 0.55]
+component Email Security Gateway [0.40, 0.85]
+component Cloud Security Posture Mgmt (CSPM) [0.36, 0.60]
+component Data Loss Prevention (DLP) [0.36, 0.65]
+component Secrets Management [0.30, 0.70]
+component Network Segmentation / Zero Trust [0.65, 0.45]
+component Backup & Recovery [0.28, 0.85]
+
+// Knowledge / data
+component Asset Inventory [0.38, 0.55]
+component CVE / CVSS Feeds [0.30, 0.90]
+component MITRE ATT&CK Knowledge [0.26, 0.80]
+component Threat Intel Feeds [0.28, 0.75]
+
+// Regulation (external)
+component Regulators (SEC, NIS2, DORA, GDPR) [0.22, 0.55]
+
+// Deep infrastructure / utilities
+component Cloud Platform (AWS / Azure / GCP) [0.18, 0.92]
+component Directory (AD / Entra ID) [0.22, 0.88]
+component PKI / Certificates [0.16, 0.88]
+component DNS [0.10, 0.95]
+component Network Transport [0.08, 0.95]
+component Patch Distribution [0.20, 0.88]
+
+// Dependencies — CISO / Board side
+CISO / Board->Board Risk Report
+CISO / Board->Risk Appetite Statement
+CISO / Board->Regulatory Attestation
+CISO / Board->Cyber Insurance
+Board Risk Report->Risk Quantification (FAIR / cyber)
+Board Risk Report->Compliance Programme
+Risk Appetite Statement->Risk Quantification (FAIR / cyber)
+Regulatory Attestation->Compliance Programme
+Compliance Programme->Control Framework (NIST CSF / ISO 27001)
+Compliance Programme->Regulators (SEC, NIS2, DORA, GDPR)
+Risk Quantification (FAIR / cyber)->Asset Inventory
+Risk Quantification (FAIR / cyber)->Threat Intelligence
+Risk Quantification (FAIR / cyber)->Third-Party / Supply-Chain Risk
+Cyber Insurance->Control Framework (NIST CSF / ISO 27001)
+
+// Dependencies — Employee / Business User side
+Employee / Business User->Secure Access to Work Apps
+Employee / Business User->Security Awareness Training
+Employee / Business User->Phishing Reporting Button
+Secure Access to Work Apps->Identity & Access Management (IAM)
+Secure Access to Work Apps->Single Sign-On (SSO)
+Secure Access to Work Apps->Multi-Factor Authentication (MFA)
+Phishing Reporting Button->Security Operations Centre (SOC)
+Phishing Reporting Button->Email Security Gateway
+
+// SOC / IR core
+Security Operations Centre (SOC)->SIEM / Log Aggregation
+Security Operations Centre (SOC)->SOAR / Automation
+Security Operations Centre (SOC)->Detection Engineering
+Security Operations Centre (SOC)->Threat Hunting
+Security Operations Centre (SOC)->Threat Intelligence
+Incident Response (IR)->Security Operations Centre (SOC)
+Incident Response (IR)->Backup & Recovery
+Incident Response (IR)->Threat Intelligence
+Detection Engineering->MITRE ATT&CK Knowledge
+Detection Engineering->SIEM / Log Aggregation
+Threat Hunting->MITRE ATT&CK Knowledge
+Threat Hunting->SIEM / Log Aggregation
+Threat Intelligence->Threat Intel Feeds
+Purple Team Exercises->Detection Engineering
+Purple Team Exercises->Red Team / Pen Test
+
+// Vulnerability management
+Vulnerability Management->CVE / CVSS Feeds
+Vulnerability Management->Asset Inventory
+Vulnerability Management->Patch Distribution
+Red Team / Pen Test->Vulnerability Management
+
+// Identity
+Identity & Access Management (IAM)->Directory (AD / Entra ID)
+Single Sign-On (SSO)->Directory (AD / Entra ID)
+Multi-Factor Authentication (MFA)->Directory (AD / Entra ID)
+Privileged Access Management (PAM)->Identity & Access Management (IAM)
+Identity Governance (IGA)->Identity & Access Management (IAM)
+
+// Controls -> infra
+Endpoint Detection & Response (EDR)->SIEM / Log Aggregation
+Email Security Gateway->SIEM / Log Aggregation
+Cloud Security Posture Mgmt (CSPM)->Cloud Platform (AWS / Azure / GCP)
+Cloud Security Posture Mgmt (CSPM)->SIEM / Log Aggregation
+Data Loss Prevention (DLP)->SIEM / Log Aggregation
+Secrets Management->PKI / Certificates
+Network Segmentation / Zero Trust->Identity & Access Management (IAM)
+Network Segmentation / Zero Trust->Network Transport
+Backup & Recovery->Cloud Platform (AWS / Azure / GCP)
+SIEM / Log Aggregation->Cloud Platform (AWS / Azure / GCP)
+SOAR / Automation->SIEM / Log Aggregation
+
+// Third-party
+Third-Party / Supply-Chain Risk->Asset Inventory
+Third-Party / Supply-Chain Risk->Threat Intel Feeds
+
+// Deep infra
+Directory (AD / Entra ID)->Cloud Platform (AWS / Azure / GCP)
+PKI / Certificates->DNS
+Cloud Platform (AWS / Azure / GCP)->Network Transport
+Patch Distribution->Network Transport
+
+// Controls framework feeds program
+Control Framework (NIST CSF / ISO 27001)->Asset Inventory
+Control Framework (NIST CSF / ISO 27001)->Identity & Access Management (IAM)
+Control Framework (NIST CSF / ISO 27001)->Vulnerability Management
+Control Framework (NIST CSF / ISO 27001)->Incident Response (IR)
+
+// Awareness training feed
+Security Awareness Training->MITRE ATT&CK Knowledge
+
+// Evolve arrows (scenario, not forecast)
+evolve Risk Quantification (FAIR / cyber) 0.55
+evolve SOAR / Automation 0.75
+evolve Network Segmentation / Zero Trust 0.65
+evolve Detection Engineering 0.55
+evolve Threat Hunting 0.55
+
+// Notes
+note Board-visible differentiation [0.80, 0.30]
+note Utility / rent-don't-build [0.15, 0.92]
