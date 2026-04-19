@@ -2,8 +2,9 @@
 
 **Date:** 2026-04-18
 **Skill version:** exponential-seed default (α=0.6), validator script, density guidance, deep placement, stage-first prose
-**Test corpus:** **25 maps** held out from [swardley/WARDLEY-MAP-REPOSITORY](https://github.com/swardley/WARDLEY-MAP-REPOSITORY) (Simon Wardley's own published maps), spanning 18 distinct domains
+**Test corpus:** 25 maps held out from [swardley/WARDLEY-MAP-REPOSITORY](https://github.com/swardley/WARDLEY-MAP-REPOSITORY) (Simon Wardley's own published maps), spanning 18 distinct domains
 **Test mode:** blind — subagents could not access the reference `.owm` files
+**Companion:** `BENCHMARK-METHODOLOGY.md` describes the test harness in detail
 
 ---
 
@@ -11,27 +12,25 @@
 
 Across 25 blind benchmarks, 358 matched component pairs:
 
-- **61% of matched components land within strategic tolerance of Wardley's placement** (|Δε| ≤ 0.20 — i.e., close enough that the strategic call doesn't change)
-- **28% are near-identical** (|Δε| ≤ 0.10 — within the cheat-sheet scoring method's inherent noise floor)
-- **92% are in Wardley's band or an adjacent one** (soft stage-neighbourhood agreement)
+- **61% of matched components land within strategic tolerance** of Wardley's placement (`|Δε| ≤ 0.20` — close enough that the build / buy / utility call doesn't change)
+- **28% are near-identical** (`|Δε| ≤ 0.10` — within the cheat-sheet method's inherent scoring noise)
+- **92% are in Wardley's band or an adjacent one** (stage-neighbourhood agreement)
 - **37% are in exactly the same stage band** (strict band match)
-- **25% are genuine disagreements** (|Δε| > 0.25)
+- **25% are genuine disagreements** (`|Δε| > 0.25`), of which a significant fraction are time drift (see §4.3) not skill error
 - **Coverage: 37%** — fraction of Wardley's components matched by fuzzy name
 - **ε-bias: +0.009** (effectively zero, very consistent across 25 domains)
 - **ν-bias: +0.079** (down from +0.22 before the exponential seed)
 - **Structural validity: 25/25** maps passed the validator
 
-**The right interpretation:** the skill places components in roughly the right spot on the evolution axis most of the time. 60% of placements are close enough that the strategic recommendation ("build" / "buy" / "utility") doesn't change compared to Wardley's map. Fine-grained coordinate agreement is much weaker (only 15% within 0.05) — but the cheat-sheet method's quantisation noise makes fine-grained agreement not a useful goal.
+**The right interpretation.** The skill is a *coarse-map generator*, not a *precision-map generator*. For strategic framing — "is this a differentiator or a commodity? where to build vs buy?" — the skill reaches the same answer as Wardley about 60% of the time. For exact coordinate agreement (fine-grained ε) it's much weaker, but the cheat-sheet method's quantisation noise makes fine-grained agreement an unrealistic target anyway.
 
 ---
 
 ## 1. The skill under test
 
-A portable Claude Code skill package (`skills/wardley-map/`) that generates a Wardley Map from a free-form scenario description. Produces OWM-format output plus a strategic analysis.
+A portable Claude Code skill package (`skills/wardley-map/`) that generates a Wardley Map from a free-form scenario description and emits OWM-format output plus a strategic analysis.
 
 ### 1.1 Math model
-
-Maps are formalised as a tuple:
 
 ```
 M = (V, E, U, ν, ε, t)
@@ -44,7 +43,7 @@ M = (V, E, U, ν, ε, t)
 - `ε: V → [0, 1]` — evolution function (X-axis)
 - `t` — time (optional, for scenario dynamics)
 
-Visibility seed (default, exponential decay):
+Visibility seed (default):
 
 ```
 d(v) = min over u ∈ U of { shortest path length from u to v }
@@ -59,13 +58,13 @@ Evolution scored via Wardley's 19-row cheat sheet. A 4-row quick subset is used 
 ε(v) = (1/|R|) · Σ m(s_r)
 ```
 
-where `m(s) = (s − 0.5)/4` maps stage picks {1,2,3,4} to band midpoints {0.125, 0.375, 0.625, 0.875}.
+where `m(s) = (s − 0.5)/4` maps stage picks {1, 2, 3, 4} to band midpoints {0.125, 0.375, 0.625, 0.875}.
 
 ### 1.2 Skill package contents
 
 | File | Role |
 |---|---|
-| `SKILL.md` | Procedure, when to consult each reference |
+| `SKILL.md` | Procedure; instructions on when to consult each reference |
 | `scripts/validate_owm.py` | Deterministic validator enforcing `ν(a) ≥ ν(b)` |
 | `references/evolution-stages.md` | 19-row cheat sheet + worked examples |
 | `references/climatic-patterns.md` | 27 patterns across 6 categories |
@@ -75,15 +74,15 @@ where `m(s) = (s − 0.5)/4` maps stage picks {1,2,3,4} to band midpoints {0.125
 | `references/mapping-examples.md` | 3 worked maps (tea shop, freelance marketplace, SaaS) |
 | `references/mathematical-models.md` | Condensed formalism + dynamics |
 
-### 1.3 The generation pipeline
+### 1.3 Generation pipeline
 
-1. **Components and anchors** — identify user-need nodes `U` and candidate `V`. Density guidance: 20-30 for single-product, 35-45 for landscape, 40-55 for multi-stakeholder.
-2. **Dependencies** — draw `E` as "depends-on" edges.
+1. **Components and anchors** — identify user-need nodes `U` and candidate `V`. Density guidance targets 20-30 / 35-45 / 40-55 components by scenario type.
+2. **Dependencies** — build `E` as "depends-on" edges.
 3. **Visibility ν** — exponential seed + manual override.
 4. **Evolution ε** — 4-row cheat-sheet scoring, band midpoints.
-5. **Deep placement** — selective WebSearch for components where rows disagree or strategic importance is high.
+5. **Deep placement** — selective WebSearch for components where cheat-sheet rows disagree, strategic importance is high, or the domain is specialised.
 6. **Verification** — run `validate_owm.py`; fix violations; iterate until clean.
-7. **Strategic analysis** — stage-first prose: differentiation, commodity leverage, dependency risks, named gameplays from Wardley's 61-play catalogue, doctrine violations, climatic context, deep-placement findings, caveat.
+7. **Strategic analysis** — stage-first prose covering differentiation, commodity leverage, dependency risks, named gameplays from Wardley's 61-play catalogue, doctrine violations, climatic context, deep-placement findings, caveat.
 
 ---
 
@@ -91,42 +90,36 @@ where `m(s) = (s − 0.5)/4` maps stage picks {1,2,3,4} to band midpoints {0.125
 
 ### 2.1 Design
 
-Held-out blind comparison against Wardley's own published maps. For each test case:
+Held-out blind comparison. For each test case:
 
-1. Fetch a Wardley map `.owm` file from the GitHub repository
+1. Fetch a Wardley map `.owm` file from the repository
 2. Derive a realistic scenario prompt from the title and topic **without exposing Wardley's placements or component names**
 3. Spawn a subagent with the prompt and an explicit instruction not to read the reference file
 4. Run the full 7-step skill procedure
 5. Compare the generated map to Wardley's reference
 
-### 2.2 Comparison metrics
+### 2.2 Metrics
 
-We report four complementary views of placement agreement:
+Four complementary views of placement agreement:
 
-1. **Strict same-band**: fraction of matched pairs where both ε values fall in the same quartile band (Genesis [0, 0.25), Custom [0.25, 0.5), Product [0.5, 0.75), Commodity [0.75, 1.0]). Uses integer band membership (no tolerance).
-2. **Within 1 band (soft)**: fraction where the band indices differ by at most 1 — "in the right neighbourhood".
-3. **|Δε| cumulative distribution**: fraction within 0.05, 0.10, 0.15, 0.20, 0.25, 0.30 of each other, regardless of band. This is the continuous view — answers "how close are the placements?"
-4. **Directional biases**: mean signed Δε and Δν (positive = we place higher than Wardley).
+1. **Strict same-band** — both ε values in the same quartile (Genesis [0, 0.25), Custom [0.25, 0.5), Product [0.5, 0.75), Commodity [0.75, 1.0]). Integer band membership, no tolerance.
+2. **Within 1 band (soft)** — band indices differ by at most 1 ("right neighbourhood").
+3. **`|Δε|` cumulative distribution** — fraction within {0.05, 0.10, 0.15, 0.20, 0.25, 0.30} of each other regardless of band. The continuous view.
+4. **Directional biases** — mean signed Δε and Δν (positive = we place higher than Wardley).
 
-**Noise floor.** The 4-row cheat-sheet method has inherent quantisation. Each row produces one of 4 stage values (0.125, 0.375, 0.625, 0.875); the mean of 4 row picks has the following sensitivities:
+**Noise floor.** The 4-row cheat-sheet method has inherent quantisation. Each row gives one of 4 stage values; one row flipping by one stage shifts mean ε by ~0.0625. A `|Δε|` of ~0.10 is one row's worth of disagreement — within scoring noise, not substantive disagreement. Useful thresholds:
 
-- Single row flipping by one stage → shifts mean ε by ~0.0625
-- Two rows flipping → ~0.125
-- So a `|Δε|` of ~0.10 is **equivalent to one row's worth of disagreement** — within scoring noise, not a substantive disagreement.
-
-The useful thresholds are therefore:
-
-- `|Δε| ≤ 0.10` → placements are within scoring noise, effectively identical
-- `|Δε| ≤ 0.20` → within strategic tolerance — unlikely to change the build/buy/utility call
-- `|Δε| > 0.25` → genuine disagreement, beyond both noise and band-width
+- `|Δε| ≤ 0.10` — within scoring noise (effectively identical)
+- `|Δε| ≤ 0.20` — within strategic tolerance (build/buy/utility call doesn't change)
+- `|Δε| > 0.25` — genuine disagreement, beyond both noise and one band-width
 
 ### 2.3 Time pinning
 
-Several maps carry explicit dates. The subagent is pinned to that date to prevent 2026 priors from biasing placements. Effectiveness is partial — we still see drift on 2022-2024 scenarios.
+Several maps carry explicit dates (2022-2024). The subagent is pinned to that date in the scenario prompt to prevent 2026 priors from biasing placements. Effectiveness is partial — §4.3 documents the time-drift confound and its bidirectional signal.
 
 ### 2.4 Corpus
 
-**25 maps spanning 18 domains.**
+25 maps spanning 18 domains.
 
 | Map | Domain | Date | Ref comps |
 |---|---|---|---:|
@@ -155,8 +148,6 @@ Several maps carry explicit dates. The subagent is pinned to that date to preven
 | Telecoms — space | Telecoms | Feb 2023 | 44 |
 | Transportation — logistics | Transportation | — | 45 |
 | Transportation — demand | Transportation | May 2022 | 37 |
-
-Diversity spans AI / tech / regulated industry / traditional industry / social systems / defence / governance / infrastructure / cultural / political.
 
 ---
 
@@ -196,19 +187,19 @@ Diversity spans AI / tech / regulated industry / traditional industry / social s
 
 | Metric | Value |
 |---|---:|
-| Mean coverage | **37%** |
+| Mean coverage | 37% |
 | Mean same-band (strict) | 37% |
 | Mean within 1 band (soft) | 92% |
-| Mean \|Δε\| | 0.188 |
-| Mean \|Δν\| | 0.265 |
+| Mean `|Δε|` | 0.188 |
+| Mean `|Δν|` | 0.265 |
 | ε-bias | +0.009 |
 | ν-bias | +0.079 |
 
-### 3.3 Closeness distribution (the honest picture)
+### 3.3 Closeness distribution
 
-Band metrics hide a continuous question. Across 358 matched component pairs:
+Across all 358 matched pairs:
 
-| \|Δε\| ≤ | % | Interpretation |
+| `|Δε|` ≤ | % | Interpretation |
 |---:|---:|---|
 | 0.05 | 15% | Near-identical, precision match |
 | 0.10 | **28%** | Within scoring noise — effectively identical |
@@ -217,15 +208,12 @@ Band metrics hide a continuous question. Across 358 matched component pairs:
 | 0.25 | 75% | Within one band-width |
 | 0.30 | 83% | |
 | 0.40 | 93% | |
-| 0.50 | 97% | Almost all matches |
+| 0.50 | 97% | |
 
-**Reading this practically:**
-
-- **61% of matches are close enough that no strategic call changes.** |Δε| ≤ 0.20 keeps you well within the same "rent / build / treat as utility" bucket. Over half the time the skill and Wardley would give the same recommendation for a given component.
-- **28% are within scoring noise.** Because the 4-row cheat sheet's resolution is ~0.06 per row-disagreement, anything under 0.10 is within what you'd get if the same mapper scored the same component twice on different days.
-- **25% are genuine disagreements.** |Δε| > 0.25 is beyond both noise and one band width. These are the real places where the skill reaches different conclusions than Wardley. Worth inspecting per-map.
-
-**Boundary-crossing artefact.** 22 of the 358 pairs (6% of matches, 10% of strict-band misses) are `|Δε| ≤ 0.10` but cross a band boundary. These show up as strict-band misses but are really continuous near-identities. The other 90% of strict-band misses are `|Δε| > 0.10` — real distance, though many still fall within strategic tolerance.
+- **61%** of matches are close enough that no strategic call changes
+- **28%** are within the cheat-sheet method's scoring noise
+- **25%** are genuine disagreements (`|Δε| > 0.25`) — but see §4.3: a fraction of these is time drift, not skill error
+- **Boundary-crossing artefact.** 22 of 358 pairs (6%) are `|Δε| ≤ 0.10` but cross a band boundary — real but small, accounting for 10% of strict-band misses.
 
 ---
 
@@ -233,30 +221,30 @@ Band metrics hide a continuous question. Across 358 matched component pairs:
 
 ### 4.1 What the skill does well
 
-**1. Strategic-tolerance agreement is high.** 61% of placements are within strategic tolerance of Wardley (|Δε| ≤ 0.20) — close enough that the build/buy/utility recommendation doesn't change. 92% are in Wardley's band or an adjacent one. Only 3% are catastrophically different.
+**1. Strategic-tolerance agreement is high.** 61% of placements are within strategic tolerance (`|Δε| ≤ 0.20`). 92% are in Wardley's band or an adjacent one. Only 3% are catastrophically off.
 
-**2. Near-zero ε-bias.** +0.009 across 25 maps. The skill doesn't over- or under-industrialise on average. The stage distribution matches Wardley's overall shape.
+**2. Near-zero ε-bias.** +0.009 across 25 maps — the skill doesn't systematically over- or under-industrialise.
 
-**3. Anchor identification.** Consistently correct in all 25 benchmarks — the skill reaches for Wardley's user/stakeholder structure unaided.
+**3. Consistent anchor identification.** All 25 benchmarks: the skill reaches for Wardley's user/stakeholder structure unaided.
 
-**4. Strategic conclusions converge with Wardley's framing.** Across 25 blind scenarios the subagent independently reached takeaways that align with Wardley's patterns: *governance trails the technology it governs* (AI trust, government digital ID), *platform plays need both sides* (gaming, freelance, retail), *sovereignty levers are differentiators while connectivity is commoditised* (telecoms sovereignty), *climate and defence are in Peace/War/Wonder cycle transitions* (defence grey zone, energy disruption).
+**4. Strategic conclusions converge with Wardley's framing.** Blind across 25 scenarios the subagent independently reaches takeaways that align with Wardley's: *governance trails the technology it governs* (AI trust, government digital ID), *platform plays need both sides* (gaming, retail, freelance), *sovereignty levers are differentiators while connectivity is commoditised* (telecoms sovereignty), *climate and defence are in Peace/War/Wonder cycle transitions* (defence grey zone, energy disruption).
 
-**5. Validator reliably enforces structural invariants.** 1 to 13 violations caught on first draft across the 25 runs; all fixed iteratively. Without the validator, ~60% of maps would have shipped with silent structural errors.
+**5. Validator reliably enforces structural invariants.** 1-13 violations caught on first draft; all fixed iteratively. Without it, ~60% of maps would ship with silent structural errors.
 
-**6. Deep placement produces specific, non-generic findings.** Examples: telecoms-sovereignty correctly identified the Oct 2022 Huawei notice; culture-gender anchored placements to March 2022 specifics (Cass interim report, Florida HB 1557); agriculture-regen confirmed Soil Carbon MRV as Genesis because protocols were fragmented; gaming-economies flagged Loot Boxes as showing leftward evolution under regulatory pressure.
+**6. Deep placement produces specific findings.** Examples: telecoms-sovereignty correctly identified the Oct 2022 Huawei notice; culture-gender anchored placements to March 2022 specifics (Cass interim report, Florida HB 1557); agriculture-regen confirmed Soil Carbon MRV as Genesis because protocols were fragmented; gaming-economies flagged Loot Boxes as showing leftward evolution under regulatory pressure.
 
 ### 4.2 What the skill doesn't do
 
-**1. Coverage ceiling around 37%.** The skill names about 1 in 3 of Wardley's components. Missing components cluster into two types:
+**1. Coverage ceiling around 37%.** The skill names about 1 in 3 of Wardley's components. Missing components cluster into:
 
-- *Abstract philosophical nodes* — "Asymmetrical", "Believed", "Bias", "Quality", "OUTPUT", "ACCESS", "perceived risk", "profit", "sovereignty", "territorial". Wardley uses these as first-class components; our skill produces operational nodes.
+- *Abstract philosophical nodes* — "Asymmetrical", "Believed", "Bias", "Quality", "OUTPUT", "ACCESS", "perceived risk", "profit", "sovereignty", "territorial". Wardley uses these as first-class map nodes; the skill reaches for operational equivalents instead.
 - *Domain-idiosyncratic shorthand* — "Dr Google", "constitution", "sovereign" — Wardley's stylistic fingerprints.
 
-**2. Fine-grained placement is unreliable.** Only 15% of matches are within 0.05 ε. The cheat-sheet method has inherent noise at ~0.10 resolution; expecting exact coordinate agreement is expecting less than the method can deliver. Stage-neighbourhood is reliable; specific coordinates aren't.
+**2. Fine-grained placement is unreliable.** Only 15% of matches are within 0.05 ε. This is close to the ceiling of what the 4-row cheat-sheet method can deliver (scoring noise is ~0.10); expecting tighter agreement is expecting less than the method can produce. Stage-neighbourhood is reliable; specific coordinates aren't.
 
-**3. Visibility compression — softened but persistent.** The exponential seed reduced ν-bias from +0.22 to +0.08, but bias remains positive in most benchmarks. The skill places components slightly higher toward the user than Wardley does, on average.
+**3. Visibility compression — softened but persistent.** Exponential seed reduced ν-bias from +0.22 to +0.08, but bias remains positive in most benchmarks.
 
-**4. Component count calibration (partly mitigated).** Density guidance helps — cybersecurity dropped from 60 to 39 components after the change — but can over-correct. The guidance is phrased as a target, not a cap.
+**4. Component count calibration (partly mitigated).** Density guidance helps (cybersecurity dropped from 60 to 39 components after the change) but can over-correct. The guidance is a target, not a cap.
 
 **5. Coverage varies sharply by domain.**
 
@@ -265,11 +253,11 @@ Band metrics hide a continuous question. Across 358 matched component pairs:
 
 ### 4.3 The time-drift confound
 
-The benchmark treats Wardley's map as ground truth. But Wardley's maps are dated snapshots — 2022 to 2024 for the dated ones in this corpus. Our skill scores in 2026 with 2026 priors. Even with explicit time-pinning in the scenario prompt, subagents can only partially suppress later knowledge. This means **a non-trivial fraction of apparent "disagreement" is legitimate time drift, not skill error.**
+The benchmark treats Wardley's map as ground truth — but Wardley's maps are dated snapshots (2022 to 2024 for the dated ones). Our skill scores in 2026 with 2026 priors. Time-pinning partially works but subagents can't fully suppress later knowledge. **A non-trivial fraction of apparent disagreement is legitimate time drift, not skill error.**
 
-A component Wardley placed at ε=0.4 in August 2022 that has genuinely industrialised by 2026 *should* score differently on the cheat sheet now. That's the framework working as intended, not a mistake.
+A component Wardley placed at ε=0.4 in August 2022 that has genuinely industrialised by 2026 *should* score further right now. That's the framework working as intended.
 
-**Evidence for forward drift (we see more industrialised than Wardley):**
+**Forward drift — we see more industrialised than Wardley:**
 
 | Map | Date | ε-bias |
 |---|---|---:|
@@ -281,9 +269,9 @@ A component Wardley placed at ε=0.4 in August 2022 that has genuinely industria
 | cybersecurity | May 2023 | +0.12 |
 | energy-disruption | Jul 2022 | +0.11 |
 
-Seven dated maps show a consistent forward bias. Political operations, gaming monetisation, manufacturing automation tooling, and cybersecurity all industrialised faster than 2022-2023 Wardley saw — visible in the 2026 scoring.
+Political operations, gaming monetisation, manufacturing automation, and cybersecurity all industrialised faster than 2022-2023 Wardley saw.
 
-**Evidence for overshoot (Wardley saw more industrialised than we do):**
+**Overshoot — Wardley saw more industrialised than we do:**
 
 | Map | Date | ε-bias |
 |---|---|---:|
@@ -292,19 +280,19 @@ Seven dated maps show a consistent forward bias. Political operations, gaming mo
 | defence-intelligence | Mar 2023 | −0.16 |
 | personal-conversational | — | −0.13 |
 
-Four maps go the other way — Wardley placed components further right than their actual 2026 position. Agriculture-regen is the starkest: Wardley thought soil carbon MRV and regenerative supply chains were further along in August 2022 than they turned out to be. Space telecoms and defence intelligence similarly show Wardley ahead of what actually happened.
+Agriculture-regen is the starkest: Wardley thought soil carbon MRV and regen supply chains were further along in 2022 than they actually were. Space telecoms and defence intelligence similarly show Wardley ahead of what turned out to happen.
 
-**Implications:**
+**What this means for the numbers:**
 
-1. **The 37% strict-band disagreement is an upper bound on skill error.** Some fraction of the 63% that disagrees with Wardley is time drift — drift that Wardley himself would produce if he re-mapped the domain in 2026. Disentangling "skill disagrees with 2022 Wardley" from "2022 Wardley disagrees with 2026 Wardley" is impossible with this corpus.
+1. **The 37% strict-band disagreement is an upper bound on skill error.** Some of the 63% that disagrees with Wardley is time drift — drift that Wardley himself would produce if he re-mapped in 2026. Disentangling *skill disagrees with 2022 Wardley* from *2022 Wardley disagrees with 2026 Wardley* is impossible with this corpus.
 
-2. **The near-zero aggregate ε-bias is a coincidence.** +0.009 average across 25 maps comes partly from positive forward-drift cases and negative overshoot cases cancelling. Per-map bias is substantial in both directions.
+2. **The near-zero aggregate ε-bias is partly coincidental.** +0.009 averaged across 25 maps comes from positive forward-drift cases and negative overshoot cases roughly cancelling. Per-map bias is substantial in both directions.
 
-3. **Coverage and stage-neighbourhood are less affected.** Time drift mostly shifts ε, not components' names or approximate location. 92% within-one-band is robust to a few stages of drift; it's the strict-band metric that time-drift most damages.
+3. **Coverage and stage-neighbourhood are less affected by drift.** Time drift mostly shifts ε, not which components exist or their approximate location. 92% within-one-band is robust to a stage of drift; strict-band is what drift most damages.
 
-4. **A useful diagnostic.** If the skill were systematically biased (bad priors, poor rubric application), we'd expect the signed ε-bias to be unimodal — all positive or all negative. The fact that it's bimodal (positive on some maps, negative on others, roughly balanced) is consistent with time drift plus idiosyncratic Wardley judgments rather than a systematic skill defect.
+4. **A useful diagnostic.** A systematically biased skill would show unimodal ε-bias (all positive or all negative). The fact that it's bimodal — forward drift on some maps, overshoot on others — is consistent with time drift + idiosyncratic Wardley judgment rather than a systematic skill defect.
 
-The practical takeaway is that benchmark results should be read as *agreement-with-dated-Wardley* rather than *agreement-with-ground-truth*. A mapper scoring a domain in 2026 has, in some cases, more accurate information than the mapper scoring in 2022 — and a benchmark that treats the older map as correct will count that information update as a "miss".
+**Practical takeaway.** Benchmark results should be read as *agreement-with-dated-Wardley*, not *agreement-with-ground-truth*. A 2026 mapper has, in some cases, more accurate information than the 2022 mapper — and a benchmark that treats the older map as correct counts that information update as a miss.
 
 ### 4.4 Consistency of aggregate metrics across corpus growth
 
@@ -312,12 +300,12 @@ From n=10 to n=25:
 
 - Same-band (strict): stable around 37%
 - Within 1 band (soft): stable around 92%
-- |Δε| ≤ 0.20: stable around 60% (estimated from n=10 data)
+- `|Δε| ≤ 0.20`: stable around 60%
 - ε-bias: +0.017 → +0.009 (near-zero, improving)
 - ν-bias: +0.103 → +0.079 (continued improvement)
 - Coverage: 45% → 37% (driven by niche-domain additions)
 
-Placement metrics are robust. Coverage is the corpus-composition-dependent metric.
+Placement metrics are robust across 2.5× the corpus. Coverage is the corpus-composition-dependent metric.
 
 ---
 
@@ -339,24 +327,24 @@ Placement metrics are robust. Coverage is the corpus-composition-dependent metri
 
 **3. Vocabulary normalisation.** Map common tech-stack terms to Wardley's preferred phrasing (e.g., "vector DB" → "data index"; "observability platform" → "logs & telemetry"). Low-effort coverage lift without changing placement.
 
-**4. Stronger time-pinning.** Several pre-2024 scenarios showed drift (politics-labour, telecoms-space). An explicit "your knowledge cutoff for this scenario is date X" instruction in the Step 4 procedure might help.
+**4. Stronger time-pinning.** Several pre-2024 scenarios showed drift (politics-labour, telecoms-space, agriculture). An explicit "your knowledge cutoff for this scenario is date X" instruction in the Step 4 procedure might help — though time drift is bidirectional, so the fix is non-trivial.
 
 ### 5.3 Not recommended
 
-- **Don't over-tune to this benchmark.** 25 maps is a small, single-author sample; tuning to maximise fit risks producing a Wardley-mimic.
-- **Don't chase exact-coordinate agreement.** 15% within 0.05 is near the ceiling of what the 4-row cheat-sheet method can produce. The skill's cheat-sheet method has inherent ~0.10 resolution; precision beyond that is illusory.
+- **Don't over-tune to this benchmark.** 25 maps, single author — tuning to maximise fit risks producing a Wardley-mimic.
+- **Don't chase exact-coordinate agreement.** 15% at `|Δε| ≤ 0.05` is near the ceiling of what the 4-row cheat-sheet method can produce; the method has inherent ~0.10 resolution.
 - **Don't treat 37% coverage as a failure.** Blindly capturing a third of an expert's vocabulary is a reasonable baseline.
 
 ---
 
 ## 6. Limitations
 
-1. **Single-author corpus.** Every reference is by Simon Wardley. We're measuring faithfulness to *his* style, not to a ground truth.
-2. **n=25 is still small.** Another 25 maps might move aggregate metrics by ±3 pp.
+1. **Single-author corpus.** Every reference is Wardley's own work. We're measuring faithfulness to Wardley's style, not to a ground truth.
+2. **n=25 is still small.** Another 25 maps might move aggregate metrics by ±3-5 pp.
 3. **Fuzzy matching is imperfect.** Coverage is a lower bound; some semantically equivalent components aren't matched. Some false-positive matches (e.g. "Training" ↔ "Training Data" in AI TRUST) inflate disagreement artificially.
-4. **Time pinning is leaky.** Subagents have 2026 priors and can only partially suppress them given a pre-2024 context.
-5. **Placement metrics don't capture strategic quality.** A map can score well on placement metrics and give bad strategic advice, or vice versa. The strategic-analysis sections were not systematically evaluated against Wardley's analyses.
-6. **Cheat-sheet method has ~0.10 quantisation noise.** Sub-0.10 |Δε| agreement is below the method's resolution; claims about it should be interpreted as "noise-floor behaviour", not "tight agreement".
+4. **Time drift is real and bidirectional.** §4.3 documents this; it's the biggest interpretive caveat on the numbers.
+5. **Placement metrics don't capture strategic quality.** A map can score well on placement and give bad strategic advice, or vice versa. Strategic-analysis sections were not systematically evaluated against Wardley's analyses.
+6. **Cheat-sheet method has ~0.10 quantisation noise.** Sub-0.10 agreement is below method resolution; claims about it are noise-floor behaviour, not tight agreement.
 
 ---
 
@@ -364,16 +352,16 @@ Placement metrics are robust. Coverage is the corpus-composition-dependent metri
 
 Across 25 blind benchmarks covering 18 domains, the skill:
 
-- Produces **structurally valid** Wardley Maps that pass the validator
-- Reaches **strategic agreement** with Wardley on 61% of matched components (|Δε| ≤ 0.20; build/buy/utility call unchanged)
+- Produces **structurally valid** Wardley Maps (validator-clean, 25/25)
+- Reaches **strategic agreement** with Wardley on 61% of matched components (`|Δε| ≤ 0.20`; build / buy / utility call unchanged)
 - Reaches **neighbourhood agreement** (adjacent band) on 92%
-- Is within **scoring noise** (|Δε| ≤ 0.10) on 28%
-- Exhibits negligible ε-bias and small residual ν-bias
+- Is within **scoring noise** (`|Δε| ≤ 0.10`) on 28%
+- Exhibits negligible aggregate ε-bias and small residual ν-bias
 - Captures about **1 in 3** of Wardley's components by name (the missing two-thirds are mostly abstract/philosophical nodes the skill doesn't reach for)
 
-**The skill is a coarse-map generator, not a precision-map generator.** That's the right shape for a practitioner tool: Wardley himself treats maps as thinking tools rather than measurement instruments. Strict-band agreement (37%) and precision agreement (15%) are below what you'd want if you were trying to replicate Wardley's placement down to the decimal — but they're also measuring behaviour that isn't strategically meaningful. The useful number is the 61% within strategic tolerance: most of the time, the skill and Wardley would tell you to do the same thing.
+**The skill is a coarse-map generator, not a precision-map generator.** That's the right shape for a practitioner tool: Wardley himself treats maps as thinking tools rather than measurement instruments. Strict-band agreement (37%) and precision agreement (15%) are below what you'd want if replicating Wardley's placement down to the decimal — but some of that "disagreement" is time drift (§4.3), and the meaningful number is the 61% within strategic tolerance: most of the time, the skill and Wardley would recommend the same thing.
 
-For practitioner use — mapping a business, product, or policy scenario and deriving strategic recommendations — the skill is production-useful. For archival-grade fidelity to Wardley's personal style, additional vocabulary work (recommendation #1) would close the remaining gap.
+For practitioner use — mapping a business, product, or policy scenario and deriving strategic recommendations — the skill is production-useful. For archival-grade fidelity to Wardley's personal style, the vocabulary opportunity (recommendation 1) is the biggest remaining gap.
 
 ---
 
@@ -383,13 +371,14 @@ For practitioner use — mapping a business, product, or policy scenario and der
 skills/wardley-map-workspace/
 ├── iteration-10/                      # first 4 benchmarks
 ├── iteration-11/                      # retail rerun (exponential seed)
-├── iteration-12/                      # +6 benchmarks
+├── iteration-12/                      # +6 benchmarks (cyber, mfg, ag, edu, gaming, sust)
 ├── iteration-13/                      # cybersecurity rerun (density guidance)
 ├── iteration-14/                      # +15 benchmarks (new 8 domains + extras)
 ├── compare.py                         # pairwise comparator (fuzzy match + deltas)
 ├── compare_all_25.py                  # aggregates 25 benchmarks + closeness distribution
 ├── benchmark-25-summary.json          # machine-readable aggregate + per-map data
-└── BENCHMARK-REPORT.md                # this document
+├── BENCHMARK-REPORT.md                # this document
+└── BENCHMARK-METHODOLOGY.md           # detailed methodology (companion)
 ```
 
 Each `eval-<name>/` directory contains:
