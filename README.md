@@ -60,54 +60,46 @@ The repo has 20+ docs. Not all are on the critical path. If you're new:
 
 **Not on the main path:**
 - **The Mathematical Framework** — long encyclopedic reference (1200+ lines). Browse for specific techniques, don't read front-to-back.
-- **A Prototype Math Model** — early exploratory draft. Kept for historical context; superseded by Part 1.
 
 ---
 
 ## Documents
 
-### Core Model
-| Document | Description |
-|----------|-------------|
-| [A Prototype Math Model for Wardley Mapping](A%20Prototype%20Math%20Model%20for%20Wardley%20Mapping.md) | Exploratory prototype introducing S-curve evolution dynamics and game-theoretic extensions |
+All docs live under [`docs/`](docs/) organised by role.
 
-### Comprehensive Framework
+### Core — the canonical progressive series (`docs/core/`)
 | Document | Description |
 |----------|-------------|
-| [The Mathematical Framework of Wardley Mapping](The%20Mathematical%20Framework%20of%20Wardley%20Mapping.md) | Extended treatment covering graph theory, game theory, probability, and machine learning applications |
+| [Part 1 — Core Mathematical Model](docs/core/part-1-core-model.md) | The formal tuple model $\mathcal{M} = (V, E, U, \nu, \varepsilon, t)$ with computed visibility, evolution scoring, and derived metrics |
+| [Part 2 — Evolution, Not Maturity](docs/core/part-2-evolution-not-maturity.md) | Refining the evolution axis interpretation |
+| [Part 3 — The Tea Shop Worked Example](docs/core/part-3-tea-shop-example.md) | Applying the model to a classic Wardley Map |
+| [Part 4 — Single-Component Evolution](docs/core/part-4-single-component-evolution.md) | Methods for computing evolution scores |
+| [Part 5 — Layer Visibility & Sigmoid Evolution](docs/core/part-5-layer-visibility-sigmoid.md) | Discrete dependency layers for visibility and a sigmoid logistic curve for evolution |
+| [Part 6 — Cheat-Sheet Evolution Scoring](docs/core/part-6-cheat-sheet-scoring.md) | Wardley's canonical 19-row cheat sheet with a formal scoring procedure that produces $\varepsilon(v)$ with uncertainty |
+| [Mathematical Framework](docs/core/mathematical-framework.md) | Long encyclopedic reference (1200+ lines). Browse for specific techniques, don't read front-to-back |
 
-### Progressive Series
+### Extensions — additions to the Part-1 tuple (`docs/extensions/`)
 | Document | Description |
 |----------|-------------|
-| [Part 1 - Core Mathematical Model](Part%201%20-%20Core%20Mathematical%20Model%20for%20Wardley%20Mapping.md) | The formal tuple model $\mathcal{M} = (V, E, U, \nu, \varepsilon, t)$ with computed visibility, evolution scoring, and derived metrics |
-| [Part 2 - Revised Model: Map Evolution, Not Maturity](Part%202%20-%20Revised%20Wardley%20Map%20Model%3A%20Map%20Evolution%2C%20Not%20Maturity.md) | Refining the evolution axis interpretation |
-| [Part 3 - Explaining the Tea Shop Map](Part%203%20-%20Explaining%20the%20Tea%20Shop%20Map%20Using%20Our%20Mathematical%20Model.md) | Applying the model to a classic Wardley Map example |
-| [Part 4 - Working Out Evolution Values](Part%204%20-%20Working%20Out%20the%20Evolution%20Value%20for%20a%20Single%20Component.md) | Methods for computing evolution scores |
-| [Part 5 - Layer-Based Visibility and Sigmoid Evolution](Part%205%20-%20Extending%20Wardley%20Maps%3A%20Layer-Based%20Visibility%20and%20Sigmoid%20Evolution.md) | Extended model using discrete dependency layers for visibility and a sigmoid (logistic) curve for evolution |
-| [Part 6 - Cheat-Sheet Evolution Scoring](Part%206%20-%20Cheat-Sheet%20Evolution%20Scoring.md) | Wardley's canonical 19-row cheat sheet with a formal scoring procedure that produces $\varepsilon(v)$ with uncertainty |
+| [Inertia](docs/extensions/inertia.md) | Wardley's 17 forms of inertia (14 consumer + 3 supplier) with a structured drag term $c_v(t) = \sum \lambda_i \iota_i$ replacing the single scalar |
+| [Multi-Wave Evolution](docs/extensions/multi-wave-evolution.md) | Replaces single-logistic dynamics with multiple diffusion curves per component (generations + chasms) |
+| [Component Types](docs/extensions/component-types.md) | Extends the tuple with $\tau: V \to \{A, P, D, K\}$ (Activities, Practices, Data, Knowledge) and type-dependent evolution rates |
 
-### Model Extensions
+### Catalogues — reference tables Wardley published (`docs/catalogues/`)
 | Document | Description |
 |----------|-------------|
-| [Inertia - Forms of Resistance to Evolution](Inertia%20-%20Forms%20of%20Resistance%20to%20Evolution.md) | Wardley's 17 forms of inertia (14 consumer + 3 supplier) with a structured drag term $c_v(t) = \sum \lambda_i \iota_i$ replacing the single scalar |
-| [Multi-Wave Evolution and Punctuated Equilibrium](Multi-Wave%20Evolution%20and%20Punctuated%20Equilibrium.md) | Replaces single-logistic dynamics with multiple diffusion curves per component (generations + chasms), matching Wardley's "evolution is multi-wave" framing |
-| [Component Types and the Type Function](Component%20Types%20and%20the%20Type%20Function.md) | Extends the tuple with $\tau: V \to \{A, P, D, K\}$ (Activities, Practices, Data, Knowledge) and type-dependent evolution rates |
+| [Gameplay](docs/catalogues/gameplay.md) | Wardley's 61 gameplays across 12 categories, each mapped to a structured effect on $r_v, c_v, \nu, \varepsilon$ or $E$ |
+| [Doctrine](docs/catalogues/doctrine.md) | Wardley's 40 doctrine principles (4 phases × 6 categories) with math-model readings of each |
 
-### Strategy & Gameplay
+### Strategy — cycles, signals, older gameplay treatments (`docs/strategy/`)
 | Document | Description |
 |----------|-------------|
-| [Gameplay Catalogue - 61 Plays with Math-Model Effects](Gameplay%20Catalogue%20-%2061%20Plays%20with%20Math-Model%20Effects.md) | Wardley's 61 gameplays across 12 categories, each mapped to a structured effect on $r_v, c_v, \nu, \varepsilon$ or $E$ |
-| [Doctrine - 40 Principles as Model Constraints](Doctrine%20-%2040%20Principles%20as%20Model%20Constraints.md) | Wardley's 40 doctrine principles (4 phases × 6 categories) with math-model readings of each |
-| [Strategic Mastery: Creating Math Models for Wardley Mapping Gameplays](Strategic%20Mastery%3A%20Creating%20Math%20Models%20for%20Wardley%20Mapping%20Gameplays.md) | Quantitative approaches to strategic plays and decision-making |
-| [Mathematical Models for Wardley Mapping Gameplay](Mathematical%20Models%20for%20Wardley%20Mapping%20Gameplay%3A%20A%20Quantitative%20Approach%20to%20Strategic%20Decision%20Making.md) | Detailed gameplay modeling methodology |
-
-### Specialized Topics
-| Document | Description |
-|----------|-------------|
-| [Wardley Strategy Cycle - Core Model](Wardley%20Strategy%20Cycle%20-%20Core%20Model%20-%20Part%201.md) | Modeling strategic cycles |
-| [Wardley Strategy Cycle - Example](Wardley%20Strategy%20Cycle%20-%20Example%20-%20Part%202.md) | Applied example of strategy cycles |
-| [Weak Signals & Evolution - Core](Weak%20Signals%20%26%20Evolution%20-%20Core%20-%20Part%201.md) | Detecting and modeling weak signals |
-| [Weak Signals & Evolution - Example](Weak%20Signals%20%26%20Evolution%20-%20Example%20-%20Part%202.md) | Applied example of weak signal detection |
+| [Strategy Cycle — Core](docs/strategy/strategy-cycle-core.md) | Modeling strategic cycles |
+| [Strategy Cycle — Example](docs/strategy/strategy-cycle-example.md) | Applied example of strategy cycles |
+| [Weak Signals — Core](docs/strategy/weak-signals-core.md) | Detecting and modeling weak signals |
+| [Weak Signals — Example](docs/strategy/weak-signals-example.md) | Applied example of weak signal detection |
+| [Strategic Mastery](docs/strategy/strategic-mastery.md) | Older companion treatment of gameplay selection (predates `catalogues/gameplay.md`) |
+| [Gameplay Math Models](docs/strategy/gameplay-math-models.md) | Older quantitative treatment of plays (predates `catalogues/gameplay.md`) |
 
 ### Tools & Prompts
 | Document | Description |

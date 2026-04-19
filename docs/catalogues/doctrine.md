@@ -46,7 +46,7 @@ Doctrine is cumulative — a Phase III org still applies Phase I and II principl
 | 10 | Know your users | Development | Customers, shareholders, regulators, staff | Multi-anchor $U$ rather than a single $u$; different anchors give different visibility orderings |
 | 11 | Focus on the outcome not a contract | Development | e.g. worth-based development | Value $J$ should be over map-state outcomes, not action budgets |
 | 12 | Use appropriate tools | Development | e.g. mapping, financial models | Part 1 model is *a* tool; don't force every analysis through it |
-| 13 | Manage inertia | Operations | Existing practices, political capital, previous investment | Direct pointer to the [Inertia doc](Inertia%20-%20Forms%20of%20Resistance%20to%20Evolution.md) — $c_v(t)$ must be actively monitored |
+| 13 | Manage inertia | Operations | Existing practices, political capital, previous investment | Direct pointer to the [Inertia doc](../extensions/inertia.md) — $c_v(t)$ must be actively monitored |
 | 14 | Manage failure | Operations | Address unsuccessful outcomes constructively | Treat $\varepsilon$ regressions as signal, not noise |
 | 15 | Think FIRE (fast, inexpensive, restrained, elegant) | Development | Formerly FIST | Applied to experimentation and gameplay #37 |
 | 16 | Be pragmatic | Development | Results over ideology | Override any of these principles when map evidence warrants |
@@ -116,7 +116,7 @@ This gives a single 0–40 scalar that correlates (claimed by Wardley, not valid
 | Effect on math | Constraints on the mapping process | Transformations of the map |
 | Source | Wardley's [Medium book](https://medium.com/wardleymaps) | [Gardeviance 2015](https://blog.gardeviance.org/2015/05/on-61-different-forms-of-gameplay.html) |
 
-An organisation that applies a gameplay without satisfying Phase I doctrine is pretending — it's picking advanced moves on a broken foundation. The [Strategic Mastery](Strategic%20Mastery%3A%20Creating%20Math%20Models%20for%20Wardley%20Mapping%20Gameplays.md) doc covers gameplay selection; the current doc complements it by describing the always-on substrate.
+An organisation that applies a gameplay without satisfying Phase I doctrine is pretending — it's picking advanced moves on a broken foundation. The [Strategic Mastery](../strategy/strategic-mastery.md) doc covers gameplay selection; the current doc complements it by describing the always-on substrate.
 
 ---
 

@@ -1,45 +1,83 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance to Claude Code (claude.ai/code) when working with this repository.
 
 ## Repository Overview
 
-This is a documentation-only research repository containing mathematical models and frameworks for Wardley Mapping. There is no code, build system, or tests - the repository consists entirely of markdown files presenting theoretical work on quantifying Wardley Maps.
+Two layers live here:
 
-## Content Structure
+1. **Theory (`docs/`)** — markdown research documents formalising Wardley Mapping as a quantitative mathematical framework. The core tuple $\mathcal{M} = (V, E, U, \nu, \varepsilon, t)$ and extensions to it.
+2. **Practice (`skills/`)** — a portable Claude Code skill that applies the theory to generate Wardley Maps from free-form scenarios, plus a benchmark workspace evaluating the skill against Simon Wardley's own published maps.
 
-The repository contains research documents exploring how to formalize Wardley Mapping mathematically:
+## Directory layout
 
-- **Core Mathematical Model** (`Part 1 - Core Mathematical Model for Wardley Mapping.md`, `A Prototype Math Model for Wardley Mapping.md`): Defines a Wardley Map as a tuple $\mathcal{M} = (V, E, U, \nu, \varepsilon, t)$ where V is components, E is dependency edges, U ⊆ V is the anchor set (one or more user-need nodes), $\nu$ is visibility function (Y-axis), and $\varepsilon$ is evolution function (X-axis)
+```
+/
+├── README.md                              # repo index
+├── CLAUDE.md                              # this file
+├── llms.txt                               # linked doc list for LLM assistants
+├── docs/
+│   ├── core/                              # canonical Part 1-6 series + Mathematical Framework
+│   ├── extensions/                        # inertia / multi-wave / component-types
+│   ├── catalogues/                        # Wardley's doctrine (40) + gameplay (61) tables
+│   └── strategy/                          # strategy cycle, weak signals, older gameplay treatments
+├── prompts/
+│   └── wardley_map_generator.md           # standalone LLM prompt
+└── skills/
+    ├── wardley-map/                       # production skill: SKILL.md + references/ + scripts/validate_owm.py + evals/
+    └── wardley-map-workspace/             # iteration history + 25-map benchmark + arc-kit-compare
+        ├── BENCHMARK-REPORT.md            # primary report
+        ├── BENCHMARK-METHODOLOGY.md       # how the benchmark works
+        ├── benchmark-25-summary.json      # machine-readable aggregate
+        ├── compare_all_25.py              # aggregator
+        ├── iteration-1/ … iteration-14/   # 10-14 are the active benchmark corpus; 1-9 are dev history
+        └── arc-kit-compare/               # head-to-head vs tractorjuice/arc-kit's wardley-mapping skill
+```
 
-- **Cheat-Sheet Scoring** (`Part 6 - Cheat-Sheet Evolution Scoring.md`): Reproduces Wardley's canonical 19-row evolution cheat sheet and formalizes the scoring procedure as $\varepsilon(v) = \sum_r w_r \cdot m(s_r(v))$ with an uncertainty estimate from per-row disagreement.
+## Content structure — `docs/`
 
-- **Inertia** (`Inertia - Forms of Resistance to Evolution.md`): Enumerates the 17 forms of inertia Wardley publishes (14 consumer + 3 supplier) and replaces the single $c_v(t)$ scalar from Part 1's dynamics with a structured sum. Note: FUD, Lobbying, and Bundling are **gameplays**, not inertia — don't confuse the taxonomies.
+- **Core** (`docs/core/`):
+  - `part-1-core-model.md` — defines the tuple $\mathcal{M} = (V, E, U, \nu, \varepsilon, t)$ where V is components, E is dependency edges, U ⊆ V is the anchor set, $\nu$ is visibility (Y-axis), $\varepsilon$ is evolution (X-axis).
+  - `part-2-evolution-not-maturity.md` through `part-5-layer-visibility-sigmoid.md` — progressive development of the core model.
+  - `part-6-cheat-sheet-scoring.md` — Wardley's 19-row cheat sheet with a formal scoring procedure $\varepsilon(v) = \sum_r w_r \cdot m(s_r(v))$ and per-row-disagreement uncertainty.
+  - `mathematical-framework.md` — long encyclopedic reference covering graph theory, game theory, probability, and ML applications.
 
-- **Multi-Wave Evolution** (`Multi-Wave Evolution and Punctuated Equilibrium.md`): Replaces the single-logistic dynamics with per-generation S-curves, cross-generation cannibalisation, and chasms. Matches Wardley's "evolution is multi-wave" framing.
+- **Extensions** (`docs/extensions/`):
+  - `inertia.md` — Wardley's 17 forms (14 consumer + 3 supplier) replacing the single $c_v(t)$ scalar with a structured sum. Note: FUD, Lobbying, and Bundling are **gameplays**, not inertia — don't confuse the taxonomies.
+  - `multi-wave-evolution.md` — per-generation S-curves, cross-generation cannibalisation, chasms.
+  - `component-types.md` — extends the tuple with $\tau: V \to \{A, P, D, K\}$ and type-dependent evolution rates.
 
-- **Component Types** (`Component Types and the Type Function.md`): Extends the tuple with $\tau: V \to \{A, P, D, K\}$ and type-dependent evolution rates. Adds the "practices co-evolve with activities" constraint.
+- **Catalogues** (`docs/catalogues/`):
+  - `gameplay.md` — 61 gameplays with structured effects on model parameters.
+  - `doctrine.md` — 40 doctrine principles with math-model readings.
 
-- **Gameplay Catalogue** (`Gameplay Catalogue - 61 Plays with Math-Model Effects.md`): Wardley's 61 gameplays across 12 categories, each with a structured effect on the math model's parameters.
+- **Strategy** (`docs/strategy/`):
+  - `strategy-cycle-core.md` / `-example.md` — purpose → landscape → climate → doctrine → leadership.
+  - `weak-signals-core.md` / `-example.md` — detecting imminent evolution.
+  - `strategic-mastery.md` / `gameplay-math-models.md` — older companion treatments of gameplay that predate `catalogues/gameplay.md`.
 
-- **Doctrine** (`Doctrine - 40 Principles as Model Constraints.md`): Wardley's 40 doctrine principles across 4 phases and 6 categories, with math-model readings showing which principles are constraints on the model and which are organisational practices outside it.
+## The skill and workspace — `skills/`
 
-- **Comprehensive Framework** (`The Mathematical Framework of Wardley Mapping.md`): Extended treatment covering graph theory, game theory, probability, and machine learning applications
+- `skills/wardley-map/` is the production skill. `SKILL.md` is the procedure (7 steps). `references/` bundles the 19-row cheat sheet, 27 climatic patterns, 40 doctrine principles, 61 gameplays, 17 inertia forms, 3 worked examples, condensed formalism. `scripts/validate_owm.py` is a structural validator (enforces $\nu(a) \ge \nu(b)$, coordinate range, edge-endpoint declaration).
+- `skills/wardley-map-workspace/` contains every iteration of the skill and the benchmark. Iterations 10-14 are the active benchmark corpus (25 maps from `swardley/WARDLEY-MAP-REPOSITORY`); iterations 1-9 are skill-development history. `BENCHMARK-REPORT.md` is the primary summary; `BENCHMARK-METHODOLOGY.md` documents how the benchmark works.
 
-- **Strategy & Gameplay** (`Strategic Mastery: Creating Math Models for Wardley Mapping Gameplays.md`, `Mathematical Models for Wardley Mapping Gameplay...`): Quantitative approaches to strategic decision-making
+## Key mathematical concepts
 
-- **Series Documents** (`Part 2-5`, `Wardley Strategy Cycle`, `Weak Signals & Evolution`): Progressive development of specific model aspects including evolution dynamics, visibility layers, and signal detection
+- **Visibility (Y-axis)**: $\nu(v) = 1/(1+d(v))$ where $d(v)$ is graph distance. The production skill uses an exponential variant $\nu(v) = e^{-0.6 \cdot d(v)}$ by default (calibrated from the 25-map benchmark to reduce systematic visibility over-placement).
+- **Evolution (X-axis)**: $\varepsilon(v) \in [0,1]$ mapping to stages — Genesis $[0, 0.25)$, Custom Built $[0.25, 0.5)$, Product (+rental) $[0.5, 0.75)$, Commodity (+utility) $[0.75, 1]$. Canonical determination is by cheat sheet, not by time — see the climatic pattern *"you cannot measure evolution over time or adoption."*
+- **Evolution dynamics**: logistic S-curve $d\varepsilon/dt = r\varepsilon(1-\varepsilon)$ labeled as a stylized extension; Wardley's climatic patterns say evolution cannot be measured over time.
+- **Dependencies**: directed graph where $(a,b) \in E$ means "a depends on b", with the hard constraint $\nu(a) \ge \nu(b)$.
 
-## Key Mathematical Concepts
-
-- **Visibility (Y-axis)**: Computed as distance from user node, typically $\nu(v) = 1/(1+d(v))$ where $d(v)$ is graph distance
-- **Evolution (X-axis)**: Continuous score $\varepsilon(v) \in [0,1]$ mapping to stages: Genesis $[0,0.25)$, Custom Built $[0.25,0.5)$, Product (+rental) $[0.5,0.75)$, Commodity (+utility) $[0.75,1]$. Canonical determination is by cheat sheet, not by time — see the climatic pattern *"you cannot measure evolution over time or adoption."*
-- **Evolution Dynamics**: logistic S-curve $d\varepsilon/dt = r\varepsilon(1-\varepsilon)$ where $r$ incorporates market forces and strategic actions. The repo labels this as a stylized extension; Wardley's own climatic patterns say *"you cannot measure evolution over time or adoption."*
-- **Dependencies**: Directed graph where $(a,b) \in E$ means "a depends on b", with constraint $\nu(a) \ge \nu(b)$
-
-## Working with This Repository
+## Working with this repository
 
 When editing documents:
-- Mathematical notation uses GitHub-native LaTeX: inline with `$...$` and display with `$$...$$`
-- Maintain consistent terminology: "evolution" (X-axis), "visibility" (Y-axis), "components" (nodes)
-- Documents reference Simon Wardley's original qualitative framework as the conceptual foundation
+
+- Mathematical notation uses GitHub-native LaTeX: inline `$...$`, display `$$...$$`.
+- Maintain consistent terminology: *evolution* (X-axis), *visibility* (Y-axis), *components* (nodes).
+- Markdown filenames are kebab-case. Cross-document links between `docs/` subdirectories use relative paths (e.g., `../catalogues/gameplay.md`).
+- When adding a new doc, also add it to `README.md`'s table and to `llms.txt`.
+
+When editing the skill:
+
+- The validator script is the first-line defense against structural errors — keep it authoritative for OWM well-formedness.
+- Benchmark numbers are reproduced by `skills/wardley-map-workspace/compare_all_25.py` against the committed reference `.owm` files; any change to placement behaviour should be checked against the benchmark before being committed.

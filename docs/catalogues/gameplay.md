@@ -1,10 +1,10 @@
 # Gameplay Catalogue — 61 Plays with Math-Model Effects
 
-> **Role of this doc.** This is the **reference catalogue**: every gameplay Wardley enumerates, with its math-model mechanism. Use it to look up what a specific play does. For **applied theory on gameplay selection** (when, why, case studies) see [Strategic Mastery](Strategic%20Mastery%3A%20Creating%20Math%20Models%20for%20Wardley%20Mapping%20Gameplays.md). For **formal modelling methodology** (utility functions, optimisation, Bayesian decisions) see [Mathematical Models for Wardley Mapping Gameplay](Mathematical%20Models%20for%20Wardley%20Mapping%20Gameplay%3A%20A%20Quantitative%20Approach%20to%20Strategic%20Decision%20Making.md). These three docs are complementary — reference, applied, formal.
+> **Role of this doc.** This is the **reference catalogue**: every gameplay Wardley enumerates, with its math-model mechanism. Use it to look up what a specific play does. For **applied theory on gameplay selection** (when, why, case studies) see [Strategic Mastery](../strategy/strategic-mastery.md). For **formal modelling methodology** (utility functions, optimisation, Bayesian decisions) see [Mathematical Models for Wardley Mapping Gameplay](../strategy/gameplay-math-models.md). These three docs are complementary — reference, applied, formal.
 
 Wardley catalogs **61 gameplays** across **12 categories** ([Simon Wardley, *On 61 different forms of gameplay*, 2015](https://blog.gardeviance.org/2015/05/on-61-different-forms-of-gameplay.html)). Part 1's dynamics block represents strategy as a single scalar $u_v(t)$ — that flattens this catalogue beyond recognition. This doc lists every gameplay and gives each a structured effect on the math model.
 
-> **Not inertia.** FUD, Lobbying, and Bundling are *gameplays* (listed below), not forms of inertia. The [Inertia doc](Inertia%20-%20Forms%20of%20Resistance%20to%20Evolution.md) is a separate 17-item taxonomy of resistance forces.
+> **Not inertia.** FUD, Lobbying, and Bundling are *gameplays* (listed below), not forms of inertia. The [Inertia doc](../extensions/inertia.md) is a separate 17-item taxonomy of resistance forces.
 
 ---
 
@@ -209,7 +209,7 @@ subject to:
 
 $J$ is a utility on the terminal map state — e.g., sum of commodity leverage $K(v)$ weighted by strategic priority.
 
-This formulation is sketched in [Mathematical Models for Wardley Mapping Gameplay](Mathematical%20Models%20for%20Wardley%20Mapping%20Gameplay%3A%20A%20Quantitative%20Approach%20to%20Strategic%20Decision%20Making.md) §3.1. It is intractable in general (NP-hard combinatorial search over a 61-item action set with state dependencies), but useful in small, well-scoped strategic planning exercises.
+This formulation is sketched in [Mathematical Models for Wardley Mapping Gameplay](../strategy/gameplay-math-models.md) §3.1. It is intractable in general (NP-hard combinatorial search over a 61-item action set with state dependencies), but useful in small, well-scoped strategic planning exercises.
 
 ---
 

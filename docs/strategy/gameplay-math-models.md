@@ -1,6 +1,6 @@
 # Mathematical Models for Wardley Mapping Gameplay: A Quantitative Approach to Strategic Decision Making
 
-> **Role of this doc.** This is the **formal methodology** companion to the [Gameplay Catalogue](Gameplay%20Catalogue%20-%2061%20Plays%20with%20Math-Model%20Effects.md) (reference list) and [Strategic Mastery](Strategic%20Mastery%3A%20Creating%20Math%20Models%20for%20Wardley%20Mapping%20Gameplays.md) (applied treatise). Here you'll find the mathematical machinery — utility functions, optimisation formulations, Bayesian decision models, ML integration — for reasoning about gameplay selection. Read this after you've absorbed Parts 1–6 of the core model; it presupposes the $\mathcal{M} = (V, E, U, \nu, \varepsilon, t)$ tuple.
+> **Role of this doc.** This is the **formal methodology** companion to the [Gameplay Catalogue](../catalogues/gameplay.md) (reference list) and [Strategic Mastery](./strategic-mastery.md) (applied treatise). Here you'll find the mathematical machinery — utility functions, optimisation formulations, Bayesian decision models, ML integration — for reasoning about gameplay selection. Read this after you've absorbed Parts 1–6 of the core model; it presupposes the $\mathcal{M} = (V, E, U, \nu, \varepsilon, t)$ tuple.
 >
 > **Tone caveat.** Treat the techniques below as a **menu of possibilities** for scenario exploration, not a validated predictive toolkit. Wardley has not endorsed any of these formalisations.
 

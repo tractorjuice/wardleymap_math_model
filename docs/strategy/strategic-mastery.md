@@ -1,6 +1,6 @@
 # Strategic Mastery: Creating Math Models for Wardley Mapping Gameplays
 
-> **Role of this doc.** This is an **applied treatise** on gameplay selection — when and why to choose a gameplay, with case studies. For the **reference list** of all 61 gameplays with their math-model effects, see the [Gameplay Catalogue](Gameplay%20Catalogue%20-%2061%20Plays%20with%20Math-Model%20Effects.md). For a **formal modelling methodology**, see [Mathematical Models for Wardley Mapping Gameplay](Mathematical%20Models%20for%20Wardley%20Mapping%20Gameplay%3A%20A%20Quantitative%20Approach%20to%20Strategic%20Decision%20Making.md). These three docs are complementary.
+> **Role of this doc.** This is an **applied treatise** on gameplay selection — when and why to choose a gameplay, with case studies. For the **reference list** of all 61 gameplays with their math-model effects, see the [Gameplay Catalogue](../catalogues/gameplay.md). For a **formal modelling methodology**, see [Mathematical Models for Wardley Mapping Gameplay](./gameplay-math-models.md). These three docs are complementary.
 >
 > **Tone caveat.** Sections below use expansive, promotional language ("revolutionised", "transformed") inherited from an earlier draft. The underlying method is useful for **scenario exploration**, not prediction. Wardley himself has not endorsed quantitative formalisation of gameplay selection.
 

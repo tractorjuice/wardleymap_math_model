@@ -288,10 +288,10 @@ Coordinates: `[visibility, evolution]` — both 0–1.
 
 ## References to the Repo
 
-- [Part 1](../Part%201%20-%20Core%20Mathematical%20Model%20for%20Wardley%20Mapping.md) — tuple, visibility options, dynamics ODE
-- [Part 6](../Part%206%20-%20Cheat-Sheet%20Evolution%20Scoring.md) — full 19-row cheat sheet and formal scoring
-- [Inertia](../Inertia%20-%20Forms%20of%20Resistance%20to%20Evolution.md) — 17 forms of resistance
-- [Multi-Wave Evolution](../Multi-Wave%20Evolution%20and%20Punctuated%20Equilibrium.md) — multi-generation dynamics
-- [Component Types](../Component%20Types%20and%20the%20Type%20Function.md) — τ extension
-- [Gameplay Catalogue](../Gameplay%20Catalogue%20-%2061%20Plays%20with%20Math-Model%20Effects.md) — 61 plays
-- [Doctrine](../Doctrine%20-%2040%20Principles%20as%20Model%20Constraints.md) — 40 universal principles
+- [Part 1](../docs/core/part-1-core-model.md) — tuple, visibility options, dynamics ODE
+- [Part 6](../docs/core/part-6-cheat-sheet-scoring.md) — full 19-row cheat sheet and formal scoring
+- [Inertia](../docs/extensions/inertia.md) — 17 forms of resistance
+- [Multi-Wave Evolution](../docs/extensions/multi-wave-evolution.md) — multi-generation dynamics
+- [Component Types](../docs/extensions/component-types.md) — τ extension
+- [Gameplay Catalogue](../docs/catalogues/gameplay.md) — 61 plays
+- [Doctrine](../docs/catalogues/doctrine.md) — 40 universal principles
