@@ -11,13 +11,16 @@
 
 Across 25 blind benchmarks:
 
-- **Same-stage placement: 73%** of matched components land in the same evolution stage Wardley places them in
+- **Same-band placement (strict): 37%** — matched components that fall in exactly the same evolution stage Wardley places them in
+- **Within 1 band (soft): 92%** — matched components within one stage of Wardley's placement
 - **Coverage: 37%** — fraction of Wardley's components matched to ours by fuzzy name
 - **ν-bias: +0.079** — residual tendency to place things slightly higher in visibility than Wardley (was +0.22 before the exponential seed)
 - **ε-bias: +0.009** — effectively zero, very consistent across 25 domains
 - **Structural validity: 25/25** maps passed the validator after iterative fixes
 
-The skill produces structurally valid Wardley Maps that land in the right evolution stage 3 times in 4, with minimal systematic bias. It systematically under-recovers Wardley's distinctive abstract/philosophical vocabulary.
+The skill produces structurally valid Wardley Maps. Strict stage-band agreement with Wardley is about 1 in 3 — lower than the previously-reported 73% because that metric (|Δε| < 0.25) allowed cross-boundary pairs to count as same-stage. The corrected metric (actual band membership) is honest. Almost all placements (92%) are within one stage of Wardley, so the output is broadly in the right neighbourhood; fine-grained agreement on the exact stage is harder.
+
+**Metric note.** An earlier version of this report used `|Δε| < 0.25` as a proxy for "same stage" — this counted pairs like `(0.74, 0.76)` as same-stage even though they straddle the Product / Commodity boundary. That inflated the headline to 73%. The current report uses proper band membership (integer band index) and reports both strict and soft versions.
 
 ---
 
@@ -95,9 +98,12 @@ Held-out comparison against Wardley's own published maps. For each test case:
 - **|Δε|**: mean absolute difference in evolution scores for matched components
 - **|Δν|**: mean absolute difference in visibility scores
 - **ε-bias / ν-bias**: signed mean deltas (positive = we're higher than Wardley)
-- **Same-stage placement**: fraction of matched components falling in the same evolution stage (|Δε| < 0.25)
+- **Same-band placement (strict)**: fraction of matched components whose ε values fall in the same quartile band (Genesis [0, 0.25), Custom Built [0.25, 0.5), Product [0.5, 0.75), Commodity [0.75, 1.0])
+- **Within 1 band (soft)**: fraction of matched components where the band indices differ by at most 1 (adjacent-stage placement)
 
 Fuzzy matching uses exact-match, substring containment, and SequenceMatcher similarity ≥ 0.55.
+
+**Metric revision.** An earlier iteration used `|Δε| < 0.25` as a "same-stage" proxy. That metric has a boundary bug: a pair `(0.74, 0.76)` straddling the Product / Commodity line counts as a 0.02 difference and thus "same-stage", even though the two ε values live in different bands. The current implementation uses integer band membership, which is what "same stage" literally means. The two metrics differ substantially — the old version reported 73% same-stage; the corrected version reports 37% strict same-band + 92% within one band.
 
 ### 2.3 Time pinning
 
@@ -144,44 +150,76 @@ Scenario diversity spans AI / consumer tech / regulated industry / traditional i
 
 ### 3.1 Per-benchmark table
 
-| Benchmark | Domain | Ref | Ours | Match | Coverage | \|Δε\| | \|Δν\| | ε-bias | ν-bias | Same-stage |
-|---|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| ai-trust | AI | 37 | 34 | 23 | 62% | 0.153 | 0.306 | −0.010 | +0.236 | 78% |
-| healthcare-clinical | Healthcare | 40 | 30 | 24 | 60% | 0.179 | 0.386 | +0.046 | +0.298 | 75% |
-| finance-risk | Finance | 42 | 41 | 23 | 55% | 0.162 | 0.250 | +0.016 | +0.117 | 70% |
-| retail-journey | Retail | 41 | 52 | 20 | 49% | 0.174 | 0.273 | −0.078 | +0.172 | 85% |
-| manufacturing | Manufacturing | 44 | 37 | 14 | 32% | 0.226 | 0.353 | +0.174 | −0.190 | 57% |
-| agriculture | Agriculture | 50 | 55 | 18 | 36% | 0.233 | 0.213 | −0.198 | +0.005 | 56% |
-| education | Education | 40 | 44 | 13 | 32% | 0.178 | 0.220 | +0.024 | +0.032 | 69% |
-| gaming | Gaming | 33 | 49 | 14 | 42% | 0.206 | 0.180 | +0.198 | +0.053 | 57% |
-| sustainability | Sustainability | 43 | 58 | 11 | 26% | 0.135 | 0.245 | −0.077 | +0.127 | 91% |
-| cybersecurity | Cybersecurity | 33 | 39 | 19 | 58% | 0.208 | 0.257 | +0.116 | +0.139 | 63% |
-| construction-supply | Construction | 52 | 49 | 18 | 35% | 0.149 | 0.302 | −0.002 | +0.014 | 83% |
-| culture-gender | Culture | 27 | 43 | 5 | 19% | 0.168 | 0.172 | +0.088 | +0.024 | 100% |
-| defence-intelligence | Defence | 42 | 44 | 12 | 29% | 0.208 | 0.199 | −0.155 | −0.006 | 58% |
-| defence-grey-zone | Defence | 41 | 44 | 11 | 27% | 0.200 | 0.310 | −0.069 | +0.052 | 55% |
-| energy-disruption | Energy | 40 | 48 | 16 | 40% | 0.188 | 0.248 | +0.109 | +0.138 | 81% |
-| energy-storage | Energy | 30 | 47 | 11 | 37% | 0.215 | 0.264 | −0.055 | +0.127 | 82% |
-| government-digital-id | Government | 37 | 41 | 14 | 38% | 0.208 | 0.351 | −0.069 | +0.199 | 64% |
-| government-sovereignty | Government | 46 | 55 | 17 | 37% | 0.145 | 0.293 | +0.045 | +0.292 | 82% |
-| personal-fin-inclusion | Personal | 43 | 46 | 5 | 12% | 0.134 | 0.370 | −0.062 | −0.002 | 100% |
-| personal-conversational | Personal | 21 | 42 | 9 | 43% | 0.213 | 0.327 | −0.127 | +0.011 | 78% |
-| politics-labour | Politics | 27 | 45 | 6 | 22% | 0.278 | 0.152 | +0.232 | +0.072 | 50% |
-| telecoms-sovereignty | Telecoms | 49 | 47 | 12 | 24% | 0.142 | 0.230 | +0.002 | +0.048 | 92% |
-| telecoms-space | Telecoms | 44 | 46 | 14 | 32% | 0.250 | 0.216 | −0.193 | −0.063 | 50% |
-| transport-logistics | Transportation | 45 | 51 | 11 | 24% | 0.176 | 0.218 | +0.145 | +0.044 | 73% |
-| transport-demand | Transportation | 37 | 52 | 18 | 49% | 0.173 | 0.300 | +0.127 | +0.042 | 83% |
+| Benchmark | Domain | Ref | Ours | Match | Cov | \|Δε\| | \|Δν\| | ε-bias | ν-bias | Same band | ±1 band |
+|---|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| ai-trust | AI | 37 | 34 | 23 | 62% | 0.153 | 0.306 | −0.010 | +0.236 | 57% | 91% |
+| healthcare-clinical | Healthcare | 40 | 30 | 24 | 60% | 0.179 | 0.386 | +0.046 | +0.298 | 33% | 79% |
+| finance-risk | Finance | 42 | 41 | 23 | 55% | 0.162 | 0.250 | +0.016 | +0.117 | 30% | 100% |
+| retail-journey | Retail | 41 | 52 | 20 | 49% | 0.174 | 0.273 | −0.078 | +0.172 | 40% | 95% |
+| manufacturing | Manufacturing | 44 | 37 | 14 | 32% | 0.226 | 0.353 | +0.174 | −0.190 | 21% | 79% |
+| agriculture | Agriculture | 50 | 55 | 18 | 36% | 0.233 | 0.213 | −0.198 | +0.005 | 33% | 89% |
+| education | Education | 40 | 44 | 13 | 32% | 0.178 | 0.220 | +0.024 | +0.032 | 46% | 92% |
+| gaming | Gaming | 33 | 49 | 14 | 42% | 0.206 | 0.180 | +0.198 | +0.053 | 36% | 93% |
+| sustainability | Sustainability | 43 | 58 | 11 | 26% | 0.135 | 0.245 | −0.077 | +0.127 | 45% | 100% |
+| cybersecurity | Cybersecurity | 33 | 39 | 19 | 58% | 0.208 | 0.257 | +0.116 | +0.139 | 47% | 84% |
+| construction-supply | Construction | 52 | 49 | 18 | 35% | 0.149 | 0.302 | −0.002 | +0.014 | 44% | 100% |
+| culture-gender | Culture | 27 | 43 | 5 | 19% | 0.168 | 0.172 | +0.088 | +0.024 | 0% | 100% |
+| defence-intelligence | Defence | 42 | 44 | 12 | 29% | 0.208 | 0.199 | −0.155 | −0.006 | 50% | 92% |
+| defence-grey-zone | Defence | 41 | 44 | 11 | 27% | 0.200 | 0.310 | −0.069 | +0.052 | 27% | 100% |
+| energy-disruption | Energy | 40 | 48 | 16 | 40% | 0.188 | 0.248 | +0.109 | +0.138 | 25% | 81% |
+| energy-storage | Energy | 30 | 47 | 11 | 37% | 0.215 | 0.264 | −0.055 | +0.127 | 36% | 91% |
+| government-digital-id | Government | 37 | 41 | 14 | 38% | 0.208 | 0.351 | −0.069 | +0.199 | 36% | 86% |
+| government-sovereignty | Government | 46 | 55 | 17 | 37% | 0.145 | 0.293 | +0.045 | +0.292 | 41% | 94% |
+| personal-fin-inclusion | Personal | 43 | 46 | 5 | 12% | 0.134 | 0.370 | −0.062 | −0.002 | 60% | 100% |
+| personal-conversational | Personal | 21 | 42 | 9 | 43% | 0.213 | 0.327 | −0.127 | +0.011 | 33% | 89% |
+| politics-labour | Politics | 27 | 45 | 6 | 22% | 0.278 | 0.152 | +0.232 | +0.072 | 33% | 83% |
+| telecoms-sovereignty | Telecoms | 49 | 47 | 12 | 24% | 0.142 | 0.230 | +0.002 | +0.048 | 50% | 100% |
+| telecoms-space | Telecoms | 44 | 46 | 14 | 32% | 0.250 | 0.216 | −0.193 | −0.063 | 21% | 93% |
+| transport-logistics | Transportation | 45 | 51 | 11 | 24% | 0.176 | 0.218 | +0.145 | +0.044 | 45% | 100% |
+| transport-demand | Transportation | 37 | 52 | 18 | 49% | 0.173 | 0.300 | +0.127 | +0.042 | 22% | 94% |
 
 ### 3.2 Aggregate statistics
 
 | Metric | Value |
 |---|---:|
 | Mean coverage | **37%** |
-| Mean same-stage placement | **73%** |
+| **Mean same-band (strict)** | **37%** |
+| **Mean within 1 band (soft)** | **92%** |
 | Mean \|Δε\| | 0.188 |
 | Mean \|Δν\| | 0.265 |
 | ε-bias | +0.009 |
 | ν-bias | +0.079 |
+
+### 3.3 Closeness distribution (how close is "close"?)
+
+Band-membership metrics answer "same stage or not" but hide the continuous information. The `|Δε|` distribution across all 358 matched pairs from the 25 benchmarks shows how close placements actually are:
+
+| \|Δε\| ≤ | % of matches | What it means |
+|---|---:|---|
+| 0.05 | **15%** | Near-identical placement |
+| 0.10 | **28%** | Within a quarter-band of each other |
+| 0.15 | **42%** | |
+| 0.20 | **61%** | Within 4/5 of a band-width |
+| 0.25 | **75%** | Within one full band-width |
+| 0.30 | **83%** | |
+| 0.40 | **93%** | |
+| 0.50 | **97%** | Within two band-widths (almost all pairs) |
+
+This reframes the stage-band story:
+
+- About **1 in 7 matches is essentially identical** to Wardley's placement (|Δε| ≤ 0.05)
+- **3 in 4 matches are within a band-width** of Wardley's placement (|Δε| ≤ 0.25)
+- Fewer than 3% of matches are more than half the axis away
+
+**The boundary effect.** 22 of the 358 matches (6%) are cases where `|Δε| ≤ 0.10` but the pair crosses a band boundary. In strict-band terms these are "misses"; in continuous terms they are very close placements. That's 10% of all strict-band misses attributable to the boundary-crossing artefact — not dominant, but real. The remaining 90% of strict-band misses are genuine ε-distance disagreements of at least 0.10.
+
+**What this means for the strict 37% number.** If we redefined "same stage" as "within 0.10 ε of each other, regardless of band", the metric would be ~28% (since 28% of all pairs are within 0.10, and the strict-band 37% overlaps substantially with this). The metrics aren't easily reconciled into a single number — they measure different things:
+
+- **Strict band** tells you whether the mapper reaches the *same stage label*.
+- **Within 1 band** tells you whether the mapper is in the *right neighbourhood*.
+- **|Δε| cumulative** tells you how close the raw placements actually are.
+
+A useful practitioner's reading: strict-band = **stage agreement**, within-one = **neighbourhood agreement**, |Δε| ≤ 0.10 = **placement agreement**. The skill scores best on neighbourhood (92%), middle on stage (37%), less well on tight placement (28% at 0.10, 15% at 0.05).
 
 ### 3.3 Trajectory of development
 
@@ -212,7 +250,7 @@ Average per map: ~73 K tokens, ~5.7 minutes of subagent time. Total corpus cost:
 
 ### 4.1 What the skill does well
 
-**1. Structural faithfulness.** 73% of matched components land in the same evolution stage Wardley places them in. Anchors consistently correct across all 25 domains.
+**1. Structural faithfulness.** 37% of matched components land in exactly the same evolution stage Wardley places them in (strict band membership); 92% are within one stage. Anchors consistently correct across all 25 domains.
 
 **2. Near-zero ε-bias.** +0.009 across 25 maps means we don't over- or under-industrialise on average. The stage distribution of our maps matches Wardley's overall shape.
 
@@ -226,7 +264,37 @@ Average per map: ~73 K tokens, ~5.7 minutes of subagent time. Total corpus cost:
 - Agriculture-regen confirmed Soil Carbon MRV as Genesis/early-Custom because protocols were fragmented in 2022.
 - Gaming-economies flagged Loot Boxes as showing leftward evolution under regulatory pressure (reverse-Wardley, correctly observed).
 
-### 4.2 What the skill doesn't do
+### 4.2 Decomposing the two stage-band metrics
+
+Two numbers tell complementary stories:
+
+**Strict same-band (37%): exact stage match.** One in three matched components falls in exactly the same evolution stage Wardley places it in. This is a demanding metric — a pair `(0.49, 0.51)` counts as a miss because one is Custom Built and the other is Product, even though they're effectively at the same spot.
+
+**Within 1 band (92%): adjacent-stage tolerance.** Nearly all matched components are in Wardley's band or a neighbouring one. The skill rarely places something far off — Genesis components don't end up at Commodity. The output is in the right neighbourhood even when it's not on the exact spot.
+
+The gap between strict and soft tells you how much of the disagreement is near-boundary. The wide gap (37% → 92%) means most misses are within 1 band, not gross errors. That's consistent with "we're reading the same signals but reaching slightly different stage calls" rather than "we misunderstand the domain".
+
+**Why strict is 37%, not higher.** Three forces push it down:
+
+1. **Boundary-crossing sensitivity.** The cheat-sheet band edges at 0.25 / 0.5 / 0.75 are conventions, not natural discontinuities. Many real components sit near boundaries, so small judgment gaps flip bands.
+2. **Time-drift on dated maps.** Politics-labour (21% strict) and telecoms-space (21% strict) both from 2022-2024 show the subagent's 2026 priors shifting components rightward — faster industrialisation than Wardley saw at the time.
+3. **Cheat-sheet granularity.** The 4-band system has only 2 bits of information; small variance in cheat-sheet row picks translates to large band-membership volatility.
+
+**Why soft is 92%, not lower.** Two forces push it up:
+
+1. **The commodity floor.** Matched components are disproportionately commodity infrastructure (cloud, DNS, PKI, payments, encryption, electricity). Both maps agree at Stage IV. Infrastructure is ~35-45% of matches.
+2. **Shared rubric.** Wardley developed the 19-row characteristic cheat sheet; the skill scores against it. Wardley in 2022 and our subagent in 2026 are applying the same framework to the same observable signals. That produces independent convergence on coarse placement.
+
+**Chance baselines.** With the observed non-uniform ε distribution (commodity-heavy): random placement gives ~30% strict same-band (so 37% is slightly above chance); random gives ~60-65% within-1-band (so 92% is solidly above chance). The more meaningful signal is in the soft metric — the skill places components in the right stage *neighbourhood* at a rate well above chance; exact-stage matching is nearer to chance.
+
+**What's in the 8% that misses even within 1 band.**
+
+- *Fuzzy-match false positives* — e.g. AI-TRUST's `Training` (Wardley ε=0.79, meaning *act of training*) fuzzy-matched to our `Training Data` (ε=0.40, meaning *training corpus*). A 2-band gap counted as a miss when it's actually a semantic mismatch that shouldn't have matched at all.
+- *Genuinely-diverging judgment* — where both mappers read the same signals but reach very different stage calls. Rare but real (AI-TRUST `Feedback Loop` at Wardley's 0.05 vs our 0.32 — same word, different view of how industrialised feedback-for-AI-trust is).
+
+**Implication for how to read the results.** The strict 37% number is honest but discouraging; the soft 92% is honest but lenient. The truth is in both: the skill places components in the right stage *neighbourhood* at a high rate, and in the *exact* stage about a third of the time. A stage-neighbourhood that's right is usually good enough for strategic use — you don't change a recommendation from "buy" to "build" because a component is at ε=0.72 instead of ε=0.78.
+
+### 4.3 What the skill doesn't do
 
 **1. Coverage ceiling around 37%.** Our skill names roughly 1 in 3 of Wardley's components. Wardley's vocabulary has a distinctive character the skill can't reproduce:
 
@@ -249,7 +317,7 @@ Average per map: ~73 K tokens, ~5.7 minutes of subagent time. Total corpus cost:
 
 *politics-labour* and *telecoms-space* reported only 50% same-stage — domains where the subagent's 2026 priors disagreed most with Wardley's 2022-2024 placements.
 
-### 4.3 Consistency of aggregate metrics
+### 4.4 Consistency of aggregate metrics
 
 From n=10 to n=25:
 

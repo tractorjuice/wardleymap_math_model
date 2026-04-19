@@ -66,6 +66,14 @@ BENCHMARKS = [
 ]
 
 
+def stage_of(eps):
+    """Return band index 0..3 for ε in [0,1]. Boundaries at 0.25, 0.5, 0.75."""
+    if eps < 0.25: return 0        # Genesis
+    if eps < 0.5:  return 1        # Custom Built
+    if eps < 0.75: return 2        # Product (+rental)
+    return 3                        # Commodity (+utility)
+
+
 def stats(ref_path, ours_path):
     ref_a, ref_c = parse_owm(ref_path.read_text())
     ours_a, ours_c = parse_owm(ours_path.read_text())
@@ -80,6 +88,17 @@ def stats(ref_path, ours_path):
     de = [r[5]-r[2] for r in matched]
     dv = [r[4]-r[1] for r in matched]
     n = max(len(matched), 1)
+    # Proper band-membership metric (was |Δε|<0.25 which allowed cross-boundary pairs)
+    same_band = sum(1 for r in matched if stage_of(r[2]) == stage_of(r[5]))
+    within_one = sum(1 for r in matched if abs(stage_of(r[2]) - stage_of(r[5])) <= 1)
+    # |Δε| cumulative distribution — how close are placements regardless of band?
+    # Also tag: band-match status for each pair
+    close_buckets = {t: sum(1 for d in de if abs(d) <= t) / n for t in [0.05, 0.10, 0.15, 0.20, 0.25, 0.30]}
+    # "Close across boundary": near misses that happen to cross a band line
+    near_boundary_miss = sum(
+        1 for r in matched
+        if stage_of(r[2]) != stage_of(r[5]) and abs(r[5] - r[2]) <= 0.10
+    )
     return {
         "ref": len(ref_all), "ours": len(ours_all), "match": len(matched),
         "coverage": len(matched)/max(len(ref_all),1),
@@ -87,7 +106,16 @@ def stats(ref_path, ours_path):
         "abs_vis": sum(abs(d) for d in dv)/n,
         "bias_eps": sum(de)/n,
         "bias_vis": sum(dv)/n,
-        "same_stage": sum(1 for d in de if abs(d)<0.25)/n,
+        "same_stage": same_band/n,
+        "within_one_stage": within_one/n,
+        "close_005": close_buckets[0.05],
+        "close_010": close_buckets[0.10],
+        "close_015": close_buckets[0.15],
+        "close_020": close_buckets[0.20],
+        "close_025": close_buckets[0.25],
+        "close_030": close_buckets[0.30],
+        "near_boundary_miss": near_boundary_miss / n,
+        "all_de": de,
     }
 
 
@@ -103,20 +131,41 @@ for name, ref, ours, domain in BENCHMARKS:
     r["domain"] = domain
     results.append(r)
 
-print(f"{'Benchmark':<26} {'Domain':<16} {'Ref':>4} {'Ours':>5} {'Match':>6} {'Cov':>5}  {'|Δε|':>5} {'|Δν|':>5} {'ε-bias':>7} {'ν-bias':>7} {'stage%':>7}")
-print("-" * 110)
+print(f"{'Benchmark':<26} {'Domain':<16} {'Ref':>4} {'Ours':>5} {'Match':>6} {'Cov':>5}  {'|Δε|':>5} {'|Δν|':>5} {'ε-bias':>7} {'ν-bias':>7} {'same':>5} {'±1st':>5}")
+print("-" * 116)
 for r in results:
     print(f"{r['name']:<26} {r['domain']:<16} {r['ref']:>4} {r['ours']:>5} {r['match']:>6} "
           f"{r['coverage']*100:>4.0f}%  {r['abs_eps']:>5.3f} {r['abs_vis']:>5.3f} "
-          f"{r['bias_eps']:>+7.3f} {r['bias_vis']:>+7.3f} {r['same_stage']*100:>6.0f}%")
+          f"{r['bias_eps']:>+7.3f} {r['bias_vis']:>+7.3f} "
+          f"{r['same_stage']*100:>4.0f}% {r['within_one_stage']*100:>4.0f}%")
 
 print()
 print(f"Aggregates across {len(results)} benchmarks:")
 for k, label in [("coverage","Coverage"), ("abs_eps","|Δε|"), ("abs_vis","|Δν|"),
-                   ("bias_eps","ε-bias"), ("bias_vis","ν-bias"), ("same_stage","Same-stage")]:
+                   ("bias_eps","ε-bias"), ("bias_vis","ν-bias"),
+                   ("same_stage","Same band (strict)"),
+                   ("within_one_stage","Within 1 band (soft)")]:
     avg = sum(r[k] for r in results) / len(results)
-    fmt = f"{avg*100:.0f}%" if k in ("coverage","same_stage") else (f"{avg:+.3f}" if "bias" in k else f"{avg:.3f}")
+    fmt = f"{avg*100:.0f}%" if k in ("coverage","same_stage","within_one_stage") else (f"{avg:+.3f}" if "bias" in k else f"{avg:.3f}")
     print(f"  {label}: {fmt}")
+
+# Pooled |Δε| distribution across all matches
+all_de = [d for r in results for d in r["all_de"]]
+print(f"\n|Δε| cumulative distribution across all {len(all_de)} matched pairs:")
+for t in [0.05, 0.10, 0.15, 0.20, 0.25, 0.30, 0.40, 0.50]:
+    frac = sum(1 for d in all_de if abs(d) <= t) / len(all_de)
+    print(f"  |Δε| ≤ {t:.2f}: {frac*100:.0f}%")
+
+# Cross-boundary near-misses: |Δε| small but bands differ
+near_misses = [r for r in results for _ in range(int(r["near_boundary_miss"]*r["match"]))]
+total_near = sum(int(r["near_boundary_miss"]*r["match"]) for r in results)
+total_matched = sum(r["match"] for r in results)
+print(f"\nNear-boundary misses (|Δε| ≤ 0.10 but different bands): "
+      f"{total_near}/{total_matched} = {total_near/total_matched*100:.0f}% of all matches")
+# Of strict-miss cases, how many are near-boundary?
+total_strict_miss = sum(r["match"] - int(r["same_stage"]*r["match"]) for r in results)
+print(f"Near-boundary misses as fraction of strict-band misses: "
+      f"{total_near}/{total_strict_miss} = {total_near/max(total_strict_miss,1)*100:.0f}%")
 
 # Save aggregate json
 out = {"n": len(results), "per_map": results,
