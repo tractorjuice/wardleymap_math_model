@@ -120,8 +120,6 @@ The useful thresholds are therefore:
 - `|Δε| ≤ 0.20` → within strategic tolerance — unlikely to change the build/buy/utility call
 - `|Δε| > 0.25` → genuine disagreement, beyond both noise and band-width
 
-**Metric history.** An earlier version of this report used `|Δε| < 0.25` as a "same-stage" proxy and reported 73% same-stage. That metric had a boundary bug: a pair `(0.74, 0.76)` counted as same-stage even though they straddle the Product/Commodity line. The current report uses proper band membership and reports the full `|Δε|` distribution.
-
 ### 2.3 Time pinning
 
 Several maps carry explicit dates. The subagent is pinned to that date to prevent 2026 priors from biasing placements. Effectiveness is partial — we still see drift on 2022-2024 scenarios.
