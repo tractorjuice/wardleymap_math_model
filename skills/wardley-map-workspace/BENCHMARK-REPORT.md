@@ -221,18 +221,36 @@ The **sustainability** map is the worst case (26%): 58 of our components but onl
 - ✅ Validator script enforcing structural invariants
 - ✅ Stage-first qualitative prose in analysis
 - ✅ Deep-placement step with targeted WebSearch
+- ✅ **Component density guidance** (added 2026-04-18) — target ranges by scenario type, "if removing it wouldn't change any conclusion, leave it out" heuristic, common-over-addition list
 
 ### 5.2 Open opportunities
 
 **1. Expand the abstract-component repertoire.** Add a reference file listing ~30 "distinctive Wardley vocabulary" nodes (perceived risk, asymmetric access, believed quality, etc.) and instruct the skill to consider them when the scenario is landscape-level rather than product-level. This could lift coverage on AI trust, finance, sustainability without hurting concrete-product cases.
 
-**2. Per-domain component density guidance.** The skill has no sense of "this scenario warrants ~40 components, not ~60". A simple heuristic (scenarios with single-product focus → 20-30 components; landscape-level → 35-45; multi-stakeholder systems → 40-55) would help calibrate.
+**2. ~~Per-domain component density guidance.~~** Implemented — see §5.4 below for results.
 
 **3. Dampen exponential α when visibility distribution should be flat.** Manufacturing showed inverse ν-bias; the exponential seed may be over-correcting in scenarios where most components are genuinely mid-chain. A scenario classifier (not a big ML thing — just a few heuristic rules) could pick α ∈ {0.4, 0.6, 0.8} by domain.
 
 **4. Normalise against Wardley's vocabulary when possible.** A lookup table mapping common tech-stack terms to Wardley's preferred phrasing (e.g., "fine-tuning" → "custom training"; "vector DB" → "data index"; "observability platform" → "logs & telemetry") would boost match-rate on the fuzzy-match metric without changing actual placement quality. Low-effort, high-measured-coverage.
 
 **5. The false-precision risk remains.** Numeric ν and ε values are required by OWM format and useful for the validator, but the qualitative framing (stage labels, rank orders) in analysis is what users should trust. The skill already instructs this; compliance was ~100% in the benchmarks. Worth keeping vigilant.
+
+### 5.4 Density guidance follow-up
+
+After this report was first drafted, recommendation #2 was implemented: SKILL.md §1 now has target ranges by scenario type (20-30 / 35-45 / 40-55) plus a "if removing it wouldn't change any conclusion, leave it out" heuristic. Rerun of the worst over-decomposer (cybersecurity, originally 60 components vs Wardley's 33):
+
+| Metric | Before (60 comps) | After (39 comps) | Δ |
+|---|---:|---:|---:|
+| Coverage | 55% | **58%** | +3pp |
+| ν-bias | +0.177 | **+0.139** | −0.038 |
+| Same-stage | **83%** | 63% | −20pp |
+| \|Δε\| | 0.161 | 0.208 | +0.047 |
+
+**Mixed outcome.** The density target was met and coverage + ν-bias both improved. But same-stage placement regressed 20 points. The explanation: compressing 60 components to 39 changes which components match Wardley's — merged nodes land at the weighted-mean stage rather than Wardley's more granular placements. Denser maps trade density-fidelity for placement-fidelity.
+
+**Interpretation:** density guidance is a genuine improvement for maps that were over-decomposing obvious commodity infrastructure (Cloud + DB + CDN + Storage as four separate nodes when one "Cloud utilities" would do), but over-application can mask legitimate sub-component distinctions. The implemented guidance phrases it as a *target, not a cap* — that framing was correct. The skill should respect the target for tightly-scoped scenarios while allowing departure when specific sub-components carry distinct strategic weight.
+
+Net recommendation: keep density guidance; don't tighten further without evidence.
 
 ### 5.3 What not to do
 
