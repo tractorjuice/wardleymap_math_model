@@ -8,6 +8,20 @@
 
 ---
 
+## Contents
+
+- [TL;DR](#tldr)
+- [1. The skill under test](#1-the-skill-under-test)
+- [2. Test methodology](#2-test-methodology)
+- [3. Results](#3-results)
+- [4. Findings](#4-findings)
+- [5. Recommendations](#5-recommendations)
+- [6. Limitations](#6-limitations)
+- [7. Bottom line](#7-bottom-line)
+- [8. Artifacts](#8-artifacts)
+
+---
+
 ## TL;DR
 
 Across 25 blind benchmarks, 358 matched component pairs:
@@ -113,13 +127,15 @@ Four complementary views of placement agreement:
 - `|Δε| ≤ 0.20` — within strategic tolerance (build/buy/utility call doesn't change)
 - `|Δε| > 0.25` — genuine disagreement, beyond both noise and one band-width
 
+The 0.20 threshold corresponds to **two rows' worth of disagreement** on the 4-row method — the largest gap that's still noise-compatible. Beyond that, at least two of the four cheat-sheet rows materially disagree, which usually reflects real judgment difference rather than scoring variance. The 0.25 threshold lines up with the band width itself; beyond one band-width is unambiguously a different stage call.
+
 ### 2.3 Time pinning
 
 Several maps carry explicit dates (2022-2024). The subagent is pinned to that date in the scenario prompt to prevent 2026 priors from biasing placements. Effectiveness is partial — §4.3 documents the time-drift confound and its bidirectional signal.
 
 ### 2.4 Corpus
 
-25 maps spanning 18 domains.
+25 maps spanning 18 domains: AI governance, retail, healthcare, finance, manufacturing, cybersecurity, agriculture, education, gaming, sustainability, construction, culture, defence, energy, government, personal (individual-scale), politics, telecoms, transportation.
 
 | Map | Domain | Date | Ref comps |
 |---|---|---|---:|
@@ -155,33 +171,35 @@ Several maps carry explicit dates (2022-2024). The subagent is pinned to that da
 
 ### 3.1 Per-benchmark table
 
-| Benchmark | Domain | Ref | Ours | Match | Cov | \|Δε\| | \|Δν\| | ε-bias | ν-bias | Same band | ±1 band |
-|---|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| ai-trust | AI | 37 | 34 | 23 | 62% | 0.153 | 0.306 | −0.010 | +0.236 | 57% | 91% |
-| healthcare-clinical | Healthcare | 40 | 30 | 24 | 60% | 0.179 | 0.386 | +0.046 | +0.298 | 33% | 79% |
-| finance-risk | Finance | 42 | 41 | 23 | 55% | 0.162 | 0.250 | +0.016 | +0.117 | 30% | 100% |
-| retail-journey | Retail | 41 | 52 | 20 | 49% | 0.174 | 0.273 | −0.078 | +0.172 | 40% | 95% |
-| manufacturing | Manufacturing | 44 | 37 | 14 | 32% | 0.226 | 0.353 | +0.174 | −0.190 | 21% | 79% |
-| agriculture | Agriculture | 50 | 55 | 18 | 36% | 0.233 | 0.213 | −0.198 | +0.005 | 33% | 89% |
-| education | Education | 40 | 44 | 13 | 32% | 0.178 | 0.220 | +0.024 | +0.032 | 46% | 92% |
-| gaming | Gaming | 33 | 49 | 14 | 42% | 0.206 | 0.180 | +0.198 | +0.053 | 36% | 93% |
-| sustainability | Sustainability | 43 | 58 | 11 | 26% | 0.135 | 0.245 | −0.077 | +0.127 | 45% | 100% |
-| cybersecurity | Cybersecurity | 33 | 39 | 19 | 58% | 0.208 | 0.257 | +0.116 | +0.139 | 47% | 84% |
-| construction-supply | Construction | 52 | 49 | 18 | 35% | 0.149 | 0.302 | −0.002 | +0.014 | 44% | 100% |
-| culture-gender | Culture | 27 | 43 | 5 | 19% | 0.168 | 0.172 | +0.088 | +0.024 | 0% | 100% |
-| defence-intelligence | Defence | 42 | 44 | 12 | 29% | 0.208 | 0.199 | −0.155 | −0.006 | 50% | 92% |
-| defence-grey-zone | Defence | 41 | 44 | 11 | 27% | 0.200 | 0.310 | −0.069 | +0.052 | 27% | 100% |
-| energy-disruption | Energy | 40 | 48 | 16 | 40% | 0.188 | 0.248 | +0.109 | +0.138 | 25% | 81% |
-| energy-storage | Energy | 30 | 47 | 11 | 37% | 0.215 | 0.264 | −0.055 | +0.127 | 36% | 91% |
-| government-digital-id | Government | 37 | 41 | 14 | 38% | 0.208 | 0.351 | −0.069 | +0.199 | 36% | 86% |
-| government-sovereignty | Government | 46 | 55 | 17 | 37% | 0.145 | 0.293 | +0.045 | +0.292 | 41% | 94% |
-| personal-fin-inclusion | Personal | 43 | 46 | 5 | 12% | 0.134 | 0.370 | −0.062 | −0.002 | 60% | 100% |
-| personal-conversational | Personal | 21 | 42 | 9 | 43% | 0.213 | 0.327 | −0.127 | +0.011 | 33% | 89% |
-| politics-labour | Politics | 27 | 45 | 6 | 22% | 0.278 | 0.152 | +0.232 | +0.072 | 33% | 83% |
-| telecoms-sovereignty | Telecoms | 49 | 47 | 12 | 24% | 0.142 | 0.230 | +0.002 | +0.048 | 50% | 100% |
-| telecoms-space | Telecoms | 44 | 46 | 14 | 32% | 0.250 | 0.216 | −0.193 | −0.063 | 21% | 93% |
-| transport-logistics | Transportation | 45 | 51 | 11 | 24% | 0.176 | 0.218 | +0.145 | +0.044 | 45% | 100% |
-| transport-demand | Transportation | 37 | 52 | 18 | 49% | 0.173 | 0.300 | +0.127 | +0.042 | 22% | 94% |
+| Benchmark | Domain | Ref | Ours | Match | Cov | \|Δε\| | \|Δν\| | ε-bias | ν-bias | Same band | ±1 band | ≤ 0.20 |
+|---|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| ai-trust | AI | 37 | 34 | 23 | 62% | 0.153 | 0.306 | −0.010 | +0.236 | 57% | 91% | 70% |
+| healthcare-clinical | Healthcare | 40 | 30 | 24 | 60% | 0.179 | 0.386 | +0.046 | +0.298 | 33% | 79% | 54% |
+| finance-risk | Finance | 42 | 41 | 23 | 55% | 0.162 | 0.250 | +0.016 | +0.117 | 30% | 100% | 65% |
+| retail-journey | Retail | 41 | 52 | 20 | 49% | 0.174 | 0.273 | −0.078 | +0.172 | 40% | 95% | 70% |
+| manufacturing | Manufacturing | 44 | 37 | 14 | 32% | 0.226 | 0.353 | +0.174 | −0.190 | 21% | 79% | 57% |
+| agriculture | Agriculture | 50 | 55 | 18 | 36% | 0.233 | 0.213 | −0.198 | +0.005 | 33% | 89% | 44% |
+| education | Education | 40 | 44 | 13 | 32% | 0.178 | 0.220 | +0.024 | +0.032 | 46% | 92% | 69% |
+| gaming | Gaming | 33 | 49 | 14 | 42% | 0.206 | 0.180 | +0.198 | +0.053 | 36% | 93% | 43% |
+| sustainability | Sustainability | 43 | 58 | 11 | 26% | 0.135 | 0.245 | −0.077 | +0.127 | 45% | 100% | 82% |
+| cybersecurity | Cybersecurity | 33 | 39 | 19 | 58% | 0.208 | 0.257 | +0.116 | +0.139 | 47% | 84% | 58% |
+| construction-supply | Construction | 52 | 49 | 18 | 35% | 0.149 | 0.302 | −0.002 | +0.014 | 44% | 100% | 67% |
+| culture-gender | Culture | 27 | 43 | 5 | 19% | 0.168 | 0.172 | +0.088 | +0.024 | 0% | 100% | 100% |
+| defence-intelligence | Defence | 42 | 44 | 12 | 29% | 0.208 | 0.199 | −0.155 | −0.006 | 50% | 92% | 58% |
+| defence-grey-zone | Defence | 41 | 44 | 11 | 27% | 0.200 | 0.310 | −0.069 | +0.052 | 27% | 100% | 45% |
+| energy-disruption | Energy | 40 | 48 | 16 | 40% | 0.188 | 0.248 | +0.109 | +0.138 | 25% | 81% | 75% |
+| energy-storage | Energy | 30 | 47 | 11 | 37% | 0.215 | 0.264 | −0.055 | +0.127 | 36% | 91% | 55% |
+| government-digital-id | Government | 37 | 41 | 14 | 38% | 0.208 | 0.351 | −0.069 | +0.199 | 36% | 86% | 50% |
+| government-sovereignty | Government | 46 | 55 | 17 | 37% | 0.145 | 0.293 | +0.045 | +0.292 | 41% | 94% | 76% |
+| personal-fin-inclusion | Personal | 43 | 46 | 5 | 12% | 0.134 | 0.370 | −0.062 | −0.002 | 60% | 100% | 80% |
+| personal-conversational | Personal | 21 | 42 | 9 | 43% | 0.213 | 0.327 | −0.127 | +0.011 | 33% | 89% | 56% |
+| politics-labour | Politics | 27 | 45 | 6 | 22% | 0.278 | 0.152 | +0.232 | +0.072 | 33% | 83% | 33% |
+| telecoms-sovereignty | Telecoms | 49 | 47 | 12 | 24% | 0.142 | 0.230 | +0.002 | +0.048 | 50% | 100% | 83% |
+| telecoms-space | Telecoms | 44 | 46 | 14 | 32% | 0.250 | 0.216 | −0.193 | −0.063 | 21% | 93% | 36% |
+| transport-logistics | Transportation | 45 | 51 | 11 | 24% | 0.176 | 0.218 | +0.145 | +0.044 | 45% | 100% | 55% |
+| transport-demand | Transportation | 37 | 52 | 18 | 49% | 0.173 | 0.300 | +0.127 | +0.042 | 22% | 94% | 67% |
+
+The last column (`≤ 0.20`) is the strategic-tolerance agreement — fraction of matches where `|Δε| ≤ 0.20`, the threshold beyond which build/buy/utility recommendations start to change.
 
 ### 3.2 Aggregate statistics
 
@@ -229,7 +247,7 @@ Across all 358 matched pairs:
 
 **4. Strategic conclusions converge with Wardley's framing.** Blind across 25 scenarios the subagent independently reaches takeaways that align with Wardley's: *governance trails the technology it governs* (AI trust, government digital ID), *platform plays need both sides* (gaming, retail, freelance), *sovereignty levers are differentiators while connectivity is commoditised* (telecoms sovereignty), *climate and defence are in Peace/War/Wonder cycle transitions* (defence grey zone, energy disruption).
 
-**5. Validator reliably enforces structural invariants.** 1-13 violations caught on first draft; all fixed iteratively. Without it, ~60% of maps would ship with silent structural errors.
+**5. Validator reliably catches structural errors.** The bundled `validate_owm.py` script catches 1-13 violations on first-draft maps, which the subagent fixes iteratively until the script exits clean. Nearly all of the 25 first-drafts had at least one violation — without the validator, most maps would ship with silent structural errors (visibility-rule breaks, typo'd edges, out-of-range coordinates).
 
 **6. Deep placement produces specific findings.** Examples: telecoms-sovereignty correctly identified the Oct 2022 Huawei notice; culture-gender anchored placements to March 2022 specifics (Cass interim report, Florida HB 1557); agriculture-regen confirmed Soil Carbon MRV as Genesis because protocols were fragmented; gaming-economies flagged Loot Boxes as showing leftward evolution under regulatory pressure.
 
@@ -244,12 +262,15 @@ Across all 358 matched pairs:
 
 **3. Visibility compression — softened but persistent.** Exponential seed reduced ν-bias from +0.22 to +0.08, but bias remains positive in most benchmarks.
 
-**4. Component count calibration (partly mitigated).** Density guidance helps (cybersecurity dropped from 60 to 39 components after the change) but can over-correct. The guidance is a target, not a cap.
+**4. Component count calibration (partly mitigated).** Density guidance helps — cybersecurity dropped from 60 to 39 components after the guidance was added. The guidance is phrased as a target rather than a cap, which is the right framing; we haven't observed evidence of systematic over-correction in the 25-map corpus.
 
-**5. Coverage varies sharply by domain.**
+**5. Visibility compression varies by domain.** ν-bias per map ranges from −0.19 (manufacturing) to +0.30 (healthcare). Three patterns:
 
-- *High coverage (55-62%)*: AI trust, healthcare, finance, cybersecurity, retail. Wardley's vocabulary here is concrete-operational.
-- *Low coverage (12-27%)*: personal-fin-inclusion, culture-gender, politics-labour, telecoms-sovereignty, transport-logistics, defence. Wardley's vocabulary here is idiosyncratic or abstract.
+- *Strong positive* (we place too high): healthcare +0.30, government-sovereignty +0.29, ai-trust +0.24, government-digital-id +0.20, retail +0.17 — domains where Wardley pushes deep infrastructure to ν < 0.1 more aggressively than the exponential seed produces.
+- *Near-zero* (calibrated): construction +0.01, personal-fin-inclusion 0.00, defence-intelligence −0.01, agriculture +0.01 — the exponential seed matches Wardley's vertical spread well.
+- *Negative* (we place too low): manufacturing −0.19, telecoms-space −0.06 — domains where Wardley keeps most components mid-chain; the exponential seed pushes too aggressively toward the bottom.
+
+The seed is calibrated for a "Wardley-typical" visibility distribution. Domains that don't match that shape drift in either direction. A domain-adaptive α (recommendation §5.2 #2) would close the remaining gap.
 
 ### 4.3 The time-drift confound
 
@@ -298,9 +319,9 @@ Agriculture-regen is the starkest: Wardley thought soil carbon MRV and regen sup
 
 From n=10 to n=25:
 
-- Same-band (strict): stable around 37%
-- Within 1 band (soft): stable around 92%
-- `|Δε| ≤ 0.20`: stable around 60%
+- Same-band (strict): 37% (stable)
+- Within 1 band (soft): 92% (stable)
+- `|Δε| ≤ 0.20`: measured at 61% at n=25
 - ε-bias: +0.017 → +0.009 (near-zero, improving)
 - ν-bias: +0.103 → +0.079 (continued improvement)
 - Coverage: 45% → 37% (driven by niche-domain additions)
@@ -327,7 +348,7 @@ Placement metrics are robust across 2.5× the corpus. Coverage is the corpus-com
 
 **3. Vocabulary normalisation.** Map common tech-stack terms to Wardley's preferred phrasing (e.g., "vector DB" → "data index"; "observability platform" → "logs & telemetry"). Low-effort coverage lift without changing placement.
 
-**4. Stronger time-pinning.** Several pre-2024 scenarios showed drift (politics-labour, telecoms-space, agriculture). An explicit "your knowledge cutoff for this scenario is date X" instruction in the Step 4 procedure might help — though time drift is bidirectional, so the fix is non-trivial.
+**4. Stronger time-pinning.** Several pre-2024 scenarios showed drift (politics-labour, telecoms-space, agriculture). An explicit "your knowledge cutoff for this scenario is date X" in Step 4, combined with a check that the subagent's deep-placement WebSearches filter by date, would reduce forward drift. Worth implementing — forward drift is the larger of the two directions (7 maps vs 4 for overshoot) and is the tractable one. Overshoot (Wardley ahead of reality) can't be reduced by prompt engineering; it's an artefact of the reference maps.
 
 ### 5.3 Not recommended
 
