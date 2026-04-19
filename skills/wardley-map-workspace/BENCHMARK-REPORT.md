@@ -19,6 +19,8 @@
 - [6. Limitations](#6-limitations)
 - [7. Bottom line](#7-bottom-line)
 - [8. Artifacts](#8-artifacts)
+- [Appendix A — Test prompts per benchmark](#appendix-a--test-prompts-per-benchmark)
+- [Appendix B — Code references](#appendix-b--code-references)
 
 ---
 
@@ -30,7 +32,7 @@ Across 25 blind benchmarks, 358 matched component pairs:
 - **28% are near-identical** (`|Δε| ≤ 0.10` — within the cheat-sheet method's inherent scoring noise)
 - **92% are in Wardley's band or an adjacent one** (stage-neighbourhood agreement)
 - **37% are in exactly the same stage band** (strict band match)
-- **25% are genuine disagreements** (`|Δε| > 0.25`), of which a significant fraction are time drift (see §4.3) not skill error
+- **25% are genuine disagreements** (`|Δε| > 0.25`), some fraction of which is time drift (see §4.3) not skill error
 - **Coverage: 37%** — fraction of Wardley's components matched by fuzzy name
 - **ε-bias: +0.009** (effectively zero, very consistent across 25 domains)
 - **ν-bias: +0.079** (down from +0.22 before the exponential seed)
@@ -121,13 +123,11 @@ Four complementary views of placement agreement:
 3. **`|Δε|` cumulative distribution** — fraction within {0.05, 0.10, 0.15, 0.20, 0.25, 0.30} of each other regardless of band. The continuous view.
 4. **Directional biases** — mean signed Δε and Δν (positive = we place higher than Wardley).
 
-**Noise floor.** The 4-row cheat-sheet method has inherent quantisation. Each row gives one of 4 stage values; one row flipping by one stage shifts mean ε by ~0.0625. A `|Δε|` of ~0.10 is one row's worth of disagreement — within scoring noise, not substantive disagreement. Useful thresholds:
+**Noise floor.** The 4-row cheat-sheet method has inherent quantisation. Each row gives one of 4 stage values; one row flipping by one stage shifts mean ε by 0.0625. Useful thresholds:
 
-- `|Δε| ≤ 0.10` — within scoring noise (effectively identical)
-- `|Δε| ≤ 0.20` — within strategic tolerance (build/buy/utility call doesn't change)
-- `|Δε| > 0.25` — genuine disagreement, beyond both noise and one band-width
-
-The 0.20 threshold corresponds to **two rows' worth of disagreement** on the 4-row method — the largest gap that's still noise-compatible. Beyond that, at least two of the four cheat-sheet rows materially disagree, which usually reflects real judgment difference rather than scoring variance. The 0.25 threshold lines up with the band width itself; beyond one band-width is unambiguously a different stage call.
+- `|Δε| ≤ 0.10` — within scoring noise (effectively identical): roughly two rows flipping by one stage, or one row flipping by almost two — the kind of disagreement the method itself produces on re-scoring
+- `|Δε| ≤ 0.20` — within strategic tolerance (build/buy/utility call doesn't change): on the order of three rows flipping by one stage, or one row flipping by three (Genesis → Commodity). Beyond that, most of the four cheat-sheet rows have to materially disagree, which usually reflects real judgment difference rather than scoring variance
+- `|Δε| > 0.25` — genuine disagreement, beyond both noise and one band-width. The 0.25 threshold lines up with the band width itself; beyond one band-width is unambiguously a different stage call.
 
 ### 2.3 Time pinning
 
@@ -241,7 +241,7 @@ Across all 358 matched pairs:
 
 **1. Strategic-tolerance agreement is high.** 61% of placements are within strategic tolerance (`|Δε| ≤ 0.20`). 92% are in Wardley's band or an adjacent one. Only 3% are catastrophically off.
 
-**2. Near-zero ε-bias.** +0.009 across 25 maps — the skill doesn't systematically over- or under-industrialise.
+**2. Near-zero ε-bias.** +0.009 across 25 maps — the skill doesn't systematically over- or under-industrialise in aggregate. (§4.3 unpacks this: the aggregate is partly coincidental cancellation between forward-drift and overshoot maps, and per-map bias is substantial in both directions.)
 
 **3. Consistent anchor identification.** All 25 benchmarks: the skill reaches for Wardley's user/stakeholder structure unaided.
 
@@ -262,7 +262,7 @@ Across all 358 matched pairs:
 
 **3. Visibility compression — softened but persistent.** Exponential seed reduced ν-bias from +0.22 to +0.08, but bias remains positive in most benchmarks.
 
-**4. Component count calibration (partly mitigated).** Density guidance helps — cybersecurity dropped from 60 to 39 components after the guidance was added. The guidance is phrased as a target rather than a cap, which is the right framing; we haven't observed evidence of systematic over-correction in the 25-map corpus.
+**4. Component count calibration (partly mitigated).** Density guidance helps — cybersecurity dropped from 60 to 39 components after the guidance was added. The guidance is phrased as a target rather than a cap, which is the right framing. One residual pattern: on scenarios where Wardley draws tight focused maps (ref ≤ ~30 components), the skill tends to overshoot — culture-gender 27 → 43, politics-labour 27 → 45, energy-storage 30 → 47, personal-conversational 21 → 42. The density ranges (20-30 / 35-45 / 40-55) give a floor that's too high for narrow landscapes; small-scope scenarios may warrant a narrower target.
 
 **5. Visibility compression varies by domain.** ν-bias per map ranges from −0.19 (manufacturing) to +0.30 (healthcare). Three patterns:
 
@@ -390,12 +390,14 @@ For practitioner use — mapping a business, product, or policy scenario and der
 
 ```
 skills/wardley-map-workspace/
+├── iteration-1/ … iteration-9/        # skill-development history (pre-benchmark)
 ├── iteration-10/                      # first 4 benchmarks
 ├── iteration-11/                      # retail rerun (exponential seed)
 ├── iteration-12/                      # +6 benchmarks (cyber, mfg, ag, edu, gaming, sust)
 ├── iteration-13/                      # cybersecurity rerun (density guidance)
 ├── iteration-14/                      # +15 benchmarks (new 8 domains + extras)
-├── compare.py                         # pairwise comparator (fuzzy match + deltas)
+├── iteration-10/compare.py            # parse_owm + fuzzy_match primitives (imported by aggregators)
+├── compare_all_10.py                  # aggregates first 10 benchmarks (historical)
 ├── compare_all_25.py                  # aggregates 25 benchmarks + closeness distribution
 ├── benchmark-25-summary.json          # machine-readable aggregate + per-map data
 ├── BENCHMARK-REPORT.md                # this document
@@ -408,3 +410,76 @@ Each `eval-<name>/` directory contains:
 - `with_skill/run-1/outputs/draft.owm` — validator working file
 - `with_skill/run-1/timing.json` — token count and duration
 - `with_skill/run-1/grading.json` — (where applicable) assertion grading
+
+---
+
+## Appendix A — Test prompts per benchmark
+
+Original scenario prompts were not stored as standalone artefacts (see Methodology §9 — `eval_metadata.json` was expected but not produced for iterations 10-14). The summaries below are extracted from the **subagent's scenario-restatement paragraph** at the top of each `output.md`, which paraphrases the prompt it was given. They are representative of what the subagent was asked rather than verbatim originals. Each entry links to the generated output file.
+
+| # | Benchmark | Date pin | Scenario (subagent restatement) | Output |
+|---:|---|---|---|---|
+| 1 | ai-trust | Jun 2023 | Map the AI trust landscape — components determining whether individuals, government, and business can trust AI systems: technical (models, data, compute), governance (regulations, audits, benchmarks), control mechanisms (forensics, feedback loops, constitution), outcomes (safety, reputation, competitive advantage). | `iteration-10/eval-ai-trust/` |
+| 2 | healthcare-clinical | Aug 2022 | How medical practitioners and institutions reach treatment decisions: knowledge layer (trials, reviews, historical data), decision components (diagnosis, treatment options, permissible treatment under funding rules), settings of care (primary, ER, virtual, assisted living), outcomes (patient health, clinical metrics, fairness). Pinned pre-ChatGPT. | `iteration-10/eval-healthcare-clinical/` |
+| 3 | finance-risk | ~2023 | Landscape of risk management in financial services. Four actor-classes (Public, Society, Corporations, Government), six risk types (sovereign, territorial, economic, political, cybersecurity, perceived), signalling services (rating agencies, credit scoring, actuarial pricing), mathematical/legal foundations. | `iteration-10/eval-finance-risk/` |
+| 4 | retail-journey | — | Modern retail customer journey: how customers move from an initial need through to purchase; actors (customer, producer, society); components (channels, price, convenience, experience); what is differentiating vs commoditising; where friction is worth reducing. Rerun under exponential seed. | `iteration-11/eval-retail-journey/` |
+| 5 | manufacturing | Feb 2023 | Modern manufacturing supply chain. Two anchors for the two distinct user needs (cost/reliability vs. resilience/agility). Spans sourcing, production, logistics, digital tooling, compliance, supplier relationships. | `iteration-12/eval-manufacturing-supply/` |
+| 6 | agriculture | Aug 2022 | Landscape of regenerative farming: soil health, biodiversity, carbon sequestration, farmer practices, certifications, supply chains to consumers, funding sources, measurement/verification. Pinned to week IRA was signed. | `iteration-12/eval-agriculture-regen/` |
+| 7 | education | — | Lifelong learning for working adults: skills demand signals, content, platforms, credentialing, employer relationships, funding (employer / individual / public), motivation, outcomes. Two anchors: working adult learner + employer. | `iteration-12/eval-education-lifelong/` |
+| 8 | gaming | Nov 2023 | Game economies in modern live-service games: player motivation, engagement systems, in-game currency, items and loot, trading, monetisation, live-ops, analytics, anti-cheat, regulation. Flag regulatory pressure. | `iteration-12/eval-gaming-economies/` |
+| 9 | sustainability | — | Sustainable supply chain management: traceability, emissions measurement, supplier assessment, circular-economy models, regulation (CSRD, CBAM, EUDR, SFDR, Modern Slavery, ISSB), stakeholder reporting, governance. | `iteration-12/eval-sustainability-supply/` |
+| 10 | cybersecurity | May 2023 | Cyber risk management in a mid-to-large enterprise: threat intelligence, vulnerability management, incident response, identity and access, compliance/regulation, risk quantification, security operations, controls. Two anchors: CISO/Board + Employee/Business User. Rerun after density guidance. | `iteration-13/eval-cybersecurity-risk/` |
+| 11 | construction-supply | Mar 2023 | Modern construction supply chain for commercial building projects: material sourcing, specification, procurement, logistics, on-site coordination, subcontractors, compliance (building codes, safety), digital tools (BIM, procurement platforms), stakeholder relationships. | `iteration-14/eval-construction-supply/` |
+| 12 | culture-gender | Mar 2022 | Cultural landscape of gender in society — unusual application where "user need" is a person/community/institution navigating contested cultural terrain. Differentiation/commoditisation read as cultural rather than commercial. Pinned to a moment of peak-contest (Cass interim report, Florida HB 1557, Lia Thomas NCAA, Scotland GRR Bill). | `iteration-14/eval-culture-gender/` |
+| 13 | defence-intelligence | Mar 2023 | National defence intelligence enterprise: collection (HUMINT, SIGINT, OSINT, GEOINT, MASINT, cyber), PED, all-source fusion and analysis, tradecraft, tooling, decision-support to commanders/planners/allied partners. Multi-anchor. | `iteration-14/eval-defence-intelligence/` |
+| 14 | defence-grey-zone | — | Grey-zone conflict — hostile activity below the threshold of conventional war: disinformation, cyber operations, economic coercion, proxy forces, lawfare, influence operations, critical infrastructure attack, counter-measures. Three anchors: nation-state, critical-infrastructure operators, civil society. | `iteration-14/eval-defence-grey-zone/` |
+| 15 | energy-disruption | Jul 2022 | Electricity-sector transition from centralised fossil generation toward distributed renewables + storage + demand-side flexibility: generation, storage, grid, distribution, retail, consumer, policy, market mechanisms. Three anchors: consumer, grid operator, policymaker/regulator. Post-Ukraine-invasion context. | `iteration-14/eval-energy-disruption/` |
+| 16 | energy-storage | Apr 2023 | Electrical energy storage — grid-scale and distributed battery storage, pumped hydro, thermal, hydrogen: storage technologies, deployment models, markets (frequency response, arbitrage, capacity), regulation, supply chains (battery minerals, manufacturing), grid integration. | `iteration-14/eval-energy-storage/` |
+| 17 | government-digital-id | Nov 2022 | Nation-state provision and governance of citizen digital ID: authentication, credential issuance, verification, legal frameworks, trust infrastructure, privacy, service integration (banking, health, tax, welfare). Two anchors: citizens + relying parties. | `iteration-14/eval-government-digital-id/` |
+| 18 | government-sovereignty | Apr 2023 | State sovereignty in a digital, globalised economy: territorial, economic, technological, data, political, cultural dimensions; instruments (regulation, standards, trade, defence, diplomacy); erosion risks (platforms, capital flight, cyber, supply chain dependency). | `iteration-14/eval-government-sovereignty/` |
+| 19 | personal-fin-inclusion | — | Digital financial inclusion for under-banked populations in emerging markets: basic account access, mobile money, agent networks, identity, credit scoring (alternative data), regulation, consumer protection, support. Two anchors: under-banked consumer + merchant/micro-business. | `iteration-14/eval-personal-fin-inclusion/` |
+| 20 | personal-conversational | — | Modern conversational technology (voice assistants, chatbots, LLM-powered agents): language models, speech (ASR, TTS), dialogue management, knowledge retrieval, personalisation, privacy, user experience. Two anchors: End User + Developer. | `iteration-14/eval-personal-conversational/` |
+| 21 | politics-labour | May 2024 | UK Labour Party's core values and policy positioning on the eve of the July 2024 general election: core values (equality, fairness, opportunity, community, responsibility), constituencies, policy levers (NHS, education, housing, climate, workers' rights), media relations, party machinery. | `iteration-14/eval-politics-labour/` |
+| 22 | telecoms-sovereignty | Oct 2022 | Telecoms sovereignty — a nation's ability to control its own telecommunications infrastructure. Context: UK Telecoms Security Act, Huawei legal notices, Nord Stream sabotage, Starlink in Ukraine, first commercial OpenRAN, CHIPS Acts. Three anchors: nation-state, citizens, businesses. | `iteration-14/eval-telecoms-sovereignty/` |
+| 23 | telecoms-space | Feb 2023 | Telecoms via space: LEO satellite broadband (Starlink-class) scaling commercially; satellite-to-phone direct connectivity emerging (BlueWalker 3, T-Mobile + Starlink, Apple Emergency SOS); competition with terrestrial networks across rural, enterprise, maritime, aviation, defence markets. | `iteration-14/eval-telecoms-space/` |
+| 24 | transport-logistics | — | Modern logistics (freight and parcel across road, rail, sea, air): demand signals, carrier networks, warehousing, last-mile, tracking, customs, regulation, digital platforms. Multi-stakeholder industry-landscape. | `iteration-14/eval-transport-logistics/` |
+| 25 | transport-demand | May 2022 | Urban mobility landscape: how city-dwellers, commuters, and municipalities choose and supply transport modes; drivers (cost, time, sustainability, convenience, safety); supply-side operators, manufacturers, platforms. Post-COVID habit shifts partially settled, micromobility scaled, ride-hail post-IPO, EV adoption accelerating. | `iteration-14/eval-transport-demand/` |
+
+For the one prompt documented verbatim (ai-trust, as an example), see Methodology §2(a). For the others, open the referenced `output.md` — the subagent echoes the prompt in its opening paragraph.
+
+---
+
+## Appendix B — Code references
+
+| Path | Role |
+|---|---|
+| `skills/wardley-map/SKILL.md` | 7-step procedure and when-to-use instructions followed by every benchmark subagent |
+| `skills/wardley-map/scripts/validate_owm.py` | Structural validator — enforces visibility hard rule, coordinate range, edge-endpoint declaration. Called iteratively by the subagent until exit-code 0 |
+| `skills/wardley-map/references/evolution-stages.md` | 19-row cheat sheet (4-row subset used by default) |
+| `skills/wardley-map/references/climatic-patterns.md` | 27 climatic patterns — consulted during strategic analysis |
+| `skills/wardley-map/references/doctrine.md` | 40 doctrine principles |
+| `skills/wardley-map/references/gameplay-patterns.md` | 61 gameplays across 12 categories |
+| `skills/wardley-map/references/inertia.md` | 17 forms of resistance to evolution |
+| `skills/wardley-map/references/mapping-examples.md` | 3 worked maps (tea shop, freelance marketplace, SaaS) |
+| `skills/wardley-map/references/mathematical-models.md` | Condensed formalism and dynamics |
+| `skills/wardley-map-workspace/compare_all_25.py` | Aggregates 25 benchmarks → per-map table, aggregate stats, pooled `|Δε|` distribution, near-boundary miss count. Writes `benchmark-25-summary.json` |
+| `skills/wardley-map-workspace/compare_all_10.py` | Historical aggregator for the first 10 benchmarks (kept for metric-history trace) |
+| `skills/wardley-map-workspace/iteration-10/compare.py` | Parsing and fuzzy-match primitives — imported by the aggregators |
+| `skills/wardley-map-workspace/benchmark-25-summary.json` | Machine-readable per-map and aggregate output (source of every number in §3) |
+
+Key functions:
+
+- `iteration-10/compare.py::parse_owm(text)` — regex parser for `(anchor|component) <name> [ν, ε]` lines; returns `(anchors, components)` dicts
+- `iteration-10/compare.py::fuzzy_match(name, candidates)` — cascade: exact → substring → Jaccard word overlap → `difflib.SequenceMatcher`; threshold 0.55
+- `compare_all_25.py::stage_of(eps)` — quartile membership (Genesis / Custom / Product / Commodity) with boundaries at 0.25, 0.5, 0.75
+- `compare_all_25.py::stats(ref_path, ours_path)` — per-map pipeline: parse both sides, fuzzy-match every ref component, compute `Δε` and `Δν` vectors, aggregate into the fields written to `benchmark-25-summary.json`
+- `compare_all_25.py::BENCHMARKS` — the 25-entry list binding each benchmark name to its reference `.owm` and its generated `output.md`
+
+To reproduce the numbers in §3 without rerunning the skill:
+
+```bash
+cd skills/wardley-map-workspace
+python3 compare_all_25.py
+```
+
+No LLM calls, no network I/O, ~1 second runtime. All inputs (`wardley-reference.owm`, generated `output.md`) are committed.
