@@ -79,20 +79,20 @@ note Utility commodity [0.15, 0.92]
 
 ### Strategic analysis
 
-**Top 3 by differentiation pressure D = ν·(1−ε):**
-1. **Service / Hospitality** (0.80 × 0.55 = 0.44) — the core user-facing differentiator; a commodity tea shop competes on service.
-2. **Barista** (0.70 × 0.60 = 0.42) — human capital is where craft emerges.
-3. **Tea Supplier Relationship** (0.15 × 0.55 = 0.08 low D; but note the supply risk below).
+**Top 3 differentiation opportunities** (user-visible, still uncharted):
+1. **Service / Hospitality** (Custom Built) — the core user-facing differentiator. A commodity tea shop competes on service.
+2. **Barista** (Custom Built) — human capital is where craft emerges.
+3. **Tea Supplier Relationship** (Custom Built) — also flagged under dependency risks below.
 
-**Top 3 by commodity leverage K = (1−ν)·ε:**
-1. **Electricity** (0.88 × 0.95 = 0.84) — treat as utility, do not engineer.
-2. **Water** (0.90 × 0.95 = 0.86) — same.
-3. **Card Payment Processing** (0.55 × 0.90 = 0.50) — rent from Stripe/Square, do not build.
+**Top 3 commodity-leverage candidates** (deep, mature — rent, don't build):
+1. **Electricity** (Commodity +utility) — utility; never engineer.
+2. **Water** (Commodity +utility) — same.
+3. **Card Payment Processing** (Commodity +utility) — rent from Stripe / Square.
 
-**Top 3 dependency risks R = ν(a)·(1−ε(b)):**
-1. **(Brewing, Barista)** = 0.68 × 0.60 = 0.41 — the whole chain hangs on one barista.
-2. **(Tea Leaves, Tea Sourcing)** = 0.50 × 0.50 = 0.25 — single-supplier risk.
-3. **(Service / Hospitality, Barista)** = 0.80 × 0.60 = 0.48 — human capital fragility.
+**Top 3 dependency risks** (visible components on fragile foundations):
+1. **Brewing → Barista** — a user-visible step depends on a single human's craft. The whole chain hangs on one barista.
+2. **Tea Leaves → Tea Sourcing** — single-supplier risk in an otherwise mature ingredient category.
+3. **Service / Hospitality → Barista** — human-capital fragility repeated at the service layer.
 
 **Suggested gameplays:**
 - **#1 Focus on user needs** — the service differentiation is the whole business; reinforce it.
@@ -180,18 +180,18 @@ note Rent / buy [0.25, 0.88]
 
 ### Strategic analysis
 
-**Top 3 by D (BUILD):**
-1. **Matching Algorithm** (0.62 × 0.65 = 0.40) — platform's core IP.
-2. **Dispute Resolution** (0.45 × 0.65 = 0.29) — differentiator that wins repeat custom.
-3. **Reputation & Reviews** (0.58 × 0.45 = 0.26) — the moat deepens with history.
+**Top 3 differentiation opportunities** (BUILD):
+1. **Matching Algorithm** (Custom Built) — the platform's core IP.
+2. **Dispute Resolution** (Custom Built) — differentiator that wins repeat custom.
+3. **Reputation & Reviews** (Custom Built → Product) — the moat deepens with accumulated history.
 
-**Top 3 by K (BUY / RENT):**
-1. **CDN** (0.88 × 0.92 = 0.81), **Cloud Compute** (0.82 × 0.90 = 0.74), **Database** (0.85 × 0.88 = 0.75) — utility infrastructure.
+**Top 3 commodity-leverage candidates** (BUY / RENT):
+- **CDN**, **Cloud Compute**, **Database** — all Commodity (+utility). Utility infrastructure; rent from hyperscalers.
 
-**Top 3 R:**
-1. **(Bid Submission, Matching Algorithm)** = 0.80 × 0.65 = 0.52 — core UX depends on immature algorithm.
-2. **(Job Posting, Matching Algorithm)** = 0.82 × 0.65 = 0.53 — same fragility.
-3. **(Escrow, Dispute Resolution)** = 0.48 × 0.65 = 0.31 — payment trust depends on immature dispute process.
+**Top 3 dependency risks:**
+1. **Bid Submission → Matching Algorithm** — core UX depends on immature Custom-Built algorithm.
+2. **Job Posting → Matching Algorithm** — same fragility from the other side of the two-sided market.
+3. **Escrow → Dispute Resolution** — payment trust depends on immature dispute process.
 
 **Suggested gameplays:**
 - **#45 Two factor** — the defining play for a two-sided marketplace; both sides reinforce value.

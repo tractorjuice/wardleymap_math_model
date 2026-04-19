@@ -188,13 +188,13 @@ Include multiple `anchor` lines if the scenario has more than one user type.
 
 ## 4. Strategic analysis
 
-After the OWM output, produce:
+After the OWM output, produce the sections below. **Write in qualitative terms first, numbers second.** Wardley's framework is about stages and rank, not decimals — `ε = 0.625` is not meaningfully different from `0.63` or `0.61` to a strategist. When you refer to a component in prose, lead with its **stage** ("Genesis / Custom Built / Product (+rental) / Commodity (+utility)") and only add the numeric `ε` in parentheses if it clarifies (e.g., "edge of Product/Commodity boundary"). For D, K, R, give a **rank order** with reasoning; don't lead with raw products of two-decimal numbers.
 
-**a. Top 3 by differentiation pressure D** — with brief reasoning.
+**a. Differentiation opportunities (top 3).** List in rank order, leading with the component and a one-sentence "why". Stage label first, numeric D second or omitted. Example: "**Matching Algorithm** (Custom Built → Product) — the platform's core IP, actively industrialising. Highest differentiation leverage." Not: "Matching Algorithm (0.62 × 0.65 = 0.40)".
 
-**b. Top 3 by commodity leverage K** — with brief reasoning.
+**b. Commodity-leverage candidates (top 3).** Same pattern. "**Cloud compute** (Commodity +utility) — rent, don't build."
 
-**c. Top 3 dependency risks R** — edge `(a, b)` and why.
+**c. Dependency risks (top 3).** Edge `(a, b)` where a visible component depends on an immature foundation. Describe the risk qualitatively. "**Checkout → Fraud detection** — visible checkout experience depends on in-house ML that is still Custom Built."
 
 **d. Suggested gameplays** — name each play from Wardley's 61-play catalogue (full list in `references/gameplay-patterns.md`) and which component(s) it targets. Prefer named Wardley plays over generic advice. Cite by number and name (e.g., "#15 Open Approaches on Component X").
 
