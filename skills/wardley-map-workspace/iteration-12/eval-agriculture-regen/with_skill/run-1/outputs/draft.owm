@@ -1,0 +1,189 @@
+title Regenerative Farming Landscape (Aug 2022)
+style wardley
+
+// Anchors — two user types
+anchor Farmer [0.98, 0.45]
+anchor Consumer [0.98, 0.70]
+
+// User-facing (consumer side)
+component Regeneratively-Grown Food Product [0.86, 0.40]
+component Retail Shelf / Brand Story [0.80, 0.60]
+component Regen Certification Label [0.74, 0.25]
+component Consumer Price Premium [0.70, 0.50]
+
+// User-facing (farmer side)
+component Farm Profitability [0.86, 0.55]
+component On-Farm Decisions [0.82, 0.35]
+component Payment for Ecosystem Services [0.76, 0.30]
+component Agronomic Advice [0.72, 0.50]
+
+// Supply chain to consumers
+component Ingredient Sourcing (Brands) [0.62, 0.55]
+component Scope 3 Emissions Reporting [0.55, 0.30]
+component Corporate Regen Commitments [0.60, 0.40]
+component Traceability / Chain of Custody [0.55, 0.35]
+component Processors / Aggregators [0.52, 0.60]
+
+// Farmer practices (the doing)
+component No-Till / Reduced Till [0.65, 0.60]
+component Cover Cropping [0.62, 0.40]
+component Diverse Crop Rotations [0.58, 0.45]
+component Integrated Livestock / Managed Grazing [0.55, 0.35]
+component Reduced Synthetic Inputs [0.52, 0.40]
+component Agroforestry / Perennial Integration [0.45, 0.20]
+
+// Funding sources
+component Federal Conservation Payments (EQIP/CSP/RCPP) [0.48, 0.70]
+component IRA Climate-Smart Ag Funding [0.50, 0.15]
+component Private Carbon Payments [0.48, 0.25]
+component Brand-Funded Transition Programs [0.60, 0.30]
+component Philanthropy / Impact Capital [0.38, 0.35]
+component Bank Lending / Crop Insurance [0.40, 0.70]
+
+// Measurement & verification
+component Soil Carbon MRV [0.32, 0.20]
+component Satellite / Remote Sensing of Practices [0.30, 0.45]
+component On-Farm Soil Sampling [0.28, 0.70]
+component Biogeochemical Models (DNDC, DayCent) [0.25, 0.50]
+component Biodiversity Monitoring [0.22, 0.20]
+component Ecological Outcome Verification (EOV) [0.26, 0.30]
+component Voluntary Carbon Market Protocols [0.40, 0.30]
+component Third-Party Certification Bodies [0.34, 0.55]
+
+// Certifications (standards themselves)
+component Regenerative Organic Certified (ROC) [0.42, 0.30]
+component Land to Market (Savory) [0.38, 0.35]
+component A Greener World Certified Regenerative [0.38, 0.25]
+component USDA Organic Baseline [0.40, 0.80]
+
+// Biological & agronomic inputs
+component Biological Inputs (N-fixing microbes etc.) [0.42, 0.35]
+component Cover Crop Seed Supply [0.38, 0.60]
+component Conventional Synthetic Fertiliser [0.35, 0.90] inertia
+component Conventional Crop Protection [0.33, 0.88] inertia
+
+// Deep infrastructure / ecosystem services (outcomes)
+component Carbon Sequestration [0.24, 0.20]
+component Soil Health (SOM, aggregate stability) [0.20, 0.30]
+component Biodiversity (above and below ground) [0.16, 0.25]
+component Water Cycle / Infiltration [0.22, 0.35]
+
+// Knowledge
+component Farmer Peer Networks [0.30, 0.40]
+component Extension Services [0.28, 0.70]
+component Soil Science / Ecology Research [0.15, 0.50]
+component Indigenous / Traditional Knowledge [0.12, 0.30]
+
+// Utilities / commodities
+component Farmland (access, tenure) [0.25, 0.75]
+component Farm Equipment (tractors, drills) [0.18, 0.90]
+component Cloud Compute / Satellite Imagery [0.08, 0.90]
+component Connectivity / Rural Broadband [0.06, 0.85]
+
+// Dependencies — Consumer side
+Consumer->Regeneratively-Grown Food Product
+Consumer->Retail Shelf / Brand Story
+Consumer->Regen Certification Label
+Consumer->Consumer Price Premium
+Regeneratively-Grown Food Product->Retail Shelf / Brand Story
+Regeneratively-Grown Food Product->Regen Certification Label
+Regeneratively-Grown Food Product->Ingredient Sourcing (Brands)
+Retail Shelf / Brand Story->Corporate Regen Commitments
+Regen Certification Label->Regenerative Organic Certified (ROC)
+Regen Certification Label->Land to Market (Savory)
+Regen Certification Label->A Greener World Certified Regenerative
+Regen Certification Label->USDA Organic Baseline
+
+// Dependencies — Farmer side
+Farmer->Farm Profitability
+Farmer->On-Farm Decisions
+Farmer->Payment for Ecosystem Services
+Farmer->Agronomic Advice
+Farm Profitability->Payment for Ecosystem Services
+Farm Profitability->Consumer Price Premium
+Farm Profitability->Bank Lending / Crop Insurance
+On-Farm Decisions->No-Till / Reduced Till
+On-Farm Decisions->Cover Cropping
+On-Farm Decisions->Diverse Crop Rotations
+On-Farm Decisions->Integrated Livestock / Managed Grazing
+On-Farm Decisions->Reduced Synthetic Inputs
+On-Farm Decisions->Agroforestry / Perennial Integration
+On-Farm Decisions->Agronomic Advice
+Agronomic Advice->Farmer Peer Networks
+Agronomic Advice->Extension Services
+
+// Supply chain
+Ingredient Sourcing (Brands)->Processors / Aggregators
+Ingredient Sourcing (Brands)->Corporate Regen Commitments
+Ingredient Sourcing (Brands)->Traceability / Chain of Custody
+Corporate Regen Commitments->Scope 3 Emissions Reporting
+Traceability / Chain of Custody->Third-Party Certification Bodies
+// Processors sit in the supply chain between farmers and brands; no edge needed here because Farmer is an anchor, not depended-on
+
+// Practices depend on inputs and funding
+No-Till / Reduced Till->Farm Equipment (tractors, drills)
+No-Till / Reduced Till->Reduced Synthetic Inputs
+Cover Cropping->Cover Crop Seed Supply
+Cover Cropping->Soil Health (SOM, aggregate stability)
+Diverse Crop Rotations->Cover Crop Seed Supply
+Integrated Livestock / Managed Grazing->Farmland (access, tenure)
+Reduced Synthetic Inputs->Biological Inputs (N-fixing microbes etc.)
+Agroforestry / Perennial Integration->Farmland (access, tenure)
+
+// Funding flows into practices
+Payment for Ecosystem Services->Federal Conservation Payments (EQIP/CSP/RCPP)
+Payment for Ecosystem Services->IRA Climate-Smart Ag Funding
+Payment for Ecosystem Services->Private Carbon Payments
+Payment for Ecosystem Services->Brand-Funded Transition Programs
+// IRA Climate-Smart Ag Funding supplements (lives alongside) EQIP/CSP; treat both as parallel, no dependency edge
+Private Carbon Payments->Voluntary Carbon Market Protocols
+Brand-Funded Transition Programs->Corporate Regen Commitments
+Philanthropy / Impact Capital->Soil Science / Ecology Research
+
+// Measurement underpins carbon payments and certifications
+Private Carbon Payments->Soil Carbon MRV
+Voluntary Carbon Market Protocols->Soil Carbon MRV
+Soil Carbon MRV->Satellite / Remote Sensing of Practices
+Soil Carbon MRV->On-Farm Soil Sampling
+Soil Carbon MRV->Biogeochemical Models (DNDC, DayCent)
+Satellite / Remote Sensing of Practices->Cloud Compute / Satellite Imagery
+Biogeochemical Models (DNDC, DayCent)->Soil Science / Ecology Research
+On-Farm Soil Sampling->Soil Health (SOM, aggregate stability)
+
+// Certifications depend on outcome/verification
+Regenerative Organic Certified (ROC)->Third-Party Certification Bodies
+Regenerative Organic Certified (ROC)->USDA Organic Baseline
+Land to Market (Savory)->Ecological Outcome Verification (EOV)
+A Greener World Certified Regenerative->Third-Party Certification Bodies
+Ecological Outcome Verification (EOV)->Biodiversity Monitoring
+Ecological Outcome Verification (EOV)->Soil Health (SOM, aggregate stability)
+Third-Party Certification Bodies->On-Farm Soil Sampling
+
+// Outcomes / ecosystem services — Soil Health is the substrate; specific services (carbon, water) depend on it
+Carbon Sequestration->Soil Health (SOM, aggregate stability)
+Water Cycle / Infiltration->Soil Health (SOM, aggregate stability)
+Soil Health (SOM, aggregate stability)->Biodiversity (above and below ground)
+Biodiversity Monitoring->Biodiversity (above and below ground)
+
+// Knowledge flows
+Farmer Peer Networks->Indigenous / Traditional Knowledge
+Extension Services->Soil Science / Ecology Research
+Soil Science / Ecology Research->Cloud Compute / Satellite Imagery
+
+// Deep utilities
+Farm Equipment (tractors, drills)->Connectivity / Rural Broadband
+Cloud Compute / Satellite Imagery->Connectivity / Rural Broadband
+
+// Evolution trajectories (scenarios, not forecasts)
+evolve Soil Carbon MRV 0.55
+evolve Voluntary Carbon Market Protocols 0.60
+evolve Biological Inputs (N-fixing microbes etc.) 0.60
+evolve Regenerative Organic Certified (ROC) 0.55
+evolve Cover Cropping 0.65
+evolve Scope 3 Emissions Reporting 0.55
+evolve Satellite / Remote Sensing of Practices 0.70
+
+// Strategic notes
+note Differentiation zone (build) [0.75, 0.20]
+note Commoditising foundation (rent/use) [0.15, 0.88]
+note Fragile adoption — MRV + carbon markets [0.30, 0.22]

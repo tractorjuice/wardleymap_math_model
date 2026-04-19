@@ -1,0 +1,185 @@
+title Lifelong Learning for Working Adults
+style wardley
+
+// Anchors — two user types: the learner and the employer who consumes their capability
+anchor Working Adult Learner [1.00, 0.55]
+anchor Employer [0.98, 0.60]
+
+// User-facing outcomes and motivations
+component Career Outcome [0.90, 0.45]
+component Wage / Promotion [0.88, 0.55]
+component Motivation & Self-Efficacy [0.86, 0.30]
+component Workforce Capability [0.84, 0.50]
+component Time & Attention Budget [0.82, 0.65]
+
+// Credentialing layer (recognised artefacts that signal outcome)
+component Degree / University Credit [0.78, 0.70]
+component Vendor / Industry Certification [0.76, 0.78]
+component Micro-credential / Digital Badge [0.72, 0.45]
+component Apprenticeship / On-the-Job Credential [0.70, 0.55]
+component Skills Passport / Learner Record [0.66, 0.25]
+
+// Learning delivery (platforms that host and deliver content)
+component LMS / Corporate Learning Platform [0.62, 0.70]
+component MOOC / Consumer Learning Platform [0.60, 0.78]
+component Bootcamp / Cohort Provider [0.58, 0.55]
+component Mentor / Coach [0.56, 0.40]
+component Communities of Practice [0.54, 0.40]
+
+// Content and assessment (what's inside the platforms)
+component Course Content [0.50, 0.75]
+component Video Lectures [0.48, 0.85]
+component Interactive Exercises / Labs [0.46, 0.55]
+component GenAI Tutor / Copilot [0.44, 0.20]
+component Assessment & Proctoring [0.42, 0.60]
+
+// Employer-side components (how employers consume and fund learning)
+component Skills Framework / Competency Model [0.68, 0.50]
+component Performance Review Linkage [0.64, 0.55]
+component Learning Budget Policy [0.60, 0.60]
+component Tuition Reimbursement Scheme [0.52, 0.65]
+component L&D Team / CLO Function [0.74, 0.55]
+
+// Signals that drive demand
+component Job Posting Skills Signals [0.56, 0.70]
+component Labour-Market Analytics [0.52, 0.45]
+component Internal Skills Inventory [0.48, 0.35]
+component Regulatory / Compliance Driver [0.80, 0.65]
+
+// Funding sources
+component Employer Funding [0.46, 0.65]
+component Individual Out-of-Pocket [0.44, 0.70]
+component Public Funding / Skills Levy [0.40, 0.55]
+component Income Share Agreement / Loan [0.36, 0.40]
+
+// Infrastructure and knowledge layer
+component Identity & SSO [0.22, 0.88]
+component Payments [0.20, 0.92]
+component Cloud Compute [0.14, 0.92]
+component Video Streaming / CDN [0.12, 0.93]
+component Database [0.14, 0.90]
+component Email / Notifications [0.18, 0.92]
+component Open Content Standards (xAPI, CLR, OBv3) [0.30, 0.45]
+component Pedagogy / Learning Science [0.10, 0.65]
+component Labour-Market Data Standards (ESCO, O*NET) [0.16, 0.55]
+
+// Dependencies — learner side
+Working Adult Learner->Career Outcome
+Working Adult Learner->Wage / Promotion
+Working Adult Learner->Motivation & Self-Efficacy
+Working Adult Learner->Time & Attention Budget
+Working Adult Learner->Degree / University Credit
+Working Adult Learner->Vendor / Industry Certification
+Working Adult Learner->Micro-credential / Digital Badge
+Working Adult Learner->Apprenticeship / On-the-Job Credential
+
+// Employer side
+Employer->Workforce Capability
+Employer->Wage / Promotion
+Employer->Skills Framework / Competency Model
+Employer->Vendor / Industry Certification
+Employer->Apprenticeship / On-the-Job Credential
+
+// Outcome to signal flow
+Career Outcome->Wage / Promotion
+Career Outcome->Workforce Capability
+Wage / Promotion->Performance Review Linkage
+Workforce Capability->Skills Framework / Competency Model
+Workforce Capability->Internal Skills Inventory
+
+// Credentialing backs into delivery
+Degree / University Credit->Course Content
+Degree / University Credit->Assessment & Proctoring
+Vendor / Industry Certification->Course Content
+Vendor / Industry Certification->Assessment & Proctoring
+Micro-credential / Digital Badge->Skills Passport / Learner Record
+Micro-credential / Digital Badge->Open Content Standards (xAPI, CLR, OBv3)
+Apprenticeship / On-the-Job Credential->Mentor / Coach
+Apprenticeship / On-the-Job Credential->Communities of Practice
+Skills Passport / Learner Record->Open Content Standards (xAPI, CLR, OBv3)
+
+// Platforms host content
+LMS / Corporate Learning Platform->Course Content
+LMS / Corporate Learning Platform->Video Lectures
+LMS / Corporate Learning Platform->Assessment & Proctoring
+LMS / Corporate Learning Platform->Open Content Standards (xAPI, CLR, OBv3)
+MOOC / Consumer Learning Platform->Course Content
+MOOC / Consumer Learning Platform->Video Lectures
+MOOC / Consumer Learning Platform->Assessment & Proctoring
+Bootcamp / Cohort Provider->Interactive Exercises / Labs
+Bootcamp / Cohort Provider->Mentor / Coach
+
+// Content and assessment components
+Course Content->Pedagogy / Learning Science
+Interactive Exercises / Labs->GenAI Tutor / Copilot
+Interactive Exercises / Labs->Cloud Compute
+GenAI Tutor / Copilot->Cloud Compute
+Assessment & Proctoring->Identity & SSO
+Video Lectures->Video Streaming / CDN
+
+// Credentials connect to delivery platforms
+Degree / University Credit->LMS / Corporate Learning Platform
+Vendor / Industry Certification->MOOC / Consumer Learning Platform
+Micro-credential / Digital Badge->MOOC / Consumer Learning Platform
+Micro-credential / Digital Badge->LMS / Corporate Learning Platform
+
+// Employer layer dependencies
+Skills Framework / Competency Model->Labour-Market Data Standards (ESCO, O*NET)
+Skills Framework / Competency Model->Job Posting Skills Signals
+Performance Review Linkage->Internal Skills Inventory
+L&D Team / CLO Function->LMS / Corporate Learning Platform
+L&D Team / CLO Function->Learning Budget Policy
+L&D Team / CLO Function->Tuition Reimbursement Scheme
+Learning Budget Policy->Employer Funding
+Tuition Reimbursement Scheme->Employer Funding
+
+// Signals feed demand (which degree / cert / badge to earn)
+Job Posting Skills Signals->Labour-Market Analytics
+Labour-Market Analytics->Labour-Market Data Standards (ESCO, O*NET)
+Internal Skills Inventory->Labour-Market Data Standards (ESCO, O*NET)
+Regulatory / Compliance Driver->Vendor / Industry Certification
+
+// Funding flows
+Degree / University Credit->Individual Out-of-Pocket
+Degree / University Credit->Public Funding / Skills Levy
+Degree / University Credit->Income Share Agreement / Loan
+Vendor / Industry Certification->Employer Funding
+Vendor / Industry Certification->Individual Out-of-Pocket
+Bootcamp / Cohort Provider->Individual Out-of-Pocket
+Bootcamp / Cohort Provider->Income Share Agreement / Loan
+Apprenticeship / On-the-Job Credential->Public Funding / Skills Levy
+Apprenticeship / On-the-Job Credential->Employer Funding
+MOOC / Consumer Learning Platform->Individual Out-of-Pocket
+LMS / Corporate Learning Platform->Employer Funding
+
+// Motivation drivers
+Motivation & Self-Efficacy->Mentor / Coach
+Motivation & Self-Efficacy->Communities of Practice
+Motivation & Self-Efficacy->Performance Review Linkage
+Time & Attention Budget->Learning Budget Policy
+Mentor / Coach->Pedagogy / Learning Science
+Communities of Practice->Email / Notifications
+
+// Platform and content infrastructure
+LMS / Corporate Learning Platform->Cloud Compute
+LMS / Corporate Learning Platform->Identity & SSO
+LMS / Corporate Learning Platform->Database
+LMS / Corporate Learning Platform->Payments
+MOOC / Consumer Learning Platform->Cloud Compute
+MOOC / Consumer Learning Platform->Video Streaming / CDN
+MOOC / Consumer Learning Platform->Payments
+MOOC / Consumer Learning Platform->Identity & SSO
+Bootcamp / Cohort Provider->Cloud Compute
+Bootcamp / Cohort Provider->Payments
+
+// Evolution intentions (scenario, not forecast)
+evolve Skills Passport / Learner Record 0.55
+evolve GenAI Tutor / Copilot 0.60
+evolve Labour-Market Analytics 0.65
+evolve Internal Skills Inventory 0.55
+evolve Micro-credential / Digital Badge 0.68
+
+// Helpful notes
+note BUILD / differentiate zone [0.70, 0.28]
+note BUY / commodity zone [0.20, 0.88]
+note Fragile: credentialing trust [0.74, 0.50]

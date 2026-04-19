@@ -38,6 +38,31 @@ Optional: **τ: V \ U → {A, P, D, K}** — component type (Activity, Practice,
 - Then list Activities, Practices, Data, Knowledge the users depend on.
 - Use concrete nouns, not slogans.
 
+**Density guidance — how many components?**
+
+Wardley's own published maps average **~40 components**. Use scenario type as a target:
+
+| Scenario type | Target count | Examples |
+|---|---:|---|
+| Single product or narrow function | 20–30 | tea shop, one checkout flow, single SaaS feature |
+| Landscape of an industry or domain | 35–45 | retail customer journey, SaaS invoicing market, cybersecurity posture |
+| Multi-stakeholder system (regulators + producers + consumers) | 40–55 | AI trust, sustainability supply chain, healthcare |
+
+These are *targets, not caps*. But past evals have shown a consistent pattern: when maps drift above ~55 components, the extras rarely add strategic information and often over-decompose commodity infrastructure (listing CDN, DB, object storage, monitoring, load balancer separately when one "Cloud utilities" node would suffice).
+
+**Rule of thumb for "should I add this component?"** — if removing it wouldn't change any conclusion in the strategic analysis (sections 4a–4f), leave it out. A 40-component map with every component doing strategic work is more useful than a 60-component map with 20 components that are there for completeness.
+
+**Common over-additions to avoid:**
+- Infrastructure that applies uniformly across the map — include one representative (e.g., "Cloud utilities") rather than five separate nodes (Compute, DB, CDN, Storage, Monitoring).
+- Adjacent systems the user mentioned but the strategic question doesn't hinge on.
+- Abstract qualities (reliability, performance, trust-ness) that aren't separately scoreable on the cheat sheet — fold into the components they qualify.
+- Every subtype of a practice. "Agile" is one practice node; don't add Scrum, Kanban, XP as separate nodes unless they make different strategic calls.
+
+**Signs you're under-decomposed** (rare but real):
+- A component spans two different evolution stages (split it).
+- Two user types depend on the same node for very different reasons (split it).
+- The node carries both public-facing behaviour and deep-infra behaviour (split it — visibility constraint will force you to anyway).
+
 ### Step 2 — Dependencies
 
 For each component, list `(a, b)` edges meaning "a depends on b". The dependency graph is typically a DAG but this is NOT a hard constraint. The only hard rule is the visibility constraint in Step 3.

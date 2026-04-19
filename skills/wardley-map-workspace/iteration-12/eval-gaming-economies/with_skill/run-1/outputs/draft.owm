@@ -1,0 +1,180 @@
+title Game Economies in Modern Live-Service Games (Nov 2023)
+style wardley
+
+// Anchors — two user types
+anchor Player [0.98, 0.55]
+anchor Publisher / Studio [0.95, 0.60]
+
+// ===== Player-facing experience =====
+component Progression & Status [0.90, 0.45]
+component In-Game Store [0.88, 0.70]
+component Battle Pass [0.87, 0.65]
+component Cosmetic Items & Skins [0.83, 0.70]
+component Seasonal Events / LTMs [0.82, 0.55]
+component Daily Quests & Challenges [0.80, 0.70]
+component Social / Clan Features [0.78, 0.60]
+
+// ===== Currency & loot systems =====
+component Loot Boxes / Gacha [0.76, 0.60]
+component Premium (Hard) Currency [0.74, 0.72]
+component Soft (Earned) Currency [0.72, 0.78]
+component Crafting / Upgrade Materials [0.68, 0.58]
+component Drop-Rate / Reward Tables [0.55, 0.55]
+component Player Inventory [0.50, 0.80]
+
+// ===== Trading & secondary markets =====
+component RMT / Grey Market [0.65, 0.30]
+component Player-to-Player Marketplace [0.60, 0.35]
+component In-Game Player Trading [0.56, 0.40]
+
+// ===== Monetisation =====
+component Microtransaction IAP [0.70, 0.80]
+component Subscriptions / Game Pass [0.68, 0.65]
+component Rewarded Ads (mobile) [0.62, 0.82]
+
+// ===== Live-ops & content cadence =====
+component Live-Ops Content Pipeline [0.55, 0.55]
+component Balance Patching [0.50, 0.60]
+component Seasonal Roadmap [0.52, 0.50]
+component Event Scheduling / LiveOps Tooling [0.42, 0.55]
+
+// ===== Analytics, ML & experimentation =====
+component A/B Testing Platform [0.48, 0.70]
+component LTV / Whale Modelling [0.46, 0.45]
+component Churn Prediction (ML) [0.44, 0.40]
+component Player Telemetry [0.40, 0.72]
+component Segmentation & Cohorting [0.35, 0.60]
+component Data Warehouse [0.22, 0.82]
+
+// ===== Anti-cheat, security & integrity =====
+component Anti-Cheat (client kernel) [0.48, 0.55]
+component Fraud / Chargeback Detection [0.46, 0.65]
+component Server-Side Validation [0.40, 0.50]
+component KYC / Age Verification [0.38, 0.55]
+component Account Security / 2FA [0.30, 0.80]
+
+// ===== Regulation & compliance =====
+component Gambling-Law Compliance [0.50, 0.35]
+component Loot Box Regulation [0.45, 0.25]
+component Consumer-Protection / UK CMA [0.44, 0.28]
+component Content Rating (ESRB/PEGI) [0.42, 0.80]
+component Regional Age-Gating (China/KR) [0.34, 0.45]
+component Privacy (GDPR/COPPA) [0.30, 0.70]
+
+// ===== Monetisation payment layer (deep) =====
+// Platform payment rails & storefront commission are below stores/IAP
+
+// ===== Infrastructure =====
+component Game Servers / Netcode [0.32, 0.70]
+component Platform Payment Rails [0.26, 0.90]
+component Storefront Commission (30%) [0.24, 0.88]
+component CDN / Patch Distribution [0.20, 0.90]
+component Identity / Auth [0.18, 0.90]
+component Cloud Compute [0.12, 0.92]
+component Object Storage [0.10, 0.92]
+
+// ===== Dependencies — player side =====
+Player->Progression & Status
+Player->Cosmetic Items & Skins
+Player->Battle Pass
+Player->Seasonal Events / LTMs
+Player->Daily Quests & Challenges
+Player->Social / Clan Features
+Player->In-Game Store
+
+Progression & Status->Soft (Earned) Currency
+Progression & Status->Daily Quests & Challenges
+Progression & Status->Crafting / Upgrade Materials
+Battle Pass->Seasonal Events / LTMs
+Battle Pass->Soft (Earned) Currency
+Battle Pass->Cosmetic Items & Skins
+Daily Quests & Challenges->Soft (Earned) Currency
+Seasonal Events / LTMs->Live-Ops Content Pipeline
+
+In-Game Store->Premium (Hard) Currency
+In-Game Store->Cosmetic Items & Skins
+In-Game Store->Microtransaction IAP
+Cosmetic Items & Skins->Player Inventory
+Cosmetic Items & Skins->Loot Boxes / Gacha
+Loot Boxes / Gacha->Drop-Rate / Reward Tables
+Loot Boxes / Gacha->Premium (Hard) Currency
+Loot Boxes / Gacha->Loot Box Regulation
+Loot Boxes / Gacha->Gambling-Law Compliance
+
+Crafting / Upgrade Materials->Player Inventory
+Player Inventory->Data Warehouse
+
+// Trading
+In-Game Player Trading->Player Inventory
+In-Game Player Trading->Server-Side Validation
+Player-to-Player Marketplace->In-Game Player Trading
+Player-to-Player Marketplace->Fraud / Chargeback Detection
+RMT / Grey Market->Player-to-Player Marketplace
+
+// ===== Dependencies — publisher side =====
+Publisher / Studio->In-Game Store
+Publisher / Studio->Live-Ops Content Pipeline
+Publisher / Studio->Player Telemetry
+Publisher / Studio->Microtransaction IAP
+Publisher / Studio->Subscriptions / Game Pass
+Publisher / Studio->Rewarded Ads (mobile)
+
+// Monetisation
+Microtransaction IAP->Platform Payment Rails
+Microtransaction IAP->Storefront Commission (30%)
+Subscriptions / Game Pass->Platform Payment Rails
+Rewarded Ads (mobile)->Platform Payment Rails
+
+// Live-ops
+Live-Ops Content Pipeline->Balance Patching
+Live-Ops Content Pipeline->Seasonal Roadmap
+Live-Ops Content Pipeline->Event Scheduling / LiveOps Tooling
+Live-Ops Content Pipeline->Game Servers / Netcode
+Balance Patching->Player Telemetry
+Seasonal Roadmap->Segmentation & Cohorting
+
+// Analytics
+Player Telemetry->Data Warehouse
+A/B Testing Platform->Player Telemetry
+A/B Testing Platform->Segmentation & Cohorting
+LTV / Whale Modelling->Segmentation & Cohorting
+LTV / Whale Modelling->Data Warehouse
+Segmentation & Cohorting->Data Warehouse
+Churn Prediction (ML)->Data Warehouse
+Churn Prediction (ML)->Player Telemetry
+
+// Integrity
+Anti-Cheat (client kernel)->Server-Side Validation
+Server-Side Validation->Game Servers / Netcode
+Fraud / Chargeback Detection->Platform Payment Rails
+Fraud / Chargeback Detection->Account Security / 2FA
+Account Security / 2FA->Identity / Auth
+KYC / Age Verification->Identity / Auth
+KYC / Age Verification->Regional Age-Gating (China/KR)
+
+// Regulation wiring
+Loot Boxes / Gacha->Consumer-Protection / UK CMA
+Microtransaction IAP->Privacy (GDPR/COPPA)
+Player Telemetry->Privacy (GDPR/COPPA)
+In-Game Store->Content Rating (ESRB/PEGI)
+Gambling-Law Compliance->Loot Box Regulation
+
+// Infra
+Game Servers / Netcode->Cloud Compute
+Game Servers / Netcode->CDN / Patch Distribution
+Data Warehouse->Cloud Compute
+Data Warehouse->Object Storage
+CDN / Patch Distribution->Cloud Compute
+Platform Payment Rails->Identity / Auth
+
+// Evolve targets
+evolve Loot Boxes / Gacha 0.45
+evolve Loot Box Regulation 0.55
+evolve Churn Prediction (ML) 0.60
+evolve LTV / Whale Modelling 0.60
+evolve Subscriptions / Game Pass 0.78
+evolve Event Scheduling / LiveOps Tooling 0.72
+
+note Differentiation zone [0.72, 0.30]
+note Commoditising infra [0.20, 0.88]
+note Regulatory pressure rising [0.45, 0.30]
