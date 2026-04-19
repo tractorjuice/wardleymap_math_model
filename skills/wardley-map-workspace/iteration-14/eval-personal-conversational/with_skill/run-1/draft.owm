@@ -1,0 +1,155 @@
+title Modern Conversational Technology Landscape
+style wardley
+
+// Anchors
+anchor End User [0.99, 0.60]
+anchor Developer [0.95, 0.45]
+
+// User-facing surfaces
+component Voice Assistant UX [0.88, 0.55]
+component Chatbot UX [0.87, 0.70]
+component LLM Agent UX [0.86, 0.30]
+component Personalisation / Memory [0.80, 0.30]
+component Multi-turn Dialogue Flow [0.78, 0.50]
+component Wake-word / Barge-in [0.74, 0.70]
+
+// Developer-facing surfaces
+component Agent SDK / Framework [0.82, 0.35]
+component Prompt / Flow Authoring [0.80, 0.55]
+component Eval & Observability (LLM) [0.76, 0.30]
+
+// Core conversational logic
+component Multi-agent Orchestration [0.72, 0.18]
+component Planning & Reasoning [0.70, 0.20]
+component Tool Use / Function Calling [0.68, 0.40]
+component Dialogue Management [0.66, 0.45]
+component Intent / Slot Understanding [0.62, 0.70]
+
+// Knowledge retrieval
+component Knowledge Retrieval (RAG) [0.58, 0.55]
+component Re-ranker [0.54, 0.45]
+component Enterprise Knowledge Base [0.50, 0.55]
+component Vector Database [0.42, 0.70]
+component Embeddings Model [0.38, 0.80]
+
+// Safety & privacy
+component Guardrails [0.60, 0.35]
+component Safety / Content Moderation [0.56, 0.45]
+component Privacy Controls & Consent [0.52, 0.40]
+component Data Governance [0.28, 0.35]
+component Audit Logging [0.22, 0.75]
+
+// Speech layer
+component ASR (Speech-to-Text) [0.52, 0.75]
+component TTS (Text-to-Speech) [0.50, 0.70]
+component Voice Cloning [0.44, 0.25]
+component Speaker Diarisation [0.40, 0.55]
+
+// Foundation models (deep layer — many things depend on them)
+component Frontier LLM [0.36, 0.55]
+component Open-weight LLM [0.30, 0.60]
+component Small / On-device LLM [0.30, 0.35]
+component Fine-tuning (SFT / RLHF) [0.32, 0.45]
+
+// Personalisation data
+component User Profile Store [0.36, 0.65]
+component Conversation Memory Store [0.34, 0.30]
+
+// Inference & infrastructure
+component Model Serving / Inference [0.22, 0.55]
+component GPU Compute [0.16, 0.80]
+component Cloud Compute [0.12, 0.92]
+component Object Storage [0.10, 0.92]
+component Identity / Auth [0.20, 0.90]
+component Telephony / VoIP [0.24, 0.88]
+
+// Dependencies — end-user side
+End User->Voice Assistant UX
+End User->Chatbot UX
+End User->LLM Agent UX
+End User->Personalisation / Memory
+End User->Multi-turn Dialogue Flow
+Voice Assistant UX->Wake-word / Barge-in
+Voice Assistant UX->ASR (Speech-to-Text)
+Voice Assistant UX->TTS (Text-to-Speech)
+Voice Assistant UX->Multi-turn Dialogue Flow
+Chatbot UX->Multi-turn Dialogue Flow
+Chatbot UX->Intent / Slot Understanding
+LLM Agent UX->Multi-agent Orchestration
+LLM Agent UX->Planning & Reasoning
+LLM Agent UX->Tool Use / Function Calling
+Multi-turn Dialogue Flow->Dialogue Management
+Personalisation / Memory->Conversation Memory Store
+Personalisation / Memory->User Profile Store
+
+// Developer side
+Developer->Agent SDK / Framework
+Developer->Prompt / Flow Authoring
+Developer->Eval & Observability (LLM)
+Agent SDK / Framework->Dialogue Management
+Agent SDK / Framework->Tool Use / Function Calling
+Prompt / Flow Authoring->Dialogue Management
+Eval & Observability (LLM)->Audit Logging
+
+// Core dialogue & reasoning
+Dialogue Management->Frontier LLM
+Dialogue Management->Knowledge Retrieval (RAG)
+Dialogue Management->Guardrails
+Intent / Slot Understanding->Frontier LLM
+Tool Use / Function Calling->Frontier LLM
+Planning & Reasoning->Frontier LLM
+Multi-agent Orchestration->Planning & Reasoning
+Multi-agent Orchestration->Tool Use / Function Calling
+
+// Retrieval stack
+Knowledge Retrieval (RAG)->Enterprise Knowledge Base
+Knowledge Retrieval (RAG)->Vector Database
+Knowledge Retrieval (RAG)->Re-ranker
+Vector Database->Embeddings Model
+Re-ranker->Frontier LLM
+Embeddings Model->Model Serving / Inference
+
+// Speech stack
+ASR (Speech-to-Text)->Model Serving / Inference
+TTS (Text-to-Speech)->Model Serving / Inference
+TTS (Text-to-Speech)->Voice Cloning
+ASR (Speech-to-Text)->Speaker Diarisation
+
+// Foundation models
+Frontier LLM->Model Serving / Inference
+Open-weight LLM->Model Serving / Inference
+Small / On-device LLM->Model Serving / Inference
+Fine-tuning (SFT / RLHF)->Open-weight LLM
+Dialogue Management->Open-weight LLM
+Dialogue Management->Small / On-device LLM
+
+// Safety & privacy
+Guardrails->Safety / Content Moderation
+Guardrails->Privacy Controls & Consent
+Safety / Content Moderation->Frontier LLM
+Privacy Controls & Consent->Data Governance
+User Profile Store->Data Governance
+Conversation Memory Store->Data Governance
+Data Governance->Audit Logging
+
+// Infra
+Model Serving / Inference->GPU Compute
+GPU Compute->Cloud Compute
+Cloud Compute->Object Storage
+Voice Assistant UX->Telephony / VoIP
+Chatbot UX->Identity / Auth
+LLM Agent UX->Identity / Auth
+User Profile Store->Identity / Auth
+
+// Evolution targets (scenarios, not forecasts)
+evolve Frontier LLM 0.75
+evolve Knowledge Retrieval (RAG) 0.78
+evolve Tool Use / Function Calling 0.65
+evolve Vector Database 0.85
+evolve Agent SDK / Framework 0.60
+evolve Personalisation / Memory 0.55
+
+// Strategic annotations
+note Differentiation zone [0.75, 0.22]
+note Industrialising core [0.55, 0.60]
+note Utility infra [0.15, 0.90]

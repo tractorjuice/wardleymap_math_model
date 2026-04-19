@@ -1,0 +1,174 @@
+title Telecoms via Space (Feb 2023)
+style wardley
+
+// Anchors — multiple user types; this is a multi-stakeholder landscape
+anchor Rural / Remote Consumer [0.99, 0.35]
+anchor Enterprise / Maritime / Aviation [0.97, 0.45]
+anchor Government / Defense [0.95, 0.40]
+anchor Mobile Network Operator (MNO) [0.93, 0.55]
+
+// Primary user-facing services
+component LEO Broadband Service [0.86, 0.42]
+component Satellite-to-Phone Direct Connectivity [0.84, 0.12]
+component Mobile Voice / SMS (terrestrial) [0.82, 0.92]
+component In-Flight / Maritime Connectivity [0.80, 0.55]
+component Defense Secure Comms [0.78, 0.35]
+component Backhaul to Remote Cell Sites [0.76, 0.48]
+
+// Terminals & customer-edge hardware
+component LEO User Terminal (Dish) [0.70, 0.45]
+component Phased-Array Antenna [0.64, 0.28]
+component Unmodified Smartphone [0.72, 0.95]
+component Ruggedised Enterprise Terminal [0.66, 0.50]
+
+// Terrestrial alternatives (for comparison / inertia)
+component Fiber Broadband Service [0.78, 0.88]
+component Fixed Wireless Access (FWA) [0.76, 0.65]
+component 4G/5G Macro Cellular Service [0.74, 0.82]
+component Cell Tower Infrastructure [0.56, 0.85]
+component Fiber Backhaul (terrestrial) [0.40, 0.90]
+
+// Core network & service orchestration
+component Service Activation & Billing [0.55, 0.78]
+component MNO Roaming / IMSI Handling [0.52, 0.80]
+component Network Operations Centre [0.50, 0.72]
+
+// Space segment — constellation & satellites
+component LEO Constellation (Starlink-class) [0.46, 0.40]
+component Direct-to-Cell Satellite (large aperture) [0.42, 0.10]
+component Inter-Satellite Laser Links [0.38, 0.25]
+component Satellite Bus Platform [0.32, 0.58]
+component Ion / Hall-effect Thrusters [0.28, 0.55]
+component Satellite Payload Electronics [0.30, 0.45]
+
+// Ground segment
+component Ground Station / Gateway Network [0.36, 0.60]
+component Teleport Real Estate & Siting [0.24, 0.60]
+component Fiber Backhaul from Gateway [0.20, 0.92]
+
+// Launch
+component Launch Services [0.26, 0.50]
+component Reusable Launch Vehicle [0.22, 0.40]
+component Rocket Propellant / Pad Ops [0.14, 0.78]
+
+// Spectrum, orbits, regulation
+component Spectrum Rights (Ku / Ka / V band) [0.40, 0.30]
+component Spectrum Rights (Mobile / MSS bands) [0.44, 0.35]
+component Orbital Slot / Priority Filing (ITU) [0.34, 0.30]
+component National Landing Rights / Market Access [0.32, 0.25]
+component Space Debris / Collision Avoidance [0.18, 0.28]
+component FCC / National Regulator Approval [0.30, 0.55]
+
+// Practices / knowledge
+component Orbital Mechanics & Station-Keeping [0.16, 0.70]
+component RF Link Budget Engineering [0.14, 0.85]
+component Mega-Constellation Ops Practice [0.12, 0.30]
+
+// Commodity utilities
+component Cloud Compute & Storage [0.10, 0.92]
+component Power (Ground Sites) [0.08, 0.95]
+component DNS / Internet Peering [0.06, 0.95]
+
+// Dependencies
+Rural / Remote Consumer->LEO Broadband Service
+Rural / Remote Consumer->Satellite-to-Phone Direct Connectivity
+Rural / Remote Consumer->Mobile Voice / SMS (terrestrial)
+Enterprise / Maritime / Aviation->In-Flight / Maritime Connectivity
+Enterprise / Maritime / Aviation->LEO Broadband Service
+Enterprise / Maritime / Aviation->Ruggedised Enterprise Terminal
+Government / Defense->Defense Secure Comms
+Government / Defense->LEO Broadband Service
+Mobile Network Operator (MNO)->Backhaul to Remote Cell Sites
+Mobile Network Operator (MNO)->Satellite-to-Phone Direct Connectivity
+Mobile Network Operator (MNO)->4G/5G Macro Cellular Service
+
+// Service -> terminal / edge
+LEO Broadband Service->LEO User Terminal (Dish)
+LEO User Terminal (Dish)->Phased-Array Antenna
+Satellite-to-Phone Direct Connectivity->Unmodified Smartphone
+In-Flight / Maritime Connectivity->Ruggedised Enterprise Terminal
+Ruggedised Enterprise Terminal->Phased-Array Antenna
+Defense Secure Comms->Ruggedised Enterprise Terminal
+Backhaul to Remote Cell Sites->LEO User Terminal (Dish)
+
+// Terrestrial chain
+Mobile Voice / SMS (terrestrial)->4G/5G Macro Cellular Service
+4G/5G Macro Cellular Service->Cell Tower Infrastructure
+Cell Tower Infrastructure->Fiber Backhaul (terrestrial)
+Fixed Wireless Access (FWA)->4G/5G Macro Cellular Service
+Fiber Broadband Service->Fiber Backhaul (terrestrial)
+
+// Service orchestration
+LEO Broadband Service->Service Activation & Billing
+Satellite-to-Phone Direct Connectivity->MNO Roaming / IMSI Handling
+LEO Broadband Service->Network Operations Centre
+In-Flight / Maritime Connectivity->Service Activation & Billing
+
+// Service -> space segment
+LEO Broadband Service->LEO Constellation (Starlink-class)
+Backhaul to Remote Cell Sites->LEO Constellation (Starlink-class)
+In-Flight / Maritime Connectivity->LEO Constellation (Starlink-class)
+Defense Secure Comms->LEO Constellation (Starlink-class)
+Satellite-to-Phone Direct Connectivity->Direct-to-Cell Satellite (large aperture)
+
+// Constellation internals
+LEO Constellation (Starlink-class)->Satellite Bus Platform
+LEO Constellation (Starlink-class)->Satellite Payload Electronics
+LEO Constellation (Starlink-class)->Inter-Satellite Laser Links
+LEO Constellation (Starlink-class)->Ion / Hall-effect Thrusters
+Direct-to-Cell Satellite (large aperture)->Satellite Bus Platform
+Direct-to-Cell Satellite (large aperture)->Satellite Payload Electronics
+Direct-to-Cell Satellite (large aperture)->Inter-Satellite Laser Links
+
+// Ground segment
+LEO Constellation (Starlink-class)->Ground Station / Gateway Network
+Direct-to-Cell Satellite (large aperture)->Ground Station / Gateway Network
+Ground Station / Gateway Network->Teleport Real Estate & Siting
+Ground Station / Gateway Network->Fiber Backhaul from Gateway
+Network Operations Centre->Ground Station / Gateway Network
+
+// Launch chain
+LEO Constellation (Starlink-class)->Launch Services
+Direct-to-Cell Satellite (large aperture)->Launch Services
+Launch Services->Reusable Launch Vehicle
+Reusable Launch Vehicle->Rocket Propellant / Pad Ops
+
+// Spectrum / regulation / orbit
+LEO Broadband Service->Spectrum Rights (Ku / Ka / V band)
+Satellite-to-Phone Direct Connectivity->Spectrum Rights (Mobile / MSS bands)
+Backhaul to Remote Cell Sites->Spectrum Rights (Ku / Ka / V band)
+LEO Constellation (Starlink-class)->Orbital Slot / Priority Filing (ITU)
+Direct-to-Cell Satellite (large aperture)->Orbital Slot / Priority Filing (ITU)
+LEO Broadband Service->National Landing Rights / Market Access
+Satellite-to-Phone Direct Connectivity->National Landing Rights / Market Access
+LEO Broadband Service->FCC / National Regulator Approval
+Satellite-to-Phone Direct Connectivity->FCC / National Regulator Approval
+LEO Constellation (Starlink-class)->Space Debris / Collision Avoidance
+Direct-to-Cell Satellite (large aperture)->Space Debris / Collision Avoidance
+
+// Practices / knowledge
+LEO Constellation (Starlink-class)->Orbital Mechanics & Station-Keeping
+LEO Constellation (Starlink-class)->Mega-Constellation Ops Practice
+Direct-to-Cell Satellite (large aperture)->Orbital Mechanics & Station-Keeping
+Direct-to-Cell Satellite (large aperture)->Mega-Constellation Ops Practice
+Satellite Payload Electronics->RF Link Budget Engineering
+Ground Station / Gateway Network->RF Link Budget Engineering
+
+// Utilities
+Network Operations Centre->Cloud Compute & Storage
+Service Activation & Billing->Cloud Compute & Storage
+Ground Station / Gateway Network->Power (Ground Sites)
+Cell Tower Infrastructure->Power (Ground Sites)
+Fiber Backhaul from Gateway->DNS / Internet Peering
+
+// Evolution arrows — where we expect movement
+evolve Satellite-to-Phone Direct Connectivity 0.45
+evolve LEO Broadband Service 0.65
+evolve Reusable Launch Vehicle 0.62
+evolve Mega-Constellation Ops Practice 0.55
+evolve Backhaul to Remote Cell Sites 0.65
+evolve Direct-to-Cell Satellite (large aperture) 0.35
+
+note Differentiation / Wonder [0.80, 0.10]
+note Terrestrial inertia zone [0.78, 0.90]
+note Commodity utilities [0.12, 0.92]

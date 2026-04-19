@@ -1,0 +1,153 @@
+title Defence Intelligence Landscape (March 2023)
+style wardley
+
+// Anchors — three distinct user-need nodes
+anchor Commander / Minister [0.99, 0.45]
+anchor Operational Planner [0.96, 0.50]
+anchor Allied Partner [0.93, 0.55]
+
+// User-facing outputs (dissemination)
+component Actionable Intelligence Product [0.88, 0.45]
+component Daily Intelligence Briefing [0.84, 0.55]
+component All-Source Assessment [0.82, 0.35]
+component Targeting Support Pack [0.80, 0.40]
+component Indications & Warnings [0.78, 0.35]
+
+// Analysis layer
+component All-Source Fusion [0.72, 0.30]
+component Geopolitical Analysis [0.70, 0.25]
+component Threat Modelling [0.68, 0.40]
+component Analytic Tradecraft [0.66, 0.55]
+component Red Teaming [0.64, 0.30]
+component Structured Analytic Techniques [0.62, 0.55]
+component AI-Assisted Analysis [0.58, 0.15]
+
+// Processing & exploitation
+component PED (Processing, Exploitation, Dissemination) [0.54, 0.45]
+component Imagery Exploitation [0.52, 0.55]
+component SIGINT Processing [0.50, 0.50]
+component Language Translation [0.48, 0.60]
+component Entity Resolution [0.46, 0.40]
+component Data Fusion Platform [0.44, 0.35]
+component Secure Collaboration Tooling [0.42, 0.55]
+
+// Collection disciplines
+component HUMINT Collection [0.38, 0.30]
+component SIGINT Collection [0.36, 0.55]
+component OSINT Collection [0.34, 0.65]
+component GEOINT / Satellite Imagery [0.32, 0.60]
+component Commercial Satellite Imagery [0.30, 0.70]
+component Cyber Intelligence [0.28, 0.40]
+component MASINT [0.26, 0.30]
+component Social Media Monitoring [0.24, 0.70]
+
+// Collection infrastructure
+component Agent Handling Tradecraft [0.22, 0.30]
+component Covert Platforms [0.20, 0.25]
+component Signals Interception Infrastructure [0.18, 0.55]
+component Own Satellite Constellations [0.16, 0.40]
+component Covert Comms [0.14, 0.35]
+
+// Knowledge & doctrine
+component Target Language Expertise [0.20, 0.50]
+component Regional / Cultural Expertise [0.18, 0.45]
+component Intelligence Doctrine [0.16, 0.70]
+component Classification & Handling Rules [0.14, 0.80]
+
+// Foundational IT utilities
+component Classified Networks (JWICS / STONEGHOST) [0.12, 0.60]
+component Secure Cloud (IL6 / Top Secret) [0.10, 0.45]
+component Cryptography [0.08, 0.85]
+component Compute & Storage [0.06, 0.90]
+component Power & Comms [0.04, 0.95]
+
+// Dependencies
+Commander / Minister->Actionable Intelligence Product
+Commander / Minister->Daily Intelligence Briefing
+Commander / Minister->Indications & Warnings
+Operational Planner->Targeting Support Pack
+Operational Planner->All-Source Assessment
+Operational Planner->Actionable Intelligence Product
+Allied Partner->All-Source Assessment
+Allied Partner->Daily Intelligence Briefing
+
+Actionable Intelligence Product->All-Source Fusion
+Daily Intelligence Briefing->All-Source Assessment
+All-Source Assessment->All-Source Fusion
+All-Source Assessment->Geopolitical Analysis
+Targeting Support Pack->All-Source Fusion
+Targeting Support Pack->Threat Modelling
+Indications & Warnings->All-Source Fusion
+Indications & Warnings->Threat Modelling
+
+All-Source Fusion->Analytic Tradecraft
+All-Source Fusion->Data Fusion Platform
+All-Source Fusion->Entity Resolution
+All-Source Fusion->Red Teaming
+Geopolitical Analysis->Regional / Cultural Expertise
+Threat Modelling->Structured Analytic Techniques
+Threat Modelling->AI-Assisted Analysis
+Analytic Tradecraft->Structured Analytic Techniques
+Red Teaming->Structured Analytic Techniques
+AI-Assisted Analysis->Compute & Storage
+
+PED (Processing, Exploitation, Dissemination)->Imagery Exploitation
+PED (Processing, Exploitation, Dissemination)->SIGINT Processing
+PED (Processing, Exploitation, Dissemination)->Language Translation
+PED (Processing, Exploitation, Dissemination)->Data Fusion Platform
+Imagery Exploitation->GEOINT / Satellite Imagery
+Imagery Exploitation->Commercial Satellite Imagery
+SIGINT Processing->SIGINT Collection
+Language Translation->Target Language Expertise
+Entity Resolution->Data Fusion Platform
+Data Fusion Platform->Secure Cloud (IL6 / Top Secret)
+Secure Collaboration Tooling->Classified Networks (JWICS / STONEGHOST)
+
+All-Source Fusion->PED (Processing, Exploitation, Dissemination)
+All-Source Fusion->Secure Collaboration Tooling
+All-Source Fusion->HUMINT Collection
+All-Source Fusion->SIGINT Collection
+All-Source Fusion->OSINT Collection
+All-Source Fusion->GEOINT / Satellite Imagery
+All-Source Fusion->Cyber Intelligence
+All-Source Fusion->MASINT
+
+HUMINT Collection->Agent Handling Tradecraft
+HUMINT Collection->Covert Platforms
+HUMINT Collection->Covert Comms
+SIGINT Collection->Signals Interception Infrastructure
+SIGINT Collection->Cryptography
+OSINT Collection->Social Media Monitoring
+OSINT Collection->Compute & Storage
+GEOINT / Satellite Imagery->Own Satellite Constellations
+GEOINT / Satellite Imagery->Commercial Satellite Imagery
+Cyber Intelligence->Signals Interception Infrastructure
+MASINT->Covert Platforms
+Social Media Monitoring->Compute & Storage
+
+Agent Handling Tradecraft->Regional / Cultural Expertise
+Agent Handling Tradecraft->Target Language Expertise
+Covert Platforms->Power & Comms
+Signals Interception Infrastructure->Power & Comms
+Own Satellite Constellations->Power & Comms
+Covert Comms->Cryptography
+
+Classified Networks (JWICS / STONEGHOST)->Secure Cloud (IL6 / Top Secret)
+Classified Networks (JWICS / STONEGHOST)->Cryptography
+Secure Cloud (IL6 / Top Secret)->Compute & Storage
+Secure Cloud (IL6 / Top Secret)->Cryptography
+Compute & Storage->Power & Comms
+
+All-Source Assessment->Intelligence Doctrine
+All-Source Assessment->Classification & Handling Rules
+Actionable Intelligence Product->Classification & Handling Rules
+
+evolve Commercial Satellite Imagery 0.85
+evolve OSINT Collection 0.80
+evolve AI-Assisted Analysis 0.55
+evolve Social Media Monitoring 0.80
+evolve Own Satellite Constellations 0.65
+
+note Human craft + secrets [0.30, 0.20]
+note Commoditising open layer [0.30, 0.75]
+note Utility infrastructure [0.08, 0.92]

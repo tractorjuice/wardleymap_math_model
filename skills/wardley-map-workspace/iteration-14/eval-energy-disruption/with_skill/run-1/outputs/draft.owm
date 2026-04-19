@@ -1,0 +1,221 @@
+title Energy Sector Disruption — Centralised Fossil to Distributed Renewables + Storage + DSF (July 2022)
+style wardley
+
+// Anchors — multi-stakeholder system
+anchor Consumer (Household / Business) [0.98, 0.55]
+anchor Grid Operator [0.95, 0.60]
+anchor Policymaker / Regulator [0.93, 0.45]
+
+// --- User-facing ---
+component Energy Bill [0.88, 0.82]
+component Reliable Supply [0.90, 0.85]
+component Decarbonisation Target [0.86, 0.50]
+component Energy Security Mandate [0.84, 0.55]
+
+// --- Retail & consumer-visible products ---
+component Retail Supply Contract [0.78, 0.80]
+component Dynamic Time-of-Use Tariff [0.72, 0.40]
+component Energy-Use Visibility App [0.70, 0.55]
+component Peer-to-Peer Energy Trading [0.68, 0.15]
+component Virtual Power Plant (VPP) [0.66, 0.30]
+component Demand Response Program [0.64, 0.50]
+component Aggregator Service [0.60, 0.45]
+
+// --- Consumer-facing demand-side devices & DER ---
+component Vehicle-to-Grid (V2G) [0.58, 0.15]
+component EV Smart Charging [0.56, 0.45]
+component Heat Pump [0.54, 0.55]
+component Rooftop Solar PV [0.52, 0.70]
+component Home Battery [0.50, 0.55]
+component Home Energy Management System [0.46, 0.35]
+
+// --- Market mechanisms (visible to Grid Operator & Policymaker anchors) ---
+component Wholesale Electricity Market [0.72, 0.80]
+component Capacity Market [0.70, 0.65]
+component Flexibility Market [0.68, 0.30]
+component Ancillary Services Market [0.66, 0.60]
+component Carbon Market / Pricing [0.65, 0.55]
+
+// --- Generation ---
+component Offshore Wind [0.40, 0.60]
+component Onshore Wind [0.38, 0.75]
+component Utility Solar PV [0.36, 0.75]
+component Gas CCGT Generation [0.34, 0.88]
+component Coal Generation [0.32, 0.88]
+component Nuclear Generation [0.30, 0.80]
+
+// --- Storage ---
+component Grid-Scale Li-ion Battery [0.38, 0.50]
+component Pumped Hydro Storage [0.28, 0.85]
+component Long-Duration Storage (flow / iron-air) [0.26, 0.15]
+component Green Hydrogen (Electrolyser) [0.24, 0.20]
+
+// --- Grid infrastructure ---
+component Distribution Network [0.26, 0.82]
+component Transmission Network [0.22, 0.85]
+component Synthetic Inertia [0.22, 0.20]
+component Grid-Forming Inverter [0.18, 0.30]
+component Smart Meter [0.32, 0.60]
+component Grid SCADA / Control [0.16, 0.75]
+component Forecasting (wind / solar / load) [0.28, 0.55]
+
+// --- Policy & regulatory instruments ---
+component Grid Code / Connection Rules [0.24, 0.70]
+component CfD / Subsidy Scheme [0.34, 0.65]
+component Planning / Permitting [0.30, 0.55]
+
+// --- Foundational utilities & data ---
+component Weather Data Feeds [0.14, 0.75]
+component Cloud & Telemetry [0.10, 0.90]
+component Electricity (commodity) [0.08, 0.95]
+
+// --- Dependencies ---
+// Consumer -> user-facing
+Consumer (Household / Business)->Energy Bill
+Consumer (Household / Business)->Reliable Supply
+Consumer (Household / Business)->Retail Supply Contract
+Consumer (Household / Business)->Energy-Use Visibility App
+Consumer (Household / Business)->Dynamic Time-of-Use Tariff
+Consumer (Household / Business)->Heat Pump
+Consumer (Household / Business)->EV Smart Charging
+Consumer (Household / Business)->Rooftop Solar PV
+Consumer (Household / Business)->Home Battery
+Consumer (Household / Business)->Peer-to-Peer Energy Trading
+
+// Grid Operator anchors
+Grid Operator->Reliable Supply
+Grid Operator->Wholesale Electricity Market
+Grid Operator->Capacity Market
+Grid Operator->Flexibility Market
+Grid Operator->Ancillary Services Market
+Grid Operator->Transmission Network
+Grid Operator->Grid SCADA / Control
+Grid Operator->Forecasting (wind / solar / load)
+Grid Operator->Grid Code / Connection Rules
+
+// Policymaker anchors
+Policymaker / Regulator->Decarbonisation Target
+Policymaker / Regulator->Energy Security Mandate
+Policymaker / Regulator->Carbon Market / Pricing
+Policymaker / Regulator->CfD / Subsidy Scheme
+Policymaker / Regulator->Planning / Permitting
+Policymaker / Regulator->Grid Code / Connection Rules
+
+// Bill & reliability supply chain
+Energy Bill->Retail Supply Contract
+Energy Bill->Dynamic Time-of-Use Tariff
+Retail Supply Contract->Wholesale Electricity Market
+Retail Supply Contract->Smart Meter
+Dynamic Time-of-Use Tariff->Smart Meter
+Energy-Use Visibility App->Smart Meter
+Reliable Supply->Distribution Network
+Reliable Supply->Transmission Network
+Reliable Supply->Capacity Market
+
+// VPP / Aggregator stack
+Peer-to-Peer Energy Trading->Aggregator Service
+Peer-to-Peer Energy Trading->Smart Meter
+Virtual Power Plant (VPP)->Aggregator Service
+Aggregator Service->Home Energy Management System
+Aggregator Service->Smart Meter
+Aggregator Service->Cloud & Telemetry
+
+// Demand response
+Demand Response Program->Aggregator Service
+Demand Response Program->Smart Meter
+
+// Consumer DER devices
+Heat Pump->Home Energy Management System
+EV Smart Charging->Home Energy Management System
+EV Smart Charging->Distribution Network
+Vehicle-to-Grid (V2G)->EV Smart Charging
+Vehicle-to-Grid (V2G)->Distribution Network
+Home Battery->Home Energy Management System
+Rooftop Solar PV->Home Energy Management System
+Rooftop Solar PV->Distribution Network
+Home Energy Management System->Cloud & Telemetry
+Home Energy Management System->Smart Meter
+
+// Markets
+Wholesale Electricity Market->Offshore Wind
+Wholesale Electricity Market->Onshore Wind
+Wholesale Electricity Market->Utility Solar PV
+Wholesale Electricity Market->Gas CCGT Generation
+Wholesale Electricity Market->Coal Generation
+Wholesale Electricity Market->Nuclear Generation
+Capacity Market->Gas CCGT Generation
+Capacity Market->Grid-Scale Li-ion Battery
+Capacity Market->Pumped Hydro Storage
+Flexibility Market->Grid-Scale Li-ion Battery
+Flexibility Market->Demand Response Program
+Flexibility Market->Vehicle-to-Grid (V2G)
+Ancillary Services Market->Grid-Forming Inverter
+Ancillary Services Market->Synthetic Inertia
+Ancillary Services Market->Grid-Scale Li-ion Battery
+Ancillary Services Market->Pumped Hydro Storage
+Carbon Market / Pricing->Gas CCGT Generation
+Carbon Market / Pricing->Coal Generation
+
+// Generation dependencies
+Offshore Wind->Transmission Network
+Offshore Wind->CfD / Subsidy Scheme
+Offshore Wind->Planning / Permitting
+Offshore Wind->Forecasting (wind / solar / load)
+Onshore Wind->Transmission Network
+Onshore Wind->Planning / Permitting
+Onshore Wind->Forecasting (wind / solar / load)
+Utility Solar PV->Transmission Network
+Utility Solar PV->Planning / Permitting
+Utility Solar PV->Forecasting (wind / solar / load)
+Gas CCGT Generation->Transmission Network
+Coal Generation->Transmission Network
+Nuclear Generation->Transmission Network
+
+// Storage dependencies
+Grid-Scale Li-ion Battery->Distribution Network
+Grid-Scale Li-ion Battery->Transmission Network
+Grid-Scale Li-ion Battery->Grid-Forming Inverter
+Pumped Hydro Storage->Transmission Network
+Long-Duration Storage (flow / iron-air)->Transmission Network
+Green Hydrogen (Electrolyser)->Transmission Network
+
+// Grid infrastructure
+Transmission Network->Electricity (commodity)
+Distribution Network->Transmission Network
+Distribution Network->Electricity (commodity)
+Grid SCADA / Control->Cloud & Telemetry
+Forecasting (wind / solar / load)->Weather Data Feeds
+Forecasting (wind / solar / load)->Cloud & Telemetry
+Smart Meter->Distribution Network
+Smart Meter->Cloud & Telemetry
+Synthetic Inertia->Grid-Forming Inverter
+
+// Policy
+Decarbonisation Target->CfD / Subsidy Scheme
+Decarbonisation Target->Carbon Market / Pricing
+Energy Security Mandate->Capacity Market
+Grid Code / Connection Rules->Grid-Forming Inverter
+
+// Evolution trajectories (scenarios, not forecasts)
+evolve Grid-Scale Li-ion Battery 0.78
+evolve Home Battery 0.72
+evolve Heat Pump 0.75
+evolve EV Smart Charging 0.70
+evolve Vehicle-to-Grid (V2G) 0.45
+evolve Green Hydrogen (Electrolyser) 0.45
+evolve Long-Duration Storage (flow / iron-air) 0.40
+evolve Grid-Forming Inverter 0.60
+evolve Flexibility Market 0.60
+evolve Virtual Power Plant (VPP) 0.55
+evolve Peer-to-Peer Energy Trading 0.40
+evolve Dynamic Time-of-Use Tariff 0.65
+evolve Offshore Wind 0.80
+evolve Coal Generation 0.95
+
+// Inertia markers — incumbents likely to resist
+component Coal Generation [0.32, 0.88] inertia
+component Gas CCGT Generation [0.34, 0.88] inertia
+
+note BUILD / differentiation zone [0.55, 0.20]
+note Legacy utility foundations [0.15, 0.92]
+note War zone — product-to-utility (pattern #27) [0.40, 0.60]

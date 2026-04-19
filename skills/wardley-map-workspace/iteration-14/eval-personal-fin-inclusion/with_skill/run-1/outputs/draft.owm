@@ -1,0 +1,165 @@
+```owm
+title Digital Financial Inclusion (Emerging Markets)
+style wardley
+
+// Anchors — two user types
+anchor Under-banked Consumer [0.99, 0.55]
+anchor Merchant / Micro-business [0.96, 0.58]
+
+// User-facing activities
+component Basic Account Access [0.90, 0.65]
+component Send / Receive Money (P2P) [0.88, 0.75]
+component Merchant Payment (QR / Till) [0.86, 0.60]
+component Bill Pay [0.84, 0.65]
+component Airtime Top-up [0.82, 0.85]
+component Savings Product [0.80, 0.42]
+component Micro-credit [0.78, 0.32]
+component Micro-insurance [0.74, 0.22]
+component Customer Support [0.72, 0.55]
+component Complaint Redress [0.68, 0.32]
+
+// Mid-chain activities
+component Agent Network (CICO) [0.66, 0.65]
+component Mobile Money Wallet [0.64, 0.70]
+component USSD / Feature-phone UX [0.60, 0.82]
+component Smartphone App [0.58, 0.85]
+component QR Rails [0.56, 0.70]
+component eKYC / Digital Onboarding [0.54, 0.48]
+component Tiered KYC Practice [0.52, 0.55]
+component Biometric Auth [0.50, 0.62]
+component Fraud Detection [0.48, 0.48]
+component AML / Sanctions Screening [0.46, 0.70]
+component Credit Scoring (Alternative Data) [0.44, 0.25]
+component Alt-data Ingestion (telco, utility, psychometric) [0.40, 0.22]
+component Interoperability Switch [0.42, 0.52]
+component Transaction Routing [0.38, 0.78]
+component Agent Liquidity Management [0.38, 0.38]
+component Agent Onboarding & Training [0.36, 0.35]
+
+// Consumer protection + education
+component Financial Literacy / Education [0.56, 0.32]
+component Consumer Protection Framework [0.34, 0.42]
+component Dispute / Ombudsman Process [0.36, 0.38]
+
+// Regulatory / institutional
+component E-money / PSP Licensing [0.30, 0.55]
+component Data Protection Law [0.28, 0.42]
+component Trust Account / Deposit Safeguard [0.26, 0.45]
+component Central Bank Oversight [0.24, 0.68]
+
+// Data / foundational
+component National Digital ID [0.30, 0.38]
+component SIM / Mobile Number Registry [0.26, 0.62]
+component Core Ledger / Wallet Database [0.22, 0.78]
+component Settlement Rails [0.20, 0.68]
+component Cash (Physical) [0.24, 0.82]
+component Card Networks (limited reach) [0.22, 0.85]
+
+// Utility infrastructure
+component SMS Gateway [0.18, 0.90]
+component Mobile Network (GSM / Data) [0.12, 0.88]
+component Cloud Utilities [0.10, 0.92]
+
+// Knowledge
+component Double-entry Bookkeeping [0.06, 0.95]
+component AML / FATF Guidance [0.08, 0.70]
+
+// Dependencies — user layer
+Under-banked Consumer->Basic Account Access
+Under-banked Consumer->Send / Receive Money (P2P)
+Under-banked Consumer->Bill Pay
+Under-banked Consumer->Airtime Top-up
+Under-banked Consumer->Savings Product
+Under-banked Consumer->Micro-credit
+Under-banked Consumer->Micro-insurance
+Under-banked Consumer->Customer Support
+Under-banked Consumer->Complaint Redress
+Merchant / Micro-business->Merchant Payment (QR / Till)
+Merchant / Micro-business->Basic Account Access
+Merchant / Micro-business->Micro-credit
+Merchant / Micro-business->Customer Support
+
+// User-facing -> mid-chain
+Basic Account Access->Mobile Money Wallet
+Basic Account Access->Agent Network (CICO)
+Basic Account Access->eKYC / Digital Onboarding
+Send / Receive Money (P2P)->Mobile Money Wallet
+Send / Receive Money (P2P)->Interoperability Switch
+Merchant Payment (QR / Till)->QR Rails
+Merchant Payment (QR / Till)->Mobile Money Wallet
+Merchant Payment (QR / Till)->Agent Network (CICO)
+Bill Pay->Mobile Money Wallet
+Airtime Top-up->Mobile Money Wallet
+Savings Product->Mobile Money Wallet
+Savings Product->Trust Account / Deposit Safeguard
+Micro-credit->Credit Scoring (Alternative Data)
+Micro-credit->Mobile Money Wallet
+Micro-insurance->Mobile Money Wallet
+Micro-insurance->Alt-data Ingestion (telco, utility, psychometric)
+Customer Support->Agent Network (CICO)
+Customer Support->Financial Literacy / Education
+Complaint Redress->Dispute / Ombudsman Process
+Complaint Redress->Consumer Protection Framework
+
+// Mid-chain internal
+Mobile Money Wallet->USSD / Feature-phone UX
+Mobile Money Wallet->Smartphone App
+Mobile Money Wallet->Core Ledger / Wallet Database
+Mobile Money Wallet->AML / Sanctions Screening
+Mobile Money Wallet->Fraud Detection
+Mobile Money Wallet->Biometric Auth
+Agent Network (CICO)->Agent Liquidity Management
+Agent Network (CICO)->Agent Onboarding & Training
+Agent Network (CICO)->Cash (Physical)
+Agent Network (CICO)->Mobile Money Wallet
+eKYC / Digital Onboarding->Tiered KYC Practice
+eKYC / Digital Onboarding->Biometric Auth
+eKYC / Digital Onboarding->National Digital ID
+eKYC / Digital Onboarding->SIM / Mobile Number Registry
+Tiered KYC Practice->AML / FATF Guidance
+QR Rails->Interoperability Switch
+Interoperability Switch->Transaction Routing
+Interoperability Switch->Settlement Rails
+Transaction Routing->Core Ledger / Wallet Database
+Fraud Detection->Core Ledger / Wallet Database
+Fraud Detection->Alt-data Ingestion (telco, utility, psychometric)
+AML / Sanctions Screening->AML / FATF Guidance
+Credit Scoring (Alternative Data)->Alt-data Ingestion (telco, utility, psychometric)
+Credit Scoring (Alternative Data)->Core Ledger / Wallet Database
+Alt-data Ingestion (telco, utility, psychometric)->Mobile Network (GSM / Data)
+Biometric Auth->National Digital ID
+
+// Regulatory / oversight edges
+Mobile Money Wallet->E-money / PSP Licensing
+E-money / PSP Licensing->Central Bank Oversight
+Trust Account / Deposit Safeguard->Central Bank Oversight
+Consumer Protection Framework->Data Protection Law
+Consumer Protection Framework->Central Bank Oversight
+Dispute / Ombudsman Process->Consumer Protection Framework
+Financial Literacy / Education->Consumer Protection Framework
+
+// Infrastructure
+USSD / Feature-phone UX->SMS Gateway
+USSD / Feature-phone UX->Mobile Network (GSM / Data)
+Smartphone App->Mobile Network (GSM / Data)
+SMS Gateway->Mobile Network (GSM / Data)
+Core Ledger / Wallet Database->Cloud Utilities
+Settlement Rails->Cloud Utilities
+Card Networks (limited reach)->Settlement Rails
+Mobile Network (GSM / Data)->Cloud Utilities
+
+// Knowledge edges
+Core Ledger / Wallet Database->Double-entry Bookkeeping
+
+// Evolve targets (scenario, not forecast)
+evolve Credit Scoring (Alternative Data) 0.55
+evolve Interoperability Switch 0.72
+evolve National Digital ID 0.65
+evolve Consumer Protection Framework 0.60
+evolve QR Rails 0.82
+
+// Notes
+note Inclusion moat (differentiation) [0.55, 0.25]
+note Fragile foundation (regulatory + ID) [0.28, 0.40]
+note Utility layer [0.12, 0.92]
+```

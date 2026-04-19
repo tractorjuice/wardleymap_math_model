@@ -1,0 +1,159 @@
+title Grey Zone Conflict Landscape
+style wardley
+
+// Anchors — three user types: the state, CI operators, civil society
+anchor Nation State [0.99, 0.45]
+anchor Critical Infrastructure Operator [0.96, 0.55]
+anchor Civil Society [0.93, 0.50]
+
+// ---- Top-line outcomes sought ----
+component Sovereign Decision Space [0.88, 0.40]
+component Operational Continuity [0.86, 0.55]
+component Public Trust & Cohesion [0.84, 0.35]
+component Deterrence Posture [0.82, 0.30]
+
+// ---- Attacker-side capability categories (what the defender "sees") ----
+component Election Interference [0.80, 0.40]
+component Influence Operations [0.78, 0.45]
+component Disinformation Campaign [0.76, 0.55]
+component Critical Infrastructure Attack [0.74, 0.30]
+component Ransomware Operations [0.72, 0.78]
+component Supply Chain Compromise [0.70, 0.45]
+component Undersea Cable Sabotage [0.68, 0.25]
+component Economic Coercion [0.66, 0.45]
+component Lawfare [0.64, 0.30]
+component Cyber Intrusion (APT) [0.62, 0.70]
+component Proxy Forces / PMCs [0.60, 0.40]
+component GNSS Jamming & Spoofing [0.58, 0.55]
+component Sanctions Evasion [0.54, 0.60]
+
+// ---- Defender-side counter-measures ----
+component Counter-Disinformation [0.72, 0.30]
+component Strategic Communications [0.70, 0.45]
+component Platform Content Moderation [0.66, 0.55]
+component Incident Response [0.64, 0.65]
+component Diplomatic Demarche [0.62, 0.65]
+component Indictments & Legal Action [0.60, 0.45]
+component Cyber Defence Operations (SOC) [0.58, 0.65]
+component Endpoint Detection & Response [0.54, 0.75]
+component Sanctions Regime [0.52, 0.60]
+component Export Controls [0.50, 0.55]
+component Alliance Coordination (NATO/Five Eyes) [0.48, 0.50]
+component Resilience & Redundancy [0.46, 0.45]
+component Attribution [0.44, 0.30]
+component Threat Intelligence [0.40, 0.55]
+
+// ---- Enabling substrate (shared infra + knowledge) ----
+component Social Media Platforms [0.32, 0.80]
+component Generative AI Models [0.30, 0.55]
+component OSINT Tooling [0.26, 0.55]
+component SIGINT / HUMINT Collection [0.24, 0.35]
+component Cryptocurrency Rails [0.22, 0.60]
+component Cloud Infrastructure [0.18, 0.90]
+component Telecoms & Internet Backbone [0.14, 0.92]
+component Satellite / GNSS [0.12, 0.80]
+component International Law Framework [0.10, 0.40]
+component Academic / Think-tank Research [0.08, 0.55]
+
+// ---- Dependencies ----
+// Anchors depend on their top-line outcomes
+Nation State->Sovereign Decision Space
+Nation State->Deterrence Posture
+Nation State->Public Trust & Cohesion
+Critical Infrastructure Operator->Operational Continuity
+Critical Infrastructure Operator->Deterrence Posture
+Civil Society->Public Trust & Cohesion
+Civil Society->Sovereign Decision Space
+
+// Sovereign decision space pressured by influence/info attacks and defended by comms
+Sovereign Decision Space->Election Interference
+Sovereign Decision Space->Influence Operations
+Sovereign Decision Space->Lawfare
+Sovereign Decision Space->Strategic Communications
+Sovereign Decision Space->Counter-Disinformation
+
+// Operational continuity threatened by infra attacks and cyber ops
+Operational Continuity->Critical Infrastructure Attack
+Operational Continuity->Ransomware Operations
+Operational Continuity->Supply Chain Compromise
+Operational Continuity->Undersea Cable Sabotage
+Operational Continuity->GNSS Jamming & Spoofing
+Operational Continuity->Resilience & Redundancy
+Operational Continuity->Incident Response
+
+// Public trust shaped by info environment
+Public Trust & Cohesion->Disinformation Campaign
+Public Trust & Cohesion->Influence Operations
+Public Trust & Cohesion->Counter-Disinformation
+Public Trust & Cohesion->Strategic Communications
+
+// Deterrence rests on attribution, sanctions, alliances, legal action
+Deterrence Posture->Sanctions Regime
+Deterrence Posture->Export Controls
+Deterrence Posture->Alliance Coordination (NATO/Five Eyes)
+Deterrence Posture->Indictments & Legal Action
+Deterrence Posture->Diplomatic Demarche
+Deterrence Posture->Economic Coercion
+
+// Broader attacker categories subsume the technical tools
+Election Interference->Disinformation Campaign
+Election Interference->Cyber Intrusion (APT)
+Influence Operations->Disinformation Campaign
+Influence Operations->Proxy Forces / PMCs
+Disinformation Campaign->Social Media Platforms
+Disinformation Campaign->Generative AI Models
+Critical Infrastructure Attack->Cyber Intrusion (APT)
+Critical Infrastructure Attack->Proxy Forces / PMCs
+Ransomware Operations->Cyber Intrusion (APT)
+Ransomware Operations->Cryptocurrency Rails
+Supply Chain Compromise->Cyber Intrusion (APT)
+Undersea Cable Sabotage->Proxy Forces / PMCs
+Undersea Cable Sabotage->Telecoms & Internet Backbone
+Economic Coercion->Sanctions Evasion
+Economic Coercion->Cryptocurrency Rails
+Lawfare->International Law Framework
+Cyber Intrusion (APT)->Cloud Infrastructure
+Cyber Intrusion (APT)->Telecoms & Internet Backbone
+Proxy Forces / PMCs->Cryptocurrency Rails
+GNSS Jamming & Spoofing->Satellite / GNSS
+Sanctions Evasion->Cryptocurrency Rails
+
+// Defender dependencies
+Counter-Disinformation->Platform Content Moderation
+Counter-Disinformation->Threat Intelligence
+Counter-Disinformation->OSINT Tooling
+Strategic Communications->Social Media Platforms
+Strategic Communications->Threat Intelligence
+Platform Content Moderation->Social Media Platforms
+Incident Response->Cyber Defence Operations (SOC)
+Incident Response->Endpoint Detection & Response
+Diplomatic Demarche->Attribution
+Diplomatic Demarche->Alliance Coordination (NATO/Five Eyes)
+Indictments & Legal Action->Attribution
+Indictments & Legal Action->International Law Framework
+Cyber Defence Operations (SOC)->Endpoint Detection & Response
+Cyber Defence Operations (SOC)->Threat Intelligence
+Endpoint Detection & Response->Cloud Infrastructure
+Sanctions Regime->International Law Framework
+Sanctions Regime->Alliance Coordination (NATO/Five Eyes)
+Export Controls->International Law Framework
+Alliance Coordination (NATO/Five Eyes)->International Law Framework
+Resilience & Redundancy->Cloud Infrastructure
+Resilience & Redundancy->Telecoms & Internet Backbone
+Attribution->Threat Intelligence
+Attribution->SIGINT / HUMINT Collection
+Attribution->OSINT Tooling
+Threat Intelligence->OSINT Tooling
+Threat Intelligence->SIGINT / HUMINT Collection
+Threat Intelligence->Academic / Think-tank Research
+
+// Evolution targets (scenarios, not forecasts)
+evolve Generative AI Models 0.78
+evolve Attribution 0.55
+evolve Counter-Disinformation 0.55
+evolve Platform Content Moderation 0.75
+evolve Resilience & Redundancy 0.65
+
+note Attacker differentiation zone [0.72, 0.32]
+note Commoditised attack substrate [0.20, 0.90]
+note Defender industrialisation gap [0.48, 0.35]

@@ -1,0 +1,181 @@
+title Telecoms Sovereignty (October 2022)
+style wardley
+
+// Anchors — a nation's interests in its telecoms estate
+anchor Nation-State (National Security) [0.99, 0.40]
+anchor Citizen Connectivity [0.97, 0.70]
+anchor Business / Enterprise Connectivity [0.95, 0.65]
+
+// --- User-facing services ---
+component Mobile Voice & Data Service [0.88, 0.85]
+component Wi-Fi / Enterprise LAN [0.87, 0.90]
+component Fixed Broadband Service [0.86, 0.82]
+component Emergency Services Network (999/112) [0.82, 0.55]
+component Government Secure Comms [0.80, 0.35]
+component Roaming / International Calling [0.78, 0.90]
+
+// --- Access networks ---
+component Mobile Access Network (4G/5G RAN) [0.72, 0.62]
+component Fixed Access Network (FTTP / Copper) [0.70, 0.72]
+component LEO Satellite Broadband [0.68, 0.55]
+component GEO Satellite Services [0.66, 0.80]
+
+// --- Spectrum (an input to access networks) ---
+component Licensed Spectrum Holdings [0.63, 0.55]
+component Spectrum Allocation & Auctions [0.60, 0.60]
+component Spectrum Management & Monitoring [0.57, 0.65]
+
+// --- Resilience / operational practices (sit above the core they protect) ---
+component CNI Designation & Protection [0.65, 0.40]
+component Network Redundancy & Route Diversity [0.62, 0.68]
+component Subsea Cable Protection [0.58, 0.25]
+
+// --- Security / interception capabilities (state-level, mid-chain) ---
+component Lawful Interception Capability [0.55, 0.62]
+component SIGINT / National Signals Capability [0.53, 0.30]
+component Network Security Monitoring (Telco SOC) [0.51, 0.55]
+component Supply Chain Assurance (TSR / NCSC) [0.49, 0.35]
+
+// --- Regulation / policy framework ---
+component National Telecoms Regulator (Ofcom) [0.54, 0.80]
+component Telecoms Security Act / NIS Regime [0.48, 0.55]
+component Lawful Interception Mandate [0.47, 0.70]
+component High Risk Vendor Controls [0.46, 0.55]
+component Competition / Market Regulation [0.44, 0.78]
+component Cross-border Data Transfer Rules [0.42, 0.62]
+
+// --- Core networks & transit ---
+component 5G Standalone Core [0.45, 0.60]
+component IP/MPLS Core Transit [0.42, 0.82]
+component International Data Routing (BGP/peering) [0.39, 0.80]
+component Optical Transport (DWDM) [0.36, 0.85]
+component Internet Exchange Points (IXPs) [0.34, 0.80]
+component Submarine Cable Landings [0.32, 0.70]
+
+// --- Equipment & supply chain ---
+component RAN Equipment (Ericsson/Nokia/Samsung) [0.30, 0.68]
+component OpenRAN Equipment [0.28, 0.38]
+component Core Network Equipment [0.26, 0.65]
+component Optical / Transport Equipment [0.24, 0.82]
+component Handsets / Devices [0.22, 0.92]
+component Advanced Semiconductors (3nm–5nm) [0.14, 0.60]
+component Trusted Fabrication (sovereign fabs) [0.08, 0.18]
+
+// --- Foundational utilities & knowledge ---
+component Encryption Standards [0.18, 0.90]
+component Backup Power / Standby Generation [0.16, 0.92]
+component Sovereign Telecoms Workforce [0.12, 0.45]
+component Network Engineering Knowledge [0.10, 0.85]
+component 3GPP / IETF Standards Bodies [0.08, 0.88]
+
+// --- Dependencies (edges) ---
+// Nation-State priorities
+Nation-State (National Security)->Government Secure Comms
+Nation-State (National Security)->Emergency Services Network (999/112)
+Nation-State (National Security)->CNI Designation & Protection
+Nation-State (National Security)->National Telecoms Regulator (Ofcom)
+Nation-State (National Security)->SIGINT / National Signals Capability
+Nation-State (National Security)->Lawful Interception Capability
+Nation-State (National Security)->Supply Chain Assurance (TSR / NCSC)
+
+// Citizen & business priorities
+Citizen Connectivity->Mobile Voice & Data Service
+Citizen Connectivity->Fixed Broadband Service
+Citizen Connectivity->Emergency Services Network (999/112)
+Citizen Connectivity->Roaming / International Calling
+Business / Enterprise Connectivity->Mobile Voice & Data Service
+Business / Enterprise Connectivity->Fixed Broadband Service
+Business / Enterprise Connectivity->Wi-Fi / Enterprise LAN
+Business / Enterprise Connectivity->LEO Satellite Broadband
+Business / Enterprise Connectivity->GEO Satellite Services
+
+// User-facing services -> access networks
+Mobile Voice & Data Service->Mobile Access Network (4G/5G RAN)
+Fixed Broadband Service->Fixed Access Network (FTTP / Copper)
+Emergency Services Network (999/112)->Mobile Access Network (4G/5G RAN)
+Emergency Services Network (999/112)->Network Redundancy & Route Diversity
+Government Secure Comms->Encryption Standards
+Government Secure Comms->Network Redundancy & Route Diversity
+Roaming / International Calling->Mobile Access Network (4G/5G RAN)
+Roaming / International Calling->International Data Routing (BGP/peering)
+Wi-Fi / Enterprise LAN->Fixed Broadband Service
+
+// Access -> core / equipment / spectrum
+Mobile Access Network (4G/5G RAN)->5G Standalone Core
+Mobile Access Network (4G/5G RAN)->RAN Equipment (Ericsson/Nokia/Samsung)
+Mobile Access Network (4G/5G RAN)->OpenRAN Equipment
+Mobile Access Network (4G/5G RAN)->Licensed Spectrum Holdings
+Fixed Access Network (FTTP / Copper)->Optical Transport (DWDM)
+Fixed Access Network (FTTP / Copper)->Optical / Transport Equipment
+LEO Satellite Broadband->Licensed Spectrum Holdings
+GEO Satellite Services->Licensed Spectrum Holdings
+
+// Resilience practices -> the things they protect
+Network Redundancy & Route Diversity->IP/MPLS Core Transit
+Network Redundancy & Route Diversity->Submarine Cable Landings
+CNI Designation & Protection->Subsea Cable Protection
+CNI Designation & Protection->Network Redundancy & Route Diversity
+CNI Designation & Protection->Backup Power / Standby Generation
+Subsea Cable Protection->Submarine Cable Landings
+
+// Core -> transit/transport
+5G Standalone Core->IP/MPLS Core Transit
+5G Standalone Core->Core Network Equipment
+IP/MPLS Core Transit->International Data Routing (BGP/peering)
+IP/MPLS Core Transit->Optical Transport (DWDM)
+IP/MPLS Core Transit->Internet Exchange Points (IXPs)
+International Data Routing (BGP/peering)->Internet Exchange Points (IXPs)
+International Data Routing (BGP/peering)->Submarine Cable Landings
+Optical Transport (DWDM)->Submarine Cable Landings
+Optical Transport (DWDM)->Optical / Transport Equipment
+
+// Equipment -> semiconductors
+RAN Equipment (Ericsson/Nokia/Samsung)->Advanced Semiconductors (3nm–5nm)
+OpenRAN Equipment->Advanced Semiconductors (3nm–5nm)
+Core Network Equipment->Advanced Semiconductors (3nm–5nm)
+Optical / Transport Equipment->Advanced Semiconductors (3nm–5nm)
+Handsets / Devices->Advanced Semiconductors (3nm–5nm)
+Advanced Semiconductors (3nm–5nm)->Trusted Fabrication (sovereign fabs)
+
+// Spectrum pipeline (allocation is the process delivered by the regulator)
+Licensed Spectrum Holdings->Spectrum Allocation & Auctions
+Spectrum Allocation & Auctions->Spectrum Management & Monitoring
+Spectrum Allocation & Auctions->National Telecoms Regulator (Ofcom)
+Spectrum Management & Monitoring->National Telecoms Regulator (Ofcom)
+
+// Regulation framework (deeper than the capabilities it mandates)
+National Telecoms Regulator (Ofcom)->Telecoms Security Act / NIS Regime
+National Telecoms Regulator (Ofcom)->Competition / Market Regulation
+Telecoms Security Act / NIS Regime->High Risk Vendor Controls
+Telecoms Security Act / NIS Regime->Cross-border Data Transfer Rules
+Lawful Interception Capability->Lawful Interception Mandate
+
+// Security/interception -> foundations
+Lawful Interception Capability->Network Security Monitoring (Telco SOC)
+Lawful Interception Capability->IP/MPLS Core Transit
+SIGINT / National Signals Capability->Submarine Cable Landings
+SIGINT / National Signals Capability->International Data Routing (BGP/peering)
+Network Security Monitoring (Telco SOC)->Encryption Standards
+Supply Chain Assurance (TSR / NCSC)->High Risk Vendor Controls
+Supply Chain Assurance (TSR / NCSC)->Sovereign Telecoms Workforce
+
+// Equipment -> knowledge / workforce / standards
+RAN Equipment (Ericsson/Nokia/Samsung)->3GPP / IETF Standards Bodies
+5G Standalone Core->3GPP / IETF Standards Bodies
+OpenRAN Equipment->3GPP / IETF Standards Bodies
+Core Network Equipment->3GPP / IETF Standards Bodies
+Mobile Access Network (4G/5G RAN)->Sovereign Telecoms Workforce
+Sovereign Telecoms Workforce->Network Engineering Knowledge
+Network Engineering Knowledge->3GPP / IETF Standards Bodies
+
+// Evolve signals (scenario arrows)
+evolve OpenRAN Equipment 0.62
+evolve LEO Satellite Broadband 0.75
+evolve 5G Standalone Core 0.80
+evolve High Risk Vendor Controls 0.72
+evolve Trusted Fabrication (sovereign fabs) 0.35
+evolve Subsea Cable Protection 0.45
+
+note Sovereign moat zone [0.55, 0.18]
+note Commodity utilities [0.20, 0.90]
+note Regulatory industrialisation [0.45, 0.60]

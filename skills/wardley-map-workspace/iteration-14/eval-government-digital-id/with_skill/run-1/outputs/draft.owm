@@ -1,0 +1,172 @@
+title Government Digital Identity (Nov 2022)
+style wardley
+
+// Anchors — two user types
+anchor Citizen [0.98, 0.55]
+anchor Relying Party [0.95, 0.65]
+
+// Service integrations (RP-side adapters — sit just below Relying Party anchor)
+component Bank / Financial Onboarding Adapter [0.90, 0.55]
+component Tax & Welfare Adapter [0.88, 0.45]
+component Health Service Adapter [0.86, 0.40]
+component e-Signature Integration [0.84, 0.55]
+component Age & Entitlement Verification [0.82, 0.35]
+
+// Citizen-facing
+component Digital ID Wallet / App [0.88, 0.40]
+component Authentication UX [0.85, 0.55]
+component Onboarding / Enrolment [0.83, 0.45]
+component Account Recovery [0.78, 0.35]
+component Consent & Disclosure [0.80, 0.30]
+component Credential Presentation [0.75, 0.35]
+
+// Relying-party-facing APIs
+component Verifier API [0.72, 0.55]
+component Authentication API (OIDC/SAML) [0.70, 0.75]
+component Attribute Exchange API [0.68, 0.50]
+component Assurance Level Signalling [0.65, 0.45]
+
+// Identity proofing and credentials
+component Identity Proofing (document + selfie) [0.60, 0.55]
+component Liveness Detection [0.55, 0.40]
+component Biometric Matching [0.52, 0.65]
+component Credential Issuance [0.58, 0.45]
+component Revocation & Status Registry [0.50, 0.50]
+
+// Trust and interop fabric
+component Federation / Trust Broker [0.48, 0.55]
+component Trust Framework (policy + scheme) [0.45, 0.35]
+component Identity Attribute Schema [0.42, 0.55]
+component Cryptographic Standards (FIDO2, mDL, VC) [0.40, 0.35]
+component Certificate Authority / PKI [0.35, 0.80]
+
+// Authoritative data
+component Authoritative Attribute Sources [0.38, 0.55]
+component Civil / Population Register [0.32, 0.70]
+
+// Legal and governance (these sit BELOW the things that depend on them)
+component Accessibility & Inclusion Policy [0.30, 0.45]
+component Data Protection Regime [0.28, 0.65]
+component Independent Audit & Redress [0.26, 0.40]
+component Primary Legislation [0.22, 0.40]
+component Parliamentary / Civil Oversight [0.18, 0.35]
+
+// Deep infrastructure
+component Device Secure Hardware [0.20, 0.65]
+component Key Management (HSM / Secure Enclave) [0.18, 0.80]
+component Public-Key Infrastructure [0.15, 0.85]
+component Cloud Hosting & Compute [0.10, 0.92]
+component Network / TLS / DNS [0.06, 0.95]
+
+// Knowledge
+component Identity Assurance Knowledge [0.14, 0.50]
+component Cryptography Research [0.12, 0.55]
+
+// Dependencies — Citizen side
+Citizen->Digital ID Wallet / App
+Citizen->Authentication UX
+Citizen->Onboarding / Enrolment
+Citizen->Account Recovery
+Citizen->Consent & Disclosure
+Citizen->Credential Presentation
+
+// Dependencies — Relying-party side (RPs use adapters or talk direct to APIs)
+Relying Party->Bank / Financial Onboarding Adapter
+Relying Party->Tax & Welfare Adapter
+Relying Party->Health Service Adapter
+Relying Party->e-Signature Integration
+Relying Party->Age & Entitlement Verification
+Relying Party->Verifier API
+Relying Party->Authentication API (OIDC/SAML)
+Relying Party->Attribute Exchange API
+Relying Party->Assurance Level Signalling
+
+// Service integrations to RP-facing APIs
+Bank / Financial Onboarding Adapter->Attribute Exchange API
+Bank / Financial Onboarding Adapter->Authentication API (OIDC/SAML)
+Tax & Welfare Adapter->Authentication API (OIDC/SAML)
+Tax & Welfare Adapter->Attribute Exchange API
+Health Service Adapter->Authentication API (OIDC/SAML)
+Health Service Adapter->Attribute Exchange API
+e-Signature Integration->Credential Presentation
+e-Signature Integration->Key Management (HSM / Secure Enclave)
+Age & Entitlement Verification->Attribute Exchange API
+
+// Citizen-facing to core
+Digital ID Wallet / App->Credential Presentation
+Digital ID Wallet / App->Authentication UX
+Digital ID Wallet / App->Device Secure Hardware
+Authentication UX->Authentication API (OIDC/SAML)
+Authentication UX->Biometric Matching
+Onboarding / Enrolment->Identity Proofing (document + selfie)
+Onboarding / Enrolment->Credential Issuance
+Account Recovery->Identity Proofing (document + selfie)
+Consent & Disclosure->Attribute Exchange API
+Credential Presentation->Cryptographic Standards (FIDO2, mDL, VC)
+Credential Presentation->Revocation & Status Registry
+
+// Relying-party APIs to core
+Verifier API->Federation / Trust Broker
+Verifier API->Trust Framework (policy + scheme)
+Authentication API (OIDC/SAML)->Federation / Trust Broker
+Attribute Exchange API->Federation / Trust Broker
+Attribute Exchange API->Authoritative Attribute Sources
+Assurance Level Signalling->Trust Framework (policy + scheme)
+
+// Identity proofing chain
+Identity Proofing (document + selfie)->Liveness Detection
+Identity Proofing (document + selfie)->Biometric Matching
+Identity Proofing (document + selfie)->Civil / Population Register
+Credential Issuance->Certificate Authority / PKI
+Credential Issuance->Key Management (HSM / Secure Enclave)
+Credential Issuance->Identity Attribute Schema
+Revocation & Status Registry->Public-Key Infrastructure
+
+// Trust fabric to foundations
+Trust Framework (policy + scheme)->Primary Legislation
+Trust Framework (policy + scheme)->Data Protection Regime
+Trust Framework (policy + scheme)->Accessibility & Inclusion Policy
+Federation / Trust Broker->Certificate Authority / PKI
+Federation / Trust Broker->Cryptographic Standards (FIDO2, mDL, VC)
+Certificate Authority / PKI->Public-Key Infrastructure
+Cryptographic Standards (FIDO2, mDL, VC)->Cryptography Research
+Identity Attribute Schema->Authoritative Attribute Sources
+
+// Authoritative data
+Authoritative Attribute Sources->Civil / Population Register
+Civil / Population Register->Primary Legislation
+
+// Legal chain
+Primary Legislation->Parliamentary / Civil Oversight
+Data Protection Regime->Primary Legislation
+Data Protection Regime->Independent Audit & Redress
+Accessibility & Inclusion Policy->Primary Legislation
+Independent Audit & Redress->Parliamentary / Civil Oversight
+
+// Infra
+Biometric Matching->Cloud Hosting & Compute
+Liveness Detection->Cloud Hosting & Compute
+Federation / Trust Broker->Cloud Hosting & Compute
+Verifier API->Cloud Hosting & Compute
+Authentication API (OIDC/SAML)->Cloud Hosting & Compute
+Attribute Exchange API->Cloud Hosting & Compute
+Cloud Hosting & Compute->Network / TLS / DNS
+Public-Key Infrastructure->Network / TLS / DNS
+Key Management (HSM / Secure Enclave)->Public-Key Infrastructure
+
+// Knowledge
+Identity Proofing (document + selfie)->Identity Assurance Knowledge
+Trust Framework (policy + scheme)->Identity Assurance Knowledge
+Cryptographic Standards (FIDO2, mDL, VC)->Identity Assurance Knowledge
+
+// Evolution scenarios
+evolve Digital ID Wallet / App 0.60
+evolve Credential Presentation 0.55
+evolve Cryptographic Standards (FIDO2, mDL, VC) 0.60
+evolve Trust Framework (policy + scheme) 0.55
+evolve Liveness Detection 0.60
+evolve Identity Proofing (document + selfie) 0.72
+
+note Differentiation zone [0.75, 0.30]
+note Trust plumbing [0.45, 0.55]
+note Utility foundations [0.10, 0.93]

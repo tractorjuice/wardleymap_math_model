@@ -1,0 +1,176 @@
+title UK Labour Party Core Values and Policy Positioning (May 2024)
+style wardley
+
+// Anchors: the party has two user types
+// The electorate is the primary user (whose vote is sought)
+// Members are a secondary user (whose activism and subs sustain the machine)
+anchor UK Electorate [0.99, 0.70]
+anchor Party Member [0.95, 0.55]
+
+// User-facing brand and offer
+component Party Brand / Leadership Image [0.88, 0.50]
+component Five Missions Narrative [0.85, 0.25]
+component Manifesto 2024 [0.83, 0.55]
+component Change Slogan [0.82, 0.65]
+
+// User-facing policy levers (what voters see)
+component NHS Commitment [0.80, 0.88]
+component Workers Rights Package (New Deal for Working People) [0.78, 0.35]
+component Housing Pledge (1.5m homes) [0.76, 0.55]
+component Education Policy (VAT on private schools, breakfast clubs) [0.75, 0.45]
+component Climate / GB Energy [0.73, 0.30]
+component Fiscal Rules / Tax Pledges [0.72, 0.70]
+
+// Constituencies (segments of the electorate, user-proximate)
+component Red Wall Voters [0.70, 0.40]
+component Core Urban Working-Class Base [0.68, 0.75]
+component Middle-Class Swing Voters [0.66, 0.55]
+component Young / First-Time Voters [0.62, 0.45]
+component Scottish Voters [0.60, 0.40]
+component Trade Union Members [0.58, 0.80]
+component Muslim / Minority Communities [0.56, 0.50]
+
+// Media and communications (close to user because perception-forming)
+component Broadcast Media Relations (BBC, ITV) [0.65, 0.75]
+component Press Strategy (tabloids, broadsheets) [0.63, 0.70]
+component Social / Digital Campaigning [0.60, 0.55]
+component Grassroots Canvassing [0.55, 0.85]
+component Leader Media Appearances [0.68, 0.55]
+
+// Mid-chain: policy and governance structures
+component Shadow Cabinet [0.52, 0.60]
+component Policy Forum / National Policy Forum [0.45, 0.65]
+component Candidate Selection [0.42, 0.55]
+component Campaign Strategy (Morgan McSweeney) [0.48, 0.45]
+component Polling / Focus Groups [0.43, 0.75]
+component Constituency Targeting Model [0.40, 0.50]
+
+// Party machinery (deeper)
+component Constituency Labour Parties (CLPs) [0.35, 0.70]
+component National Executive Committee (NEC) [0.30, 0.65]
+component Affiliated Trade Unions [0.28, 0.75]
+component Fundraising / Donor Relations [0.32, 0.60]
+component Membership Database / CRM [0.22, 0.80]
+
+// Core values (Knowledge layer — widely accepted, low-visibility)
+component Equality (value) [0.18, 0.78]
+component Fairness (value) [0.16, 0.80]
+component Opportunity (value) [0.15, 0.75]
+component Community (value) [0.14, 0.72]
+component Responsibility (value) [0.13, 0.70]
+
+// Deeper institutional knowledge and foundations
+component Social Democratic Tradition [0.10, 0.85]
+component Post-Ideological Pragmatism (Starmerism) [0.12, 0.35]
+component Party Constitution / Clause IV (revised) [0.08, 0.90]
+component UK Electoral System (FPTP) [0.06, 0.95]
+component Parliamentary Convention [0.05, 0.95]
+
+// Dependencies — flow from user need down to foundations
+UK Electorate->Party Brand / Leadership Image
+UK Electorate->Five Missions Narrative
+UK Electorate->Change Slogan
+UK Electorate->Manifesto 2024
+UK Electorate->NHS Commitment
+UK Electorate->Workers Rights Package (New Deal for Working People)
+UK Electorate->Housing Pledge (1.5m homes)
+UK Electorate->Education Policy (VAT on private schools, breakfast clubs)
+UK Electorate->Climate / GB Energy
+UK Electorate->Fiscal Rules / Tax Pledges
+UK Electorate->Broadcast Media Relations (BBC, ITV)
+UK Electorate->Press Strategy (tabloids, broadsheets)
+UK Electorate->Leader Media Appearances
+
+Party Member->Manifesto 2024
+Party Member->Constituency Labour Parties (CLPs)
+Party Member->Policy Forum / National Policy Forum
+Party Member->Candidate Selection
+Party Member->Grassroots Canvassing
+
+// Brand and narrative rest on underlying policy + comms
+Party Brand / Leadership Image->Leader Media Appearances
+Party Brand / Leadership Image->Campaign Strategy (Morgan McSweeney)
+Party Brand / Leadership Image->Polling / Focus Groups
+Five Missions Narrative->Policy Forum / National Policy Forum
+Five Missions Narrative->Shadow Cabinet
+Change Slogan->Campaign Strategy (Morgan McSweeney)
+Manifesto 2024->Shadow Cabinet
+Manifesto 2024->Policy Forum / National Policy Forum
+
+// Policy levers depend on shadow cabinet and deeper values
+NHS Commitment->Fairness (value)
+NHS Commitment->Shadow Cabinet
+Workers Rights Package (New Deal for Working People)->Affiliated Trade Unions
+Workers Rights Package (New Deal for Working People)->Fairness (value)
+Workers Rights Package (New Deal for Working People)->Shadow Cabinet
+Housing Pledge (1.5m homes)->Opportunity (value)
+Housing Pledge (1.5m homes)->Shadow Cabinet
+Education Policy (VAT on private schools, breakfast clubs)->Opportunity (value)
+Education Policy (VAT on private schools, breakfast clubs)->Shadow Cabinet
+Climate / GB Energy->Responsibility (value)
+Climate / GB Energy->Shadow Cabinet
+Fiscal Rules / Tax Pledges->Responsibility (value)
+Fiscal Rules / Tax Pledges->Shadow Cabinet
+
+// Constituencies are segments the electorate maps into, depend on targeting
+Red Wall Voters->Constituency Targeting Model
+Core Urban Working-Class Base->Trade Union Members
+Middle-Class Swing Voters->Constituency Targeting Model
+Young / First-Time Voters->Social / Digital Campaigning
+Scottish Voters->Candidate Selection
+Trade Union Members->Affiliated Trade Unions
+Muslim / Minority Communities->Grassroots Canvassing
+
+// Media channels depend on press and campaign ops
+Broadcast Media Relations (BBC, ITV)->Campaign Strategy (Morgan McSweeney)
+Press Strategy (tabloids, broadsheets)->Campaign Strategy (Morgan McSweeney)
+Social / Digital Campaigning->Membership Database / CRM
+Grassroots Canvassing->Constituency Labour Parties (CLPs)
+Grassroots Canvassing->Membership Database / CRM
+Leader Media Appearances->Campaign Strategy (Morgan McSweeney)
+
+// Campaign depends on polling and targeting
+Campaign Strategy (Morgan McSweeney)->Polling / Focus Groups
+Campaign Strategy (Morgan McSweeney)->Constituency Targeting Model
+Polling / Focus Groups->Membership Database / CRM
+Constituency Targeting Model->Membership Database / CRM
+
+// Shadow cabinet depends on selection, NEC
+Shadow Cabinet->Candidate Selection
+Shadow Cabinet->National Executive Committee (NEC)
+Candidate Selection->National Executive Committee (NEC)
+Candidate Selection->Constituency Labour Parties (CLPs)
+Policy Forum / National Policy Forum->National Executive Committee (NEC)
+Policy Forum / National Policy Forum->Affiliated Trade Unions
+
+// Machinery rests on affiliates and constitution
+Constituency Labour Parties (CLPs)->Party Constitution / Clause IV (revised)
+National Executive Committee (NEC)->Party Constitution / Clause IV (revised)
+National Executive Committee (NEC)->Affiliated Trade Unions
+Affiliated Trade Unions->Party Constitution / Clause IV (revised)
+Fundraising / Donor Relations->Affiliated Trade Unions
+Fundraising / Donor Relations->Membership Database / CRM
+
+// Values rest on traditions
+Equality (value)->Social Democratic Tradition
+Fairness (value)->Social Democratic Tradition
+Opportunity (value)->Social Democratic Tradition
+Opportunity (value)->Post-Ideological Pragmatism (Starmerism)
+Community (value)->Social Democratic Tradition
+Responsibility (value)->Post-Ideological Pragmatism (Starmerism)
+
+// Traditions and constitution rest on electoral system
+Social Democratic Tradition->Party Constitution / Clause IV (revised)
+Campaign Strategy (Morgan McSweeney)->Post-Ideological Pragmatism (Starmerism)
+Party Constitution / Clause IV (revised)->Parliamentary Convention
+UK Electoral System (FPTP)->Parliamentary Convention
+
+// Strategic evolution arrows (May 2024 scenario)
+evolve Five Missions Narrative 0.55
+evolve Workers Rights Package (New Deal for Working People) 0.60
+evolve Climate / GB Energy 0.55
+evolve Post-Ideological Pragmatism (Starmerism) 0.60
+
+note Differentiation zone [0.75, 0.25]
+note Commoditising pledges [0.78, 0.82]
+note Knowledge layer (values) [0.15, 0.80]

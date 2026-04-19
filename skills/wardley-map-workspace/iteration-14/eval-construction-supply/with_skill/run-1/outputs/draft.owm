@@ -1,0 +1,170 @@
+title Modern Construction Supply Chain (Commercial, March 2023)
+style wardley
+
+// Anchors — three user types this chain must serve
+anchor Client (Developer/Owner) [0.99, 0.55]
+anchor Architect [0.95, 0.48]
+anchor General Contractor [0.93, 0.60]
+
+// Client-facing outcomes
+component Completed Building Handover [0.88, 0.50]
+component Project Schedule & Milestones [0.84, 0.55]
+component Cost & Budget Certainty [0.82, 0.58]
+component Quality & Defects Liability [0.80, 0.45]
+
+// Design & specification layer
+component Design Intent / Drawings [0.76, 0.45]
+component Specifications (CSI/NBS) [0.68, 0.62]
+component Value Engineering [0.70, 0.38]
+component BIM Model (Federated) [0.44, 0.50]
+
+// Procurement & commercial
+component Tendering / Bid Management [0.64, 0.55]
+component Subcontractor Packages [0.62, 0.52]
+component Procurement Platform (e.g. Procore, Autodesk Build) [0.58, 0.55]
+component Purchase Orders & Contracts [0.50, 0.70]
+component Change Orders / Variations [0.54, 0.40]
+
+// On-site coordination
+component Site Management / Superintendent [0.66, 0.35]
+component Daily Coordination Meetings [0.60, 0.50]
+component Trade Sequencing (Look-ahead) [0.58, 0.42]
+component Site Safety Management [0.55, 0.55]
+component Quality Inspections [0.60, 0.50]
+
+// Subcontractor trades
+component MEP Subcontractors [0.50, 0.55]
+component Structural/Concrete Subcontractors [0.48, 0.70]
+component Envelope/Facade Subcontractors [0.46, 0.50]
+component Finishing Trades [0.45, 0.65]
+
+// Logistics & materials flow
+component Just-in-Time Site Delivery [0.44, 0.42]
+component Material Laydown / Staging [0.42, 0.60]
+component Freight & Haulage [0.38, 0.78]
+component Customs & Cross-border Logistics [0.30, 0.68]
+
+// Material sourcing (upstream)
+component Long-lead Item Management [0.40, 0.38]
+component Material Sourcing (Steel, Concrete, Glass) [0.34, 0.75]
+component Specialty Materials (Low-carbon, Engineered) [0.32, 0.30]
+component Supplier/Fabricator Relationships [0.28, 0.45]
+component Commodity Materials (Aggregates, Rebar, Timber) [0.22, 0.88]
+
+// Compliance layer
+component Building Code Compliance [0.56, 0.70]
+component Planning/Permit Approvals [0.44, 0.65]
+component Fire & Life-Safety Certification [0.42, 0.60]
+component Health & Safety Regulation (OSHA/HSE) [0.40, 0.80]
+component ESG & Embodied-Carbon Reporting [0.70, 0.25]
+component Insurance & Bonding [0.32, 0.75]
+
+// Digital stack & data
+component Common Data Environment (CDE) [0.35, 0.50]
+component Clash Detection (Navisworks/Solibri) [0.40, 0.62]
+component Scheduling Software (P6/MSP) [0.55, 0.78]
+component Project Reporting Dashboards [0.60, 0.55]
+component Digital Twin / Sensor Feeds [0.42, 0.22]
+component Cloud SaaS & Identity [0.14, 0.90]
+component Connectivity (Site Networking) [0.10, 0.88]
+
+// Knowledge base
+component Construction Law & Standard Contracts (JCT/AIA/FIDIC) [0.18, 0.82]
+component Trade Labour Pool [0.20, 0.55]
+
+// Dependencies
+Client (Developer/Owner)->Completed Building Handover
+Client (Developer/Owner)->Cost & Budget Certainty
+Client (Developer/Owner)->Project Schedule & Milestones
+Client (Developer/Owner)->Quality & Defects Liability
+Architect->Design Intent / Drawings
+Architect->Specifications (CSI/NBS)
+Architect->BIM Model (Federated)
+General Contractor->Project Schedule & Milestones
+General Contractor->Site Management / Superintendent
+General Contractor->Tendering / Bid Management
+General Contractor->Subcontractor Packages
+
+Completed Building Handover->Quality & Defects Liability
+Completed Building Handover->Fire & Life-Safety Certification
+Completed Building Handover->Building Code Compliance
+Project Schedule & Milestones->Trade Sequencing (Look-ahead)
+Project Schedule & Milestones->Scheduling Software (P6/MSP)
+Cost & Budget Certainty->Value Engineering
+Cost & Budget Certainty->Change Orders / Variations
+Cost & Budget Certainty->Purchase Orders & Contracts
+Quality & Defects Liability->Quality Inspections
+
+Design Intent / Drawings->BIM Model (Federated)
+Design Intent / Drawings->Specifications (CSI/NBS)
+Specifications (CSI/NBS)->Material Sourcing (Steel, Concrete, Glass)
+Specifications (CSI/NBS)->Specialty Materials (Low-carbon, Engineered)
+Value Engineering->Specifications (CSI/NBS)
+Value Engineering->BIM Model (Federated)
+BIM Model (Federated)->Common Data Environment (CDE)
+BIM Model (Federated)->Clash Detection (Navisworks/Solibri)
+
+Tendering / Bid Management->Subcontractor Packages
+Tendering / Bid Management->Procurement Platform (e.g. Procore, Autodesk Build)
+Subcontractor Packages->MEP Subcontractors
+Subcontractor Packages->Structural/Concrete Subcontractors
+Subcontractor Packages->Envelope/Facade Subcontractors
+Subcontractor Packages->Finishing Trades
+Procurement Platform (e.g. Procore, Autodesk Build)->Purchase Orders & Contracts
+Procurement Platform (e.g. Procore, Autodesk Build)->Cloud SaaS & Identity
+Purchase Orders & Contracts->Construction Law & Standard Contracts (JCT/AIA/FIDIC)
+Change Orders / Variations->Purchase Orders & Contracts
+
+Site Management / Superintendent->Daily Coordination Meetings
+Site Management / Superintendent->Site Safety Management
+Site Management / Superintendent->Trade Sequencing (Look-ahead)
+Daily Coordination Meetings->Trade Sequencing (Look-ahead)
+Trade Sequencing (Look-ahead)->Just-in-Time Site Delivery
+Trade Sequencing (Look-ahead)->MEP Subcontractors
+Trade Sequencing (Look-ahead)->Structural/Concrete Subcontractors
+Site Safety Management->Health & Safety Regulation (OSHA/HSE)
+Quality Inspections->Building Code Compliance
+
+MEP Subcontractors->Trade Labour Pool
+Structural/Concrete Subcontractors->Trade Labour Pool
+Envelope/Facade Subcontractors->Trade Labour Pool
+Finishing Trades->Trade Labour Pool
+MEP Subcontractors->Material Sourcing (Steel, Concrete, Glass)
+Structural/Concrete Subcontractors->Material Sourcing (Steel, Concrete, Glass)
+Envelope/Facade Subcontractors->Specialty Materials (Low-carbon, Engineered)
+Finishing Trades->Commodity Materials (Aggregates, Rebar, Timber)
+
+Just-in-Time Site Delivery->Material Laydown / Staging
+Just-in-Time Site Delivery->Freight & Haulage
+Material Laydown / Staging->Long-lead Item Management
+Freight & Haulage->Customs & Cross-border Logistics
+Long-lead Item Management->Supplier/Fabricator Relationships
+Material Sourcing (Steel, Concrete, Glass)->Supplier/Fabricator Relationships
+Material Sourcing (Steel, Concrete, Glass)->Commodity Materials (Aggregates, Rebar, Timber)
+Specialty Materials (Low-carbon, Engineered)->Supplier/Fabricator Relationships
+
+Building Code Compliance->Planning/Permit Approvals
+Building Code Compliance->Fire & Life-Safety Certification
+Planning/Permit Approvals->Construction Law & Standard Contracts (JCT/AIA/FIDIC)
+Insurance & Bonding->Construction Law & Standard Contracts (JCT/AIA/FIDIC)
+ESG & Embodied-Carbon Reporting->BIM Model (Federated)
+ESG & Embodied-Carbon Reporting->Specialty Materials (Low-carbon, Engineered)
+
+Common Data Environment (CDE)->Cloud SaaS & Identity
+Common Data Environment (CDE)->Connectivity (Site Networking)
+BIM Model (Federated)->Clash Detection (Navisworks/Solibri)
+Scheduling Software (P6/MSP)->Cloud SaaS & Identity
+Project Reporting Dashboards->Common Data Environment (CDE)
+Project Reporting Dashboards->Scheduling Software (P6/MSP)
+Digital Twin / Sensor Feeds->Connectivity (Site Networking)
+Digital Twin / Sensor Feeds->Common Data Environment (CDE)
+
+// Strategic markers
+evolve Digital Twin / Sensor Feeds 0.55
+evolve Specialty Materials (Low-carbon, Engineered) 0.50
+evolve Procurement Platform (e.g. Procore, Autodesk Build) 0.78
+evolve ESG & Embodied-Carbon Reporting 0.55
+
+note Differentiation zone [0.70, 0.28]
+note Commodity / utility [0.20, 0.90]
+pipeline Procurement Platform (e.g. Procore, Autodesk Build) [0.45, 0.80]

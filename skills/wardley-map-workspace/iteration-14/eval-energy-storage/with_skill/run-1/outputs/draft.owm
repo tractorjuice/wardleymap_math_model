@@ -1,0 +1,168 @@
+title Electrical Energy Storage Landscape (April 2023)
+style wardley
+
+// Anchors — the users whose needs drive the map
+anchor Grid Operator [0.99, 0.60]
+anchor Utility / Generator [0.96, 0.55]
+anchor C&I / Prosumer [0.93, 0.50]
+
+// User-facing services / value streams
+component Frequency Response Service [0.86, 0.78]
+component Capacity Market Service [0.83, 0.80]
+component Energy Arbitrage Service [0.80, 0.60]
+component Ancillary Services (reserve, black start) [0.77, 0.65]
+component Behind-the-Meter Storage Service [0.74, 0.55]
+
+// Deployment models
+component Grid-Scale BESS Project [0.68, 0.62]
+component Utility Pumped Hydro Project [0.66, 0.90]
+component Distributed / Residential Storage [0.64, 0.58]
+component Co-located Storage + Renewables [0.62, 0.45]
+component Long-Duration Storage Pilot [0.60, 0.20]
+
+// Storage technologies — batteries
+component Li-ion NMC Battery System [0.55, 0.72]
+component Li-ion LFP Battery System [0.53, 0.70]
+component Sodium-ion Battery [0.50, 0.22]
+component Flow Battery (Vanadium / Iron) [0.48, 0.30]
+component Iron-air / Metal-air Battery [0.46, 0.12]
+
+// Storage technologies — non-battery
+component Pumped Hydro Storage [0.58, 0.92]
+component Compressed Air (CAES) [0.44, 0.35]
+component Thermal Storage (molten salt, bricks) [0.42, 0.30]
+component Green Hydrogen Storage [0.40, 0.18]
+component Gravity Storage [0.38, 0.15]
+
+// Integration & control layer
+component Battery Management System (BMS) [0.50, 0.68]
+component Power Conversion / Inverter [0.48, 0.78]
+component EMS / Storage Dispatch Software [0.52, 0.55]
+component SCADA / Grid Telemetry [0.36, 0.82]
+component Market Bidding Platform [0.58, 0.50]
+
+// Markets & regulation
+component Wholesale Electricity Market [0.56, 0.88]
+component Capacity Market Rules [0.60, 0.72]
+component FERC Order 841 / GB Dynamic Services [0.58, 0.62]
+component Interconnection / Grid-Code Compliance [0.42, 0.70]
+component Safety & Fire Codes (UL9540, NFPA855) [0.36, 0.55]
+component IRA / EU Green Deal Subsidy [0.40, 0.35]
+
+// Supply chain — minerals & cells
+component Lithium Refining [0.30, 0.58]
+component Lithium Mining [0.25, 0.75]
+component Cobalt / Nickel Supply [0.24, 0.80]
+component Cell Manufacturing (Gigafactory) [0.32, 0.55]
+component Battery Module / Pack Assembly [0.34, 0.72]
+component Cathode / Anode Active Materials [0.30, 0.45]
+component Battery Recycling / Second-Life [0.32, 0.20]
+
+// Platform / utility layer
+component Cloud Analytics Platform [0.18, 0.88]
+component AI Forecasting (price, load, weather) [0.20, 0.40]
+component Cybersecurity for OT [0.16, 0.45]
+
+// Foundational knowledge & utilities
+component Electrochemistry R&D [0.10, 0.38]
+component Grid Physics / Power Systems Knowledge [0.08, 0.92]
+component Electricity (transmission) [0.06, 0.96]
+
+// Dependencies
+Grid Operator->Frequency Response Service
+Grid Operator->Capacity Market Service
+Grid Operator->Ancillary Services (reserve, black start)
+Utility / Generator->Energy Arbitrage Service
+Utility / Generator->Capacity Market Service
+Utility / Generator->Ancillary Services (reserve, black start)
+C&I / Prosumer->Behind-the-Meter Storage Service
+C&I / Prosumer->Energy Arbitrage Service
+
+Frequency Response Service->Grid-Scale BESS Project
+Frequency Response Service->Market Bidding Platform
+Capacity Market Service->Grid-Scale BESS Project
+Capacity Market Service->Utility Pumped Hydro Project
+Capacity Market Service->Capacity Market Rules
+Energy Arbitrage Service->Grid-Scale BESS Project
+Energy Arbitrage Service->Co-located Storage + Renewables
+Energy Arbitrage Service->Market Bidding Platform
+Ancillary Services (reserve, black start)->Utility Pumped Hydro Project
+Ancillary Services (reserve, black start)->Grid-Scale BESS Project
+Behind-the-Meter Storage Service->Distributed / Residential Storage
+
+Grid-Scale BESS Project->Li-ion LFP Battery System
+Grid-Scale BESS Project->Li-ion NMC Battery System
+Grid-Scale BESS Project->EMS / Storage Dispatch Software
+Grid-Scale BESS Project->Power Conversion / Inverter
+Grid-Scale BESS Project->Interconnection / Grid-Code Compliance
+Grid-Scale BESS Project->Safety & Fire Codes (UL9540, NFPA855)
+Grid-Scale BESS Project->IRA / EU Green Deal Subsidy
+
+Utility Pumped Hydro Project->Pumped Hydro Storage
+Utility Pumped Hydro Project->Interconnection / Grid-Code Compliance
+Utility Pumped Hydro Project->Grid Physics / Power Systems Knowledge
+
+Distributed / Residential Storage->Li-ion LFP Battery System
+Distributed / Residential Storage->Power Conversion / Inverter
+Distributed / Residential Storage->Safety & Fire Codes (UL9540, NFPA855)
+
+Co-located Storage + Renewables->Li-ion LFP Battery System
+Co-located Storage + Renewables->EMS / Storage Dispatch Software
+Co-located Storage + Renewables->Interconnection / Grid-Code Compliance
+
+Long-Duration Storage Pilot->Flow Battery (Vanadium / Iron)
+Long-Duration Storage Pilot->Iron-air / Metal-air Battery
+Long-Duration Storage Pilot->Green Hydrogen Storage
+Long-Duration Storage Pilot->Thermal Storage (molten salt, bricks)
+Long-Duration Storage Pilot->Compressed Air (CAES)
+Long-Duration Storage Pilot->Gravity Storage
+
+Li-ion NMC Battery System->Battery Management System (BMS)
+Li-ion NMC Battery System->Battery Module / Pack Assembly
+Li-ion LFP Battery System->Battery Management System (BMS)
+Li-ion LFP Battery System->Battery Module / Pack Assembly
+Sodium-ion Battery->Electrochemistry R&D
+Sodium-ion Battery->Cell Manufacturing (Gigafactory)
+Flow Battery (Vanadium / Iron)->Electrochemistry R&D
+Iron-air / Metal-air Battery->Electrochemistry R&D
+
+Pumped Hydro Storage->Grid Physics / Power Systems Knowledge
+Compressed Air (CAES)->Grid Physics / Power Systems Knowledge
+Thermal Storage (molten salt, bricks)->Electrochemistry R&D
+Green Hydrogen Storage->Electrochemistry R&D
+
+Battery Module / Pack Assembly->Cell Manufacturing (Gigafactory)
+Cell Manufacturing (Gigafactory)->Cathode / Anode Active Materials
+Cell Manufacturing (Gigafactory)->Cobalt / Nickel Supply
+Cathode / Anode Active Materials->Lithium Refining
+Lithium Refining->Lithium Mining
+Battery Recycling / Second-Life->Cell Manufacturing (Gigafactory)
+
+EMS / Storage Dispatch Software->AI Forecasting (price, load, weather)
+EMS / Storage Dispatch Software->SCADA / Grid Telemetry
+EMS / Storage Dispatch Software->Cloud Analytics Platform
+Market Bidding Platform->Wholesale Electricity Market
+Market Bidding Platform->AI Forecasting (price, load, weather)
+SCADA / Grid Telemetry->Cybersecurity for OT
+
+Battery Management System (BMS)->Power Conversion / Inverter
+Power Conversion / Inverter->Electricity (transmission)
+
+Capacity Market Rules->Wholesale Electricity Market
+FERC Order 841 / GB Dynamic Services->Wholesale Electricity Market
+Interconnection / Grid-Code Compliance->Grid Physics / Power Systems Knowledge
+
+AI Forecasting (price, load, weather)->Cloud Analytics Platform
+
+// Strategic movement arrows
+evolve Sodium-ion Battery 0.50
+evolve Iron-air / Metal-air Battery 0.35
+evolve Green Hydrogen Storage 0.35
+evolve Li-ion LFP Battery System 0.85
+evolve AI Forecasting (price, load, weather) 0.65
+evolve Battery Recycling / Second-Life 0.45
+evolve Long-Duration Storage Pilot 0.45
+
+note Differentiation zone [0.55, 0.20]
+note Industrialising fast [0.55, 0.72]
+note Utility commodity [0.12, 0.92]

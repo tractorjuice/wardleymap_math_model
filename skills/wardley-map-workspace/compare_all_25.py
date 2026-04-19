@@ -1,0 +1,126 @@
+#!/usr/bin/env python3
+"""Comparison across all 25 benchmarks."""
+import sys, json
+from pathlib import Path
+sys.path.insert(0, "/workspaces/wardleymap_math_model/skills/wardley-map-workspace/iteration-10")
+from compare import parse_owm, fuzzy_match
+
+ROOT = Path("/workspaces/wardleymap_math_model/skills/wardley-map-workspace")
+
+BENCHMARKS = [
+    # original 4 (iter-10)
+    ("ai-trust", "iteration-10/eval-ai-trust/wardley-reference.owm",
+     "iteration-10/eval-ai-trust/with_skill/run-1/outputs/output.md", "AI"),
+    ("healthcare-clinical", "iteration-10/eval-healthcare-clinical/wardley-reference.owm",
+     "iteration-10/eval-healthcare-clinical/with_skill/run-1/outputs/output.md", "Healthcare"),
+    ("finance-risk", "iteration-10/eval-finance-risk/wardley-reference.owm",
+     "iteration-10/eval-finance-risk/with_skill/run-1/outputs/output.md", "Finance"),
+    # retail (use iter-11 with exponential seed)
+    ("retail-journey", "iteration-11/eval-retail-journey/wardley-reference.owm",
+     "iteration-11/eval-retail-journey/with_skill/run-1/outputs/output.md", "Retail"),
+    # iter-12 (6 maps)
+    ("manufacturing", "iteration-12/eval-manufacturing-supply/wardley-reference.owm",
+     "iteration-12/eval-manufacturing-supply/with_skill/run-1/outputs/output.md", "Manufacturing"),
+    ("agriculture", "iteration-12/eval-agriculture-regen/wardley-reference.owm",
+     "iteration-12/eval-agriculture-regen/with_skill/run-1/outputs/output.md", "Agriculture"),
+    ("education", "iteration-12/eval-education-lifelong/wardley-reference.owm",
+     "iteration-12/eval-education-lifelong/with_skill/run-1/outputs/output.md", "Education"),
+    ("gaming", "iteration-12/eval-gaming-economies/wardley-reference.owm",
+     "iteration-12/eval-gaming-economies/with_skill/run-1/outputs/output.md", "Gaming"),
+    ("sustainability", "iteration-12/eval-sustainability-supply/wardley-reference.owm",
+     "iteration-12/eval-sustainability-supply/with_skill/run-1/outputs/output.md", "Sustainability"),
+    # cybersecurity (use iter-13 with density guidance)
+    ("cybersecurity", "iteration-13/eval-cybersecurity-risk/wardley-reference.owm",
+     "iteration-13/eval-cybersecurity-risk/with_skill/run-1/outputs/output.md", "Cybersecurity"),
+    # iter-14 (15 new maps)
+    ("construction-supply", "iteration-14/eval-construction-supply/wardley-reference.owm",
+     "iteration-14/eval-construction-supply/with_skill/run-1/outputs/output.md", "Construction"),
+    ("culture-gender", "iteration-14/eval-culture-gender/wardley-reference.owm",
+     "iteration-14/eval-culture-gender/with_skill/run-1/outputs/output.md", "Culture"),
+    ("defence-intelligence", "iteration-14/eval-defence-intelligence/wardley-reference.owm",
+     "iteration-14/eval-defence-intelligence/with_skill/run-1/outputs/output.md", "Defence"),
+    ("defence-grey-zone", "iteration-14/eval-defence-grey-zone/wardley-reference.owm",
+     "iteration-14/eval-defence-grey-zone/with_skill/run-1/outputs/output.md", "Defence"),
+    ("energy-disruption", "iteration-14/eval-energy-disruption/wardley-reference.owm",
+     "iteration-14/eval-energy-disruption/with_skill/run-1/outputs/output.md", "Energy"),
+    ("energy-storage", "iteration-14/eval-energy-storage/wardley-reference.owm",
+     "iteration-14/eval-energy-storage/with_skill/run-1/outputs/output.md", "Energy"),
+    ("government-digital-id", "iteration-14/eval-government-digital-id/wardley-reference.owm",
+     "iteration-14/eval-government-digital-id/with_skill/run-1/outputs/output.md", "Government"),
+    ("government-sovereignty", "iteration-14/eval-government-sovereignty/wardley-reference.owm",
+     "iteration-14/eval-government-sovereignty/with_skill/run-1/outputs/output.md", "Government"),
+    ("personal-fin-inclusion", "iteration-14/eval-personal-fin-inclusion/wardley-reference.owm",
+     "iteration-14/eval-personal-fin-inclusion/with_skill/run-1/outputs/output.md", "Personal"),
+    ("personal-conversational", "iteration-14/eval-personal-conversational/wardley-reference.owm",
+     "iteration-14/eval-personal-conversational/with_skill/run-1/outputs/output.md", "Personal"),
+    ("politics-labour", "iteration-14/eval-politics-labour/wardley-reference.owm",
+     "iteration-14/eval-politics-labour/with_skill/run-1/outputs/output.md", "Politics"),
+    ("telecoms-sovereignty", "iteration-14/eval-telecoms-sovereignty/wardley-reference.owm",
+     "iteration-14/eval-telecoms-sovereignty/with_skill/run-1/outputs/output.md", "Telecoms"),
+    ("telecoms-space", "iteration-14/eval-telecoms-space/wardley-reference.owm",
+     "iteration-14/eval-telecoms-space/with_skill/run-1/outputs/output.md", "Telecoms"),
+    ("transport-logistics", "iteration-14/eval-transport-logistics/wardley-reference.owm",
+     "iteration-14/eval-transport-logistics/with_skill/run-1/outputs/output.md", "Transportation"),
+    ("transport-demand", "iteration-14/eval-transport-demand/wardley-reference.owm",
+     "iteration-14/eval-transport-demand/with_skill/run-1/outputs/output.md", "Transportation"),
+]
+
+
+def stats(ref_path, ours_path):
+    ref_a, ref_c = parse_owm(ref_path.read_text())
+    ours_a, ours_c = parse_owm(ours_path.read_text())
+    ref_all = {**ref_a, **ref_c}
+    ours_all = {**ours_a, **ours_c}
+    matched = []
+    for rname, (rv, re_) in ref_all.items():
+        m, s = fuzzy_match(rname, ours_all.keys())
+        if m:
+            ov, oe = ours_all[m]
+            matched.append((rname, rv, re_, m, ov, oe))
+    de = [r[5]-r[2] for r in matched]
+    dv = [r[4]-r[1] for r in matched]
+    n = max(len(matched), 1)
+    return {
+        "ref": len(ref_all), "ours": len(ours_all), "match": len(matched),
+        "coverage": len(matched)/max(len(ref_all),1),
+        "abs_eps": sum(abs(d) for d in de)/n,
+        "abs_vis": sum(abs(d) for d in dv)/n,
+        "bias_eps": sum(de)/n,
+        "bias_vis": sum(dv)/n,
+        "same_stage": sum(1 for d in de if abs(d)<0.25)/n,
+    }
+
+
+results = []
+for name, ref, ours, domain in BENCHMARKS:
+    ref_p = ROOT / ref
+    ours_p = ROOT / ours
+    if not ref_p.exists() or not ours_p.exists():
+        print(f"SKIP {name}: missing file(s)")
+        continue
+    r = stats(ref_p, ours_p)
+    r["name"] = name
+    r["domain"] = domain
+    results.append(r)
+
+print(f"{'Benchmark':<26} {'Domain':<16} {'Ref':>4} {'Ours':>5} {'Match':>6} {'Cov':>5}  {'|Δε|':>5} {'|Δν|':>5} {'ε-bias':>7} {'ν-bias':>7} {'stage%':>7}")
+print("-" * 110)
+for r in results:
+    print(f"{r['name']:<26} {r['domain']:<16} {r['ref']:>4} {r['ours']:>5} {r['match']:>6} "
+          f"{r['coverage']*100:>4.0f}%  {r['abs_eps']:>5.3f} {r['abs_vis']:>5.3f} "
+          f"{r['bias_eps']:>+7.3f} {r['bias_vis']:>+7.3f} {r['same_stage']*100:>6.0f}%")
+
+print()
+print(f"Aggregates across {len(results)} benchmarks:")
+for k, label in [("coverage","Coverage"), ("abs_eps","|Δε|"), ("abs_vis","|Δν|"),
+                   ("bias_eps","ε-bias"), ("bias_vis","ν-bias"), ("same_stage","Same-stage")]:
+    avg = sum(r[k] for r in results) / len(results)
+    fmt = f"{avg*100:.0f}%" if k in ("coverage","same_stage") else (f"{avg:+.3f}" if "bias" in k else f"{avg:.3f}")
+    print(f"  {label}: {fmt}")
+
+# Save aggregate json
+out = {"n": len(results), "per_map": results,
+       "averages": {k: sum(r[k] for r in results) / len(results) for k in
+                    ["coverage","abs_eps","abs_vis","bias_eps","bias_vis","same_stage"]}}
+(ROOT / "benchmark-25-summary.json").write_text(json.dumps(out, indent=2))
+print(f"\nSaved summary to benchmark-25-summary.json")

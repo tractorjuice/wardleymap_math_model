@@ -1,0 +1,162 @@
+title Cultural Landscape of Gender in Society (March 2022)
+style wardley
+
+// Anchors — three stakeholder groups (people, not products)
+anchor Individual (navigating gender) [0.98, 0.50]
+anchor Community (family, peers, kin) [0.95, 0.55]
+anchor Institution (employer, school, state) [0.93, 0.60]
+
+// User-facing lived-experience components
+component Gender Identity (self) [0.86, 0.40]
+component Gender Expression (presentation) [0.82, 0.55]
+component Safety & Belonging [0.80, 0.45]
+component Pronoun Use [0.78, 0.60]
+component Name in Use [0.74, 0.65]
+component Visibility / Being Seen [0.72, 0.40]
+
+// Community-facing
+component Family Acceptance [0.70, 0.50]
+component Peer / Online Community [0.68, 0.80]
+component LGBTQ+ Support Networks [0.66, 0.65]
+component Faith Community Stance [0.60, 0.55]
+component Public Role Models [0.65, 0.55]
+
+// Media & discourse
+component Mainstream Media Representation [0.58, 0.60]
+component Social Media Discourse [0.62, 0.85]
+component News / Op-ed Framing [0.55, 0.55]
+component Advertising / Brand Representation [0.48, 0.70]
+component Culture-War Framing [0.45, 0.45]
+
+// Institutional policies (mid-chain, contested)
+component Workplace Inclusion Policy [0.52, 0.60]
+component School Inclusion Policy [0.50, 0.32]
+component Gender-Affirming Healthcare (adult) [0.48, 0.40]
+component Sex & Relationships Curriculum [0.46, 0.50]
+component Bathroom / Facilities Policy [0.44, 0.28]
+component Sports Eligibility Rules [0.42, 0.25]
+component Data Collection / Forms (gender field) [0.40, 0.55]
+component Gender-Affirming Healthcare (youth) [0.38, 0.25]
+component Clinical Gatekeeping Models [0.36, 0.55]
+
+// Legal / state
+component Parental / Family Law [0.36, 0.65]
+component Marriage Equality [0.34, 0.75]
+component Hate Crime Protection [0.32, 0.60]
+component Anti-Discrimination Law [0.30, 0.65]
+component Asylum on Gender Grounds [0.28, 0.50]
+component Legal Gender Recognition (GRC / ID) [0.26, 0.45]
+component Self-ID (legal) [0.24, 0.30]
+
+// Deeper practices / infrastructure of norms
+component Religious / Traditional Teachings [0.22, 0.90]
+component Traditional Gender Roles [0.20, 0.88]
+component Sex-Segregated Spaces (norm) [0.19, 0.80]
+component Binary Gender Default [0.18, 0.85]
+
+// Knowledge base
+component Gender Studies (academic) [0.14, 0.60]
+component Clinical Evidence Base (youth care) [0.15, 0.30]
+component Biological Sex (concept) [0.10, 0.92]
+component Gender-as-Social-Construct (theory) [0.08, 0.55]
+
+// Dependencies — Individual
+Individual (navigating gender)->Gender Identity (self)
+Individual (navigating gender)->Gender Expression (presentation)
+Individual (navigating gender)->Safety & Belonging
+Individual (navigating gender)->Pronoun Use
+Individual (navigating gender)->Name in Use
+Individual (navigating gender)->Visibility / Being Seen
+
+// Community anchor
+Community (family, peers, kin)->Family Acceptance
+Community (family, peers, kin)->Peer / Online Community
+Community (family, peers, kin)->LGBTQ+ Support Networks
+Community (family, peers, kin)->Faith Community Stance
+Community (family, peers, kin)->Public Role Models
+Community (family, peers, kin)->Mainstream Media Representation
+
+// Institution anchor
+Institution (employer, school, state)->Workplace Inclusion Policy
+Institution (employer, school, state)->School Inclusion Policy
+Institution (employer, school, state)->Anti-Discrimination Law
+Institution (employer, school, state)->Legal Gender Recognition (GRC / ID)
+Institution (employer, school, state)->Data Collection / Forms (gender field)
+Institution (employer, school, state)->Gender-Affirming Healthcare (adult)
+
+// Identity-layer dependencies
+Gender Identity (self)->Gender Studies (academic)
+Gender Identity (self)->Gender-as-Social-Construct (theory)
+Gender Expression (presentation)->Traditional Gender Roles
+Gender Expression (presentation)->Advertising / Brand Representation
+Safety & Belonging->Hate Crime Protection
+Safety & Belonging->Family Acceptance
+Safety & Belonging->LGBTQ+ Support Networks
+Pronoun Use->Workplace Inclusion Policy
+Pronoun Use->School Inclusion Policy
+Name in Use->Legal Gender Recognition (GRC / ID)
+Visibility / Being Seen->Mainstream Media Representation
+Visibility / Being Seen->Public Role Models
+
+// Community-layer dependencies
+Family Acceptance->Religious / Traditional Teachings
+Family Acceptance->Public Role Models
+Peer / Online Community->Social Media Discourse
+LGBTQ+ Support Networks->Public Role Models
+Faith Community Stance->Religious / Traditional Teachings
+Public Role Models->Mainstream Media Representation
+
+// Media & discourse dependencies
+Mainstream Media Representation->Advertising / Brand Representation
+Mainstream Media Representation->News / Op-ed Framing
+Social Media Discourse->Culture-War Framing
+News / Op-ed Framing->Culture-War Framing
+Culture-War Framing->Traditional Gender Roles
+Culture-War Framing->Binary Gender Default
+
+// Institution layer dependencies
+Workplace Inclusion Policy->Anti-Discrimination Law
+Workplace Inclusion Policy->Data Collection / Forms (gender field)
+School Inclusion Policy->Sex & Relationships Curriculum
+School Inclusion Policy->Bathroom / Facilities Policy
+School Inclusion Policy->Anti-Discrimination Law
+Sex & Relationships Curriculum->Gender Studies (academic)
+Bathroom / Facilities Policy->Sex-Segregated Spaces (norm)
+Sports Eligibility Rules->Sex-Segregated Spaces (norm)
+Sports Eligibility Rules->Biological Sex (concept)
+Data Collection / Forms (gender field)->Binary Gender Default
+
+// Healthcare dependencies
+Gender-Affirming Healthcare (adult)->Clinical Gatekeeping Models
+Gender-Affirming Healthcare (youth)->Clinical Gatekeeping Models
+Gender-Affirming Healthcare (youth)->Clinical Evidence Base (youth care)
+Clinical Gatekeeping Models->Biological Sex (concept)
+Clinical Evidence Base (youth care)->Gender Studies (academic)
+
+// Legal / state dependencies
+Marriage Equality->Anti-Discrimination Law
+Hate Crime Protection->Anti-Discrimination Law
+Anti-Discrimination Law->Legal Gender Recognition (GRC / ID)
+Parental / Family Law->Marriage Equality
+Asylum on Gender Grounds->Legal Gender Recognition (GRC / ID)
+Legal Gender Recognition (GRC / ID)->Self-ID (legal)
+Legal Gender Recognition (GRC / ID)->Biological Sex (concept)
+Self-ID (legal)->Gender-as-Social-Construct (theory)
+
+// Norm layer
+Religious / Traditional Teachings->Traditional Gender Roles
+Traditional Gender Roles->Binary Gender Default
+Sex-Segregated Spaces (norm)->Binary Gender Default
+Binary Gender Default->Biological Sex (concept)
+
+// Evolutionary pressure points (scenarios, not forecasts)
+evolve Pronoun Use 0.78
+evolve Legal Gender Recognition (GRC / ID) 0.60
+evolve Gender-Affirming Healthcare (youth) 0.42
+evolve Clinical Evidence Base (youth care) 0.55
+evolve Mainstream Media Representation 0.75
+
+// Notes
+note Contested-change frontier [0.42, 0.30]
+note Commoditised norm floor [0.18, 0.88]
+note Differentiation zone (uncharted) [0.80, 0.35]
