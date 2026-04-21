@@ -1,0 +1,81 @@
+# culture-gender (Wardley reference, Mermaid rendering)
+
+Source: [`/workspaces/wardleymap_math_model/skills/wardley-map-workspace/arc-kit-compare/eval-culture-gender/wardley-reference.owm`](../../../skills/wardley-map-workspace/arc-kit-compare/eval-culture-gender/wardley-reference.owm)
+
+Converted from OWM via `scripts/owm_to_mermaid.py`. Some edges may be dropped if endpoints weren't declared in the source (Wardley sometimes names components in edges that don't appear in the declaration list).
+
+```mermaid
+wardley-beta
+title Gender MARCH 2022
+component identity [0.99, 0.60]
+component phenotype [0.16, 0.71]
+component SEXUAL IDENTITY [0.94, 0.45]
+component genetic marker [0.04, 0.71]
+component epigentic [0.13, 0.51]
+component environment [0.10, 0.67]
+component lived experience [0.77, 0.35]
+component COLLECTIVE [0.60, 0.66]
+component values [0.49, 0.62]
+component ROLES [0.41, 0.68]
+component memory [0.28, 0.72]
+component stories [0.26, 0.76]
+component symbols [0.23, 0.73]
+component gender identity [0.69, 0.22]
+component SEXUAL ORIENTATION [0.85, 0.58]
+component self [0.54, 0.24]
+component gender expression [0.85, 0.45]
+component power [0.34, 0.45]
+component authority [0.25, 0.51]
+component hiearachy [0.52, 0.71]
+component ownership [0.24, 0.60]
+component exclusion [0.09, 0.73]
+component property [0.18, 0.65]
+component self-expression [0.14, 0.43]
+component SOCIAL CLASS [0.70, 0.57]
+identity -> SEXUAL IDENTITY
+phenotype -> epigentic
+phenotype -> environment
+SEXUAL IDENTITY -> lived experience
+lived experience -> phenotype
+ROLES -> phenotype
+epigentic -> environment
+lived experience -> memory
+ROLES -> memory
+memory -> symbols
+memory -> stories
+lived experience -> ROLES
+COLLECTIVE -> values
+COLLECTIVE -> ROLES
+lived experience -> environment
+SEXUAL IDENTITY -> gender identity
+gender identity -> phenotype
+gender identity -> ROLES
+values -> memory
+SEXUAL IDENTITY -> SEXUAL ORIENTATION
+lived experience -> SEXUAL ORIENTATION
+ROLES -> SEXUAL ORIENTATION
+gender identity -> self
+SEXUAL IDENTITY -> gender expression
+COLLECTIVE -> power
+ROLES -> power
+self -> power
+phenotype -> genetic marker
+SEXUAL ORIENTATION -> self
+COLLECTIVE -> self
+epigentic -> genetic marker
+power -> epigentic
+power -> authority
+hiearachy -> authority
+exclusion -> property
+property -> ownership
+ownership -> power
+power -> memory
+memory -> property
+memory -> self-expression
+self -> self-expression
+gender expression -> SOCIAL CLASS
+SOCIAL CLASS -> COLLECTIVE
+SEXUAL ORIENTATION -> SOCIAL CLASS
+SEXUAL IDENTITY -> SOCIAL CLASS
+lived experience -> SOCIAL CLASS
+```
