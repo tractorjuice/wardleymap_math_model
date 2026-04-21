@@ -12,7 +12,7 @@ Five maps from [`swardley/WARDLEY-MAP-REPOSITORY`](https://github.com/swardley/W
 
 ## Conversion pipeline
 
-`scripts/owm_to_mermaid.py` parses each `.owm` source and emits a Mermaid block. The converter:
+`scripts/owm_to_mermaid.mjs` (Node) parses each `.owm` source and emits a Mermaid block. The converter:
 
 - Keeps `title`, `anchor`, `component`, edges (`src -> dst`), and `note`.
 - Drops `pipeline`, `evolution` stage overrides, `style`, `market`, `evolve`, label offsets, and comments — Mermaid `wardley-beta` doesn't support them.
@@ -23,7 +23,7 @@ Five maps from [`swardley/WARDLEY-MAP-REPOSITORY`](https://github.com/swardley/W
 ## Reproducing
 
 ```bash
-python3 scripts/owm_to_mermaid.py path/to/wardley-reference.owm > out.mermaid
+node scripts/owm_to_mermaid.mjs path/to/wardley-reference.owm > out.mermaid
 ```
 
 Wrap the output in a ```` ```mermaid ```` fenced block in a Markdown file and view on GitHub.

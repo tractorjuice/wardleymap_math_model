@@ -41,7 +41,12 @@
       "Bash(curl -fsSL \"https://api.github.com/repos/swardley/WARDLEY-MAP-REPOSITORY/contents/ai\")",
       "Bash(curl -fsSL \"https://raw.githubusercontent.com/swardley/WARDLEY-MAP-REPOSITORY/main/ai/TRUST\")",
       "Bash(curl -fsSL https://api.github.com/repos/swardley/WARDLEY-MAP-REPOSITORY/contents/__TRACKED_VAR__)",
-      "Bash(git mv *)"
+      "Bash(git mv *)",
+      "WebFetch(domain:mermaid.js.org)",
+      "WebFetch(domain:github.com)",
+      "Bash(gh api *)",
+      "Bash(gh search *)",
+      "Bash(curl *)"
     ]
   }
 }

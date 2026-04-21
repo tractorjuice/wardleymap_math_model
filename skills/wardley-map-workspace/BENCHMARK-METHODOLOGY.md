@@ -42,7 +42,7 @@ Wardley's .owm file
        │                               │   visible to
        │  (c) writes draft.owm         │   subagent)
        ▼                               │
- validate_owm.py                       │
+ validate_owm.mjs                       │
        │                               │
        │  (d) iterate until clean      │
        ▼                               │
@@ -100,12 +100,12 @@ This is the skill's 7-step procedure, briefly:
 3. **Visibility ν** — seed `ν(v) = exp(−0.6 · d(v))` from graph distance to nearest anchor; override by judgment.
 4. **Evolution ε** — score each component against a 4-row cheat-sheet subset (Ubiquity, Certainty, User Perception, Publication Types); aggregate using band midpoints `m(s) = (s − 0.5)/4`.
 5. **Deep placement** — pick 3-5 components where rows disagree, strategic importance is high, or the domain is specialised; run WebSearch for vendor landscape, publication-type evidence, regulatory status, open-source activity. Adjust ε based on findings.
-6. **Verification** — write the draft OWM to a file; run `scripts/validate_owm.py`; fix any reported violations; re-run until exit-code 0.
+6. **Verification** — write the draft OWM to a file; run `scripts/validate_owm.mjs`; fix any reported violations; re-run until exit-code 0.
 7. **Strategic analysis** — stage-first prose covering differentiation, commodity leverage, dependency risks, named gameplays from the 61-play catalogue, doctrine violations, climatic context, deep-placement findings, caveat.
 
 ### 2(d) The validator
 
-`skills/wardley-map/scripts/validate_owm.py` is a stdlib-only script that parses an OWM block and checks three invariants:
+`skills/wardley-map/scripts/validate_owm.mjs` is a Node (ESM) script that parses an OWM block and checks three invariants:
 
 - Every component and anchor has coordinates in [0, 1]
 - Every edge endpoint is declared as a component or anchor (no typos)

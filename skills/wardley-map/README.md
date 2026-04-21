@@ -35,14 +35,14 @@ Claude will produce:
 
 If you invoke `/wardley-map` with no arguments, Claude will ask for a scenario description first.
 
-Ask for "render this on GitHub" or "emit a Mermaid block" and Claude will also run the OWM output through `scripts/owm_to_mermaid.py` and include a `wardley-beta` fenced block beside the OWM — see SKILL.md §3.1.
+Ask for "render this on GitHub" or "emit a Mermaid block" and Claude will also run the OWM output through `scripts/owm_to_mermaid.mjs` and include a `wardley-beta` fenced block beside the OWM — see SKILL.md §3.1.
 
 ## What's in this skill
 
 - `SKILL.md` — the skill body (procedure + OWM output format + when to consult each reference).
 - `evals/evals.json` — test cases with assertions used to validate the skill.
-- `scripts/validate_owm.py` — deterministic OWM validator. Checks coordinate ranges, edge endpoint existence, and the `ν(a) ≥ ν(b)` visibility constraint. Called by Step 5.5 before submitting any map.
-- `scripts/owm_to_mermaid.py` — optional post-step converter that emits a Mermaid `wardley-beta` block from a validated OWM draft. See SKILL.md §3.1. Always double-quotes names to sidestep Mermaid's bare-name restrictions (no hyphens, no reserved-keyword prefixes).
+- `scripts/validate_owm.mjs` — deterministic OWM validator. Checks coordinate ranges, edge endpoint existence, and the `ν(a) ≥ ν(b)` visibility constraint. Called by Step 5.5 before submitting any map.
+- `scripts/owm_to_mermaid.mjs` — optional post-step converter that emits a Mermaid `wardley-beta` block from a validated OWM draft. See SKILL.md §3.1. Always double-quotes names to sidestep Mermaid's bare-name restrictions (no hyphens, no reserved-keyword prefixes).
 - `references/` — bundled reference material the skill loads on demand:
   - `climatic-patterns.md` — 27 patterns across 6 categories.
   - `doctrine.md` — 40 principles across 4 phases.

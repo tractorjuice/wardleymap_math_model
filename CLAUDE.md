@@ -24,7 +24,7 @@ Two layers live here:
 ├── prompts/
 │   └── wardley_map_generator.md           # standalone LLM prompt
 └── skills/
-    ├── wardley-map/                       # production skill: SKILL.md + references/ + scripts/validate_owm.py + evals/
+    ├── wardley-map/                       # production skill: SKILL.md + references/ + scripts/*.mjs (Node) + evals/
     └── wardley-map-workspace/             # iteration history + 25-map benchmark + arc-kit-compare
         ├── BENCHMARK-REPORT.md            # primary report
         ├── BENCHMARK-METHODOLOGY.md       # how the benchmark works
@@ -58,7 +58,7 @@ Two layers live here:
 
 ## The skill and workspace — `skills/`
 
-- `skills/wardley-map/` is the production skill. `SKILL.md` is the procedure (7 steps). `references/` bundles the 19-row cheat sheet, 27 climatic patterns, 40 doctrine principles, 61 gameplays, 17 inertia forms, 3 worked examples, condensed formalism. `scripts/validate_owm.py` is a structural validator (enforces $\nu(a) \ge \nu(b)$, coordinate range, edge-endpoint declaration).
+- `skills/wardley-map/` is the production skill. `SKILL.md` is the procedure (7 steps). `references/` bundles the 19-row cheat sheet, 27 climatic patterns, 40 doctrine principles, 61 gameplays, 17 inertia forms, 3 worked examples, condensed formalism. `scripts/validate_owm.mjs` is a structural validator (enforces $\nu(a) \ge \nu(b)$, coordinate range, edge-endpoint declaration). `scripts/owm_to_mermaid.mjs` converts a validated OWM map to a Mermaid `wardley-beta` block for GitHub rendering. Both are Node (Claude Code ships Node; Python isn't guaranteed).
 - `skills/wardley-map-workspace/` contains every iteration of the skill and the benchmark. Iterations 10-14 are the active benchmark corpus (25 maps from `swardley/WARDLEY-MAP-REPOSITORY`); iterations 1-9 are skill-development history. `BENCHMARK-REPORT.md` is the primary summary; `BENCHMARK-METHODOLOGY.md` documents how the benchmark works.
 
 ## Key mathematical concepts

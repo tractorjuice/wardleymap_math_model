@@ -171,10 +171,10 @@ Mental edge-walking fails on maps with more than ~20 edges. Past evals show that
 
 2. Run the bundled validator against that file:
    ```bash
-   python3 "${CLAUDE_SKILL_DIR}/scripts/validate_owm.py" ./draft.owm
+   node "${CLAUDE_SKILL_DIR}/scripts/validate_owm.mjs" ./draft.owm
    ```
 
-   (The `CLAUDE_SKILL_DIR` variable resolves to this skill's root directory. If it isn't set, use the absolute path to the skill's `scripts/validate_owm.py`.)
+   (The `CLAUDE_SKILL_DIR` variable resolves to this skill's root directory. If it isn't set, use the absolute path to the skill's `scripts/validate_owm.mjs`. Node.js is guaranteed available in every Claude Code install.)
 
 3. If the validator exits 0, you're done — include the "OK: N components, M edges — no violations" line in your output section g.
 
@@ -234,7 +234,7 @@ Include multiple `anchor` lines if the scenario has more than one user type.
 OWM is the authoritative output (pastes into [onlinewardleymaps.com](https://onlinewardleymaps.com/) and runs through the validator). For documents that will be viewed on GitHub, optionally also emit a [Mermaid `wardley-beta`](https://mermaid.js.org/) block so the map renders inline. Convert the OWM draft with the bundled script:
 
 ```bash
-python3 "${CLAUDE_SKILL_DIR}/scripts/owm_to_mermaid.py" ./draft.owm
+node "${CLAUDE_SKILL_DIR}/scripts/owm_to_mermaid.mjs" ./draft.owm
 ```
 
 Include the Mermaid block *after* the OWM block in your final output, wrapped in a ```` ```mermaid ```` fence. Both blocks describe the same map — the OWM is canonical, the Mermaid is a rendering target.

@@ -2,7 +2,7 @@
 
 Source: [`/workspaces/wardleymap_math_model/skills/wardley-map-workspace/arc-kit-compare/eval-agriculture-regen/wardley-reference.owm`](../../../skills/wardley-map-workspace/arc-kit-compare/eval-agriculture-regen/wardley-reference.owm)
 
-Converted from OWM via `scripts/owm_to_mermaid.py` — Python port of [arc-kit's convert.mjs](https://github.com/tractorjuice/arc-kit/blob/main/tests/mermaid-wardley/convert.mjs). All names (anchors, components, pipeline parents, edges, evolve targets, evolution stages) are double-quoted because mermaid's `NAME_WITH_SPACES` terminal excludes hyphens and lexes keywords like `label`/`evolve` eagerly as prefixes. Quoting uses the `STRING` alternative and accepts any text verbatim.
+Converted from OWM via `scripts/owm_to_mermaid.mjs` (Node) — port of [arc-kit's convert.mjs](https://github.com/tractorjuice/arc-kit/blob/main/tests/mermaid-wardley/convert.mjs) with added explicit-block pipeline handling and evolution-stage quoting. All names double-quoted because mermaid's `NAME_WITH_SPACES` terminal excludes hyphens and lexes keywords like `label`/`evolve` eagerly as prefixes; quoting uses the `STRING` alternative and accepts any text verbatim.
 
 ```mermaid
 wardley-beta
@@ -69,8 +69,8 @@ component "Food" [0.81, 0.73]
 
 component "FARMING PRACTICE" [0.51, 0.66]
 pipeline "FARMING PRACTICE" {
-  component "regenerative at scale" [0.31]
   component "1" [0.31]
+  component "regenerative at scale" [0.31]
   component "vertical" [0.38]
   component "extractive at scale" [0.77]
 }

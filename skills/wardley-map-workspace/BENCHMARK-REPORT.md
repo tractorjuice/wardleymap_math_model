@@ -82,7 +82,7 @@ where `m(s) = (s − 0.5)/4` maps stage picks {1, 2, 3, 4} to band midpoints {0.
 | File | Role |
 |---|---|
 | `SKILL.md` | Procedure; instructions on when to consult each reference |
-| `scripts/validate_owm.py` | Deterministic validator enforcing `ν(a) ≥ ν(b)` |
+| `scripts/validate_owm.mjs` | Deterministic validator enforcing `ν(a) ≥ ν(b)` |
 | `references/evolution-stages.md` | 19-row cheat sheet + worked examples |
 | `references/climatic-patterns.md` | 27 patterns across 6 categories |
 | `references/doctrine.md` | 40 universal principles across 4 phases |
@@ -98,7 +98,7 @@ where `m(s) = (s − 0.5)/4` maps stage picks {1, 2, 3, 4} to band midpoints {0.
 3. **Visibility ν** — exponential seed + manual override.
 4. **Evolution ε** — 4-row cheat-sheet scoring, band midpoints.
 5. **Deep placement** — selective WebSearch for components where cheat-sheet rows disagree, strategic importance is high, or the domain is specialised.
-6. **Verification** — run `validate_owm.py`; fix violations; iterate until clean.
+6. **Verification** — run `validate_owm.mjs`; fix violations; iterate until clean.
 7. **Strategic analysis** — stage-first prose covering differentiation, commodity leverage, dependency risks, named gameplays from Wardley's 61-play catalogue, doctrine violations, climatic context, deep-placement findings, caveat.
 
 ---
@@ -248,7 +248,7 @@ Across all 358 matched pairs:
 
 **4. Strategic conclusions converge with Wardley's framing.** Blind across 25 scenarios the subagent independently reaches takeaways that align with Wardley's: *governance trails the technology it governs* (AI trust, government digital ID), *platform plays need both sides* (gaming, retail, freelance), *sovereignty levers are differentiators while connectivity is commoditised* (telecoms sovereignty), *climate and defence are in Peace/War/Wonder cycle transitions* (defence grey zone, energy disruption).
 
-**5. Validator reliably catches structural errors.** The bundled `validate_owm.py` script catches 1-13 violations on first-draft maps, which the subagent fixes iteratively until the script exits clean. Nearly all of the 25 first-drafts had at least one violation — without the validator, most maps would ship with silent structural errors (visibility-rule breaks, typo'd edges, out-of-range coordinates).
+**5. Validator reliably catches structural errors.** The bundled `validate_owm.mjs` script catches 1-13 violations on first-draft maps, which the subagent fixes iteratively until the script exits clean. Nearly all of the 25 first-drafts had at least one violation — without the validator, most maps would ship with silent structural errors (visibility-rule breaks, typo'd edges, out-of-range coordinates).
 
 **6. Deep placement produces specific findings.** Examples: telecoms-sovereignty correctly identified the Oct 2022 Huawei notice; culture-gender anchored placements to March 2022 specifics (Cass interim report, Florida HB 1557); agriculture-regen confirmed Soil Carbon MRV as Genesis because protocols were fragmented; gaming-economies flagged Loot Boxes as showing leftward evolution under regulatory pressure.
 
@@ -549,7 +549,7 @@ For the one prompt documented verbatim (ai-trust, as an example), see Methodolog
 | Path | Role |
 |---|---|
 | `skills/wardley-map/SKILL.md` | 7-step procedure and when-to-use instructions followed by every benchmark subagent |
-| `skills/wardley-map/scripts/validate_owm.py` | Structural validator — enforces visibility hard rule, coordinate range, edge-endpoint declaration. Called iteratively by the subagent until exit-code 0 |
+| `skills/wardley-map/scripts/validate_owm.mjs` | Structural validator — enforces visibility hard rule, coordinate range, edge-endpoint declaration. Called iteratively by the subagent until exit-code 0 |
 | `skills/wardley-map/references/evolution-stages.md` | 19-row cheat sheet (4-row subset used by default) |
 | `skills/wardley-map/references/climatic-patterns.md` | 27 climatic patterns — consulted during strategic analysis |
 | `skills/wardley-map/references/doctrine.md` | 40 doctrine principles |
