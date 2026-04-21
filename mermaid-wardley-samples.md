@@ -44,7 +44,7 @@ Hot Water -> Kettle
 Kettle -> Power
 evolve Kettle 0.62
 evolve Power 0.89
-note Standardising power allows Kettles to evolve faster [0.30, 0.49]
+note "Standardising power allows Kettles to evolve faster" [0.30, 0.49]
 ```
 
 ---
@@ -80,8 +80,8 @@ Object Storage -> Compute
 Compute -> Network
 evolve Query Language 0.62
 evolve Trace Store 0.70
-note Dashboards are common expectation; differentiation is in query power [0.75, 0.35]
-note Trace stores are rapidly commoditising — buy, don't build [0.45, 0.65]
+note "Dashboards are common expectation. Differentiation is in query power." [0.75, 0.35]
+note "Trace stores are rapidly commoditising. Buy, do not build." [0.45, 0.65]
 ```
 
 ---
@@ -116,7 +116,7 @@ Kubernetes Platform -> Container Runtime
 Container Runtime -> Cloud IaaS
 evolve Service Template 0.50
 evolve Observability Stack 0.78
-note Service Templates are differentiating today, commoditising fast [0.75, 0.55]
+note "Service Templates are differentiating today, commoditising fast" [0.75, 0.55]
 ```
 
 ---
