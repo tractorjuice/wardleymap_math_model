@@ -46,7 +46,12 @@
       "WebFetch(domain:github.com)",
       "Bash(gh api *)",
       "Bash(gh search *)",
-      "Bash(curl *)"
+      "Bash(curl *)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "Bash(node skills/wardley-map/scripts/validate_owm.mjs skills/wardley-map-workspace/iteration-16/eval-energy-storage/with_skill/run-1/outputs/draft.owm)",
+      "Bash(node skills/wardley-map/scripts/check_layout.mjs skills/wardley-map-workspace/iteration-16/eval-energy-storage/with_skill/run-1/outputs/draft.owm)",
+      "Bash(node skills/wardley-map/scripts/validate_owm.mjs skills/wardley-map-workspace/iteration-16/eval-defence-grey-zone/with_skill/run-1/outputs/draft.owm)",
+      "Bash(node skills/wardley-map/scripts/check_layout.mjs skills/wardley-map-workspace/iteration-16/eval-defence-grey-zone/with_skill/run-1/outputs/draft.owm)"
     ]
   }
 }
