@@ -1,0 +1,207 @@
+title Modern Retail Customer Journey
+style wardley
+
+// Anchors — three user types shaping the journey
+anchor Customer [0.99, 0.55]
+anchor Producer / Retailer [0.96, 0.50]
+anchor Society [0.93, 0.35]
+
+// Need stage (pre-purchase)
+component Need Awareness [0.88, 0.30]
+component Discovery / Inspiration [0.85, 0.45]
+component Product Research [0.82, 0.55]
+component Reviews & Ratings [0.78, 0.78]
+component Social Proof [0.82, 0.65]
+component Price Comparison [0.74, 0.82]
+
+// Channels (user-visible interfaces)
+component Physical Store [0.80, 0.88]
+component E-commerce Storefront [0.82, 0.80]
+component Marketplace (3P) [0.78, 0.82]
+component Social Commerce [0.80, 0.45]
+component Mobile App [0.80, 0.78]
+component Voice / Conversational Commerce [0.78, 0.20]
+
+// Experience surface
+component Personalisation [0.70, 0.50]
+component Recommendations [0.66, 0.70]
+component Search & Navigation [0.72, 0.82]
+component Content & Merchandising [0.70, 0.68]
+component Checkout [0.78, 0.85]
+component Convenience (friction reduction) [0.82, 0.55]
+component Price [0.84, 0.90]
+
+// Trust, identity, loyalty
+component Brand & Trust [0.80, 0.50]
+component Loyalty Programme [0.64, 0.72]
+component Customer Account / Identity [0.58, 0.82]
+component Consent & Privacy UX [0.56, 0.45]
+
+// Post-purchase
+component Order Tracking [0.68, 0.80]
+component Last-Mile Delivery [0.62, 0.75]
+component Returns & Refunds [0.66, 0.65]
+component Customer Support [0.60, 0.60]
+
+// Payments
+component Payment Methods (card/wallet/BNPL) [0.54, 0.82]
+component Payment Processing [0.38, 0.92]
+component Fraud Detection [0.40, 0.60]
+
+// Supply side (Producer-facing)
+component Product Catalogue [0.50, 0.70]
+component Pricing Engine [0.46, 0.55]
+component Promotions / Offers [0.52, 0.65]
+component Inventory & Availability [0.44, 0.72]
+component Order Management [0.42, 0.75]
+component Fulfilment & Warehousing [0.34, 0.70]
+component Reverse Logistics [0.32, 0.55]
+component Supplier / Manufacturing [0.22, 0.50]
+
+// Data & intelligence
+component Customer Data Platform [0.40, 0.55]
+component Behavioural / Clickstream Data [0.36, 0.60]
+component Customer Service Knowledge [0.28, 0.55]
+
+// Society / environment layer
+component Consumer Protection Regulation [0.50, 0.88]
+component Data Protection (GDPR/CCPA) [0.48, 0.85]
+component Sustainability Expectations [0.58, 0.35]
+component Advertising Standards [0.54, 0.80]
+
+// Infrastructure / commodity
+component Cloud Utilities [0.14, 0.92]
+component CDN & Edge [0.12, 0.94]
+component Logistics Networks [0.20, 0.82]
+component Shipping Carriers [0.22, 0.88]
+component Telecoms / Connectivity [0.10, 0.95]
+
+// Dependencies — Customer side
+Customer->Need Awareness
+Customer->Discovery / Inspiration
+Customer->Price
+Customer->Convenience (friction reduction)
+Customer->Brand & Trust
+Customer->Checkout
+Customer->Physical Store
+Customer->E-commerce Storefront
+Customer->Marketplace (3P)
+Customer->Mobile App
+Customer->Social Commerce
+Customer->Order Tracking
+
+// Discovery / research
+Discovery / Inspiration->Social Commerce
+Discovery / Inspiration->Social Proof
+Discovery / Inspiration->Recommendations
+Product Research->Reviews & Ratings
+Product Research->Price Comparison
+Product Research->Search & Navigation
+Reviews & Ratings->Customer Account / Identity
+Social Proof->Social Commerce
+
+// Channels depend on experience surface
+Physical Store->Content & Merchandising
+Physical Store->Payment Methods (card/wallet/BNPL)
+E-commerce Storefront->Search & Navigation
+E-commerce Storefront->Content & Merchandising
+E-commerce Storefront->Personalisation
+E-commerce Storefront->Checkout
+Marketplace (3P)->Search & Navigation
+Marketplace (3P)->Checkout
+Mobile App->Personalisation
+Mobile App->Checkout
+Mobile App->Order Tracking
+Social Commerce->Checkout
+Voice / Conversational Commerce->Search & Navigation
+
+// Experience internals
+Personalisation->Recommendations
+Personalisation->Customer Data Platform
+Recommendations->Behavioural / Clickstream Data
+Search & Navigation->Product Catalogue
+Content & Merchandising->Product Catalogue
+Checkout->Payment Methods (card/wallet/BNPL)
+Checkout->Fraud Detection
+Checkout->Customer Account / Identity
+Convenience (friction reduction)->Checkout
+Convenience (friction reduction)->Last-Mile Delivery
+Convenience (friction reduction)->Returns & Refunds
+
+// Trust / identity
+Brand & Trust->Reviews & Ratings
+Brand & Trust->Consent & Privacy UX
+Brand & Trust->Sustainability Expectations
+Customer Account / Identity->Consent & Privacy UX
+Consent & Privacy UX->Data Protection (GDPR/CCPA)
+Loyalty Programme->Customer Data Platform
+Loyalty Programme->Customer Account / Identity
+
+// Price
+Price->Pricing Engine
+Price->Promotions / Offers
+Pricing Engine->Behavioural / Clickstream Data
+Promotions / Offers->Customer Data Platform
+
+// Post-purchase
+Order Tracking->Order Management
+Last-Mile Delivery->Shipping Carriers
+Last-Mile Delivery->Logistics Networks
+Returns & Refunds->Reverse Logistics
+Returns & Refunds->Customer Support
+Customer Support->Customer Service Knowledge
+Customer Support->Customer Account / Identity
+
+// Payments
+Payment Methods (card/wallet/BNPL)->Payment Processing
+Fraud Detection->Customer Data Platform
+
+// Producer side
+Producer / Retailer->Product Catalogue
+Producer / Retailer->Pricing Engine
+Producer / Retailer->Promotions / Offers
+Producer / Retailer->Inventory & Availability
+Producer / Retailer->Order Management
+Producer / Retailer->Customer Data Platform
+Product Catalogue->Inventory & Availability
+Inventory & Availability->Fulfilment & Warehousing
+Order Management->Fulfilment & Warehousing
+Order Management->Payment Processing
+Fulfilment & Warehousing->Supplier / Manufacturing
+Fulfilment & Warehousing->Logistics Networks
+Reverse Logistics->Logistics Networks
+
+// Data flows
+Customer Data Platform->Behavioural / Clickstream Data
+Behavioural / Clickstream Data->Cloud Utilities
+Customer Service Knowledge->Cloud Utilities
+
+// Society side
+Society->Consumer Protection Regulation
+Society->Data Protection (GDPR/CCPA)
+Society->Sustainability Expectations
+Society->Advertising Standards
+Content & Merchandising->Advertising Standards
+Returns & Refunds->Consumer Protection Regulation
+Sustainability Expectations->Reverse Logistics
+Sustainability Expectations->Supplier / Manufacturing
+
+// Infrastructure
+E-commerce Storefront->Cloud Utilities
+E-commerce Storefront->CDN & Edge
+Mobile App->CDN & Edge
+Mobile App->Telecoms / Connectivity
+Marketplace (3P)->Cloud Utilities
+Payment Processing->Cloud Utilities
+Shipping Carriers->Logistics Networks
+
+// Evolution trajectories (scenarios, not forecasts)
+evolve Voice / Conversational Commerce 0.55
+evolve Personalisation 0.70
+evolve Social Commerce 0.72
+evolve Sustainability Expectations 0.65
+evolve Fraud Detection 0.78
+
+note Differentiation zone [0.75, 0.40]
+note Rent / outsource [0.15, 0.90]
+note Regulated rails [0.50, 0.90]

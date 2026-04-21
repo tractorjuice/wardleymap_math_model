@@ -1,0 +1,209 @@
+title Electricity Sector Transition — July 2022
+style wardley
+
+// ---- Anchors (three user types) ----
+anchor Consumer [0.99, 0.55]
+anchor Grid Operator [0.97, 0.45]
+anchor Policymaker / Regulator [0.95, 0.35]
+
+// ---- Consumer-facing retail & service layer ----
+component Affordable Reliable Electricity [0.90, 0.88]
+component Retail Tariff [0.85, 0.80]
+component Home Energy App [0.82, 0.45]
+component Smart Meter [0.80, 0.72]
+component Time-of-Use Pricing [0.72, 0.40]
+component EV Charging (home) [0.70, 0.55]
+component Rooftop Solar PV [0.68, 0.72]
+component Home Battery [0.66, 0.48]
+component Heat Pump [0.64, 0.58]
+component Smart Thermostat [0.62, 0.70]
+
+// ---- Grid-operator visible layer ----
+component System Balancing [0.76, 0.55]
+component Market Design Reform [0.74, 0.18]
+component Consumer Protection Rules [0.72, 0.78]
+component Capacity Market [0.70, 0.62]
+component Ancillary Services (frequency / reserve) [0.68, 0.60]
+component Demand-Side Flexibility (aggregation) [0.64, 0.28]
+component Wholesale Electricity Market [0.60, 0.78]
+component Grid Connection Regime [0.60, 0.45]
+component Virtual Power Plant [0.58, 0.22]
+component Planning & Permitting [0.56, 0.50]
+component Grid Forecasting (renewables) [0.54, 0.45]
+component Distribution Network (wires) [0.52, 0.82]
+component Transmission Network (wires) [0.50, 0.85]
+component Emissions Trading (ETS) [0.50, 0.70]
+component Interconnectors [0.50, 0.65]
+
+// ---- Generation fleet ----
+component Utility-Scale Solar [0.46, 0.75]
+component Gas-Fired Generation [0.46, 0.90]
+component Onshore Wind [0.44, 0.78]
+component Renewables Support Scheme [0.44, 0.72]
+component Coal Generation [0.42, 0.92]
+component Offshore Wind [0.42, 0.62]
+component Contracts for Difference (CfD) [0.42, 0.58]
+component Nuclear Baseload [0.40, 0.80]
+component Carbon Price Signal [0.40, 0.60]
+component Green Hydrogen Generation [0.28, 0.12]
+component Long-Duration Storage (non Li-ion) [0.26, 0.15]
+
+// ---- Storage + flexibility ----
+component Grid-Scale Battery Storage [0.40, 0.50]
+component Pumped Hydro Storage [0.36, 0.88]
+component Lithium-ion Cell Supply [0.22, 0.58]
+component Critical Minerals (Li / Co / Ni) [0.14, 0.48]
+
+// ---- Fuel & feedstock ----
+component Natural Gas Supply [0.34, 0.85]
+component LNG Import Terminals [0.30, 0.72]
+component Gas Storage (seasonal) [0.28, 0.82]
+
+// ---- Policy layer (upstream of market) ----
+component Energy Security Policy [0.82, 0.38]
+component Net-Zero Target [0.78, 0.55]
+
+// ---- Deep infrastructure & data/knowledge ----
+component Metering Data Platform [0.34, 0.50]
+component Grid Control SCADA [0.32, 0.62]
+component Cybersecurity (OT) [0.22, 0.55]
+component Power Electronics (inverters) [0.20, 0.78]
+component Weather Data [0.18, 0.88]
+component Semiconductors (power) [0.10, 0.68]
+component Copper & Steel [0.08, 0.92]
+
+// ---- Edges: Consumer chain ----
+Consumer->Affordable Reliable Electricity
+Consumer->Retail Tariff
+Consumer->Home Energy App
+Consumer->Smart Meter
+Consumer->EV Charging (home)
+Consumer->Rooftop Solar PV
+Consumer->Heat Pump
+Consumer->Consumer Protection Rules
+Affordable Reliable Electricity->System Balancing
+Affordable Reliable Electricity->Distribution Network (wires)
+Retail Tariff->Time-of-Use Pricing
+Retail Tariff->Wholesale Electricity Market
+Retail Tariff->Consumer Protection Rules
+Home Energy App->Smart Meter
+Home Energy App->Smart Thermostat
+Home Energy App->Time-of-Use Pricing
+Smart Meter->Metering Data Platform
+Smart Meter->Distribution Network (wires)
+Time-of-Use Pricing->Metering Data Platform
+EV Charging (home)->Distribution Network (wires)
+Rooftop Solar PV->Power Electronics (inverters)
+Rooftop Solar PV->Distribution Network (wires)
+Home Battery->Lithium-ion Cell Supply
+Home Battery->Power Electronics (inverters)
+Heat Pump->Distribution Network (wires)
+Smart Thermostat->Metering Data Platform
+
+// ---- Edges: Grid Operator chain ----
+Grid Operator->System Balancing
+Grid Operator->Capacity Market
+Grid Operator->Ancillary Services (frequency / reserve)
+Grid Operator->Demand-Side Flexibility (aggregation)
+Grid Operator->Grid Forecasting (renewables)
+Grid Operator->Transmission Network (wires)
+Grid Operator->Distribution Network (wires)
+Grid Operator->Interconnectors
+System Balancing->Ancillary Services (frequency / reserve)
+System Balancing->Wholesale Electricity Market
+System Balancing->Grid Forecasting (renewables)
+System Balancing->Transmission Network (wires)
+Capacity Market->Gas-Fired Generation
+Capacity Market->Nuclear Baseload
+Capacity Market->Grid-Scale Battery Storage
+Ancillary Services (frequency / reserve)->Grid-Scale Battery Storage
+Ancillary Services (frequency / reserve)->Gas-Fired Generation
+Demand-Side Flexibility (aggregation)->Virtual Power Plant
+Demand-Side Flexibility (aggregation)->Metering Data Platform
+Virtual Power Plant->Grid Control SCADA
+Grid Forecasting (renewables)->Weather Data
+Grid Forecasting (renewables)->Metering Data Platform
+Distribution Network (wires)->Transmission Network (wires)
+Distribution Network (wires)->Grid Control SCADA
+Distribution Network (wires)->Copper & Steel
+Transmission Network (wires)->Grid Control SCADA
+Transmission Network (wires)->Copper & Steel
+Interconnectors->Transmission Network (wires)
+
+// ---- Edges: Wholesale market buys from generators & storage ----
+Wholesale Electricity Market->Gas-Fired Generation
+Wholesale Electricity Market->Coal Generation
+Wholesale Electricity Market->Nuclear Baseload
+Wholesale Electricity Market->Onshore Wind
+Wholesale Electricity Market->Offshore Wind
+Wholesale Electricity Market->Utility-Scale Solar
+Wholesale Electricity Market->Grid-Scale Battery Storage
+Wholesale Electricity Market->Pumped Hydro Storage
+Wholesale Electricity Market->Long-Duration Storage (non Li-ion)
+Wholesale Electricity Market->Green Hydrogen Generation
+
+// ---- Edges: Generation technology stack ----
+Gas-Fired Generation->Natural Gas Supply
+Onshore Wind->Power Electronics (inverters)
+Offshore Wind->Power Electronics (inverters)
+Offshore Wind->Contracts for Difference (CfD)
+Utility-Scale Solar->Power Electronics (inverters)
+
+// ---- Edges: Storage ----
+Grid-Scale Battery Storage->Lithium-ion Cell Supply
+Grid-Scale Battery Storage->Power Electronics (inverters)
+Lithium-ion Cell Supply->Critical Minerals (Li / Co / Ni)
+
+// ---- Edges: Fuel supply ----
+Natural Gas Supply->LNG Import Terminals
+Natural Gas Supply->Gas Storage (seasonal)
+
+// ---- Edges: Market mechanisms ----
+Wholesale Electricity Market->Emissions Trading (ETS)
+Emissions Trading (ETS)->Carbon Price Signal
+Renewables Support Scheme->Contracts for Difference (CfD)
+Renewables Support Scheme->Carbon Price Signal
+
+// ---- Edges: Policymaker chain ----
+Policymaker / Regulator->Energy Security Policy
+Policymaker / Regulator->Net-Zero Target
+Policymaker / Regulator->Market Design Reform
+Policymaker / Regulator->Grid Connection Regime
+Policymaker / Regulator->Planning & Permitting
+Policymaker / Regulator->Consumer Protection Rules
+Policymaker / Regulator->Emissions Trading (ETS)
+Energy Security Policy->Gas Storage (seasonal)
+Energy Security Policy->LNG Import Terminals
+Energy Security Policy->Nuclear Baseload
+Energy Security Policy->Interconnectors
+Net-Zero Target->Renewables Support Scheme
+Net-Zero Target->Carbon Price Signal
+Market Design Reform->Wholesale Electricity Market
+Market Design Reform->Capacity Market
+Grid Connection Regime->Distribution Network (wires)
+Grid Connection Regime->Transmission Network (wires)
+Planning & Permitting->Onshore Wind
+Planning & Permitting->Offshore Wind
+Planning & Permitting->Utility-Scale Solar
+Planning & Permitting->Grid-Scale Battery Storage
+
+// ---- Edges: Deep infra / data ----
+Grid Control SCADA->Cybersecurity (OT)
+Metering Data Platform->Cybersecurity (OT)
+Power Electronics (inverters)->Semiconductors (power)
+
+// ---- Evolution arrows (scenario, not forecast) ----
+evolve Demand-Side Flexibility (aggregation) 0.55
+evolve Virtual Power Plant 0.50
+evolve Grid-Scale Battery Storage 0.75
+evolve Offshore Wind 0.82
+evolve Heat Pump 0.78
+evolve EV Charging (home) 0.80
+evolve Market Design Reform 0.45
+evolve Green Hydrogen Generation 0.35
+evolve Long-Duration Storage (non Li-ion) 0.40
+
+// ---- Notes ----
+note Build / differentiate [0.60, 0.22]
+note Rent / harvest [0.20, 0.88]
+note Policy leverage [0.82, 0.22]

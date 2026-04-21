@@ -1,0 +1,161 @@
+title Clinical Decision-Making (August 2022, pre-LLM wave)
+style wardley
+
+// Anchors — multiple user types
+anchor Patient [0.99, 0.55]
+anchor Clinician [0.96, 0.50]
+anchor Health System / Payer [0.93, 0.70]
+
+// Outcomes (user needs realised)
+component Patient Health Outcome [0.88, 0.30]
+component Clinical Quality Metrics [0.84, 0.55]
+component Equity / Fairness of Care [0.80, 0.20]
+
+// Settings of care (where the decision is made)
+component Primary Care Visit [0.78, 0.70]
+component Emergency Dept Encounter [0.76, 0.60]
+component Virtual Consultation [0.72, 0.55]
+component Assisted Living / Home Care [0.68, 0.45]
+
+// Core decision components
+component Diagnosis [0.64, 0.45]
+component Treatment Options Review [0.60, 0.45]
+component Shared Decision Making [0.58, 0.30]
+component Prescription / Order Entry [0.56, 0.75]
+component Referral [0.54, 0.60]
+
+// Data consulted at the decision point
+component Patient History / Chart [0.50, 0.55]
+component Clinical Decision Support Tool [0.46, 0.45]
+component Lab Results [0.44, 0.80]
+component Diagnostic ML Models (radiology / path) [0.40, 0.28]
+component Medical Imaging [0.36, 0.65]
+component Risk Scores (MELD, CHADS, etc.) [0.34, 0.70]
+component Wearable / Remote Monitoring Data [0.32, 0.35]
+component Permissible Treatment (Funding Rules) [0.30, 0.60]
+
+// Knowledge layer (evidence sources)
+component Clinical Guidelines [0.28, 0.70]
+component Medical Textbook Knowledge [0.26, 0.85]
+component Systematic Reviews [0.24, 0.60]
+component Observational / Real-World Evidence [0.22, 0.45]
+component Randomised Controlled Trials [0.20, 0.55]
+component Genomic Data [0.18, 0.30]
+
+// Payer / governance
+component Formulary [0.16, 0.75]
+component Prior Authorisation [0.14, 0.55]
+
+// Data infrastructure
+component Billing / Claims [0.13, 0.85]
+component Electronic Health Record [0.12, 0.70]
+component Clinical Coding (ICD / SNOMED) [0.10, 0.85]
+
+// Infrastructure & utilities
+component Interoperability Standards (FHIR / HL7) [0.09, 0.55]
+component Cloud Hosting [0.07, 0.92]
+component Networking / Internet [0.05, 0.95]
+component Electricity [0.03, 0.98]
+
+// Dependencies — Patient
+Patient->Primary Care Visit
+Patient->Emergency Dept Encounter
+Patient->Virtual Consultation
+Patient->Assisted Living / Home Care
+Patient->Patient Health Outcome
+Patient->Shared Decision Making
+
+// Dependencies — Clinician
+Clinician->Diagnosis
+Clinician->Treatment Options Review
+Clinician->Prescription / Order Entry
+Clinician->Referral
+Clinician->Clinical Quality Metrics
+Clinician->Primary Care Visit
+Clinician->Emergency Dept Encounter
+Clinician->Virtual Consultation
+
+// Dependencies — Health System / Payer
+Health System / Payer->Clinical Quality Metrics
+Health System / Payer->Permissible Treatment (Funding Rules)
+Health System / Payer->Equity / Fairness of Care
+Health System / Payer->Billing / Claims
+
+// Setting → decision
+Primary Care Visit->Diagnosis
+Primary Care Visit->Treatment Options Review
+Emergency Dept Encounter->Diagnosis
+Emergency Dept Encounter->Treatment Options Review
+Virtual Consultation->Diagnosis
+Virtual Consultation->Treatment Options Review
+Assisted Living / Home Care->Treatment Options Review
+
+// Decision → data / knowledge consulted
+Diagnosis->Patient History / Chart
+Diagnosis->Lab Results
+Diagnosis->Medical Imaging
+Diagnosis->Clinical Decision Support Tool
+Diagnosis->Medical Textbook Knowledge
+Treatment Options Review->Clinical Guidelines
+Treatment Options Review->Systematic Reviews
+Treatment Options Review->Permissible Treatment (Funding Rules)
+Treatment Options Review->Shared Decision Making
+Shared Decision Making->Patient History / Chart
+Prescription / Order Entry->Formulary
+Prescription / Order Entry->Permissible Treatment (Funding Rules)
+Referral->Permissible Treatment (Funding Rules)
+
+// Decision support internals
+Clinical Decision Support Tool->Clinical Guidelines
+Clinical Decision Support Tool->Risk Scores (MELD, CHADS, etc.)
+Clinical Decision Support Tool->Diagnostic ML Models (radiology / path)
+Diagnostic ML Models (radiology / path)->Medical Imaging
+Diagnostic ML Models (radiology / path)->Genomic Data
+Risk Scores (MELD, CHADS, etc.)->Observational / Real-World Evidence
+
+// Knowledge layer internal
+Clinical Guidelines->Systematic Reviews
+Systematic Reviews->Randomised Controlled Trials
+Systematic Reviews->Observational / Real-World Evidence
+
+// Data infrastructure flows (chart → EHR storage)
+Patient History / Chart->Electronic Health Record
+Lab Results->Electronic Health Record
+Medical Imaging->Electronic Health Record
+Wearable / Remote Monitoring Data->Electronic Health Record
+Genomic Data->Electronic Health Record
+
+// Payer governance
+Permissible Treatment (Funding Rules)->Formulary
+Permissible Treatment (Funding Rules)->Prior Authorisation
+Prior Authorisation->Clinical Coding (ICD / SNOMED)
+Billing / Claims->Clinical Coding (ICD / SNOMED)
+Billing / Claims->Electronic Health Record
+
+// Outcomes derive from downstream
+Patient Health Outcome->Diagnosis
+Patient Health Outcome->Treatment Options Review
+Clinical Quality Metrics->Electronic Health Record
+Clinical Quality Metrics->Clinical Coding (ICD / SNOMED)
+Equity / Fairness of Care->Observational / Real-World Evidence
+
+// EHR and infrastructure
+Electronic Health Record->Interoperability Standards (FHIR / HL7)
+Electronic Health Record->Cloud Hosting
+Interoperability Standards (FHIR / HL7)->Networking / Internet
+Cloud Hosting->Networking / Internet
+Cloud Hosting->Electricity
+Networking / Internet->Electricity
+
+// Virtual consultation extras
+Virtual Consultation->Networking / Internet
+Virtual Consultation->Electronic Health Record
+
+// Evolve markers — scenario, not forecast
+evolve Clinical Decision Support Tool 0.62
+evolve Diagnostic ML Models (radiology / path) 0.50
+evolve Interoperability Standards (FHIR / HL7) 0.75
+evolve Wearable / Remote Monitoring Data 0.55
+
+note Differentiation zone [0.55, 0.30]
+note Utility commodity [0.07, 0.95]

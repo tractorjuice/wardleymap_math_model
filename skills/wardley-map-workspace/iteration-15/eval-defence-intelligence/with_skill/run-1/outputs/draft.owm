@@ -1,0 +1,153 @@
+title Defence Intelligence Enterprise (March 2023)
+style wardley
+
+// Anchors (multi-user)
+anchor Decision-maker [0.99, 0.55]
+anchor Operational planner [0.96, 0.50]
+anchor Allied partner [0.93, 0.60]
+
+// Top-layer products delivered to users
+component Daily intelligence brief [0.88, 0.70]
+component Indications and warnings [0.86, 0.45]
+component Targeting support [0.84, 0.55]
+component Written assessment [0.83, 0.72]
+component Allied intelligence sharing [0.81, 0.60]
+
+// Analysis and fusion
+component All-source fusion [0.70, 0.40]
+component Estimative analysis [0.74, 0.35]
+component Order-of-battle tracking [0.66, 0.55]
+component Geospatial analysis [0.64, 0.55]
+component Cyber threat analysis [0.62, 0.45]
+component Analytic tradecraft [0.60, 0.55]
+component Collection management [0.58, 0.55]
+
+// Processing, exploitation, dissemination
+component SIGINT PED [0.50, 0.60]
+component GEOINT PED [0.48, 0.60]
+component HUMINT reporting [0.46, 0.35]
+component OSINT curation [0.44, 0.55]
+component Cyber PED [0.42, 0.50]
+component MASINT exploitation [0.34, 0.25]
+
+// Collection disciplines
+component HUMINT collection [0.30, 0.30]
+component SIGINT collection [0.28, 0.70]
+component National GEOINT satellites [0.26, 0.65]
+component Commercial satellite imagery [0.26, 0.60]
+component Commercial OSINT providers [0.24, 0.45]
+component Cyber collection [0.22, 0.55]
+component MASINT sensors [0.20, 0.30]
+
+// Analyst tooling
+component Fusion platform [0.40, 0.60]
+component Analyst workstation [0.36, 0.75]
+component ML triage and computer vision [0.32, 0.35]
+component Generative AI drafting [0.30, 0.10]
+component Secure collaboration [0.34, 0.80]
+
+// Infrastructure and knowledge
+component Cross-domain solutions [0.18, 0.45]
+component Classified networks [0.12, 0.85]
+component Classified cloud compute [0.14, 0.65]
+component Classified storage and archives [0.10, 0.80]
+component Cryptography [0.08, 0.90]
+component Cleared workforce [0.16, 0.40]
+component Intelligence doctrine [0.20, 0.70]
+
+// Anchor -> user-facing products
+Decision-maker->Daily intelligence brief
+Decision-maker->Written assessment
+Decision-maker->Indications and warnings
+Operational planner->Indications and warnings
+Operational planner->Targeting support
+Operational planner->Daily intelligence brief
+Allied partner->Allied intelligence sharing
+Allied partner->Written assessment
+
+// Products -> analysis
+Daily intelligence brief->All-source fusion
+Daily intelligence brief->Analytic tradecraft
+Written assessment->Estimative analysis
+Written assessment->Analytic tradecraft
+Indications and warnings->All-source fusion
+Indications and warnings->Order-of-battle tracking
+Targeting support->Geospatial analysis
+Targeting support->Order-of-battle tracking
+Targeting support->Cyber threat analysis
+Allied intelligence sharing->All-source fusion
+Allied intelligence sharing->Cross-domain solutions
+
+// Analysis -> PED / collection-mgmt / tradecraft
+All-source fusion->Collection management
+All-source fusion->SIGINT PED
+All-source fusion->GEOINT PED
+All-source fusion->HUMINT reporting
+All-source fusion->OSINT curation
+All-source fusion->Cyber PED
+All-source fusion->Analytic tradecraft
+Estimative analysis->All-source fusion
+Estimative analysis->Analytic tradecraft
+Order-of-battle tracking->GEOINT PED
+Order-of-battle tracking->SIGINT PED
+Geospatial analysis->GEOINT PED
+Cyber threat analysis->Cyber PED
+Collection management->Intelligence doctrine
+
+// PED -> collection
+SIGINT PED->SIGINT collection
+GEOINT PED->National GEOINT satellites
+GEOINT PED->Commercial satellite imagery
+HUMINT reporting->HUMINT collection
+OSINT curation->Commercial OSINT providers
+Cyber PED->Cyber collection
+MASINT exploitation->MASINT sensors
+
+// PED / analysis -> tooling
+All-source fusion->Fusion platform
+Geospatial analysis->Fusion platform
+Cyber threat analysis->Fusion platform
+SIGINT PED->ML triage and computer vision
+GEOINT PED->ML triage and computer vision
+OSINT curation->ML triage and computer vision
+Written assessment->Generative AI drafting
+Daily intelligence brief->Generative AI drafting
+Analytic tradecraft->Analyst workstation
+Collection management->Analyst workstation
+Allied intelligence sharing->Secure collaboration
+
+// Tooling -> infra
+Fusion platform->Classified cloud compute
+Fusion platform->Classified storage and archives
+Analyst workstation->Classified networks
+Analyst workstation->Classified cloud compute
+ML triage and computer vision->Classified cloud compute
+Generative AI drafting->Classified cloud compute
+Secure collaboration->Classified networks
+Cross-domain solutions->Classified networks
+Cross-domain solutions->Cryptography
+
+// Infra cross-links
+Classified networks->Cryptography
+Classified cloud compute->Classified networks
+Classified cloud compute->Classified storage and archives
+Classified storage and archives->Cryptography
+
+// Workforce / doctrine dependencies
+Analytic tradecraft->Cleared workforce
+Analytic tradecraft->Intelligence doctrine
+HUMINT collection->Cleared workforce
+Collection management->Cleared workforce
+Intelligence doctrine->Cleared workforce
+
+// Evolution arrows — scenarios, not forecasts
+evolve Commercial OSINT providers 0.70
+evolve Commercial satellite imagery 0.78
+evolve Generative AI drafting 0.40
+evolve ML triage and computer vision 0.60
+evolve Classified cloud compute 0.82
+evolve Cross-domain solutions 0.65
+
+note Build moat [0.55, 0.20]
+note Rent / buy utility [0.12, 0.90]
+note Commercial wave [0.25, 0.52]

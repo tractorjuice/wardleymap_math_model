@@ -1,0 +1,197 @@
+title National Citizen Digital ID (November 2022)
+style wardley
+
+// Four anchors — two-sided system plus governance
+anchor Citizen [0.98, 0.60]
+anchor Relying Party (Bank / Tax / Health / Welfare) [0.96, 0.65]
+anchor Government Department [0.94, 0.55]
+anchor Standards Body [0.92, 0.40]
+
+// User-facing (Citizen side)
+component Identity Wallet App [0.86, 0.40]
+component Sign-in Flow [0.84, 0.75]
+component Consent UI [0.82, 0.45]
+component Credential Presentation [0.80, 0.45]
+component Citizen Enrolment [0.78, 0.55]
+component Service Portal [0.88, 0.65]
+
+// Relying-party side
+component RP Integration SDK [0.74, 0.55]
+component RP Onboarding & Accreditation [0.72, 0.40]
+component Attribute Request API [0.70, 0.55]
+
+// Mid-chain identity services
+component Identity Verification (IDV) [0.62, 0.55]
+component Credential Issuance [0.64, 0.50]
+component Biometric Matching [0.58, 0.70]
+component Federation Hub / Broker [0.55, 0.60]
+component Selective Disclosure [0.52, 0.30]
+component Revocation / Status [0.50, 0.55]
+component Directory of Relying Parties [0.58, 0.45]
+component Audit & Fraud Monitoring [0.46, 0.55]
+
+// Governance / legal
+component Trust Framework [0.56, 0.35]
+component Assurance Levels (LoA) [0.50, 0.45]
+component Privacy Law (GDPR / equivalent) [0.42, 0.85]
+component eIDAS / National ID Law [0.44, 0.60]
+component Data Protection Authority [0.38, 0.70]
+
+// Standards / protocols
+component Verifiable Credentials (W3C) [0.40, 0.35]
+component Decentralized Identifiers (DID) [0.36, 0.25]
+component mDL (ISO 18013-5) [0.38, 0.40]
+component OIDC / OAuth2 [0.34, 0.88]
+component SAML [0.32, 0.92] inertia
+component WebAuthn / FIDO2 [0.33, 0.78]
+component Zero-Knowledge Proofs [0.30, 0.18]
+
+// Cryptographic foundations
+component Digital Signatures [0.26, 0.88]
+component PKI / Certificate Authority [0.22, 0.90]
+component Trust List (TSP Registry) [0.21, 0.70]
+component Time-stamping Authority [0.19, 0.85]
+component Key Management [0.22, 0.80]
+
+// Device / utility infrastructure
+component Secure Enclave (Device TEE) [0.19, 0.80]
+component Mobile Device [0.17, 0.92]
+component HSM [0.14, 0.85]
+component Cloud Compute [0.10, 0.92]
+component Network / TLS [0.08, 0.95]
+
+// Data foundations
+component National Population Register [0.32, 0.55]
+component Civil Registry Data [0.28, 0.65]
+
+// Knowledge
+component Identity Policy Expertise [0.18, 0.55]
+component Privacy Engineering Knowledge [0.16, 0.35]
+
+// Dependencies — Citizen
+Citizen->Identity Wallet App
+Citizen->Sign-in Flow
+Citizen->Credential Presentation
+Citizen->Consent UI
+Citizen->Citizen Enrolment
+Citizen->Service Portal
+
+// Relying Party anchor
+Relying Party (Bank / Tax / Health / Welfare)->Sign-in Flow
+Relying Party (Bank / Tax / Health / Welfare)->Attribute Request API
+Relying Party (Bank / Tax / Health / Welfare)->RP Integration SDK
+Relying Party (Bank / Tax / Health / Welfare)->RP Onboarding & Accreditation
+Relying Party (Bank / Tax / Health / Welfare)->Audit & Fraud Monitoring
+
+// Government anchor
+Government Department->Trust Framework
+Government Department->eIDAS / National ID Law
+Government Department->Directory of Relying Parties
+Government Department->Assurance Levels (LoA)
+Government Department->Service Portal
+Government Department->Data Protection Authority
+
+// Standards Body anchor
+Standards Body->Verifiable Credentials (W3C)
+Standards Body->Decentralized Identifiers (DID)
+Standards Body->mDL (ISO 18013-5)
+Standards Body->OIDC / OAuth2
+Standards Body->WebAuthn / FIDO2
+
+// User-facing dependencies
+Identity Wallet App->Credential Issuance
+Identity Wallet App->Credential Presentation
+Identity Wallet App->Secure Enclave (Device TEE)
+Identity Wallet App->Mobile Device
+Sign-in Flow->OIDC / OAuth2
+Sign-in Flow->WebAuthn / FIDO2
+Sign-in Flow->Federation Hub / Broker
+Consent UI->Selective Disclosure
+Consent UI->Privacy Law (GDPR / equivalent)
+Credential Presentation->Verifiable Credentials (W3C)
+Credential Presentation->mDL (ISO 18013-5)
+Credential Presentation->Selective Disclosure
+Citizen Enrolment->Identity Verification (IDV)
+Citizen Enrolment->National Population Register
+Service Portal->Sign-in Flow
+Service Portal->Attribute Request API
+
+// Relying-party side dependencies
+RP Integration SDK->OIDC / OAuth2
+RP Integration SDK->SAML
+RP Integration SDK->Verifiable Credentials (W3C)
+RP Onboarding & Accreditation->Trust Framework
+RP Onboarding & Accreditation->Directory of Relying Parties
+Attribute Request API->Federation Hub / Broker
+Attribute Request API->Assurance Levels (LoA)
+
+// Mid-chain dependencies
+Identity Verification (IDV)->Biometric Matching
+Identity Verification (IDV)->Civil Registry Data
+Identity Verification (IDV)->National Population Register
+Credential Issuance->Digital Signatures
+Credential Issuance->Identity Verification (IDV)
+Credential Issuance->Verifiable Credentials (W3C)
+Credential Issuance->Key Management
+Biometric Matching->Mobile Device
+Federation Hub / Broker->OIDC / OAuth2
+Federation Hub / Broker->Assurance Levels (LoA)
+Federation Hub / Broker->Audit & Fraud Monitoring
+Selective Disclosure->Zero-Knowledge Proofs
+Selective Disclosure->Verifiable Credentials (W3C)
+Revocation / Status->PKI / Certificate Authority
+Revocation / Status->Trust List (TSP Registry)
+Directory of Relying Parties->Trust Framework
+Audit & Fraud Monitoring->Cloud Compute
+
+// Governance dependencies
+Trust Framework->eIDAS / National ID Law
+Trust Framework->Assurance Levels (LoA)
+Trust Framework->Identity Policy Expertise
+Assurance Levels (LoA)->Identity Policy Expertise
+Privacy Law (GDPR / equivalent)->Data Protection Authority
+eIDAS / National ID Law->Identity Policy Expertise
+Data Protection Authority->Privacy Engineering Knowledge
+
+// Standards / protocol dependencies
+Verifiable Credentials (W3C)->Decentralized Identifiers (DID)
+Verifiable Credentials (W3C)->Digital Signatures
+Decentralized Identifiers (DID)->Digital Signatures
+mDL (ISO 18013-5)->Digital Signatures
+mDL (ISO 18013-5)->Secure Enclave (Device TEE)
+OIDC / OAuth2->Digital Signatures
+OIDC / OAuth2->Network / TLS
+SAML->Digital Signatures
+WebAuthn / FIDO2->Secure Enclave (Device TEE)
+WebAuthn / FIDO2->PKI / Certificate Authority
+
+// Crypto foundations
+Digital Signatures->PKI / Certificate Authority
+Digital Signatures->Key Management
+PKI / Certificate Authority->HSM
+PKI / Certificate Authority->Trust List (TSP Registry)
+Trust List (TSP Registry)->Time-stamping Authority
+Key Management->HSM
+Time-stamping Authority->Network / TLS
+
+// Device / utility dependencies
+Secure Enclave (Device TEE)->Mobile Device
+Mobile Device->Network / TLS
+HSM->Cloud Compute
+Cloud Compute->Network / TLS
+
+// Data foundation dependencies
+National Population Register->Civil Registry Data
+Civil Registry Data->Cloud Compute
+
+// Evolution targets — what's moving
+evolve Verifiable Credentials (W3C) 0.60
+evolve mDL (ISO 18013-5) 0.65
+evolve Identity Wallet App 0.65
+evolve Selective Disclosure 0.55
+evolve Decentralized Identifiers (DID) 0.45
+
+// Notes
+note Two-sided: citizen + RP co-determine design [0.90, 0.20]
+note Industrialising — standards converging [0.45, 0.32]
+note Utility crypto & net layer [0.10, 0.88]

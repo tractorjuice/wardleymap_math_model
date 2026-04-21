@@ -1,0 +1,182 @@
+title Commercial Construction Supply Chain (March 2023)
+style wardley
+
+// Anchors
+anchor Client [0.98, 0.55]
+anchor Occupant / End User [0.95, 0.70]
+
+// User-facing value chain (high visibility)
+component Completed Building [0.88, 0.72]
+component Architect [0.82, 0.40]
+component General Contractor [0.80, 0.55]
+component Project Schedule [0.76, 0.55]
+component Cost Estimate [0.74, 0.58]
+component Design Intent / Spec [0.72, 0.45]
+
+// Mid-chain: coordination, procurement, compliance
+component BIM Coordination [0.62, 0.48]
+component Procurement Process [0.60, 0.55]
+component Bid / Tender Management [0.58, 0.58]
+component Quality Assurance / Inspection [0.57, 0.65]
+component Contract Administration [0.56, 0.62]
+component Building Codes Compliance [0.54, 0.82]
+component Site Safety Management [0.52, 0.70]
+component Permitting [0.50, 0.78]
+component Material Specification [0.54, 0.48]
+
+// Subcontractors and trades
+component Subcontractors (MEP, Structural) [0.46, 0.65]
+component Specialty Trades [0.45, 0.55]
+component Trade Labour [0.44, 0.80]
+
+// Logistics and on-site coordination
+component On-Site Coordination [0.40, 0.50]
+component Site Logistics / Deliveries [0.38, 0.58]
+component Prefab / Modular Components [0.37, 0.38]
+component Just-in-Time Sequencing [0.36, 0.35]
+component Freight & Trucking [0.34, 0.85]
+component Warehousing / Laydown [0.32, 0.75]
+
+// Digital tools (sit deeper because architecturally invisible to the client)
+component BIM Software [0.47, 0.58]
+component Digital Twin / 4D Scheduling [0.46, 0.28]
+component AI Takeoff / Estimation [0.45, 0.18]
+component Procurement Platform [0.38, 0.48]
+component Project Management Software [0.36, 0.70]
+component Document Management [0.30, 0.78]
+component IoT Site Sensors [0.22, 0.30]
+
+// Materials & sourcing
+component Material Sourcing [0.42, 0.55]
+component Fabricated Assemblies [0.30, 0.50]
+component Steel [0.20, 0.85]
+component Concrete / Cement [0.20, 0.88]
+component Timber / Lumber [0.18, 0.85]
+component Glass & Facade Materials [0.18, 0.70]
+component MEP Components [0.16, 0.75]
+component Raw Commodities (ore, aggregate) [0.08, 0.92]
+
+// Foundations & shared services
+component Insurance & Bonding [0.28, 0.78]
+component Financing [0.32, 0.72]
+component Cloud / Connectivity [0.10, 0.92]
+component Electricity & Water [0.06, 0.95]
+
+// Stakeholder relationships
+component Client Relationship [0.86, 0.50]
+component Supplier Relationships [0.41, 0.55]
+component Regulator Relationships [0.49, 0.72]
+
+// Evolve targets
+evolve BIM Coordination 0.70
+evolve Prefab / Modular Components 0.55
+evolve Procurement Platform 0.70
+
+// Dependencies (a -> b means a depends on b)
+Client->Completed Building
+Client->Architect
+Client->General Contractor
+Client->Client Relationship
+Client->Cost Estimate
+Client->Financing
+Occupant / End User->Completed Building
+Occupant / End User->Site Safety Management
+
+Completed Building->General Contractor
+Completed Building->Building Codes Compliance
+Completed Building->Permitting
+
+Architect->Design Intent / Spec
+Architect->BIM Software
+Architect->Material Specification
+
+General Contractor->Project Schedule
+General Contractor->Cost Estimate
+General Contractor->Procurement Process
+General Contractor->Subcontractors (MEP, Structural)
+General Contractor->On-Site Coordination
+General Contractor->Contract Administration
+General Contractor->Site Safety Management
+General Contractor->Quality Assurance / Inspection
+General Contractor->Supplier Relationships
+General Contractor->Regulator Relationships
+
+Design Intent / Spec->Material Specification
+Design Intent / Spec->BIM Coordination
+
+Project Schedule->BIM Coordination
+Project Schedule->Just-in-Time Sequencing
+Project Schedule->Project Management Software
+
+Cost Estimate->AI Takeoff / Estimation
+Cost Estimate->Material Sourcing
+
+BIM Coordination->BIM Software
+BIM Coordination->Document Management
+BIM Coordination->Digital Twin / 4D Scheduling
+
+Procurement Process->Bid / Tender Management
+Procurement Process->Procurement Platform
+Procurement Process->Material Sourcing
+Procurement Process->Supplier Relationships
+
+Bid / Tender Management->Procurement Platform
+Contract Administration->Document Management
+Contract Administration->Insurance & Bonding
+
+Building Codes Compliance->Permitting
+Building Codes Compliance->Regulator Relationships
+Site Safety Management->Trade Labour
+Site Safety Management->IoT Site Sensors
+Quality Assurance / Inspection->Building Codes Compliance
+Permitting->Regulator Relationships
+
+Subcontractors (MEP, Structural)->Specialty Trades
+Subcontractors (MEP, Structural)->Trade Labour
+Subcontractors (MEP, Structural)->MEP Components
+Specialty Trades->Trade Labour
+
+On-Site Coordination->Site Logistics / Deliveries
+On-Site Coordination->Just-in-Time Sequencing
+On-Site Coordination->Project Management Software
+Site Logistics / Deliveries->Freight & Trucking
+Site Logistics / Deliveries->Warehousing / Laydown
+Just-in-Time Sequencing->Freight & Trucking
+
+BIM Software->Cloud / Connectivity
+Procurement Platform->Cloud / Connectivity
+Project Management Software->Cloud / Connectivity
+Document Management->Cloud / Connectivity
+Digital Twin / 4D Scheduling->IoT Site Sensors
+IoT Site Sensors->Cloud / Connectivity
+AI Takeoff / Estimation->Cloud / Connectivity
+
+Material Specification->Material Sourcing
+Material Sourcing->Steel
+Material Sourcing->Concrete / Cement
+Material Sourcing->Timber / Lumber
+Material Sourcing->Glass & Facade Materials
+Material Sourcing->MEP Components
+Material Sourcing->Fabricated Assemblies
+Material Sourcing->Supplier Relationships
+
+Prefab / Modular Components->Fabricated Assemblies
+Prefab / Modular Components->Freight & Trucking
+
+Fabricated Assemblies->Steel
+Fabricated Assemblies->MEP Components
+
+Steel->Raw Commodities (ore, aggregate)
+Concrete / Cement->Raw Commodities (ore, aggregate)
+Timber / Lumber->Raw Commodities (ore, aggregate)
+Glass & Facade Materials->Raw Commodities (ore, aggregate)
+
+Freight & Trucking->Electricity & Water
+Warehousing / Laydown->Electricity & Water
+Cloud / Connectivity->Electricity & Water
+Raw Commodities (ore, aggregate)->Electricity & Water
+
+Client Relationship->Contract Administration
+Supplier Relationships->Procurement Platform
+
+Financing->Insurance & Bonding

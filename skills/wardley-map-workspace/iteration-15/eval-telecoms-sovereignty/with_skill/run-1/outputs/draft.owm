@@ -1,0 +1,189 @@
+title Telecoms Sovereignty (October 2022)
+style wardley
+
+// Anchors — three user types
+anchor Nation-State (security & control) [0.99, 0.30]
+anchor Citizens (day-to-day connectivity) [0.98, 0.75]
+anchor Businesses (enterprise connectivity) [0.97, 0.60]
+
+// Nation-state facing capabilities
+component Sovereign Oversight of Networks [0.90, 0.22]
+component Lawful Intercept & CNI Assurance [0.85, 0.55]
+component Designated-Vendor Regime [0.82, 0.20]
+component Spectrum Licensing & Auctions [0.80, 0.85]
+component Subsea Cable Protection [0.78, 0.18]
+component Resilient Emergency Comms [0.74, 0.35]
+
+// Citizen-facing connectivity
+component Mobile Broadband Service [0.90, 0.82]
+component Fixed Broadband Service [0.88, 0.86]
+component Voice & Messaging [0.85, 0.92]
+component Public Wi-Fi [0.72, 0.88]
+
+// Business-facing connectivity
+component Enterprise Connectivity (SD-WAN / MPLS) [0.86, 0.72]
+component Private 5G for Industry [0.78, 0.28]
+component Cloud Interconnect [0.72, 0.78]
+component Managed Security Services [0.70, 0.62]
+
+// Radio access layer
+component Radio Access Network (RAN) [0.62, 0.70]
+component OpenRAN [0.58, 0.32]
+component 5G Standalone Core [0.55, 0.48]
+component 4G / LTE Core [0.55, 0.82]
+component Small Cells & Densification [0.52, 0.55]
+
+// Transport & backhaul
+component IP / MPLS Backbone [0.48, 0.82]
+component Optical Transport (DWDM) [0.45, 0.85]
+component Subsea Cable Systems [0.42, 0.65]
+component Terrestrial Fibre Backhaul [0.42, 0.82]
+// Alternative / resilience layer
+component LEO Satellite Broadband (Starlink-class) [0.60, 0.30]
+component National Roaming / MOCN [0.66, 0.60]
+
+// Network operations & assurance
+component Network Operations Centre [0.35, 0.72]
+component Telemetry & Assurance [0.32, 0.55]
+component Network Automation [0.28, 0.40]
+
+// Security & identity
+component SIM / eSIM Identity [0.38, 0.78]
+component Network Encryption [0.30, 0.82]
+component Post-Quantum Crypto Roadmap [0.22, 0.15]
+component Supply-Chain Security Assurance [0.36, 0.28]
+
+// Core vendor stack
+component RAN Equipment Vendors [0.40, 0.55]
+component Core Network Vendors [0.38, 0.55]
+component Trusted-Vendor Ecosystem [0.46, 0.35]
+
+// Silicon & chip stack
+component Telecoms Silicon (ASICs / DU / CU) [0.22, 0.50]
+component Advanced Semiconductor Fabrication [0.14, 0.55]
+component Domestic Foundry Capacity [0.10, 0.20]
+component CHIPS-Act Industrial Policy [0.08, 0.18]
+
+// Foundational utilities
+component Grid Electricity [0.08, 0.95]
+component Data Centres & Colocation [0.18, 0.88]
+component Civil Works & Duct Infrastructure [0.16, 0.92]
+
+// Standards, spectrum, knowledge
+component 3GPP Standards [0.25, 0.80]
+component ORAN Alliance Specs [0.22, 0.30]
+component National Cyber Authority Guidance [0.30, 0.45]
+
+// Dependencies — anchors
+Nation-State (security & control)->Sovereign Oversight of Networks
+Nation-State (security & control)->Designated-Vendor Regime
+Nation-State (security & control)->Subsea Cable Protection
+Nation-State (security & control)->Lawful Intercept & CNI Assurance
+Nation-State (security & control)->Resilient Emergency Comms
+Nation-State (security & control)->Spectrum Licensing & Auctions
+
+Citizens (day-to-day connectivity)->Mobile Broadband Service
+Citizens (day-to-day connectivity)->Fixed Broadband Service
+Citizens (day-to-day connectivity)->Voice & Messaging
+Citizens (day-to-day connectivity)->Public Wi-Fi
+
+Businesses (enterprise connectivity)->Enterprise Connectivity (SD-WAN / MPLS)
+Businesses (enterprise connectivity)->Private 5G for Industry
+Businesses (enterprise connectivity)->Cloud Interconnect
+Businesses (enterprise connectivity)->Managed Security Services
+Businesses (enterprise connectivity)->Mobile Broadband Service
+
+// Oversight & regulation to underlying stack
+Sovereign Oversight of Networks->Designated-Vendor Regime
+Sovereign Oversight of Networks->National Cyber Authority Guidance
+Designated-Vendor Regime->Trusted-Vendor Ecosystem
+Designated-Vendor Regime->Supply-Chain Security Assurance
+Lawful Intercept & CNI Assurance->Network Encryption
+Lawful Intercept & CNI Assurance->Telemetry & Assurance
+Subsea Cable Protection->Subsea Cable Systems
+Resilient Emergency Comms->LEO Satellite Broadband (Starlink-class)
+Resilient Emergency Comms->National Roaming / MOCN
+Spectrum Licensing & Auctions->3GPP Standards
+
+// Citizen / business services to access
+Mobile Broadband Service->Radio Access Network (RAN)
+Mobile Broadband Service->5G Standalone Core
+Mobile Broadband Service->4G / LTE Core
+Fixed Broadband Service->Terrestrial Fibre Backhaul
+Fixed Broadband Service->IP / MPLS Backbone
+Voice & Messaging->5G Standalone Core
+Voice & Messaging->4G / LTE Core
+Public Wi-Fi->Terrestrial Fibre Backhaul
+
+Enterprise Connectivity (SD-WAN / MPLS)->IP / MPLS Backbone
+Enterprise Connectivity (SD-WAN / MPLS)->Managed Security Services
+Private 5G for Industry->5G Standalone Core
+Private 5G for Industry->Small Cells & Densification
+Private 5G for Industry->OpenRAN
+Cloud Interconnect->IP / MPLS Backbone
+Cloud Interconnect->Data Centres & Colocation
+Managed Security Services->Network Encryption
+Managed Security Services->Telemetry & Assurance
+
+// Radio access
+Radio Access Network (RAN)->RAN Equipment Vendors
+Radio Access Network (RAN)->Small Cells & Densification
+Radio Access Network (RAN)->Terrestrial Fibre Backhaul
+OpenRAN->ORAN Alliance Specs
+OpenRAN->Telecoms Silicon (ASICs / DU / CU)
+OpenRAN->RAN Equipment Vendors
+5G Standalone Core->Core Network Vendors
+5G Standalone Core->Network Automation
+5G Standalone Core->3GPP Standards
+4G / LTE Core->Core Network Vendors
+4G / LTE Core->3GPP Standards
+Small Cells & Densification->Civil Works & Duct Infrastructure
+
+// Transport
+IP / MPLS Backbone->Optical Transport (DWDM)
+IP / MPLS Backbone->Network Operations Centre
+Optical Transport (DWDM)->Terrestrial Fibre Backhaul
+Optical Transport (DWDM)->Subsea Cable Systems
+Terrestrial Fibre Backhaul->Civil Works & Duct Infrastructure
+Subsea Cable Systems->Civil Works & Duct Infrastructure
+
+// Resilience alternatives
+LEO Satellite Broadband (Starlink-class)->Telecoms Silicon (ASICs / DU / CU)
+National Roaming / MOCN->Radio Access Network (RAN)
+
+// Operations & assurance
+Network Operations Centre->Telemetry & Assurance
+Network Operations Centre->Network Automation
+Telemetry & Assurance->Network Automation
+
+// Security & identity
+SIM / eSIM Identity->3GPP Standards
+Network Encryption->Post-Quantum Crypto Roadmap
+Supply-Chain Security Assurance->National Cyber Authority Guidance
+
+// Vendor / silicon chain
+RAN Equipment Vendors->Telecoms Silicon (ASICs / DU / CU)
+Core Network Vendors->Telecoms Silicon (ASICs / DU / CU)
+Trusted-Vendor Ecosystem->RAN Equipment Vendors
+Trusted-Vendor Ecosystem->Core Network Vendors
+Telecoms Silicon (ASICs / DU / CU)->Advanced Semiconductor Fabrication
+Advanced Semiconductor Fabrication->Domestic Foundry Capacity
+Domestic Foundry Capacity->CHIPS-Act Industrial Policy
+
+// Utilities
+Data Centres & Colocation->Grid Electricity
+Network Operations Centre->Data Centres & Colocation
+Civil Works & Duct Infrastructure->Grid Electricity
+
+// Evolve arrows (scenarios, not forecasts)
+evolve OpenRAN 0.55
+evolve 5G Standalone Core 0.72
+evolve LEO Satellite Broadband (Starlink-class) 0.55
+evolve Domestic Foundry Capacity 0.40
+evolve Post-Quantum Crypto Roadmap 0.35
+evolve Trusted-Vendor Ecosystem 0.55
+
+// Notes
+note Sovereign moat zone [0.80, 0.18]
+note Build / industrial policy [0.18, 0.20]
+note Rent / utility layer [0.12, 0.88]

@@ -1,0 +1,191 @@
+title State Sovereignty in a Digital Globalised Economy (April 2023)
+style wardley
+
+// Anchors — two user types: the governed public and the state executive
+anchor Citizens / Public [0.98, 0.55]
+anchor State Executive [0.96, 0.40]
+
+// ---- Top-of-chain: the sovereign capacities the users perceive directly ----
+component Security & Public Order [0.90, 0.55]
+component Economic Prosperity [0.88, 0.60]
+component Rule of Law [0.86, 0.45]
+component National Identity & Culture [0.84, 0.30]
+component Digital Public Services [0.82, 0.70]
+component Control of Borders [0.80, 0.55]
+
+// ---- Dimensions of sovereignty (named explicitly) ----
+component Territorial Sovereignty [0.74, 0.55]
+component Economic Sovereignty [0.72, 0.55]
+component Technological Sovereignty [0.70, 0.35]
+component Data Sovereignty [0.68, 0.30]
+component Political Sovereignty [0.66, 0.50]
+component Cultural Sovereignty [0.64, 0.35]
+
+// ---- Instruments the state wields ----
+component Regulation & Legislation [0.58, 0.55]
+component Technical Standards Setting [0.55, 0.45]
+component Trade Policy & Tariffs [0.54, 0.65]
+component Industrial Policy & Subsidies [0.52, 0.40]
+component Diplomacy & Alliances [0.50, 0.60]
+component Defence & Armed Forces [0.48, 0.55]
+component Sanctions & Export Controls [0.47, 0.45]
+component Central Bank & Monetary Policy [0.46, 0.75]
+component Intelligence Services [0.45, 0.50]
+component Tax Administration [0.44, 0.80]
+component Cyber Defence [0.43, 0.35]
+
+// ---- Enforcement & operational layer ----
+component Law Enforcement [0.40, 0.60]
+component Courts & Judiciary [0.38, 0.50]
+component Customs & Border Agencies [0.36, 0.70]
+
+// ---- Digital & data substrate (mid-chain) ----
+component National Digital ID [0.34, 0.40]
+component Critical Data Registries [0.33, 0.55]
+component Govt Cloud / Sovereign Cloud [0.30, 0.35]
+component Data Localisation Infrastructure [0.29, 0.30]
+component Secure Govt Communications [0.26, 0.55]
+
+// ---- Hard-infrastructure & financial-plumbing layer ----
+component SWIFT & Correspondent Banking [0.27, 0.85] inertia
+component Reserve Currency (USD) System [0.25, 0.90] inertia
+component Critical National Infrastructure [0.24, 0.60]
+component Payment Rails [0.23, 0.80]
+component Public Internet [0.22, 0.92]
+component Energy Grid [0.20, 0.75]
+component Telecoms Networks [0.19, 0.80]
+component Semiconductor Supply [0.17, 0.45]
+component Submarine Cables [0.15, 0.80]
+component Satellite & GNSS [0.14, 0.70]
+
+// ---- Commodity / utility foundations ----
+component Cloud Compute (hyperscaler) [0.10, 0.90]
+component Electricity & Water [0.06, 0.95]
+
+// ---- External / globalised forces (erosion risks, drawn as components the state depends on or contends with) ----
+component Global Platforms (FAANG etc) [0.55, 0.85]
+component Global Capital Markets [0.50, 0.85]
+component International Law & Treaties [0.42, 0.55]
+component Transnational Supply Chains [0.40, 0.78]
+component Foreign State & Non-State Cyber Actors [0.30, 0.55]
+
+// ---- Dependencies ----
+// Citizens look up to prosperity, services, identity, security, rule of law
+Citizens / Public->Security & Public Order
+Citizens / Public->Economic Prosperity
+Citizens / Public->Rule of Law
+Citizens / Public->National Identity & Culture
+Citizens / Public->Digital Public Services
+Citizens / Public->Control of Borders
+
+// State executive is accountable for the same things plus levers of power
+State Executive->Security & Public Order
+State Executive->Economic Prosperity
+State Executive->Rule of Law
+State Executive->Control of Borders
+State Executive->Digital Public Services
+
+// Top capacities depend on the six sovereignty dimensions
+Security & Public Order->Territorial Sovereignty
+Security & Public Order->Political Sovereignty
+Control of Borders->Territorial Sovereignty
+Economic Prosperity->Economic Sovereignty
+Economic Prosperity->Technological Sovereignty
+Rule of Law->Political Sovereignty
+Rule of Law->Data Sovereignty
+National Identity & Culture->Cultural Sovereignty
+Digital Public Services->Technological Sovereignty
+Digital Public Services->Data Sovereignty
+
+// Dimensions of sovereignty depend on instruments
+Territorial Sovereignty->Defence & Armed Forces
+Territorial Sovereignty->Diplomacy & Alliances
+Territorial Sovereignty->Intelligence Services
+Economic Sovereignty->Regulation & Legislation
+Economic Sovereignty->Trade Policy & Tariffs
+Economic Sovereignty->Industrial Policy & Subsidies
+Economic Sovereignty->Central Bank & Monetary Policy
+Economic Sovereignty->Tax Administration
+Economic Sovereignty->Sanctions & Export Controls
+Technological Sovereignty->Industrial Policy & Subsidies
+Technological Sovereignty->Technical Standards Setting
+Technological Sovereignty->Regulation & Legislation
+Technological Sovereignty->Sanctions & Export Controls
+Data Sovereignty->Regulation & Legislation
+Data Sovereignty->Technical Standards Setting
+Data Sovereignty->Cyber Defence
+Political Sovereignty->Diplomacy & Alliances
+Political Sovereignty->Defence & Armed Forces
+Political Sovereignty->Intelligence Services
+Cultural Sovereignty->Regulation & Legislation
+Cultural Sovereignty->Diplomacy & Alliances
+
+// Instruments depend on enforcement/operational layer
+Regulation & Legislation->Courts & Judiciary
+Regulation & Legislation->Law Enforcement
+Trade Policy & Tariffs->Customs & Border Agencies
+Sanctions & Export Controls->Customs & Border Agencies
+Defence & Armed Forces->Critical National Infrastructure
+Intelligence Services->Secure Govt Communications
+Cyber Defence->Secure Govt Communications
+Cyber Defence->Critical National Infrastructure
+Law Enforcement->Critical Data Registries
+
+// Enforcement & digital instruments depend on digital substrate
+Digital Public Services->National Digital ID
+Digital Public Services->Govt Cloud / Sovereign Cloud
+Digital Public Services->Critical Data Registries
+Tax Administration->Critical Data Registries
+Tax Administration->Govt Cloud / Sovereign Cloud
+Central Bank & Monetary Policy->Payment Rails
+Central Bank & Monetary Policy->SWIFT & Correspondent Banking
+National Digital ID->Critical Data Registries
+Critical Data Registries->Govt Cloud / Sovereign Cloud
+Govt Cloud / Sovereign Cloud->Data Localisation Infrastructure
+Data Localisation Infrastructure->Cloud Compute (hyperscaler)
+Secure Govt Communications->Telecoms Networks
+
+// Hard infrastructure chain
+Critical National Infrastructure->Energy Grid
+Critical National Infrastructure->Telecoms Networks
+Critical National Infrastructure->Semiconductor Supply
+Telecoms Networks->Submarine Cables
+Telecoms Networks->Satellite & GNSS
+Telecoms Networks->Semiconductor Supply
+Energy Grid->Electricity & Water
+Payment Rails->Telecoms Networks
+SWIFT & Correspondent Banking->Reserve Currency (USD) System
+SWIFT & Correspondent Banking->Telecoms Networks
+
+// Public utilities
+Cloud Compute (hyperscaler)->Electricity & Water
+Public Internet->Submarine Cables
+Public Internet->Telecoms Networks
+
+// Erosion edges — visible dimensions depending on external / globalised forces
+Economic Sovereignty->Global Capital Markets
+Economic Sovereignty->Transnational Supply Chains
+Economic Sovereignty->Reserve Currency (USD) System
+Technological Sovereignty->Global Platforms (FAANG etc)
+Technological Sovereignty->Transnational Supply Chains
+Technological Sovereignty->Semiconductor Supply
+Data Sovereignty->Global Platforms (FAANG etc)
+Cultural Sovereignty->Global Platforms (FAANG etc)
+Political Sovereignty->International Law & Treaties
+Diplomacy & Alliances->International Law & Treaties
+Cyber Defence->Foreign State & Non-State Cyber Actors
+Global Platforms (FAANG etc)->Cloud Compute (hyperscaler)
+Global Platforms (FAANG etc)->Public Internet
+Transnational Supply Chains->Semiconductor Supply
+Transnational Supply Chains->Submarine Cables
+
+// Evolution targets — where active state strategy is trying to move things (April 2023)
+evolve Technological Sovereignty 0.55
+evolve Data Sovereignty 0.55
+evolve Govt Cloud / Sovereign Cloud 0.60
+evolve National Digital ID 0.65
+evolve Semiconductor Supply 0.60
+evolve Payment Rails 0.90
+
+note Differentiation zone — sovereign tech & data [0.55, 0.30]
+note Commoditising foundations — erosion risk [0.12, 0.90]

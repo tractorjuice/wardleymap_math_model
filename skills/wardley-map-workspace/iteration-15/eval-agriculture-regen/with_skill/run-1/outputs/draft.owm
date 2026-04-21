@@ -1,0 +1,168 @@
+title Regenerative Farming Landscape (Aug 2022, week of IRA)
+style wardley
+
+// Two anchors — the farmer who adopts practices and the consumer who buys the output
+anchor Farmer [0.98, 0.45]
+anchor Consumer [0.95, 0.60]
+
+// User-visible outcomes / products
+component Regen-branded Food Product [0.88, 0.45]
+component Farm Profitability [0.85, 0.40]
+component Carbon Credit Revenue [0.80, 0.25]
+
+// Supply chain to consumer
+component Retail Shelf Placement [0.78, 0.70]
+component Branded CPG / Regen Label [0.72, 0.45]
+component Food Processing / Aggregation [0.65, 0.78]
+component Direct-to-Consumer Channels [0.70, 0.62]
+
+// Certifications and claims
+component Regen Organic Certified (ROC) [0.62, 0.30]
+component Land to Market (Savory / EOV) [0.60, 0.28]
+component USDA Organic [0.58, 0.85] inertia
+component Company Self-claim (Regen-ish) [0.68, 0.55]
+
+// Farmer practices
+component Cover Cropping [0.55, 0.55]
+component No-till / Reduced Tillage [0.52, 0.70]
+component Diverse Crop Rotation [0.50, 0.60]
+component Managed Grazing (AMP) [0.48, 0.40]
+component Agroforestry / Silvopasture [0.45, 0.25]
+component Integrated Livestock [0.46, 0.35]
+component Compost / Biological Amendments [0.50, 0.55]
+
+// Farmer enablers
+component Farmer Peer Networks [0.58, 0.50]
+component Transition Advisory / Agronomy [0.55, 0.35]
+component Equipment (Roller-crimpers, No-till drills) [0.40, 0.55]
+component Cover Crop Seed Supply [0.38, 0.50]
+
+// Ecological outcomes (what the practices produce)
+component Soil Health [0.45, 0.30]
+component Biodiversity / Pollinators [0.40, 0.25]
+component Carbon Sequestration [0.42, 0.20]
+component Water Retention / Watershed Health [0.35, 0.35]
+
+// Measurement / verification / MRV
+component Soil Organic Carbon (SOC) Testing [0.28, 0.40]
+component Remote Sensing / Satellite MRV [0.30, 0.30]
+component Carbon Protocols (Verra, Gold Standard, CAR) [0.28, 0.45]
+component Third-party Verifiers [0.25, 0.55]
+component Farm Data / Records [0.35, 0.60]
+
+// Carbon markets
+component Voluntary Carbon Market Buyer [0.35, 0.35]
+component Insetting Programs (corporate supply chain) [0.38, 0.25]
+component Ag Carbon Platforms (Indigo, Nori, Bayer) [0.30, 0.30]
+
+// Funding sources
+component USDA Conservation Programs (EQIP, CSP) [0.55, 0.55]
+component IRA Climate-Smart Ag Funding [0.48, 0.15]
+component USDA Climate-Smart Commodities Partnerships [0.52, 0.20]
+component Philanthropic / Impact Capital [0.40, 0.30]
+component Private Climate Finance [0.35, 0.25]
+
+// Knowledge
+component Soil Science / Agroecology [0.22, 0.45]
+component Indigenous / Traditional Land Knowledge [0.20, 0.25]
+
+// Deep foundations
+component Land Tenure / Farmland Ownership [0.18, 0.55]
+component Commodity Crop Insurance (RMA) [0.25, 0.80]
+component Commodity Markets (corn, soy, beef) [0.22, 0.92] inertia
+component Diesel / Fertiliser Inputs [0.15, 0.90] inertia
+
+// Dependencies
+Farmer->Farm Profitability
+Farmer->Carbon Credit Revenue
+Consumer->Regen-branded Food Product
+Consumer->Direct-to-Consumer Channels
+
+Regen-branded Food Product->Branded CPG / Regen Label
+Regen-branded Food Product->Retail Shelf Placement
+Branded CPG / Regen Label->Regen Organic Certified (ROC)
+Branded CPG / Regen Label->Land to Market (Savory / EOV)
+Branded CPG / Regen Label->Company Self-claim (Regen-ish)
+Branded CPG / Regen Label->Food Processing / Aggregation
+Retail Shelf Placement->Food Processing / Aggregation
+Direct-to-Consumer Channels->Food Processing / Aggregation
+
+Farm Profitability->Branded CPG / Regen Label
+Farm Profitability->USDA Conservation Programs (EQIP, CSP)
+Farm Profitability->Commodity Markets (corn, soy, beef)
+Farm Profitability->Commodity Crop Insurance (RMA)
+
+Carbon Credit Revenue->Voluntary Carbon Market Buyer
+Carbon Credit Revenue->Insetting Programs (corporate supply chain)
+Carbon Credit Revenue->Ag Carbon Platforms (Indigo, Nori, Bayer)
+
+Regen Organic Certified (ROC)->Third-party Verifiers
+Regen Organic Certified (ROC)->USDA Organic
+Land to Market (Savory / EOV)->Third-party Verifiers
+USDA Organic->Third-party Verifiers
+
+Farmer->Cover Cropping
+Farmer->No-till / Reduced Tillage
+Farmer->Diverse Crop Rotation
+Farmer->Managed Grazing (AMP)
+Farmer->Agroforestry / Silvopasture
+Farmer->Integrated Livestock
+Farmer->Compost / Biological Amendments
+Farmer->Farmer Peer Networks
+Farmer->Transition Advisory / Agronomy
+
+Cover Cropping->Cover Crop Seed Supply
+Cover Cropping->Soil Health
+No-till / Reduced Tillage->Equipment (Roller-crimpers, No-till drills)
+No-till / Reduced Tillage->Soil Health
+Diverse Crop Rotation->Soil Health
+Managed Grazing (AMP)->Soil Health
+Managed Grazing (AMP)->Biodiversity / Pollinators
+Agroforestry / Silvopasture->Biodiversity / Pollinators
+Agroforestry / Silvopasture->Carbon Sequestration
+Integrated Livestock->Soil Health
+Compost / Biological Amendments->Soil Health
+
+Soil Health->Carbon Sequestration
+Soil Health->Water Retention / Watershed Health
+Soil Health->Biodiversity / Pollinators
+
+Transition Advisory / Agronomy->Soil Science / Agroecology
+Transition Advisory / Agronomy->Indigenous / Traditional Land Knowledge
+Farmer Peer Networks->Soil Science / Agroecology
+
+Ag Carbon Platforms (Indigo, Nori, Bayer)->Carbon Protocols (Verra, Gold Standard, CAR)
+Ag Carbon Platforms (Indigo, Nori, Bayer)->Remote Sensing / Satellite MRV
+Ag Carbon Platforms (Indigo, Nori, Bayer)->Soil Organic Carbon (SOC) Testing
+Carbon Protocols (Verra, Gold Standard, CAR)->Third-party Verifiers
+Voluntary Carbon Market Buyer->Carbon Protocols (Verra, Gold Standard, CAR)
+Insetting Programs (corporate supply chain)->Remote Sensing / Satellite MRV
+Insetting Programs (corporate supply chain)->Farm Data / Records
+Remote Sensing / Satellite MRV->Soil Science / Agroecology
+Soil Organic Carbon (SOC) Testing->Soil Science / Agroecology
+
+USDA Conservation Programs (EQIP, CSP)->IRA Climate-Smart Ag Funding
+USDA Conservation Programs (EQIP, CSP)->USDA Climate-Smart Commodities Partnerships
+USDA Climate-Smart Commodities Partnerships->IRA Climate-Smart Ag Funding
+Philanthropic / Impact Capital->Soil Science / Agroecology
+Private Climate Finance->Ag Carbon Platforms (Indigo, Nori, Bayer)
+
+Farmer->Land Tenure / Farmland Ownership
+Cover Cropping->Land Tenure / Farmland Ownership
+No-till / Reduced Tillage->Land Tenure / Farmland Ownership
+Managed Grazing (AMP)->Land Tenure / Farmland Ownership
+Agroforestry / Silvopasture->Land Tenure / Farmland Ownership
+
+Equipment (Roller-crimpers, No-till drills)->Diesel / Fertiliser Inputs
+Food Processing / Aggregation->Commodity Markets (corn, soy, beef)
+Farm Data / Records->Remote Sensing / Satellite MRV
+
+evolve No-till / Reduced Tillage 0.82
+evolve Remote Sensing / Satellite MRV 0.55
+evolve Carbon Protocols (Verra, Gold Standard, CAR) 0.65
+evolve USDA Conservation Programs (EQIP, CSP) 0.72
+evolve Regen Organic Certified (ROC) 0.55
+
+note BUILD moat [0.55, 0.25]
+note RENT / utility [0.18, 0.90]
+note IRA funding shock [0.48, 0.15]

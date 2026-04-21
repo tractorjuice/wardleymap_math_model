@@ -1,0 +1,195 @@
+title Game Economies in Modern Live-Service Games (Nov 2023)
+style wardley
+
+// Anchors — three real stakeholders around a game economy
+anchor Player [0.99, 0.55]
+anchor Studio / Publisher [0.97, 0.50]
+anchor Regulator [0.95, 0.30]
+
+// Player-facing (Y ~0.80-0.90)
+component Fun / Flow [0.90, 0.35]
+component Progression System [0.88, 0.55]
+component Cosmetic Items [0.86, 0.72]
+component Battle Pass [0.89, 0.70]
+component Storefront / Shop UI [0.82, 0.78]
+component Seasonal Content [0.80, 0.60]
+
+// Player motivation & engagement (mid-chain, Y ~0.65-0.75)
+component Player Motivation Model [0.68, 0.40]
+component Engagement Loop Design [0.73, 0.50]
+component Social / Guild Systems [0.68, 0.62]
+component Matchmaking / PvP [0.66, 0.68]
+component Events & Limited-Time Modes [0.64, 0.60]
+
+// Economy core (Y ~0.50-0.65)
+component Soft Currency [0.62, 0.85]
+component Hard (Premium) Currency [0.55, 0.80]
+component In-Game Items & Loot [0.58, 0.72]
+component Loot Boxes / Gacha [0.56, 0.55]
+component Player-to-Player Trading [0.54, 0.40]
+component Player Marketplace / Auction House [0.52, 0.55]
+
+// Monetisation & commerce (Y ~0.45-0.60)
+component Monetisation Strategy [0.58, 0.45]
+component Store Pricing & Bundling [0.55, 0.60]
+component IAP SDK (App Store / Play Billing) [0.42, 0.92]
+component Payment Processing [0.38, 0.93]
+component Tax / VAT on Virtual Goods [0.36, 0.45]
+
+// Live-ops (Y ~0.40-0.55)
+component Live-Ops Calendar [0.52, 0.55]
+component Content Release Pipeline [0.48, 0.60]
+component A/B Testing & Experimentation [0.45, 0.70]
+component Remote Config / Feature Flags [0.42, 0.80]
+component Player Segmentation [0.44, 0.55]
+component CRM / LiveOps Messaging [0.46, 0.75]
+
+// Analytics & data (Y ~0.30-0.45)
+component Telemetry & Event Pipeline [0.32, 0.82]
+component Economy Analytics & Dashboards [0.40, 0.55]
+component Cohort & Retention Analytics [0.36, 0.70]
+component LTV / Whale Modelling [0.37, 0.45]
+component ML Personalisation / Offer Targeting [0.46, 0.35]
+
+// Integrity & safety (Y ~0.25-0.40)
+component Anti-Cheat Client [0.34, 0.55]
+component Anti-Cheat Server [0.32, 0.60]
+component Fraud & Chargeback Detection [0.40, 0.65]
+component Account Security / 2FA [0.30, 0.85]
+
+// Regulation layer (Y ~0.20-0.35)
+component Age Gating / Age Assurance [0.28, 0.30]
+component Loot-Box Disclosure / Drop Rates [0.26, 0.30]
+component Regional Compliance Rules [0.24, 0.35]
+component AML / KYC for Cash-Out [0.22, 0.55]
+
+// Platform & infra (Y ~0.10-0.20)
+component Game Server / Netcode [0.20, 0.55]
+component Cloud Utilities (compute/DB/CDN) [0.14, 0.92]
+component Identity / Auth [0.16, 0.88]
+component Observability [0.15, 0.85]
+
+// Knowledge layer (very deep)
+component Behavioural Economics Knowledge [0.08, 0.35]
+component Gambling-Law Expertise [0.06, 0.55]
+
+// Dependencies — Player side
+Player->Fun / Flow
+Player->Progression System
+Player->Cosmetic Items
+Player->Battle Pass
+Player->Storefront / Shop UI
+Player->Seasonal Content
+Player->Social / Guild Systems
+Player->Matchmaking / PvP
+
+// Dependencies — Studio side
+Studio / Publisher->Monetisation Strategy
+Studio / Publisher->Live-Ops Calendar
+Studio / Publisher->Economy Analytics & Dashboards
+Studio / Publisher->Engagement Loop Design
+
+// Dependencies — Regulator side
+Regulator->Age Gating / Age Assurance
+Regulator->Loot-Box Disclosure / Drop Rates
+Regulator->Regional Compliance Rules
+Regulator->Tax / VAT on Virtual Goods
+
+// Player-facing → mid-chain
+Fun / Flow->Engagement Loop Design
+Fun / Flow->Player Motivation Model
+Progression System->Engagement Loop Design
+Progression System->Soft Currency
+Progression System->In-Game Items & Loot
+Cosmetic Items->In-Game Items & Loot
+Battle Pass->Progression System
+Battle Pass->Hard (Premium) Currency
+Storefront / Shop UI->Store Pricing & Bundling
+Storefront / Shop UI->Hard (Premium) Currency
+Seasonal Content->Content Release Pipeline
+Seasonal Content->Live-Ops Calendar
+Social / Guild Systems->Game Server / Netcode
+Matchmaking / PvP->Game Server / Netcode
+Events & Limited-Time Modes->Live-Ops Calendar
+
+// Motivation & engagement
+Engagement Loop Design->Player Motivation Model
+Engagement Loop Design->A/B Testing & Experimentation
+Player Motivation Model->Behavioural Economics Knowledge
+Player Motivation Model->Cohort & Retention Analytics
+
+// Economy core
+In-Game Items & Loot->Loot Boxes / Gacha
+In-Game Items & Loot->Player Marketplace / Auction House
+Loot Boxes / Gacha->Hard (Premium) Currency
+Loot Boxes / Gacha->Loot-Box Disclosure / Drop Rates
+Player-to-Player Trading->Player Marketplace / Auction House
+Player Marketplace / Auction House->Fraud & Chargeback Detection
+Player Marketplace / Auction House->AML / KYC for Cash-Out
+Soft Currency->Economy Analytics & Dashboards
+Hard (Premium) Currency->IAP SDK (App Store / Play Billing)
+Hard (Premium) Currency->Tax / VAT on Virtual Goods
+
+// Monetisation
+Monetisation Strategy->Store Pricing & Bundling
+Monetisation Strategy->LTV / Whale Modelling
+Monetisation Strategy->ML Personalisation / Offer Targeting
+Store Pricing & Bundling->Player Segmentation
+Store Pricing & Bundling->A/B Testing & Experimentation
+IAP SDK (App Store / Play Billing)->Payment Processing
+Payment Processing->Cloud Utilities (compute/DB/CDN)
+
+// Live-ops
+Live-Ops Calendar->Content Release Pipeline
+Live-Ops Calendar->CRM / LiveOps Messaging
+Live-Ops Calendar->Remote Config / Feature Flags
+Content Release Pipeline->Cloud Utilities (compute/DB/CDN)
+A/B Testing & Experimentation->Telemetry & Event Pipeline
+A/B Testing & Experimentation->Remote Config / Feature Flags
+Player Segmentation->Cohort & Retention Analytics
+CRM / LiveOps Messaging->Player Segmentation
+Remote Config / Feature Flags->Cloud Utilities (compute/DB/CDN)
+
+// Analytics
+Economy Analytics & Dashboards->Telemetry & Event Pipeline
+Cohort & Retention Analytics->Telemetry & Event Pipeline
+LTV / Whale Modelling->Cohort & Retention Analytics
+LTV / Whale Modelling->Behavioural Economics Knowledge
+ML Personalisation / Offer Targeting->Telemetry & Event Pipeline
+ML Personalisation / Offer Targeting->Player Segmentation
+Telemetry & Event Pipeline->Cloud Utilities (compute/DB/CDN)
+
+// Integrity
+Matchmaking / PvP->Anti-Cheat Server
+Anti-Cheat Client->Anti-Cheat Server
+Anti-Cheat Server->Cloud Utilities (compute/DB/CDN)
+Fraud & Chargeback Detection->Payment Processing
+Fraud & Chargeback Detection->Account Security / 2FA
+Account Security / 2FA->Identity / Auth
+
+// Regulation
+Age Gating / Age Assurance->Identity / Auth
+Loot-Box Disclosure / Drop Rates->Regional Compliance Rules
+Regional Compliance Rules->Gambling-Law Expertise
+Tax / VAT on Virtual Goods->Regional Compliance Rules
+AML / KYC for Cash-Out->Identity / Auth
+AML / KYC for Cash-Out->Gambling-Law Expertise
+
+// Infra
+Game Server / Netcode->Cloud Utilities (compute/DB/CDN)
+Game Server / Netcode->Observability
+Identity / Auth->Cloud Utilities (compute/DB/CDN)
+Observability->Cloud Utilities (compute/DB/CDN)
+
+// Evolve arrows — where things are actively moving
+evolve Loot Boxes / Gacha 0.75
+evolve Age Gating / Age Assurance 0.55
+evolve Loot-Box Disclosure / Drop Rates 0.60
+evolve ML Personalisation / Offer Targeting 0.60
+evolve Anti-Cheat Server 0.75
+evolve Tax / VAT on Virtual Goods 0.70
+
+// Regions of interest
+note Fragile — regulatory pressure [0.42, 0.35]
+note Build moat (behavioural ML) [0.30, 0.22]
+note Rent / buy commodity infra [0.15, 0.90]

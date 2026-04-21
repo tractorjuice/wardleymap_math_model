@@ -1,0 +1,202 @@
+title AI Trust Landscape (June 2023)
+style wardley
+
+// Three user types: citizen, enterprise buyer, regulator
+anchor Individual [0.99, 0.55]
+anchor Business [0.97, 0.60]
+anchor Government [0.95, 0.35]
+
+// Top-level trust outcomes
+component User Trust [0.90, 0.30]
+component Reputation / Brand [0.88, 0.55]
+component Competitive Advantage [0.86, 0.35]
+component Public Safety [0.84, 0.25]
+component Regulatory Compliance [0.82, 0.25]
+
+// Trust-determining qualities (visible, contested)
+component Accuracy / Reliability [0.78, 0.45]
+component Transparency / Disclosure [0.76, 0.25]
+component Fairness / Bias Mitigation [0.74, 0.30]
+component Privacy / Data Protection [0.72, 0.55]
+component Explainability [0.70, 0.20]
+component Alignment [0.68, 0.15]
+
+// AI product surface — what users actually touch
+component AI Application [0.65, 0.50]
+component Inference API [0.60, 0.60]
+component Model Card / Spec [0.58, 0.35]
+component Terms of Service / Licence [0.56, 0.65]
+
+// Governance surface — visible to regulators, auditors, buyers
+component EU AI Act [0.54, 0.12]
+component NIST AI RMF [0.52, 0.30]
+component National AI Policy [0.50, 0.20]
+component Liability Framework [0.48, 0.15]
+component ISO / IEC AI Standards [0.46, 0.25]
+component Model Audits [0.44, 0.20]
+component Incident Reporting [0.42, 0.18]
+component Capability Benchmarks [0.40, 0.60]
+component Safety Benchmarks [0.38, 0.30]
+
+// Control mechanisms applied to the model
+component Content Filters [0.36, 0.55]
+component Guardrails / Policy Layer [0.34, 0.35]
+component Jailbreak Defence [0.32, 0.20]
+component Red Teaming [0.30, 0.30]
+component Feedback Loops [0.28, 0.35]
+component Constitutional AI [0.26, 0.12]
+component RLHF [0.24, 0.40]
+component AI Forensics / Provenance [0.22, 0.10]
+component Watermarking [0.20, 0.12]
+
+// The model and its substrate
+component Foundation Model [0.30, 0.40]
+component Fine-tuning [0.22, 0.40]
+component Model Weights [0.20, 0.35]
+component Tokenizer / Embeddings [0.20, 0.65]
+component Training Pipeline [0.16, 0.50]
+component Training Data [0.14, 0.45]
+component Data Curation [0.13, 0.30]
+component Human Annotators [0.12, 0.55]
+
+// Deep infrastructure
+component Cloud Compute [0.10, 0.90]
+component GPU Supply [0.08, 0.70]
+component Data Storage [0.06, 0.92]
+component Networking [0.05, 0.95]
+component Electricity [0.03, 0.97]
+
+// === DEPENDENCIES ===
+
+// Individual user chain
+Individual->User Trust
+Individual->AI Application
+Individual->Privacy / Data Protection
+Individual->Accuracy / Reliability
+
+// Business user chain
+Business->Competitive Advantage
+Business->Reputation / Brand
+Business->AI Application
+Business->Regulatory Compliance
+Business->Accuracy / Reliability
+Business->Privacy / Data Protection
+
+// Government user chain
+Government->Public Safety
+Government->Regulatory Compliance
+Government->Transparency / Disclosure
+Government->Fairness / Bias Mitigation
+
+// Trust outcomes depend on qualities
+User Trust->Accuracy / Reliability
+User Trust->Transparency / Disclosure
+User Trust->Privacy / Data Protection
+User Trust->Alignment
+Reputation / Brand->Accuracy / Reliability
+Reputation / Brand->Fairness / Bias Mitigation
+Reputation / Brand->Privacy / Data Protection
+Competitive Advantage->Accuracy / Reliability
+Competitive Advantage->AI Application
+Public Safety->Alignment
+Public Safety->Fairness / Bias Mitigation
+Public Safety->Incident Reporting
+Regulatory Compliance->EU AI Act
+Regulatory Compliance->NIST AI RMF
+Regulatory Compliance->National AI Policy
+Regulatory Compliance->Model Audits
+Regulatory Compliance->Transparency / Disclosure
+Regulatory Compliance->Liability Framework
+
+// Qualities depend on controls, artefacts, benchmarks
+Accuracy / Reliability->AI Application
+Accuracy / Reliability->Capability Benchmarks
+Accuracy / Reliability->Safety Benchmarks
+Transparency / Disclosure->Model Card / Spec
+Transparency / Disclosure->Model Audits
+Transparency / Disclosure->AI Forensics / Provenance
+Transparency / Disclosure->Incident Reporting
+Fairness / Bias Mitigation->Safety Benchmarks
+Fairness / Bias Mitigation->Red Teaming
+Fairness / Bias Mitigation->Data Curation
+Privacy / Data Protection->Training Data
+Privacy / Data Protection->Terms of Service / Licence
+Explainability->Model Card / Spec
+Explainability->Foundation Model
+Alignment->Constitutional AI
+Alignment->RLHF
+Alignment->Red Teaming
+
+// Application depends on the product stack
+AI Application->Inference API
+AI Application->Content Filters
+AI Application->Guardrails / Policy Layer
+AI Application->Terms of Service / Licence
+AI Application->Feedback Loops
+Inference API->Foundation Model
+Inference API->Cloud Compute
+Model Card / Spec->Foundation Model
+
+// Governance hooks into audits, benchmarks, control artefacts
+EU AI Act->Model Audits
+EU AI Act->Incident Reporting
+NIST AI RMF->Model Audits
+NIST AI RMF->Safety Benchmarks
+National AI Policy->ISO / IEC AI Standards
+Liability Framework->Incident Reporting
+Terms of Service / Licence->Liability Framework
+ISO / IEC AI Standards->Model Audits
+Model Audits->Foundation Model
+Model Audits->Training Data
+Model Audits->Safety Benchmarks
+Model Audits->Capability Benchmarks
+Incident Reporting->AI Forensics / Provenance
+Capability Benchmarks->Foundation Model
+Safety Benchmarks->Foundation Model
+
+// Control mechanisms
+Content Filters->Guardrails / Policy Layer
+Guardrails / Policy Layer->Jailbreak Defence
+Guardrails / Policy Layer->Foundation Model
+Jailbreak Defence->Red Teaming
+Red Teaming->Foundation Model
+Feedback Loops->Human Annotators
+Feedback Loops->Fine-tuning
+Constitutional AI->RLHF
+RLHF->Fine-tuning
+RLHF->Human Annotators
+AI Forensics / Provenance->Watermarking
+
+// Model stack
+Foundation Model->Fine-tuning
+Foundation Model->Model Weights
+Foundation Model->Tokenizer / Embeddings
+Fine-tuning->Training Data
+Fine-tuning->Training Pipeline
+Model Weights->Training Pipeline
+Training Pipeline->Training Data
+Training Pipeline->GPU Supply
+Training Data->Data Curation
+Data Curation->Human Annotators
+
+// Infrastructure
+GPU Supply->Electricity
+Cloud Compute->GPU Supply
+Cloud Compute->Data Storage
+Cloud Compute->Networking
+Cloud Compute->Electricity
+Data Storage->Electricity
+Networking->Electricity
+
+// Evolutions
+evolve Foundation Model 0.62
+evolve Model Audits 0.45
+evolve EU AI Act 0.35
+evolve Capability Benchmarks 0.75
+evolve Constitutional AI 0.35
+evolve Watermarking 0.35
+evolve RLHF 0.60
+
+note Differentiation zone [0.65, 0.20]
+note Commoditising [0.12, 0.88]
+note Trust fragile here [0.75, 0.20]

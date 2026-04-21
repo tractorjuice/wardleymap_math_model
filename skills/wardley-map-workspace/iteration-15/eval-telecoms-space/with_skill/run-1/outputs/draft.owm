@@ -1,0 +1,179 @@
+title Telecoms via Space (Feb 2023)
+style wardley
+
+// Anchors — user types
+anchor Rural / Remote User [0.99, 0.55]
+anchor Enterprise User [0.98, 0.60]
+anchor Maritime Operator [0.97, 0.50]
+anchor Aviation Operator [0.96, 0.50]
+anchor Defence User [0.95, 0.35]
+anchor Mobile Phone User [0.94, 0.75]
+
+// User-facing services
+component LEO Broadband Service [0.86, 0.55]
+component Sat-to-Phone Direct Messaging [0.84, 0.15]
+component Terrestrial 5G Mobile [0.82, 0.80]
+component Terrestrial Fibre Broadband [0.80, 0.88]
+component Maritime Connectivity Service [0.78, 0.55]
+component In-Flight Wi-Fi Service [0.76, 0.55]
+component Defence Resilient Comms Service [0.74, 0.28]
+component Emergency SOS via Satellite [0.72, 0.30]
+
+// Commercial layer
+component Channel and Distribution [0.70, 0.65]
+component Service Plan and Billing [0.66, 0.70]
+component MNO Partnership and Roaming [0.64, 0.55]
+
+// Network integration
+component Mobile Core Network Integration [0.60, 0.60]
+component PSTN and IMS Interconnect [0.56, 0.85]
+
+// User equipment
+component Consumer Dish and Router [0.52, 0.60]
+component Smartphone with Sat Modem [0.50, 0.15]
+component Maritime VSAT Terminal [0.48, 0.55]
+component Aviation Antenna and Modem [0.46, 0.50]
+component User Terminal Phased-Array Antenna [0.44, 0.45]
+
+// Space segment — satellites and orchestration
+component LEO Satellite Constellation [0.34, 0.45]
+component Ground Station Gateway Network [0.32, 0.55]
+component Traffic Routing and Orchestration [0.30, 0.55]
+component Inter-Satellite Laser Links [0.30, 0.25]
+component Internet Peering and Transit [0.28, 0.92]
+component Beam Management and Handover [0.28, 0.45]
+component Network Operations Centre [0.26, 0.65]
+component Satellite Bus Platform [0.24, 0.65]
+component Satellite Software and Flight OS [0.22, 0.50]
+component Phased-Array Payload Electronics [0.20, 0.40]
+component Cloud Compute for NOC and Data Plane [0.20, 0.90]
+component Gateway Antennas [0.18, 0.70]
+
+// Launch and orbital operations
+component Launch Services [0.16, 0.58]
+component Reusable Launch Vehicles [0.14, 0.45]
+component Space Tracking and Collision Avoidance [0.14, 0.35]
+component GNSS Timing and Positioning [0.12, 0.90]
+
+// Spectrum, licensing, regulation
+component Landing Rights per Country [0.22, 0.45]
+component Nat Spectrum Licences [0.14, 0.55]
+component ITU Orbital Slot Filings [0.12, 0.55]
+component Export Control Regime [0.10, 0.60]
+component Spectrum Coordination (Ku Ka V L S) [0.10, 0.50]
+component Orbital Debris Regulation [0.08, 0.25]
+
+// Commodity utility foundation
+component Power and Ground Infrastructure [0.05, 0.95]
+
+// Dependencies
+Rural / Remote User->LEO Broadband Service
+Rural / Remote User->Terrestrial 5G Mobile
+Rural / Remote User->Terrestrial Fibre Broadband
+Rural / Remote User->Emergency SOS via Satellite
+Enterprise User->LEO Broadband Service
+Enterprise User->Terrestrial Fibre Broadband
+Enterprise User->Service Plan and Billing
+Maritime Operator->Maritime Connectivity Service
+Maritime Operator->Emergency SOS via Satellite
+Aviation Operator->In-Flight Wi-Fi Service
+Defence User->Defence Resilient Comms Service
+Defence User->LEO Broadband Service
+Mobile Phone User->Terrestrial 5G Mobile
+Mobile Phone User->Sat-to-Phone Direct Messaging
+Mobile Phone User->Emergency SOS via Satellite
+
+LEO Broadband Service->Consumer Dish and Router
+LEO Broadband Service->LEO Satellite Constellation
+LEO Broadband Service->Service Plan and Billing
+LEO Broadband Service->Channel and Distribution
+LEO Broadband Service->Ground Station Gateway Network
+
+Sat-to-Phone Direct Messaging->Smartphone with Sat Modem
+Sat-to-Phone Direct Messaging->LEO Satellite Constellation
+Sat-to-Phone Direct Messaging->MNO Partnership and Roaming
+Sat-to-Phone Direct Messaging->Mobile Core Network Integration
+Sat-to-Phone Direct Messaging->Nat Spectrum Licences
+
+Emergency SOS via Satellite->Smartphone with Sat Modem
+Emergency SOS via Satellite->LEO Satellite Constellation
+Emergency SOS via Satellite->Nat Spectrum Licences
+
+Terrestrial 5G Mobile->MNO Partnership and Roaming
+Terrestrial 5G Mobile->Mobile Core Network Integration
+Terrestrial 5G Mobile->Nat Spectrum Licences
+
+Terrestrial Fibre Broadband->Internet Peering and Transit
+
+Maritime Connectivity Service->Maritime VSAT Terminal
+Maritime Connectivity Service->LEO Satellite Constellation
+Maritime Connectivity Service->Ground Station Gateway Network
+Maritime Connectivity Service->Landing Rights per Country
+
+In-Flight Wi-Fi Service->Aviation Antenna and Modem
+In-Flight Wi-Fi Service->LEO Satellite Constellation
+In-Flight Wi-Fi Service->Ground Station Gateway Network
+
+Defence Resilient Comms Service->User Terminal Phased-Array Antenna
+Defence Resilient Comms Service->LEO Satellite Constellation
+Defence Resilient Comms Service->Inter-Satellite Laser Links
+Defence Resilient Comms Service->Export Control Regime
+
+Channel and Distribution->Service Plan and Billing
+Service Plan and Billing->Cloud Compute for NOC and Data Plane
+MNO Partnership and Roaming->Mobile Core Network Integration
+MNO Partnership and Roaming->Nat Spectrum Licences
+
+Mobile Core Network Integration->PSTN and IMS Interconnect
+Mobile Core Network Integration->Internet Peering and Transit
+PSTN and IMS Interconnect->Internet Peering and Transit
+
+Consumer Dish and Router->User Terminal Phased-Array Antenna
+Smartphone with Sat Modem->Phased-Array Payload Electronics
+Maritime VSAT Terminal->User Terminal Phased-Array Antenna
+Aviation Antenna and Modem->User Terminal Phased-Array Antenna
+User Terminal Phased-Array Antenna->Phased-Array Payload Electronics
+
+LEO Satellite Constellation->Satellite Bus Platform
+LEO Satellite Constellation->Phased-Array Payload Electronics
+LEO Satellite Constellation->Satellite Software and Flight OS
+LEO Satellite Constellation->Inter-Satellite Laser Links
+LEO Satellite Constellation->Beam Management and Handover
+LEO Satellite Constellation->Traffic Routing and Orchestration
+LEO Satellite Constellation->Network Operations Centre
+LEO Satellite Constellation->Launch Services
+LEO Satellite Constellation->Space Tracking and Collision Avoidance
+LEO Satellite Constellation->ITU Orbital Slot Filings
+LEO Satellite Constellation->Spectrum Coordination (Ku Ka V L S)
+
+Ground Station Gateway Network->Gateway Antennas
+Ground Station Gateway Network->Internet Peering and Transit
+Ground Station Gateway Network->Landing Rights per Country
+Ground Station Gateway Network->Power and Ground Infrastructure
+
+Traffic Routing and Orchestration->Network Operations Centre
+Beam Management and Handover->Satellite Software and Flight OS
+Network Operations Centre->Cloud Compute for NOC and Data Plane
+
+Launch Services->Reusable Launch Vehicles
+Launch Services->Space Tracking and Collision Avoidance
+Satellite Bus Platform->Phased-Array Payload Electronics
+Satellite Software and Flight OS->GNSS Timing and Positioning
+
+Space Tracking and Collision Avoidance->Orbital Debris Regulation
+ITU Orbital Slot Filings->Spectrum Coordination (Ku Ka V L S)
+Nat Spectrum Licences->Spectrum Coordination (Ku Ka V L S)
+Landing Rights per Country->Nat Spectrum Licences
+
+Gateway Antennas->Power and Ground Infrastructure
+Cloud Compute for NOC and Data Plane->Power and Ground Infrastructure
+
+evolve Sat-to-Phone Direct Messaging 0.45
+evolve Smartphone with Sat Modem 0.55
+evolve LEO Broadband Service 0.75
+evolve Reusable Launch Vehicles 0.70
+evolve Inter-Satellite Laser Links 0.55
+
+note Sat-to-phone frontier [0.80, 0.15]
+note LEO broadband industrialising [0.82, 0.60]
+note Commodity foundations [0.10, 0.92]

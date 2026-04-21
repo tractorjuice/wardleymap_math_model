@@ -1,0 +1,191 @@
+title Sustainable Supply Chain Management
+style wardley
+
+// Anchors — three user types
+anchor Enterprise / Brand [0.98, 0.55]
+anchor Regulator [0.96, 0.60]
+anchor Investor [0.94, 0.65]
+
+// User-facing outputs
+component Sustainability Report [0.88, 0.55]
+component Regulatory Filing [0.87, 0.65]
+component ESG Disclosure (ISSB) [0.85, 0.50]
+component ESG Rating [0.89, 0.70]
+component Digital Product Passport [0.80, 0.25]
+component Board Oversight [0.83, 0.60]
+component Stakeholder Engagement [0.78, 0.55]
+
+// Compliance frames (regulations as components)
+component CSRD / ESRS [0.72, 0.45]
+component CBAM [0.70, 0.30]
+component EUDR [0.69, 0.28]
+component SFDR [0.86, 0.55]
+component Modern Slavery Act [0.72, 0.70]
+component ISSB Standards (S1/S2) [0.73, 0.45]
+
+// Materiality & strategy
+component Double Materiality Assessment [0.68, 0.40]
+component Sustainability Strategy [0.70, 0.45]
+component KPI & Incentive Design [0.62, 0.45]
+component Scenario Analysis (TCFD) [0.60, 0.50]
+
+// Emissions measurement
+component Scope 1 Accounting [0.58, 0.78]
+component Scope 2 Accounting [0.56, 0.80]
+component Scope 3 Accounting [0.54, 0.35]
+component Carbon Accounting Platform [0.50, 0.55]
+component Emission Factor Database [0.42, 0.72]
+component Primary Activity Data [0.44, 0.40]
+component GHG Protocol Methodology [0.38, 0.85]
+component PCF (Product Carbon Footprint) [0.52, 0.35]
+
+// Traceability
+component Tier 1 Supplier Mapping [0.60, 0.62]
+component Deep-Tier Traceability [0.62, 0.25]
+component Chain of Custody [0.52, 0.50]
+component Batch / Lot Tracking [0.50, 0.70]
+component Traceability Platform [0.46, 0.45]
+component IoT Sensor Data [0.35, 0.55]
+
+// Supplier assessment
+component Supplier Code of Conduct [0.58, 0.75]
+component Supplier Questionnaires [0.56, 0.72]
+component Third-Party Audits [0.60, 0.68]
+component Supplier ESG Ratings [0.58, 0.58]
+component Corrective Action Plans [0.62, 0.60]
+
+// Circular economy
+component Recycled Content Sourcing [0.52, 0.45]
+component Take-back / Reverse Logistics [0.48, 0.35]
+component Repair & Refurb [0.52, 0.30]
+component Material Passports [0.48, 0.22]
+component Eco-design [0.50, 0.30]
+
+// Data & infra
+component ERP Integration [0.32, 0.75]
+component Sustainability Data Platform [0.34, 0.55]
+component Data Assurance / Audit [0.40, 0.55]
+component Cloud Utilities [0.12, 0.92]
+component LCA Databases (ecoinvent) [0.28, 0.70]
+
+// Knowledge / governance layer
+component Double-entry Carbon Accounting (theory) [0.18, 0.55]
+component Science Based Targets (SBTi) [0.66, 0.65]
+component Sustainability Expertise [0.20, 0.45]
+
+// Dependencies
+Enterprise / Brand->Sustainability Report
+Enterprise / Brand->Board Oversight
+Enterprise / Brand->Sustainability Strategy
+Enterprise / Brand->Digital Product Passport
+Regulator->Regulatory Filing
+Regulator->CSRD / ESRS
+Regulator->CBAM
+Regulator->EUDR
+Regulator->Modern Slavery Act
+Investor->ESG Disclosure (ISSB)
+Investor->ESG Rating
+Investor->SFDR
+Investor->ISSB Standards (S1/S2)
+
+Sustainability Report->CSRD / ESRS
+Sustainability Report->Double Materiality Assessment
+Sustainability Report->Scope 1 Accounting
+Sustainability Report->Scope 2 Accounting
+Sustainability Report->Scope 3 Accounting
+Sustainability Report->Stakeholder Engagement
+Regulatory Filing->CSRD / ESRS
+Regulatory Filing->CBAM
+Regulatory Filing->EUDR
+Regulatory Filing->SFDR
+Regulatory Filing->Data Assurance / Audit
+ESG Disclosure (ISSB)->ISSB Standards (S1/S2)
+ESG Disclosure (ISSB)->Scenario Analysis (TCFD)
+ESG Disclosure (ISSB)->Scope 3 Accounting
+ESG Rating->Supplier ESG Ratings
+ESG Rating->Sustainability Report
+Digital Product Passport->Deep-Tier Traceability
+Digital Product Passport->Material Passports
+Digital Product Passport->PCF (Product Carbon Footprint)
+Board Oversight->KPI & Incentive Design
+Board Oversight->Sustainability Strategy
+Stakeholder Engagement->Double Materiality Assessment
+
+CSRD / ESRS->Double Materiality Assessment
+CSRD / ESRS->Data Assurance / Audit
+CBAM->Scope 1 Accounting
+CBAM->Scope 2 Accounting
+CBAM->PCF (Product Carbon Footprint)
+EUDR->Deep-Tier Traceability
+EUDR->Chain of Custody
+SFDR->ESG Disclosure (ISSB)
+Modern Slavery Act->Third-Party Audits
+Modern Slavery Act->Supplier Code of Conduct
+ISSB Standards (S1/S2)->Scenario Analysis (TCFD)
+ISSB Standards (S1/S2)->Scope 3 Accounting
+
+Sustainability Strategy->Double Materiality Assessment
+Sustainability Strategy->Science Based Targets (SBTi)
+Sustainability Strategy->Eco-design
+KPI & Incentive Design->Carbon Accounting Platform
+Scenario Analysis (TCFD)->Carbon Accounting Platform
+
+Scope 1 Accounting->Carbon Accounting Platform
+Scope 2 Accounting->Carbon Accounting Platform
+Scope 3 Accounting->Carbon Accounting Platform
+Scope 3 Accounting->Primary Activity Data
+Scope 3 Accounting->Emission Factor Database
+Carbon Accounting Platform->GHG Protocol Methodology
+Carbon Accounting Platform->Emission Factor Database
+Carbon Accounting Platform->Sustainability Data Platform
+PCF (Product Carbon Footprint)->Carbon Accounting Platform
+PCF (Product Carbon Footprint)->LCA Databases (ecoinvent)
+Primary Activity Data->IoT Sensor Data
+Primary Activity Data->ERP Integration
+Emission Factor Database->LCA Databases (ecoinvent)
+GHG Protocol Methodology->Double-entry Carbon Accounting (theory)
+
+Tier 1 Supplier Mapping->ERP Integration
+Deep-Tier Traceability->Tier 1 Supplier Mapping
+Deep-Tier Traceability->Chain of Custody
+Deep-Tier Traceability->Traceability Platform
+Chain of Custody->Batch / Lot Tracking
+Chain of Custody->Traceability Platform
+Batch / Lot Tracking->IoT Sensor Data
+Traceability Platform->Sustainability Data Platform
+
+Supplier Code of Conduct->Sustainability Expertise
+Third-Party Audits->Supplier Code of Conduct
+Supplier ESG Ratings->Supplier Questionnaires
+Corrective Action Plans->Third-Party Audits
+Corrective Action Plans->Supplier ESG Ratings
+
+Recycled Content Sourcing->Material Passports
+Recycled Content Sourcing->Chain of Custody
+Take-back / Reverse Logistics->Traceability Platform
+Repair & Refurb->Eco-design
+Material Passports->Traceability Platform
+Eco-design->LCA Databases (ecoinvent)
+
+Data Assurance / Audit->Sustainability Data Platform
+Data Assurance / Audit->Sustainability Expertise
+Sustainability Data Platform->ERP Integration
+Sustainability Data Platform->Cloud Utilities
+ERP Integration->Cloud Utilities
+IoT Sensor Data->Cloud Utilities
+LCA Databases (ecoinvent)->Sustainability Expertise
+
+Science Based Targets (SBTi)->GHG Protocol Methodology
+Science Based Targets (SBTi)->Scenario Analysis (TCFD)
+
+evolve Scope 3 Accounting 0.60
+evolve Deep-Tier Traceability 0.55
+evolve Digital Product Passport 0.55
+evolve Carbon Accounting Platform 0.72
+evolve Supplier ESG Ratings 0.75
+evolve CBAM 0.55
+evolve EUDR 0.55
+
+note BUILD / differentiate [0.65, 0.25]
+note RENT (productising) [0.50, 0.62]
+note Utility / commodity [0.15, 0.90]

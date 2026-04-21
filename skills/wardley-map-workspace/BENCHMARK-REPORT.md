@@ -20,6 +20,7 @@
 - [7. Bottom line](#7-bottom-line)
 - [8. Artifacts](#8-artifacts)
 - [9. v2 update — concrete stage-indicator checklists](#9-v2-update--concrete-stage-indicator-checklists)
+- [10. v3 update — 20-map re-run with Mermaid output](#10-v3-update--20-map-re-run-with-mermaid-output)
 - [Appendix A — Test prompts per benchmark](#appendix-a--test-prompts-per-benchmark)
 - [Appendix B — Code references](#appendix-b--code-references)
 
@@ -401,10 +402,13 @@ skills/wardley-map-workspace/
 ├── iteration-12/                      # +6 benchmarks (cyber, mfg, ag, edu, gaming, sust)
 ├── iteration-13/                      # cybersecurity rerun (density guidance)
 ├── iteration-14/                      # +15 benchmarks (new 8 domains + extras)
+├── iteration-15/                      # 20-map re-run of v3 skill (checklists + Node + Mermaid)
 ├── iteration-10/compare.py            # parse_owm + fuzzy_match primitives (imported by aggregators)
 ├── compare_all_10.py                  # aggregates first 10 benchmarks (historical)
 ├── compare_all_25.py                  # aggregates 25 benchmarks + closeness distribution
+├── compare_all_15.py                  # 20-map v3 vs v1 (iteration-15)
 ├── benchmark-25-summary.json          # machine-readable aggregate + per-map data
+├── iteration-15/benchmark-20-v3-summary.json # v3 re-run summary
 ├── arc-kit-compare/                   # head-to-head vs tractorjuice/arc-kit + v2 re-validation
 │   ├── skill/                         # vendored snapshot of the arc-kit wardley-mapping skill
 │   ├── eval-<name>/with_skill/        # arc-kit outputs (6 maps)
@@ -541,6 +545,118 @@ Original scenario prompts were not stored as standalone artefacts (see Methodolo
 | 25 | transport-demand | May 2022 | Urban mobility landscape: how city-dwellers, commuters, and municipalities choose and supply transport modes; drivers (cost, time, sustainability, convenience, safety); supply-side operators, manufacturers, platforms. Post-COVID habit shifts partially settled, micromobility scaled, ride-hail post-IPO, EV adoption accelerating. | `iteration-14/eval-transport-demand/` |
 
 For the one prompt documented verbatim (ai-trust, as an example), see Methodology §2(a). For the others, open the referenced `output.md` — the subagent echoes the prompt in its opening paragraph.
+
+---
+
+## 10. v3 update — 20-map re-run with Mermaid output
+
+Post-v2 follow-on: re-ran the current skill (v2 indicator checklists + Node-native scripts + optional Mermaid block per §3.1) against 20 of the 25 benchmark scenarios. Designed to answer two questions in one pass:
+
+1. Does the v2 improvement observed on n=6 (§9) hold up on a larger sample?
+2. Does the optional Mermaid emission step work end-to-end in practice?
+
+### 10.1 Corpus
+
+20 of 25 benchmark maps (all except `personal-fin-inclusion`, `personal-conversational`, `politics-labour`, `transport-logistics`, `transport-demand` — selection was for breadth of domain, not cherry-picking). Reference `.owm` files copied from their original iteration homes (10, 11, 12, 13, or 14). Scenario prompts are the same as the originals.
+
+### 10.2 Procedure
+
+20 parallel blind subagent runs, each with:
+
+- The current `skills/wardley-map/SKILL.md` (v3 = v2 checklists + §3.1 Mermaid step + Node scripts)
+- Hard "do not read `wardley-reference.owm`" instruction
+- Explicit instruction to emit **both** an OWM block and a Mermaid `wardley-beta` block
+- A fallback to paste inline if Write was denied
+
+**Sandbox anomaly.** Every subagent's own sandbox denied `node scripts/validate_owm.mjs` despite Node being installed and `node --version` working. Agents fell back to manual-equivalent validation (walking the three validator rules — coord range, endpoint declaration, visibility hard rule — against their drafts). The parent session re-ran the canonical validator against every draft after the fact and confirmed **20/20 drafts validator-clean** (see table below). This is a sandbox policy quirk on this infrastructure, not a skill or validator bug; still, it means the subagents couldn't themselves confirm validation mechanically — something to note for future benchmark runs.
+
+### 10.3 Results — per-map structural output
+
+| # | Benchmark | Nodes | Edges | OWM? | Mermaid? | Validator (parent-run) |
+|---:|---|---:|---:|:---:|:---:|---|
+| 1 | ai-trust | 49 | 100 | ✓ | ✓ | clean |
+| 2 | healthcare-clinical | 38 | 70 | ✓ | ✓ | clean |
+| 3 | finance-risk | 37 | 73 | ✓ | ✓ | clean |
+| 4 | retail-journey | 53 | 95 | ✓ | ✓ | clean |
+| 5 | manufacturing | 50 | 86 | ✓ | ✓ | clean |
+| 6 | agriculture-regen | 47 | 71 | ✓ | ✓ | clean |
+| 7 | education-lifelong | 53 | 83 | ✓ | ✓ | clean |
+| 8 | gaming-economies | 50 | 84 | ✓ | ✓ | clean |
+| 9 | sustainability-supply | 52 | 94 | ✓ | ✓ | clean |
+| 10 | cybersecurity-risk | 46 | 81 | ✓ | ✓ | clean |
+| 11 | construction-supply | 48 | 87 | ✓ | ✓ | clean |
+| 12 | culture-gender | 47 | 78 | ✓ | ✓ | clean |
+| 13 | defence-intelligence | 40 | 69 | ✓ | ✓ | clean |
+| 14 | defence-grey-zone | 60 | 91 | ✓ | ✓ | clean |
+| 15 | energy-disruption | 55 | 102 | ✓ | ✓ | clean |
+| 16 | energy-storage | 52 | 79 | ✓ | ✓ | clean |
+| 17 | government-digital-id | 47 | 92 | ✓ | ✓ | clean |
+| 18 | government-sovereignty | 50 | 91 | ✓ | ✓ | clean |
+| 19 | telecoms-sovereignty | 48 | 78 | ✓ | ✓ | clean |
+| 20 | telecoms-space | 47 | 83 | ✓ | ✓ | clean |
+
+**20/20 emit both OWM and Mermaid blocks. 20/20 validator-clean.**
+
+### 10.4 Results — placement vs Wardley (aggregate, n=20 matched to v1)
+
+Comparing each v3 run against the same-map v1 run from `benchmark-25-summary.json`:
+
+| Metric | v1 (2026-04-18) | v3 (current) | Δ |
+|---|---:|---:|---|
+| Coverage | 38.4% | **39.8%** | +1.4pp |
+| `|Δε|` | 0.186 | **0.179** | **−4%** |
+| `|Δν|` | 0.263 | **0.229** | **−13%** |
+| ε-bias | −0.004 | −0.011 | ≈ tied |
+| ν-bias | +0.091 | **+0.069** | **−25%** |
+| Same-band | 36.1% | **40.2%** | **+4.1pp** |
+| ±1 band | 91.9% | 92.3% | ≈ tied |
+| ≤0.20 | 62.9% | 63.0% | ≈ tied |
+
+v3 improves on v1 on 5 of 8 metrics; 3 are essentially tied.
+
+### 10.5 Compared to the v2 n=6 subset result
+
+| Metric | v2 n=6 subset vs v1 | v3 n=20 vs v1 |
+|---|---|---|
+| Aggregate `|Δε|` reduction | **−12%** | −4% |
+| Aggregate ε-bias reduction | −45% forward drift | ≈ tied |
+| Same-band | **+11pp** | +4pp |
+
+The n=6 subset over-promised. The larger-sample effect is smaller but still positive and consistent — v3 wins on precision (\|Δε\|, \|Δν\|), same-band agreement, and ν-bias. The n=6 aggregate ε-bias win doesn't hold at n=20 — that was noise.
+
+### 10.6 Per-map — where v3 helped and where it hurt
+
+v3 beats v1 on `|Δε|` in 14 of 20 maps. Biggest per-map wins (in `|Δε|` reduction):
+
+- cybersecurity-risk: 0.208 → 0.148 (−29%)
+- energy-storage: 0.215 → 0.141 (−34%)
+- telecoms-space: 0.250 → 0.181 (−28%)
+- defence-intelligence: 0.208 → 0.170 (−18%)
+- education-lifelong: 0.178 → 0.145 (−19%)
+
+Maps where v3 regressed:
+
+- gaming-economies: 0.206 → 0.236 — ε-bias worsened (+0.20 → +0.22)
+- energy-disruption: 0.188 → 0.227 — more forward drift on a high-activity domain
+- telecoms-sovereignty: 0.142 → 0.204 (same regression pattern as in the n=6 v2 run — vocabulary reshuffling on Wardley's abstract all-caps components)
+- culture-gender: the n=6 improvement didn't replicate here; same-band went up (0% → 25%) but `|Δε|` drifted from 0.168 → 0.195
+
+### 10.7 Caveats
+
+1. **n=20 single-run.** No replication variance estimate. Per-map variance in the full 25-map corpus is ±10-15pp, so map-level calls like "energy-disruption regressed" should be read as directional, not definitive.
+2. **Sandbox validator denial.** Agents' own validator runs were blocked; clean status is confirmed via parent-run validation after the fact. Doesn't affect placement numbers but is worth tracking for future benchmark infrastructure.
+3. **v3 includes multiple changes** (checklists from v2 + Node port + Mermaid step); differences vs v1 aren't cleanly attributable to the checklists alone. The Mermaid step is additive (doesn't affect placement), so the placement delta is attributable to the checklists + any incidental drift from the Node-converted skill package.
+4. **Mermaid rendering not end-to-end tested here.** All 20 emitted Mermaid blocks — but whether each renders on GitHub isn't mechanically verified. Spot-check the five examples in `docs/examples/wardley-maps/` to see real rendered output.
+5. **Time drift (§4.3) still applies.** Maps dated 2022 are scored in 2026; forward drift on industrialising domains remains a confound.
+
+### 10.8 Reproducibility
+
+```bash
+cd skills/wardley-map-workspace
+python3 compare_all_15.py
+```
+
+Aggregates the 20 v3 runs against their v1 counterparts in `benchmark-25-summary.json`. No LLM calls. Artefacts committed under `iteration-15/eval-*/`.
 
 ---
 

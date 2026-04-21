@@ -1,0 +1,208 @@
+title Lifelong Learning for Working Adults
+style wardley
+
+// Two anchors — two-sided market
+anchor Working-Adult Learner [0.98, 0.55]
+anchor Employer [0.96, 0.60]
+
+// Learner-facing outcomes & motivation
+component Career Progression [0.90, 0.55]
+component Wage Uplift [0.88, 0.70]
+component Role Transition [0.86, 0.45]
+component Intrinsic Motivation [0.84, 0.40]
+component Time & Energy Budget [0.82, 0.50]
+
+// Employer-facing outcomes
+component Workforce Capability [0.90, 0.50]
+component Talent Retention [0.88, 0.60]
+component Internal Mobility [0.86, 0.40]
+component Compliance Training Need [0.85, 0.85]
+
+// Discovery
+component Course Discovery [0.78, 0.65]
+component Marketplace / Aggregator [0.72, 0.55]
+
+// Employer relationships (user-facing employer side)
+component Learning & Development Function [0.80, 0.55]
+
+// Credentialing layer
+component Credential [0.76, 0.55]
+component Professional Certification [0.74, 0.75]
+component Micro-credential / Badge [0.70, 0.40]
+component University Degree (part-time) [0.68, 0.80]
+component Apprenticeship (Adult) [0.66, 0.55]
+
+// Skills demand signals
+component Skills Demand Signals [0.64, 0.35]
+component Labour Market Intelligence [0.60, 0.45]
+component Job Posting Skill Extraction [0.56, 0.55]
+component Internal Skills Inventory [0.58, 0.35]
+
+// Platforms
+component Learning Platform (LXP) [0.62, 0.65]
+component Employer LMS [0.58, 0.80]
+component MOOC Platform [0.54, 0.75]
+
+// Funding
+component Employer Training Budget [0.64, 0.55]
+component Individual Spend [0.60, 0.70]
+component Public Funding / Levy [0.52, 0.45]
+component Tax Relief / Loan [0.42, 0.55]
+component Income Share Agreement [0.34, 0.30]
+
+// Employer-provider linkage
+component Employer-Provider Contracts [0.50, 0.60]
+component Sector Skills Bodies [0.44, 0.50]
+component Career Pathways Framework [0.48, 0.35]
+
+// Content
+component Course Content [0.50, 0.60]
+component Practice & Assessment [0.46, 0.45]
+component AI-Tutored Content [0.42, 0.20]
+component Cohort / Community Learning [0.44, 0.40]
+component Coaching & Mentoring [0.40, 0.35]
+
+// Skills passport / wallet (shared credential infrastructure)
+component Skills Passport / Wallet [0.48, 0.25]
+
+// Outcome measurement
+component Outcome Tracking [0.40, 0.30]
+component Employment Outcomes Data [0.36, 0.40]
+component ROI / Return-to-Employer [0.38, 0.30]
+
+// Content authoring
+component Content Authoring Tools [0.30, 0.70]
+
+// Regulation & standards
+component Qualifications Framework [0.32, 0.70]
+component Quality Assurance / Ofqual-equivalent [0.26, 0.75]
+component Data Privacy & Consent [0.22, 0.80]
+
+// Knowledge
+component Skills Taxonomy [0.28, 0.45]
+component Pedagogy of Adult Learning [0.24, 0.60]
+
+// Infrastructure / utility
+component Identity & SSO [0.18, 0.92]
+component Payment Rails [0.16, 0.92]
+component Video Delivery / CDN [0.14, 0.92]
+component Cloud Utilities [0.10, 0.95]
+
+// Dependencies — learner anchor
+Working-Adult Learner->Career Progression
+Working-Adult Learner->Wage Uplift
+Working-Adult Learner->Role Transition
+Working-Adult Learner->Intrinsic Motivation
+Working-Adult Learner->Time & Energy Budget
+Working-Adult Learner->Course Discovery
+Working-Adult Learner->Credential
+Working-Adult Learner->Individual Spend
+
+// Dependencies — employer anchor
+Employer->Workforce Capability
+Employer->Talent Retention
+Employer->Internal Mobility
+Employer->Compliance Training Need
+Employer->Learning & Development Function
+Employer->Employer Training Budget
+
+// Outcomes chain (learner)
+Career Progression->Credential
+Career Progression->Role Transition
+Wage Uplift->Credential
+Wage Uplift->Employment Outcomes Data
+Role Transition->Credential
+
+// Outcomes chain (employer)
+Workforce Capability->Internal Skills Inventory
+Workforce Capability->Learning & Development Function
+Talent Retention->Career Pathways Framework
+Internal Mobility->Career Pathways Framework
+Internal Mobility->Internal Skills Inventory
+
+// Discovery & demand
+Course Discovery->Marketplace / Aggregator
+Course Discovery->Skills Demand Signals
+Learning & Development Function->Skills Demand Signals
+Learning & Development Function->Internal Skills Inventory
+Learning & Development Function->Employer-Provider Contracts
+Skills Demand Signals->Labour Market Intelligence
+Skills Demand Signals->Job Posting Skill Extraction
+Labour Market Intelligence->Skills Taxonomy
+Job Posting Skill Extraction->Skills Taxonomy
+Internal Skills Inventory->Skills Taxonomy
+
+// Credentialing chain
+Credential->Professional Certification
+Credential->Micro-credential / Badge
+Credential->University Degree (part-time)
+Credential->Apprenticeship (Adult)
+Micro-credential / Badge->Skills Passport / Wallet
+Professional Certification->Qualifications Framework
+University Degree (part-time)->Qualifications Framework
+Apprenticeship (Adult)->Public Funding / Levy
+Apprenticeship (Adult)->Sector Skills Bodies
+Qualifications Framework->Quality Assurance / Ofqual-equivalent
+
+// Marketplace → platforms → content
+Marketplace / Aggregator->Learning Platform (LXP)
+Marketplace / Aggregator->MOOC Platform
+Learning Platform (LXP)->Course Content
+Employer LMS->Course Content
+MOOC Platform->Course Content
+Compliance Training Need->Employer LMS
+
+// Content internals
+Course Content->Content Authoring Tools
+Course Content->Pedagogy of Adult Learning
+Course Content->Practice & Assessment
+Course Content->AI-Tutored Content
+Cohort / Community Learning->Pedagogy of Adult Learning
+Coaching & Mentoring->Pedagogy of Adult Learning
+Micro-credential / Badge->Practice & Assessment
+AI-Tutored Content->Cloud Utilities
+
+// Platforms → utilities
+Learning Platform (LXP)->Cloud Utilities
+Learning Platform (LXP)->Video Delivery / CDN
+Learning Platform (LXP)->Identity & SSO
+Employer LMS->Cloud Utilities
+Employer LMS->Identity & SSO
+MOOC Platform->Cloud Utilities
+MOOC Platform->Video Delivery / CDN
+
+// Employer relationships
+Employer-Provider Contracts->Sector Skills Bodies
+Employer-Provider Contracts->Career Pathways Framework
+Sector Skills Bodies->Qualifications Framework
+Career Pathways Framework->Skills Taxonomy
+
+// Funding flows
+Individual Spend->Payment Rails
+Individual Spend->Tax Relief / Loan
+Individual Spend->Income Share Agreement
+Employer Training Budget->Employer-Provider Contracts
+Employer Training Budget->Public Funding / Levy
+Public Funding / Levy->Quality Assurance / Ofqual-equivalent
+Tax Relief / Loan->Qualifications Framework
+
+// Outcome measurement
+Learning & Development Function->Outcome Tracking
+Outcome Tracking->Employment Outcomes Data
+Outcome Tracking->ROI / Return-to-Employer
+Employment Outcomes Data->Data Privacy & Consent
+
+// Content authoring & utility
+Content Authoring Tools->Cloud Utilities
+Skills Passport / Wallet->Identity & SSO
+Skills Passport / Wallet->Data Privacy & Consent
+
+evolve Micro-credential / Badge 0.60
+evolve Skills Passport / Wallet 0.50
+evolve AI-Tutored Content 0.50
+evolve Skills Demand Signals 0.55
+evolve Outcome Tracking 0.55
+
+note Differentiation zone [0.70, 0.22]
+note Utility commodity [0.12, 0.90]
+note Fragile foundations [0.42, 0.28]

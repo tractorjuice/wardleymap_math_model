@@ -1,0 +1,192 @@
+title Electrical Energy Storage Landscape (April 2023)
+style wardley
+
+// Anchors — three user types for this multi-stakeholder landscape
+anchor Grid Operator [0.98, 0.55]
+anchor Energy Consumer [0.96, 0.70]
+anchor Asset Developer [0.94, 0.50]
+
+// User-facing services / needs
+component Reliable Supply [0.90, 0.70]
+component Affordable Electricity [0.88, 0.75]
+component Grid Balancing Services [0.86, 0.55]
+component Decarbonisation Target [0.84, 0.40]
+component Project Revenue [0.82, 0.45]
+
+// Market products (revenue streams for storage)
+component Frequency Response Market [0.74, 0.72]
+component Capacity Market [0.72, 0.78]
+component Wholesale Arbitrage [0.70, 0.68]
+component Ancillary Services [0.68, 0.62]
+component Behind-the-Meter Services [0.66, 0.50]
+
+// Deployment models (how storage shows up)
+component Grid-Scale BESS Project [0.62, 0.55]
+component Distributed / C&I Storage [0.60, 0.45]
+component Residential Battery [0.68, 0.60]
+component Pumped Hydro Plant [0.56, 0.88]
+component Thermal Storage Plant [0.54, 0.30]
+component Hydrogen Storage System [0.52, 0.15]
+component Compressed Air (CAES) [0.50, 0.25]
+
+// Integration / control layer
+component Virtual Power Plant [0.52, 0.35]
+component Energy Management System [0.50, 0.55]
+component Market Bidding Platform [0.46, 0.48]
+component SCADA & Grid Control [0.44, 0.75]
+component Permitting & Siting [0.44, 0.60]
+component Grid Interconnection [0.42, 0.70]
+component Market Access Rules [0.42, 0.50]
+
+// Regulation and policy
+component Subsidy / Tax Credit (IRA / CfD) [0.40, 0.40]
+component Storage Asset Classification [0.38, 0.45]
+component Capacity Payment Design [0.36, 0.55]
+
+// Battery technology (the Product-layer core)
+component Li-ion Battery Pack [0.48, 0.72]
+component LFP Cell [0.42, 0.68]
+component NMC Cell [0.40, 0.78]
+component Sodium-ion Cell [0.38, 0.15]
+component Flow Battery [0.36, 0.25]
+component Battery Management System [0.34, 0.58]
+
+// Non-battery tech
+component Electrolyser [0.30, 0.20]
+component Fuel Cell [0.28, 0.30]
+component Molten Salt Storage [0.26, 0.40]
+
+// Power electronics and balance of plant
+component Power Conversion System (Inverter) [0.32, 0.80]
+component Transformer & Switchgear [0.20, 0.92]
+
+// Supply chain — minerals and manufacturing
+component Recycling & Second-Life [0.30, 0.25]
+component Pack Assembly [0.28, 0.70]
+component Cell Manufacturing (Gigafactory) [0.24, 0.55]
+component Lithium Refining [0.22, 0.55]
+component Cobalt Supply [0.18, 0.50]
+component Nickel Supply [0.16, 0.60]
+component Cell Chemistry R&D [0.18, 0.20]
+
+// Underlying utilities / knowledge
+component Electricity Grid [0.10, 0.95]
+component Electrochemistry Knowledge [0.08, 0.92]
+component Weather & Demand Forecasting [0.12, 0.70]
+component Cloud & Connectivity [0.08, 0.95]
+
+// Dependencies
+
+// Grid Operator chain
+Grid Operator->Grid Balancing Services
+Grid Operator->Reliable Supply
+Grid Balancing Services->Frequency Response Market
+Grid Balancing Services->Ancillary Services
+Grid Balancing Services->Capacity Market
+Reliable Supply->SCADA & Grid Control
+Reliable Supply->Grid Interconnection
+
+// Energy Consumer chain
+Energy Consumer->Affordable Electricity
+Energy Consumer->Reliable Supply
+Energy Consumer->Decarbonisation Target
+Affordable Electricity->Wholesale Arbitrage
+Affordable Electricity->Capacity Market
+Decarbonisation Target->Grid-Scale BESS Project
+Decarbonisation Target->Hydrogen Storage System
+
+// Asset Developer chain
+Asset Developer->Project Revenue
+Asset Developer->Grid-Scale BESS Project
+Asset Developer->Distributed / C&I Storage
+Project Revenue->Frequency Response Market
+Project Revenue->Wholesale Arbitrage
+Project Revenue->Capacity Market
+Project Revenue->Subsidy / Tax Credit (IRA / CfD)
+
+// Market → control layer
+Frequency Response Market->Market Bidding Platform
+Capacity Market->Market Bidding Platform
+Wholesale Arbitrage->Market Bidding Platform
+Ancillary Services->Market Bidding Platform
+Behind-the-Meter Services->Energy Management System
+Market Bidding Platform->Market Access Rules
+Market Access Rules->Storage Asset Classification
+Capacity Market->Capacity Payment Design
+
+// Deployment → tech
+Grid-Scale BESS Project->Li-ion Battery Pack
+Grid-Scale BESS Project->Power Conversion System (Inverter)
+Grid-Scale BESS Project->Energy Management System
+Grid-Scale BESS Project->Grid Interconnection
+Grid-Scale BESS Project->Permitting & Siting
+Distributed / C&I Storage->Li-ion Battery Pack
+Distributed / C&I Storage->Energy Management System
+Distributed / C&I Storage->Virtual Power Plant
+Residential Battery->Li-ion Battery Pack
+Residential Battery->Behind-the-Meter Services
+Pumped Hydro Plant->Grid Interconnection
+Pumped Hydro Plant->Permitting & Siting
+Thermal Storage Plant->Molten Salt Storage
+Thermal Storage Plant->Grid Interconnection
+Hydrogen Storage System->Electrolyser
+Hydrogen Storage System->Fuel Cell
+
+// Virtual Power Plant / control
+Virtual Power Plant->Energy Management System
+Virtual Power Plant->Market Bidding Platform
+Energy Management System->Weather & Demand Forecasting
+Energy Management System->Cloud & Connectivity
+Market Bidding Platform->Cloud & Connectivity
+SCADA & Grid Control->Cloud & Connectivity
+Grid Interconnection->Electricity Grid
+Grid Interconnection->Transformer & Switchgear
+
+// Battery internals
+Li-ion Battery Pack->LFP Cell
+Li-ion Battery Pack->NMC Cell
+Li-ion Battery Pack->Battery Management System
+Li-ion Battery Pack->Pack Assembly
+LFP Cell->Cell Manufacturing (Gigafactory)
+NMC Cell->Cell Manufacturing (Gigafactory)
+Sodium-ion Cell->Cell Chemistry R&D
+Sodium-ion Cell->Cell Manufacturing (Gigafactory)
+Flow Battery->Cell Chemistry R&D
+Battery Management System->Cloud & Connectivity
+
+// Non-battery tech internals
+Electrolyser->Cell Chemistry R&D
+Fuel Cell->Cell Chemistry R&D
+Molten Salt Storage->Electrochemistry Knowledge
+Compressed Air (CAES)->Grid Interconnection
+
+// Power electronics
+Power Conversion System (Inverter)->Transformer & Switchgear
+
+// Supply chain
+Pack Assembly->Cell Manufacturing (Gigafactory)
+Cell Manufacturing (Gigafactory)->Lithium Refining
+Cell Manufacturing (Gigafactory)->Cobalt Supply
+Cell Manufacturing (Gigafactory)->Nickel Supply
+NMC Cell->Cobalt Supply
+NMC Cell->Nickel Supply
+LFP Cell->Lithium Refining
+Recycling & Second-Life->Pack Assembly
+Cell Chemistry R&D->Electrochemistry Knowledge
+
+// Regulation links
+Permitting & Siting->Market Access Rules
+Subsidy / Tax Credit (IRA / CfD)->Storage Asset Classification
+
+// Evolution arrows — where the landscape is heading
+evolve Sodium-ion Cell 0.45
+evolve LFP Cell 0.85
+evolve Virtual Power Plant 0.55
+evolve Storage Asset Classification 0.65
+evolve Grid-Scale BESS Project 0.75
+evolve Recycling & Second-Life 0.50
+evolve Hydrogen Storage System 0.35
+
+note Differentiation zone [0.55, 0.22]
+note Commoditising battery layer [0.45, 0.82]
+note Utility foundations [0.12, 0.92]

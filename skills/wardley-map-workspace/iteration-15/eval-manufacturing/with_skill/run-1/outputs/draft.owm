@@ -1,0 +1,190 @@
+title Modern Manufacturing Supply Chain (Feb 2023, discrete-manufacturing OEM)
+style wardley
+
+// Anchors — two user needs
+anchor OEM End-Customer [0.99, 0.70]
+anchor Supply-Chain Organisation [0.97, 0.45]
+
+// User-visible outcomes
+component Finished Product Delivery [0.90, 0.72]
+component Product Quality and Reliability [0.88, 0.70]
+component On-Time-In-Full Performance [0.85, 0.60]
+component Supply Continuity [0.88, 0.40]
+component Scenario Planning and What-if [0.82, 0.50]
+component Risk Visibility Dashboard [0.80, 0.40]
+
+// Planning and orchestration
+component Sales and Operations Planning [0.72, 0.70]
+component Demand Forecasting (ML) [0.68, 0.60]
+component Supply Chain Control Tower [0.70, 0.45]
+component Multi-tier Supplier Visibility [0.62, 0.35]
+component Supplier Risk Scoring [0.60, 0.50]
+
+// Sourcing
+component Strategic Sourcing [0.72, 0.70]
+component Supplier Qualification [0.58, 0.70]
+component Contract Manufacturing [0.50, 0.75]
+component Multi-sourcing Strategy [0.68, 0.40]
+component Nearshoring and Reshoring Programmes [0.65, 0.35]
+component Tier-1 Supplier Relationships [0.55, 0.65]
+component Tier-2 and Tier-3 Supplier Mapping [0.52, 0.35]
+
+// Critical inputs
+component Semiconductor Sourcing [0.50, 0.65]
+component Critical Minerals Sourcing [0.42, 0.35]
+component Long-lead-time Components [0.45, 0.55]
+component Commodity Raw Materials [0.40, 0.80]
+
+// Production
+component Assembly Lines [0.52, 0.70]
+component Industrial Robotics and Automation [0.42, 0.70]
+component Manufacturing Execution System [0.40, 0.65]
+component Product Lifecycle Management [0.38, 0.65]
+component Quality Control and SPC [0.45, 0.80]
+component Predictive Maintenance [0.32, 0.45]
+component Digital Twin [0.28, 0.40]
+component Skilled Manufacturing Labour [0.35, 0.40]
+
+// Logistics
+component Inbound Logistics [0.48, 0.65]
+component Warehouse Management [0.42, 0.75]
+component Inventory Management [0.40, 0.80]
+component Transport Management [0.40, 0.70]
+component Ocean Freight [0.30, 0.85]
+component Air Freight and Expedite [0.28, 0.85]
+component Last-mile OEM Distribution [0.55, 0.75]
+
+// Compliance
+component Customs Brokerage [0.40, 0.80]
+component Customs Documentation [0.22, 0.85]
+component Export Controls and Sanctions [0.38, 0.65]
+component Conflict Minerals Compliance [0.55, 0.65]
+component ESG and Scope-3 Reporting [0.62, 0.30]
+component IRA and CHIPS Compliance [0.60, 0.18]
+
+// Enterprise backbone
+component Enterprise Resource Planning [0.35, 0.78]
+component Supplier Portal and EDI [0.28, 0.82]
+
+// Infrastructure and utilities
+component Data Lake [0.18, 0.80]
+component Cloud Platform [0.12, 0.92]
+component Energy [0.06, 0.95]
+
+// Dependencies — OEM customer branch (cost / reliability)
+OEM End-Customer->Finished Product Delivery
+OEM End-Customer->Product Quality and Reliability
+OEM End-Customer->On-Time-In-Full Performance
+
+// Dependencies — Supply-chain organisation branch (resilience / agility)
+Supply-Chain Organisation->Supply Continuity
+Supply-Chain Organisation->Scenario Planning and What-if
+Supply-Chain Organisation->Risk Visibility Dashboard
+Supply-Chain Organisation->On-Time-In-Full Performance
+
+// Outcome -> planning/orchestration
+Finished Product Delivery->Last-mile OEM Distribution
+Finished Product Delivery->Assembly Lines
+Product Quality and Reliability->Quality Control and SPC
+Product Quality and Reliability->Supplier Qualification
+On-Time-In-Full Performance->Sales and Operations Planning
+On-Time-In-Full Performance->Transport Management
+Supply Continuity->Multi-sourcing Strategy
+Supply Continuity->Tier-1 Supplier Relationships
+Supply Continuity->Strategic Sourcing
+Scenario Planning and What-if->Supply Chain Control Tower
+Scenario Planning and What-if->Demand Forecasting (ML)
+Risk Visibility Dashboard->Supply Chain Control Tower
+Risk Visibility Dashboard->Supplier Risk Scoring
+Risk Visibility Dashboard->Multi-tier Supplier Visibility
+
+// Planning layer
+Sales and Operations Planning->Demand Forecasting (ML)
+Sales and Operations Planning->Enterprise Resource Planning
+Demand Forecasting (ML)->Data Lake
+Supply Chain Control Tower->Multi-tier Supplier Visibility
+Supply Chain Control Tower->Supplier Risk Scoring
+Supply Chain Control Tower->Cloud Platform
+Multi-tier Supplier Visibility->Tier-2 and Tier-3 Supplier Mapping
+Multi-tier Supplier Visibility->Supplier Portal and EDI
+Supplier Risk Scoring->Tier-1 Supplier Relationships
+Supplier Risk Scoring->Data Lake
+
+// Sourcing
+Strategic Sourcing->Supplier Qualification
+Strategic Sourcing->Tier-1 Supplier Relationships
+Strategic Sourcing->Multi-sourcing Strategy
+Supplier Qualification->Tier-1 Supplier Relationships
+Multi-sourcing Strategy->Nearshoring and Reshoring Programmes
+Multi-sourcing Strategy->Tier-1 Supplier Relationships
+Tier-1 Supplier Relationships->Semiconductor Sourcing
+Tier-1 Supplier Relationships->Critical Minerals Sourcing
+Tier-1 Supplier Relationships->Long-lead-time Components
+Tier-1 Supplier Relationships->Commodity Raw Materials
+Tier-1 Supplier Relationships->Contract Manufacturing
+Tier-2 and Tier-3 Supplier Mapping->Critical Minerals Sourcing
+Tier-2 and Tier-3 Supplier Mapping->Semiconductor Sourcing
+Nearshoring and Reshoring Programmes->IRA and CHIPS Compliance
+Nearshoring and Reshoring Programmes->Contract Manufacturing
+
+// Production
+Assembly Lines->Manufacturing Execution System
+Assembly Lines->Industrial Robotics and Automation
+Assembly Lines->Skilled Manufacturing Labour
+Assembly Lines->Semiconductor Sourcing
+Assembly Lines->Long-lead-time Components
+Assembly Lines->Commodity Raw Materials
+Assembly Lines->Energy
+Manufacturing Execution System->Enterprise Resource Planning
+Manufacturing Execution System->Cloud Platform
+Product Lifecycle Management->Enterprise Resource Planning
+Product Lifecycle Management->Digital Twin
+Industrial Robotics and Automation->Predictive Maintenance
+Industrial Robotics and Automation->Energy
+Predictive Maintenance->Data Lake
+Digital Twin->Data Lake
+Quality Control and SPC->Manufacturing Execution System
+
+// Logistics
+Inbound Logistics->Transport Management
+Inbound Logistics->Customs Brokerage
+Inbound Logistics->Warehouse Management
+Last-mile OEM Distribution->Transport Management
+Last-mile OEM Distribution->Warehouse Management
+Warehouse Management->Inventory Management
+Warehouse Management->Enterprise Resource Planning
+Transport Management->Ocean Freight
+Transport Management->Air Freight and Expedite
+Ocean Freight->Customs Documentation
+Air Freight and Expedite->Customs Documentation
+Customs Brokerage->Customs Documentation
+Customs Brokerage->Export Controls and Sanctions
+
+// Compliance
+Export Controls and Sanctions->Data Lake
+Conflict Minerals Compliance->Tier-2 and Tier-3 Supplier Mapping
+Conflict Minerals Compliance->Critical Minerals Sourcing
+ESG and Scope-3 Reporting->Tier-2 and Tier-3 Supplier Mapping
+ESG and Scope-3 Reporting->Supplier Portal and EDI
+ESG and Scope-3 Reporting->Data Lake
+IRA and CHIPS Compliance->Critical Minerals Sourcing
+IRA and CHIPS Compliance->Semiconductor Sourcing
+
+// Enterprise backbone
+Enterprise Resource Planning->Cloud Platform
+Supplier Portal and EDI->Cloud Platform
+
+// Infrastructure
+Data Lake->Cloud Platform
+
+// Evolve arrows — forward scenarios (Feb 2023 vantage)
+evolve Multi-tier Supplier Visibility 0.55
+evolve ESG and Scope-3 Reporting 0.55
+evolve Supplier Risk Scoring 0.70
+evolve Digital Twin 0.60
+evolve IRA and CHIPS Compliance 0.45
+evolve Predictive Maintenance 0.65
+
+note Differentiation zone (build) [0.72, 0.30]
+note Rent or buy (products) [0.45, 0.70]
+note Utility (treat as cost) [0.15, 0.92]

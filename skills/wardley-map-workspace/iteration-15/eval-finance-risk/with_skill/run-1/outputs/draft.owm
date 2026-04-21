@@ -1,0 +1,153 @@
+title Risk Management in Financial Services (2023)
+style wardley
+
+// Anchors — four user classes
+anchor Public [0.97, 0.50]
+anchor Society [0.96, 0.55]
+anchor Corporations [0.95, 0.60]
+anchor Government [0.94, 0.65]
+
+// Consumer-facing risk-aware services (directly user-facing)
+component Retail Banking [0.78, 0.85]
+component Insurance Products [0.76, 0.72]
+component Pensions and Wealth Management [0.74, 0.70]
+component Corporate Banking and Lending [0.75, 0.75]
+component Capital Markets Access [0.72, 0.78]
+component Government Debt Issuance [0.80, 0.88]
+component Public Services Funding [0.82, 0.82]
+
+// Risk types flowing up the value chain (mid-visibility)
+component Perceived Risk [0.62, 0.28]
+component Political Risk [0.58, 0.55]
+component Territorial Risk [0.56, 0.40]
+component Sovereign Risk [0.60, 0.72]
+component Economic Risk [0.59, 0.75]
+component Cybersecurity Risk [0.57, 0.55]
+
+// Regulated signalling layer — sits between services and foundations
+component Credit Rating Agencies [0.44, 0.78]
+component Credit Scoring [0.46, 0.82]
+component Actuarial Pricing [0.42, 0.75]
+component Market Data and Indices [0.40, 0.85]
+component Stress Testing Frameworks [0.38, 0.62]
+component Risk Reporting and Disclosure [0.36, 0.80]
+
+// Regulators and supervisory regimes
+component Central Banks [0.30, 0.92]
+component Securities Regulators [0.28, 0.88]
+component Basel III Capital Rules [0.26, 0.85]
+component Accounting Standards IFRS GAAP [0.24, 0.92]
+
+// Operational risk infrastructure
+component Identity KYC AML [0.32, 0.72]
+component Market Data Feeds [0.22, 0.85]
+component Payment Rails [0.18, 0.93]
+component Cloud Utilities [0.14, 0.92]
+
+// Mathematical and legal foundations (deep commodity layer)
+component Risk Models VaR ES MC [0.20, 0.82]
+component Financial Mathematics [0.14, 0.90]
+component Statistics and Econometrics [0.10, 0.93]
+component Probability Theory [0.06, 0.97]
+component Legal Contract Frameworks [0.12, 0.95]
+component Property Law [0.08, 0.97]
+
+// Dependencies — Public
+Public->Retail Banking
+Public->Insurance Products
+Public->Pensions and Wealth Management
+Public->Perceived Risk
+
+// Dependencies — Society
+Society->Public Services Funding
+Society->Perceived Risk
+Society->Political Risk
+Society->Territorial Risk
+
+// Dependencies — Corporations
+Corporations->Corporate Banking and Lending
+Corporations->Capital Markets Access
+Corporations->Insurance Products
+Corporations->Cybersecurity Risk
+Corporations->Economic Risk
+
+// Dependencies — Government
+Government->Government Debt Issuance
+Government->Public Services Funding
+Government->Sovereign Risk
+Government->Political Risk
+Government->Territorial Risk
+
+// Services -> Signalling layer
+Retail Banking->Credit Scoring
+Retail Banking->Identity KYC AML
+Insurance Products->Actuarial Pricing
+Insurance Products->Risk Reporting and Disclosure
+Pensions and Wealth Management->Actuarial Pricing
+Pensions and Wealth Management->Market Data and Indices
+Corporate Banking and Lending->Credit Rating Agencies
+Corporate Banking and Lending->Credit Scoring
+Corporate Banking and Lending->Stress Testing Frameworks
+Capital Markets Access->Market Data and Indices
+Capital Markets Access->Credit Rating Agencies
+Capital Markets Access->Risk Reporting and Disclosure
+Government Debt Issuance->Credit Rating Agencies
+Government Debt Issuance->Market Data and Indices
+Public Services Funding->Government Debt Issuance
+
+// Risk types -> Signalling layer
+Sovereign Risk->Credit Rating Agencies
+Sovereign Risk->Market Data and Indices
+Economic Risk->Market Data and Indices
+Economic Risk->Stress Testing Frameworks
+Political Risk->Credit Rating Agencies
+Territorial Risk->Credit Rating Agencies
+Cybersecurity Risk->Risk Reporting and Disclosure
+Perceived Risk->Credit Rating Agencies
+
+// Signalling layer -> Regulators
+Credit Rating Agencies->Securities Regulators
+Credit Scoring->Securities Regulators
+Actuarial Pricing->Basel III Capital Rules
+Stress Testing Frameworks->Central Banks
+Stress Testing Frameworks->Basel III Capital Rules
+Risk Reporting and Disclosure->Accounting Standards IFRS GAAP
+Risk Reporting and Disclosure->Securities Regulators
+Market Data and Indices->Market Data Feeds
+
+// Regulators -> Foundations
+Central Banks->Basel III Capital Rules
+Central Banks->Statistics and Econometrics
+Securities Regulators->Legal Contract Frameworks
+Basel III Capital Rules->Risk Models VaR ES MC
+Basel III Capital Rules->Legal Contract Frameworks
+Accounting Standards IFRS GAAP->Legal Contract Frameworks
+
+// Signalling layer -> Foundations
+Credit Rating Agencies->Risk Models VaR ES MC
+Credit Rating Agencies->Statistics and Econometrics
+Credit Scoring->Statistics and Econometrics
+Actuarial Pricing->Financial Mathematics
+Actuarial Pricing->Statistics and Econometrics
+Stress Testing Frameworks->Risk Models VaR ES MC
+Risk Reporting and Disclosure->Legal Contract Frameworks
+
+// Infrastructure wiring
+Identity KYC AML->Cloud Utilities
+Identity KYC AML->Legal Contract Frameworks
+Market Data and Indices->Cloud Utilities
+Credit Scoring->Cloud Utilities
+Retail Banking->Payment Rails
+Retail Banking->Cloud Utilities
+
+// Foundations layering
+Risk Models VaR ES MC->Financial Mathematics
+Risk Models VaR ES MC->Statistics and Econometrics
+Financial Mathematics->Probability Theory
+Statistics and Econometrics->Probability Theory
+Legal Contract Frameworks->Property Law
+
+// Evolution signals
+evolve Cybersecurity Risk 0.75
+evolve Stress Testing Frameworks 0.78
+evolve Identity KYC AML 0.85
