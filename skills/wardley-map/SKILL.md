@@ -1,6 +1,6 @@
 ---
 name: wardley-map
-description: Generate a Wardley Map from a scenario description using a formal mathematical model. Produces OWM-format output and strategic analysis grounded in Wardley's cheat sheet, 61 gameplays, and 40 doctrine principles. Use this skill whenever the user asks for strategic reasoning about the components of a business, product, or system — specifically when they mention any of value chain, strategic positioning, competitive landscape, strategic moat, component evolution, genesis-to-commodity spectrum, build-vs-buy across multiple components, where to invest engineering effort, what to commoditise or outsource, mapping a business or platform or marketplace strategically, or explicitly "Wardley map". Always trigger when "Wardley" appears in the request. Also trigger when the user describes a business or system and asks about strategic roadmap, moats, or board-level positioning — even without naming the framework. Skip for flowcharts, UX journey maps, process swimlanes, architecture diagrams, data pipeline diagrams, skills matrices, MECE breakdowns, Porter's five forces, marketing positioning statements, or definitional questions about what a Wardley map is.
+description: Generate a Wardley Map from a scenario description using a formal mathematical model. Produces OWM-format output (with an optional Mermaid wardley-beta block for GitHub rendering) and strategic analysis grounded in Wardley's cheat sheet, 61 gameplays, and 40 doctrine principles. Use this skill whenever the user asks for strategic reasoning about the components of a business, product, or system — specifically when they mention any of value chain, strategic positioning, competitive landscape, strategic moat, component evolution, genesis-to-commodity spectrum, build-vs-buy across multiple components, where to invest engineering effort, what to commoditise or outsource, mapping a business or platform or marketplace strategically, or explicitly "Wardley map". Always trigger when "Wardley" appears in the request. Also trigger when the user describes a business or system and asks about strategic roadmap, moats, or board-level positioning — even without naming the framework. Skip for flowcharts, UX journey maps, process swimlanes, architecture diagrams, data pipeline diagrams, skills matrices, MECE breakdowns, Porter's five forces, marketing positioning statements, or definitional questions about what a Wardley map is.
 argument-hint: <scenario description>
 allowed-tools: Read, Grep, WebSearch, WebFetch, Bash, Write
 ---
@@ -228,6 +228,20 @@ pipeline Platform [start_ε, end_ε]
 ```
 
 Include multiple `anchor` lines if the scenario has more than one user type.
+
+### 3.1 Optional — Mermaid wardley-beta block (for GitHub rendering)
+
+OWM is the authoritative output (pastes into [onlinewardleymaps.com](https://onlinewardleymaps.com/) and runs through the validator). For documents that will be viewed on GitHub, optionally also emit a [Mermaid `wardley-beta`](https://mermaid.js.org/) block so the map renders inline. Convert the OWM draft with the bundled script:
+
+```bash
+python3 "${CLAUDE_SKILL_DIR}/scripts/owm_to_mermaid.py" ./draft.owm
+```
+
+Include the Mermaid block *after* the OWM block in your final output, wrapped in a ```` ```mermaid ```` fence. Both blocks describe the same map — the OWM is canonical, the Mermaid is a rendering target.
+
+The converter always double-quotes component/anchor/edge names because Mermaid's `wardley-beta` grammar forbids hyphens and several reserved-keyword prefixes in bare names (e.g. a component called "labelling" collides with the `label` keyword). Quoting uses the STRING alternative of the grammar and accepts any text verbatim.
+
+If the Mermaid render surfaces a parse error, it's almost always one of: a stray unquoted name in text you added manually (quote it), a `/` in a name that the converter should have replaced with ` and ` (rerun the converter), or a pipeline declaration that doesn't map cleanly to Mermaid's block form (drop the pipeline and emit its children as regular components).
 
 ---
 
