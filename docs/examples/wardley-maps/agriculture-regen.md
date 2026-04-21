@@ -2,7 +2,7 @@
 
 Source: [`/workspaces/wardleymap_math_model/skills/wardley-map-workspace/arc-kit-compare/eval-agriculture-regen/wardley-reference.owm`](../../../skills/wardley-map-workspace/arc-kit-compare/eval-agriculture-regen/wardley-reference.owm)
 
-Converted from OWM via `scripts/owm_to_mermaid.py`. Some edges may be dropped if endpoints weren't declared in the source (Wardley sometimes names components in edges that don't appear in the declaration list).
+Converted from OWM via `scripts/owm_to_mermaid.py`.
 
 ```mermaid
 wardley-beta
@@ -22,7 +22,7 @@ component territory [0.62, 0.74]
 component landscape [0.30, 0.30]
 component supply chain awareness [0.32, 0.19]
 component behaviour [0.72, 0.21]
-component labelling visual feedback [0.65, 0.17]
+component marking visual feedback [0.65, 0.17]
 component gov [0.92, 0.57]
 component policy [0.80, 0.51]
 component SUPRANATIONAL UN [0.98, 0.50]
@@ -43,7 +43,6 @@ component soil [0.34, 0.74]
 component FARMING PRACTICE [0.51, 0.66]
 component regenerative at scale [0.49, 0.31]
 component extractive at scale [0.49, 0.77]
-component 1 [0.49, 0.31]
 component CROP [0.27, 0.71]
 component monoculture [0.25, 0.74]
 component diversity [0.25, 0.41]
@@ -91,17 +90,16 @@ social knowledge -> landscape
 SUBSTRATE -> landscape
 extractive at scale -> knowledge based systems
 consumer -> behaviour
-behaviour -> labelling visual feedback
-labelling visual feedback -> supply chain awareness
+behaviour -> marking visual feedback
+marking visual feedback -> supply chain awareness
 FARMING PRACTICE -> supply chain awareness
 policy -> behaviour
 supply chain -> CROP
 supply chain awareness -> supply chain
 soil -> microbes
-1 -> supply chain awareness
 environment -> microbes
 CERTIFICATION BODIES -> social knowledge
-CERTIFICATION BODIES -> labelling visual feedback
+CERTIFICATION BODIES -> marking visual feedback
 grade -> extractive at scale
 note "+Knowledge based system" [0.38, 0.35]
 note "+dependency" [0.11, 0.72]

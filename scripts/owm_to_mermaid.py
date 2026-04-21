@@ -18,6 +18,35 @@ import sys
 from pathlib import Path
 
 
+# Mermaid's wardley-beta lexer greedily matches these keywords as prefixes,
+# so any component-name word starting with one of these breaks parsing.
+# e.g. "labelling" is tokenised as `label` keyword + `ling`.
+RESERVED_KEYWORD_PREFIXES = (
+    "title", "anchor", "component", "evolve", "evolution",
+    "note", "label", "pipeline", "style", "market", "wardley",
+)
+
+# Substitutions for known Wardley words that would start with a reserved prefix.
+WORD_REWRITES = {
+    "labelling": "marking",
+    "labeling":  "marking",
+    "labels":    "marks",
+    "label":     "mark",
+}
+
+
+def _rewrite_word(w: str) -> str:
+    """If a word starts with a reserved keyword prefix (long-form), rewrite."""
+    lw = w.lower()
+    if lw in WORD_REWRITES:
+        return WORD_REWRITES[lw]
+    for kw in RESERVED_KEYWORD_PREFIXES:
+        if lw != kw and lw.startswith(kw):
+            # Unknown problematic word — prepend a disambiguating letter.
+            return "x" + w
+    return w
+
+
 def sanitise_name(raw: str) -> str:
     s = raw.strip()
     s = s.replace("/", " and ")
@@ -25,6 +54,14 @@ def sanitise_name(raw: str) -> str:
     # Everything else (hyphens, parens, brackets, punctuation) becomes space.
     s = re.sub(r"[^A-Za-z0-9 ]", " ", s)
     s = re.sub(r"\s+", " ", s).strip()
+    if not s:
+        return ""
+    words = [_rewrite_word(w) for w in s.split()]
+    s = " ".join(words)
+    # Pure-numeric names (Wardley uses "1", "2" as annotation markers) are
+    # invalid as identifiers — return empty so the parser drops the node.
+    if re.fullmatch(r"[0-9 ]+", s):
+        return ""
     return s
 
 
@@ -72,6 +109,8 @@ def parse_owm(text: str):
         if m:
             kind, name, v, e = m.groups()
             name = sanitise_name(name)
+            if not name:
+                continue  # name became empty after sanitisation (e.g. "1", "2")
             try:
                 v_f, e_f = float(v), float(e)
             except ValueError:
@@ -95,7 +134,10 @@ def parse_owm(text: str):
         m = edge_re.match(line)
         if m:
             src, dst = m.groups()
-            edges.append((sanitise_name(src), sanitise_name(dst)))
+            s_src = sanitise_name(src)
+            s_dst = sanitise_name(dst)
+            if s_src and s_dst:
+                edges.append((s_src, s_dst))
 
     return title, anchors, components, edges, notes
 
