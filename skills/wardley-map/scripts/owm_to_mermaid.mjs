@@ -85,7 +85,12 @@ export function convert(owm, filename = '') {
     }
     const mc = s.match(COMP_RE);
     if (mc) {
-      compCoords[mc[1].trim()] = { vis: parseFloat(mc[2]), evo: parseFloat(mc[3]) };
+      const ml = s.match(/\blabel\s*\[\s*(-?\d+)\s*,\s*(-?\d+)\s*\]/i);
+      compCoords[mc[1].trim()] = {
+        vis: parseFloat(mc[2]),
+        evo: parseFloat(mc[3]),
+        label: ml ? [parseInt(ml[1], 10), parseInt(ml[2], 10)] : null,
+      };
     }
     const mp = s.match(PIPE_RE);
     if (mp) {
@@ -106,7 +111,7 @@ export function convert(owm, filename = '') {
       if (isPipelineChild.has(cName)) continue;
       if (Math.abs(cCoord.vis - parent.vis) <= 0.05 &&
           cCoord.evo >= rng.min - 0.01 && cCoord.evo <= rng.max + 0.01) {
-        children.push({ name: cName, evo: cCoord.evo });
+        children.push({ name: cName, evo: cCoord.evo, label: cCoord.label });
       }
     }
     if (children.length > 0) {
@@ -234,6 +239,12 @@ export function convert(owm, filename = '') {
       const cname = mcomp[1].trim();
       const coords = mcomp[2];
       const hasInertia = /\binertia\s*$/i.test(s);
+      // Preserve `label [dx, dy]` from the remainder after the coord closing `]`.
+      // Label offsets are integers in the Label grammar (INT, not WARDLEY_NUMBER).
+      const coordsEnd = s.indexOf(coords) + coords.length;
+      const tail = s.slice(coordsEnd);
+      const mlabel = tail.match(/\blabel\s*\[\s*(-?\d+)\s*,\s*(-?\d+)\s*\]/i);
+      const labelSuffix = mlabel ? ` label [${mlabel[1]}, ${mlabel[2]}]` : '';
       if (isPipelineChild.has(cname)) continue;
       const qname = quoteName(cname);
 
@@ -242,9 +253,9 @@ export function convert(owm, filename = '') {
         // Pipeline-child grammar only takes evolution; drop visibility if 2 coords
         const parts = inner.split(',').map(p => p.trim());
         if (parts.length === 2) inner = parts[1];
-        out.push(`  component ${qname} [${inner}]`);
+        out.push(`  component ${qname} [${inner}]${labelSuffix}`);
       } else {
-        let line = `component ${qname} ${coords}`;
+        let line = `component ${qname} ${coords}${labelSuffix}`;
         const decorators = [];
         if (sourcing[cname.toLowerCase()]) decorators.push(`(${sourcing[cname.toLowerCase()]})`);
         if (hasInertia) decorators.push('(inertia)');
@@ -254,7 +265,10 @@ export function convert(owm, filename = '') {
         const children = pipelineChildren[cname];
         if (children) {
           out.push(`pipeline ${qname} {`);
-          for (const ch of children) out.push(`  component ${quoteName(ch.name)} [${ch.evo}]`);
+          for (const ch of children) {
+            const childLabel = ch.label ? ` label [${ch.label[0]}, ${ch.label[1]}]` : '';
+            out.push(`  component ${quoteName(ch.name)} [${ch.evo}]${childLabel}`);
+          }
           out.push('}');
         }
       }
