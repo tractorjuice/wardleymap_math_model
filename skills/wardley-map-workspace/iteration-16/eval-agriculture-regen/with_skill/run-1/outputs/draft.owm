@@ -1,0 +1,183 @@
+title Regenerative Farming Landscape (August 2022, IRA week)
+style wardley
+
+// ---- Anchors (three user types) ----
+anchor Farmer [0.96, 0.52]
+anchor Consumer [0.94, 0.62]
+anchor Investor / Funder [0.92, 0.45]
+
+// ---- Farmer-visible practices ----
+component Cover Cropping [0.78, 0.58]
+component No-Till / Reduced Tillage [0.76, 0.64]
+component Managed Rotational Grazing [0.74, 0.55]
+component Diverse Crop Rotations [0.72, 0.66]
+component Agroforestry / Silvopasture [0.70, 0.33]
+component Integrated Crop-Livestock [0.68, 0.30]
+component Biological Inputs / Compost Teas [0.66, 0.28]
+component Perennial Grain (Kernza) [0.64, 0.12]
+component Pollinator & Hedgerow Habitat [0.62, 0.60]
+
+// ---- Consumer-facing supply chain ----
+component Regen-Brand CPG Products [0.82, 0.56]
+component Retail Grocery Distribution [0.70, 0.84]
+component Foodservice / Restaurants [0.66, 0.62]
+component Direct-to-Consumer (CSA / Boxes) [0.72, 0.52]
+component Regional Food Hubs [0.60, 0.37]
+component Commodity Grain Elevators [0.56, 0.86]
+component Farm Output / Crops & Livestock [0.52, 0.71]
+
+// ---- Certifications ----
+component USDA Organic Certification [0.55, 0.72]
+component Regenerative Organic Certified [0.58, 0.31]
+component Land to Market / EOV [0.54, 0.28]
+component Climate-Smart Commodity Label [0.52, 0.09]
+
+// ---- Funding layer ----
+component USDA EQIP / CSP Programs [0.76, 0.68]
+component IRA Climate-Smart Ag Funds [0.73, 0.11]
+component State Conservation Programs [0.56, 0.56]
+component Private Carbon Markets [0.62, 0.34]
+component ESG / Sustainability-Linked Loans [0.58, 0.40]
+component Philanthropic Grants [0.54, 0.64]
+component Impact Investment Funds [0.50, 0.43]
+component Federal Crop Insurance (RMA) [0.60, 0.88]
+
+// ---- Measurement, Reporting, Verification (MRV) ----
+component Farm Data Platforms (Truterra / Indigo) [0.44, 0.46]
+component Carbon Credit Registries (Verra / Gold Std) [0.46, 0.41]
+component Outcomes-Based Contracts [0.48, 0.14]
+component MRV Protocols [0.43, 0.31]
+component Soil Carbon Measurement [0.40, 0.37]
+component Third-Party Verifiers [0.41, 0.42]
+component Soil Sampling & Lab Analysis [0.33, 0.70]
+component Remote Sensing (Satellites / NDVI) [0.30, 0.82]
+
+// ---- Soil / biodiversity / carbon observables ----
+component Soil Organic Carbon [0.26, 0.54]
+component Soil Microbiome Health [0.22, 0.18]
+component Soil Aggregate Stability [0.28, 0.58]
+component Carbon Sequestration [0.20, 0.47]
+component On-Farm Biodiversity [0.17, 0.44]
+
+// ---- Knowledge layer ----
+component Agronomic Advisory / Coaching [0.50, 0.34]
+component Peer-Farmer Networks [0.47, 0.38]
+component NRCS Technical Assistance [0.45, 0.66]
+component Regen Research (Rodale / Land Inst.) [0.24, 0.55]
+
+// ---- Commodity utilities (deep foundation) ----
+component Seed & Genetics Supply [0.15, 0.78]
+component Fertiliser & Inputs Supply [0.12, 0.88]
+component Farm Equipment [0.10, 0.81]
+component Rural Broadband / Connectivity [0.06, 0.90]
+
+// ---- Edges ----
+// Farmer's chain
+Farmer->Cover Cropping
+Farmer->No-Till / Reduced Tillage
+Farmer->Managed Rotational Grazing
+Farmer->Diverse Crop Rotations
+Farmer->Agroforestry / Silvopasture
+Farmer->Integrated Crop-Livestock
+Farmer->Biological Inputs / Compost Teas
+Farmer->Perennial Grain (Kernza)
+Farmer->Pollinator & Hedgerow Habitat
+Farmer->USDA EQIP / CSP Programs
+Farmer->NRCS Technical Assistance
+Farmer->Agronomic Advisory / Coaching
+Farmer->Peer-Farmer Networks
+Farmer->Federal Crop Insurance (RMA)
+
+// Practices depend on inputs
+Cover Cropping->Seed & Genetics Supply
+Diverse Crop Rotations->Seed & Genetics Supply
+No-Till / Reduced Tillage->Farm Equipment
+Managed Rotational Grazing->Farm Equipment
+Biological Inputs / Compost Teas->Fertiliser & Inputs Supply
+Integrated Crop-Livestock->Farm Equipment
+
+// Consumer chain
+Consumer->Regen-Brand CPG Products
+Consumer->Direct-to-Consumer (CSA / Boxes)
+Consumer->Foodservice / Restaurants
+Consumer->Retail Grocery Distribution
+Regen-Brand CPG Products->Retail Grocery Distribution
+Regen-Brand CPG Products->Regional Food Hubs
+Regen-Brand CPG Products->Regenerative Organic Certified
+Regen-Brand CPG Products->USDA Organic Certification
+Direct-to-Consumer (CSA / Boxes)->Regional Food Hubs
+Foodservice / Restaurants->Regional Food Hubs
+Retail Grocery Distribution->Commodity Grain Elevators
+Regional Food Hubs->Farm Output / Crops & Livestock
+Commodity Grain Elevators->Farm Output / Crops & Livestock
+Direct-to-Consumer (CSA / Boxes)->Farm Output / Crops & Livestock
+
+// Certifications -> MRV
+Regenerative Organic Certified->Third-Party Verifiers
+Regenerative Organic Certified->MRV Protocols
+Land to Market / EOV->Third-Party Verifiers
+Land to Market / EOV->MRV Protocols
+USDA Organic Certification->Third-Party Verifiers
+Climate-Smart Commodity Label->MRV Protocols
+
+// Investor/Funder chain
+Investor / Funder->IRA Climate-Smart Ag Funds
+Investor / Funder->Private Carbon Markets
+Investor / Funder->ESG / Sustainability-Linked Loans
+Investor / Funder->Philanthropic Grants
+Investor / Funder->Impact Investment Funds
+Investor / Funder->USDA EQIP / CSP Programs
+Investor / Funder->State Conservation Programs
+
+// Program wiring
+USDA EQIP / CSP Programs->IRA Climate-Smart Ag Funds
+USDA EQIP / CSP Programs->NRCS Technical Assistance
+USDA EQIP / CSP Programs->MRV Protocols
+State Conservation Programs->NRCS Technical Assistance
+Private Carbon Markets->Carbon Credit Registries (Verra / Gold Std)
+Private Carbon Markets->Outcomes-Based Contracts
+ESG / Sustainability-Linked Loans->Outcomes-Based Contracts
+Impact Investment Funds->Outcomes-Based Contracts
+Philanthropic Grants->Regen Research (Rodale / Land Inst.)
+
+// MRV stack
+Outcomes-Based Contracts->MRV Protocols
+Outcomes-Based Contracts->Farm Data Platforms (Truterra / Indigo)
+Carbon Credit Registries (Verra / Gold Std)->MRV Protocols
+Carbon Credit Registries (Verra / Gold Std)->Third-Party Verifiers
+Farm Data Platforms (Truterra / Indigo)->Remote Sensing (Satellites / NDVI)
+Farm Data Platforms (Truterra / Indigo)->Rural Broadband / Connectivity
+MRV Protocols->Soil Carbon Measurement
+MRV Protocols->Remote Sensing (Satellites / NDVI)
+Soil Carbon Measurement->Soil Sampling & Lab Analysis
+Third-Party Verifiers->Soil Sampling & Lab Analysis
+Third-Party Verifiers->Soil Carbon Measurement
+
+// Observables measured
+Soil Sampling & Lab Analysis->Soil Organic Carbon
+Soil Sampling & Lab Analysis->Soil Aggregate Stability
+Soil Sampling & Lab Analysis->Soil Microbiome Health
+Soil Carbon Measurement->Carbon Sequestration
+Remote Sensing (Satellites / NDVI)->Carbon Sequestration
+Remote Sensing (Satellites / NDVI)->On-Farm Biodiversity
+Remote Sensing (Satellites / NDVI)->Rural Broadband / Connectivity
+
+// Knowledge layer
+Agronomic Advisory / Coaching->Regen Research (Rodale / Land Inst.)
+Peer-Farmer Networks->Regen Research (Rodale / Land Inst.)
+NRCS Technical Assistance->Regen Research (Rodale / Land Inst.)
+
+// ---- Evolution trajectories ----
+evolve Regenerative Organic Certified 0.55
+evolve Soil Carbon Measurement 0.62
+evolve MRV Protocols 0.60
+evolve Farm Data Platforms (Truterra / Indigo) 0.65
+evolve Climate-Smart Commodity Label 0.35
+evolve IRA Climate-Smart Ag Funds 0.40
+evolve Agroforestry / Silvopasture 0.55
+evolve Outcomes-Based Contracts 0.45
+
+// ---- Notes ----
+note Differentiation zone: certifications, MRV, farm data platforms [0.55, 0.30]
+note IRA Aug 16 2022: $19.5B pushing MRV and climate-smart labels right [0.86, 0.15]
+note Commoditising: USDA organic, grain elevators, crop insurance [0.66, 0.78]

@@ -1,0 +1,147 @@
+title Electrical Energy Storage Landscape (April 2023)
+style wardley
+
+// Anchors — two user types
+anchor Grid Operator [0.96, 0.55]
+anchor Energy Consumer [0.94, 0.70]
+
+// Storage applications / services (user-facing)
+component Frequency Response Service [0.83, 0.72]
+component Energy Arbitrage Service [0.80, 0.68]
+component Capacity Market Participation [0.78, 0.62]
+component Backup & Resilience [0.82, 0.58]
+component Renewable Integration [0.85, 0.48]
+component Peak Shaving [0.77, 0.65]
+
+// Deployment models
+component Grid-Scale Storage Project [0.70, 0.55]
+component Behind-the-Meter Storage [0.68, 0.45]
+component Virtual Power Plant [0.72, 0.32]
+component Co-located Solar+Storage [0.64, 0.42]
+
+// Storage technologies
+component Lithium-Ion Battery System [0.58, 0.62]
+component Pumped Hydro Storage [0.56, 0.88]
+component Compressed Air Storage [0.52, 0.38]
+component Flow Battery [0.48, 0.35]
+component Thermal Storage [0.46, 0.30]
+component Hydrogen Storage [0.44, 0.18]
+component Solid-State Battery [0.42, 0.12]
+component Second-Life EV Battery [0.40, 0.28]
+
+// Control & integration layer
+component Energy Management System [0.50, 0.55]
+component Battery Management System [0.38, 0.68]
+component Grid-Forming Inverter [0.36, 0.38]
+component SCADA & Telemetry [0.34, 0.78]
+component Storage Dispatch Optimisation [0.40, 0.33]
+
+// Market / regulatory layer
+component Wholesale Electricity Market [0.72, 0.82]
+component Ancillary Services Market Rules [0.60, 0.58]
+component Interconnection Standards [0.45, 0.72]
+component Storage-Specific Regulation [0.43, 0.28]
+component Grid Code Compliance [0.41, 0.78]
+
+// Supply chain
+component Battery Cell Manufacturing [0.22, 0.68]
+component Lithium Supply [0.18, 0.60]
+component Cobalt & Nickel Supply [0.16, 0.55]
+component Rare Earth Supply [0.14, 0.53]
+component Recycling & Circular Supply [0.12, 0.22]
+
+// Deep infrastructure (commodity)
+component Power Electronics [0.20, 0.80]
+component Transmission & Distribution Grid [0.25, 0.92]
+component Industrial Site & Land [0.15, 0.85]
+component Electricity [0.08, 0.95]
+
+// User -> storage services
+Grid Operator->Frequency Response Service
+Grid Operator->Capacity Market Participation
+Grid Operator->Renewable Integration
+Grid Operator->Energy Arbitrage Service
+Energy Consumer->Backup & Resilience
+Energy Consumer->Peak Shaving
+Energy Consumer->Energy Arbitrage Service
+Energy Consumer->Renewable Integration
+
+// Services -> deployment & markets
+Frequency Response Service->Grid-Scale Storage Project
+Frequency Response Service->Ancillary Services Market Rules
+Energy Arbitrage Service->Wholesale Electricity Market
+Energy Arbitrage Service->Grid-Scale Storage Project
+Capacity Market Participation->Grid-Scale Storage Project
+Capacity Market Participation->Ancillary Services Market Rules
+Backup & Resilience->Behind-the-Meter Storage
+Renewable Integration->Grid-Scale Storage Project
+Renewable Integration->Co-located Solar+Storage
+Peak Shaving->Behind-the-Meter Storage
+Peak Shaving->Virtual Power Plant
+
+// Deployment models -> technologies & controls
+Grid-Scale Storage Project->Lithium-Ion Battery System
+Grid-Scale Storage Project->Pumped Hydro Storage
+Grid-Scale Storage Project->Flow Battery
+Grid-Scale Storage Project->Compressed Air Storage
+Grid-Scale Storage Project->Energy Management System
+Grid-Scale Storage Project->Interconnection Standards
+Grid-Scale Storage Project->Grid Code Compliance
+Behind-the-Meter Storage->Lithium-Ion Battery System
+Behind-the-Meter Storage->Second-Life EV Battery
+Behind-the-Meter Storage->Energy Management System
+Virtual Power Plant->Behind-the-Meter Storage
+Virtual Power Plant->Storage Dispatch Optimisation
+Co-located Solar+Storage->Lithium-Ion Battery System
+Co-located Solar+Storage->Grid-Forming Inverter
+
+// Technologies -> supporting layers
+Lithium-Ion Battery System->Battery Management System
+Lithium-Ion Battery System->Battery Cell Manufacturing
+Lithium-Ion Battery System->Power Electronics
+Flow Battery->Battery Cell Manufacturing
+Flow Battery->Power Electronics
+Pumped Hydro Storage->Industrial Site & Land
+Pumped Hydro Storage->Transmission & Distribution Grid
+Compressed Air Storage->Industrial Site & Land
+Compressed Air Storage->Power Electronics
+Thermal Storage->Industrial Site & Land
+Hydrogen Storage->Industrial Site & Land
+Hydrogen Storage->Electricity
+Solid-State Battery->Battery Cell Manufacturing
+Second-Life EV Battery->Battery Cell Manufacturing
+Second-Life EV Battery->Recycling & Circular Supply
+
+// Control layer -> deeper
+Energy Management System->Storage Dispatch Optimisation
+Energy Management System->SCADA & Telemetry
+Battery Management System->Power Electronics
+Grid-Forming Inverter->Power Electronics
+Storage Dispatch Optimisation->SCADA & Telemetry
+
+// Markets & regulation -> grid
+Wholesale Electricity Market->Transmission & Distribution Grid
+Ancillary Services Market Rules->Grid Code Compliance
+Interconnection Standards->Grid Code Compliance
+Storage-Specific Regulation->Grid Code Compliance
+Grid Code Compliance->Transmission & Distribution Grid
+
+// Supply chain
+Battery Cell Manufacturing->Lithium Supply
+Battery Cell Manufacturing->Cobalt & Nickel Supply
+Battery Cell Manufacturing->Rare Earth Supply
+Battery Cell Manufacturing->Recycling & Circular Supply
+
+// Deep layer
+Transmission & Distribution Grid->Electricity
+Power Electronics->Electricity
+Industrial Site & Land->Electricity
+
+// Evolve markers (scenario arrows)
+evolve Lithium-Ion Battery System 0.82
+evolve Battery Cell Manufacturing 0.82
+evolve Grid-Forming Inverter 0.58
+evolve Storage-Specific Regulation 0.55
+evolve Virtual Power Plant 0.55
+evolve Hydrogen Storage 0.35
+evolve Second-Life EV Battery 0.48

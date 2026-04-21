@@ -1,0 +1,185 @@
+title Lifelong Learning for Working Adults
+style wardley
+
+// Anchors (two-sided market)
+anchor Working-Adult Learner [0.96, 0.47]
+anchor Employer [0.96, 0.63]
+
+// User-facing outcomes
+component Career Progression [0.88, 0.41]
+component Wage Uplift [0.86, 0.56]
+component Workforce Capability [0.89, 0.61]
+component Retention [0.84, 0.68]
+
+// Skills demand signals
+component Job Market Signals [0.78, 0.57]
+component Internal Skills Taxonomy [0.72, 0.43]
+component Skills Demand Forecasting [0.66, 0.34]
+
+// Motivation & time layer (learner-facing)
+component Learner Motivation [0.79, 0.31]
+component Time to Study [0.74, 0.37]
+component Manager Coaching Support [0.70, 0.39]
+
+// Credentialing (learner-facing)
+component University Degree part-time [0.61, 0.87]
+component Industry Certification [0.66, 0.81]
+component Micro-credential / Badge [0.58, 0.41]
+component Skills Assessment [0.54, 0.56]
+
+// Content & programmes
+component Bootcamp Programme [0.63, 0.53]
+component Cohort-Based Course [0.56, 0.46]
+component Short Course Content [0.55, 0.59]
+component Microlearning Content [0.52, 0.67]
+component MOOC Platform [0.54, 0.78]
+component AI Tutor / Copilot [0.57, 0.20]
+
+// Employer relationships
+component Learning Partnership [0.73, 0.40]
+component Apprenticeship Programme [0.65, 0.72]
+component Employer-Funded Bursary [0.59, 0.65]
+
+// Funding layer
+component Employer L&D Budget [0.44, 0.69]
+component Individual Self-Pay [0.42, 0.82]
+component Public Funding / Vouchers [0.46, 0.58]
+component Tax Relief Scheme [0.40, 0.77]
+component Income-Share Agreement [0.38, 0.32]
+
+// Platforms
+component Learning Platform (LXP/LMS) [0.50, 0.71]
+component Peer Community [0.52, 0.48]
+component Mentor Network [0.46, 0.42]
+
+// Assessment & credential infra
+component Proctoring Service [0.34, 0.78]
+component Credential Verification [0.30, 0.66]
+component Learning Analytics [0.36, 0.60]
+component Skills Graph / Ontology [0.28, 0.36]
+
+// Deep infra
+component Content Authoring Tools [0.24, 0.72]
+component Identity / SSO [0.18, 0.89]
+component Payment Processing [0.16, 0.91]
+component Video Streaming [0.14, 0.93]
+component Cloud Utilities [0.08, 0.95]
+
+// Dependencies — learner side
+Working-Adult Learner->Career Progression
+Working-Adult Learner->Wage Uplift
+Working-Adult Learner->Learner Motivation
+Working-Adult Learner->Time to Study
+Working-Adult Learner->University Degree part-time
+Working-Adult Learner->Industry Certification
+Working-Adult Learner->Micro-credential / Badge
+Working-Adult Learner->Skills Assessment
+Working-Adult Learner->Bootcamp Programme
+Working-Adult Learner->Cohort-Based Course
+Working-Adult Learner->MOOC Platform
+Working-Adult Learner->AI Tutor / Copilot
+Working-Adult Learner->Peer Community
+
+// Dependencies — employer side
+Employer->Workforce Capability
+Employer->Retention
+Employer->Wage Uplift
+Employer->Job Market Signals
+Employer->Internal Skills Taxonomy
+Employer->Manager Coaching Support
+Employer->Learning Partnership
+Employer->Apprenticeship Programme
+Employer->Employer-Funded Bursary
+Employer->Industry Certification
+
+// Outcomes depend on programmes & signals
+Career Progression->Industry Certification
+Career Progression->Micro-credential / Badge
+Career Progression->Skills Assessment
+Wage Uplift->Industry Certification
+Wage Uplift->Skills Assessment
+Workforce Capability->Apprenticeship Programme
+Workforce Capability->Learning Partnership
+Workforce Capability->Internal Skills Taxonomy
+Workforce Capability->Skills Assessment
+Retention->Manager Coaching Support
+Retention->Learning Partnership
+
+// Signals feed taxonomy and forecasting
+Job Market Signals->Skills Demand Forecasting
+Internal Skills Taxonomy->Skills Demand Forecasting
+Skills Demand Forecasting->Skills Graph / Ontology
+
+// Motivation & support chain
+Learner Motivation->Peer Community
+Learner Motivation->Mentor Network
+Time to Study->Manager Coaching Support
+Manager Coaching Support->Mentor Network
+
+// Credentialing chain
+University Degree part-time->Cohort-Based Course
+University Degree part-time->Proctoring Service
+Industry Certification->Short Course Content
+Industry Certification->Proctoring Service
+Industry Certification->Credential Verification
+Micro-credential / Badge->Skills Assessment
+Micro-credential / Badge->Credential Verification
+Skills Assessment->Learning Analytics
+
+// Programmes depend on platforms & content
+Bootcamp Programme->Cohort-Based Course
+Bootcamp Programme->Learning Platform (LXP/LMS)
+Bootcamp Programme->Employer-Funded Bursary
+Bootcamp Programme->Public Funding / Vouchers
+Cohort-Based Course->Learning Platform (LXP/LMS)
+Cohort-Based Course->Short Course Content
+Cohort-Based Course->Peer Community
+Short Course Content->Microlearning Content
+Short Course Content->Content Authoring Tools
+Microlearning Content->Content Authoring Tools
+MOOC Platform->Microlearning Content
+AI Tutor / Copilot->Learning Analytics
+AI Tutor / Copilot->Microlearning Content
+
+// Employer relationships chain
+Learning Partnership->Apprenticeship Programme
+Learning Partnership->Employer-Funded Bursary
+Learning Partnership->Internal Skills Taxonomy
+Apprenticeship Programme->Public Funding / Vouchers
+Apprenticeship Programme->Cohort-Based Course
+Employer-Funded Bursary->Employer L&D Budget
+
+// Funding chain
+Employer L&D Budget->Tax Relief Scheme
+Individual Self-Pay->Payment Processing
+Individual Self-Pay->Income-Share Agreement
+Public Funding / Vouchers->Tax Relief Scheme
+
+// Platform / infra chain
+Learning Platform (LXP/LMS)->Video Streaming
+Learning Platform (LXP/LMS)->Identity / SSO
+Learning Platform (LXP/LMS)->Learning Analytics
+Learning Platform (LXP/LMS)->Content Authoring Tools
+Peer Community->Learning Platform (LXP/LMS)
+Proctoring Service->Video Streaming
+Proctoring Service->Identity / SSO
+Credential Verification->Identity / SSO
+Learning Analytics->Skills Graph / Ontology
+Learning Analytics->Cloud Utilities
+Content Authoring Tools->Cloud Utilities
+Video Streaming->Cloud Utilities
+Identity / SSO->Cloud Utilities
+Payment Processing->Cloud Utilities
+Skills Graph / Ontology->Cloud Utilities
+
+// Evolutions
+evolve Micro-credential / Badge 0.65
+evolve AI Tutor / Copilot 0.58
+evolve Public Funding / Vouchers 0.70
+evolve Skills Graph / Ontology 0.60
+evolve Income-Share Agreement 0.55
+
+// Notes
+note Differentiation zone [0.72, 0.30]
+note Commodity / utility [0.12, 0.90]
+note Fragile funding tier [0.44, 0.74]

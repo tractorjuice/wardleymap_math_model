@@ -1,0 +1,199 @@
+title Modern Manufacturing Supply Chain — Discrete OEM (Feb 2023)
+style wardley
+
+// Anchors — two distinct user needs
+anchor OEM End-Customer — Cost & Reliability [0.96, 0.82]
+anchor Supply-Chain Org — Resilience & Agility [0.94, 0.42]
+
+// End-customer branch outputs
+component Finished Goods [0.88, 0.80]
+component On-Time Delivery [0.86, 0.83]
+component Product Warranty & Service [0.82, 0.77]
+
+// Supply-chain-org branch outputs
+component Multi-Sourcing Strategy [0.87, 0.46]
+component Supply-Chain Visibility [0.84, 0.58]
+component Demand-Supply Matching [0.80, 0.52]
+component Nearshoring / Reshoring Program [0.78, 0.33]
+
+// Production layer
+component Discrete Assembly [0.73, 0.68]
+component Contract Manufacturing (EMS) [0.70, 0.79]
+component Quality Assurance [0.68, 0.71]
+component Industrial Robotics [0.64, 0.64]
+component Lean / Just-in-Time Practice [0.60, 0.66]
+component Just-in-Case Buffer Inventory [0.58, 0.39]
+component Additive Manufacturing [0.55, 0.31]
+
+// Sourcing / supplier layer
+component Strategic Sourcing [0.66, 0.56]
+component Supplier Onboarding [0.62, 0.61]
+component Tier-1 Suppliers [0.56, 0.72]
+component Tier-2 / Tier-3 Suppliers [0.50, 0.54]
+component Supplier Risk Scoring [0.53, 0.44]
+component Long-Term Supplier Partnership [0.48, 0.37]
+
+// Strategic / at-risk inputs
+component Semiconductors (constrained) [0.44, 0.59]
+component Long-Lead Electronics [0.42, 0.47]
+component Single-Source Components [0.40, 0.36]
+component Critical Minerals (Li Co Ni REE) [0.36, 0.28]
+component Commodity Fasteners and Parts [0.46, 0.89]
+component Bulk Metals [0.38, 0.86]
+
+// Logistics
+component Multimodal Freight Orchestration [0.54, 0.69]
+component Ocean Container Shipping [0.34, 0.88]
+component Air Freight [0.32, 0.84]
+component Customs and Brokerage [0.28, 0.81]
+component Warehousing [0.30, 0.78]
+component Last-Mile Distribution [0.37, 0.90]
+
+// Digital tooling
+component ERP (SAP or Oracle) [0.52, 0.66]
+component Manufacturing Execution System (MES) [0.54, 0.63]
+component S and OP Supply-Chain Planning [0.58, 0.58]
+component Control Tower Platform [0.64, 0.48]
+component Digital Twin of Supply Chain [0.43, 0.32]
+component Shop-Floor IoT Sensors [0.38, 0.65]
+component Predictive Demand AI [0.41, 0.38]
+component Blockchain Traceability [0.33, 0.18]
+component Cloud Compute [0.15, 0.92]
+component Data Platform [0.18, 0.85]
+component Cyber-Security [0.22, 0.70]
+
+// Compliance / ESG / policy
+component Trade Compliance [0.24, 0.71]
+component Export Controls (US-China) [0.20, 0.67]
+component Conflict-Minerals Compliance [0.19, 0.72]
+component CSRD ESG Reporting (EU) [0.25, 0.45]
+component Scope-3 Emissions Accounting [0.20, 0.40]
+component IRA / CHIPS Act Incentive Capture [0.23, 0.30]
+
+// Workforce / knowledge
+component Supply-Chain Talent and Expertise [0.16, 0.35]
+
+// Atomic utilities
+component Electricity and Fuel [0.08, 0.96]
+component Global Telecoms and Internet [0.06, 0.93]
+
+// Dependencies — cost/reliability branch
+OEM End-Customer — Cost & Reliability->Finished Goods
+OEM End-Customer — Cost & Reliability->On-Time Delivery
+OEM End-Customer — Cost & Reliability->Product Warranty & Service
+Finished Goods->Discrete Assembly
+Finished Goods->Quality Assurance
+On-Time Delivery->Multimodal Freight Orchestration
+On-Time Delivery->Last-Mile Distribution
+Product Warranty & Service->Quality Assurance
+Product Warranty & Service->Tier-1 Suppliers
+
+// Dependencies — resilience/agility branch
+Supply-Chain Org — Resilience & Agility->Multi-Sourcing Strategy
+Supply-Chain Org — Resilience & Agility->Supply-Chain Visibility
+Supply-Chain Org — Resilience & Agility->Demand-Supply Matching
+Supply-Chain Org — Resilience & Agility->Nearshoring / Reshoring Program
+Supply-Chain Org — Resilience & Agility->CSRD ESG Reporting (EU)
+Multi-Sourcing Strategy->Supplier Risk Scoring
+Multi-Sourcing Strategy->Long-Term Supplier Partnership
+Multi-Sourcing Strategy->Tier-2 / Tier-3 Suppliers
+Supply-Chain Visibility->Control Tower Platform
+Supply-Chain Visibility->S and OP Supply-Chain Planning
+Supply-Chain Visibility->Cyber-Security
+Demand-Supply Matching->S and OP Supply-Chain Planning
+Demand-Supply Matching->Predictive Demand AI
+Nearshoring / Reshoring Program->IRA / CHIPS Act Incentive Capture
+Nearshoring / Reshoring Program->Long-Term Supplier Partnership
+
+// Production dependencies
+Discrete Assembly->Contract Manufacturing (EMS)
+Discrete Assembly->Industrial Robotics
+Discrete Assembly->Lean / Just-in-Time Practice
+Discrete Assembly->Tier-1 Suppliers
+Discrete Assembly->Additive Manufacturing
+Contract Manufacturing (EMS)->Industrial Robotics
+Contract Manufacturing (EMS)->Tier-1 Suppliers
+Quality Assurance->Manufacturing Execution System (MES)
+Quality Assurance->Shop-Floor IoT Sensors
+Lean / Just-in-Time Practice->Just-in-Case Buffer Inventory
+Just-in-Case Buffer Inventory->Warehousing
+
+// Sourcing dependencies
+Strategic Sourcing->Supplier Onboarding
+Strategic Sourcing->Tier-1 Suppliers
+Strategic Sourcing->Long-Term Supplier Partnership
+Strategic Sourcing->Supply-Chain Talent and Expertise
+Strategic Sourcing->Trade Compliance
+Strategic Sourcing->CSRD ESG Reporting (EU)
+Supplier Onboarding->Tier-1 Suppliers
+Tier-1 Suppliers->Tier-2 / Tier-3 Suppliers
+Tier-1 Suppliers->Semiconductors (constrained)
+Tier-1 Suppliers->Commodity Fasteners and Parts
+Tier-1 Suppliers->Bulk Metals
+Tier-2 / Tier-3 Suppliers->Critical Minerals (Li Co Ni REE)
+Tier-2 / Tier-3 Suppliers->Bulk Metals
+Supplier Risk Scoring->Tier-2 / Tier-3 Suppliers
+Supplier Risk Scoring->Long-Lead Electronics
+Supplier Risk Scoring->Single-Source Components
+Supplier Risk Scoring->Supply-Chain Talent and Expertise
+Semiconductors (constrained)->Long-Lead Electronics
+Semiconductors (constrained)->Export Controls (US-China)
+Long-Lead Electronics->Single-Source Components
+Single-Source Components->Critical Minerals (Li Co Ni REE)
+
+// Logistics dependencies
+Multimodal Freight Orchestration->Ocean Container Shipping
+Multimodal Freight Orchestration->Air Freight
+Multimodal Freight Orchestration->Warehousing
+Multimodal Freight Orchestration->Customs and Brokerage
+Ocean Container Shipping->Customs and Brokerage
+Air Freight->Customs and Brokerage
+Customs and Brokerage->Trade Compliance
+Last-Mile Distribution->Warehousing
+
+// Digital-tooling dependencies
+Manufacturing Execution System (MES)->ERP (SAP or Oracle)
+Manufacturing Execution System (MES)->Shop-Floor IoT Sensors
+S and OP Supply-Chain Planning->ERP (SAP or Oracle)
+S and OP Supply-Chain Planning->Data Platform
+Control Tower Platform->S and OP Supply-Chain Planning
+Control Tower Platform->Data Platform
+Control Tower Platform->Shop-Floor IoT Sensors
+Digital Twin of Supply Chain->Data Platform
+Predictive Demand AI->Data Platform
+Predictive Demand AI->Cloud Compute
+Blockchain Traceability->Data Platform
+Shop-Floor IoT Sensors->Global Telecoms and Internet
+ERP (SAP or Oracle)->Cloud Compute
+ERP (SAP or Oracle)->Data Platform
+Data Platform->Cloud Compute
+Cloud Compute->Electricity and Fuel
+Cloud Compute->Global Telecoms and Internet
+Cyber-Security->Cloud Compute
+
+// Compliance dependencies
+Trade Compliance->Export Controls (US-China)
+Trade Compliance->Conflict-Minerals Compliance
+CSRD ESG Reporting (EU)->Scope-3 Emissions Accounting
+CSRD ESG Reporting (EU)->Data Platform
+Scope-3 Emissions Accounting->Data Platform
+IRA / CHIPS Act Incentive Capture->Supply-Chain Talent and Expertise
+
+// Infra utilities
+Industrial Robotics->Electricity and Fuel
+Warehousing->Electricity and Fuel
+Ocean Container Shipping->Electricity and Fuel
+Air Freight->Electricity and Fuel
+
+// Evolution targets (scenario, not forecast)
+evolve Predictive Demand AI 0.60
+evolve Control Tower Platform 0.68
+evolve CSRD ESG Reporting (EU) 0.62
+evolve Supplier Risk Scoring 0.65
+evolve Digital Twin of Supply Chain 0.52
+evolve Nearshoring / Reshoring Program 0.55
+
+// Annotations
+note Differentiation zone — resilience IP [0.75, 0.30]
+note Commodity / utility spine [0.15, 0.88]
+note At-risk dependency cluster [0.42, 0.26]
