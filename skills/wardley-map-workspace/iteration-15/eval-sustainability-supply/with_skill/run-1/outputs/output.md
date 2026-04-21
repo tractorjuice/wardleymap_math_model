@@ -383,6 +383,7 @@ component "Sustainability Expertise" [0.20, 0.45]
 "Science Based Targets (SBTi)" -> "GHG Protocol Methodology"
 "Science Based Targets (SBTi)" -> "Scenario Analysis (TCFD)"
 
+evolve "Scope" 3
 evolve "Deep-Tier Traceability" 0.55
 evolve "Digital Product Passport" 0.55
 evolve "Carbon Accounting Platform" 0.72

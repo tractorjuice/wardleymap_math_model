@@ -220,7 +220,7 @@ component "Fixed Broadband Service" [0.88, 0.86]
 component "Voice & Messaging" [0.85, 0.92]
 component "Public Wi-Fi" [0.72, 0.88]
 
-component "Enterprise Connectivity (SD-WAN and MPLS)" [0.86, 0.72]
+component "Enterprise Connectivity (SD-WAN / MPLS)" [0.86, 0.72]
 component "Private 5G for Industry" [0.78, 0.28]
 component "Cloud Interconnect" [0.72, 0.78]
 component "Managed Security Services" [0.70, 0.62]
@@ -228,22 +228,21 @@ component "Managed Security Services" [0.70, 0.62]
 component "Radio Access Network (RAN)" [0.62, 0.70]
 component "OpenRAN" [0.58, 0.32]
 component "5G Standalone Core" [0.55, 0.48]
-component "4G and LTE Core" [0.55, 0.82]
+component "4G / LTE Core" [0.55, 0.82]
 component "Small Cells & Densification" [0.52, 0.55]
 
-component "IP and MPLS Backbone" [0.48, 0.82]
+component "IP / MPLS Backbone" [0.48, 0.82]
 component "Optical Transport (DWDM)" [0.45, 0.85]
 component "Subsea Cable Systems" [0.42, 0.65]
 component "Terrestrial Fibre Backhaul" [0.42, 0.82]
-
 component "LEO Satellite Broadband (Starlink-class)" [0.60, 0.30]
-component "National Roaming and MOCN" [0.66, 0.60]
+component "National Roaming / MOCN" [0.66, 0.60]
 
 component "Network Operations Centre" [0.35, 0.72]
 component "Telemetry & Assurance" [0.32, 0.55]
 component "Network Automation" [0.28, 0.40]
 
-component "SIM and eSIM Identity" [0.38, 0.78]
+component "SIM / eSIM Identity" [0.38, 0.78]
 component "Network Encryption" [0.30, 0.82]
 component "Post-Quantum Crypto Roadmap" [0.22, 0.15]
 component "Supply-Chain Security Assurance" [0.36, 0.28]
@@ -252,7 +251,7 @@ component "RAN Equipment Vendors" [0.40, 0.55]
 component "Core Network Vendors" [0.38, 0.55]
 component "Trusted-Vendor Ecosystem" [0.46, 0.35]
 
-component "Telecoms Silicon (ASICs and DU and CU)" [0.22, 0.50]
+component "Telecoms Silicon (ASICs / DU / CU)" [0.22, 0.50]
 component "Advanced Semiconductor Fabrication" [0.14, 0.55]
 component "Domestic Foundry Capacity" [0.10, 0.20]
 component "CHIPS-Act Industrial Policy" [0.08, 0.18]
@@ -277,7 +276,7 @@ component "National Cyber Authority Guidance" [0.30, 0.45]
 "Citizens (day-to-day connectivity)" -> "Voice & Messaging"
 "Citizens (day-to-day connectivity)" -> "Public Wi-Fi"
 
-"Businesses (enterprise connectivity)" -> "Enterprise Connectivity (SD-WAN and MPLS)"
+"Businesses (enterprise connectivity)" -> "Enterprise Connectivity (SD-WAN / MPLS)"
 "Businesses (enterprise connectivity)" -> "Private 5G for Industry"
 "Businesses (enterprise connectivity)" -> "Cloud Interconnect"
 "Businesses (enterprise connectivity)" -> "Managed Security Services"
@@ -291,24 +290,24 @@ component "National Cyber Authority Guidance" [0.30, 0.45]
 "Lawful Intercept & CNI Assurance" -> "Telemetry & Assurance"
 "Subsea Cable Protection" -> "Subsea Cable Systems"
 "Resilient Emergency Comms" -> "LEO Satellite Broadband (Starlink-class)"
-"Resilient Emergency Comms" -> "National Roaming and MOCN"
+"Resilient Emergency Comms" -> "National Roaming / MOCN"
 "Spectrum Licensing & Auctions" -> "3GPP Standards"
 
 "Mobile Broadband Service" -> "Radio Access Network (RAN)"
 "Mobile Broadband Service" -> "5G Standalone Core"
-"Mobile Broadband Service" -> "4G and LTE Core"
+"Mobile Broadband Service" -> "4G / LTE Core"
 "Fixed Broadband Service" -> "Terrestrial Fibre Backhaul"
-"Fixed Broadband Service" -> "IP and MPLS Backbone"
+"Fixed Broadband Service" -> "IP / MPLS Backbone"
 "Voice & Messaging" -> "5G Standalone Core"
-"Voice & Messaging" -> "4G and LTE Core"
+"Voice & Messaging" -> "4G / LTE Core"
 "Public Wi-Fi" -> "Terrestrial Fibre Backhaul"
 
-"Enterprise Connectivity (SD-WAN and MPLS)" -> "IP and MPLS Backbone"
-"Enterprise Connectivity (SD-WAN and MPLS)" -> "Managed Security Services"
+"Enterprise Connectivity (SD-WAN / MPLS)" -> "IP / MPLS Backbone"
+"Enterprise Connectivity (SD-WAN / MPLS)" -> "Managed Security Services"
 "Private 5G for Industry" -> "5G Standalone Core"
 "Private 5G for Industry" -> "Small Cells & Densification"
 "Private 5G for Industry" -> "OpenRAN"
-"Cloud Interconnect" -> "IP and MPLS Backbone"
+"Cloud Interconnect" -> "IP / MPLS Backbone"
 "Cloud Interconnect" -> "Data Centres & Colocation"
 "Managed Security Services" -> "Network Encryption"
 "Managed Security Services" -> "Telemetry & Assurance"
@@ -317,38 +316,38 @@ component "National Cyber Authority Guidance" [0.30, 0.45]
 "Radio Access Network (RAN)" -> "Small Cells & Densification"
 "Radio Access Network (RAN)" -> "Terrestrial Fibre Backhaul"
 "OpenRAN" -> "ORAN Alliance Specs"
-"OpenRAN" -> "Telecoms Silicon (ASICs and DU and CU)"
+"OpenRAN" -> "Telecoms Silicon (ASICs / DU / CU)"
 "OpenRAN" -> "RAN Equipment Vendors"
 "5G Standalone Core" -> "Core Network Vendors"
 "5G Standalone Core" -> "Network Automation"
 "5G Standalone Core" -> "3GPP Standards"
-"4G and LTE Core" -> "Core Network Vendors"
-"4G and LTE Core" -> "3GPP Standards"
+"4G / LTE Core" -> "Core Network Vendors"
+"4G / LTE Core" -> "3GPP Standards"
 "Small Cells & Densification" -> "Civil Works & Duct Infrastructure"
 
-"IP and MPLS Backbone" -> "Optical Transport (DWDM)"
-"IP and MPLS Backbone" -> "Network Operations Centre"
+"IP / MPLS Backbone" -> "Optical Transport (DWDM)"
+"IP / MPLS Backbone" -> "Network Operations Centre"
 "Optical Transport (DWDM)" -> "Terrestrial Fibre Backhaul"
 "Optical Transport (DWDM)" -> "Subsea Cable Systems"
 "Terrestrial Fibre Backhaul" -> "Civil Works & Duct Infrastructure"
 "Subsea Cable Systems" -> "Civil Works & Duct Infrastructure"
 
-"LEO Satellite Broadband (Starlink-class)" -> "Telecoms Silicon (ASICs and DU and CU)"
-"National Roaming and MOCN" -> "Radio Access Network (RAN)"
+"LEO Satellite Broadband (Starlink-class)" -> "Telecoms Silicon (ASICs / DU / CU)"
+"National Roaming / MOCN" -> "Radio Access Network (RAN)"
 
 "Network Operations Centre" -> "Telemetry & Assurance"
 "Network Operations Centre" -> "Network Automation"
 "Telemetry & Assurance" -> "Network Automation"
 
-"SIM and eSIM Identity" -> "3GPP Standards"
+"SIM / eSIM Identity" -> "3GPP Standards"
 "Network Encryption" -> "Post-Quantum Crypto Roadmap"
 "Supply-Chain Security Assurance" -> "National Cyber Authority Guidance"
 
-"RAN Equipment Vendors" -> "Telecoms Silicon (ASICs and DU and CU)"
-"Core Network Vendors" -> "Telecoms Silicon (ASICs and DU and CU)"
+"RAN Equipment Vendors" -> "Telecoms Silicon (ASICs / DU / CU)"
+"Core Network Vendors" -> "Telecoms Silicon (ASICs / DU / CU)"
 "Trusted-Vendor Ecosystem" -> "RAN Equipment Vendors"
 "Trusted-Vendor Ecosystem" -> "Core Network Vendors"
-"Telecoms Silicon (ASICs and DU and CU)" -> "Advanced Semiconductor Fabrication"
+"Telecoms Silicon (ASICs / DU / CU)" -> "Advanced Semiconductor Fabrication"
 "Advanced Semiconductor Fabrication" -> "Domestic Foundry Capacity"
 "Domestic Foundry Capacity" -> "CHIPS-Act Industrial Policy"
 

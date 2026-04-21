@@ -371,7 +371,7 @@ evolve "ML Personalisation / Offer Targeting" 0.60
 evolve "Anti-Cheat Server" 0.75
 evolve "Tax / VAT on Virtual Goods" 0.70
 
-note "Fragile - regulatory pressure" [0.42, 0.35]
+note "Fragile — regulatory pressure" [0.42, 0.35]
 note "Build moat (behavioural ML)" [0.30, 0.22]
 note "Rent / buy commodity infra" [0.15, 0.90]
 ```

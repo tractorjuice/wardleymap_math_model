@@ -336,7 +336,8 @@ component "Historic sex-segregated institutions" [0.30, 0.90] (inertia)
 
 "Forstater belief-protection precedent" -> "Gender-critical framing"
 "Forstater belief-protection precedent" -> "Equality / non-discrimination law (sex)"
-"Title IX interpretive guidance" -> "Equality / non-discrimination law (sex)"
+Title IX interpretive guidance->Equality / non-discrimination law (sex)
+size [1100, 800]
 "Equality Act protections (gender identity)" -> "Equality / non-discrimination law (sex)"
 "US Equality Act (stalled)" -> "Equality / non-discrimination law (sex)"
 "Marriage equality (US Obergefell, UK 2014)" -> "Equality / non-discrimination law (sex)"
@@ -364,7 +365,7 @@ evolve "Cass Review interim report (10 March)" 0.35
 evolve "Sports eligibility rules (NCAA, IOC)" 0.35
 evolve "Puberty blockers in minors" 0.30
 evolve "Equality Act protections (gender identity)" 0.70
-evolve "Florida HB 1557 (Parental Rights / Don't Say Gay)" 0.30
+evolve "Florida HB" 1557
 evolve "Gender-affirming care protocols" 0.55
 
 note "Contested Genesis/Custom zone" [0.85, 0.18]
