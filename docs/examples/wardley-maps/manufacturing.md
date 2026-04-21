@@ -9,7 +9,7 @@ wardley-beta
 title manufacturing - SUPPLY CHAINs, Feb 2023
 component PRODUCT [0.87, 0.64]
 component sales forecasting [0.82, 0.62]
-component R&D [0.51, 0.22]
+component R D [0.51, 0.22]
 component prototype [0.73, 0.19]
 component trial [0.72, 0.34]
 component EQUIPMENT [0.67, 0.61]
@@ -54,7 +54,7 @@ component authority [0.49, 0.51]
 agility -> prototype
 visibility -> AWARENESS
 AWARENESS -> SUPPLY CHAIN
-R&D -> SUPPLY CHAIN
+R D -> SUPPLY CHAIN
 visibility -> rate of change
 rate of change -> METRICS
 manufacturer -> agility
@@ -71,7 +71,7 @@ forecasting -> AWARENESS
 certification -> METRICS
 MATERIALS -> SUPPLY CHAIN
 agility -> AWARENESS
-AWARENESS -> R&D
+AWARENESS -> R D
 data -> METRICS
 manufacturer -> ROCE
 relationships -> SUPPLY CHAIN
@@ -80,7 +80,7 @@ government -> CNI
 CNI -> SUPPLY CHAIN
 capital -> ROCE
 cost -> MATERIALS
-design -> R&D
+design -> R D
 SUPPLY CHAIN -> forecasting
 PRODUCT -> manufacturer
 PRODUCT -> cost
@@ -90,7 +90,7 @@ ROCE -> PRODUCT
 certification -> MATERIALS
 authority -> certification
 SUPPLY CHAIN -> ENERGY
-novel -> R&D
+novel -> R D
 cost -> EQUIPMENT
 EQUIPMENT -> MATERIALS
 EQUIPMENT -> certification

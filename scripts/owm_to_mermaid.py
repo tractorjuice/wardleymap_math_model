@@ -21,7 +21,9 @@ from pathlib import Path
 def sanitise_name(raw: str) -> str:
     s = raw.strip()
     s = s.replace("/", " and ")
-    s = re.sub(r"[()\[\]{}]", "", s)
+    # Mermaid wardley-beta names only accept letters, digits, and spaces.
+    # Everything else (hyphens, parens, brackets, punctuation) becomes space.
+    s = re.sub(r"[^A-Za-z0-9 ]", " ", s)
     s = re.sub(r"\s+", " ", s).strip()
     return s
 

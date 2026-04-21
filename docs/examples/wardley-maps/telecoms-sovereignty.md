@@ -39,8 +39,8 @@ component NETWORK TOPOLOGY [0.39, 0.64]
 component Fixed [0.62, 0.74]
 component Mobile [0.62, 0.68]
 component THEATRE [0.21, 0.50]
-component awareness of land-sea-air-space [0.19, 0.70]
-component awareness of supply-chains [0.19, 0.35]
+component awareness of land sea air space [0.19, 0.70]
+component awareness of supply chains [0.19, 0.35]
 component peering [0.53, 0.63]
 component REALITY [0.09, 0.49]
 component geography [0.07, 0.31]
@@ -62,12 +62,12 @@ GOVERNMENT -> LEGITIMACY
 LEGITIMACY -> SOVEREIGNTY
 people -> perception of success
 perception of success -> CNI
-digital -> awareness of supply-chains
-awareness of supply-chains -> economic
+digital -> awareness of supply chains
+awareness of supply chains -> economic
 satellite -> launch vehicles
-awareness of land-sea-air-space -> territorial
-geography -> awareness of land-sea-air-space
-space -> awareness of land-sea-air-space
+awareness of land sea air space -> territorial
+geography -> awareness of land sea air space
+space -> awareness of land sea air space
 COMMUNICATION -> ACCESS DEVICE
 COMMUNICATION -> ACCESS NETWORK
 ACCESS NETWORK -> Compute
@@ -75,12 +75,12 @@ Compute -> Power
 CNI -> COMMUNICATION
 Real estate -> geography
 NETWORK EQPT -> EXPERTISE
-awareness of supply-chains -> EXPERTISE
-EXPERTISE -> awareness of land-sea-air-space
+awareness of supply chains -> EXPERTISE
+EXPERTISE -> awareness of land sea air space
 information supply chain -> NETWORK EQPT
 NETWORK EQPT -> physical supply chain
-information supply chain -> awareness of supply-chains
-physical supply chain -> awareness of supply-chains
+information supply chain -> awareness of supply chains
+physical supply chain -> awareness of supply chains
 Towers -> Real estate
 cable -> Real estate
 NETWORK TOPOLOGY -> NETWORK EQPT

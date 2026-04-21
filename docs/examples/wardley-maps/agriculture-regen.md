@@ -7,7 +7,7 @@ Converted from OWM via `scripts/owm_to_mermaid.py`. Some edges may be dropped if
 ```mermaid
 wardley-beta
 title AGRICULTURE - regenerative farming - AUG 2022
-component nutrient density? [0.87, 0.39]
+component nutrient density [0.87, 0.39]
 component preservation [0.67, 0.63]
 component water [0.34, 0.71]
 component forestation [0.67, 0.49]

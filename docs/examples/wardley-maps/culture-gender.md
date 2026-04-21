@@ -30,7 +30,7 @@ component hiearachy [0.52, 0.71]
 component ownership [0.24, 0.60]
 component exclusion [0.09, 0.73]
 component property [0.18, 0.65]
-component self-expression [0.14, 0.43]
+component self expression [0.14, 0.43]
 component SOCIAL CLASS [0.70, 0.57]
 identity -> SEXUAL IDENTITY
 phenotype -> epigentic
@@ -71,8 +71,8 @@ property -> ownership
 ownership -> power
 power -> memory
 memory -> property
-memory -> self-expression
-self -> self-expression
+memory -> self expression
+self -> self expression
 gender expression -> SOCIAL CLASS
 SOCIAL CLASS -> COLLECTIVE
 SEXUAL ORIENTATION -> SOCIAL CLASS
