@@ -2,92 +2,129 @@
 
 Source: [`/workspaces/wardleymap_math_model/skills/wardley-map-workspace/arc-kit-compare/eval-ai-trust/wardley-reference.owm`](../../../skills/wardley-map-workspace/arc-kit-compare/eval-ai-trust/wardley-reference.owm)
 
-Converted from OWM via `scripts/owm_to_mermaid.py`.
+Converted from OWM via `scripts/owm_to_mermaid.py` — a Python port of [tractorjuice/arc-kit's convert.mjs](https://github.com/tractorjuice/arc-kit/blob/main/tests/mermaid-wardley/convert.mjs). Strategy: always double-quote names (STRING terminal in the grammar), which sidesteps keyword-collisions and hyphen/arrow lexer issues. Pipelines detected via `pipeline X [min, max]` + same-visibility component proximity.
 
 ```mermaid
 wardley-beta
 title AI, TRUST, JUNE 2023
-anchor individuals [0.93, 0.26]
-anchor government [0.93, 0.66]
-anchor business [0.93, 0.44]
-component Safety [0.81, 0.29]
-component Competitive advantage [0.83, 0.52]
-component Reputation [0.82, 0.38]
-component Power [0.84, 0.76]
-component Enforcement [0.43, 0.04]
-component Regulations [0.43, 0.14]
-component Objectively evaluatable [0.41, 0.79]
-component Believed [0.41, 0.59]
-component OUTPUT [0.43, 0.70]
-component Algorithm and Model [0.58, 0.61]
-component Policy [0.53, 0.09]
-component DATA [0.20, 0.70]
-component Input DATA [0.18, 0.61]
-component Training [0.18, 0.79]
-component ACCESS [0.68, 0.30]
-component Bias [0.06, 0.65]
-component Quality [0.10, 0.46]
-component CONTROLS [0.29, 0.15]
-component Leading [0.27, 0.11]
-component Lagging [0.27, 0.19]
-component Computation [0.05, 0.75]
-component Feedback Loop [0.11, 0.05]
-component constitution [0.22, 0.03]
-component Ranking Reputation Engine and Trust Broker [0.30, 0.35]
-component Checks and balances Guardrails [0.16, 0.31]
-component Forensics [0.15, 0.13]
-component Audits [0.10, 0.17]
-component Benchmarks [0.04, 0.37]
-component Defend IP [0.66, 0.39]
-component Transparency [0.66, 0.21]
-component Technologists [0.04, 0.18]
-component Source [0.07, 0.55]
-component Asymmetrical [0.73, 0.22]
-component Computation language [0.24, 0.28]
-Reputation -> CONTROLS
-Transparency -> Algorithm and Model
-business -> Safety
-government -> Safety
-Competitive advantage -> Algorithm and Model
-individuals -> Safety
-government -> Power
-government -> Competitive advantage
-business -> Competitive advantage
-Safety -> OUTPUT
-government -> Reputation
-business -> Reputation
-Safety -> Algorithm and Model
-Safety -> Input DATA
-DATA -> Quality
-Lagging -> Checks and balances Guardrails
-Lagging -> Audits
-Algorithm and Model -> CONTROLS
-Input DATA -> CONTROLS
-OUTPUT -> CONTROLS
-Lagging -> Forensics
-Algorithm and Model -> DATA
-Competitive advantage -> ACCESS
-Safety -> Transparency
-DATA -> Transparency
-Power -> Policy
-Policy -> Regulations
-Policy -> Enforcement
-Policy -> constitution
-constitution -> CONTROLS
-constitution -> Feedback Loop
-constitution -> Technologists
-CONTROLS -> Computation language
-Computation language -> Computation
-Computation language -> constitution
-Regulations -> Computation language
-Safety -> CONTROLS
-Enforcement -> CONTROLS
-DATA -> Bias
-Ranking Reputation Engine and Trust Broker -> Benchmarks
-Quality -> Benchmarks
-DATA -> Source
-Algorithm and Model -> Ranking Reputation Engine and Trust Broker
-Competitive advantage -> Asymmetrical
-Asymmetrical -> ACCESS
+size [1100, 800]
+evolution genesis / concept  -> custom / emerging  -> product / converging  -> commodity / accepted
+
+anchor "individuals" [0.93, 0.26]
+anchor "government" [0.93, 0.66]
+anchor "business" [0.93, 0.44]
+
+component "Safety" [0.81, 0.29]
+component "Competitive advantage" [0.83, 0.52]
+component "Reputation" [0.82, 0.38]
+
+component "Power" [0.84, 0.76]
+component "Enforcement" [0.43, 0.04]
+component "Regulations" [0.43, 0.14]
+
+component "OUTPUT" [0.43, 0.70]
+pipeline "OUTPUT" {
+  component "Believed" [0.59]
+  component "Objectively evaluatable" [0.79]
+}
+
+component "Algorithm / Model" [0.58, 0.61]
+component "Policy" [0.53, 0.09]
+
+component "DATA" [0.20, 0.70]
+pipeline "DATA" {
+  component "Input  DATA" [0.61]
+  component "Training" [0.79]
+}
+component "ACCESS" [0.68, 0.30]
+pipeline "ACCESS" {
+  component "Transparency" [0.21]
+  component "Asymmetrical" [0.22]
+  component "Defend (IP)" [0.39]
+}
+
+component "Bias" [0.06, 0.65]
+
+component "Quality" [0.10, 0.46]
+
+component "CONTROLS" [0.29, 0.15]
+pipeline "CONTROLS" {
+  component "Leading" [0.11]
+  component "Lagging" [0.19]
+}
+
+component "Computation" [0.05, 0.75]
+
+component "Feedback Loop" [0.11, 0.05]
+
+component "constitution" [0.22, 0.03]
+
+component "Ranking (Reputation Engine / Trust Broker)" [0.30, 0.35]
+
+component "Checks and balances (Guardrails)" [0.16, 0.31]
+
+component "Forensics" [0.15, 0.13]
+
+component "Audits" [0.10, 0.17]
+component "Benchmarks" [0.04, 0.37]
+
+component "Technologists" [0.04, 0.18]
+component "Source" [0.07, 0.55]
+
+"Reputation" -> "CONTROLS"
+"Transparency" -> "Whitehat Developer"
+"Transparency" -> "Algorithm / Model"
+"business" -> "Safety"
+"government" -> "Safety"
+"Competitive advantage" -> "Algorithm / Model"
+"individuals" -> "Safety"
+"government" -> "Power"
+"government" -> "Competitive advantage"
+"business" -> "Competitive advantage"
+"Safety" -> "OUTPUT"
+"government" -> "Reputation"
+"business" -> "Reputation"
+"Safety" -> "Algorithm / Model"
+"Safety" -> "Input  DATA"
+"DATA" -> "Quality"
+"Lagging" -> "Checks and balances (Guardrails)"
+"Lagging" -> "Audits"
+"Algorithm / Model" -> "CONTROLS"
+"Input  DATA" -> "CONTROLS"
+"OUTPUT" -> "CONTROLS"
+"Lagging" -> "Forensics"
+"Algorithm / Model" -> "DATA"
+"Competitive advantage" -> "ACCESS"
+"Safety" -> "Transparency"
+"DATA" -> "Transparency"
+"Power" -> "Policy"
+"Policy" -> "Regulations"
+"Policy" -> "Enforcement"
+"Policy" -> "constitution"
+"constitution" -> "CONTROLS"
+"constitution" -> "Feedback Loop"
+"constitution" -> "Technologists"
+"CONTROLS" -> "Computation language"
+"Computation language" -> "Computation"
+"Computation language" -> "constitution"
+"Regulations" -> "Computation language"
+"Safety" -> "CONTROLS"
+"Enforcement" -> "CONTROLS"
+"DATA" -> "Bias"
+"Ranking (Reputation Engine / Trust Broker)" -> "Benchmarks"
+"Quality" -> "Benchmarks"
+"DATA" -> "Source"
+"Algorithm / Model" -> "Ranking (Reputation Engine / Trust Broker)"
+"Competitive advantage" -> "Asymmetrical"
+"Asymmetrical" -> "ACCESS"
+"Safety" -> "Shared Responsibilities"
+"Power" -> "Shared Responsibilities"
+
 note "+Speed:human->computation" [0.17, 0.01]
+
+component "Computation language" [0.24, 0.28]
+
+evolve "Forensics" 0.2
+evolve "Regulations" 0.3
+evolve "Policy" 0.3
 ```
