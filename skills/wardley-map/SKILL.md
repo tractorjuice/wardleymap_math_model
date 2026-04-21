@@ -193,6 +193,25 @@ Mental edge-walking fails on maps with more than ~20 edges. Past evals show that
 
 If in doubt, search-and-replace: bare "Commodity" → "Commodity (+utility)", bare "Product" (when referring to the stage) → "Product (+rental)". Don't rewrite cases where "Product" means the user's actual product, only stage references.
 
+### Step 5.6 — Layout check (advisory)
+
+The validator catches structural errors; it doesn't catch visual-render problems that occur when coordinates are valid but sub-optimal. Run the layout checker against the same draft:
+
+```bash
+node "${CLAUDE_SKILL_DIR}/scripts/check_layout.mjs" ./draft.owm
+```
+
+It flags four classes of issue, each with a concrete fix:
+
+1. **Near-duplicate coordinates** (`|Δν| < 0.02 AND |Δε| < 0.02`). Two nodes at effectively the same position render on top of each other. Past skill outputs have produced 7+ pairs of components at literally identical coordinates (from cheat-sheet midpoints agreeing). **Fix these**: nudge one of the pair by 0.03 in the direction of its actual semantic position (a component that's slightly more industrialised shifts +0.03 in ε; slightly higher-visibility shifts +0.03 in ν).
+2. **Stage-boundary straddling** (component within ±0.01 of ε ∈ {0.25, 0.50, 0.75}). Looks accidentally "in both stages" on render. Advisory — fix by nudging ε±0.03 into whichever stage the cheat sheet actually picks. If truly between stages, leave it and say so in the analysis.
+3. **Canvas-edge clipping** (anchor at ν > 0.98 or < 0.02; node at ε > 0.99 or < 0.01). The label gets cut by the rendered border. Pull back to ν = 0.96 / 0.04 and ε = 0.97 / 0.03 respectively.
+4. **Stage imbalance** (>60% of components in one stage, or any stage empty). Often signals a part of the landscape is under-mapped. Re-check that stage's scope; extend or defend as appropriate.
+
+The layout checker is advisory by default (exits 0 even with warnings). If your pipeline wants to hard-fail on warnings, pass `--strict`. After any coordinate nudge, **re-run `validate_owm.mjs`** — moving a node can break the visibility hard rule on its edges. Iterate validator → layout-check → fix until both are clean.
+
+Near-duplicates are the highest-value catch; past benchmark subagents have shipped maps with 5-7 collision pairs that the validator passes silently. Fixing them is the difference between a readable map and a pile of overlapping labels.
+
 ### Step 6 — Derived heuristics (label as such)
 
 The three metrics below are **heuristics proposed by this skill's math model, not canonical Wardley concepts**. Treat as attention prompts only.

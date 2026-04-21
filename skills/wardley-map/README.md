@@ -42,6 +42,7 @@ Ask for "render this on GitHub" or "emit a Mermaid block" and Claude will also r
 - `SKILL.md` — the skill body (procedure + OWM output format + when to consult each reference).
 - `evals/evals.json` — test cases with assertions used to validate the skill.
 - `scripts/validate_owm.mjs` — deterministic OWM validator. Checks coordinate ranges, edge endpoint existence, and the `ν(a) ≥ ν(b)` visibility constraint. Called by Step 5.5 before submitting any map.
+- `scripts/check_layout.mjs` — advisory layout checker (Step 5.6). Catches near-duplicate coordinates that render on top of each other, components landing on stage boundaries, canvas-edge clipping, and stage-distribution imbalance. Exits 0 by default; pass `--strict` to hard-fail on warnings.
 - `scripts/owm_to_mermaid.mjs` — optional post-step converter that emits a Mermaid `wardley-beta` block from a validated OWM draft. See SKILL.md §3.1. Always double-quotes names to sidestep Mermaid's bare-name restrictions (no hyphens, no reserved-keyword prefixes).
 - `references/` — bundled reference material the skill loads on demand:
   - `climatic-patterns.md` — 27 patterns across 6 categories.
