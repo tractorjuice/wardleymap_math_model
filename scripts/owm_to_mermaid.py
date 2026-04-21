@@ -4,9 +4,25 @@
 Python port of tractorjuice/arc-kit's tests/mermaid-wardley/convert.mjs.
 
 Strategy: always emit double-quoted names. Mermaid's wardley-beta grammar
-accepts `STRING | ID | NAME_WITH_SPACES` everywhere a name is expected;
-using STRING (double-quoted) avoids every keyword-collision and hyphen
-issue. Internal double quotes inside a name are replaced with single quotes.
+(packages/parser/src/language/wardley/wardley.langium) accepts
+`STRING | ID | NAME_WITH_SPACES` everywhere a name is expected; using
+STRING (double-quoted) sidesteps every collision at once.
+
+Why quoting matters (documented root causes in the mermaid grammar):
+
+  - NAME_WITH_SPACES is defined as
+        /(?!title\\s|accTitle|accDescr)[A-Za-z][A-Za-z0-9_()&]*(?:[ \\t]+[A-Za-z(][A-Za-z0-9_()&]*)*/
+    so hyphens and slashes aren't allowed in bare names. A name like
+    `real-time processing` splits into `real` + stray `-time` and parsing
+    fails (the `-` is mistaken for the start of `->`).
+  - Keyword terminals (`label`, `evolve`, `note`, `pipeline`, ...) are
+    matched eagerly at any word boundary; a bare name starting with one
+    (e.g. `labelling`) is lexed as keyword+suffix and fails.
+  - Pure-digit names (OWM annotation markers like `1`) aren't valid IDs.
+
+Quoting produces `component "real-time processing" [...]` which is
+parsed as the STRING alternative and accepted verbatim. Internal double
+quotes inside a name are replaced with single quotes.
 
 Preserves: title, evolution, anchor, component (+ build/buy/outsource
 decorator + inertia flag + label offset), links, evolve, note, annotation(s),
@@ -167,9 +183,39 @@ def convert(owm: str, filename: str = "") -> str:
             has_title = True
             continue
 
-        # evolution
-        if re.match(r"^evolution\s+", s, re.I):
-            out.append(s)
+        # evolution <stage> -> <stage> -> ...
+        # Quote every stage name (and secondary name after `/`) for the same
+        # reason component names are quoted — NAME_WITH_SPACES excludes `-`,
+        # reserved-keyword prefixes, etc.
+        m = re.match(r"^evolution\s+(.+)$", s, re.I)
+        if m:
+            stages_raw = [p.strip() for p in m.group(1).split("->")]
+            parts = []
+            for stage in stages_raw:
+                # Optional `@boundary` (WARDLEY_NUMBER) and `/secondaryName`
+                boundary = None
+                secondary = None
+                work = stage
+                if "@" in work:
+                    head, tail = work.split("@", 1)
+                    work = head.strip()
+                    mb = re.match(r"^\s*([\d.]+)\s*(.*)$", tail)
+                    if mb:
+                        boundary = mb.group(1)
+                        rest_after = mb.group(2).strip()
+                        if rest_after.startswith("/"):
+                            secondary = rest_after[1:].strip()
+                if "/" in work and secondary is None:
+                    idx = work.index("/")
+                    secondary = work[idx + 1:].strip()
+                    work = work[:idx].strip()
+                piece = quote_name(work)
+                if boundary:
+                    piece += f"@{boundary}"
+                if secondary:
+                    piece += f" / {quote_name(secondary)}"
+                parts.append(piece)
+            out.append("evolution " + " -> ".join(parts))
             continue
 
         # anchor

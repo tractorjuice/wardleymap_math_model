@@ -2,13 +2,13 @@
 
 Source: [`/workspaces/wardleymap_math_model/skills/wardley-map-workspace/arc-kit-compare/eval-ai-trust/wardley-reference.owm`](../../../skills/wardley-map-workspace/arc-kit-compare/eval-ai-trust/wardley-reference.owm)
 
-Converted from OWM via `scripts/owm_to_mermaid.py` — a Python port of [tractorjuice/arc-kit's convert.mjs](https://github.com/tractorjuice/arc-kit/blob/main/tests/mermaid-wardley/convert.mjs). Strategy: always double-quote names (STRING terminal in the grammar), which sidesteps keyword-collisions and hyphen/arrow lexer issues. Pipelines detected via `pipeline X [min, max]` + same-visibility component proximity.
+Converted from OWM via `scripts/owm_to_mermaid.py` — Python port of [arc-kit's convert.mjs](https://github.com/tractorjuice/arc-kit/blob/main/tests/mermaid-wardley/convert.mjs). All names (anchors, components, pipeline parents, edges, evolve targets, evolution stages) are double-quoted because mermaid's `NAME_WITH_SPACES` terminal excludes hyphens and lexes keywords like `label`/`evolve` eagerly as prefixes. Quoting uses the `STRING` alternative and accepts any text verbatim.
 
 ```mermaid
 wardley-beta
 title AI, TRUST, JUNE 2023
 size [1100, 800]
-evolution genesis / concept  -> custom / emerging  -> product / converging  -> commodity / accepted
+evolution "genesis" / "concept" -> "custom" / "emerging" -> "product" / "converging" -> "commodity" / "accepted"
 
 anchor "individuals" [0.93, 0.26]
 anchor "government" [0.93, 0.66]
