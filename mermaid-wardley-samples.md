@@ -96,7 +96,7 @@ title Internal Developer Platform
 anchor Product Engineer [0.96, 0.55]
 anchor Platform Engineer [0.92, 0.40]
 component Service Template [0.82, 0.30]
-component CI/CD Pipeline [0.78, 0.55]
+component CICD Pipeline [0.78, 0.55]
 component Deployment Gateway [0.72, 0.45]
 component Observability Stack [0.65, 0.60]
 component Secrets Management [0.55, 0.70]
@@ -104,11 +104,11 @@ component Kubernetes Platform [0.40, 0.72]
 component Container Runtime [0.28, 0.88]
 component Cloud IaaS [0.15, 0.95]
 Product Engineer -> Service Template
-Product Engineer -> CI/CD Pipeline
+Product Engineer -> CICD Pipeline
 Platform Engineer -> Deployment Gateway
 Platform Engineer -> Kubernetes Platform
-Service Template -> CI/CD Pipeline
-CI/CD Pipeline -> Deployment Gateway
+Service Template -> CICD Pipeline
+CICD Pipeline -> Deployment Gateway
 Deployment Gateway -> Kubernetes Platform
 Observability Stack -> Kubernetes Platform
 Secrets Management -> Kubernetes Platform
