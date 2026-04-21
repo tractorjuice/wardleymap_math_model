@@ -36,7 +36,12 @@
       "Read(//workspaces/wardleymap_math_model/**)",
       "Read(//home/**)",
       "Bash(curl -fsSL \"https://api.github.com/repos/tractorjuice/arc-kit/contents/arckit-claude/skills/wardley-mapping\")",
-      "Bash(git check-ignore *)"
+      "Bash(git check-ignore *)",
+      "Bash(curl -fsSL \"https://api.github.com/repos/swardley/WARDLEY-MAP-REPOSITORY/contents/\")",
+      "Bash(curl -fsSL \"https://api.github.com/repos/swardley/WARDLEY-MAP-REPOSITORY/contents/ai\")",
+      "Bash(curl -fsSL \"https://raw.githubusercontent.com/swardley/WARDLEY-MAP-REPOSITORY/main/ai/TRUST\")",
+      "Bash(curl -fsSL https://api.github.com/repos/swardley/WARDLEY-MAP-REPOSITORY/contents/__TRACKED_VAR__)",
+      "Bash(git mv *)"
     ]
   }
 }
