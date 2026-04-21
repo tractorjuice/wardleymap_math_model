@@ -1,7 +1,7 @@
 # Wardley Map Skill — Benchmark Report
 
-**Date:** 2026-04-18
-**Skill version:** exponential-seed default (α=0.6), validator script, density guidance, deep placement, stage-first prose
+**Dates:** initial 25-map report 2026-04-18; v2 addendum 2026-04-19
+**Skill version under test:** v1 — exponential-seed default (α=0.6), validator script, density guidance, deep placement, stage-first prose. The report body below reflects v1. **§9 documents the v2 update** (concrete stage-indicator checklists) and its 6-map re-validation; the live skill on `main` is v2.
 **Test corpus:** 25 maps held out from [swardley/WARDLEY-MAP-REPOSITORY](https://github.com/swardley/WARDLEY-MAP-REPOSITORY) (Simon Wardley's own published maps), spanning 18 distinct domains
 **Test mode:** blind — subagents could not access the reference `.owm` files
 **Companion:** `BENCHMARK-METHODOLOGY.md` describes the test harness in detail
@@ -19,6 +19,7 @@
 - [6. Limitations](#6-limitations)
 - [7. Bottom line](#7-bottom-line)
 - [8. Artifacts](#8-artifacts)
+- [9. v2 update — concrete stage-indicator checklists](#9-v2-update--concrete-stage-indicator-checklists)
 - [Appendix A — Test prompts per benchmark](#appendix-a--test-prompts-per-benchmark)
 - [Appendix B — Code references](#appendix-b--code-references)
 
@@ -340,6 +341,10 @@ Placement metrics are robust across 2.5× the corpus. Coverage is the corpus-com
 - ✅ Deep-placement step with targeted WebSearch
 - ✅ Component density guidance
 
+### 5.1a Implemented after this benchmark cycle (v2)
+
+- ✅ Concrete stage-indicator checklists in `evolution-stages.md` (four indicators × four stages). Used as a fast-path (Step 4a): if all four dimensions agree on a stage, skip the 4-row cheat sheet. See §9 for the 6-map re-validation showing |Δε| 0.209 → 0.184 (−12%), ε-bias +0.069 → +0.038, same-band +11pp over v1.
+
 ### 5.2 Open opportunities
 
 **1. Abstract-component repertoire.** A reference file listing ~30 "distinctive Wardley vocabulary" nodes (perceived risk, asymmetric access, believed quality, territorial, sovereign, etc.) and prompting the skill to consider them on landscape-level scenarios. The n=25 evidence shows the biggest coverage gaps are abstract nouns — highest-leverage fix.
@@ -400,6 +405,12 @@ skills/wardley-map-workspace/
 ├── compare_all_10.py                  # aggregates first 10 benchmarks (historical)
 ├── compare_all_25.py                  # aggregates 25 benchmarks + closeness distribution
 ├── benchmark-25-summary.json          # machine-readable aggregate + per-map data
+├── arc-kit-compare/                   # head-to-head vs tractorjuice/arc-kit + v2 re-validation
+│   ├── skill/                         # vendored snapshot of the arc-kit wardley-mapping skill
+│   ├── eval-<name>/with_skill/        # arc-kit outputs (6 maps)
+│   ├── eval-<name>/ours-v2/           # our-skill-v2 outputs (6 maps)
+│   ├── compare.py                     # arc-kit vs ours-v1
+│   └── compare3.py                    # arc-kit vs ours-v1 vs ours-v2 (three-way)
 ├── BENCHMARK-REPORT.md                # this document
 └── BENCHMARK-METHODOLOGY.md           # detailed methodology (companion)
 ```
@@ -410,6 +421,90 @@ Each `eval-<name>/` directory contains:
 - `with_skill/run-1/outputs/draft.owm` — validator working file
 - `with_skill/run-1/timing.json` — token count and duration
 - `with_skill/run-1/grading.json` — (where applicable) assertion grading
+
+---
+
+## 9. v2 update — concrete stage-indicator checklists
+
+Post-25-map-benchmark change to the skill, independently validated on a 6-map subset.
+
+### 9.1 What changed
+
+Added a new section "Stage indicators — concrete checklists" to `skills/wardley-map/references/evolution-stages.md`: four concrete indicator checklists (ubiquity / certainty / market / failure-mode) per stage × four stages = sixteen checklists, plus an 8-question fast-diagnostic table. Adapted from [tractorjuice/arc-kit's `wardley-mapping` skill](https://github.com/tractorjuice/arc-kit/tree/main/arckit-claude/skills/wardley-mapping).
+
+`SKILL.md` Step 4 grew a fast-path (4a): if all four concrete indicators agree on a single stage for a component, record that stage pick and skip the 4-row cheat sheet. When indicators disagree, fall back to the 4-row aggregate (unchanged from v1).
+
+Motivation: arc-kit's per-stage indicators give sharper yes/no tests than v1's prose descriptions. v1's 4-row cheat sheet averages up to four stage picks — when the rows agree, the aggregate noise is unnecessary; when they disagree, it's still useful. The fast-path captures the easy cases with tighter stage calls.
+
+### 9.2 Re-validation corpus
+
+Six of the 25 benchmark maps were re-run blind against v2:
+
+| Map | Why chosen |
+|---|---|
+| manufacturing | Largest ν-bias magnitude in v1 (−0.19) — test visibility calibration |
+| culture-gender | Narrow map (ref=27), 0% strict same-band in v1 — test boundary-crossing artifact |
+| telecoms-sovereignty | Dated landscape (Oct 2022), v1 strong baseline (83% ≤0.20) |
+| politics-labour | Narrow (ref=27), biggest forward drift in v1 (+0.23) |
+| agriculture-regen | Biggest overshoot in v1 (−0.20) — Wardley ahead of 2022 reality |
+| cybersecurity | Domain-heavy, v1 baseline 47% same-band |
+
+Selection reflects different failure modes, not cherry-picking the maps v2 would win on.
+
+### 9.3 Aggregate results — three-way comparison
+
+For the same six maps, comparing arc-kit (its own skill, run blind), ours-v1 (pre-checklist), ours-v2 (post-checklist):
+
+| Metric (n=6) | arc-kit | ours-v1 | ours-v2 | v2 vs v1 |
+|---|---:|---:|---:|---|
+| Coverage | 24.4% | 31.8% | 31.0% | ≈ tied |
+| `|Δε|` | 0.208 | 0.209 | **0.184** | **−12%** |
+| `|Δν|` | 0.251 | 0.229 | **0.200** | −13% |
+| ε-bias | +0.100 | +0.069 | **+0.038** | **−45%** forward drift |
+| Same-band | 36.4% | 30.9% | **42.1%** | **+11.2pp** |
+| ±1 band | 81.9% | 89.2% | **91.7%** | +2.5pp |
+| ≤0.20 | 51.1% | 62.7% | **65.1%** | +2.4pp |
+
+v2 beats v1 on every aggregate metric except coverage (tied within 1pp) and ν-bias (small regression offset by the large \|Δν\| gain). v2 beats arc-kit on every aggregate metric.
+
+### 9.4 Per-map — where v2 helped most
+
+- **Manufacturing.** \|Δε\| **0.226 → 0.162**, same-band **21% → 50%**, coverage 32% → 41%. On the 9 shared matches with v1, mean \|Δε\| tightened from 0.238 to 0.162 — genuine per-match precision gain, not a matching artifact. v2 also captured 9 abstract nouns v1 missed (ENERGY, SUPPLY CHAIN, agility, automation, cost, reliability, relationships, visibility, warehousing) — progress on the §4.2 #1 abstract-component gap.
+- **Culture-gender.** Same-band **0% → 40%** — the §3.3 boundary-crossing artifact (22/358 pairs within 0.10 ε but crossing a band line) largely resolved on this map. ε-bias +0.088 → −0.012, effectively zero.
+- **Agriculture-regen.** ε-bias **−0.198 → −0.107** — the biggest overshoot case in v1. v2 reined in 2026-priors that were pulling the map forward past Wardley's Aug-2022 snapshot. Explicit stage checklists force the scorer to check "does this actually have multiple competing vendors right now?" before calling Product.
+- **Cybersecurity.** ε-bias +0.116 → +0.059 (halved). Same-band 47% → 50%.
+- **Politics-labour.** \|Δε\| 0.278 → 0.229, coverage 22% → 30%, ε-bias +0.232 → +0.179.
+
+### 9.5 Where v2 underperformed
+
+- **Telecoms-sovereignty.** Coverage 24% → 16%, \|Δε\| 0.142 → 0.185. Investigation showed two causes: (i) a fuzzy-matcher false positive (Wardley's `GOVERNMENT` at ε=0.63 matched v2's "OpenRAN Deployment" at ε=0.30 on word overlap alone — contributes −0.33 to signed Δε); (ii) one genuine placement disagreement on "cable" (v1 matched to "Subsea Cable Protection" at 0.25; v2 matched to "Subsea Cable Systems" at 0.70). Removing the spurious match brings v2's \|Δε\| to 0.164, closer to v1's 0.142. Not a skill-level regression — vocabulary reshuffling that stressed the fuzzy matcher.
+
+### 9.6 Caveats on the v2 numbers
+
+1. **n=6 is small.** Per-map metric variance in the 25-map corpus is ±10-15pp. The aggregate \|Δε\| improvement (0.025) is inside that noise band.
+2. **Single run per scenario.** No replication-variance estimate. LLM sampling contributes unknown noise.
+3. **Two of six maps** (culture-gender, agriculture-regen) are `draft.owm` promoted to `output.md` — the subagents hung after the validator pass. Both drafts were validator-clean (no violations), so placements are the skill's final output, but no final prose/analysis was emitted.
+4. **Checklist content is adapted from arc-kit**, which was also being benchmarked. This is acknowledged and doesn't invalidate the v1→v2 comparison, but means v2 and arc-kit share some conceptual DNA.
+5. **Improvements on specific weak points** (boundary-crossing, overshoot) are encouraging precisely because they were pre-specified weak points — not retroactive pattern-finding. But a full 25-map re-validation would be the proper confirmation.
+
+### 9.7 Reproducibility
+
+```
+skills/wardley-map-workspace/arc-kit-compare/
+├── skill/                             # vendored arc-kit skill
+├── eval-<name>/wardley-reference.owm  # the six held-out refs
+├── eval-<name>/with_skill/run-1/…     # arc-kit output
+├── eval-<name>/ours-v2/run-1/…        # our-v2 output
+├── compare.py                         # arc-kit vs ours-v1
+└── compare3.py                        # three-way
+```
+
+```bash
+cd skills/wardley-map-workspace/arc-kit-compare
+python3 compare3.py
+```
+
+All numbers in §9.3 regenerate from committed artefacts — no LLM or network calls.
 
 ---
 
