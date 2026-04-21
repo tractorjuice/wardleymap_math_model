@@ -1,6 +1,6 @@
 # Mermaid Wardley Map samples — GitHub rendering test
 
-Four increasingly-featured examples to verify GitHub's Mermaid renderer (v11.44-ish) handles the `wardley` diagram type introduced in mermaid 11.14. Syntax reference: [mcraddock — Bringing Wardley Maps to Mermaid](https://medium.com/@mcraddock/bringing-wardley-maps-to-mermaid-a-journey-from-idea-to-open-source-contribution-8fe5009eafd3).
+Four increasingly-featured examples to verify GitHub's Mermaid renderer (v11.44-ish) handles the `wardley-beta` diagram type introduced in mermaid 11.14. Syntax reference: [mcraddock — Bringing Wardley Maps to Mermaid](https://medium.com/@mcraddock/bringing-wardley-maps-to-mermaid-a-journey-from-idea-to-open-source-contribution-8fe5009eafd3).
 
 Coordinates are `[visibility, evolution]` on $[0, 1]$ — same convention as OWM. Top-right corner is the anchor; bottom-left is commodity infrastructure.
 
@@ -11,7 +11,7 @@ Coordinates are `[visibility, evolution]` on $[0, 1]$ — same convention as OWM
 Tests the smallest possible diagram.
 
 ```mermaid
-wardley
+wardley-beta
 title Minimal example
 anchor User [0.95, 0.50]
 component Service [0.75, 0.45]
@@ -29,7 +29,7 @@ API -> Database
 Simon Wardley's canonical worked example, matching the [Part 3 doc](docs/core/part-3-tea-shop-example.md).
 
 ```mermaid
-wardley
+wardley-beta
 title Tea Shop Value Chain
 anchor Business [0.95, 0.63]
 component Cup of Tea [0.79, 0.61]
@@ -54,7 +54,7 @@ note Standardising power allows Kettles to evolve faster [0.30, 0.49]
 Tests `evolve` movement arrows, multiple `note` annotations, and a deeper dependency graph.
 
 ```mermaid
-wardley
+wardley-beta
 title B2B SaaS — Observability Product
 anchor Engineering Team [0.95, 0.60]
 component Dashboards [0.85, 0.55]
@@ -91,7 +91,7 @@ note Trace stores are rapidly commoditising — buy, don't build [0.45, 0.65]
 Tests a map with two anchors (valid in Wardley practice and in our skill's generated outputs). Also tests longer component names with punctuation.
 
 ```mermaid
-wardley
+wardley-beta
 title Internal Developer Platform
 anchor Product Engineer [0.96, 0.55]
 anchor Platform Engineer [0.92, 0.40]
