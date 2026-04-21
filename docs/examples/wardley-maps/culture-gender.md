@@ -21,7 +21,7 @@ component "environment" [0.10, 0.67]
 component "lived experience" [0.77, 0.35]
 
 component "COLLECTIVE" [0.60, 0.66]
-pipeline "SEXUAL IDENTITY" {
+pipeline "COLLECTIVE" {
   component "patriarchy" [0.73]
   component "nation" [0.75]
   component "family" [0.78]
@@ -32,10 +32,9 @@ pipeline "SEXUAL IDENTITY" {
 
 component "values" [0.49, 0.62]
 pipeline "values" {
-  component "hiearachy" [0.71]
+  component "rights" [0.74]
+  component "beliefs" [0.46]
 }
-component "rights" [0.74]
-component "beliefs" [0.46]
 
 component "ROLES" [0.41, 0.68]
 
@@ -51,6 +50,7 @@ component "gender expression" [0.85, 0.45]
 component "power" [0.34, 0.45]
 
 component "authority" [0.25, 0.51]
+component "hiearachy" [0.52, 0.71]
 component "ownership" [0.24, 0.60]
 component "exclusion" [0.09, 0.73]
 component "property" [0.18, 0.65]

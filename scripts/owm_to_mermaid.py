@@ -46,10 +46,28 @@ def convert(owm: str, filename: str = "") -> str:
     sourcing = {}               # name(lower) → 'build'|'buy'|'outsource'
     comp_coords = {}            # name(original-case) → {vis, evo}
     pipeline_ranges = {}        # name(original-case) → {min, max}
+    explicit_block_pipelines = set()  # pipelines whose children are in OWM `{…}`
 
     SRC_RE = re.compile(r"^(build|buy|outsource)\s+(.+)$", re.I)
     COMP_RE = re.compile(r"^component\s+(.+?)\s*\[\s*([\d.]+)\s*,\s*([\d.]+)\s*\]")
     PIPE_RE = re.compile(r"^pipeline\s+(.+?)\s*\[\s*([\d.]+)\s*,\s*([\d.]+)\s*\]\s*$")
+
+    # Scan for `pipeline X [min, max]` followed by `{` — those pipelines have
+    # explicit children in the OWM source; we must NOT also proximity-detect
+    # children for them or we'd emit two pipeline blocks for the same parent.
+    pending_explicit = None
+    for raw in lines:
+        s = raw.strip()
+        if not s or s.startswith("//"):
+            continue
+        if pending_explicit is not None:
+            if s == "{":
+                explicit_block_pipelines.add(pending_explicit)
+            pending_explicit = None
+        m_pr = PIPE_RE.match(s)
+        if m_pr:
+            pending_explicit = m_pr.group(1).strip()
+            continue
 
     for raw in lines:
         s = raw.strip()
@@ -77,6 +95,8 @@ def convert(owm: str, filename: str = "") -> str:
     is_pipeline_child = set()
 
     for pipe_name, rng in pipeline_ranges.items():
+        if pipe_name in explicit_block_pipelines:
+            continue  # block contents are authoritative; skip proximity detection
         parent = comp_coords.get(pipe_name)
         if not parent:
             continue
@@ -123,6 +143,11 @@ def convert(owm: str, filename: str = "") -> str:
         if not s:
             continue
 
+        # A pending-pipeline-parent is only consumed by an immediately-following
+        # "{". Any other non-blank directive clears the pending slot.
+        if pending_pipeline_name and s != "{":
+            pending_pipeline_name = None
+
         # Directives to drop entirely
         if re.match(r"^style\s+wardley\s*$", s, re.I):
             continue
@@ -153,8 +178,13 @@ def convert(owm: str, filename: str = "") -> str:
             out.append(f"anchor {quote_name(m.group(1).strip())} {m.group(2)}")
             continue
 
-        # pipeline X [min, max]  — drop; children are emitted inside the block
-        if re.match(r"^pipeline\s+.+\[\s*[\d.]+\s*,\s*[\d.]+\s*\]\s*$", s, re.I):
+        # pipeline X [min, max]  — the range is implicit in mermaid's block form.
+        # Treat X as a pending parent so an immediately-following `{` opens a
+        # pipeline block with X as its parent.
+        m_prange = re.match(
+            r"^pipeline\s+(.+?)\s*\[\s*[\d.]+\s*,\s*[\d.]+\s*\]\s*$", s, re.I)
+        if m_prange:
+            pending_pipeline_name = quote_name(m_prange.group(1).strip())
             continue
 
         # pipeline X { ... }  or  pipeline X   (followed later by `{`)
@@ -194,6 +224,11 @@ def convert(owm: str, filename: str = "") -> str:
 
             if in_pipeline_block:
                 inner = coords.strip("[] ").strip()
+                # Pipeline-child grammar only accepts evolution (single coord);
+                # if OWM declared 2 coords, drop the visibility.
+                parts = [p.strip() for p in inner.split(",")]
+                if len(parts) == 2:
+                    inner = parts[1]
                 out.append(f'  component {qname} [{inner}]')
             else:
                 line = f"component {qname} {coords}"
