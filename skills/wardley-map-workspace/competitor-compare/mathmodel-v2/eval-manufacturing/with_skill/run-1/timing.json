@@ -1,0 +1,17 @@
+{
+  "scenario": "manufacturing",
+  "variant": "with_skill",
+  "run": 1,
+  "skill_version": "wardley-map (SKILL.md with Step 0, §3.2, §4d, citations, validator, §5.6 layout check)",
+  "start_ms": 1776939317488,
+  "end_ms": 1776939787896,
+  "duration_ms": 470408,
+  "duration_s": 470.408,
+  "notes": [
+    "Map built via full 7-step procedure including Step 0 (strategic context), Step 4 evidence citations, Step 4.5 deep placement (Resilience View, AI Demand Forecasting, ESG Reporting, Digital Twin), Step 5.5 validator (edge walk), Step 5.6 layout check.",
+    "node validate_owm.mjs could not be executed (bash permission denied in this session); validation was performed by manual enumeration of all 63 edges against the ν table.",
+    "Initial draft had 9 visibility violations and 2 near-duplicate pairs and 2 stage-boundary straddles, all corrected through iterative coordinate adjustment before emitting the final OWM block.",
+    "52 components + 4 anchors (Manufacturer, Distributor, Regulator, Board/Investor) — upper end of multi-stakeholder target range.",
+    "6 evolve arrows, 2 inertia flags (ERP, Refined Materials), 3 notes (differentiation zone, commodity foundation, resilience layer)."
+  ]
+}

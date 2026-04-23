@@ -1,0 +1,190 @@
+title Gender as a Cultural Construct
+
+// OWM coordinate convention: [visibility, maturity]
+// visibility 0 = bottom of map, 1 = top (closest to user/person)
+// maturity   0 = Genesis, 1 = Commodity
+// Dependency edge convention: a -> b means "a depends on b",
+// so visibility(a) must be >= visibility(b).
+// As-of: March 2022
+
+// ---------------------------------------------------------------
+// Anchor (user) — the individual person and their emergent identity
+// Identity sits at the top as the user-facing outcome of everything below.
+// ---------------------------------------------------------------
+component Identity [0.97, 0.40]
+
+// ---------------------------------------------------------------
+// Personal / lived-experience layer — the expressive, visible dimensions
+// of the person. These depend on phenotype (below them).
+// ---------------------------------------------------------------
+component Gender Expression [0.93, 0.52]
+component Sexual Identity [0.90, 0.58]
+component Gender Identity [0.89, 0.45]
+component Sexual Orientation [0.88, 0.55]
+component Lived Experience [0.84, 0.42]
+component Self-Expression [0.82, 0.38]
+component Exclusion [0.80, 0.60]
+
+// ---------------------------------------------------------------
+// Phenotype — the observable biological surface that identity and
+// the four sexual/gender dimensions ride on.
+// ---------------------------------------------------------------
+component Phenotype [0.74, 0.80]
+
+// ---------------------------------------------------------------
+// Codification layer — how lived experience is captured and replayed
+// Memory / Stories / Symbols / Roles: the cultural grammar that
+// turns experience into transmissible patterns.
+// ---------------------------------------------------------------
+component Memory [0.68, 0.62]
+component Stories [0.66, 0.72]
+component Symbols [0.64, 0.78]
+component Roles [0.62, 0.82]
+
+// ---------------------------------------------------------------
+// Values and rights layer — normative content that roles invoke
+// ---------------------------------------------------------------
+component Values [0.55, 0.68]
+component Rights and Beliefs [0.53, 0.58]
+
+// ---------------------------------------------------------------
+// Collective structures — the institutions that author and perpetuate
+// roles, values, and rights. They sit below the roles they produce.
+// ---------------------------------------------------------------
+component Family [0.48, 0.82]
+component Corporation [0.44, 0.78]
+component Nation [0.42, 0.80]
+component Patriarchy [0.38, 0.90]
+component Matriarchy [0.36, 0.32]
+
+// ---------------------------------------------------------------
+// Power concentration layer — the industrialised social machinery
+// Hierarchy, class, property, ownership: where power concentrates.
+// ---------------------------------------------------------------
+component Hierarchies of Authority [0.30, 0.88]
+component Power [0.28, 0.85]
+component Social Class [0.26, 0.82]
+component Property and Ownership [0.24, 0.92]
+
+// ---------------------------------------------------------------
+// Biological substrate — hidden from direct cultural view but shaping
+// the raw material of phenotype and (partially) gender identity.
+// ---------------------------------------------------------------
+component Epigenetics [0.18, 0.38]
+component Genetic Markers [0.10, 0.62]
+component Environment [0.06, 0.80]
+
+// ---------------------------------------------------------------
+// Dependency edges (a -> b  means  a depends on b,
+//                   so visibility(a) >= visibility(b))
+// ---------------------------------------------------------------
+
+// Identity rests on the four sexual/gender dimensions + lived experience
+Identity->Sexual Identity
+Identity->Sexual Orientation
+Identity->Gender Identity
+Identity->Gender Expression
+Identity->Lived Experience
+
+// The four sexual/gender dimensions ride on phenotype
+Sexual Identity->Phenotype
+Sexual Orientation->Phenotype
+Gender Identity->Phenotype
+Gender Expression->Gender Identity
+Gender Expression->Self-Expression
+
+// Lived experience includes self-expression and is where exclusion bites
+Lived Experience->Self-Expression
+Lived Experience->Exclusion
+
+// Lived experience is codified through memory / stories / symbols / roles
+Lived Experience->Memory
+Memory->Stories
+Stories->Symbols
+Symbols->Roles
+
+// Roles carry values and rights, and are authored by collectives
+Roles->Values
+Roles->Rights and Beliefs
+Roles->Family
+Roles->Nation
+Roles->Corporation
+Roles->Patriarchy
+Roles->Matriarchy
+
+// Values and rights are shaped by the same collectives
+Values->Family
+Values->Nation
+Values->Corporation
+Values->Patriarchy
+Values->Matriarchy
+Rights and Beliefs->Nation
+Rights and Beliefs->Corporation
+
+// Self-expression and exclusion operate through the normative layer
+Self-Expression->Rights and Beliefs
+Exclusion->Hierarchies of Authority
+Exclusion->Social Class
+
+// Collectives themselves rest on the power/class/property machinery
+Family->Property and Ownership
+Nation->Power
+Nation->Hierarchies of Authority
+Corporation->Property and Ownership
+Corporation->Hierarchies of Authority
+Patriarchy->Hierarchies of Authority
+Patriarchy->Power
+Patriarchy->Property and Ownership
+Matriarchy->Hierarchies of Authority
+
+// Power concentration: how the industrialised machinery is wired
+Hierarchies of Authority->Power
+Hierarchies of Authority->Social Class
+Social Class->Property and Ownership
+Power->Property and Ownership
+
+// Biological substrate feeds phenotype (and, partially, gender identity)
+Phenotype->Genetic Markers
+Phenotype->Epigenetics
+Phenotype->Environment
+Gender Identity->Epigenetics
+Epigenetics->Environment
+Epigenetics->Genetic Markers
+
+// ---------------------------------------------------------------
+// Movement (evolution direction) — as-of March 2022
+// ---------------------------------------------------------------
+
+// Gender Identity / Gender Expression / Sexual Identity / Sexual Orientation:
+// mainstreaming — moving from custom toward product as public discourse
+// and institutional recognition accelerate (post-2015 legal rulings,
+// corporate DEI policies, media normalisation).
+evolve Gender Identity 0.68
+evolve Gender Expression 0.70
+evolve Sexual Identity 0.72
+evolve Sexual Orientation 0.74
+
+// Rights and Beliefs: accelerating as legal and corporate frameworks converge
+evolve Rights and Beliefs 0.78
+
+// Patriarchy: strong inertia — ancient, industrialised, resistant to change
+evolve Patriarchy 0.94 inertia
+
+// Hierarchies of Authority / Property: commoditised social machinery, slow drift
+evolve Hierarchies of Authority 0.92 inertia
+evolve Property and Ownership 0.95 inertia
+
+// Matriarchy: slowly evolving as a framing; still custom in most contexts
+evolve Matriarchy 0.42
+
+// Exclusion: becoming productised as anti-discrimination frameworks mature
+evolve Exclusion 0.72
+
+// Epigenetics: active science — moving from custom toward product
+evolve Epigenetics 0.55
+
+// Corporation as cultural producer of gender norms: drifting right (DEI industry)
+evolve Corporation 0.83
+
+// Nation as cultural producer: inertia (policy lags)
+evolve Nation 0.84 inertia

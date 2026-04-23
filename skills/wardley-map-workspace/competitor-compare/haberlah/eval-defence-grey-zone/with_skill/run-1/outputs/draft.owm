@@ -1,0 +1,87 @@
+title Grey Zone of Defence (2025)
+style wardley
+
+anchor Supranationals [0.97, 0.50]
+anchor Governments [0.97, 0.55]
+anchor Private Proxy Operators [0.97, 0.35]
+anchor People [0.97, 0.45]
+
+component Territorial Integrity [0.85, 0.75]
+component Economic Sovereignty [0.83, 0.55]
+component Cyber Sovereignty [0.80, 0.35]
+component Cultural Sovereignty [0.78, 0.30] inertia
+
+component Legitimacy [0.68, 0.45] inertia
+component Statecraft and Treaties [0.66, 0.65] inertia
+component Attribution and Deniability [0.62, 0.20]
+
+component Influence Ops [0.52, 0.60]
+component Coercion and Kinetic [0.50, 0.55]
+
+component Awareness and ISR [0.42, 0.50]
+component Cyber and EW Theatre [0.38, 0.55]
+component Social Media Theatre [0.36, 0.70]
+component Financial Theatre [0.34, 0.60]
+
+component Supply Chain [0.24, 0.70]
+component Physical Layer [0.16, 0.80]
+component Crypto Rails [0.14, 0.45]
+component Virtual Layer [0.08, 0.88]
+
+Supranationals->Territorial Integrity
+Supranationals->Statecraft and Treaties
+Supranationals->Legitimacy
+Governments->Territorial Integrity
+Governments->Economic Sovereignty
+Governments->Cyber Sovereignty
+Governments->Cultural Sovereignty
+Governments->Legitimacy
+Private Proxy Operators->Cyber Sovereignty
+Private Proxy Operators->Attribution and Deniability
+Private Proxy Operators->Coercion and Kinetic
+People->Cultural Sovereignty
+People->Cyber Sovereignty
+People->Legitimacy
+
+Territorial Integrity->Statecraft and Treaties
+Territorial Integrity->Coercion and Kinetic
+Economic Sovereignty->Statecraft and Treaties
+Economic Sovereignty->Financial Theatre
+Cyber Sovereignty->Attribution and Deniability
+Cyber Sovereignty->Cyber and EW Theatre
+Cultural Sovereignty->Influence Ops
+Cultural Sovereignty->Social Media Theatre
+
+Legitimacy->Attribution and Deniability
+Legitimacy->Statecraft and Treaties
+Statecraft and Treaties->Attribution and Deniability
+Attribution and Deniability->Awareness and ISR
+Attribution and Deniability->Cyber and EW Theatre
+
+Influence Ops->Social Media Theatre
+Influence Ops->Awareness and ISR
+Coercion and Kinetic->Cyber and EW Theatre
+Coercion and Kinetic->Financial Theatre
+Coercion and Kinetic->Physical Layer
+
+Awareness and ISR->Virtual Layer
+Awareness and ISR->Physical Layer
+Cyber and EW Theatre->Virtual Layer
+Cyber and EW Theatre->Supply Chain
+Social Media Theatre->Virtual Layer
+Financial Theatre->Virtual Layer
+Financial Theatre->Crypto Rails
+Financial Theatre->Supply Chain
+
+Supply Chain->Physical Layer
+Physical Layer->Virtual Layer
+Crypto Rails->Virtual Layer
+
+evolve Attribution and Deniability 0.45
+evolve Cyber Sovereignty 0.55
+evolve Cultural Sovereignty 0.45
+evolve Crypto Rails 0.65
+
+annotation 1 [[0.30, 0.85]] Weaponised-commodity: social media, finance, virtual layer are now routine grey-zone tools.
+annotation 2 [[0.58, 0.12]] Genuinely novel: attribution, deniability, cyber and cultural sovereignty remain contested/Custom-Built.
+annotation 3 [[0.45, 0.82]] Friendly fire and unintended outcomes are externalities of every effect type; treaties trail the practice.

@@ -1,0 +1,198 @@
+title Supply-chain Sustainability
+style wardley
+
+// Anchors — four stakeholder types
+anchor Consumer [0.98, 0.62]
+anchor Retailer [0.95, 0.58]
+anchor Producer [0.94, 0.50]
+anchor Regulator [0.96, 0.42]
+
+// ---- Consumer-facing sustainability signals ----
+component Product Purchase [0.88, 0.72]
+component Sustainability Rating [0.86, 0.52]
+component Eco-label [0.82, 0.55]
+component Disclosure Statement [0.78, 0.38]
+
+// ---- Retail channels ----
+component Online Store [0.83, 0.80]
+component Physical Storefront [0.80, 0.85]
+component Coop Distribution [0.75, 0.55]
+
+// ---- Regulatory apparatus ----
+component Sustainability Laws [0.86, 0.55]
+component Trade Agreements [0.78, 0.70]
+component Sanctions [0.72, 0.40]
+component Guidelines [0.74, 0.62]
+component Bureaucracy [0.65, 0.58]
+
+// ---- Compliance machinery ----
+component Certification [0.70, 0.60]
+component Third-party Audit [0.62, 0.58]
+component Compliance Monitoring [0.58, 0.45]
+component Mandatory Disclosure [0.60, 0.42]
+
+// ---- Last mile + distribution ----
+component Last-mile Delivery [0.68, 0.78]
+component Distribution Logistics [0.55, 0.80]
+component Backhaul Transport [0.45, 0.82]
+component Freight Transport [0.42, 0.88]
+
+// ---- Production / manufacturing ----
+component Manufacturing [0.52, 0.72]
+component Packaging [0.50, 0.82]
+component Temperature / Freshness Handling [0.48, 0.62]
+
+// ---- Raw materials and complex inputs ----
+component Complex Product Sourcing [0.42, 0.47]
+component Raw Material Sourcing [0.41, 0.65]
+component Supplier Relationships [0.32, 0.38]
+
+// ---- End of life ----
+component Product Reusability [0.44, 0.32]
+component Recycling Infrastructure [0.30, 0.62]
+component Waste Management [0.28, 0.82]
+
+// ---- R&D + efficiency ----
+component Sustainability R&D [0.26, 0.20]
+component Resource Efficiency Engineering [0.34, 0.36]
+component Energy Efficiency [0.30, 0.70]
+component Circular Design [0.36, 0.22]
+
+// ---- Traceability data layer ----
+component Traceability Data [0.40, 0.42]
+component Supply-chain Software [0.32, 0.68]
+component ESG Reporting Data [0.48, 0.52]
+
+// ---- Deep infrastructure / utility ----
+component Energy / Fuel [0.14, 0.88]
+component Water Utilities [0.10, 0.92]
+component Cloud Compute [0.13, 0.90]
+component Shipping Networks [0.18, 0.85]
+component Payment Rails [0.20, 0.92]
+
+// ---- Knowledge layer ----
+component Sustainability Science [0.08, 0.55]
+component Climate Accounting Standards [0.12, 0.52]
+
+// ---- Dependencies ----
+Consumer->Product Purchase
+Consumer->Sustainability Rating
+Consumer->Eco-label
+Consumer->Online Store
+Consumer->Physical Storefront
+
+Retailer->Product Purchase
+Retailer->Online Store
+Retailer->Physical Storefront
+Retailer->Coop Distribution
+Retailer->Last-mile Delivery
+Retailer->Eco-label
+Retailer->Certification
+
+Producer->Manufacturing
+Producer->Packaging
+Producer->Raw Material Sourcing
+Producer->Complex Product Sourcing
+Producer->Supplier Relationships
+Producer->Sustainability R&D
+Producer->Certification
+Producer->Disclosure Statement
+
+Regulator->Sustainability Laws
+Regulator->Trade Agreements
+Regulator->Sanctions
+Regulator->Guidelines
+Regulator->Bureaucracy
+Regulator->Compliance Monitoring
+Regulator->Mandatory Disclosure
+
+// Consumer-facing signals sit on compliance machinery
+Sustainability Rating->Certification
+Sustainability Rating->ESG Reporting Data
+Eco-label->Certification
+Eco-label->Third-party Audit
+Disclosure Statement->Mandatory Disclosure
+Disclosure Statement->ESG Reporting Data
+
+// Retail depends on logistics
+Online Store->Last-mile Delivery
+Online Store->Payment Rails
+Online Store->Cloud Compute
+Physical Storefront->Distribution Logistics
+Coop Distribution->Distribution Logistics
+Last-mile Delivery->Freight Transport
+Last-mile Delivery->Shipping Networks
+Distribution Logistics->Backhaul Transport
+Distribution Logistics->Freight Transport
+Distribution Logistics->Temperature / Freshness Handling
+Backhaul Transport->Freight Transport
+Freight Transport->Energy / Fuel
+Freight Transport->Shipping Networks
+
+// Manufacturing dependencies
+Product Purchase->Manufacturing
+Manufacturing->Packaging
+Manufacturing->Raw Material Sourcing
+Manufacturing->Complex Product Sourcing
+Manufacturing->Energy Efficiency
+Manufacturing->Resource Efficiency Engineering
+Manufacturing->Energy / Fuel
+Packaging->Raw Material Sourcing
+Packaging->Circular Design
+Temperature / Freshness Handling->Energy / Fuel
+
+// Raw materials dependencies
+Raw Material Sourcing->Supplier Relationships
+Complex Product Sourcing->Supplier Relationships
+Complex Product Sourcing->Traceability Data
+Raw Material Sourcing->Traceability Data
+
+// End of life
+Product Purchase->Product Reusability
+Product Reusability->Circular Design
+Product Reusability->Recycling Infrastructure
+Recycling Infrastructure->Waste Management
+Waste Management->Energy / Fuel
+
+// Compliance machinery
+Sustainability Laws->Bureaucracy
+Sustainability Laws->Guidelines
+Trade Agreements->Bureaucracy
+Sanctions->Bureaucracy
+Guidelines->Climate Accounting Standards
+Certification->Third-party Audit
+Certification->Climate Accounting Standards
+Third-party Audit->ESG Reporting Data
+Third-party Audit->Traceability Data
+Compliance Monitoring->Traceability Data
+Compliance Monitoring->ESG Reporting Data
+Mandatory Disclosure->ESG Reporting Data
+Mandatory Disclosure->Climate Accounting Standards
+
+// Data + software layer
+Traceability Data->Supply-chain Software
+ESG Reporting Data->Supply-chain Software
+Supply-chain Software->Cloud Compute
+Sustainability R&D->Sustainability Science
+Resource Efficiency Engineering->Sustainability Science
+Energy Efficiency->Sustainability Science
+Circular Design->Sustainability Science
+
+// Utilities roll down to water
+Manufacturing->Water Utilities
+Waste Management->Water Utilities
+
+// Evolve arrows — the interesting shifts over the next cycle
+evolve Sustainability Rating 0.72
+evolve Mandatory Disclosure 0.70
+evolve Traceability Data 0.65
+evolve Circular Design 0.45
+evolve Resource Efficiency Engineering 0.58
+
+// Inertia flags — legacy forms of sustainability handling
+component Legacy Annual CSR Report [0.55, 0.52] inertia
+
+// Notes — zones
+note Open-market driven (consumer-visible, differentiating) [0.82, 0.28]
+note Regulated zone (mandated, standardising) [0.60, 0.42]
+note Utility commodity (rent, don't build) [0.15, 0.92]

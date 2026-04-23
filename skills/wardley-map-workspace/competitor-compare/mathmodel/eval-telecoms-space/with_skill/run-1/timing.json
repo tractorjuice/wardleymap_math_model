@@ -1,0 +1,15 @@
+{
+  "eval": "telecoms-space",
+  "configuration": "with_skill",
+  "run": 1,
+  "skill": "/workspaces/wardleymap_math_model/skills/wardley-map/SKILL.md",
+  "blind": true,
+  "start_ms": 1776874425641,
+  "end_ms": 1776874802408,
+  "elapsed_ms": 376767,
+  "elapsed_s": 376.767,
+  "validator_run": false,
+  "validator_reason": "Bash invocation of scripts/validate_owm.mjs was not in this sandbox's allowlist for this eval path; performed manual mechanical audit of the same three checks (coord range, edge endpoints, visibility hard rule) with one iterative fix in the control plane.",
+  "layout_check_run": false,
+  "layout_check_reason": "Same as above; performed manual audit of near-duplicates, stage-boundary straddling, canvas-edge clipping, and stage distribution with nudges applied to Consumer, Cryogenic Cooling, and Gateway Antennas."
+}

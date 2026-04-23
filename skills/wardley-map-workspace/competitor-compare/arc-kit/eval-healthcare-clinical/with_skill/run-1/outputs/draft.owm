@@ -1,0 +1,122 @@
+title Clinical Decision Making in Healthcare (Aug 2022)
+
+anchor Patient [0.96, 0.80]
+
+// --- User-facing participants and needs ---
+component Treatment outcome [0.90, 0.55] label [8, -8]
+component Treatment plan [0.86, 0.50] label [10, -4]
+component Diagnosis [0.82, 0.42] label [10, -4]
+component Medical practitioner [0.88, 0.68] label [8, -10]
+component Medical institution [0.78, 0.74] label [10, -6]
+component Payer [0.70, 0.60] label [10, -6]
+
+// --- Settings of care (flow) ---
+component Setting of care [0.70, 0.70] label [10, -4]
+component Primary care [0.62, 0.78] label [-80, -4]
+component Specialist clinic [0.60, 0.55] label [-90, 10]
+component Hospital / inpatient [0.58, 0.72] label [10, -4]
+component Emergency care [0.58, 0.74] label [10, 10]
+component Community / home care [0.56, 0.62] label [-120, -4]
+
+// --- Diagnostic reasoning and supporting judgement ---
+component Diagnostic reasoning [0.72, 0.48] label [-130, 8]
+component Clinical judgement [0.68, 0.30] label [-110, -4]
+component Decision support (CDSS) [0.50, 0.38] label [-140, -4]
+component AI-assisted diagnosis [0.40, 0.15] label [-150, 8]
+component Exception / appeals process [0.62, 0.22] label [-160, -4]
+component Fairness and equity review [0.48, 0.12] label [-150, 10]
+
+// --- Permissible treatments, standards, evidence ---
+component Permissible treatments [0.66, 0.58] label [10, -4]
+component Clinical guidelines [0.50, 0.70] label [10, -4]
+component Standards and protocols [0.46, 0.80] label [10, -4]
+component Formulary / approved drug list [0.44, 0.82] label [10, -4]
+component Evidence base (RCT, meta-analysis) [0.40, 0.55] label [10, -4]
+component Clinical trials and reviews [0.30, 0.35] label [-130, -4]
+component Regulatory approval (MHRA/FDA) [0.36, 0.78] label [10, -4]
+
+// --- Data, observation, records ---
+component Patient history / symptoms [0.74, 0.58] label [10, -4]
+component Clinical observation [0.68, 0.55] label [10, -4]
+component Diagnostic tests (lab/imaging) [0.50, 0.72] label [10, -4]
+component Electronic health record (EHR) [0.32, 0.68] label [10, -4]
+component Medical terminologies (SNOMED/ICD) [0.18, 0.88] label [10, -4]
+component Health data storage [0.12, 0.90] label [10, -4]
+component Cloud compute / networking [0.06, 0.95] label [10, -4]
+
+// --- Dependencies from patient down ---
+Patient->Treatment outcome
+Patient->Medical practitioner
+Patient->Medical institution
+Patient->Setting of care
+Patient->Payer
+
+Treatment outcome->Treatment plan
+Treatment plan->Diagnosis
+Treatment plan->Permissible treatments
+Treatment plan->Clinical guidelines
+Treatment plan->Payer
+
+Diagnosis->Diagnostic reasoning
+Diagnosis->Patient history / symptoms
+Diagnosis->Clinical observation
+Diagnosis->Diagnostic tests (lab/imaging)
+
+Medical practitioner->Clinical judgement
+Medical practitioner->Diagnostic reasoning
+Medical practitioner->Decision support (CDSS)
+Medical practitioner->Clinical guidelines
+Medical practitioner->Medical institution
+
+Medical institution->Setting of care
+Medical institution->Standards and protocols
+Medical institution->Electronic health record (EHR)
+Medical institution->Payer
+
+Setting of care->Primary care
+Setting of care->Specialist clinic
+Setting of care->Hospital / inpatient
+Setting of care->Emergency care
+Setting of care->Community / home care
+
+Payer->Formulary / approved drug list
+Payer->Permissible treatments
+Payer->Exception / appeals process
+
+// --- Reasoning stack ---
+Diagnostic reasoning->Clinical judgement
+Diagnostic reasoning->Decision support (CDSS)
+Diagnostic reasoning->Evidence base (RCT, meta-analysis)
+Decision support (CDSS)->AI-assisted diagnosis
+Decision support (CDSS)->Electronic health record (EHR)
+Decision support (CDSS)->Medical terminologies (SNOMED/ICD)
+
+// --- Treatment governance ---
+Permissible treatments->Clinical guidelines
+Permissible treatments->Formulary / approved drug list
+Permissible treatments->Regulatory approval (MHRA/FDA)
+Clinical guidelines->Evidence base (RCT, meta-analysis)
+Clinical guidelines->Standards and protocols
+Evidence base (RCT, meta-analysis)->Clinical trials and reviews
+
+// --- Fairness / exceptions ---
+Exception / appeals process->Clinical guidelines
+Exception / appeals process->Fairness and equity review
+Fairness and equity review->Evidence base (RCT, meta-analysis)
+
+// --- Data / observation stack ---
+Clinical observation->Electronic health record (EHR)
+Patient history / symptoms->Electronic health record (EHR)
+Diagnostic tests (lab/imaging)->Electronic health record (EHR)
+Electronic health record (EHR)->Medical terminologies (SNOMED/ICD)
+Electronic health record (EHR)->Health data storage
+Health data storage->Cloud compute / networking
+Medical terminologies (SNOMED/ICD)->Health data storage
+
+// --- Movement: evolution signals as of Aug 2022 ---
+evolve AI-assisted diagnosis 0.45
+evolve Decision support (CDSS) 0.60
+evolve Electronic health record (EHR) 0.80
+evolve Fairness and equity review 0.35
+evolve Exception / appeals process 0.45
+evolve Clinical trials and reviews 0.55

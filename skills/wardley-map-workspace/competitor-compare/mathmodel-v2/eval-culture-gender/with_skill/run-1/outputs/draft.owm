@@ -1,0 +1,144 @@
+title Gender as a Cultural Construct (March 2022)
+style wardley
+
+// Anchors — two users the value chain serves
+anchor Lived Gendered Self [0.98, 0.40]
+anchor Society Reproducing Itself [0.95, 0.72]
+
+// Top lived-experience layer (what the individual encounters)
+component Self-Expression [0.88, 0.35]
+component Identity [0.86, 0.30]
+component Safety [0.84, 0.60]
+component Belonging / Recognition [0.82, 0.45]
+component Rights & Protections [0.80, 0.52]
+component Exclusion / Marginalisation [0.78, 0.55]
+
+// Inner identity layer (the gender-work the person does)
+component Gender Identity [0.74, 0.28]
+component Gender Expression [0.72, 0.38]
+component Sexual Identity [0.70, 0.55]
+component Sexual Orientation [0.68, 0.42]
+component Lived Experience [0.66, 0.33]
+
+// Symbolic / codification layer (how culture stores roles)
+component Memory [0.60, 0.45]
+component Stories & Narratives [0.58, 0.55]
+component Symbols & Iconography [0.56, 0.65]
+component Gender Roles [0.54, 0.70]
+component Language & Pronouns [0.52, 0.46]
+
+// Values and beliefs
+component Values [0.50, 0.60]
+component Beliefs [0.48, 0.63]
+component Religion & Tradition [0.47, 0.78]
+
+// Collective structures (the social machinery that industrialises gender)
+component Family [0.46, 0.80]
+component Education System [0.44, 0.72]
+component Patriarchy [0.42, 0.82]
+component Matriarchy [0.40, 0.20]
+component Media & Advertising [0.38, 0.70]
+component Corporation [0.36, 0.74]
+
+// Authority, power, class, property
+component Social Class [0.34, 0.77]
+component Property & Ownership [0.32, 0.86]
+component Law & Regulation [0.30, 0.66]
+component Nation / State [0.28, 0.70]
+component Hierarchies of Authority [0.26, 0.73]
+component Power Concentration [0.24, 0.77]
+
+// Biology / phenotype layer (the substrate)
+component Sex Assigned at Birth [0.22, 0.82]
+component Phenotype [0.18, 0.55]
+component Hormones & Endocrine System [0.15, 0.65]
+component Genetic Markers [0.12, 0.60]
+component Epigenetics [0.09, 0.22]
+component Environment [0.06, 0.55]
+
+// Dependencies — "a depends on b"
+Lived Gendered Self->Identity
+Lived Gendered Self->Self-Expression
+Lived Gendered Self->Belonging / Recognition
+Lived Gendered Self->Rights & Protections
+Lived Gendered Self->Safety
+Society Reproducing Itself->Gender Roles
+Society Reproducing Itself->Family
+Society Reproducing Itself->Nation / State
+Society Reproducing Itself->Education System
+Society Reproducing Itself->Media & Advertising
+Society Reproducing Itself->Matriarchy
+
+Identity->Gender Identity
+Identity->Sexual Identity
+Identity->Lived Experience
+Self-Expression->Gender Expression
+Self-Expression->Language & Pronouns
+Belonging / Recognition->Gender Roles
+Belonging / Recognition->Family
+Exclusion / Marginalisation->Hierarchies of Authority
+Exclusion / Marginalisation->Patriarchy
+Rights & Protections->Law & Regulation
+Rights & Protections->Nation / State
+Safety->Law & Regulation
+Safety->Exclusion / Marginalisation
+
+Gender Identity->Lived Experience
+Gender Identity->Phenotype
+Gender Expression->Symbols & Iconography
+Gender Expression->Language & Pronouns
+Sexual Identity->Sexual Orientation
+Sexual Identity->Sex Assigned at Birth
+Sexual Orientation->Lived Experience
+Sexual Orientation->Phenotype
+Lived Experience->Memory
+Lived Experience->Stories & Narratives
+
+Memory->Stories & Narratives
+Stories & Narratives->Symbols & Iconography
+Stories & Narratives->Media & Advertising
+Symbols & Iconography->Religion & Tradition
+Symbols & Iconography->Media & Advertising
+Gender Roles->Family
+Gender Roles->Religion & Tradition
+Gender Roles->Patriarchy
+Gender Roles->Matriarchy
+Language & Pronouns->Education System
+
+Values->Beliefs
+Values->Religion & Tradition
+Beliefs->Religion & Tradition
+Religion & Tradition->Family
+
+Family->Patriarchy
+Family->Social Class
+Patriarchy->Hierarchies of Authority
+Patriarchy->Property & Ownership
+Corporation->Hierarchies of Authority
+Corporation->Property & Ownership
+Education System->Nation / State
+Media & Advertising->Corporation
+
+Social Class->Property & Ownership
+Property & Ownership->Law & Regulation
+Law & Regulation->Nation / State
+Nation / State->Hierarchies of Authority
+Hierarchies of Authority->Power Concentration
+
+Sex Assigned at Birth->Phenotype
+Phenotype->Hormones & Endocrine System
+Phenotype->Genetic Markers
+Hormones & Endocrine System->Genetic Markers
+Hormones & Endocrine System->Epigenetics
+Genetic Markers->Epigenetics
+Epigenetics->Environment
+
+evolve Gender Identity 0.55
+evolve Language & Pronouns 0.68
+evolve Rights & Protections 0.68
+evolve Matriarchy 0.35
+
+note Individual & emergent [0.78, 0.22]
+note Industrialised social machinery [0.34, 0.82]
+note Where power concentrates [0.24, 0.74]
+note Biological substrate [0.12, 0.48]

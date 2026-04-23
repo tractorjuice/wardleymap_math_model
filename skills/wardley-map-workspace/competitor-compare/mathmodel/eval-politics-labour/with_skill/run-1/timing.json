@@ -1,0 +1,12 @@
+{
+  "eval": "politics-labour",
+  "configuration": "with_skill",
+  "run": 1,
+  "skill": "wardley-map (in-tree)",
+  "start_iso": "2026-04-22T16:13:49Z",
+  "end_iso": "2026-04-22T16:20:29Z",
+  "start_epoch": 1776874429.869,
+  "end_epoch": 1776874829.603,
+  "duration_seconds": 399.734,
+  "notes": "Blind run of in-tree wardley-map skill on politics-labour scenario. Validator script (scripts/validate_owm.mjs) and check_layout.mjs were blocked by sandbox 'Bash(node ...)' permission policy; OWM was manually walked edge-by-edge against the visibility hard rule and coordinate ranges before emission. No external web searches performed; placements drew on model-internal knowledge of UK politics through May 2024."
+}

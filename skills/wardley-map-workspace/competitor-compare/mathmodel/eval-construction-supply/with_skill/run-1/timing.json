@@ -1,0 +1,8 @@
+{
+  "start_ts": 1776874282.116091222,
+  "end_ts": 1776874627.392859890,
+  "elapsed_seconds": 345.277,
+  "skill_path": "/workspaces/wardleymap_math_model/skills/wardley-map/SKILL.md",
+  "scenario": "UK construction supply chain end-to-end, March 2023",
+  "notes": "Sandbox denied Bash execution of scripts/validate_owm.mjs and scripts/check_layout.mjs (path not in allowlist). Applied equivalent mental validation against the validator/layout-check source: manually walked all 78 edges for the ν(a) >= ν(b) hard rule, all 46 coordinates for [0,1] range, all edge endpoints for existence, and all node pairs for the < 0.02 near-duplicate threshold plus the ±0.01 stage-boundary tolerance."
+}

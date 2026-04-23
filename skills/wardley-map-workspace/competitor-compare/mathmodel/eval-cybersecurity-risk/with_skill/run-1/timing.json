@@ -1,0 +1,20 @@
+{
+  "scenario": "cybersecurity-risk",
+  "configuration": "with_skill",
+  "run": 1,
+  "skill_path": "/workspaces/wardleymap_math_model/skills/wardley-map/SKILL.md",
+  "start_time_unix": 1776874290.560,
+  "end_time_unix": 1776874761.195,
+  "elapsed_seconds": 470.6,
+  "validator_run": false,
+  "validator_blocked_reason": "bash node execution against validate_owm.mjs denied by harness permissions allowlist (path not in allowed list); validation performed manually by tabulating the visibility dictionary against every edge — 64/64 edges satisfy visibility hard rule, 42/42 coords in [0,1], all edge endpoints declared.",
+  "layout_check_run": false,
+  "layout_check_blocked_reason": "same as validator — node execution blocked; manual layout review performed.",
+  "mermaid_converter_run": false,
+  "mermaid_converter_blocked_reason": "same as validator; Mermaid block omitted per SKILL section 3.1 (optional).",
+  "components": 41,
+  "anchors": 1,
+  "edges": 64,
+  "evolve_arrows": 5,
+  "notes": 4
+}

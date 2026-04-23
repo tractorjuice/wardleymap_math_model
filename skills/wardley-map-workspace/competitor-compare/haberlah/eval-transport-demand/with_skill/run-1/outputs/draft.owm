@@ -1,0 +1,102 @@
+title Consumer Behaviour Reshaping Transport Demand (May 2022)
+style wardley
+
+anchor Government [0.96, 0.40]
+anchor Transport Public [0.96, 0.52]
+anchor Transport Operators [0.96, 0.62]
+
+component Ease of Use [0.88, 0.48]
+component Cost [0.86, 0.60]
+component Access to Service [0.84, 0.52]
+component Safety [0.85, 0.40]
+component Awareness [0.82, 0.28]
+
+component Virtual Alternatives [0.76, 0.70]
+
+component Private Mode [0.68, 0.82]
+component Shared Mode [0.66, 0.50]
+component Distributed Public [0.64, 0.30]
+
+component Transport Integration [0.56, 0.28]
+component Situational Services [0.50, 0.42]
+component Mobility Hubs [0.44, 0.20]
+
+component Car [0.38, 0.78]
+component Train [0.36, 0.68]
+
+component Regulation [0.40, 0.42] inertia
+component City Planning [0.30, 0.48]
+component Connectivity & Cyber [0.28, 0.70]
+
+component Transport Infrastructure [0.18, 0.65] inertia
+component CNI [0.08, 0.86]
+
+Government->Safety
+Government->Regulation
+Government->City Planning
+Government->Access to Service
+
+Transport Public->Ease of Use
+Transport Public->Cost
+Transport Public->Access to Service
+Transport Public->Safety
+Transport Public->Awareness
+
+Transport Operators->Cost
+Transport Operators->Access to Service
+Transport Operators->Safety
+Transport Operators->Awareness
+
+Ease of Use->Transport Integration
+Ease of Use->Situational Services
+Cost->Shared Mode
+Cost->Distributed Public
+Cost->Private Mode
+Access to Service->Mobility Hubs
+Access to Service->Distributed Public
+Access to Service->Shared Mode
+Safety->Regulation
+Safety->Connectivity & Cyber
+Awareness->Situational Services
+Awareness->Transport Integration
+
+Virtual Alternatives->Connectivity & Cyber
+
+Private Mode->Car
+Shared Mode->Car
+Shared Mode->Transport Integration
+Distributed Public->Train
+Distributed Public->Mobility Hubs
+Distributed Public->Transport Integration
+
+Transport Integration->Situational Services
+Transport Integration->Connectivity & Cyber
+Situational Services->Connectivity & Cyber
+Situational Services->Mobility Hubs
+Mobility Hubs->City Planning
+Mobility Hubs->Transport Infrastructure
+
+Car->Transport Infrastructure
+Car->Connectivity & Cyber
+Train->Transport Infrastructure
+
+Regulation->City Planning
+City Planning->Transport Infrastructure
+Connectivity & Cyber->CNI
+Transport Infrastructure->CNI
+
+evolve Transport Integration 0.55
+evolve Situational Services 0.62
+evolve Mobility Hubs 0.45
+evolve Distributed Public 0.52
+evolve Shared Mode 0.70
+evolve Awareness 0.48
+evolve Virtual Alternatives 0.82
+
+annotation 1 [[0.54, 0.22]] MaaS stack (Transport Integration, Situational Services, Mobility Hubs) is where consumer behaviour is driving real evolution — left-to-right pressure from post-COVID demand.
+annotation 2 [[0.38, 0.40]] Regulation carries inertia: lags consumer-driven modes above it (Shared, Distributed Public) and the MaaS layer.
+annotation 3 [[0.76, 0.72]] Zoom and virtual alternatives are Product/Commodity — they permanently displace a slice of commute demand.
+annotation 4 [[0.18, 0.60]] Transport Infrastructure carries inertia: 30-50y asset lifecycles mean road/rail networks cannot evolve at consumer-behaviour speed.
+annotation 5 [[0.68, 0.82]] Private Mode (car) is Commodity but under cost pressure from fuel prices (Ukraine shock, May 2022) and climate policy.
+
+note SHOCKS: COVID, fuel, climate [0.92, 0.10]

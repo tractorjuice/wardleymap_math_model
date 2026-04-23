@@ -1,0 +1,107 @@
+title Government Digital Identity (November 2022)
+
+anchor Society [0.98, 0.62]
+anchor Citizens [0.95, 0.78]
+anchor Government [0.97, 0.25]
+anchor Corporations [0.95, 0.45]
+anchor Entities [0.93, 0.10]
+anchor Bad Actors [0.94, 0.92]
+
+component Service [0.88, 0.68] label [-40, -10]
+component Claims [0.80, 0.55] label [-40, -10]
+component Credentials [0.72, 0.50] label [-55, 0]
+component Verifiable Credentials [0.70, 0.22] label [-95, 10]
+component Identity [0.64, 0.40] label [-45, 5]
+component Physical Identification [0.56, 0.88] label [20, 5]
+component Digital Identification [0.56, 0.58] label [-115, 0]
+component Mutable Identifiers [0.48, 0.78] label [20, 5]
+component Immutable Identifiers [0.48, 0.50] label [-115, 0]
+component Connectedness Identifiers [0.48, 0.30] label [-95, 10]
+component Centralised Authority [0.34, 0.82] label [15, 5]
+component Issuing Authority [0.34, 0.70] label [15, 5]
+component Decentralised Authority [0.34, 0.22] label [-110, 5]
+component Self-Sovereign Identity [0.32, 0.15] label [-95, 0]
+component Benevolence [0.58, 0.20] label [-70, -15]
+component Capability [0.56, 0.42] label [-60, -15]
+component Integrity [0.54, 0.28] label [-40, -15]
+component Trust Framework [0.44, 0.32] label [-105, 10]
+component Regulation [0.22, 0.88] label [15, 0]
+component Rules [0.22, 0.48] label [15, 5]
+component Exception Apparatus [0.22, 0.30] label [15, 5]
+component Power Over [0.40, 0.85] label [15, 0]
+component Power With [0.40, 0.40] label [-60, 5]
+component Power To [0.40, 0.18] label [-55, 5]
+component Internet [0.06, 0.95] label [15, 0]
+
+Society->Service
+Society->Power With
+Citizens->Service
+Citizens->Identity
+Citizens->Power To
+Government->Service
+Government->Regulation
+Government->Centralised Authority
+Government->Power Over
+Corporations->Service
+Corporations->Claims
+Entities->Credentials
+Bad Actors->Exception Apparatus
+Bad Actors->Rules
+
+Service->Claims
+Service->Trust Framework
+Service->Internet
+
+Claims->Credentials
+Claims->Identity
+
+Credentials->Verifiable Credentials
+Credentials->Identity
+
+Verifiable Credentials->Decentralised Authority
+Verifiable Credentials->Self-Sovereign Identity
+
+Identity->Physical Identification
+Identity->Digital Identification
+
+Physical Identification->Mutable Identifiers
+Physical Identification->Immutable Identifiers
+Physical Identification->Issuing Authority
+
+Digital Identification->Mutable Identifiers
+Digital Identification->Immutable Identifiers
+Digital Identification->Connectedness Identifiers
+Digital Identification->Internet
+
+Mutable Identifiers->Issuing Authority
+Immutable Identifiers->Issuing Authority
+Immutable Identifiers->Centralised Authority
+Connectedness Identifiers->Decentralised Authority
+
+Centralised Authority->Issuing Authority
+Centralised Authority->Regulation
+Decentralised Authority->Self-Sovereign Identity
+Decentralised Authority->Internet
+Issuing Authority->Regulation
+
+Trust Framework->Benevolence
+Trust Framework->Capability
+Trust Framework->Integrity
+Trust Framework->Regulation
+
+Regulation->Rules
+Rules->Exception Apparatus
+
+Power Over->Centralised Authority
+Power Over->Regulation
+Power With->Trust Framework
+Power With->Rules
+Power To->Self-Sovereign Identity
+Power To->Decentralised Authority
+
+evolve Verifiable Credentials 0.55
+evolve Self-Sovereign Identity 0.45
+evolve Decentralised Authority 0.50
+evolve Digital Identification 0.72
+evolve Connectedness Identifiers 0.62
+evolve Trust Framework 0.58

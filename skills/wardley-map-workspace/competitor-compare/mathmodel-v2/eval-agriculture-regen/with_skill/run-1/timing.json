@@ -1,0 +1,6 @@
+{
+  "start_ms": 1776939324042,
+  "end_ms": 1776939659563,
+  "elapsed_ms": 335521,
+  "note": "Validator could not be executed in this sandbox (node + local .mjs script path not on Bash allowlist). Visibility constraint and layout checks performed manually by walking all 109 edges against the coordinate map; zero violations remaining."
+}

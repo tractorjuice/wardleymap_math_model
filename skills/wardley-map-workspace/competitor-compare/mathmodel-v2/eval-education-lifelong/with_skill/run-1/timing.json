@@ -1,0 +1,9 @@
+{
+  "scenario": "education-lifelong",
+  "skill": "mathmodel-v2",
+  "run": 1,
+  "start_epoch_s": 1776939338,
+  "end_epoch_s": 1776939791,
+  "elapsed_s": 453,
+  "notes": "Blind benchmark. Validator (node skills/wardley-map/scripts/validate_owm.mjs) could not be executed in sandbox (permission-denied for non-allowlisted node paths). Validation performed by manual edge trace against the three rules the script enforces; 6 initial visibility violations were found and fixed iteratively. Map has 45 declared nodes (3 anchors + 42 components) and 84 edges; manual pass records no remaining violations. Layout-check equivalents also performed manually."
+}

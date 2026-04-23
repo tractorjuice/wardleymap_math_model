@@ -1,0 +1,10 @@
+{
+  "scenario": "eval-transport-logistics",
+  "competitor": "haberlah",
+  "variant": "with_skill",
+  "run": 1,
+  "start_epoch": 1776873486.767851713,
+  "end_epoch": 1776873840.202235685,
+  "duration_seconds": 353.434,
+  "notes": "Blind benchmark of haberlah/wardley-mapping skill. Ran parse_owm.py + validate_map.py from the skill's scripts dir. Final validator output: valid with 1 warning (22 components, >18 threshold). Reference .owm was not read."
+}

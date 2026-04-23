@@ -1,0 +1,12 @@
+{
+  "eval": "eval-healthcare-clinical",
+  "variant": "with_skill",
+  "run": 1,
+  "skill": "arc-kit/wardley-mapping",
+  "skill_path": "skills/wardley-map-workspace/competitor-compare/arc-kit/skill/SKILL.md",
+  "start_ns": 1776875822303959037,
+  "end_ns": 1776876063787648669,
+  "duration_ns": 241483689632,
+  "duration_seconds": 241.48,
+  "scenario_date": "2022-08-01"
+}

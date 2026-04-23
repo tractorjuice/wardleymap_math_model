@@ -1,0 +1,37 @@
+{
+  "scenario": "eval-finance-risk",
+  "variant": "prompt-baseline / with_prompt-in-tree / run-1",
+  "pass": "first-pass, no iteration",
+  "instruction_set": "/workspaces/wardleymap_math_model/prompts/wardley_map_generator.md",
+  "inputs_consulted": [
+    "/workspaces/wardleymap_math_model/prompts/wardley_map_generator.md"
+  ],
+  "inputs_blocked": [
+    "/workspaces/wardleymap_math_model/skills/wardley-map-workspace/competitor-compare/prompt-baseline/eval-finance-risk/wardley-reference.owm",
+    "/workspaces/wardleymap_math_model/skills/wardley-map-workspace/iteration-10/eval-finance-risk/wardley-reference.owm",
+    "skill files",
+    "references/",
+    "validator",
+    "WebSearch"
+  ],
+  "start_ns": 1776872857809596643,
+  "end_ns":   1776872975495506203,
+  "elapsed_ns": 117685909560,
+  "elapsed_seconds": 117.686,
+  "elapsed_human": "1m 57.7s",
+  "outputs": [
+    "outputs/draft.owm",
+    "outputs/output.md",
+    "outputs/timing.json"
+  ],
+  "component_count": 28,
+  "anchor_count": 3,
+  "evolve_arrows": 4,
+  "inertia_markers": 1,
+  "notes": [
+    "Quick 4-row cheat-sheet method used (prompt-permitted); not the full 19-row scoring.",
+    "No validator consulted; hard visibility rule nu(a) >= nu(b) was enforced by hand during assignment.",
+    "No WebSearch; no reference OWM consulted.",
+    "timing.json elapsed reflects wall-clock from first timestamp capture to final timestamp capture in this run; it includes tool-turn latency, not just model compute."
+  ]
+}

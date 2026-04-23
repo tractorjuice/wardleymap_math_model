@@ -1,0 +1,175 @@
+title UK Construction Supply Chain (March 2023)
+style wardley
+
+// ---------- Anchors (user types) ----------
+anchor Citizen / Homebuyer [0.97, 0.60]
+anchor Government (DLUHC / Treasury) [0.96, 0.48]
+anchor Social Landlord [0.94, 0.55]
+anchor Mortgage Lender [0.93, 0.70]
+
+// ---------- User-facing needs (ν ~0.80-0.88) ----------
+component Completed Home [0.88, 0.55]
+component Housing Programme Delivery [0.86, 0.45]
+component Warranty / NHBC Cover [0.83, 0.62]
+component Mortgage Valuation [0.84, 0.72]
+component Building Safety Case [0.80, 0.38]
+
+// ---------- Inspection, QA and regulatory gatekeeping (ν ~0.68-0.78) ----------
+component Building Control Inspection [0.77, 0.58]
+component Planning Consent [0.75, 0.65]
+component Building Regulations (Approved Docs) [0.50, 0.78]
+component Building Safety Regulator (HSE) [0.42, 0.22]
+component Blueprint / Design Package [0.68, 0.45]
+
+// ---------- Construction delivery (ν ~0.55-0.66) ----------
+component Main Contractor [0.66, 0.58]
+component On-site Build [0.64, 0.40]
+component Subcontractor Trades [0.62, 0.42]
+component Project Management [0.60, 0.62]
+component BIM / Digital Twin [0.44, 0.42]
+component Site Safety Management [0.56, 0.70]
+
+// ---------- Emerging industrialised construction (differentiation zone) ----------
+component Modular / Volumetric Homes [0.55, 0.30]
+component Panelised / Prefab Systems [0.53, 0.42]
+component Factory Assembly Line [0.50, 0.28]
+component Design for Manufacture and Assembly (DfMA) [0.48, 0.26]
+component Test-Driven / Digital Prototyping [0.45, 0.20]
+
+// ---------- Labour (ν ~0.42-0.52) ----------
+component Skilled Trades (Bricklayer, Electrician, Plumber) [0.52, 0.48]
+component Unskilled / General Site Labour [0.48, 0.72]
+component Trade Certification (CSCS, Gas Safe, NICEIC) [0.44, 0.78]
+component Apprenticeships and FE Training [0.40, 0.55]
+component Local Skilled Labour Supply (CNI) [0.38, 0.32]
+
+// ---------- Equipment and machinery (ν ~0.32-0.45) ----------
+component Heavy Plant and Machinery [0.42, 0.82]
+component Tool Hire / Plant Rental [0.40, 0.85]
+component Site IT / Comms [0.35, 0.88]
+
+// ---------- Distribution (ν ~0.30-0.42) ----------
+component Builders Merchants (Travis Perkins, Jewson) [0.42, 0.72]
+component Integrated Distributor (Saint-Gobain, Kingspan direct) [0.36, 0.52]
+component Digital / Platform Distributor (Tradepoint, Materialise) [0.32, 0.30]
+component Logistics and Haulage [0.30, 0.80]
+
+// ---------- Manufacture and materials (ν ~0.18-0.30) ----------
+component Component Manufacture (MMC factories) [0.28, 0.32]
+component Traditional Materials Manufacture (brick, block, timber frame) [0.26, 0.78]
+component Cement and Concrete [0.22, 0.92]
+component Steel [0.20, 0.88]
+component Timber (structural) [0.22, 0.85]
+component Recycled / Reclaimed Materials [0.20, 0.38]
+component Novel / Low-carbon Materials (hempcrete, CLT, bio-cement) [0.18, 0.22]
+component Substitutable Materials Index [0.30, 0.30]
+
+// ---------- Raw materials and global supply ----------
+component Raw Materials (aggregate, ore, sand) [0.14, 0.80]
+component Global Material Supply Chain [0.12, 0.60]
+component Energy (Gas, Diesel, Electricity) [0.08, 0.95]
+component Transport Network (roads, ports, rail) [0.08, 0.92]
+
+// ---------- Dependencies ----------
+Citizen / Homebuyer->Completed Home
+Citizen / Homebuyer->Mortgage Valuation
+Government (DLUHC / Treasury)->Housing Programme Delivery
+Government (DLUHC / Treasury)->Building Safety Case
+Government (DLUHC / Treasury)->Building Regulations (Approved Docs)
+Social Landlord->Completed Home
+Social Landlord->Housing Programme Delivery
+Social Landlord->Warranty / NHBC Cover
+Mortgage Lender->Mortgage Valuation
+Mortgage Lender->Warranty / NHBC Cover
+
+Completed Home->Main Contractor
+Completed Home->Warranty / NHBC Cover
+Completed Home->Building Control Inspection
+Housing Programme Delivery->Main Contractor
+Housing Programme Delivery->Planning Consent
+Warranty / NHBC Cover->Building Control Inspection
+Mortgage Valuation->Warranty / NHBC Cover
+Building Safety Case->Building Safety Regulator (HSE)
+Building Safety Case->Building Regulations (Approved Docs)
+
+Building Control Inspection->Building Regulations (Approved Docs)
+Planning Consent->Blueprint / Design Package
+Building Regulations (Approved Docs)->Building Safety Regulator (HSE)
+Blueprint / Design Package->BIM / Digital Twin
+
+Main Contractor->On-site Build
+Main Contractor->Project Management
+Main Contractor->Subcontractor Trades
+On-site Build->Site Safety Management
+On-site Build->Skilled Trades (Bricklayer, Electrician, Plumber)
+On-site Build->Unskilled / General Site Labour
+On-site Build->Heavy Plant and Machinery
+On-site Build->Builders Merchants (Travis Perkins, Jewson)
+Subcontractor Trades->Skilled Trades (Bricklayer, Electrician, Plumber)
+Subcontractor Trades->Trade Certification (CSCS, Gas Safe, NICEIC)
+Project Management->BIM / Digital Twin
+Site Safety Management->Building Regulations (Approved Docs)
+
+Main Contractor->Modular / Volumetric Homes
+Main Contractor->Panelised / Prefab Systems
+Modular / Volumetric Homes->Factory Assembly Line
+Modular / Volumetric Homes->Design for Manufacture and Assembly (DfMA)
+Panelised / Prefab Systems->Factory Assembly Line
+Panelised / Prefab Systems->Design for Manufacture and Assembly (DfMA)
+Factory Assembly Line->Component Manufacture (MMC factories)
+Design for Manufacture and Assembly (DfMA)->Test-Driven / Digital Prototyping
+Design for Manufacture and Assembly (DfMA)->BIM / Digital Twin
+
+Skilled Trades (Bricklayer, Electrician, Plumber)->Apprenticeships and FE Training
+Skilled Trades (Bricklayer, Electrician, Plumber)->Trade Certification (CSCS, Gas Safe, NICEIC)
+Apprenticeships and FE Training->Local Skilled Labour Supply (CNI)
+Unskilled / General Site Labour->Local Skilled Labour Supply (CNI)
+
+Heavy Plant and Machinery->Tool Hire / Plant Rental
+Heavy Plant and Machinery->Energy (Gas, Diesel, Electricity)
+Tool Hire / Plant Rental->Energy (Gas, Diesel, Electricity)
+Site IT / Comms->Energy (Gas, Diesel, Electricity)
+BIM / Digital Twin->Site IT / Comms
+
+Builders Merchants (Travis Perkins, Jewson)->Traditional Materials Manufacture (brick, block, timber frame)
+Builders Merchants (Travis Perkins, Jewson)->Logistics and Haulage
+Integrated Distributor (Saint-Gobain, Kingspan direct)->Component Manufacture (MMC factories)
+Integrated Distributor (Saint-Gobain, Kingspan direct)->Logistics and Haulage
+Digital / Platform Distributor (Tradepoint, Materialise)->Component Manufacture (MMC factories)
+Digital / Platform Distributor (Tradepoint, Materialise)->Logistics and Haulage
+Main Contractor->Integrated Distributor (Saint-Gobain, Kingspan direct)
+Main Contractor->Digital / Platform Distributor (Tradepoint, Materialise)
+
+Component Manufacture (MMC factories)->Traditional Materials Manufacture (brick, block, timber frame)
+Component Manufacture (MMC factories)->Steel
+Component Manufacture (MMC factories)->Timber (structural)
+Component Manufacture (MMC factories)->Novel / Low-carbon Materials (hempcrete, CLT, bio-cement)
+Traditional Materials Manufacture (brick, block, timber frame)->Cement and Concrete
+Traditional Materials Manufacture (brick, block, timber frame)->Raw Materials (aggregate, ore, sand)
+Cement and Concrete->Raw Materials (aggregate, ore, sand)
+Cement and Concrete->Energy (Gas, Diesel, Electricity)
+Steel->Raw Materials (aggregate, ore, sand)
+Steel->Energy (Gas, Diesel, Electricity)
+Steel->Global Material Supply Chain
+Timber (structural)->Global Material Supply Chain
+Recycled / Reclaimed Materials->Raw Materials (aggregate, ore, sand)
+Novel / Low-carbon Materials (hempcrete, CLT, bio-cement)->Raw Materials (aggregate, ore, sand)
+Substitutable Materials Index->Traditional Materials Manufacture (brick, block, timber frame)
+Substitutable Materials Index->Novel / Low-carbon Materials (hempcrete, CLT, bio-cement)
+
+Logistics and Haulage->Transport Network (roads, ports, rail)
+Logistics and Haulage->Energy (Gas, Diesel, Electricity)
+Raw Materials (aggregate, ore, sand)->Global Material Supply Chain
+Global Material Supply Chain->Transport Network (roads, ports, rail)
+
+// ---------- Evolution arrows (scenarios) ----------
+evolve Modular / Volumetric Homes 0.52
+evolve Panelised / Prefab Systems 0.58
+evolve Design for Manufacture and Assembly (DfMA) 0.48
+evolve BIM / Digital Twin 0.65
+evolve Digital / Platform Distributor (Tradepoint, Materialise) 0.55
+evolve Novel / Low-carbon Materials (hempcrete, CLT, bio-cement) 0.42
+
+note Bespoke craft zone [0.55, 0.35]
+note Industrialisation frontier [0.35, 0.30]
+note Utility / commodity floor [0.12, 0.90]

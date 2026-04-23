@@ -1,0 +1,73 @@
+title Supply-Chain Sustainability: From Producer to Consumer
+style wardley
+
+// ---------- Anchors (users / top-level actors) ----------
+anchor Consumer [0.97, 0.55]
+
+// ---------- Market-facing actors & products (upper chain) ----------
+component Regulator [0.92, 0.78]
+component Retailer [0.88, 0.68]
+component Sustainable Product [0.82, 0.50]
+component Consumer Ratings & Labels [0.78, 0.58]
+component Distribution Channels [0.70, 0.72]
+component Certifications & Disclosure [0.62, 0.60]
+
+// ---------- Chain operations (middle) ----------
+component Packaging & Cold Chain [0.56, 0.62] inertia
+component Transportation [0.50, 0.78]
+component Compliance & Audit [0.48, 0.68]
+component Manufacturing [0.38, 0.78] inertia
+component Producer [0.44, 0.48]
+
+// ---------- Regulatory apparatus & sourcing (lower middle) ----------
+component Laws & Regulations [0.30, 0.85]
+component Trade Agreements & Sanctions [0.36, 0.92]
+component Sourcing (Raw + Complex) [0.28, 0.78]
+
+// ---------- Strategic levers & circular economy (bottom) ----------
+component End-of-Life & Waste [0.22, 0.38]
+component Resource Efficiency [0.16, 0.28]
+component R&D (Sustainability) [0.10, 0.18]
+
+// ---------- Dependencies ----------
+Consumer->Sustainable Product
+Consumer->Retailer
+Consumer->Consumer Ratings & Labels
+Regulator->Laws & Regulations
+Regulator->Trade Agreements & Sanctions
+Regulator->Compliance & Audit
+Retailer->Distribution Channels
+Retailer->Sustainable Product
+Sustainable Product->Producer
+Sustainable Product->Certifications & Disclosure
+Consumer Ratings & Labels->Certifications & Disclosure
+Distribution Channels->Transportation
+Distribution Channels->Packaging & Cold Chain
+Certifications & Disclosure->Compliance & Audit
+Packaging & Cold Chain->Manufacturing
+Transportation->Sourcing (Raw + Complex)
+Compliance & Audit->Laws & Regulations
+Producer->Manufacturing
+Producer->Sourcing (Raw + Complex)
+Manufacturing->Sourcing (Raw + Complex)
+Manufacturing->R&D (Sustainability)
+Manufacturing->Resource Efficiency
+Sourcing (Raw + Complex)->Trade Agreements & Sanctions
+Sourcing (Raw + Complex)->End-of-Life & Waste
+End-of-Life & Waste->Resource Efficiency
+Resource Efficiency->R&D (Sustainability)
+
+// ---------- Evolution arrows (predicted 12-24 month movement) ----------
+evolve End-of-Life & Waste 0.58
+evolve Resource Efficiency 0.52
+evolve Consumer Ratings & Labels 0.72
+evolve Certifications & Disclosure 0.75
+
+// ---------- Strategic annotations ----------
+annotation 1 [[0.78, 0.55]] Open-market-driven zone: consumers pull sustainable choices
+annotation 2 [[0.38, 0.82]] Regulation-driven zone: laws, sanctions, and audit trail
+annotation 3 [[0.14, 0.24]] R&D and resource efficiency: where differentiation lives
+annotation 4 [[0.22, 0.42]] Circular-economy opportunity: end-of-life is evolving fast
+
+note Market-pull boundary [0.60, 0.55]
+note Regulatory-push boundary [0.36, 0.82]

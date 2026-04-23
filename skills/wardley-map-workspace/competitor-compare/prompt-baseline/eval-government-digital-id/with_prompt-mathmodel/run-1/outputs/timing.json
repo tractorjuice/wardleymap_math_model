@@ -1,0 +1,32 @@
+{
+  "eval": "eval-government-digital-id",
+  "condition": "prompt-baseline/with_prompt-in-tree",
+  "run": 1,
+  "scenario_date": "2022-11",
+  "inputs": {
+    "prompt_file": "/workspaces/wardleymap_math_model/prompts/wardley_map_generator.md",
+    "skill_used": false,
+    "reference_read": false,
+    "blinded_paths": [
+      "/workspaces/wardleymap_math_model/skills/wardley-map-workspace/competitor-compare/prompt-baseline/eval-government-digital-id/wardley-reference.owm",
+      "/workspaces/wardleymap_math_model/skills/wardley-map-workspace/iteration-14/eval-government-digital-id/wardley-reference.owm"
+    ]
+  },
+  "start_ms": 1776873092155,
+  "end_ms": 1776873455847,
+  "elapsed_ms": 363692,
+  "elapsed_s": 363.692,
+  "outputs": {
+    "draft_owm": "/workspaces/wardleymap_math_model/skills/wardley-map-workspace/competitor-compare/prompt-baseline/eval-government-digital-id/with_prompt-in-tree/run-1/outputs/draft.owm",
+    "output_md": "/workspaces/wardleymap_math_model/skills/wardley-map-workspace/competitor-compare/prompt-baseline/eval-government-digital-id/with_prompt-in-tree/run-1/outputs/output.md"
+  },
+  "map_stats": {
+    "anchors": 6,
+    "components_excluding_anchors": 28,
+    "edges": 52,
+    "has_inertia_marker": true,
+    "evolve_arrows": 4,
+    "notes": 4,
+    "visibility_constraint_violations": 0
+  }
+}

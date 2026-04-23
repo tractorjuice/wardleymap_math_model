@@ -1,0 +1,139 @@
+title Digital Financial Inclusion (individual in underbanked region)
+
+anchor Individual [0.98, 0.02]
+
+// --- User needs (the anchor's needs) ---
+component Options            [0.92, 0.18]
+component Trade              [0.93, 0.28]
+component Equality           [0.91, 0.12]
+component Sustainability     [0.90, 0.22]
+component Inclusion          [0.94, 0.15]
+
+// --- Identity, trust, risk, behaviour, markets, authority, redistribution ---
+component Identity & Trust                 [0.82, 0.38]
+component Risk                             [0.78, 0.55]
+component Behaviour                        [0.80, 0.30]
+component Markets & Exchange Protocols     [0.72, 0.60]
+component Authority (Centralised)          [0.70, 0.80]
+component Authority (Decentralised)        [0.70, 0.28]
+component Redistribution                   [0.74, 0.30]
+
+// --- Banking provision & currency ---
+component Bank Branches          [0.62, 0.65]
+component Banking Services       [0.60, 0.70]
+component Online Payments        [0.58, 0.84]
+component Financial Infrastructure [0.52, 0.78]
+component Fiat Currency          [0.56, 0.92]
+component Cryptocurrency         [0.54, 0.55]
+component CBDC                   [0.50, 0.15]
+
+// --- Technology stack ---
+component Internet Access        [0.42, 0.60]
+component Mobile Device          [0.44, 0.90]
+component Consensus Algorithms   [0.38, 0.60]
+component Computing Infrastructure [0.36, 0.92]
+
+// --- Network topology ---
+component Mesh Networks          [0.28, 0.30]
+component Satellite              [0.30, 0.55]
+component 5G                     [0.26, 0.60]
+component Copper                 [0.24, 0.85]
+
+// --- Energy layer ---
+component Minigrids              [0.14, 0.38]
+component Renewable Energy       [0.12, 0.60]
+component Fossil Generation      [0.10, 0.85]
+
+// --- Dependencies (anchor & top-level user needs) ---
+Individual -> Options
+Individual -> Trade
+Individual -> Equality
+Individual -> Sustainability
+Individual -> Inclusion
+
+// User needs depend on the behavioural / institutional layer
+Options -> Markets & Exchange Protocols
+Options -> Banking Services
+Trade -> Markets & Exchange Protocols
+Trade -> Online Payments
+Trade -> Identity & Trust
+Equality -> Inclusion
+Equality -> Redistribution
+Sustainability -> Redistribution
+Sustainability -> Renewable Energy
+Inclusion -> Identity & Trust
+Inclusion -> Banking Services
+Inclusion -> Mobile Device
+
+// Behavioural / institutional -> services & currency
+Identity & Trust -> Authority (Centralised)
+Identity & Trust -> Authority (Decentralised)
+Identity & Trust -> Banking Services
+Risk -> Banking Services
+Risk -> Behaviour
+Risk -> Markets & Exchange Protocols
+Behaviour -> Mobile Device
+Markets & Exchange Protocols -> Financial Infrastructure
+Markets & Exchange Protocols -> Online Payments
+Authority (Centralised) -> Fiat Currency
+Authority (Centralised) -> CBDC
+Authority (Decentralised) -> Cryptocurrency
+Authority (Decentralised) -> Consensus Algorithms
+Redistribution -> Fiat Currency
+Redistribution -> Financial Infrastructure
+
+// Services -> infrastructure & currency
+Bank Branches -> Banking Services
+Banking Services -> Online Payments
+Banking Services -> Financial Infrastructure
+Banking Services -> Fiat Currency
+Online Payments -> Financial Infrastructure
+Online Payments -> Mobile Device
+Online Payments -> Internet Access
+Financial Infrastructure -> Computing Infrastructure
+Fiat Currency -> Financial Infrastructure
+Cryptocurrency -> Consensus Algorithms
+Cryptocurrency -> Computing Infrastructure
+CBDC -> Financial Infrastructure
+CBDC -> Consensus Algorithms
+
+// Tech stack -> network / compute
+Internet Access -> Mesh Networks
+Internet Access -> Satellite
+Internet Access -> 5G
+Internet Access -> Copper
+Mobile Device -> 5G
+Mobile Device -> Computing Infrastructure
+Consensus Algorithms -> Computing Infrastructure
+Computing Infrastructure -> Fossil Generation
+Computing Infrastructure -> Renewable Energy
+
+// Network topology -> energy
+Mesh Networks -> Minigrids
+Mesh Networks -> Renewable Energy
+Satellite -> Fossil Generation
+5G -> Fossil Generation
+5G -> Renewable Energy
+Copper -> Fossil Generation
+
+// Energy
+Minigrids -> Renewable Energy
+Minigrids -> Fossil Generation
+
+// --- Movement (evolution arrows) ---
+evolve CBDC 0.45
+evolve Cryptocurrency 0.70
+evolve Satellite 0.75
+evolve 5G 0.80
+evolve Identity & Trust 0.60
+evolve Minigrids 0.60
+evolve Renewable Energy 0.82
+evolve Online Payments 0.90
+evolve Mesh Networks 0.50
+evolve Consensus Algorithms 0.75
+
+// Inertia markers (legacy / resistance to movement)
+inertia Bank Branches
+inertia Copper
+inertia Fossil Generation
+inertia Authority (Centralised)

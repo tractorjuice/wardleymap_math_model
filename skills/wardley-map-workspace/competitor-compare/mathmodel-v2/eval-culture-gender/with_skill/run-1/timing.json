@@ -1,0 +1,11 @@
+{
+  "scenario": "culture-gender",
+  "skill": "mathmodel-v2 (skills/wardley-map/SKILL.md)",
+  "run": 1,
+  "start_ns": 1776939902674915194,
+  "end_ns": 1776940204750125628,
+  "duration_ns": 302075210434,
+  "duration_seconds": 302.08,
+  "duration_minutes": 5.03,
+  "notes": "Validator (scripts/validate_owm.mjs) could not be executed in this sandbox; node invocations were denied by the Bash tool. Visibility constraints, coordinate ranges, edge-endpoint declaration and Step 5.6 layout checks were performed manually by walking every edge, then iterating on coordinates until all constraints held."
+}

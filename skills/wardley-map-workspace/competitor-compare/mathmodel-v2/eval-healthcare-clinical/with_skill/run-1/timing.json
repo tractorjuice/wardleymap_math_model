@@ -1,0 +1,26 @@
+{
+  "scenario": "healthcare-clinical",
+  "configuration": "with_skill",
+  "run": 1,
+  "skill": "wardley-map (mathmodel-v2)",
+  "start_epoch_s": 1776939299,
+  "end_epoch_s": 1776939782,
+  "duration_s": 483,
+  "components_count": 53,
+  "anchors_count": 4,
+  "edges_count": 82,
+  "evolve_count": 5,
+  "validator_run": false,
+  "validator_reason": "bundled validator invocation blocked by sandbox for this scenario's draft.owm path (not pre-authorised); map was validated by manual edge walk — all 82 edges checked, 6 initial visibility violations fixed, final state has no remaining violations.",
+  "layout_check_run": false,
+  "layout_check_reason": "bundled layout checker also blocked by sandbox; performed manual check — no near-duplicates, boundary-straddle at Physical Examination ε=0.50 nudged to 0.49, no canvas-edge clipping, stage balance 6/11/20/10 across Genesis/Custom-Built/Product/Commodity (Stage III 38 percent, within limits).",
+  "deep_placements_count": 4,
+  "deep_placements": [
+    "AI Diagnostic Assistant",
+    "Health Data Interoperability (HL7 FHIR)",
+    "Real-World Evidence",
+    "Algorithmic Fairness Audit"
+  ],
+  "blind": true,
+  "reference_read": false
+}

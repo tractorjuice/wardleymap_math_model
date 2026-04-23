@@ -1,0 +1,19 @@
+{
+  "run": "prompt-baseline/eval-telecoms-sovereignty/with_prompt-in-tree/run-1",
+  "mode": "prompt-only baseline",
+  "prompt_file": "/workspaces/wardleymap_math_model/prompts/wardley_map_generator.md",
+  "scenario": "Telecoms sovereignty from a nation-state perspective, Oct 2022",
+  "anchors": ["Government", "The Collective", "Corporations", "People"],
+  "start_ts_unix": 1776873246.477646618,
+  "end_ts_unix": 1776873376.897609798,
+  "elapsed_seconds": 130.42,
+  "component_count": 40,
+  "edge_count_approx": 54,
+  "inertia_markers": 1,
+  "evolve_markers": 3,
+  "note_markers": 2,
+  "transition_flagged": ["Satellite Access", "Nation-State Firewall", "Physical Supply Chain", "Information Supply Chain", "IoT Devices"],
+  "blind_refs_read": false,
+  "tooling_used": ["Read (prompt only)", "Write"],
+  "validator_run": false
+}

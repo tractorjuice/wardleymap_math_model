@@ -1,0 +1,140 @@
+title Cybersecurity Risk Management from the Executive's Point of View (May 2023)
+
+// OWM coordinate convention: [visibility, maturity]
+// visibility 0 = bottom of map (invisible infrastructure), 1 = top (user/anchor)
+// maturity   0 = Genesis (far left), 1 = Commodity (far right)
+
+// -------------------- Anchor --------------------
+// Executives own cybersecurity risk at the top; their decisions are shaped
+// by three drivers that sit just below them.
+component Executives [0.97, 0.80]
+
+// -------------------- Executive-level drivers --------------------
+component P&L Impact [0.88, 0.90]
+component Compliance Obligations [0.88, 0.82]
+component Risk Appetite [0.88, 0.55]
+
+// -------------------- Governance / Risk Posture layer --------------------
+// What the executives sign off on to translate appetite into action.
+component Mitigation/Transfer/Accept Mix [0.78, 0.60]
+component Cyber Insurance [0.78, 0.75]
+component Risk Register [0.72, 0.68]
+
+// -------------------- Risk Assessment layer --------------------
+component Risk Assessment Methodology [0.65, 0.55]
+component Risk Identification Practice [0.65, 0.45]
+component Asset Inventory [0.65, 0.72]
+
+// -------------------- Frameworks --------------------
+// Risk frameworks (NIST CSF, ISO 27005) sit below methodology.
+// Compliance frameworks (ISO 27001, SOC 2, PCI DSS, GDPR) sit lower / further right
+// because they are the most standardised.
+component Risk Framework (NIST CSF / ISO 27005) [0.55, 0.72]
+component Compliance Framework (ISO 27001 / SOC 2 / PCI / GDPR) [0.55, 0.85]
+
+// -------------------- Risk Quantification --------------------
+// Split by maturity: risk matrices are commoditised, likelihood/impact is productised,
+// FAIR quantification is still bespoke/expert.
+component Risk Matrices [0.48, 0.78]
+component Likelihood/Impact Scoring [0.48, 0.62]
+component FAIR Quantification [0.48, 0.32]
+
+// -------------------- Operational Security --------------------
+component Reporting to Board [0.60, 0.70]
+component Incident Response [0.42, 0.78]
+component Security Monitoring [0.38, 0.85]
+component SOC Tooling (SIEM/XDR) [0.35, 0.72]
+component Security Testing [0.42, 0.62]
+component Pen Testing [0.32, 0.70]
+component Bug Bounty [0.32, 0.55]
+
+// -------------------- Emerging: LLM --------------------
+// Two distinct roles. Defence = LLM-assisted SOC/analyst copilots (custom/emerging in May 2023).
+// Risk  = LLM-as-attack-surface (prompt injection, data leakage) — genesis in May 2023.
+component LLM-Assisted Defence [0.28, 0.20]
+component LLM-as-Risk (prompt injection, data leakage) [0.55, 0.12]
+
+// -------------------- Dependency Edges (a depends on b => visibility(a) >= visibility(b)) --------------------
+
+// Executives depend on the three drivers and on their reporting channel
+Executives->P&L Impact
+Executives->Compliance Obligations
+Executives->Risk Appetite
+Executives->Reporting to Board
+
+// P&L impact is what cyber insurance and the mitigation/transfer/accept mix pay down
+P&L Impact->Cyber Insurance
+P&L Impact->Mitigation/Transfer/Accept Mix
+
+// Compliance obligations drive the compliance framework and the risk framework
+Compliance Obligations->Compliance Framework (ISO 27001 / SOC 2 / PCI / GDPR)
+Compliance Obligations->Risk Framework (NIST CSF / ISO 27005)
+
+// Risk appetite drives the register and the mitigation/transfer/accept mix
+Risk Appetite->Risk Register
+Risk Appetite->Mitigation/Transfer/Accept Mix
+
+// The posture layer depends on assessment
+Mitigation/Transfer/Accept Mix->Risk Assessment Methodology
+Cyber Insurance->Risk Assessment Methodology
+Cyber Insurance->Risk Register
+Risk Register->Risk Assessment Methodology
+Risk Register->Asset Inventory
+
+// Assessment needs identification and inventory, and methodology needs frameworks/quantification
+Risk Assessment Methodology->Risk Identification Practice
+Risk Assessment Methodology->Asset Inventory
+Risk Assessment Methodology->Risk Framework (NIST CSF / ISO 27005)
+Risk Assessment Methodology->Likelihood/Impact Scoring
+Risk Assessment Methodology->FAIR Quantification
+Risk Assessment Methodology->Risk Matrices
+Risk Identification Practice->Asset Inventory
+
+// Reporting to board pulls data from monitoring and from the register
+Reporting to Board->Security Monitoring
+Reporting to Board->Risk Register
+
+// Operational stack dependencies
+Security Monitoring->SOC Tooling (SIEM/XDR)
+Incident Response->Security Monitoring
+Incident Response->SOC Tooling (SIEM/XDR)
+Security Testing->Pen Testing
+Security Testing->Bug Bounty
+Risk Identification Practice->Security Testing
+Risk Identification Practice->Security Monitoring
+
+// LLM angle
+LLM-Assisted Defence->SOC Tooling (SIEM/XDR)
+LLM-Assisted Defence->Security Monitoring
+// LLM-as-Risk is itself a risk the register must track — sits to the left (genesis) but hooks into the register
+Risk Identification Practice->LLM-as-Risk (prompt injection, data leakage)
+Risk Register->LLM-as-Risk (prompt injection, data leakage)
+
+// -------------------- Movement (evolution direction) --------------------
+
+// Compliance frameworks are slowly drifting right (more commoditised via SOC 2 / GDPR tooling)
+evolve Compliance Framework (ISO 27001 / SOC 2 / PCI / GDPR) 0.92
+
+// Risk framework drifts right as NIST CSF 2.0 is being drafted in 2023
+evolve Risk Framework (NIST CSF / ISO 27005) 0.80
+
+// Cyber insurance is productising further after the 2021-22 market correction
+evolve Cyber Insurance 0.82
+
+// SOC tooling: SIEM -> managed XDR is an accelerating commoditisation
+evolve SOC Tooling (SIEM/XDR) 0.85
+
+// Bug bounty platforms (HackerOne/Bugcrowd) continue to productise
+evolve Bug Bounty 0.70
+
+// FAIR quantification is slowly moving right but is held back by expert-judgement inertia
+evolve FAIR Quantification 0.45 inertia
+
+// Risk matrices are entrenched despite being criticised — inertia
+evolve Risk Matrices 0.82 inertia
+
+// LLM-assisted defence is accelerating fast in May 2023 (GPT-4 era)
+evolve LLM-Assisted Defence 0.45
+
+// LLM-as-risk is accelerating — regulators (EU AI Act draft, NIST AI RMF Jan 2023) are forcing it onto the register
+evolve LLM-as-Risk (prompt injection, data leakage) 0.30

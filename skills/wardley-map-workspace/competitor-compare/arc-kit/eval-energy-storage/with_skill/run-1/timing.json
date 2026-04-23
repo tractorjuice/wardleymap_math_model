@@ -1,0 +1,12 @@
+{
+  "eval": "eval-energy-storage",
+  "skill": "arc-kit/wardley-mapping",
+  "run": "run-1",
+  "mode": "with_skill",
+  "blind": true,
+  "start_epoch_s": 1776876069.007068025,
+  "end_epoch_s": 1776876227.528006932,
+  "elapsed_s": 158.520938907,
+  "start_iso": "2026-04-22T00:00:00Z-approx",
+  "notes": "Followed arc-kit SKILL.md steps 1-5 (Step 6 optional math not applied). Outputs: output.md + draft.owm. Did not read the reference .owm at any point. Scenario date April 2023; generation date 2026-04-22."
+}

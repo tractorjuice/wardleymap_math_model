@@ -1,0 +1,25 @@
+{
+  "skill": "wardley-map",
+  "skill_path": "/workspaces/wardleymap_math_model/skills/wardley-map/SKILL.md",
+  "eval": "government-sovereignty",
+  "config": "with_skill",
+  "run": 1,
+  "scenario_date": "2023-04",
+  "start_ms": 1776939492880,
+  "end_ms": 1776939875467,
+  "duration_ms": 382587,
+  "duration_seconds": 382.6,
+  "components_count": 47,
+  "anchors_count": 4,
+  "edges_count": 97,
+  "validator_exit": "not_run_permission_denied",
+  "validator_walk": "manual_all_edges_passed",
+  "layout_check_exit": "not_run_permission_denied",
+  "layout_check_manual": "applied_4_nudges",
+  "new_features_present": {
+    "step_0_strategic_context": true,
+    "step_4b_evidence_citations": true,
+    "section_3_2_evolution_rationale_table": true,
+    "section_4d_build_buy_outsource_table": true
+  }
+}

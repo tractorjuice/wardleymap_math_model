@@ -1,0 +1,48 @@
+title Manufacturing Supply Chain (Feb 2023)
+style wardley
+
+anchor Distributor [0.97, 0.62]
+
+component Finished Product [0.88, 0.65]
+component Compliance & Certification [0.80, 0.62]
+component Inventory Strategy [0.75, 0.30] inertia
+component Sales Forecasting [0.70, 0.50]
+component Assembly & Production [0.62, 0.55]
+component Supply Chain Visibility [0.58, 0.22]
+component Freight [0.50, 0.78]
+component R&D [0.45, 0.28]
+component Equipment [0.40, 0.58]
+component Warehousing [0.38, 0.70]
+component Labour [0.35, 0.48]
+component ROCE & Capital [0.30, 0.80]
+component Refined Materials [0.22, 0.70]
+component Lobbying [0.18, 0.15]
+component Raw Materials [0.10, 0.88]
+
+Distributor->Finished Product
+Finished Product->Assembly & Production
+Finished Product->Compliance & Certification
+Finished Product->Freight
+Finished Product->Inventory Strategy
+Finished Product->Sales Forecasting
+Compliance & Certification->Lobbying
+Inventory Strategy->Sales Forecasting
+Inventory Strategy->Warehousing
+Inventory Strategy->Supply Chain Visibility
+Sales Forecasting->ROCE & Capital
+Assembly & Production->R&D
+Assembly & Production->Equipment
+Assembly & Production->Labour
+Assembly & Production->Refined Materials
+Supply Chain Visibility->Freight
+Supply Chain Visibility->Warehousing
+Freight->Warehousing
+Refined Materials->Raw Materials
+
+evolve Supply Chain Visibility 0.45
+evolve Inventory Strategy 0.42
+evolve Sales Forecasting 0.62
+
+annotation 1 [[0.58, 0.33]] Post-COVID SCV investment wave
+annotation 2 [[0.75, 0.40]] JIT vs JIC: contested judgment call
+annotation 3 [[0.18, 0.20]] Firm-specific; bespoke influence work

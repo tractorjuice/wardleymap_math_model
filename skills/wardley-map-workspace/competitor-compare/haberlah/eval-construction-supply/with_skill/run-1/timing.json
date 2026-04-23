@@ -1,0 +1,9 @@
+{
+  "scenario": "eval-construction-supply",
+  "skill": "haberlah/wardley-mapping",
+  "run": 1,
+  "mode": "blind",
+  "start_epoch_s": 1776873296.930,
+  "end_epoch_s": 1776873487.210,
+  "elapsed_s": 190.28
+}

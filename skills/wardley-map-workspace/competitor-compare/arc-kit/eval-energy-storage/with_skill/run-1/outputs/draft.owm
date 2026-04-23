@@ -1,0 +1,107 @@
+title Electrical Energy Storage & the Grid (April 2023)
+
+// OWM coordinate convention: [visibility, maturity]
+// visibility 0 = bottom of map, 1 = top (closest to user)
+// maturity   0 = Genesis, 1 = Commodity
+
+anchor Activity [0.97, 0.92]
+
+// --- Demand side ---
+component Consumers [0.92, 0.88]
+
+// --- Core utility layer (what delivers electricity to activity) ---
+component Electricity Generation [0.84, 0.86]
+component Grid [0.82, 0.84]
+
+// --- Grid models (the user asked for a traditional vs distributed contrast) ---
+component Traditional Grid (single-machine view) [0.74, 0.72]
+component Distributed Grid (fault-tolerant, TCP/IP-style) [0.74, 0.32]
+
+// --- Control plane sitting under both grid models ---
+component Control [0.66, 0.62]
+component SCADA [0.58, 0.78]
+component Auto Generation Control [0.56, 0.68]
+component Spinning Reserve [0.52, 0.82]
+component Fast-Response Systems [0.54, 0.55]
+
+// --- Storage types (hydro / battery / hydrogen) ---
+component Hydro Storage [0.46, 0.85]
+component Electrical Storage (battery) [0.48, 0.62]
+component Hydrogen Storage [0.44, 0.30]
+
+// --- Energy platform & integration layer ---
+component Energy Platform [0.40, 0.35]
+component Integration Layer (pre-approval/discovery) [0.36, 0.18]
+component Adaptive Integration [0.34, 0.14]
+component Plug-and-Play Energy [0.32, 0.10]
+
+// --- Underlying chain: sources, stockpile, supply chain, awareness ---
+component Sources [0.26, 0.82]
+component Stockpile [0.24, 0.70]
+component Material Supply Chain [0.18, 0.30]
+component Awareness of Energy Supply Chain [0.14, 0.12]
+
+// ========= Edges (a -> b  means a depends on b; visibility(a) >= visibility(b)) =========
+
+// Anchor to consumers to utility layer
+Activity -> Consumers
+Activity -> Electricity Generation
+Consumers -> Grid
+Consumers -> Electricity Generation
+
+// Grid decomposes into the two competing grid models
+Grid -> Traditional Grid (single-machine view)
+Grid -> Distributed Grid (fault-tolerant, TCP/IP-style)
+
+// Control sits under the grid
+Traditional Grid (single-machine view) -> Control
+Distributed Grid (fault-tolerant, TCP/IP-style) -> Control
+Traditional Grid (single-machine view) -> SCADA
+Traditional Grid (single-machine view) -> Auto Generation Control
+Traditional Grid (single-machine view) -> Spinning Reserve
+Distributed Grid (fault-tolerant, TCP/IP-style) -> Fast-Response Systems
+Distributed Grid (fault-tolerant, TCP/IP-style) -> SCADA
+
+// Generation leans on storage for balancing; storage leans on both grid models
+Electricity Generation -> Hydro Storage
+Electricity Generation -> Electrical Storage (battery)
+Electricity Generation -> Hydrogen Storage
+Grid -> Hydro Storage
+Grid -> Electrical Storage (battery)
+
+// Fast-response frequency services come from battery storage
+Fast-Response Systems -> Electrical Storage (battery)
+Spinning Reserve -> Hydro Storage
+
+// Energy platform & integration layer sit between storage and the supply chain
+Electrical Storage (battery) -> Energy Platform
+Hydrogen Storage -> Energy Platform
+Energy Platform -> Integration Layer (pre-approval/discovery)
+Integration Layer (pre-approval/discovery) -> Adaptive Integration
+Adaptive Integration -> Plug-and-Play Energy
+
+// Underlying supply chain
+Electrical Storage (battery) -> Material Supply Chain
+Hydrogen Storage -> Material Supply Chain
+Hydro Storage -> Sources
+Electricity Generation -> Sources
+Electricity Generation -> Stockpile
+Sources -> Material Supply Chain
+Stockpile -> Material Supply Chain
+Material Supply Chain -> Awareness of Energy Supply Chain
+Energy Platform -> Awareness of Energy Supply Chain
+
+// ========= Movement =========
+// Two headline movements the user asked to see:
+//  1. distributed grid is accelerating past traditional grid
+//  2. material supply chain is biting (accelerating but stuck left of where it needs to be)
+
+evolve Distributed Grid (fault-tolerant, TCP/IP-style) 0.58
+evolve Traditional Grid (single-machine view) 0.75 inertia
+evolve Fast-Response Systems 0.68
+evolve Electrical Storage (battery) 0.75
+evolve Hydrogen Storage 0.45
+evolve Energy Platform 0.55
+evolve Integration Layer (pre-approval/discovery) 0.35
+evolve Material Supply Chain 0.48
+evolve Awareness of Energy Supply Chain 0.30

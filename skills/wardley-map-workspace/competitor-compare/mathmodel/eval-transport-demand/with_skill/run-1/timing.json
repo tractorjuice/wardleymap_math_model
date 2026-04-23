@@ -1,0 +1,9 @@
+{
+  "scenario": "eval-transport-demand",
+  "config": "with_skill",
+  "run": "run-1",
+  "skill": "in-tree wardley-map",
+  "started_ns": 1776874413611683110,
+  "ended_ns": 1776874989643664486,
+  "elapsed_seconds": 576.03
+}

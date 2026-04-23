@@ -1,0 +1,163 @@
+wardley-beta
+title Energy Disruption (July 2022)
+size [1100, 800]
+
+anchor "Consumer" [0.98, 0.55]
+anchor "Society" [0.95, 0.48]
+
+component "Today's Demand Behaviour" [0.90, 0.88] (inertia)
+component "Tomorrow's Demand Behaviour" [0.86, 0.30]
+component "Energy Security (felt)" [0.84, 0.55]
+component "Sustainability Awareness" [0.82, 0.55]
+component "Energy Literacy & Education" [0.80, 0.28]
+component "Retail Tariff / Bill" [0.78, 0.82]
+component "Home Energy Management" [0.74, 0.55]
+component "EV Charging" [0.70, 0.60]
+component "Smart Meter" [0.66, 0.70]
+
+component "Public-Good Framing" [0.72, 0.35]
+component "Supply-Chain Awareness" [0.66, 0.28]
+component "Net-Zero Policy Framework" [0.62, 0.35]
+component "Scope 3 / Embedded Carbon" [0.58, 0.30]
+
+component "Price to Consumer" [0.70, 0.85]
+component "Home Battery" [0.58, 0.60]
+component "Solar Microgeneration" [0.60, 0.65]
+component "Cost with Externalities" [0.60, 0.30]
+component "Spot / Wholesale Market" [0.55, 0.85]
+component "Regulator (Ofgem-like)" [0.52, 0.85]
+component "OTC / Forward Trading" [0.50, 0.82]
+component "Carbon Price (ETS)" [0.48, 0.60]
+component "CO2 Monitoring & Reporting" [0.46, 0.65]
+component "Capacity Market" [0.44, 0.72]
+component "Smart Grid / Demand Response" [0.42, 0.55]
+
+component "Utility-Scale Renewables" [0.40, 0.72]
+component "Gas (CCGT) Generation" [0.38, 0.85] (inertia)
+component "Coal / Legacy Fossil" [0.36, 0.88] (inertia)
+component "Nuclear (existing fleet)" [0.36, 0.82]
+component "Pumped Hydro" [0.34, 0.78]
+component "Grid-Scale Battery" [0.32, 0.58]
+component "Strategic Fuel Reserves" [0.30, 0.85]
+component "Hydrogen Storage" [0.44, 0.28]
+component "Green Hydrogen Production" [0.42, 0.18]
+component "Small Modular Reactor (SMR)" [0.28, 0.22]
+
+component "Distribution Network" [0.24, 0.86]
+component "Grid Code" [0.22, 0.91]
+component "Capital / Project Finance" [0.22, 0.80]
+component "High-Voltage Transmission" [0.20, 0.88]
+component "Grid Frequency / Inertia Service" [0.18, 0.80]
+component "Interconnectors" [0.16, 0.78]
+
+component "Solar PV / Wind Turbine Supply Chain" [0.12, 0.62]
+component "Critical Minerals (Li, Co, rare earths)" [0.10, 0.55]
+component "Gas Import Infrastructure (LNG, pipelines)" [0.08, 0.80] (inertia)
+component "Uranium Fuel Cycle" [0.06, 0.78]
+
+"Consumer" -> "Today's Demand Behaviour"
+"Consumer" -> "Tomorrow's Demand Behaviour"
+"Consumer" -> "Energy Security (felt)"
+"Consumer" -> "Retail Tariff / Bill"
+"Consumer" -> "Home Energy Management"
+"Consumer" -> "EV Charging"
+
+"Society" -> "Sustainability Awareness"
+"Society" -> "Energy Security (felt)"
+"Society" -> "Energy Literacy & Education"
+"Society" -> "Public-Good Framing"
+"Society" -> "Net-Zero Policy Framework"
+
+"Tomorrow's Demand Behaviour" -> "Home Energy Management"
+"Tomorrow's Demand Behaviour" -> "Energy Literacy & Education"
+"Tomorrow's Demand Behaviour" -> "Smart Meter"
+"Today's Demand Behaviour" -> "Retail Tariff / Bill"
+"Today's Demand Behaviour" -> "Price to Consumer"
+"Home Energy Management" -> "Smart Meter"
+"Home Energy Management" -> "Home Battery"
+"Home Energy Management" -> "Solar Microgeneration"
+"EV Charging" -> "Distribution Network"
+"EV Charging" -> "Smart Grid / Demand Response"
+"Smart Meter" -> "Distribution Network"
+"Sustainability Awareness" -> "Scope 3 / Embedded Carbon"
+"Sustainability Awareness" -> "CO2 Monitoring & Reporting"
+"Sustainability Awareness" -> "Supply-Chain Awareness"
+"Energy Security (felt)" -> "Strategic Fuel Reserves"
+"Energy Security (felt)" -> "Interconnectors"
+"Energy Security (felt)" -> "Gas Import Infrastructure (LNG, pipelines)"
+
+"Retail Tariff / Bill" -> "Price to Consumer"
+"Price to Consumer" -> "Spot / Wholesale Market"
+"Price to Consumer" -> "Cost with Externalities"
+"Price to Consumer" -> "Capacity Market"
+"Spot / Wholesale Market" -> "OTC / Forward Trading"
+"OTC / Forward Trading" -> "Capacity Market"
+"Cost with Externalities" -> "Carbon Price (ETS)"
+"Cost with Externalities" -> "Scope 3 / Embedded Carbon"
+"Public-Good Framing" -> "Net-Zero Policy Framework"
+"Public-Good Framing" -> "Cost with Externalities"
+"Carbon Price (ETS)" -> "CO2 Monitoring & Reporting"
+"Supply-Chain Awareness" -> "Critical Minerals (Li, Co, rare earths)"
+"Supply-Chain Awareness" -> "Solar PV / Wind Turbine Supply Chain"
+
+"Net-Zero Policy Framework" -> "Regulator (Ofgem-like)"
+"Net-Zero Policy Framework" -> "Carbon Price (ETS)"
+"Regulator (Ofgem-like)" -> "Grid Code"
+"Regulator (Ofgem-like)" -> "Capacity Market"
+"Regulator (Ofgem-like)" -> "CO2 Monitoring & Reporting"
+"Regulator (Ofgem-like)" -> "Capital / Project Finance"
+
+"Distribution Network" -> "High-Voltage Transmission"
+"Distribution Network" -> "Grid Code"
+"Smart Grid / Demand Response" -> "Distribution Network"
+"Smart Grid / Demand Response" -> "Grid-Scale Battery"
+"High-Voltage Transmission" -> "Grid Frequency / Inertia Service"
+"High-Voltage Transmission" -> "Interconnectors"
+"Interconnectors" -> "Gas Import Infrastructure (LNG, pipelines)"
+
+"Spot / Wholesale Market" -> "Utility-Scale Renewables"
+"Spot / Wholesale Market" -> "Gas (CCGT) Generation"
+"Spot / Wholesale Market" -> "Nuclear (existing fleet)"
+"Spot / Wholesale Market" -> "Coal / Legacy Fossil"
+
+"Home Battery" -> "Critical Minerals (Li, Co, rare earths)"
+"Grid-Scale Battery" -> "Critical Minerals (Li, Co, rare earths)"
+"Grid-Scale Battery" -> "High-Voltage Transmission"
+"Pumped Hydro" -> "High-Voltage Transmission"
+"Hydrogen Storage" -> "Green Hydrogen Production"
+"Strategic Fuel Reserves" -> "Gas Import Infrastructure (LNG, pipelines)"
+
+"Solar Microgeneration" -> "Solar PV / Wind Turbine Supply Chain"
+"Solar Microgeneration" -> "Distribution Network"
+"Utility-Scale Renewables" -> "High-Voltage Transmission"
+"Utility-Scale Renewables" -> "Solar PV / Wind Turbine Supply Chain"
+"Utility-Scale Renewables" -> "Capital / Project Finance"
+"Gas (CCGT) Generation" -> "High-Voltage Transmission"
+"Gas (CCGT) Generation" -> "Gas Import Infrastructure (LNG, pipelines)"
+"Coal / Legacy Fossil" -> "High-Voltage Transmission"
+"Nuclear (existing fleet)" -> "High-Voltage Transmission"
+"Nuclear (existing fleet)" -> "Uranium Fuel Cycle"
+"Nuclear (existing fleet)" -> "Capital / Project Finance"
+"Small Modular Reactor (SMR)" -> "Uranium Fuel Cycle"
+"Small Modular Reactor (SMR)" -> "Capital / Project Finance"
+"Green Hydrogen Production" -> "Utility-Scale Renewables"
+
+"Capacity Market" -> "Gas (CCGT) Generation"
+"Capacity Market" -> "Nuclear (existing fleet)"
+"Capacity Market" -> "Grid-Scale Battery"
+
+evolve "Tomorrow's Demand Behaviour" 0.60
+evolve "Grid-Scale Battery" 0.78
+evolve "Hydrogen Storage" 0.50
+evolve "Small Modular Reactor (SMR)" 0.50
+evolve "Green Hydrogen Production" 0.45
+evolve "Carbon Price (ETS)" 0.80
+evolve "Supply-Chain Awareness" 0.55
+evolve "Scope 3 / Embedded Carbon" 0.55
+evolve "Net-Zero Policy Framework" 0.65
+evolve "Smart Grid / Demand Response" 0.75
+
+note "Disruption zone" [0.38, 0.20]
+note "Infrastructure lock-in" [0.14, 0.92]
+note "Externality frontier" [0.52, 0.22]
+

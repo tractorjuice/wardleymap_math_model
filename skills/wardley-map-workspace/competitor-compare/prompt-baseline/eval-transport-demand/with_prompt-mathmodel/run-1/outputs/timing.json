@@ -1,0 +1,26 @@
+{
+  "run": "prompt-baseline/eval-transport-demand/with_prompt-in-tree/run-1",
+  "scenario": "Changing consumer behaviour reshaping transport demand (May 2022) with three anchors: Government, Transport Public, Transport Operators",
+  "prompt_file": "/workspaces/wardleymap_math_model/prompts/wardley_map_generator.md",
+  "inputs_read": [
+    "/workspaces/wardleymap_math_model/prompts/wardley_map_generator.md"
+  ],
+  "inputs_blocked": [
+    "/workspaces/wardleymap_math_model/skills/wardley-map-workspace/competitor-compare/prompt-baseline/eval-transport-demand/wardley-reference.owm",
+    "/workspaces/wardleymap_math_model/skills/wardley-map-workspace/iteration-14/eval-transport-demand/wardley-reference.owm"
+  ],
+  "start_epoch_s": 1776873283.838,
+  "end_epoch_s": 1776873404.163,
+  "duration_s": 120.325,
+  "outputs": [
+    "output.md",
+    "draft.owm",
+    "timing.json"
+  ],
+  "component_count": 27,
+  "anchor_count": 3,
+  "edge_count_approx": 62,
+  "evolve_arrows": 6,
+  "inertia_markers": 3,
+  "notes": 3
+}

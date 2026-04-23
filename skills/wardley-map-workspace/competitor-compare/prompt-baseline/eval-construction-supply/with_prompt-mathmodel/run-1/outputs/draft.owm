@@ -1,0 +1,173 @@
+title Construction Supply Chain End-to-End (March 2023)
+style wardley
+
+// Anchors — four distinct user/demand types
+anchor Government [0.98, 0.55]
+anchor Citizens [0.98, 0.45]
+anchor Private Homeowners [0.95, 0.60]
+anchor Social Housing Tenants [0.95, 0.40]
+anchor Mortgage Companies [0.93, 0.70]
+
+// Layer 1 — directly user-facing demand-side services
+component New Build Delivery [0.88, 0.55]
+component Housing Finance [0.86, 0.72]
+component Planning Approval [0.85, 0.30]
+component Building Inspection [0.84, 0.55]
+component Quality Assurance Certification [0.82, 0.50]
+
+// Layer 2 — construction orchestration
+component General Contracting [0.78, 0.55]
+component Project Management [0.76, 0.55]
+component Blueprint and Design [0.74, 0.45]
+component Regulatory Compliance [0.72, 0.50]
+component Bespoke On-Site Build [0.70, 0.25]
+component Modular Construction [0.68, 0.35]
+component Prefab Construction [0.66, 0.45]
+component Factory-Mode House Assembly [0.64, 0.25]
+
+// Layer 3 — construction inputs
+component Skilled Labour [0.60, 0.40]
+component Unskilled Labour [0.58, 0.80]
+component Labour Certification [0.56, 0.55]
+component Vocational Training [0.54, 0.45]
+component Test-Driven Construction [0.52, 0.15]
+component Site Equipment and Machinery [0.50, 0.75]
+component Plant Hire [0.48, 0.80]
+
+// Layer 4 — distribution and supply
+component Integrated Distributor [0.44, 0.55]
+component Traditional Builders Merchant [0.42, 0.75]
+component Platform Distributor [0.40, 0.30]
+component Logistics and Haulage [0.38, 0.85]
+
+// Layer 5 — manufacture and materials
+component Component Manufacture [0.34, 0.60]
+component Novel Building Materials [0.32, 0.20]
+component Recycled Building Materials [0.30, 0.35]
+component Substitutable Materials [0.28, 0.45]
+component Traditional Building Materials [0.26, 0.85]
+
+// Layer 6 — raw material supply
+component Raw Material Extraction [0.20, 0.80]
+component International Material Supply [0.16, 0.75]
+component Local Raw Materials [0.14, 0.70]
+
+// Layer 7 — foundations (infra, energy, CNI)
+component Energy Supply [0.10, 0.92]
+component Critical National Infrastructure [0.08, 0.55]
+component Telecoms and Data [0.06, 0.90]
+
+// Dependencies — demand side to delivery
+Government->New Build Delivery
+Government->Planning Approval
+Government->Critical National Infrastructure
+Citizens->New Build Delivery
+Citizens->Building Inspection
+Private Homeowners->New Build Delivery
+Private Homeowners->Housing Finance
+Private Homeowners->Quality Assurance Certification
+Social Housing Tenants->New Build Delivery
+Social Housing Tenants->Quality Assurance Certification
+Mortgage Companies->Housing Finance
+Mortgage Companies->Quality Assurance Certification
+
+// New Build Delivery orchestration
+New Build Delivery->General Contracting
+New Build Delivery->Planning Approval
+New Build Delivery->Building Inspection
+Building Inspection->Quality Assurance Certification
+Building Inspection->Regulatory Compliance
+Planning Approval->Regulatory Compliance
+Planning Approval->Blueprint and Design
+Quality Assurance Certification->Regulatory Compliance
+
+// General contracting and modes of build
+General Contracting->Project Management
+General Contracting->Bespoke On-Site Build
+General Contracting->Modular Construction
+General Contracting->Prefab Construction
+General Contracting->Factory-Mode House Assembly
+Project Management->Blueprint and Design
+Project Management->Skilled Labour
+Project Management->Site Equipment and Machinery
+
+// Build modes → inputs
+Bespoke On-Site Build->Skilled Labour
+Bespoke On-Site Build->Site Equipment and Machinery
+Bespoke On-Site Build->Traditional Building Materials
+Modular Construction->Skilled Labour
+Modular Construction->Component Manufacture
+Modular Construction->Integrated Distributor
+Prefab Construction->Component Manufacture
+Prefab Construction->Platform Distributor
+Factory-Mode House Assembly->Component Manufacture
+Factory-Mode House Assembly->Unskilled Labour
+Factory-Mode House Assembly->Test-Driven Construction
+
+// Labour system
+Skilled Labour->Labour Certification
+Skilled Labour->Vocational Training
+Labour Certification->Vocational Training
+Unskilled Labour->Vocational Training
+
+// Equipment supply
+Site Equipment and Machinery->Plant Hire
+Plant Hire->Logistics and Haulage
+
+// Distribution
+Integrated Distributor->Component Manufacture
+Integrated Distributor->Logistics and Haulage
+Traditional Builders Merchant->Traditional Building Materials
+Traditional Builders Merchant->Logistics and Haulage
+Platform Distributor->Component Manufacture
+Platform Distributor->Logistics and Haulage
+
+// Manufacturing inputs
+Component Manufacture->Traditional Building Materials
+Component Manufacture->Recycled Building Materials
+Component Manufacture->Novel Building Materials
+Component Manufacture->Substitutable Materials
+Component Manufacture->Logistics and Haulage
+
+// Materials → raw supply
+Traditional Building Materials->Raw Material Extraction
+Recycled Building Materials->Raw Material Extraction
+Novel Building Materials->Raw Material Extraction
+Substitutable Materials->Raw Material Extraction
+Raw Material Extraction->International Material Supply
+Raw Material Extraction->Local Raw Materials
+
+// Foundations
+Logistics and Haulage->Energy Supply
+Component Manufacture->Energy Supply
+Raw Material Extraction->Energy Supply
+Factory-Mode House Assembly->Energy Supply
+Platform Distributor->Telecoms and Data
+Integrated Distributor->Telecoms and Data
+International Material Supply->Critical National Infrastructure
+Local Raw Materials->Critical National Infrastructure
+Critical National Infrastructure->Energy Supply
+
+// Evolution projections (scenario, not forecast)
+evolve Modular Construction 0.55
+evolve Prefab Construction 0.65
+evolve Factory-Mode House Assembly 0.55
+evolve Platform Distributor 0.60
+evolve Novel Building Materials 0.45
+evolve Recycled Building Materials 0.55
+evolve Test-Driven Construction 0.35
+
+// Inertia — components resisting evolution
+component Bespoke On-Site Build [0.70, 0.25] inertia
+component Traditional Builders Merchant [0.42, 0.75] inertia
+component Labour Certification [0.56, 0.55] inertia
+
+// Pipelines
+pipeline Component Manufacture [0.20, 0.80]
+pipeline Skilled Labour [0.15, 0.65]
+
+// Notes
+note Still bespoke craft [0.70, 0.15]
+note Industrialisation frontier [0.55, 0.45]
+note Commodity / utility tail [0.15, 0.90]
+note CNI / local supply risk [0.12, 0.50]

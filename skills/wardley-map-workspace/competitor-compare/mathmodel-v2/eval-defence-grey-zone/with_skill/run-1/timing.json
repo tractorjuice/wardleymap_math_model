@@ -1,0 +1,11 @@
+{
+  "eval": "defence-grey-zone",
+  "config": "with_skill",
+  "run": 1,
+  "start_ns": 1776939394967209250,
+  "end_ns": 1776940087164828327,
+  "elapsed_ns": 692197619077,
+  "elapsed_seconds": 692.197619077,
+  "elapsed_human": "~11m32s",
+  "notes": "Blind benchmark of wardley-map skill on defence-grey-zone scenario. Validator (Node) invocations were denied in this sandbox; an inline Python port of validate_owm.mjs and check_layout.mjs (identical parse + rules) was used to gate: 60 nodes, 101 edges, 0 visibility violations, 0 layout warnings, stage distribution Genesis=3 / Custom=18 / Product=26 / Commodity=11."
+}

@@ -1,0 +1,11 @@
+{
+  "skill": "wardley-map",
+  "variant": "mathmodel-v2",
+  "scenario": "eval-government-digital-id",
+  "run": 1,
+  "start_ms": 1776939451422,
+  "end_ms": 1776939935529,
+  "elapsed_ms": 484107,
+  "elapsed_s": 484.1,
+  "notes": "Blind benchmark run. Validator script could not execute due to sandbox Bash permissions; edge visibility constraint and coordinate-range checks were performed manually against validator logic (Read of validate_owm.mjs confirmed the three rules: coords in [0,1]; endpoints declared; nu(src) >= nu(tgt)). 47 components, 5 anchors, 96 edges. Component-density target band: 40-55 (multi-stakeholder)."
+}

@@ -1,0 +1,213 @@
+title National Sovereignty — Government's Point of View (April 2023)
+style wardley
+
+// ------- Anchors (user-need set U) -------
+// The scenario names four "users" of sovereignty: supranational layer, government, corporations+shareholders, society.
+// All four sit at the top of the value chain; sovereignty is the outcome they each consume/contest.
+anchor Supranational Layer [0.96, 0.46]
+anchor Government [0.97, 0.40]
+anchor Corporations & Shareholders [0.95, 0.58]
+anchor Society [0.96, 0.30]
+
+// ------- Pillars of sovereignty (visible user-facing outcomes) -------
+component Territorial Sovereignty [0.88, 0.42]
+component Economic Sovereignty [0.86, 0.48]
+component Political Sovereignty [0.87, 0.36]
+component Digital Sovereignty [0.85, 0.28]
+component Cultural Sovereignty [0.84, 0.22]
+component Security Sovereignty [0.88, 0.55]
+
+// ------- Legitimacy layer (the feedback loop outputs of the pillars) -------
+component Election Legitimacy [0.78, 0.33]
+component Perception of Success [0.80, 0.20]
+component Public Belonging [0.79, 0.24]
+
+// ------- Social norms feeding legitimacy -------
+component Integrity [0.70, 0.30]
+component Benevolence [0.69, 0.28]
+component Fairness [0.71, 0.34]
+component Competency [0.72, 0.42]
+component Identity [0.68, 0.20]
+
+// ------- Theatres where sovereignty plays out -------
+component Land Theatre [0.62, 0.78]
+component Supply-Chain Theatre [0.60, 0.54]
+component Cyber Theatre [0.58, 0.32]
+component CNI Theatre [0.63, 0.66]
+
+// ------- Crisis response and international legal frame -------
+component Crisis Response [0.66, 0.46]
+component International Law [0.64, 0.70]
+component Domestic Laws [0.65, 0.76]
+
+// ------- Media mix -------
+component Mainstream Media [0.56, 0.72]
+component Social Media [0.55, 0.80]
+component Education [0.54, 0.62]
+component Art [0.53, 0.47]
+component Propaganda [0.52, 0.34]
+
+// ------- Awareness apparatus -------
+component Territorial Awareness [0.46, 0.52]
+component Supply-Chain Awareness [0.44, 0.38]
+component Digital-Chain Awareness [0.42, 0.22]
+
+// ------- Capability layer (the means to act once aware) -------
+component Military Capability [0.40, 0.74]
+component Intelligence Capability [0.34, 0.48]
+component Diplomatic Capability [0.35, 0.82]
+component Cyber Capability [0.33, 0.36]
+component Industrial Capability [0.37, 0.58]
+component Regulatory Capability [0.38, 0.66]
+
+// ------- Deep infrastructure that the capability layer rests on -------
+component Critical National Infrastructure [0.22, 0.70]
+component Telecoms Backbone [0.18, 0.86]
+component Semiconductor Supply [0.16, 0.42]
+component Energy Supply [0.15, 0.82]
+component Food Supply [0.21, 0.80]
+component Finance Rails [0.19, 0.88]
+component Data Centres [0.17, 0.82]
+component Cloud Compute [0.14, 0.90]
+component Undersea Cables [0.12, 0.88]
+component Satellites & GNSS [0.13, 0.78]
+
+// ------- Border / territory atomic layer -------
+component Borders & Territory [0.24, 0.92]
+component Population Register [0.26, 0.80]
+
+// ------- Dependencies -------
+// Anchors consume the pillars
+Supranational Layer->Political Sovereignty
+Supranational Layer->Economic Sovereignty
+Supranational Layer->International Law
+Government->Territorial Sovereignty
+Government->Political Sovereignty
+Government->Security Sovereignty
+Government->Economic Sovereignty
+Government->Digital Sovereignty
+Government->Election Legitimacy
+Corporations & Shareholders->Economic Sovereignty
+Corporations & Shareholders->Digital Sovereignty
+Corporations & Shareholders->Supply-Chain Theatre
+Society->Cultural Sovereignty
+Society->Political Sovereignty
+Society->Public Belonging
+Society->Perception of Success
+Society->Election Legitimacy
+
+// Pillars to theatres
+Territorial Sovereignty->Land Theatre
+Territorial Sovereignty->CNI Theatre
+Economic Sovereignty->Supply-Chain Theatre
+Economic Sovereignty->CNI Theatre
+Political Sovereignty->Domestic Laws
+Political Sovereignty->International Law
+Digital Sovereignty->Cyber Theatre
+Digital Sovereignty->CNI Theatre
+Cultural Sovereignty->Education
+Cultural Sovereignty->Art
+Security Sovereignty->Land Theatre
+Security Sovereignty->Cyber Theatre
+Security Sovereignty->CNI Theatre
+
+// Legitimacy feedback loop
+Election Legitimacy->Integrity
+Election Legitimacy->Fairness
+Election Legitimacy->Competency
+Election Legitimacy->Identity
+Perception of Success->Competency
+Perception of Success->Mainstream Media
+Perception of Success->Social Media
+Public Belonging->Identity
+Public Belonging->Benevolence
+Public Belonging->Education
+Public Belonging->Art
+
+// Social norms rest on media mix
+Integrity->Mainstream Media
+Benevolence->Social Media
+Fairness->Mainstream Media
+Competency->Mainstream Media
+Identity->Education
+
+// Crisis response and law
+Crisis Response->Military Capability
+Crisis Response->Diplomatic Capability
+Crisis Response->Intelligence Capability
+Crisis Response->CNI Theatre
+International Law->Diplomatic Capability
+Domestic Laws->Regulatory Capability
+
+// Media mix depends on awareness
+Mainstream Media->Territorial Awareness
+Mainstream Media->Propaganda
+Social Media->Digital-Chain Awareness
+Social Media->Cloud Compute
+Education->Population Register
+Propaganda->Intelligence Capability
+
+// Theatres rely on awareness and capability
+Land Theatre->Territorial Awareness
+Land Theatre->Military Capability
+Land Theatre->Borders & Territory
+Supply-Chain Theatre->Supply-Chain Awareness
+Supply-Chain Theatre->Industrial Capability
+Supply-Chain Theatre->Semiconductor Supply
+Supply-Chain Theatre->Food Supply
+Cyber Theatre->Digital-Chain Awareness
+Cyber Theatre->Cyber Capability
+Cyber Theatre->Telecoms Backbone
+CNI Theatre->Critical National Infrastructure
+CNI Theatre->Regulatory Capability
+
+// Awareness rests on deep infrastructure and intelligence
+Territorial Awareness->Intelligence Capability
+Territorial Awareness->Satellites & GNSS
+Supply-Chain Awareness->Intelligence Capability
+Supply-Chain Awareness->Data Centres
+Digital-Chain Awareness->Intelligence Capability
+Digital-Chain Awareness->Cloud Compute
+Digital-Chain Awareness->Telecoms Backbone
+
+// Capability rests on infrastructure
+Military Capability->Industrial Capability
+Military Capability->Satellites & GNSS
+Intelligence Capability->Data Centres
+Intelligence Capability->Cloud Compute
+Cyber Capability->Cloud Compute
+Cyber Capability->Telecoms Backbone
+Industrial Capability->Energy Supply
+Industrial Capability->Semiconductor Supply
+Regulatory Capability->Population Register
+
+// CNI rests on the deepest commodities
+Critical National Infrastructure->Energy Supply
+Critical National Infrastructure->Telecoms Backbone
+Critical National Infrastructure->Finance Rails
+Critical National Infrastructure->Data Centres
+Critical National Infrastructure->Undersea Cables
+Critical National Infrastructure->Food Supply
+Telecoms Backbone->Undersea Cables
+Data Centres->Cloud Compute
+Data Centres->Energy Supply
+Semiconductor Supply->Energy Supply
+Finance Rails->Cloud Compute
+
+// ------- Transitions worth flagging -------
+evolve Digital Sovereignty 0.55
+evolve Digital-Chain Awareness 0.50
+evolve Cyber Capability 0.58
+evolve Semiconductor Supply 0.60
+evolve Election Legitimacy 0.52
+
+// ------- Inertia markers -------
+component Mainstream Media [0.56, 0.72] inertia
+component Domestic Laws [0.65, 0.76] inertia
+
+// ------- Annotations -------
+note Industrialised sovereignty (utilities & rails) [0.12, 0.92]
+note Contested & fragile sovereignty (norms, legitimacy, cyber) [0.78, 0.22]
+note Pillars of sovereignty [0.86, 0.38]
+note Capability layer [0.35, 0.62]
+note Awareness apparatus [0.44, 0.38]

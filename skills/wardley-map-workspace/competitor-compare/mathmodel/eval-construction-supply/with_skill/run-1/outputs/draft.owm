@@ -1,0 +1,177 @@
+title UK Construction Supply Chain (March 2023)
+style wardley
+
+// === Anchors (multiple user types) ===
+anchor Government [0.97, 0.55]
+anchor Citizen / Homebuyer [0.96, 0.65]
+anchor Social Housing Tenant [0.95, 0.45]
+anchor Mortgage Company [0.94, 0.72]
+
+// === Demand-side outputs ===
+component Completed Home [0.88, 0.60]
+component Public Infrastructure Project [0.86, 0.40]
+component Social Housing Stock [0.84, 0.55]
+component Mortgage Product [0.82, 0.82]
+component Building Insurance [0.80, 0.85]
+
+// === Planning, blueprints, regulation, inspection ===
+component Planning Permission [0.74, 0.55]
+component Architectural Blueprints [0.70, 0.55]
+component Building Regulations [0.68, 0.78]
+component Building Inspector / QA [0.65, 0.60]
+component Digital Planning Submission [0.60, 0.45]
+component BIM (Building Information Modelling) [0.43, 0.55]
+
+// === Project delivery ===
+component Main Contractor [0.72, 0.52]
+component Subcontractor Tier [0.62, 0.62]
+component Project Management [0.60, 0.60]
+component Site Safety (CDM) [0.55, 0.72]
+
+// === Construction modes ===
+component Bespoke On-site Build [0.60, 0.30] inertia
+component Modular Construction [0.52, 0.28]
+component Prefab / Panelised [0.50, 0.47]
+component Factory-mode Housing [0.48, 0.22]
+component Test-driven Construction (DfMA) [0.45, 0.18]
+
+// === Labour ===
+component Skilled Trades [0.58, 0.48]
+component Unskilled Labour [0.50, 0.70]
+component Trades Certification (CSCS/Gas Safe) [0.42, 0.80]
+component Apprenticeships / Training [0.38, 0.55]
+component CNI Skilled Labour Supply [0.35, 0.22]
+
+// === Equipment & Machinery ===
+component Heavy Plant (cranes, diggers) [0.44, 0.78]
+component Site Tools [0.42, 0.88]
+component Plant Hire [0.40, 0.82]
+
+// === Distribution ===
+component Traditional Builders Merchant [0.48, 0.72] inertia
+component Integrated Distributor [0.45, 0.60]
+component Platform / Digital Merchant [0.43, 0.35]
+
+// === Manufacture ===
+component Component Manufacture [0.38, 0.70]
+component Off-site Factory Production [0.40, 0.42]
+
+// === Materials ===
+component Raw Building Materials [0.30, 0.78]
+component Recycled Materials [0.28, 0.45]
+component Novel / Low-carbon Materials [0.25, 0.22]
+component Substitutable Materials [0.32, 0.55]
+
+// === Material supply chain & CNI ===
+component Material Supply Chain [0.22, 0.55]
+component Local Material Sourcing [0.18, 0.35]
+
+// === Logistics & utilities ===
+component Logistics & Haulage [0.20, 0.78]
+component Warehousing [0.17, 0.77]
+component Energy / Fuel [0.10, 0.92]
+component Finance / Capital [0.15, 0.88]
+
+// === Dependencies ===
+Government->Public Infrastructure Project
+Government->Social Housing Stock
+Government->Building Regulations
+Citizen / Homebuyer->Completed Home
+Citizen / Homebuyer->Mortgage Product
+Citizen / Homebuyer->Building Insurance
+Social Housing Tenant->Social Housing Stock
+Mortgage Company->Mortgage Product
+Mortgage Company->Building Insurance
+
+Completed Home->Planning Permission
+Completed Home->Main Contractor
+Completed Home->Building Inspector / QA
+Public Infrastructure Project->Main Contractor
+Public Infrastructure Project->Planning Permission
+Public Infrastructure Project->Building Inspector / QA
+Social Housing Stock->Main Contractor
+Social Housing Stock->Planning Permission
+Social Housing Stock->Building Inspector / QA
+Mortgage Product->Finance / Capital
+Building Insurance->Building Inspector / QA
+
+Planning Permission->Digital Planning Submission
+Planning Permission->Architectural Blueprints
+Architectural Blueprints->BIM (Building Information Modelling)
+Building Regulations->Building Inspector / QA
+Building Inspector / QA->Trades Certification (CSCS/Gas Safe)
+
+Main Contractor->Subcontractor Tier
+Main Contractor->Project Management
+Main Contractor->Site Safety (CDM)
+Main Contractor->Bespoke On-site Build
+Main Contractor->Modular Construction
+Main Contractor->Prefab / Panelised
+Main Contractor->Factory-mode Housing
+Main Contractor->Test-driven Construction (DfMA)
+Main Contractor->Finance / Capital
+Subcontractor Tier->Skilled Trades
+Subcontractor Tier->Unskilled Labour
+Subcontractor Tier->Traditional Builders Merchant
+Subcontractor Tier->Integrated Distributor
+Subcontractor Tier->Platform / Digital Merchant
+
+Bespoke On-site Build->Heavy Plant (cranes, diggers)
+Bespoke On-site Build->Site Tools
+Bespoke On-site Build->Raw Building Materials
+Modular Construction->Off-site Factory Production
+Modular Construction->Prefab / Panelised
+Prefab / Panelised->Off-site Factory Production
+Factory-mode Housing->Off-site Factory Production
+Factory-mode Housing->Test-driven Construction (DfMA)
+Test-driven Construction (DfMA)->BIM (Building Information Modelling)
+
+Skilled Trades->Trades Certification (CSCS/Gas Safe)
+Skilled Trades->Apprenticeships / Training
+Skilled Trades->CNI Skilled Labour Supply
+Unskilled Labour->CNI Skilled Labour Supply
+Trades Certification (CSCS/Gas Safe)->Apprenticeships / Training
+
+Heavy Plant (cranes, diggers)->Plant Hire
+Site Tools->Plant Hire
+Plant Hire->Energy / Fuel
+
+Traditional Builders Merchant->Component Manufacture
+Traditional Builders Merchant->Raw Building Materials
+Integrated Distributor->Component Manufacture
+Integrated Distributor->Raw Building Materials
+Platform / Digital Merchant->Component Manufacture
+Platform / Digital Merchant->Logistics & Haulage
+
+Component Manufacture->Raw Building Materials
+Component Manufacture->Recycled Materials
+Component Manufacture->Substitutable Materials
+Off-site Factory Production->Component Manufacture
+Off-site Factory Production->Novel / Low-carbon Materials
+Off-site Factory Production->Raw Building Materials
+Off-site Factory Production->Finance / Capital
+
+Raw Building Materials->Material Supply Chain
+Recycled Materials->Material Supply Chain
+Novel / Low-carbon Materials->Material Supply Chain
+Substitutable Materials->Material Supply Chain
+Material Supply Chain->Local Material Sourcing
+Material Supply Chain->Logistics & Haulage
+
+Logistics & Haulage->Warehousing
+Logistics & Haulage->Energy / Fuel
+Warehousing->Energy / Fuel
+
+// === Evolution targets (scenarios, not forecasts) ===
+evolve Modular Construction 0.50
+evolve Factory-mode Housing 0.45
+evolve Test-driven Construction (DfMA) 0.40
+evolve Platform / Digital Merchant 0.60
+evolve BIM (Building Information Modelling) 0.72
+evolve Digital Planning Submission 0.65
+evolve Novel / Low-carbon Materials 0.45
+
+// === Notes ===
+note Bespoke craft zone [0.58, 0.20]
+note Ready to industrialise [0.48, 0.42]
+note Utility / commodity foundation [0.13, 0.92]

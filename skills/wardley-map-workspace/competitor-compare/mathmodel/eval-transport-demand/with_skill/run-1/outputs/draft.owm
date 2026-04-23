@@ -1,0 +1,200 @@
+title Transport Demand Reshaped by Consumer Behaviour (May 2022)
+style wardley
+
+// Three anchors — the system has government, the travelling public, and operators
+anchor Government [0.96, 0.60]
+anchor Transport Public [0.96, 0.55]
+anchor Transport Operators [0.95, 0.70]
+
+// --- User journey (A-to-B) ---
+component Journey A to B [0.90, 0.55]
+component Ease of Use [0.84, 0.45]
+component Cost of Travel [0.86, 0.70]
+component Access to Service [0.82, 0.55]
+component Personal Safety [0.80, 0.52]
+component Physical Safety [0.79, 0.70]
+component Awareness of Options [0.81, 0.40]
+
+// --- Virtual-space alternatives (displace demand) ---
+component Remote Work [0.91, 0.52]
+component Virtual Meetings (Zoom) [0.88, 0.70]
+component Hybrid Work Patterns [0.84, 0.42]
+
+// --- Transport information stack ---
+component Transport Integration [0.72, 0.38]
+component Situational Services [0.70, 0.32]
+component Mobility Hubs [0.68, 0.28]
+component Journey Planning [0.66, 0.60]
+component Ticketing and Payments [0.64, 0.78]
+component Real-time Information [0.62, 0.72]
+component Open Transport Data [0.55, 0.58]
+
+// --- Mode choice ---
+component Private Transport [0.60, 0.80]
+component Shared Transport [0.58, 0.45]
+component Distributed Public Transport [0.56, 0.40]
+
+// --- Vehicles ---
+component Car [0.50, 0.88]
+component Train [0.52, 0.82]
+component Bus [0.54, 0.85]
+component Bike and E-bike Hire [0.53, 0.55]
+component Electric Vehicle [0.47, 0.62]
+component Autonomous Vehicle [0.44, 0.18]
+
+// --- Regulation, sustainability, shocks ---
+component Transport Regulation [0.48, 0.47]
+component Safety Regulation [0.46, 0.72]
+component Sustainability Policy [0.44, 0.45]
+component Climate Targets (Net Zero) [0.40, 0.55]
+component Carbon Pricing [0.38, 0.35]
+component Pandemic Shock [0.76, 0.48]
+component Fuel Price Shock [0.74, 0.82]
+component Geopolitical Shock [0.72, 0.30]
+
+// --- Identity / security / connectivity layer ---
+component Identity and Authentication [0.42, 0.78]
+component Cybersecurity [0.40, 0.62]
+component Connectivity [0.36, 0.85]
+component Location / GNSS [0.32, 0.90]
+
+// --- City planning and infrastructure ---
+component City Planning [0.42, 0.40]
+component Public Infrastructure [0.28, 0.78]
+component Private Infrastructure [0.30, 0.70]
+component Roads [0.22, 0.92]
+component Rail Network [0.24, 0.85]
+component EV Charging Network [0.26, 0.55]
+component Fuel Supply [0.20, 0.95]
+component Electricity Grid [0.10, 0.95]
+component Critical National Infrastructure [0.08, 0.90]
+
+// --- Dependencies: anchors to top-level needs ---
+Transport Public->Journey A to B
+Transport Public->Ease of Use
+Transport Public->Cost of Travel
+Transport Public->Access to Service
+Transport Public->Personal Safety
+Transport Public->Physical Safety
+Transport Public->Awareness of Options
+Transport Public->Remote Work
+
+Government->Transport Regulation
+Government->Safety Regulation
+Government->Sustainability Policy
+Government->Climate Targets (Net Zero)
+Government->City Planning
+Government->Critical National Infrastructure
+Government->Carbon Pricing
+
+Transport Operators->Journey A to B
+Transport Operators->Cost of Travel
+Transport Operators->Access to Service
+Transport Operators->Private Transport
+Transport Operators->Shared Transport
+Transport Operators->Distributed Public Transport
+Transport Operators->Ticketing and Payments
+
+// Journey decomposition
+Journey A to B->Ease of Use
+Journey A to B->Cost of Travel
+Journey A to B->Access to Service
+Journey A to B->Awareness of Options
+Ease of Use->Transport Integration
+Ease of Use->Journey Planning
+Awareness of Options->Situational Services
+Awareness of Options->Real-time Information
+Access to Service->Mobility Hubs
+Access to Service->Ticketing and Payments
+Personal Safety->Safety Regulation
+Physical Safety->Safety Regulation
+Cost of Travel->Ticketing and Payments
+Cost of Travel->Fuel Price Shock
+
+// Info stack → data / connectivity
+Transport Integration->Open Transport Data
+Transport Integration->Journey Planning
+Situational Services->Real-time Information
+Situational Services->Open Transport Data
+Mobility Hubs->Shared Transport
+Mobility Hubs->Distributed Public Transport
+Mobility Hubs->City Planning
+Journey Planning->Open Transport Data
+Real-time Information->Open Transport Data
+Real-time Information->Connectivity
+Ticketing and Payments->Identity and Authentication
+Ticketing and Payments->Connectivity
+Open Transport Data->Connectivity
+
+// Mode choice → vehicles
+Private Transport->Car
+Private Transport->Electric Vehicle
+Shared Transport->Car
+Shared Transport->Bike and E-bike Hire
+Distributed Public Transport->Train
+Distributed Public Transport->Bus
+
+// Vehicles → infrastructure
+Car->Roads
+Car->Fuel Supply
+Electric Vehicle->EV Charging Network
+Electric Vehicle->Electricity Grid
+Autonomous Vehicle->Connectivity
+Autonomous Vehicle->Location / GNSS
+Autonomous Vehicle->Cybersecurity
+Train->Rail Network
+Bus->Roads
+Bike and E-bike Hire->Roads
+Bike and E-bike Hire->EV Charging Network
+
+// Virtual alternatives displace physical demand
+Remote Work->Virtual Meetings (Zoom)
+Remote Work->Hybrid Work Patterns
+Virtual Meetings (Zoom)->Connectivity
+Hybrid Work Patterns->Pandemic Shock
+
+// Identity / security / connectivity
+Identity and Authentication->Cybersecurity
+Identity and Authentication->Connectivity
+Cybersecurity->Connectivity
+Location / GNSS->Critical National Infrastructure
+Connectivity->Critical National Infrastructure
+
+// City planning and infra
+City Planning->Public Infrastructure
+City Planning->Private Infrastructure
+City Planning->Roads
+City Planning->Rail Network
+Public Infrastructure->Roads
+Public Infrastructure->Rail Network
+Public Infrastructure->EV Charging Network
+Private Infrastructure->EV Charging Network
+Roads->Critical National Infrastructure
+Rail Network->Critical National Infrastructure
+EV Charging Network->Electricity Grid
+Fuel Supply->Critical National Infrastructure
+Electricity Grid->Critical National Infrastructure
+
+// Regulation and sustainability
+Transport Regulation->Safety Regulation
+Transport Regulation->Sustainability Policy
+Sustainability Policy->Climate Targets (Net Zero)
+Sustainability Policy->Carbon Pricing
+Climate Targets (Net Zero)->Carbon Pricing
+
+// Shocks reshape demand (a shock drives a downstream effect; the effect depends on the shock)
+Fuel Price Shock->Geopolitical Shock
+Fuel Price Shock->Fuel Supply
+
+// Evolve arrows — where pressure is pushing
+evolve Transport Integration 0.58
+evolve Mobility Hubs 0.53
+evolve EV Charging Network 0.78
+evolve Electric Vehicle 0.80
+evolve Hybrid Work Patterns 0.70
+evolve Autonomous Vehicle 0.35
+evolve Carbon Pricing 0.60
+
+note Consumer-behaviour pull [0.82, 0.30]
+note Regulation / infra lag [0.28, 0.55]
+note Virtual displaces physical [0.90, 0.62]

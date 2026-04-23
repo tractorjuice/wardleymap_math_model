@@ -1,0 +1,16 @@
+{
+  "run_id": "prompt-baseline/eval-energy-storage/with_prompt-in-tree/run-1",
+  "mode": "prompt-only",
+  "blind": true,
+  "instructions_source": "/workspaces/wardleymap_math_model/prompts/wardley_map_generator.md",
+  "scenario_summary": "Electrical energy storage landscape, April 2023: grid models (traditional vs distributed), AGC/SCADA/spinning reserve/fast-response, storage types (electrical, hydro, hydrogen), energy platform + integration layer, and material supply chain.",
+  "start_ns": 1776873074814718631,
+  "end_ns": 1776873247028305706,
+  "duration_ns": 172213587075,
+  "duration_s": 172.21,
+  "notes": [
+    "Single pass using prompt-only baseline; no access to reference .owm files.",
+    "Audited every edge for the ν(a) ≥ ν(b) hard rule and fixed one violation (Spinning Reserve → Electricity Generation flipped to Electricity Generation → Spinning Reserve).",
+    "22 components + 1 anchor; 31 dependency edges; 6 evolve arrows; 3 inertia markers; 3 notes."
+  ]
+}

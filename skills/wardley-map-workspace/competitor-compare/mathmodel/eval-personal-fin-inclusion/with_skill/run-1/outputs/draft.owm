@@ -1,0 +1,164 @@
+title Personal Digital Financial Inclusion (Underbanked Individual)
+style wardley
+
+// Anchor — the individual in an underbanked region and their needs
+anchor Underbanked Individual [0.96, 0.45]
+
+// Core user needs (high visibility, mostly immature as a bundle)
+component Options [0.93, 0.35]
+component Trade [0.92, 0.62]
+component Equality [0.90, 0.20]
+component Sustainability [0.88, 0.28]
+component Inclusion [0.87, 0.22]
+
+// Behaviour, identity, trust, risk
+component Behaviour / Financial Literacy [0.82, 0.33]
+component Risk Assessment [0.80, 0.42]
+component Digital Identity [0.74, 0.45]
+component Trust [0.70, 0.30]
+
+// Markets, exchange, redistribution (user-visible economic layer)
+component Markets [0.66, 0.55]
+component Exchange Protocols [0.64, 0.52]
+component Redistribution [0.62, 0.35]
+
+// Banking provision (channels the individual actually touches)
+component Banking Services [0.60, 0.68]
+component Mobile Money Wallet [0.58, 0.60]
+component Online Payments [0.56, 0.78]
+component Mobile Money Agents [0.54, 0.66]
+component Bank Branches [0.52, 0.80]
+
+// Authority (governance of money and identity)
+component Centralised Authority [0.48, 0.72]
+component Decentralised Authority [0.46, 0.28]
+
+// Currency layer (represented through infrastructure)
+component Fiat Currency [0.42, 0.92]
+component CBDC [0.40, 0.20]
+component Cryptocurrency [0.38, 0.40]
+
+// Financial infrastructure (rails)
+component Financial Infrastructure [0.36, 0.72]
+component Consensus Algorithms [0.32, 0.42]
+
+// Technology stack (device + access)
+component Mobile Device [0.30, 0.85]
+component Internet Access [0.26, 0.78]
+
+// Network topology
+component 5G [0.22, 0.55]
+component Copper [0.20, 0.93]
+component Satellite [0.18, 0.53]
+component Mesh Networks [0.17, 0.22]
+
+// Computing
+component Computing Infrastructure [0.14, 0.88]
+
+// Energy layer
+component Minigrids [0.10, 0.38]
+component Fossil Energy [0.08, 0.90]
+component Renewable Energy [0.06, 0.58]
+
+// Dependencies — user needs flowing down
+Underbanked Individual->Options
+Underbanked Individual->Trade
+Underbanked Individual->Equality
+Underbanked Individual->Sustainability
+Underbanked Individual->Inclusion
+
+// User needs route into the chain
+Options->Markets
+Options->Banking Services
+Trade->Exchange Protocols
+Trade->Markets
+Equality->Redistribution
+Equality->Inclusion
+Sustainability->Renewable Energy
+Sustainability->Redistribution
+Inclusion->Digital Identity
+Inclusion->Banking Services
+Inclusion->Behaviour / Financial Literacy
+
+// Behaviour / risk / identity / trust layer
+Behaviour / Financial Literacy->Digital Identity
+Behaviour / Financial Literacy->Trust
+Risk Assessment->Digital Identity
+Risk Assessment->Trust
+Digital Identity->Trust
+Digital Identity->Centralised Authority
+Trust->Centralised Authority
+Trust->Decentralised Authority
+
+// Markets & protocols
+Markets->Exchange Protocols
+Markets->Banking Services
+Exchange Protocols->Consensus Algorithms
+Exchange Protocols->Financial Infrastructure
+
+// Redistribution
+Redistribution->Centralised Authority
+Redistribution->Mobile Money Wallet
+Redistribution->Banking Services
+
+// Banking channels
+Banking Services->Bank Branches
+Banking Services->Online Payments
+Banking Services->Mobile Money Agents
+Banking Services->Mobile Money Wallet
+Banking Services->Financial Infrastructure
+Mobile Money Wallet->Mobile Money Agents
+Mobile Money Wallet->Mobile Device
+Mobile Money Wallet->Financial Infrastructure
+Bank Branches->Financial Infrastructure
+Online Payments->Financial Infrastructure
+Online Payments->Internet Access
+Mobile Money Agents->Financial Infrastructure
+
+// Authority governs currency
+Centralised Authority->Fiat Currency
+Centralised Authority->CBDC
+Decentralised Authority->Cryptocurrency
+Decentralised Authority->Consensus Algorithms
+
+// Currency relies on infrastructure
+Fiat Currency->Financial Infrastructure
+CBDC->Financial Infrastructure
+CBDC->Computing Infrastructure
+Cryptocurrency->Consensus Algorithms
+Cryptocurrency->Computing Infrastructure
+
+// Financial infrastructure rails
+Financial Infrastructure->Computing Infrastructure
+Financial Infrastructure->Internet Access
+Consensus Algorithms->Computing Infrastructure
+
+// Technology stack
+Mobile Device->Internet Access
+Internet Access->5G
+Internet Access->Copper
+Internet Access->Mesh Networks
+Internet Access->Satellite
+Computing Infrastructure->Fossil Energy
+Computing Infrastructure->Renewable Energy
+
+// Network topology -> energy
+5G->Fossil Energy
+5G->Renewable Energy
+Copper->Fossil Energy
+Satellite->Fossil Energy
+Mesh Networks->Minigrids
+Mesh Networks->Renewable Energy
+
+// Energy
+Minigrids->Renewable Energy
+Minigrids->Fossil Energy
+
+evolve CBDC 0.55
+evolve Cryptocurrency 0.62
+evolve Mesh Networks 0.45
+evolve Mobile Money Wallet 0.78
+evolve Renewable Energy 0.75
+
+note Globally commoditised stack [0.12, 0.92]
+note Locally constrained landscape [0.70, 0.30]

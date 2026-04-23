@@ -1,0 +1,137 @@
+title Transport demand reshaped by consumer behaviour (May 2022)
+style wardley
+
+// Anchors — three user-need entry points
+anchor Transport public [0.96, 0.60]
+anchor Government [0.96, 0.50]
+anchor Transport operators [0.96, 0.55]
+
+// User journey A-to-B (top of value chain)
+component Ease of use [0.88, 0.56]
+component Cost [0.88, 0.78]
+component Access to service [0.85, 0.58]
+component Personal safety [0.84, 0.48]
+component Physical safety [0.84, 0.70]
+component Awareness [0.82, 0.45]
+
+// Mode choice layer
+component Private mode [0.72, 0.82]
+component Shared mode [0.72, 0.42]
+component Distributed public mode [0.72, 0.55]
+
+// Virtual-space alternatives (demand displacement)
+component Zoom / virtual alternative [0.70, 0.80]
+
+// Transport information stack
+component Transport integration [0.60, 0.35]
+component Situational services [0.58, 0.38]
+component Mobility hubs [0.55, 0.22]
+
+// Vehicles
+component Car [0.50, 0.82]
+component Train [0.50, 0.78]
+
+// Connectivity / cybersecurity layer
+component Connectivity [0.40, 0.78]
+component Cybersecurity [0.38, 0.52]
+
+// Planning / regulation (lagging — inertia)
+component City planning [0.35, 0.30] inertia
+component Regulation [0.30, 0.22] inertia
+component Sustainability and climate policy [0.30, 0.33]
+
+// Shocks (environmental driver reshaping demand)
+component Demand shocks [0.45, 0.18]
+
+// Infrastructure layers
+component Public infrastructure [0.22, 0.62]
+component Private infrastructure [0.22, 0.72] inertia
+component Critical national infrastructure [0.10, 0.88]
+
+// Dependencies — anchors to journey qualities
+Transport public->Ease of use
+Transport public->Cost
+Transport public->Access to service
+Transport public->Personal safety
+Transport public->Physical safety
+Transport public->Awareness
+Government->Sustainability and climate policy
+Government->Regulation
+Government->City planning
+Government->Critical national infrastructure
+Transport operators->Cost
+Transport operators->Access to service
+Transport operators->Physical safety
+Transport operators->Regulation
+
+// Journey qualities depend on mode choice and information
+Ease of use->Transport integration
+Ease of use->Situational services
+Cost->Private mode
+Cost->Shared mode
+Cost->Distributed public mode
+Access to service->Distributed public mode
+Access to service->Shared mode
+Access to service->Mobility hubs
+Personal safety->Distributed public mode
+Personal safety->Shared mode
+Physical safety->Car
+Physical safety->Train
+Awareness->Situational services
+Awareness->Transport integration
+
+// Virtual alternative displaces journey entirely
+Ease of use->Zoom / virtual alternative
+Access to service->Zoom / virtual alternative
+
+// Mode choice depends on vehicles / hubs / shocks
+Private mode->Car
+Shared mode->Car
+Shared mode->Mobility hubs
+Distributed public mode->Train
+Distributed public mode->Mobility hubs
+Private mode->Demand shocks
+Shared mode->Demand shocks
+Distributed public mode->Demand shocks
+Zoom / virtual alternative->Connectivity
+Zoom / virtual alternative->Demand shocks
+
+// Information stack depends on connectivity + cyber
+Transport integration->Connectivity
+Transport integration->Cybersecurity
+Situational services->Connectivity
+Situational services->Cybersecurity
+Mobility hubs->City planning
+Mobility hubs->Public infrastructure
+
+// Vehicles depend on connectivity + infra + regulation
+Car->Connectivity
+Car->Private infrastructure
+Car->Regulation
+Train->Connectivity
+Train->Public infrastructure
+Train->Regulation
+
+// Connectivity + cyber depend on CNI
+Connectivity->Critical national infrastructure
+Cybersecurity->Critical national infrastructure
+
+// Planning depends on sustainability, regulation on sustainability
+City planning->Sustainability and climate policy
+Regulation->Sustainability and climate policy
+City planning->Public infrastructure
+Regulation->Private infrastructure
+
+// Infra depends on CNI
+Public infrastructure->Critical national infrastructure
+Private infrastructure->Critical national infrastructure
+
+// Evolve arrows — where consumer behaviour is pushing
+evolve Shared mode 0.62
+evolve Distributed public mode 0.68
+evolve Mobility hubs 0.45
+evolve Transport integration 0.60
+evolve Situational services 0.58
+evolve Zoom / virtual alternative 0.90
+
+// (Inertia flags applied inline on Regulation, City planning, Private infrastructure.)

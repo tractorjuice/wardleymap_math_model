@@ -1,0 +1,12 @@
+{
+  "scenario": "eval-gaming-economies",
+  "run": "run-1",
+  "mode": "prompt-baseline (with_prompt-in-tree)",
+  "prompt_used": "/workspaces/wardleymap_math_model/prompts/wardley_map_generator.md",
+  "blind": true,
+  "started_at": "2026-04-22T15:49:28.341Z",
+  "finished_at": "2026-04-22T15:51:58.671Z",
+  "duration_seconds": 150.33,
+  "pass": "first",
+  "notes": "Prompt-only baseline. No access to reference .owm file. Two anchors (Publishers, Players). 43 components, 1 inertia marker, 6 evolve movements, 1 pipeline, 4 notes."
+}

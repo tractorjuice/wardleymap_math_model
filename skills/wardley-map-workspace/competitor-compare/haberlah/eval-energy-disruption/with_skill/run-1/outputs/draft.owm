@@ -1,0 +1,103 @@
+title Energy Disruption Landscape (July 2022)
+style wardley
+
+anchor Consumer Today [0.97, 0.80]
+anchor Consumer Tomorrow [0.94, 0.30]
+anchor Society & Government [0.91, 0.55]
+
+component User Demand [0.86, 0.85]
+component Energy Security [0.82, 0.62]
+component Sustainability [0.78, 0.45]
+component Survivability [0.73, 0.22]
+component Energy Education [0.69, 0.32]
+component Public Good Framing [0.64, 0.24]
+component Price [0.61, 0.88]
+component Cost with Externalities [0.56, 0.18]
+component Spot Market [0.54, 0.84]
+component OTC Market [0.50, 0.76]
+component Distribution [0.46, 0.90] inertia
+component Regulation [0.43, 0.52] inertia
+component Transmission [0.40, 0.82] inertia
+component CO2 Apparatus [0.39, 0.34]
+component Generation [0.34, 0.74]
+component Fossil [0.32, 0.92]
+component Renewable [0.30, 0.60]
+component Grid Control Systems [0.28, 0.72]
+component Gas [0.26, 0.86] inertia
+component Solar Microgen [0.24, 0.54]
+component Nuclear [0.22, 0.68] inertia
+component Electrical Storage [0.18, 0.48]
+component Potential Energy Storage [0.14, 0.85]
+component Hydrogen Storage [0.10, 0.22]
+component Strategic Reserves [0.06, 0.60]
+component Supply-Chain Awareness [0.04, 0.14]
+component Capital Intensity [0.02, 0.42]
+
+Consumer Today->User Demand
+Consumer Today->Price
+Consumer Tomorrow->Sustainability
+Consumer Tomorrow->Survivability
+Consumer Tomorrow->Energy Education
+Consumer Tomorrow->Solar Microgen
+Society & Government->Public Good Framing
+Society & Government->Energy Security
+Society & Government->Sustainability
+Society & Government->Regulation
+User Demand->Distribution
+User Demand->Price
+Energy Security->Strategic Reserves
+Energy Security->Generation
+Energy Security->Gas
+Sustainability->Renewable
+Sustainability->CO2 Apparatus
+Sustainability->Cost with Externalities
+Survivability->Supply-Chain Awareness
+Survivability->Hydrogen Storage
+Energy Education->Public Good Framing
+Public Good Framing->Cost with Externalities
+Public Good Framing->Regulation
+Price->Spot Market
+Price->OTC Market
+Cost with Externalities->CO2 Apparatus
+Cost with Externalities->Supply-Chain Awareness
+Spot Market->Generation
+OTC Market->Generation
+Distribution->Transmission
+Distribution->Grid Control Systems
+Distribution->Capital Intensity
+Transmission->Generation
+Transmission->Grid Control Systems
+Transmission->Capital Intensity
+Generation->Fossil
+Generation->Gas
+Generation->Renewable
+Generation->Nuclear
+Generation->Solar Microgen
+Generation->Electrical Storage
+Generation->Potential Energy Storage
+Generation->Hydrogen Storage
+Renewable->Electrical Storage
+Renewable->Capital Intensity
+Nuclear->Capital Intensity
+Solar Microgen->Electrical Storage
+Fossil->Strategic Reserves
+Gas->Strategic Reserves
+Hydrogen Storage->Capital Intensity
+Potential Energy Storage->Capital Intensity
+Regulation->CO2 Apparatus
+Regulation->Supply-Chain Awareness
+Grid Control Systems->Capital Intensity
+Grid Control Systems->Electrical Storage
+
+evolve Renewable 0.78
+evolve Solar Microgen 0.72
+evolve Electrical Storage 0.66
+evolve Hydrogen Storage 0.42
+evolve CO2 Apparatus 0.58
+evolve Cost with Externalities 0.46
+evolve Supply-Chain Awareness 0.38
+
+annotation 1 [[0.12, 0.20]] Disruption frontier: tomorrow's survivability built on immature storage and externality pricing
+annotation 2 [[0.38, 0.88]] Locked-in capital: fossil, gas, transmission, distribution
+annotation 3 [[0.20, 0.50]] Storage is the pivot: electrical crossing into Product; hydrogen still bespoke
+annotation 4 [[0.10, 0.30]] Externality apparatus is the weakest rail in the system

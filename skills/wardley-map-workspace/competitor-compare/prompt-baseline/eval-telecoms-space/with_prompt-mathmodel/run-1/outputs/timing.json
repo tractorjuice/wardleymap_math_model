@@ -1,0 +1,26 @@
+{
+  "scenario": "telecoms-space",
+  "mode": "prompt-baseline",
+  "variant": "with_prompt-in-tree",
+  "run": 1,
+  "prompt_source": "/workspaces/wardleymap_math_model/prompts/wardley_map_generator.md",
+  "blind": true,
+  "references_consulted": [
+    "/workspaces/wardleymap_math_model/prompts/wardley_map_generator.md"
+  ],
+  "references_excluded": [
+    "/workspaces/wardleymap_math_model/skills/wardley-map-workspace/competitor-compare/prompt-baseline/eval-telecoms-space/wardley-reference.owm",
+    "/workspaces/wardleymap_math_model/skills/wardley-map-workspace/iteration-14/eval-telecoms-space/wardley-reference.owm"
+  ],
+  "start_ns": 1776873246522351474,
+  "end_ns": 1776873400275250792,
+  "duration_ns": 153752899318,
+  "duration_s": 153.753,
+  "components": 30,
+  "anchors": 3,
+  "dependencies": 54,
+  "evolves": 7,
+  "notes": 3,
+  "date_of_run": "2026-04-22",
+  "scenario_epoch": "2023-02"
+}

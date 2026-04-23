@@ -1,0 +1,35 @@
+{
+  "scenario": "retail-journey",
+  "skill": "wardley-map",
+  "skill_path": "/workspaces/wardleymap_math_model/skills/wardley-map/SKILL.md",
+  "run": 1,
+  "started_at": "2026-04-23T10:03:45Z",
+  "finished_at": "2026-04-23T10:09:09Z",
+  "duration_seconds": 324,
+  "outputs": {
+    "output_md": "outputs/output.md",
+    "draft_owm": "outputs/draft.owm"
+  },
+  "features_present": {
+    "step_0_strategic_context": true,
+    "step_4b_evidence_citations": true,
+    "section_3_2_evolution_rationale_table": true,
+    "section_4d_build_buy_outsource_table": true
+  },
+  "validation": {
+    "validator_run": false,
+    "validator_reason": "node execution was blocked by sandbox in this environment; all 65 edges walked manually against the visibility constraint and coordinates confirmed in [0,1] and all endpoints declared",
+    "layout_check_run": false,
+    "layout_check_reason": "same sandbox restriction; manual sweep performed for near-duplicates, stage-boundary straddling, canvas-edge clipping, and stage imbalance"
+  },
+  "component_count": 40,
+  "anchor_count": 2,
+  "edge_count": 65,
+  "stage_distribution": {
+    "genesis": 1,
+    "custom_built": 9,
+    "product_plus_rental": 20,
+    "commodity_plus_utility": 9,
+    "anchors_excluded": 2
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "run": "prompt-baseline/eval-manufacturing/with_prompt-in-tree/run-1",
+  "scenario": "Manufacturing supply chain (Feb 2023) — raw/refined materials through equipment, labour, R&D, into finished product for distributors, with government/regulation, financial lens, inventory/logistics decisions, and awareness/visibility layer.",
+  "instructions_source": "/workspaces/wardleymap_math_model/prompts/wardley_map_generator.md",
+  "pass": "first",
+  "blind": true,
+  "blind_files_avoided": [
+    "/workspaces/wardleymap_math_model/skills/wardley-map-workspace/competitor-compare/prompt-baseline/eval-manufacturing/wardley-reference.owm",
+    "/workspaces/wardleymap_math_model/skills/wardley-map-workspace/iteration-12/eval-manufacturing-supply/wardley-reference.owm"
+  ],
+  "start_unix": 1776872865,
+  "end_unix": 1776873003,
+  "duration_seconds": 138,
+  "outputs": {
+    "owm": "outputs/draft.owm",
+    "analysis": "outputs/output.md",
+    "timing": "outputs/timing.json"
+  },
+  "map_stats": {
+    "anchors": 3,
+    "components": 31,
+    "dependencies_declared": 49,
+    "notes": 3,
+    "evolve_markers": 4,
+    "inertia_markers": 1,
+    "in_transition_flagged": 4
+  },
+  "notes": "Single-pass first draft. Prompt's 10-step procedure followed. Cheat-sheet 4-row scoring applied; in-transition items flagged. Hard ν(a) >= ν(b) constraint checked by hand on all declared edges."
+}
+</content>

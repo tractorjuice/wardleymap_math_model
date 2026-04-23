@@ -1,0 +1,184 @@
+title Risk Management Across Financial Services
+style wardley
+
+// Anchors — the three demand sources
+anchor Public [0.97, 0.60]
+anchor Corporations [0.96, 0.55]
+anchor Governments [0.95, 0.45]
+
+// ---------- Financial Products and Services (user-facing demand) ----------
+component Retail Banking Services [0.86, 0.78]
+component Insurance Products [0.84, 0.70]
+component Lending Products [0.83, 0.72]
+component Investment Products [0.80, 0.65]
+component Payment Services [0.82, 0.88]
+component Corporate Banking [0.80, 0.62]
+component Sovereign Debt Issuance [0.78, 0.55]
+
+// ---------- Trust and Assets (the emotional and financial connector) ----------
+component Trust [0.74, 0.35]
+component Customer Assets [0.72, 0.60]
+component Value Proposition [0.70, 0.40]
+component Customer Onboarding [0.66, 0.60]
+component Asset Custody [0.62, 0.72]
+
+// ---------- Accountability Chain (back to society) ----------
+component Public Accountability [0.68, 0.38]
+component Consumer Protection [0.64, 0.55]
+component Transparency / Disclosure [0.60, 0.58]
+component Audit and Assurance [0.55, 0.70]
+
+// ---------- Risk Management Function ----------
+component Risk Management Framework [0.58, 0.45]
+component Risk Appetite [0.56, 0.40]
+component Supply-Chain Awareness [0.54, 0.22]
+
+// ---------- Risk Types (the categories of risk being managed) ----------
+component Credit Risk [0.50, 0.76]
+component Market Risk [0.48, 0.72]
+component Operational Risk [0.46, 0.60]
+component Cybersecurity Risk [0.44, 0.45]
+component Third-party Risk [0.42, 0.30]
+component Cascade-Failure Risk [0.43, 0.18]
+component Systemic Risk [0.40, 0.32]
+
+// ---------- Methods and Models ----------
+component Stress Testing [0.36, 0.52]
+component Risk Measurement and Modelling [0.34, 0.48]
+
+// ---------- Regulation and Oversight ----------
+component Regulation [0.52, 0.55]
+component Prudential Regulation (Basel) [0.48, 0.65]
+component Conduct Regulation [0.46, 0.55]
+component Capital Requirements [0.44, 0.78]
+component Rating Agencies [0.52, 0.68]
+component Sovereignty Controls [0.50, 0.35]
+
+// ---------- Cost and Value (evolution-axis focus) ----------
+component Cost of Capital [0.28, 0.72]
+component Value Measurement [0.26, 0.38]
+
+// ---------- Supporting Infrastructure and Practices ----------
+component Core Banking Systems [0.30, 0.62]
+component Identity and KYC [0.28, 0.71]
+component AML Screening [0.26, 0.68]
+component Payment Rails [0.24, 0.82]
+component Cybersecurity Controls [0.22, 0.55]
+component Threat Intelligence [0.20, 0.40]
+component Third-party Vendor Management [0.18, 0.45]
+
+// ---------- Commodity and utility foundations ----------
+component Cloud Infrastructure [0.12, 0.90]
+component Telecommunications [0.08, 0.93]
+component Electricity [0.05, 0.96]
+
+// ---------- Dependencies ----------
+// Demand anchors to products
+Public->Retail Banking Services
+Public->Insurance Products
+Public->Lending Products
+Public->Payment Services
+Public->Consumer Protection
+Corporations->Corporate Banking
+Corporations->Insurance Products
+Corporations->Lending Products
+Corporations->Investment Products
+Corporations->Payment Services
+Governments->Sovereign Debt Issuance
+Governments->Regulation
+Governments->Sovereignty Controls
+
+// Products depend on trust and assets
+Retail Banking Services->Trust
+Retail Banking Services->Customer Assets
+Retail Banking Services->Customer Onboarding
+Insurance Products->Trust
+Insurance Products->Value Proposition
+Insurance Products->Risk Measurement and Modelling
+Lending Products->Credit Risk
+Lending Products->Customer Onboarding
+Investment Products->Asset Custody
+Investment Products->Trust
+Corporate Banking->Credit Risk
+Corporate Banking->Customer Assets
+Sovereign Debt Issuance->Rating Agencies
+Sovereign Debt Issuance->Capital Requirements
+Payment Services->Payment Rails
+
+// Trust-and-assets layer
+Trust->Public Accountability
+Trust->Transparency / Disclosure
+Customer Assets->Asset Custody
+Customer Assets->Core Banking Systems
+Value Proposition->Consumer Protection
+Value Proposition->Value Measurement
+Customer Onboarding->Identity and KYC
+Customer Onboarding->AML Screening
+Asset Custody->Core Banking Systems
+
+// Accountability chain back to society
+Public Accountability->Audit and Assurance
+Public Accountability->Transparency / Disclosure
+Consumer Protection->Conduct Regulation
+Transparency / Disclosure->Audit and Assurance
+
+// Risk management function
+Risk Management Framework->Risk Appetite
+Risk Management Framework->Credit Risk
+Risk Management Framework->Market Risk
+Risk Management Framework->Operational Risk
+Risk Management Framework->Cybersecurity Risk
+Risk Management Framework->Third-party Risk
+Risk Management Framework->Cascade-Failure Risk
+Risk Management Framework->Systemic Risk
+Risk Management Framework->Risk Measurement and Modelling
+Risk Management Framework->Stress Testing
+Risk Appetite->Value Measurement
+Supply-Chain Awareness->Third-party Risk
+Supply-Chain Awareness->Cascade-Failure Risk
+
+// Risk types depend on methods and controls
+Credit Risk->Risk Measurement and Modelling
+Market Risk->Risk Measurement and Modelling
+Operational Risk->Cybersecurity Risk
+Operational Risk->Third-party Risk
+Cybersecurity Risk->Cybersecurity Controls
+Cybersecurity Risk->Threat Intelligence
+Cascade-Failure Risk->Third-party Risk
+Cascade-Failure Risk->Systemic Risk
+Third-party Risk->Third-party Vendor Management
+Systemic Risk->Stress Testing
+Systemic Risk->Risk Measurement and Modelling
+
+// Methods depend on models
+Stress Testing->Risk Measurement and Modelling
+
+// Regulation pathways
+Regulation->Prudential Regulation (Basel)
+Regulation->Conduct Regulation
+Regulation->Stress Testing
+Prudential Regulation (Basel)->Capital Requirements
+Capital Requirements->Cost of Capital
+Rating Agencies->Credit Risk
+
+// Core operations to infrastructure
+Core Banking Systems->Cloud Infrastructure
+Identity and KYC->Cloud Infrastructure
+AML Screening->Cloud Infrastructure
+Payment Rails->Telecommunications
+Cybersecurity Controls->Cloud Infrastructure
+Threat Intelligence->Telecommunications
+Third-party Vendor Management->Cloud Infrastructure
+Cloud Infrastructure->Electricity
+Telecommunications->Electricity
+
+// Evolution arrows (scenarios, not forecasts)
+evolve Supply-Chain Awareness 0.50
+evolve Cybersecurity Risk 0.62
+evolve Third-party Risk 0.55
+evolve Regulation 0.70
+
+// Notes
+note BUILD: differentiation zone [0.65, 0.25]
+note Regulation lagging risk [0.42, 0.48]
+note Utility: rent, don't build [0.12, 0.95]

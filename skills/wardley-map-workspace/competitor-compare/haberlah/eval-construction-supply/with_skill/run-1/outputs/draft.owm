@@ -1,0 +1,114 @@
+title UK Construction Supply Chain — bespoke craft vs ready to industrialise (March 2023)
+style wardley
+
+// ============================================================
+// ANCHORS — demand side (government, citizens, finance)
+// ============================================================
+anchor Government [0.98, 0.78]
+anchor Citizens (Homebuyers) [0.97, 0.68]
+anchor Mortgage Companies [0.95, 0.85]
+
+// ============================================================
+// TIER 1 — user-visible outputs (homes + QA apparatus)
+// ============================================================
+component Homes (Private & Social) [0.88, 0.55]
+component Building Inspection / QA [0.83, 0.72]
+
+// ============================================================
+// TIER 2 — planning, design, and construction modes
+// ============================================================
+component Planning & Building Regs [0.77, 0.66]
+component Architecture / Blueprints [0.70, 0.52]
+
+// Construction mode: the central component showing the bespoke→industrial spread
+component Construction Mode [0.62, 0.35]
+
+// ============================================================
+// TIER 3 — labour, equipment, manufacture
+// ============================================================
+component Skilled Trades (certified) [0.55, 0.58]
+component Unskilled Labour [0.52, 0.82]
+component Training / Apprenticeships (CITB) [0.47, 0.55]
+component Equipment & Plant Hire [0.45, 0.78]
+component Factory Manufacture (modules) [0.42, 0.30]
+
+// Inertia: local supply of skilled labour is a CNI concern — sticky, not elastic
+component Local Skilled-Labour Supply [0.38, 0.48] inertia
+
+// ============================================================
+// TIER 4 — materials, distribution, logistics
+// ============================================================
+// Materials pipeline: novel/low-carbon (Genesis) → recycled (Custom) →
+// substitutable (Product) → raw bulk (Commodity). Wide spread is the point.
+pipeline Building Materials [0.12, 0.82]
+component Building Materials [0.32, 0.55]
+
+// Distributors: traditional merchants → integrated → platform
+pipeline Distributors [0.30, 0.70]
+component Distributors [0.26, 0.55]
+
+component Logistics / Freight [0.22, 0.82]
+
+// Material supply chain itself is a CNI concern post-Brexit / post-Ukraine
+component Material Supply Chain [0.18, 0.38] inertia
+
+// ============================================================
+// DEPENDENCIES — trace user anchors down to foundations
+// ============================================================
+
+// Demand side → homes / finance
+Government->Homes (Private & Social)
+Government->Planning & Building Regs
+Government->Building Inspection / QA
+Citizens (Homebuyers)->Homes (Private & Social)
+Citizens (Homebuyers)->Mortgage Companies
+Mortgage Companies->Homes (Private & Social)
+Mortgage Companies->Building Inspection / QA
+
+// Homes depend on construction, QA, and design
+Homes (Private & Social)->Construction Mode
+Homes (Private & Social)->Architecture / Blueprints
+Homes (Private & Social)->Building Inspection / QA
+Building Inspection / QA->Planning & Building Regs
+Planning & Building Regs->Architecture / Blueprints
+
+// Construction mode depends on labour, equipment, manufacture, materials
+Construction Mode->Skilled Trades (certified)
+Construction Mode->Unskilled Labour
+Construction Mode->Equipment & Plant Hire
+Construction Mode->Factory Manufacture (modules)
+Construction Mode->Building Materials
+
+// Labour sub-chain
+Skilled Trades (certified)->Training / Apprenticeships (CITB)
+Skilled Trades (certified)->Local Skilled-Labour Supply
+Unskilled Labour->Local Skilled-Labour Supply
+Training / Apprenticeships (CITB)->Local Skilled-Labour Supply
+
+// Factory manufacture pulls on materials + distribution
+Factory Manufacture (modules)->Building Materials
+Factory Manufacture (modules)->Distributors
+
+// Materials flow down to distribution, logistics, and the wider supply chain
+Building Materials->Distributors
+Distributors->Logistics / Freight
+Distributors->Material Supply Chain
+Logistics / Freight->Material Supply Chain
+
+// ============================================================
+// EVOLUTION ARROWS — where things are heading (12-24 months)
+// ============================================================
+evolve Construction Mode 0.55
+evolve Factory Manufacture (modules) 0.48
+evolve Building Materials 0.70
+evolve Distributors 0.65
+evolve Architecture / Blueprints 0.68
+
+// ============================================================
+// ANNOTATIONS — strategic observations
+// ============================================================
+annotation 1 [[0.62, 0.20]] Still bespoke craft: biggest industrialisation prize
+annotation 2 [[0.42, 0.30]] UK MMC factory capacity thin — Ilke/Urban Splash wobbling
+annotation 3 [[0.38, 0.48]] Skilled-labour supply = CNI constraint post-Brexit
+annotation 4 [[0.32, 0.18]] Novel / low-carbon materials: Genesis end of pipeline
+annotation 5 [[0.88, 0.55]] Homes still partly bespoke — industrialise the product

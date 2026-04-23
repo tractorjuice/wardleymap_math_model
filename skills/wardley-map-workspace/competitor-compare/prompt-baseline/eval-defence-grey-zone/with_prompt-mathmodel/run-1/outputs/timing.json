@@ -1,0 +1,26 @@
+{
+  "scenario": "eval-defence-grey-zone",
+  "mode": "prompt-baseline",
+  "variant": "with_prompt-in-tree",
+  "run": 1,
+  "start_utc": "2026-04-22T15:51:43Z",
+  "end_utc": "2026-04-22T15:54:43Z",
+  "duration_seconds": 180,
+  "prompt_source": "/workspaces/wardleymap_math_model/prompts/wardley_map_generator.md",
+  "skill_used": false,
+  "reference_map_read": false,
+  "tooling": {
+    "validator_run": false,
+    "mermaid_conversion_run": false,
+    "layout_check_run": false
+  },
+  "outputs": {
+    "map_format": "owm",
+    "component_count": 39,
+    "anchor_count": 4,
+    "edge_count_approx": 70,
+    "inertia_markers": 2,
+    "evolve_statements": 6,
+    "notes": 4
+  }
+}

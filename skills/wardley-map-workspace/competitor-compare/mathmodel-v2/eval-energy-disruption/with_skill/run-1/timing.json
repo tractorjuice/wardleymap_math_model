@@ -1,0 +1,21 @@
+{
+  "scenario": "energy-disruption",
+  "skill_variant": "mathmodel-v2",
+  "run": 1,
+  "start_unix": 1776939441.800,
+  "end_unix": 1776939929.356,
+  "elapsed_seconds": 487.556,
+  "validator_run": false,
+  "validator_reason": "Node invocation blocked by sandbox; manual edge walk performed instead",
+  "layout_check_run": false,
+  "layout_check_reason": "Node invocation blocked by sandbox; manual layout review performed instead",
+  "components": 45,
+  "anchors": 2,
+  "edges_approx": 85,
+  "stage_distribution": {
+    "genesis": 4,
+    "custom_built": 10,
+    "product_rental": 13,
+    "commodity_utility": 18
+  }
+}

@@ -1,0 +1,122 @@
+title Personal Computing & Developer Stack in the Conversational-AI Era
+style wardley
+
+// Anchor(s)
+anchor Developer / Knowledge Worker [0.96, 0.50]
+anchor Software End User [0.94, 0.55]
+
+// User-facing needs (d=1 from anchors)
+component Build Software Faster [0.88, 0.55]
+component Run Applications [0.86, 0.70]
+
+// Applications & devices (d=2)
+component Personal Applications (Web / SaaS) [0.78, 0.72]
+component Mobile & Desktop Devices [0.74, 0.82]
+
+// IDE layer — split per scenario into two modes (d=2–3)
+component Human-Centric IDE (VS Code, JetBrains) [0.70, 0.72]
+component Conversational AI+Human IDE (Copilot, Cursor, Claude Code) [0.72, 0.38]
+
+// Component libraries and services (d=3)
+component Component Libraries & SDKs [0.60, 0.70]
+component Public APIs & Services [0.58, 0.76]
+
+// FinOps — cross-cutting practice that the developer sees alongside the AI IDE
+component FinOps / AI Cost Management [0.56, 0.34]
+
+// Legacy approaches (explicit in scenario) — marked inertial
+component Legacy Desktop Build Tooling [0.55, 0.66] inertia
+
+// Runtime layer (d=3–4)
+component Serverless Runtime (Lambda, Cloud Run) [0.48, 0.80]
+component LAMP / .NET Runtime [0.46, 0.72] inertia
+
+// Large language models (mid-chain for the AI IDE path)
+component Large Language Models (Frontier) [0.50, 0.30]
+component Open-Weight LLMs (Llama, Mistral) [0.42, 0.45]
+component LLM Inference APIs [0.38, 0.62]
+
+// DevOps practices & orchestration (d=4)
+component DevOps Practices (CI/CD, IaC) [0.34, 0.68]
+component Orchestration (Kubernetes) [0.30, 0.72]
+
+// OS & legacy architecture
+component Operating Systems (Linux, Windows, macOS) [0.28, 0.86]
+component Legacy Architecture (Monoliths, VM farms) [0.24, 0.60] inertia
+
+// Containers (d=5)
+component Container Runtime (Docker, containerd) [0.20, 0.82]
+
+// Deep compute — servers and cloud (d=5–6)
+component Cloud Compute (AWS, GCP, Azure) [0.12, 0.90]
+component Physical Servers / Data Centres [0.06, 0.92]
+
+// Dependencies — user need down
+Developer / Knowledge Worker->Build Software Faster
+Developer / Knowledge Worker->Human-Centric IDE (VS Code, JetBrains)
+Developer / Knowledge Worker->Conversational AI+Human IDE (Copilot, Cursor, Claude Code)
+Software End User->Run Applications
+Software End User->Personal Applications (Web / SaaS)
+Software End User->Mobile & Desktop Devices
+
+// Build path
+Build Software Faster->Human-Centric IDE (VS Code, JetBrains)
+Build Software Faster->Conversational AI+Human IDE (Copilot, Cursor, Claude Code)
+Run Applications->Personal Applications (Web / SaaS)
+Run Applications->Mobile & Desktop Devices
+
+// Applications & devices depend on build+runtime
+Personal Applications (Web / SaaS)->Component Libraries & SDKs
+Personal Applications (Web / SaaS)->Public APIs & Services
+Personal Applications (Web / SaaS)->Serverless Runtime (Lambda, Cloud Run)
+Personal Applications (Web / SaaS)->LAMP / .NET Runtime
+Mobile & Desktop Devices->Operating Systems (Linux, Windows, macOS)
+
+// IDEs → libraries, legacy, models, and FinOps
+Human-Centric IDE (VS Code, JetBrains)->Component Libraries & SDKs
+Human-Centric IDE (VS Code, JetBrains)->Legacy Desktop Build Tooling
+Conversational AI+Human IDE (Copilot, Cursor, Claude Code)->Component Libraries & SDKs
+Conversational AI+Human IDE (Copilot, Cursor, Claude Code)->Large Language Models (Frontier)
+Conversational AI+Human IDE (Copilot, Cursor, Claude Code)->Open-Weight LLMs (Llama, Mistral)
+Conversational AI+Human IDE (Copilot, Cursor, Claude Code)->FinOps / AI Cost Management
+
+// Libraries and legacy → runtimes
+Component Libraries & SDKs->Serverless Runtime (Lambda, Cloud Run)
+Component Libraries & SDKs->LAMP / .NET Runtime
+Legacy Desktop Build Tooling->LAMP / .NET Runtime
+Public APIs & Services->Serverless Runtime (Lambda, Cloud Run)
+
+// FinOps cross-cuts inference APIs and cloud
+FinOps / AI Cost Management->LLM Inference APIs
+FinOps / AI Cost Management->Cloud Compute (AWS, GCP, Azure)
+
+// LLM sub-chain
+Large Language Models (Frontier)->LLM Inference APIs
+Open-Weight LLMs (Llama, Mistral)->LLM Inference APIs
+LLM Inference APIs->Cloud Compute (AWS, GCP, Azure)
+
+// Runtimes → orchestration, containers, OS
+Serverless Runtime (Lambda, Cloud Run)->Orchestration (Kubernetes)
+Serverless Runtime (Lambda, Cloud Run)->Container Runtime (Docker, containerd)
+LAMP / .NET Runtime->Operating Systems (Linux, Windows, macOS)
+LAMP / .NET Runtime->Legacy Architecture (Monoliths, VM farms)
+
+// DevOps → orchestration, containers, cloud
+DevOps Practices (CI/CD, IaC)->Orchestration (Kubernetes)
+DevOps Practices (CI/CD, IaC)->Container Runtime (Docker, containerd)
+DevOps Practices (CI/CD, IaC)->Cloud Compute (AWS, GCP, Azure)
+
+// OS & orchestration → cloud & containers
+Operating Systems (Linux, Windows, macOS)->Cloud Compute (AWS, GCP, Azure)
+Orchestration (Kubernetes)->Container Runtime (Docker, containerd)
+Legacy Architecture (Monoliths, VM farms)->Physical Servers / Data Centres
+
+// Containers → cloud; cloud → servers
+Container Runtime (Docker, containerd)->Cloud Compute (AWS, GCP, Azure)
+Cloud Compute (AWS, GCP, Azure)->Physical Servers / Data Centres
+
+// Evolve arrows (strategic trajectories; scenario, not forecast)
+evolve Conversational AI+Human IDE (Copilot, Cursor, Claude Code) 0.62
+evolve Large Language Models (Frontier) 0.58
+evolve FinOps / AI Cost Management 0.62
+evolve Open-Weight LLMs (Llama, Mistral) 0.70

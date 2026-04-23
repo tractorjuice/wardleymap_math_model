@@ -1,0 +1,75 @@
+title Cybersecurity Risk Management from the Executive Seat (May 2023)
+style wardley
+
+anchor Executives [0.97, 0.50]
+
+component P&L [0.90, 0.86]
+component Compliance Obligation [0.88, 0.80]
+component Risk Appetite [0.86, 0.32] inertia
+component Risk Register [0.78, 0.60]
+component Risk Frameworks [0.74, 0.68]
+component Compliance Frameworks [0.74, 0.84]
+component Risk Identification [0.68, 0.38]
+component Risk Assessment Methodology [0.64, 0.32] inertia
+component Asset Inventory [0.60, 0.56]
+component Likelihood/Impact Matrices [0.56, 0.74]
+component FAIR Quantification [0.56, 0.22]
+component Mitigate/Transfer/Accept [0.54, 0.36]
+component Cyber Insurance [0.50, 0.54]
+component Security Reporting [0.48, 0.64]
+component Security Monitoring [0.42, 0.60]
+component SOC Tooling (SIEM/EDR) [0.36, 0.66]
+component Incident Response [0.32, 0.44] inertia
+component Security Testing [0.28, 0.56]
+component Pen Testing [0.24, 0.38] inertia
+component Bug Bounty [0.20, 0.54]
+component LLM for Defence [0.14, 0.14]
+component LLM as Risk [0.10, 0.06]
+
+Executives->P&L
+Executives->Compliance Obligation
+Executives->Risk Appetite
+P&L->Risk Register
+P&L->Cyber Insurance
+Compliance Obligation->Compliance Frameworks
+Compliance Obligation->Risk Frameworks
+Compliance Obligation->Risk Register
+Risk Appetite->Risk Register
+Risk Appetite->Mitigate/Transfer/Accept
+Risk Register->Risk Identification
+Risk Register->Risk Assessment Methodology
+Risk Identification->Asset Inventory
+Risk Assessment Methodology->Likelihood/Impact Matrices
+Risk Assessment Methodology->FAIR Quantification
+Risk Frameworks->Risk Assessment Methodology
+Risk Frameworks->Security Monitoring
+Risk Frameworks->Incident Response
+Compliance Frameworks->Security Testing
+Compliance Frameworks->Security Reporting
+Mitigate/Transfer/Accept->Cyber Insurance
+Mitigate/Transfer/Accept->Security Reporting
+Mitigate/Transfer/Accept->Incident Response
+Mitigate/Transfer/Accept->Security Testing
+Security Reporting->Security Monitoring
+Security Monitoring->SOC Tooling (SIEM/EDR)
+Incident Response->SOC Tooling (SIEM/EDR)
+Security Testing->Pen Testing
+Security Testing->Bug Bounty
+SOC Tooling (SIEM/EDR)->LLM for Defence
+Incident Response->LLM for Defence
+Pen Testing->LLM as Risk
+Risk Register->LLM as Risk
+Asset Inventory->LLM as Risk
+
+evolve FAIR Quantification 0.45
+evolve Risk Assessment Methodology 0.52
+evolve Pen Testing 0.56
+evolve Incident Response 0.60
+evolve Cyber Insurance 0.70
+evolve LLM for Defence 0.38
+evolve LLM as Risk 0.32
+
+annotation 1 [[0.22, 0.12]] LLM angle: Genesis on both sides of the sword
+annotation 2 [[0.32, 0.36]] Still expert craft; automation pressure rising
+annotation 3 [[0.54, 0.30]] Mitigate/Transfer/Accept is where P&L meets cyber
+annotation 4 [[0.76, 0.66]] Regulation is forcing Register+Frameworks rightward

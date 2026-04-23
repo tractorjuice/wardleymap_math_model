@@ -1,0 +1,121 @@
+{
+  "title": "Space-Based Telecoms (February 2023)",
+  "components": [
+    {"id":"consumers","name":"Consumers","visibility":0.97,"maturity":0.45,"isAnchor":true,"stage":"Product"},
+    {"id":"corporations","name":"Corporations","visibility":0.97,"maturity":0.55,"isAnchor":true,"stage":"Product"},
+    {"id":"government","name":"Government","visibility":0.97,"maturity":0.65,"isAnchor":true,"stage":"Product"},
+
+    {"id":"network-access","name":"Network Access","visibility":0.90,"maturity":0.55,"stage":"Product"},
+    {"id":"broadcast","name":"Broadcast","visibility":0.82,"maturity":0.85,"stage":"Commodity"},
+    {"id":"space-regulation","name":"Space Regulation","visibility":0.82,"maturity":0.50,"stage":"Product"},
+
+    {"id":"mobile-topology","name":"Mobile Topology (4G/5G)","visibility":0.74,"maturity":0.78,"stage":"Commodity"},
+    {"id":"fibre-topology","name":"Fibre Topology","visibility":0.74,"maturity":0.86,"stage":"Commodity"},
+    {"id":"ntn-topology","name":"NTN Topology","visibility":0.74,"maturity":0.30,"stage":"Custom-Built","inertia":true},
+    {"id":"physical-network","name":"Physical Network","visibility":0.66,"maturity":0.80,"stage":"Commodity"},
+
+    {"id":"user-terminals","name":"User Terminals (Phased Array)","visibility":0.58,"maturity":0.38,"stage":"Custom-Built"},
+    {"id":"ground-stations","name":"Ground Stations","visibility":0.60,"maturity":0.58,"stage":"Product"},
+    {"id":"spectrum","name":"Spectrum (Ku/Ka/V)","visibility":0.56,"maturity":0.70,"stage":"Product"},
+
+    {"id":"leo-microsats","name":"LEO Microsats","visibility":0.48,"maturity":0.35,"stage":"Custom-Built"},
+    {"id":"geo-satellites","name":"GEO Satellites","visibility":0.48,"maturity":0.78,"stage":"Commodity"},
+
+    {"id":"beamforming","name":"Beamforming / Beam-Steering","visibility":0.38,"maturity":0.32,"stage":"Custom-Built","inertia":true},
+    {"id":"sat-antennas","name":"Satellite Antennas","visibility":0.38,"maturity":0.65,"stage":"Product"},
+    {"id":"optical-isl","name":"Optical Sat-to-Sat Comms","visibility":0.38,"maturity":0.18,"stage":"Genesis"},
+    {"id":"propulsion","name":"Satellite Propulsion (Kr/Xe)","visibility":0.30,"maturity":0.55,"stage":"Product"},
+    {"id":"thermal","name":"Thermal Control (TE/Rad/Cryo)","visibility":0.30,"maturity":0.62,"stage":"Product"},
+    {"id":"sat-power","name":"Satellite Power","visibility":0.30,"maturity":0.82,"stage":"Commodity"},
+
+    {"id":"launchers","name":"Launchers","visibility":0.22,"maturity":0.58,"stage":"Product"},
+    {"id":"orbit-tracking","name":"Orbit Tracking","visibility":0.22,"maturity":0.68,"stage":"Product"},
+    {"id":"debris-tracking","name":"Debris Tracking","visibility":0.22,"maturity":0.42,"stage":"Custom-Built"},
+
+    {"id":"fleet-management","name":"Fleet Management","visibility":0.14,"maturity":0.35,"stage":"Custom-Built"},
+    {"id":"automation","name":"Automation","visibility":0.14,"maturity":0.22,"stage":"Custom-Built"},
+    {"id":"supply-chain","name":"Supply-Chain Awareness","visibility":0.06,"maturity":0.22,"stage":"Custom-Built"}
+  ],
+  "links": [
+    {"from":"consumers","to":"network-access"},
+    {"from":"corporations","to":"network-access"},
+    {"from":"government","to":"network-access"},
+    {"from":"consumers","to":"broadcast"},
+    {"from":"corporations","to":"broadcast"},
+    {"from":"government","to":"broadcast"},
+    {"from":"consumers","to":"space-regulation"},
+    {"from":"corporations","to":"space-regulation"},
+    {"from":"government","to":"space-regulation"},
+
+    {"from":"network-access","to":"mobile-topology"},
+    {"from":"network-access","to":"fibre-topology"},
+    {"from":"network-access","to":"ntn-topology"},
+    {"from":"broadcast","to":"ntn-topology"},
+    {"from":"broadcast","to":"geo-satellites"},
+
+    {"from":"mobile-topology","to":"physical-network"},
+    {"from":"fibre-topology","to":"physical-network"},
+    {"from":"ntn-topology","to":"physical-network"},
+    {"from":"ntn-topology","to":"user-terminals"},
+    {"from":"ntn-topology","to":"ground-stations"},
+    {"from":"ntn-topology","to":"spectrum"},
+
+    {"from":"physical-network","to":"ground-stations"},
+
+    {"from":"user-terminals","to":"leo-microsats"},
+    {"from":"user-terminals","to":"geo-satellites"},
+    {"from":"ground-stations","to":"leo-microsats"},
+    {"from":"ground-stations","to":"geo-satellites"},
+    {"from":"spectrum","to":"space-regulation"},
+    {"from":"spectrum","to":"leo-microsats"},
+    {"from":"spectrum","to":"geo-satellites"},
+
+    {"from":"leo-microsats","to":"beamforming"},
+    {"from":"leo-microsats","to":"sat-antennas"},
+    {"from":"leo-microsats","to":"optical-isl"},
+    {"from":"leo-microsats","to":"propulsion"},
+    {"from":"leo-microsats","to":"thermal"},
+    {"from":"leo-microsats","to":"sat-power"},
+    {"from":"geo-satellites","to":"sat-antennas"},
+    {"from":"geo-satellites","to":"propulsion"},
+    {"from":"geo-satellites","to":"thermal"},
+    {"from":"geo-satellites","to":"sat-power"},
+
+    {"from":"leo-microsats","to":"launchers"},
+    {"from":"geo-satellites","to":"launchers"},
+    {"from":"leo-microsats","to":"orbit-tracking"},
+    {"from":"geo-satellites","to":"orbit-tracking"},
+    {"from":"leo-microsats","to":"fleet-management"},
+    {"from":"geo-satellites","to":"fleet-management"},
+
+    {"from":"orbit-tracking","to":"debris-tracking"},
+    {"from":"fleet-management","to":"orbit-tracking"},
+    {"from":"fleet-management","to":"automation"},
+    {"from":"debris-tracking","to":"automation"},
+    {"from":"automation","to":"supply-chain"},
+
+    {"from":"launchers","to":"space-regulation"},
+    {"from":"orbit-tracking","to":"space-regulation"},
+    {"from":"debris-tracking","to":"space-regulation"},
+
+    {"from":"launchers","to":"supply-chain"},
+    {"from":"propulsion","to":"supply-chain"},
+    {"from":"sat-power","to":"supply-chain"},
+    {"from":"sat-antennas","to":"supply-chain"},
+    {"from":"thermal","to":"supply-chain"}
+  ],
+  "evolutions": [
+    {"componentId":"ntn-topology","toMaturity":0.48},
+    {"componentId":"user-terminals","toMaturity":0.55},
+    {"componentId":"leo-microsats","toMaturity":0.52},
+    {"componentId":"optical-isl","toMaturity":0.35},
+    {"componentId":"beamforming","toMaturity":0.50},
+    {"componentId":"fleet-management","toMaturity":0.48},
+    {"componentId":"debris-tracking","toMaturity":0.58}
+  ],
+  "annotations": [
+    {"id":1,"text":"LEO / NTN frontier: still novel in Feb 2023","x":0.20,"y":0.78},
+    {"id":2,"text":"Commoditised subsystems — buy, do not build","x":0.82,"y":0.30},
+    {"id":3,"text":"Regulation as cross-cutting climate","x":0.50,"y":0.50}
+  ]
+}

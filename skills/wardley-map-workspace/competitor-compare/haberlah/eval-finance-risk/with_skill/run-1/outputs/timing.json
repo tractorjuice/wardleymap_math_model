@@ -1,0 +1,22 @@
+{
+  "scenario_id": "finance-risk",
+  "skill": "haberlah/wardley-mapping",
+  "skill_path": "skills/wardley-map-workspace/competitor-compare/skills/wardley-map-workspace/competitor-compare/haberlah/skill/",
+  "run": 1,
+  "start_unix": 1776872884.694,
+  "end_unix": 1776873276.498,
+  "elapsed_seconds": 391.804,
+  "deliverables": {
+    "output_md": "outputs/output.md",
+    "draft_owm": "outputs/draft.owm"
+  },
+  "counts": {
+    "anchors": 3,
+    "components": 18,
+    "total_nodes": 21,
+    "dependencies": 37,
+    "evolutions": 6,
+    "inertia_markers": 2,
+    "annotations": 3
+  }
+}

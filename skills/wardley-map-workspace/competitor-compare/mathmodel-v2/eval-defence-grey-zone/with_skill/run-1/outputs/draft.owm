@@ -1,0 +1,226 @@
+title Defence Grey Zone - Below-Threshold State Competition
+style wardley
+
+// Anchors - the two user populations at the top of the value chain
+anchor Contested State [0.98, 0.42]
+anchor Population [0.96, 0.58]
+
+// --- Sovereignty pillars under contest (user-visible needs) ---
+component Legitimacy [0.90, 0.30]
+component Cyber Sovereignty [0.88, 0.40]
+component Territorial Sovereignty [0.86, 0.55]
+component Economic Sovereignty [0.84, 0.62]
+component Cultural Sovereignty [0.82, 0.35]
+
+// --- Governance framework (visible, slowly evolving) ---
+component Statecraft [0.78, 0.30]
+component Treaties and International Law [0.75, 0.68]
+component Ethics Frameworks [0.73, 0.28]
+component Accountability [0.71, 0.22]
+component Attribution [0.69, 0.32]
+component Deniability [0.67, 0.55]
+
+// --- Effect types (what users feel directly from the grey zone) ---
+component Coercion [0.64, 0.53]
+component Deterrence [0.62, 0.45]
+component Hearts and Minds Campaigns [0.60, 0.52]
+component Kinetic Effects [0.58, 0.78]
+component Propaganda [0.56, 0.72]
+
+// --- Consequences (user-visible harms of effects) ---
+component Civilian Harm [0.54, 0.40]
+component Friendly Fire [0.52, 0.35]
+component Escalation Risk [0.50, 0.38]
+component Unintended Outcomes [0.48, 0.30]
+
+// --- Actors (who plays) - sit below the effects they produce ---
+component Supranationals [0.46, 0.40]
+component Allied Governments [0.44, 0.55]
+component Hostile Governments [0.42, 0.55]
+component Intelligence Services [0.39, 0.60]
+component Private Proxy Operators [0.38, 0.58]
+component State-Aligned Hackers [0.36, 0.70]
+component Private Military Companies [0.34, 0.65]
+component Diaspora and Influence Networks [0.32, 0.45]
+
+// --- Theatres of competition ---
+component Land Theatre [0.44, 0.85]
+component Electronic Theatre [0.42, 0.62]
+component Space Theatre [0.40, 0.45]
+component Social Media Theatre [0.46, 0.68]
+component Finance Theatre [0.44, 0.72]
+
+// --- Landscape layers (with awareness) ---
+component Physical Landscape [0.30, 0.80]
+component Virtual Landscape [0.28, 0.60]
+component Supply Chain Landscape [0.26, 0.55]
+component Physical Awareness (ISR) [0.24, 0.68]
+component Virtual Awareness (Cyber ISR) [0.22, 0.52]
+component Supply Chain Awareness [0.20, 0.32]
+
+// --- Tactical / operational tooling (mid-deep) ---
+component Disinformation Tooling [0.30, 0.70]
+component Influence-as-a-Service [0.28, 0.55]
+component Cyber Exploitation Kits [0.26, 0.78]
+component Commercial Spyware [0.24, 0.72]
+component Election Interference Playbooks [0.22, 0.48]
+component Economic Sanctions Tooling [0.20, 0.78]
+component Sabotage and Grey Kinetic [0.18, 0.55]
+component Agentic AI Influence Ops [0.28, 0.15]
+component Quantum-Assisted Attribution [0.25, 0.10]
+
+// --- Infrastructure and commodities at the base ---
+component Crypto Rails [0.16, 0.70]
+component Dark Pools and OTC Crypto [0.14, 0.58]
+component Bot Farms [0.13, 0.85]
+component Synthetic Media (Deepfakes) [0.18, 0.45]
+component Generative AI Content [0.15, 0.40]
+component Open Source Intelligence (OSINT) [0.11, 0.82]
+component Satellite Imagery [0.10, 0.88]
+component Commercial Telemetry Data [0.09, 0.78]
+component Submarine Cable Infrastructure [0.06, 0.85]
+component Cloud Compute [0.04, 0.92]
+
+// --- Dependencies ---
+// User needs -> sovereignty pillars
+Contested State->Legitimacy
+Contested State->Cyber Sovereignty
+Contested State->Territorial Sovereignty
+Contested State->Economic Sovereignty
+Contested State->Cultural Sovereignty
+Population->Legitimacy
+Population->Cultural Sovereignty
+Population->Cyber Sovereignty
+
+// Sovereignty -> governance machinery
+Legitimacy->Statecraft
+Legitimacy->Ethics Frameworks
+Legitimacy->Accountability
+Cyber Sovereignty->Attribution
+Cyber Sovereignty->Treaties and International Law
+Territorial Sovereignty->Statecraft
+Territorial Sovereignty->Treaties and International Law
+Economic Sovereignty->Treaties and International Law
+Cultural Sovereignty->Ethics Frameworks
+
+// Governance -> effect-space - but effects are what users experience.
+// We connect governance-to-effects via the state: statecraft shapes deterrence
+Statecraft->Deterrence
+Statecraft->Coercion
+Statecraft->Hearts and Minds Campaigns
+Treaties and International Law->Kinetic Effects
+Treaties and International Law->Coercion
+Ethics Frameworks->Propaganda
+Accountability->Attribution
+Attribution->Deniability
+
+// Effects -> consequences (consequences are downstream visible harms)
+Coercion->Escalation Risk
+Coercion->Civilian Harm
+Kinetic Effects->Civilian Harm
+Kinetic Effects->Friendly Fire
+Propaganda->Unintended Outcomes
+Hearts and Minds Campaigns->Unintended Outcomes
+Deterrence->Escalation Risk
+
+// Effects -> actors who perform them (effect depends on the actor executing it)
+Coercion->Intelligence Services
+Coercion->Hostile Governments
+Coercion->State-Aligned Hackers
+Deterrence->Allied Governments
+Deterrence->Supranationals
+Hearts and Minds Campaigns->Allied Governments
+Hearts and Minds Campaigns->Diaspora and Influence Networks
+Kinetic Effects->Private Military Companies
+Kinetic Effects->Hostile Governments
+Propaganda->Hostile Governments
+Propaganda->Intelligence Services
+Propaganda->Private Proxy Operators
+Propaganda->Diaspora and Influence Networks
+
+// Deniability is what lets states use proxies
+Deniability->Private Proxy Operators
+Deniability->State-Aligned Hackers
+Deniability->Private Military Companies
+
+// Effects run in theatres (each effect uses a theatre; theatre sits mid-chain)
+Coercion->Electronic Theatre
+Coercion->Finance Theatre
+Propaganda->Social Media Theatre
+Hearts and Minds Campaigns->Social Media Theatre
+Kinetic Effects->Land Theatre
+Deterrence->Space Theatre
+Deterrence->Electronic Theatre
+
+// Theatres sit on landscape layers (with awareness)
+Land Theatre->Physical Landscape
+Electronic Theatre->Virtual Landscape
+Space Theatre->Physical Landscape
+Social Media Theatre->Virtual Landscape
+Finance Theatre->Supply Chain Landscape
+Finance Theatre->Virtual Landscape
+
+Physical Landscape->Physical Awareness (ISR)
+Virtual Landscape->Virtual Awareness (Cyber ISR)
+Supply Chain Landscape->Supply Chain Awareness
+
+// Theatres depend on tactical tooling
+Social Media Theatre->Disinformation Tooling
+Social Media Theatre->Influence-as-a-Service
+Electronic Theatre->Cyber Exploitation Kits
+Electronic Theatre->Commercial Spyware
+Social Media Theatre->Election Interference Playbooks
+Finance Theatre->Economic Sanctions Tooling
+Land Theatre->Sabotage and Grey Kinetic
+
+// Tactical tooling depends on infrastructure
+Disinformation Tooling->Bot Farms
+Disinformation Tooling->Synthetic Media (Deepfakes)
+Disinformation Tooling->Generative AI Content
+Influence-as-a-Service->Bot Farms
+Influence-as-a-Service->Generative AI Content
+Influence-as-a-Service->Agentic AI Influence Ops
+Disinformation Tooling->Agentic AI Influence Ops
+Attribution->Quantum-Assisted Attribution
+Cyber Exploitation Kits->Cloud Compute
+Commercial Spyware->Cloud Compute
+Election Interference Playbooks->Bot Farms
+Economic Sanctions Tooling->Commercial Telemetry Data
+Economic Sanctions Tooling->Crypto Rails
+Sabotage and Grey Kinetic->Open Source Intelligence (OSINT)
+
+// Finance / crypto plumbing
+Finance Theatre->Crypto Rails
+Crypto Rails->Dark Pools and OTC Crypto
+
+// Awareness / ISR layers lean on commodity data
+Physical Awareness (ISR)->Satellite Imagery
+Physical Awareness (ISR)->Open Source Intelligence (OSINT)
+Virtual Awareness (Cyber ISR)->Commercial Telemetry Data
+Virtual Awareness (Cyber ISR)->Open Source Intelligence (OSINT)
+Supply Chain Awareness->Commercial Telemetry Data
+Supply Chain Awareness->Open Source Intelligence (OSINT)
+
+// Core infra
+Satellite Imagery->Cloud Compute
+Open Source Intelligence (OSINT)->Cloud Compute
+Commercial Telemetry Data->Cloud Compute
+Bot Farms->Cloud Compute
+Synthetic Media (Deepfakes)->Generative AI Content
+Generative AI Content->Cloud Compute
+Physical Landscape->Submarine Cable Infrastructure
+Virtual Landscape->Submarine Cable Infrastructure
+
+// Evolve arrows - where the map says the axis is shifting
+evolve Attribution 0.55
+evolve Synthetic Media (Deepfakes) 0.75
+evolve Influence-as-a-Service 0.80
+evolve Commercial Spyware 0.82
+evolve Ethics Frameworks 0.45
+evolve Agentic AI Influence Ops 0.55
+evolve Quantum-Assisted Attribution 0.40
+
+// Notes
+note Weaponised-commodity zone [0.22, 0.82]
+note Genuinely novel - attribution frontier [0.72, 0.22]
+note Dual-use commodity data [0.10, 0.80]

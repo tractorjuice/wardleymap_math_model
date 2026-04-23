@@ -1,0 +1,204 @@
+title Financial Services Risk Management Landscape
+style wardley
+
+// === Anchors — three demand-side user types ===
+anchor Public [0.98, 0.55]
+anchor Corporations [0.96, 0.58]
+anchor Governments [0.94, 0.48]
+
+// === Core user needs (top-of-chain) ===
+component Financial Stability [0.90, 0.40]
+component Access to Capital and Credit [0.88, 0.68]
+component Protection from Loss [0.87, 0.55]
+component Trust in the System [0.86, 0.30]
+
+// === Provider-facing services (what users directly consume) ===
+component Retail Banking Services [0.80, 0.72]
+component Corporate and Investment Banking [0.78, 0.60]
+component Insurance Products [0.78, 0.68]
+component Lending and Mortgage Products [0.76, 0.74]
+component Payments and Settlement [0.74, 0.88]
+component Wealth and Asset Management [0.72, 0.60]
+
+// === Trust-and-assets layer (connects providers to customers) ===
+component Custody of Assets [0.66, 0.55]
+component Account and Ledger [0.64, 0.82]
+component KYC / AML [0.60, 0.70]
+component Identity and Authentication [0.58, 0.85]
+component Deposit Insurance [0.56, 0.78]
+component Value of Money [0.55, 0.45]
+component Cost of Capital [0.53, 0.55]
+component Supply-Chain Awareness [0.32, 0.28]
+
+// === Risk type assessments (what providers are exposed to) ===
+component Credit Risk Assessment [0.48, 0.58]
+component Market Risk Modelling [0.46, 0.52]
+component Operational Risk [0.44, 0.48]
+component Cybersecurity Risk [0.42, 0.42]
+component Third-Party / Vendor Risk [0.40, 0.35]
+component Systemic Risk Monitoring [0.38, 0.30]
+component Cascade Failure Risk [0.36, 0.18]
+component Climate and Transition Risk [0.37, 0.22]
+
+// === Regulatory and oversight layer (shapes providers) ===
+component Prudential Regulation (Basel / Solvency) [0.56, 0.60]
+component Conduct Regulation [0.48, 0.55]
+component Cyber and Resilience Regulation [0.36, 0.28]
+component Third-Party Risk Regulation [0.34, 0.20]
+component Rating Agency Opinions [0.45, 0.62]
+component Sovereignty and Jurisdictional Control [0.22, 0.35]
+component Cross-Border Data and Payments Rules [0.26, 0.40]
+
+// === Accountability chain back to society ===
+component Disclosure and Reporting [0.54, 0.58]
+component Audit and Assurance [0.50, 0.62]
+component Consumer Redress and Ombudsman [0.52, 0.52]
+component Resolution and Bail-in Regimes [0.28, 0.32]
+component Central Bank Lender of Last Resort [0.26, 0.36]
+
+// === Shared infrastructure (deep commodity / utility) ===
+component Core Banking Platforms [0.22, 0.60]
+component Cloud Utilities [0.12, 0.88]
+component Payment Rails (Card Networks / RTGS) [0.20, 0.90]
+component SWIFT / Interbank Messaging [0.18, 0.85]
+component Credit Bureaux Data [0.26, 0.82]
+component Market Data Feeds [0.24, 0.80]
+component Electricity and Telecoms [0.06, 0.95]
+
+// === Dependencies — public demand ===
+Public->Protection from Loss
+Public->Access to Capital and Credit
+Public->Trust in the System
+Public->Retail Banking Services
+Public->Insurance Products
+Public->Lending and Mortgage Products
+Public->Payments and Settlement
+
+// === Dependencies — corporate demand ===
+Corporations->Access to Capital and Credit
+Corporations->Protection from Loss
+Corporations->Trust in the System
+Corporations->Corporate and Investment Banking
+Corporations->Insurance Products
+Corporations->Payments and Settlement
+Corporations->Wealth and Asset Management
+
+// === Dependencies — government demand ===
+Governments->Financial Stability
+Governments->Trust in the System
+Governments->Access to Capital and Credit
+Governments->Corporate and Investment Banking
+
+// === Needs → services ===
+Financial Stability->Systemic Risk Monitoring
+Financial Stability->Prudential Regulation (Basel / Solvency)
+Access to Capital and Credit->Lending and Mortgage Products
+Access to Capital and Credit->Corporate and Investment Banking
+Protection from Loss->Insurance Products
+Protection from Loss->Deposit Insurance
+Trust in the System->Disclosure and Reporting
+Trust in the System->Audit and Assurance
+Trust in the System->Consumer Redress and Ombudsman
+
+// === Services → trust-and-assets layer ===
+Retail Banking Services->Account and Ledger
+Retail Banking Services->Custody of Assets
+Retail Banking Services->KYC / AML
+Retail Banking Services->Identity and Authentication
+Retail Banking Services->Deposit Insurance
+Corporate and Investment Banking->Custody of Assets
+Corporate and Investment Banking->Account and Ledger
+Corporate and Investment Banking->KYC / AML
+Insurance Products->Custody of Assets
+Insurance Products->KYC / AML
+Lending and Mortgage Products->Account and Ledger
+Lending and Mortgage Products->Credit Risk Assessment
+Lending and Mortgage Products->Cost of Capital
+Payments and Settlement->Account and Ledger
+Payments and Settlement->Identity and Authentication
+Wealth and Asset Management->Custody of Assets
+Wealth and Asset Management->Account and Ledger
+
+// === Trust-and-assets → value / supply chain / risk ===
+Custody of Assets->Value of Money
+Account and Ledger->Core Banking Platforms
+KYC / AML->Credit Bureaux Data
+KYC / AML->Identity and Authentication
+Value of Money->Cost of Capital
+Cost of Capital->Rating Agency Opinions
+Cost of Capital->Market Data Feeds
+
+// === Services → risk assessments ===
+Retail Banking Services->Credit Risk Assessment
+Retail Banking Services->Operational Risk
+Retail Banking Services->Cybersecurity Risk
+Corporate and Investment Banking->Market Risk Modelling
+Corporate and Investment Banking->Credit Risk Assessment
+Insurance Products->Market Risk Modelling
+Insurance Products->Climate and Transition Risk
+Lending and Mortgage Products->Credit Risk Assessment
+Payments and Settlement->Cybersecurity Risk
+Payments and Settlement->Operational Risk
+
+// === Risks → deeper dependencies ===
+Credit Risk Assessment->Credit Bureaux Data
+Credit Risk Assessment->Market Data Feeds
+Market Risk Modelling->Market Data Feeds
+Operational Risk->Third-Party / Vendor Risk
+Cybersecurity Risk->Third-Party / Vendor Risk
+Cybersecurity Risk->Cyber and Resilience Regulation
+Third-Party / Vendor Risk->Supply-Chain Awareness
+Third-Party / Vendor Risk->Third-Party Risk Regulation
+Systemic Risk Monitoring->Cascade Failure Risk
+Systemic Risk Monitoring->Market Data Feeds
+Cascade Failure Risk->Supply-Chain Awareness
+Climate and Transition Risk->Market Data Feeds
+
+// === Regulation shapes providers ===
+Prudential Regulation (Basel / Solvency)->Disclosure and Reporting
+Prudential Regulation (Basel / Solvency)->Audit and Assurance
+Cyber and Resilience Regulation->Third-Party Risk Regulation
+Third-Party Risk Regulation->Sovereignty and Jurisdictional Control
+Cross-Border Data and Payments Rules->Sovereignty and Jurisdictional Control
+Retail Banking Services->Prudential Regulation (Basel / Solvency)
+Retail Banking Services->Conduct Regulation
+Insurance Products->Prudential Regulation (Basel / Solvency)
+Corporate and Investment Banking->Prudential Regulation (Basel / Solvency)
+Lending and Mortgage Products->Conduct Regulation
+Payments and Settlement->Cross-Border Data and Payments Rules
+
+// === Accountability chain ===
+Disclosure and Reporting->Audit and Assurance
+Audit and Assurance->Rating Agency Opinions
+Consumer Redress and Ombudsman->Conduct Regulation
+Resolution and Bail-in Regimes->Central Bank Lender of Last Resort
+Resolution and Bail-in Regimes->Sovereignty and Jurisdictional Control
+Central Bank Lender of Last Resort->Sovereignty and Jurisdictional Control
+Systemic Risk Monitoring->Resolution and Bail-in Regimes
+Systemic Risk Monitoring->Central Bank Lender of Last Resort
+
+// === Infrastructure ===
+Core Banking Platforms->Cloud Utilities
+Account and Ledger->Core Banking Platforms
+Payments and Settlement->Payment Rails (Card Networks / RTGS)
+Payments and Settlement->SWIFT / Interbank Messaging
+Payment Rails (Card Networks / RTGS)->Cloud Utilities
+SWIFT / Interbank Messaging->Cloud Utilities
+Credit Bureaux Data->Cloud Utilities
+Market Data Feeds->Cloud Utilities
+Cloud Utilities->Electricity and Telecoms
+Core Banking Platforms->Electricity and Telecoms
+
+// === Evolution targets ===
+evolve Cybersecurity Risk 0.55
+evolve Third-Party / Vendor Risk 0.50
+evolve Cyber and Resilience Regulation 0.45
+evolve Third-Party Risk Regulation 0.40
+evolve Supply-Chain Awareness 0.45
+evolve Climate and Transition Risk 0.40
+evolve Core Banking Platforms 0.78
+
+// === Notes ===
+note Regulation lags risk here [0.40, 0.25]
+note Utility / rent [0.12, 0.92]
+note Build / differentiate [0.45, 0.20]

@@ -1,0 +1,130 @@
+title Changing Consumer Behaviour and Transport Demand (May 2022)
+
+anchor Government [0.04, 0.97]
+anchor Transport public [0.04, 0.90]
+anchor Transport operators [0.04, 0.82]
+
+component Ease of use [0.88, 0.42] label [-80, -10]
+component Cost [0.88, 0.60] label [10, -6]
+component Access to service [0.88, 0.35] label [-120, 6]
+component Personal safety [0.84, 0.22] label [-90, -10]
+component Physical safety [0.84, 0.70] label [10, 6]
+component Awareness [0.84, 0.48] label [-90, 8]
+
+component Transport integration (MaaS) [0.72, 0.38] label [-160, -6]
+component Situational services [0.72, 0.62] label [10, 6]
+component Mobility hubs [0.72, 0.28] label [-120, 8]
+
+component Private mode [0.58, 0.82] label [10, -8]
+component Shared mode [0.58, 0.55] label [-90, -10]
+component Distributed public mode [0.58, 0.40] label [-180, 6]
+
+component Car [0.42, 0.90] label [10, 4]
+component Train [0.42, 0.78] label [-40, -12]
+
+component Connectivity [0.34, 0.75] label [-110, -8]
+component Cybersecurity (transport) [0.34, 0.38] label [-180, 6]
+
+component City planning [0.44, 0.25] label [-110, -10]
+component Public infrastructure [0.22, 0.82] label [-150, -10]
+component Private infrastructure [0.22, 0.68] label [10, -8]
+
+component Critical national infrastructure [0.10, 0.88] label [-220, -4]
+
+component Regulation [0.30, 0.30] label [-90, 8]
+component Sustainability and climate [0.30, 0.20] label [-170, 8]
+
+component Demand shocks (COVID, fuel price) [0.52, 0.12] label [-200, -10]
+component Virtual-space alternatives (Zoom) [0.78, 0.50] label [10, 8]
+
+Government->Regulation
+Government->Sustainability and climate
+Government->Public infrastructure
+Government->Critical national infrastructure
+Government->City planning
+
+Transport public->Ease of use
+Transport public->Cost
+Transport public->Access to service
+Transport public->Personal safety
+Transport public->Physical safety
+Transport public->Awareness
+Transport public->Virtual-space alternatives (Zoom)
+
+Transport operators->Cost
+Transport operators->Access to service
+Transport operators->Physical safety
+Transport operators->Awareness
+Transport operators->Transport integration (MaaS)
+Transport operators->Situational services
+Transport operators->Mobility hubs
+
+Ease of use->Transport integration (MaaS)
+Ease of use->Situational services
+Ease of use->Mobility hubs
+Cost->Transport integration (MaaS)
+Cost->Shared mode
+Cost->Distributed public mode
+Access to service->Mobility hubs
+Access to service->Distributed public mode
+Access to service->Shared mode
+Access to service->Private mode
+Personal safety->Cybersecurity (transport)
+Personal safety->Mobility hubs
+Physical safety->Car
+Physical safety->Train
+Physical safety->Regulation
+Awareness->Situational services
+Awareness->Sustainability and climate
+
+Transport integration (MaaS)->Shared mode
+Transport integration (MaaS)->Distributed public mode
+Transport integration (MaaS)->Private mode
+Transport integration (MaaS)->Connectivity
+Situational services->Connectivity
+Situational services->Private mode
+Situational services->Shared mode
+Situational services->Distributed public mode
+Mobility hubs->Shared mode
+Mobility hubs->Distributed public mode
+Mobility hubs->City planning
+
+Private mode->Car
+Private mode->Connectivity
+Shared mode->Car
+Shared mode->Connectivity
+Shared mode->Cybersecurity (transport)
+Distributed public mode->Train
+Distributed public mode->Connectivity
+Distributed public mode->Public infrastructure
+
+Car->Private infrastructure
+Car->Public infrastructure
+Car->Cybersecurity (transport)
+Train->Public infrastructure
+Train->Cybersecurity (transport)
+
+Connectivity->Critical national infrastructure
+Cybersecurity (transport)->Critical national infrastructure
+City planning->Public infrastructure
+City planning->Sustainability and climate
+City planning->Regulation
+
+Public infrastructure->Critical national infrastructure
+Private infrastructure->Critical national infrastructure
+Regulation->Sustainability and climate
+
+Demand shocks (COVID, fuel price)->Private mode
+Demand shocks (COVID, fuel price)->Shared mode
+Demand shocks (COVID, fuel price)->Distributed public mode
+Demand shocks (COVID, fuel price)->Virtual-space alternatives (Zoom)
+Virtual-space alternatives (Zoom)->Connectivity
+
+evolve Transport integration (MaaS) 0.58
+evolve Mobility hubs 0.48
+evolve Distributed public mode 0.68
+evolve Shared mode 0.72
+evolve Cybersecurity (transport) 0.55
+evolve Virtual-space alternatives (Zoom) 0.88
+evolve Regulation 0.42
+evolve Sustainability and climate 0.45

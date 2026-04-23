@@ -1,0 +1,9 @@
+{
+  "scenario": "telecoms-sovereignty",
+  "skill": "wardley-map (mathmodel-v2)",
+  "run": 1,
+  "start_ns": 1776939474892181722,
+  "end_ns": 1776939810705310339,
+  "elapsed_seconds": 335.81,
+  "notes": "Single-pass generation. Validator (validate_owm.mjs) and Mermaid converter (owm_to_mermaid.mjs) could not be executed in-sandbox (node invocations on the skill's script paths were denied). Structural validation was done by manually walking every declared edge against ν(source) >= ν(target); 58 edges, 0 violations. Step 5.6 layout checks (near-duplicates, stage-boundary straddling, canvas-edge clipping, stage imbalance) were done by hand and passed. User should re-run validate_owm.mjs on the draft locally."
+}

@@ -1,0 +1,10 @@
+{
+  "start_ns": 1776873382822988085,
+  "end_ns": 1776873545236426840,
+  "elapsed_ns": 162413438755,
+  "elapsed_seconds": 162.413,
+  "skill": "haberlah/wardley-mapping",
+  "scenario": "eval-personal-fin-inclusion",
+  "run": 1,
+  "blind": true
+}

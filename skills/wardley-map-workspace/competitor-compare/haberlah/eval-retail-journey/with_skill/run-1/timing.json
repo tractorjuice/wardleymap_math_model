@@ -1,0 +1,13 @@
+{
+  "skill": "haberlah/wardley-mapping",
+  "scenario": "eval-retail-journey",
+  "run": "run-1",
+  "start_epoch": 1776872932.918307729,
+  "end_epoch": 1776873242.518854902,
+  "elapsed_seconds": 309.601,
+  "pass_type": "first_complete_pass",
+  "outputs": {
+    "output_md": "outputs/output.md",
+    "draft_owm": "outputs/draft.owm"
+  }
+}

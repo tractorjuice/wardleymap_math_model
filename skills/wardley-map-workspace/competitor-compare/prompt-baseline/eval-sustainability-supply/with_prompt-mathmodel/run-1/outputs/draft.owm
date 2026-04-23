@@ -1,0 +1,176 @@
+title Supply-Chain Sustainability — Producer to Consumer
+style wardley
+
+// ------------------------------------------------------------------
+// Anchors (multi-anchor: the sustainability system has distinct users)
+// ------------------------------------------------------------------
+anchor Consumer [0.98, 0.70]
+anchor Producer [0.95, 0.55]
+anchor Regulator [0.93, 0.40]
+anchor Retailer [0.94, 0.65]
+
+// ------------------------------------------------------------------
+// Near-user layer: what each actor directly sees/interacts with
+// ------------------------------------------------------------------
+component Sustainability Rating (Consumer-Facing) [0.86, 0.55]
+component Eco-Label / Certification Mark [0.84, 0.70]
+component Storefront Distribution [0.82, 0.80]
+component Online Distribution [0.80, 0.78]
+component Coop / Community Distribution [0.78, 0.45]
+
+// ------------------------------------------------------------------
+// Regulatory apparatus (Regulator-facing, seen by Producer/Retailer)
+// ------------------------------------------------------------------
+component Laws [0.80, 0.35]
+component Regulations [0.76, 0.45]
+component Trade Agreements [0.72, 0.40]
+component Sanctions [0.70, 0.35]
+component Sustainability Guidelines [0.68, 0.30]
+component Regulatory Bureaucracy [0.66, 0.55]
+
+// ------------------------------------------------------------------
+// Compliance layer (the apparatus that turns regs into visible signals)
+// ------------------------------------------------------------------
+component Certification Scheme [0.64, 0.60]
+component Sustainability Disclosure (ESG reports) [0.62, 0.50]
+component Third-Party Audit [0.60, 0.55]
+component Continuous Monitoring [0.58, 0.45]
+
+// ------------------------------------------------------------------
+// Physical supply-chain flow — mid visibility
+// ------------------------------------------------------------------
+component Packaging [0.56, 0.70]
+component Temperature / Freshness Handling [0.54, 0.60]
+component Last-Mile Transportation [0.52, 0.75]
+component Backhaul Transportation [0.44, 0.70]
+
+// ------------------------------------------------------------------
+// Manufacturing + sourcing layer
+// ------------------------------------------------------------------
+component Manufacturing [0.46, 0.65]
+component Sourcing — Complex Products [0.38, 0.55]
+component Sourcing — Raw Materials [0.32, 0.60]
+
+// ------------------------------------------------------------------
+// End-of-life layer — close to consumer in policy but deep in flow
+// ------------------------------------------------------------------
+component End-of-Life Reuse [0.40, 0.35]
+component Waste Handling [0.30, 0.55]
+
+// ------------------------------------------------------------------
+// Enabling / knowledge layer (K-type): R&D, efficiency
+// ------------------------------------------------------------------
+component Resource Efficiency Practice [0.28, 0.45]
+component Sustainability R&D [0.20, 0.20]
+component Lifecycle Assessment Methodology [0.18, 0.35]
+component Emissions Accounting Methodology [0.16, 0.45]
+
+// ------------------------------------------------------------------
+// Dependencies (a -> b means "a depends on b")
+// ------------------------------------------------------------------
+
+// Consumer flow
+Consumer->Sustainability Rating (Consumer-Facing)
+Consumer->Eco-Label / Certification Mark
+Consumer->Storefront Distribution
+Consumer->Online Distribution
+Consumer->Coop / Community Distribution
+
+// Retailer flow
+Retailer->Storefront Distribution
+Retailer->Online Distribution
+Retailer->Coop / Community Distribution
+Retailer->Eco-Label / Certification Mark
+Retailer->Sustainability Disclosure (ESG reports)
+
+// Distribution depends on the physical chain
+Storefront Distribution->Last-Mile Transportation
+Online Distribution->Last-Mile Transportation
+Coop / Community Distribution->Last-Mile Transportation
+Last-Mile Transportation->Backhaul Transportation
+Last-Mile Transportation->Packaging
+Last-Mile Transportation->Temperature / Freshness Handling
+Backhaul Transportation->Manufacturing
+Packaging->Manufacturing
+Temperature / Freshness Handling->Manufacturing
+
+// Producer flow
+Producer->Manufacturing
+Producer->Sustainability Disclosure (ESG reports)
+Producer->Sourcing — Raw Materials
+Producer->Sourcing — Complex Products
+
+// Manufacturing depends on sourcing
+Manufacturing->Sourcing — Raw Materials
+Manufacturing->Sourcing — Complex Products
+
+// Regulator flow — the apparatus
+Regulator->Laws
+Regulator->Regulations
+Regulator->Trade Agreements
+Regulator->Sanctions
+Regulator->Sustainability Guidelines
+Regulator->Regulatory Bureaucracy
+
+// Regulations derive from laws; trade agreements sit alongside
+Regulations->Laws
+Trade Agreements->Laws
+Sanctions->Laws
+Sustainability Guidelines->Regulations
+Regulatory Bureaucracy->Regulations
+
+// Compliance turns regulation into visible artefacts
+Eco-Label / Certification Mark->Certification Scheme
+Sustainability Rating (Consumer-Facing)->Certification Scheme
+Sustainability Rating (Consumer-Facing)->Sustainability Disclosure (ESG reports)
+Certification Scheme->Third-Party Audit
+Certification Scheme->Sustainability Guidelines
+Sustainability Disclosure (ESG reports)->Third-Party Audit
+Sustainability Disclosure (ESG reports)->Continuous Monitoring
+Sustainability Disclosure (ESG reports)->Regulations
+Third-Party Audit->Continuous Monitoring
+Continuous Monitoring->Emissions Accounting Methodology
+
+// End-of-life + waste close the loop
+Consumer->End-of-Life Reuse
+End-of-Life Reuse->Waste Handling
+Waste Handling->Manufacturing
+End-of-Life Reuse->Resource Efficiency Practice
+
+// R&D / methodology underpins practice
+Resource Efficiency Practice->Sustainability R&D
+Resource Efficiency Practice->Lifecycle Assessment Methodology
+Manufacturing->Resource Efficiency Practice
+Sustainability R&D->Lifecycle Assessment Methodology
+Sustainability Disclosure (ESG reports)->Emissions Accounting Methodology
+Lifecycle Assessment Methodology->Sustainability R&D
+Emissions Accounting Methodology->Lifecycle Assessment Methodology
+
+// Sourcing is shaped by regulation (sanctions, trade agreements)
+Sourcing — Raw Materials->Trade Agreements
+Sourcing — Raw Materials->Sanctions
+Sourcing — Complex Products->Trade Agreements
+
+// ------------------------------------------------------------------
+// Evolution movements (scenario, NOT forecast)
+// ------------------------------------------------------------------
+evolve Sustainability Rating (Consumer-Facing) 0.80
+evolve Emissions Accounting Methodology 0.70
+evolve Continuous Monitoring 0.70
+evolve End-of-Life Reuse 0.55
+
+// ------------------------------------------------------------------
+// Strategic zones
+// ------------------------------------------------------------------
+note Open-market driven (consumer pull) [0.85, 0.80]
+note Regulated zone [0.70, 0.35]
+note R&D / differentiation zone [0.30, 0.15]
+note Commodity logistics [0.45, 0.85]
+
+// ------------------------------------------------------------------
+// Inertia markers — "stuck" components with identified inertia form
+// ------------------------------------------------------------------
+component Legacy Packaging Lines [0.50, 0.55] inertia
+component Established Audit Firms [0.55, 0.60] inertia
+Packaging->Legacy Packaging Lines
+Third-Party Audit->Established Audit Firms

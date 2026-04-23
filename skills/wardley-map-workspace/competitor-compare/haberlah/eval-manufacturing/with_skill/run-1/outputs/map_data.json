@@ -1,0 +1,53 @@
+{
+  "title": "Manufacturing Supply Chain (Feb 2023)",
+  "purpose": "Understand where the manufacturing supply chain sits on evolution — what is industrialised versus still bespoke judgment",
+  "components": [
+    {"id": "distributor", "name": "Distributor", "visibility": 0.97, "maturity": 0.62, "stage": "Product", "isAnchor": true, "rationale": "Distributor channels are mature B2B relationships with established contracting practice; not yet commoditised (still relationship- and volume-negotiated)."},
+    {"id": "finished-product", "name": "Finished Product", "visibility": 0.88, "maturity": 0.65, "stage": "Product", "rationale": "The manufacturer's specific SKU has a defined market, known buyers, and productised features; industry-specific but inside the Product stage."},
+    {"id": "compliance", "name": "Compliance & Certification", "visibility": 0.80, "maturity": 0.62, "stage": "Product", "rationale": "ISO 9001, CE, UL, FDA 21 CFR and similar regimes are standardised frameworks with accredited certification bodies and audit-as-a-service vendors; clearly productised."},
+    {"id": "inventory-strategy", "name": "Inventory Strategy", "visibility": 0.75, "maturity": 0.30, "stage": "Custom-Built", "inertia": true, "rationale": "As of Feb 2023, post-COVID and post-Ukraine shocks pushed JIT vs JIC into open contestation; firms are redoing this decision with bespoke stress-tests — no off-the-shelf answer, so Custom-Built with inertia (JIT-trained operators and existing supplier contracts resist change)."},
+    {"id": "sales-forecasting", "name": "Sales Forecasting", "visibility": 0.70, "maturity": 0.50, "stage": "Product", "rationale": "Demand planning is served by a competitive vendor market (SAP IBP, Oracle Demantra, Kinaxis, o9, Anaplan) with published Gartner comparisons; firmly Product but with ML features pulling it right."},
+    {"id": "assembly-production", "name": "Assembly & Production", "visibility": 0.62, "maturity": 0.55, "stage": "Product", "rationale": "Industrial assembly is well understood; Lean/Six Sigma are codified; contract manufacturers (Foxconn, Flex, Jabil) sell it as a service. Still differentiated by industry vertical, so mid-Product."},
+    {"id": "supply-chain-visibility", "name": "Supply Chain Visibility", "visibility": 0.58, "maturity": 0.22, "stage": "Custom-Built", "rationale": "End-to-end SCV is an active investment area (project44, FourKites, Flexport, Interos) but full multi-tier integration is still bespoke per firm; most deployments are data-integration projects, not turnkey."},
+    {"id": "freight", "name": "Freight", "visibility": 0.50, "maturity": 0.78, "stage": "Commodity", "rationale": "Global freight is utility-like: standardised containers, transparent spot rates, interchangeable carriers (Maersk, MSC, CMA CGM, FedEx, DHL). Invisible until it breaks — classic Commodity signal."},
+    {"id": "rd", "name": "R&D", "visibility": 0.45, "maturity": 0.28, "stage": "Custom-Built", "rationale": "Product-development R&D is firm-specific by definition — it is the differentiation activity. Patterns exist (stage-gate, DFM) but the output is bespoke."},
+    {"id": "equipment", "name": "Equipment", "visibility": 0.40, "maturity": 0.58, "stage": "Product", "rationale": "Industrial machinery is a mature product market (Siemens, ABB, Mitsubishi, Fanuc, DMG Mori) with catalogued classes (CNCs, robots, presses) and published specs; leasing and finance are standard."},
+    {"id": "warehousing", "name": "Warehousing", "visibility": 0.38, "maturity": 0.70, "stage": "Commodity", "rationale": "3PL warehousing and fulfilment are utility-priced services; Amazon FBA, Prologis, GXO operate at commodity scale with per-pallet/per-sqft pricing."},
+    {"id": "labour", "name": "Labour", "visibility": 0.35, "maturity": 0.48, "stage": "Product", "rationale": "Skilled industrial labour markets are well-understood; staffing agencies (Adecco, Randstad) productise recruitment; training pipelines are local but well-defined."},
+    {"id": "roce-capital", "name": "ROCE & Capital", "visibility": 0.30, "maturity": 0.80, "stage": "Commodity", "rationale": "ROCE is a textbook financial KPI; capital markets are utility-like; accounting standards (IFRS, GAAP) are fully codified."},
+    {"id": "refined-materials", "name": "Refined Materials", "visibility": 0.22, "maturity": 0.70, "stage": "Commodity", "rationale": "Refined inputs (steel sheet, plastic pellets, industrial chemicals) trade on catalogues and exchanges with standardised grades (ASTM, ISO); multiple interchangeable suppliers."},
+    {"id": "lobbying", "name": "Lobbying", "visibility": 0.18, "maturity": 0.15, "stage": "Genesis", "rationale": "Firm-specific influence work — retained advisers, direct executive relationships, industry-association positioning. No productised 'lobbying-as-a-service' market for material regulatory outcomes; Genesis/early-Custom territory."},
+    {"id": "raw-materials", "name": "Raw Materials", "visibility": 0.10, "maturity": 0.88, "stage": "Commodity", "rationale": "Ores, oil, grains, cotton, base metals — exchange-traded globally (LME, CME, ICE). Textbook commodity."}
+  ],
+  "links": [
+    {"from": "distributor", "to": "finished-product"},
+    {"from": "finished-product", "to": "assembly-production"},
+    {"from": "finished-product", "to": "compliance"},
+    {"from": "finished-product", "to": "freight"},
+    {"from": "finished-product", "to": "inventory-strategy"},
+    {"from": "finished-product", "to": "sales-forecasting"},
+    {"from": "compliance", "to": "lobbying"},
+    {"from": "inventory-strategy", "to": "sales-forecasting"},
+    {"from": "inventory-strategy", "to": "warehousing"},
+    {"from": "inventory-strategy", "to": "supply-chain-visibility"},
+    {"from": "sales-forecasting", "to": "roce-capital"},
+    {"from": "assembly-production", "to": "rd"},
+    {"from": "assembly-production", "to": "equipment"},
+    {"from": "assembly-production", "to": "labour"},
+    {"from": "assembly-production", "to": "refined-materials"},
+    {"from": "supply-chain-visibility", "to": "freight"},
+    {"from": "supply-chain-visibility", "to": "warehousing"},
+    {"from": "freight", "to": "warehousing"},
+    {"from": "refined-materials", "to": "raw-materials"}
+  ],
+  "evolutions": [
+    {"componentId": "supply-chain-visibility", "toMaturity": 0.45},
+    {"componentId": "inventory-strategy", "toMaturity": 0.42},
+    {"componentId": "sales-forecasting", "toMaturity": 0.62}
+  ],
+  "annotations": [
+    {"id": 1, "text": "Post-COVID SCV investment wave", "x": 0.33, "y": 0.58},
+    {"id": 2, "text": "JIT vs JIC: contested judgment call", "x": 0.40, "y": 0.75},
+    {"id": 3, "text": "Firm-specific; bespoke influence work", "x": 0.20, "y": 0.18}
+  ]
+}

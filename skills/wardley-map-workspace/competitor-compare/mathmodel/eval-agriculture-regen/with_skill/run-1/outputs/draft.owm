@@ -1,0 +1,172 @@
+title Regenerative Farming Landscape (Aug 2022)
+style wardley
+
+// Two anchors: consumers (demand side) and farmers (supply / livelihood side)
+anchor Consumer [0.96, 0.60]
+anchor Farmer [0.93, 0.42]
+
+// --- User-facing / purchase layer ---
+component Food Purchase Choice [0.87, 0.70]
+component On-pack Label [0.82, 0.72]
+component Brand Trust / Story [0.80, 0.58]
+component Farm Income & Price Premium [0.78, 0.45]
+
+// --- Retail & certification ---
+component Retailer Sourcing Spec [0.72, 0.55]
+component Supply-chain Traceability [0.68, 0.42]
+component Regenerative Certification Scheme [0.63, 0.28]
+component Organic Certification [0.66, 0.68]
+component Third-party Auditor [0.55, 0.52]
+component Grading & Grading Standards [0.58, 0.78]
+
+// --- Measurement & data ---
+component Soil-carbon MRV (measurement/reporting/verification) [0.52, 0.35]
+component Remote-sensing / Satellite Soil Monitoring [0.48, 0.48]
+component Farm-level Data Platform [0.50, 0.55]
+component Biodiversity Metrics [0.44, 0.22]
+component Life-cycle / Scope-3 Accounting [0.54, 0.40]
+
+// --- On-farm practice: regenerative ---
+component Cover Cropping [0.62, 0.48]
+component Crop Rotation & Diversity [0.64, 0.55]
+component No-till / Reduced Tillage [0.60, 0.52]
+component Integrated Livestock & Grazing [0.58, 0.35]
+component Agroforestry [0.55, 0.22]
+component Polyculture Design [0.52, 0.28]
+
+// --- On-farm practice: extractive (incumbent) ---
+component Monoculture at Scale [0.65, 0.92]
+component Synthetic Fertiliser Application [0.57, 0.90]
+component Pesticide & Herbicide Programme [0.55, 0.88]
+component Heavy Mechanised Tillage [0.50, 0.90]
+
+// --- Inputs & the energy matrix beneath the soil ---
+component Petrochemical Inputs (N-P-K, diesel) [0.38, 0.95]
+component Soil Microbiome (microbes/fungi) [0.22, 0.18]
+component Photosynthesis / Carbon Pathway [0.18, 0.10]
+component Soil Substrate (topsoil, organic matter) [0.26, 0.25]
+component Seed Genetics — Commodity Varieties [0.40, 0.85]
+component Seed Genetics — Diverse / Heritage [0.34, 0.30]
+component Water / Irrigation [0.32, 0.80]
+
+// --- Knowledge & skills ---
+component Agronomy Advice (regen) [0.42, 0.35]
+component Farmer Peer Networks [0.44, 0.42]
+component Extension Services [0.36, 0.68]
+component Ecological Science Base [0.20, 0.45]
+
+// --- Finance & risk ---
+component Crop Insurance [0.50, 0.80]
+component Carbon Credit Market (soil) [0.54, 0.30]
+component Corporate Supply Commitments [0.56, 0.42]
+component Transition Finance / Loans [0.50, 0.35]
+
+// --- Policy, treaties, supranational ---
+component National Farm Subsidy Regime [0.48, 0.85]
+component EU CAP Eco-schemes [0.42, 0.52]
+component US Farm Bill / NRCS Programmes [0.40, 0.58]
+component UN / FAO Guidance [0.32, 0.55]
+component "4 per 1000" Initiative [0.24, 0.22]
+component UNFCCC / Paris Agreement Soil Commitments [0.30, 0.60]
+component Conservation Land Designation [0.50, 0.72]
+
+// --- Dependencies ---
+// Consumer side
+Consumer->Food Purchase Choice
+Consumer->Brand Trust / Story
+Food Purchase Choice->On-pack Label
+Food Purchase Choice->Brand Trust / Story
+Food Purchase Choice->Grading & Grading Standards
+On-pack Label->Regenerative Certification Scheme
+On-pack Label->Organic Certification
+On-pack Label->Supply-chain Traceability
+Brand Trust / Story->Supply-chain Traceability
+Grading & Grading Standards->Third-party Auditor
+
+// Farmer side
+Farmer->Farm Income & Price Premium
+Farmer->Agronomy Advice (regen)
+Farmer->Farmer Peer Networks
+Farmer->Crop Insurance
+Farmer->Extension Services
+Farm Income & Price Premium->Retailer Sourcing Spec
+Farm Income & Price Premium->Corporate Supply Commitments
+Farm Income & Price Premium->Carbon Credit Market (soil)
+Farm Income & Price Premium->National Farm Subsidy Regime
+
+// Retailer & certification plumbing
+Retailer Sourcing Spec->Regenerative Certification Scheme
+Retailer Sourcing Spec->Supply-chain Traceability
+Retailer Sourcing Spec->Third-party Auditor
+Regenerative Certification Scheme->Third-party Auditor
+Regenerative Certification Scheme->Soil-carbon MRV (measurement/reporting/verification)
+Regenerative Certification Scheme->Biodiversity Metrics
+Organic Certification->Third-party Auditor
+Supply-chain Traceability->Farm-level Data Platform
+
+// Measurement chain
+Soil-carbon MRV (measurement/reporting/verification)->Remote-sensing / Satellite Soil Monitoring
+Soil-carbon MRV (measurement/reporting/verification)->Farm-level Data Platform
+Soil-carbon MRV (measurement/reporting/verification)->Ecological Science Base
+Biodiversity Metrics->Ecological Science Base
+Life-cycle / Scope-3 Accounting->Farm-level Data Platform
+Life-cycle / Scope-3 Accounting->Soil-carbon MRV (measurement/reporting/verification)
+Carbon Credit Market (soil)->Soil-carbon MRV (measurement/reporting/verification)
+Corporate Supply Commitments->Life-cycle / Scope-3 Accounting
+
+// Regen practice → what it depends on
+Cover Cropping->Soil Microbiome (microbes/fungi)
+Cover Cropping->Seed Genetics — Diverse / Heritage
+Crop Rotation & Diversity->Seed Genetics — Diverse / Heritage
+Crop Rotation & Diversity->Agronomy Advice (regen)
+No-till / Reduced Tillage->Soil Substrate (topsoil, organic matter)
+Integrated Livestock & Grazing->Soil Microbiome (microbes/fungi)
+Integrated Livestock & Grazing->Agronomy Advice (regen)
+Agroforestry->Ecological Science Base
+Agroforestry->Soil Substrate (topsoil, organic matter)
+Polyculture Design->Ecological Science Base
+Polyculture Design->Seed Genetics — Diverse / Heritage
+
+// Extractive practice → what it depends on
+Monoculture at Scale->Synthetic Fertiliser Application
+Monoculture at Scale->Pesticide & Herbicide Programme
+Monoculture at Scale->Heavy Mechanised Tillage
+Monoculture at Scale->Seed Genetics — Commodity Varieties
+Monoculture at Scale->Water / Irrigation
+Synthetic Fertiliser Application->Petrochemical Inputs (N-P-K, diesel)
+Pesticide & Herbicide Programme->Petrochemical Inputs (N-P-K, diesel)
+Heavy Mechanised Tillage->Petrochemical Inputs (N-P-K, diesel)
+Seed Genetics — Commodity Varieties->Ecological Science Base
+
+// Substrate / energy matrix
+Soil Substrate (topsoil, organic matter)->Soil Microbiome (microbes/fungi)
+Soil Microbiome (microbes/fungi)->Photosynthesis / Carbon Pathway
+
+// Knowledge
+Agronomy Advice (regen)->Ecological Science Base
+Farmer Peer Networks->Agronomy Advice (regen)
+Extension Services->Ecological Science Base
+
+// Finance & policy linkages
+Carbon Credit Market (soil)->National Farm Subsidy Regime
+Transition Finance / Loans->National Farm Subsidy Regime
+Crop Insurance->National Farm Subsidy Regime
+National Farm Subsidy Regime->EU CAP Eco-schemes
+National Farm Subsidy Regime->US Farm Bill / NRCS Programmes
+EU CAP Eco-schemes->UN / FAO Guidance
+US Farm Bill / NRCS Programmes->UN / FAO Guidance
+UN / FAO Guidance->UNFCCC / Paris Agreement Soil Commitments
+UN / FAO Guidance->"4 per 1000" Initiative
+Conservation Land Designation->National Farm Subsidy Regime
+
+// Evolution targets (scenarios)
+evolve Soil-carbon MRV (measurement/reporting/verification) 0.65
+evolve Regenerative Certification Scheme 0.55
+evolve Cover Cropping 0.72
+evolve No-till / Reduced Tillage 0.72
+evolve Carbon Credit Market (soil) 0.55
+
+// Notes
+note Differentiation zone [0.65, 0.22]
+note Industrial lock-in [0.55, 0.92]
+note Knowledge frontier [0.20, 0.30]

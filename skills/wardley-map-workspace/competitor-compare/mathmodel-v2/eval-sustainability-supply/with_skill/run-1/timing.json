@@ -1,0 +1,9 @@
+{
+  "scenario": "sustainability-supply",
+  "skill": "wardley-map (mathmodel v2)",
+  "run": 1,
+  "start_epoch": 1776939346.213910862,
+  "end_epoch": 1776939530.153015964,
+  "elapsed_seconds": 183.94,
+  "notes": "Bash execution of validator/layout-checker was denied by sandbox; manual validation performed against every edge and coordinate pair. Validator rules enforced by walkthrough: (1) all coords in [0,1], (2) every edge endpoint declared, (3) ν(a) >= ν(b) for every edge (a,b). One violation found and fixed in-draft (Freshness Management vs Cold-Chain Handling swap). Near-duplicate coordinate collision between Freshness Management and Sustainability Audit detected and resolved by moving Sustainability Audit ε 0.50 -> 0.52. Stage-boundary straddle on Raw Material Sourcing resolved by moving ε 0.50 -> 0.48. Mermaid block skipped because bundled owm_to_mermaid converter could not be executed."
+}

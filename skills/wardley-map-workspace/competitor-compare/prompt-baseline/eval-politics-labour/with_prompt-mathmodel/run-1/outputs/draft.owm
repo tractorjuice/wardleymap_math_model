@@ -1,0 +1,150 @@
+title UK Labour Party - Preparing for Government (May 2024)
+style wardley
+
+// Anchors (user-need set U) — three distinct user types
+anchor Keir Starmer (Leader) [0.99, 0.55]
+anchor UK Voters [0.98, 0.70]
+anchor Labour Party Members [0.96, 0.50]
+
+// Layer 1 — components the users engage with directly
+component Campaign Strategy [0.90, 0.55]
+component Public Engagement [0.88, 0.60]
+component Media Relations [0.87, 0.72]
+component Party Policy Framework [0.85, 0.45]
+component Internal Party Democracy [0.83, 0.40]
+component Volunteer Mobilisation [0.82, 0.62]
+component Stakeholder Engagement [0.80, 0.55]
+
+// Layer 2 — substantive policy areas Labour is carrying
+component Economic Equality Policy [0.74, 0.38]
+component Workers Rights Policy [0.73, 0.50]
+component Anti-Discrimination Policy [0.72, 0.55]
+component Social Justice Policy [0.71, 0.42]
+component Healthcare Access Policy [0.70, 0.48]
+component Education Access Policy [0.69, 0.50]
+component Housing Policy [0.68, 0.38]
+component Infrastructure Development [0.67, 0.55]
+component Public Sector Investment [0.66, 0.45]
+component Climate Change Action [0.65, 0.35]
+component National Security Policy [0.64, 0.65]
+component International Relations [0.63, 0.70]
+component Digital Transformation [0.62, 0.28]
+component Community Programs [0.60, 0.55]
+
+// Layer 3 — policy production apparatus
+component Research and Policy Development [0.52, 0.42]
+component Fundraising [0.50, 0.68]
+component Private Sector Collaboration [0.48, 0.40]
+component Policy Costings & Fiscal Modelling [0.45, 0.50]
+component Think-Tank / External Research Input [0.42, 0.55]
+
+// Layer 4 — operational / infrastructural machinery
+component Canvassing Operations [0.38, 0.78]
+component Voter Contact Database [0.32, 0.82]
+component Digital Campaign Platforms [0.28, 0.75]
+component Social Media Channels [0.25, 0.90]
+component Polling and Focus Groups [0.22, 0.78]
+component Membership Management System [0.18, 0.80]
+component Donor CRM [0.15, 0.82]
+component Cloud Hosting / IT [0.10, 0.92]
+component Electoral Commission Compliance [0.08, 0.85]
+
+// Dependencies (A -> B means A depends on B)
+
+// Anchors -> layer 1
+Keir Starmer (Leader)->Campaign Strategy
+Keir Starmer (Leader)->Media Relations
+Keir Starmer (Leader)->Party Policy Framework
+Keir Starmer (Leader)->Stakeholder Engagement
+Keir Starmer (Leader)->Internal Party Democracy
+UK Voters->Public Engagement
+UK Voters->Media Relations
+UK Voters->Campaign Strategy
+Labour Party Members->Internal Party Democracy
+Labour Party Members->Volunteer Mobilisation
+Labour Party Members->Party Policy Framework
+
+// Layer 1 -> policy area carriage
+Party Policy Framework->Economic Equality Policy
+Party Policy Framework->Workers Rights Policy
+Party Policy Framework->Anti-Discrimination Policy
+Party Policy Framework->Social Justice Policy
+Party Policy Framework->Healthcare Access Policy
+Party Policy Framework->Education Access Policy
+Party Policy Framework->Housing Policy
+Party Policy Framework->Infrastructure Development
+Party Policy Framework->Public Sector Investment
+Party Policy Framework->Climate Change Action
+Party Policy Framework->National Security Policy
+Party Policy Framework->International Relations
+Party Policy Framework->Digital Transformation
+Party Policy Framework->Community Programs
+
+// Layer 1 internal dependencies
+Campaign Strategy->Public Engagement
+Campaign Strategy->Media Relations
+Campaign Strategy->Volunteer Mobilisation
+Campaign Strategy->Stakeholder Engagement
+Public Engagement->Volunteer Mobilisation
+Internal Party Democracy->Party Policy Framework
+
+// Layer 2 -> layer 3 (policy production)
+Economic Equality Policy->Research and Policy Development
+Workers Rights Policy->Research and Policy Development
+Anti-Discrimination Policy->Research and Policy Development
+Social Justice Policy->Research and Policy Development
+Healthcare Access Policy->Research and Policy Development
+Education Access Policy->Research and Policy Development
+Housing Policy->Research and Policy Development
+Infrastructure Development->Research and Policy Development
+Public Sector Investment->Policy Costings & Fiscal Modelling
+Climate Change Action->Research and Policy Development
+National Security Policy->Research and Policy Development
+International Relations->Research and Policy Development
+Digital Transformation->Research and Policy Development
+Community Programs->Research and Policy Development
+Infrastructure Development->Private Sector Collaboration
+Digital Transformation->Private Sector Collaboration
+Economic Equality Policy->Policy Costings & Fiscal Modelling
+Healthcare Access Policy->Policy Costings & Fiscal Modelling
+Research and Policy Development->Think-Tank / External Research Input
+
+// Campaign / engagement -> operational layer
+Campaign Strategy->Polling and Focus Groups
+Campaign Strategy->Digital Campaign Platforms
+Public Engagement->Social Media Channels
+Public Engagement->Canvassing Operations
+Volunteer Mobilisation->Canvassing Operations
+Volunteer Mobilisation->Membership Management System
+Media Relations->Social Media Channels
+Stakeholder Engagement->Private Sector Collaboration
+Fundraising->Donor CRM
+Fundraising->Private Sector Collaboration
+Canvassing Operations->Voter Contact Database
+
+// Operational -> infrastructural
+Digital Campaign Platforms->Cloud Hosting / IT
+Voter Contact Database->Cloud Hosting / IT
+Membership Management System->Cloud Hosting / IT
+Donor CRM->Cloud Hosting / IT
+Social Media Channels->Cloud Hosting / IT
+Fundraising->Electoral Commission Compliance
+Donor CRM->Electoral Commission Compliance
+Canvassing Operations->Electoral Commission Compliance
+
+// Inertia markers — things Labour is carrying that resist evolution
+component Internal Party Democracy [0.83, 0.40] inertia
+component Party Policy Framework [0.85, 0.45] inertia
+
+// Evolution movements (scenario, not forecast)
+evolve Digital Transformation 0.55
+evolve Digital Campaign Platforms 0.85
+evolve Voter Contact Database 0.90
+evolve Research and Policy Development 0.55
+
+// Strategic notes
+note Industrialised machinery [0.20, 0.85]
+note Still being invented [0.65, 0.28]
+note Differentiation zone [0.75, 0.35]
+</content>
+</invoke>

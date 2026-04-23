@@ -1,0 +1,103 @@
+title Risk Management Across the Financial Services Landscape
+
+// OWM coordinate convention: [visibility, maturity]
+// visibility 0 = bottom of map, 1 = top (closest to user)
+// maturity   0 = Genesis, 1 = Commodity
+
+// Anchors (users with demand for financial services risk management) — top-right
+component Public [0.97, 0.88]
+component Corporations [0.95, 0.86]
+component Governments [0.93, 0.80]
+
+// Providers (delivering financial services against demand) — high visibility, commodity
+component Retail Banking [0.85, 0.80]
+component Insurance [0.80, 0.78]
+component Lending [0.82, 0.76]
+
+// Trust and assets layer (intermediating surface between providers and customers)
+component Trust [0.70, 0.70]
+component Assets [0.78, 0.68]
+component Customer Relationship [0.72, 0.72]
+
+// Risk types covered by risk management
+component Credit Risk [0.65, 0.85]
+component Systemic Risk [0.55, 0.58]
+component Cybersecurity Risk [0.55, 0.53]
+component Cascade Failure Risk [0.50, 0.50]
+component Third-Party Risk [0.50, 0.52]
+
+// Shaping forces (regulation, rating, sovereignty) — sit below risks they cover
+component Regulation [0.42, 0.45]
+component Rating Agencies [0.55, 0.43]
+component Sovereignty Concerns [0.30, 0.40]
+
+// Evolution-axis concepts the user asked about
+component Cost [0.40, 0.88]
+component Value [0.40, 0.60]
+component Supply-Chain Awareness [0.28, 0.28]
+
+// Accountability chain back to society
+component Accountability [0.20, 0.45]
+component Society [0.10, 0.15]
+
+// Dependency edges (a depends on b => visibility(a) >= visibility(b))
+Public->Retail Banking
+Public->Insurance
+Public->Lending
+Corporations->Retail Banking
+Corporations->Insurance
+Corporations->Lending
+Governments->Regulation
+Governments->Sovereignty Concerns
+Governments->Retail Banking
+
+Retail Banking->Trust
+Retail Banking->Assets
+Retail Banking->Customer Relationship
+Insurance->Trust
+Insurance->Assets
+Insurance->Customer Relationship
+Lending->Trust
+Lending->Assets
+Lending->Customer Relationship
+
+Retail Banking->Credit Risk
+Retail Banking->Cybersecurity Risk
+Retail Banking->Systemic Risk
+Insurance->Credit Risk
+Insurance->Cascade Failure Risk
+Insurance->Third-Party Risk
+Lending->Credit Risk
+Lending->Third-Party Risk
+
+Trust->Regulation
+Trust->Rating Agencies
+Assets->Rating Agencies
+Customer Relationship->Regulation
+
+Credit Risk->Rating Agencies
+Systemic Risk->Regulation
+Cybersecurity Risk->Regulation
+Cascade Failure Risk->Regulation
+Third-Party Risk->Regulation
+Third-Party Risk->Supply-Chain Awareness
+
+Regulation->Cost
+Regulation->Value
+Regulation->Accountability
+Rating Agencies->Cost
+Sovereignty Concerns->Accountability
+
+Cost->Society
+Value->Society
+Supply-Chain Awareness->Accountability
+Accountability->Society
+
+// Movement (evolution direction)
+evolve Regulation 0.68 inertia
+evolve Cybersecurity Risk 0.72
+evolve Third-Party Risk 0.60
+evolve Supply-Chain Awareness 0.55
+evolve Cascade Failure Risk 0.45
+evolve Cost 0.93
+evolve Rating Agencies 0.55

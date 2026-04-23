@@ -1,0 +1,150 @@
+title Supply-Chain Sustainability (Producer to Consumer)
+
+anchor Consumer [0.96, 0.90]
+
+// --- User-visible outcomes ---
+component Sustainable Product [0.88, 0.70] label [-10, -15]
+component Sustainability Rating / Label [0.86, 0.78] label [-10, -15]
+component Retailer [0.84, 0.82] label [-10, -15]
+component Producer [0.78, 0.55] label [-10, -15]
+component Regulator [0.80, 0.20] label [-10, -15]
+
+// --- Channels of distribution ---
+component Online Distribution [0.72, 0.88] label [-10, -15]
+component Storefront Distribution [0.70, 0.85] label [-10, -15]
+component Cooperative Distribution [0.68, 0.40] label [5, -10]
+
+// --- Sourcing & inputs ---
+component Raw Material Sourcing [0.55, 0.60] label [-10, -15]
+component Complex Product Sourcing [0.50, 0.45] label [-10, -15]
+component Manufacturing [0.52, 0.55] label [-10, -15]
+component Packaging [0.62, 0.80] label [-10, -15]
+component Temperature / Freshness Handling [0.58, 0.65] label [-10, -15]
+
+// --- Logistics ---
+component Last-Mile Transportation [0.62, 0.75] label [-10, -15]
+component Backhaul Transportation [0.58, 0.85] label [-10, -15]
+
+// --- End of life ---
+component Reusability / Circular Return [0.40, 0.35] label [5, -10]
+component Waste Handling [0.55, 0.72] label [-10, -15]
+
+// --- Regulatory apparatus ---
+component Laws and Regulations [0.48, 0.78] label [-10, -15]
+component Trade Agreements [0.52, 0.82] label [-10, -15]
+component Sanctions [0.45, 0.70] label [-10, -15]
+component Regulatory Guidelines [0.46, 0.55] label [-10, -15]
+component Bureaucracy [0.40, 0.82] label [-10, -15]
+
+// --- Compliance ---
+component Monitoring [0.52, 0.45] label [5, -10]
+component Audit [0.62, 0.55] label [-10, -15]
+component Disclosure Reporting [0.58, 0.60] label [-10, -15]
+component Certification Scheme [0.60, 0.70] label [-10, -15]
+
+// --- R&D and efficiency ---
+component Sustainability R&D [0.20, 0.35] label [5, -10]
+component Resource Efficiency [0.45, 0.50] label [5, -10]
+
+// --- Dependencies: consumer-facing ---
+Consumer -> Sustainable Product
+Consumer -> Sustainability Rating / Label
+Consumer -> Retailer
+
+Retailer -> Online Distribution
+Retailer -> Storefront Distribution
+Retailer -> Cooperative Distribution
+Retailer -> Certification Scheme
+Retailer -> Producer
+
+Sustainable Product -> Producer
+Sustainable Product -> Packaging
+Sustainable Product -> Certification Scheme
+
+Sustainability Rating / Label -> Certification Scheme
+Sustainability Rating / Label -> Disclosure Reporting
+Sustainability Rating / Label -> Audit
+
+// --- Producer side ---
+Producer -> Manufacturing
+Producer -> Raw Material Sourcing
+Producer -> Complex Product Sourcing
+Producer -> Packaging
+Producer -> Temperature / Freshness Handling
+Producer -> Last-Mile Transportation
+Producer -> Backhaul Transportation
+Producer -> Resource Efficiency
+Producer -> Waste Handling
+
+Manufacturing -> Raw Material Sourcing
+Manufacturing -> Complex Product Sourcing
+Manufacturing -> Resource Efficiency
+
+Last-Mile Transportation -> Backhaul Transportation
+Online Distribution -> Last-Mile Transportation
+Storefront Distribution -> Backhaul Transportation
+Cooperative Distribution -> Last-Mile Transportation
+
+Packaging -> Raw Material Sourcing
+Temperature / Freshness Handling -> Backhaul Transportation
+
+Waste Handling -> Reusability / Circular Return
+Reusability / Circular Return -> Sustainability R&D
+Resource Efficiency -> Sustainability R&D
+
+// --- Regulator side ---
+Regulator -> Laws and Regulations
+Regulator -> Trade Agreements
+Regulator -> Sanctions
+Regulator -> Regulatory Guidelines
+Regulator -> Bureaucracy
+Regulator -> Monitoring
+
+Laws and Regulations -> Bureaucracy
+Trade Agreements -> Bureaucracy
+Sanctions -> Bureaucracy
+Regulatory Guidelines -> Bureaucracy
+
+// --- Compliance binds producer to regulator ---
+Producer -> Laws and Regulations
+Producer -> Trade Agreements
+Producer -> Sanctions
+Producer -> Regulatory Guidelines
+Producer -> Disclosure Reporting
+Producer -> Monitoring
+Producer -> Audit
+
+Audit -> Monitoring
+Disclosure Reporting -> Monitoring
+Certification Scheme -> Audit
+Certification Scheme -> Regulatory Guidelines
+
+// --- Movement (evolution arrows) ---
+evolve Sustainability Rating / Label 0.92
+evolve Certification Scheme 0.78
+evolve Disclosure Reporting 0.72
+evolve Audit 0.76
+evolve Monitoring 0.70
+evolve Resource Efficiency 0.62
+evolve Reusability / Circular Return 0.60
+evolve Sustainability R&D 0.35
+evolve Regulatory Guidelines 0.58
+evolve Temperature / Freshness Handling 0.70
+evolve Complex Product Sourcing 0.62
+
+// --- Inertia markers ---
+// Bureaucracy x — resistant to modernisation
+// Storefront Distribution x — legacy retail footprint
+// Cooperative Distribution x — community inertia
+
+// --- Annotations ---
+annotation 1 [[0.15, 0.37]] Sustainability R&D: Genesis-leaning, where novel materials and circular models emerge
+annotation 2 [[0.82, 0.80]] Consumer-visible ratings are commoditising; labels aggregate upstream compliance signals
+annotation 3 [[0.50, 0.83]] Regulatory pressure concentrated here — law + trade + bureaucracy cluster pushes producer rightward
+annotations [0.02, 0.02]
+
+// --- Notes block ---
+note +Open market zone [0.85, 0.12]
+note +Regulated zone [0.40, 0.12]
+
+style wardley

@@ -1,0 +1,505 @@
+{
+  "title": "Transportation Logistics Landscape",
+  "purpose": "",
+  "components": [
+    {
+      "id": "the-public",
+      "name": "The Public",
+      "visibility": 0.97,
+      "maturity": 0.6,
+      "stage": "Product",
+      "rationale": "",
+      "isAnchor": true
+    },
+    {
+      "id": "producers",
+      "name": "Producers",
+      "visibility": 0.94,
+      "maturity": 0.48,
+      "stage": "Product",
+      "rationale": "",
+      "isAnchor": true
+    },
+    {
+      "id": "government",
+      "name": "Government",
+      "visibility": 0.95,
+      "maturity": 0.32,
+      "stage": "Custom-Built",
+      "rationale": "",
+      "isAnchor": true
+    },
+    {
+      "id": "shops",
+      "name": "Shops",
+      "visibility": 0.88,
+      "maturity": 0.8,
+      "stage": "Commodity",
+      "rationale": "",
+      "isAnchor": false,
+      "labelOffset": {
+        "dx": -28.0,
+        "dy": -10.0
+      }
+    },
+    {
+      "id": "e-commerce",
+      "name": "E-commerce",
+      "visibility": 0.86,
+      "maturity": 0.68,
+      "stage": "Product",
+      "rationale": "",
+      "isAnchor": false,
+      "labelOffset": {
+        "dx": 10.0,
+        "dy": -4.0
+      }
+    },
+    {
+      "id": "delivery",
+      "name": "Delivery",
+      "visibility": 0.8,
+      "maturity": 0.58,
+      "stage": "Product",
+      "rationale": "",
+      "isAnchor": false,
+      "labelOffset": {
+        "dx": 10.0,
+        "dy": 0.0
+      }
+    },
+    {
+      "id": "real-time-stock",
+      "name": "Real-Time Stock",
+      "visibility": 0.74,
+      "maturity": 0.3,
+      "stage": "Custom-Built",
+      "rationale": "",
+      "isAnchor": false,
+      "labelOffset": {
+        "dx": 10.0,
+        "dy": 0.0
+      },
+      "buildType": "buy"
+    },
+    {
+      "id": "supply-chain-awareness",
+      "name": "Supply Chain Awareness",
+      "visibility": 0.78,
+      "maturity": 0.18,
+      "stage": "Custom-Built",
+      "rationale": "",
+      "isAnchor": false,
+      "labelOffset": {
+        "dx": 10.0,
+        "dy": -4.0
+      },
+      "buildType": "build"
+    },
+    {
+      "id": "last-mile",
+      "name": "Last Mile",
+      "visibility": 0.66,
+      "maturity": 0.48,
+      "stage": "Product",
+      "rationale": "",
+      "isAnchor": false,
+      "labelOffset": {
+        "dx": 10.0,
+        "dy": 0.0
+      }
+    },
+    {
+      "id": "long-haul",
+      "name": "Long Haul",
+      "visibility": 0.6,
+      "maturity": 0.8,
+      "stage": "Commodity",
+      "rationale": "",
+      "isAnchor": false,
+      "labelOffset": {
+        "dx": 10.0,
+        "dy": 0.0
+      },
+      "buildType": "outsource"
+    },
+    {
+      "id": "logistics-hubs",
+      "name": "Logistics Hubs",
+      "visibility": 0.54,
+      "maturity": 0.62,
+      "stage": "Product",
+      "rationale": "",
+      "isAnchor": false,
+      "labelOffset": {
+        "dx": 10.0,
+        "dy": 0.0
+      }
+    },
+    {
+      "id": "warehouses-storage",
+      "name": "Warehouses & Storage",
+      "visibility": 0.48,
+      "maturity": 0.82,
+      "stage": "Commodity",
+      "rationale": "",
+      "isAnchor": false,
+      "labelOffset": {
+        "dx": 10.0,
+        "dy": 0.0
+      },
+      "buildType": "outsource"
+    },
+    {
+      "id": "trucks-hgv",
+      "name": "Trucks (HGV)",
+      "visibility": 0.38,
+      "maturity": 0.8,
+      "stage": "Commodity",
+      "rationale": "",
+      "isAnchor": false,
+      "labelOffset": {
+        "dx": 10.0,
+        "dy": 0.0
+      }
+    },
+    {
+      "id": "automated-delivery",
+      "name": "Automated Delivery",
+      "visibility": 0.34,
+      "maturity": 0.18,
+      "stage": "Custom-Built",
+      "rationale": "",
+      "isAnchor": false,
+      "labelOffset": {
+        "dx": 10.0,
+        "dy": -4.0
+      },
+      "buildType": "build"
+    },
+    {
+      "id": "drones-scouts",
+      "name": "Drones & Scouts",
+      "visibility": 0.3,
+      "maturity": 0.12,
+      "stage": "Genesis",
+      "rationale": "",
+      "isAnchor": false,
+      "labelOffset": {
+        "dx": 10.0,
+        "dy": 0.0
+      }
+    },
+    {
+      "id": "powertrain-fossil-electric",
+      "name": "Powertrain (Fossil/Electric)",
+      "visibility": 0.26,
+      "maturity": 0.6,
+      "stage": "Product",
+      "rationale": "",
+      "isAnchor": false,
+      "labelOffset": {
+        "dx": 10.0,
+        "dy": 0.0
+      },
+      "buildType": "buy"
+    },
+    {
+      "id": "traffic-telematics-data",
+      "name": "Traffic & Telematics Data",
+      "visibility": 0.42,
+      "maturity": 0.7,
+      "stage": "Commodity",
+      "rationale": "",
+      "isAnchor": false,
+      "labelOffset": {
+        "dx": 10.0,
+        "dy": 0.0
+      },
+      "buildType": "buy"
+    },
+    {
+      "id": "cities",
+      "name": "Cities",
+      "visibility": 0.22,
+      "maturity": 0.86,
+      "stage": "Commodity",
+      "rationale": "",
+      "isAnchor": false,
+      "labelOffset": {
+        "dx": 10.0,
+        "dy": 0.0
+      }
+    },
+    {
+      "id": "rural-areas",
+      "name": "Rural Areas",
+      "visibility": 0.2,
+      "maturity": 0.72,
+      "stage": "Commodity",
+      "rationale": "",
+      "isAnchor": false,
+      "labelOffset": {
+        "dx": 10.0,
+        "dy": 0.0
+      }
+    },
+    {
+      "id": "regulation",
+      "name": "Regulation",
+      "visibility": 0.14,
+      "maturity": 0.66,
+      "stage": "Product",
+      "rationale": "",
+      "isAnchor": false,
+      "labelOffset": {
+        "dx": 10.0,
+        "dy": 0.0
+      }
+    },
+    {
+      "id": "hgv-skills",
+      "name": "HGV Skills",
+      "visibility": 0.44,
+      "maturity": 0.4,
+      "stage": "Product",
+      "rationale": "",
+      "isAnchor": false,
+      "inertia": true,
+      "labelOffset": {
+        "dx": 10.0,
+        "dy": 0.0
+      }
+    },
+    {
+      "id": "sovereignty-cni-territorial",
+      "name": "Sovereignty (CNI/Territorial)",
+      "visibility": 0.1,
+      "maturity": 0.24,
+      "stage": "Custom-Built",
+      "rationale": "",
+      "isAnchor": false,
+      "inertia": true,
+      "labelOffset": {
+        "dx": 10.0,
+        "dy": 0.0
+      }
+    }
+  ],
+  "links": [
+    {
+      "from": "the-public",
+      "to": "shops"
+    },
+    {
+      "from": "the-public",
+      "to": "e-commerce"
+    },
+    {
+      "from": "the-public",
+      "to": "supply-chain-awareness"
+    },
+    {
+      "from": "producers",
+      "to": "long-haul"
+    },
+    {
+      "from": "producers",
+      "to": "warehouses-storage"
+    },
+    {
+      "from": "government",
+      "to": "regulation"
+    },
+    {
+      "from": "government",
+      "to": "sovereignty-cni-territorial"
+    },
+    {
+      "from": "shops",
+      "to": "delivery"
+    },
+    {
+      "from": "shops",
+      "to": "real-time-stock"
+    },
+    {
+      "from": "e-commerce",
+      "to": "delivery"
+    },
+    {
+      "from": "e-commerce",
+      "to": "real-time-stock"
+    },
+    {
+      "from": "delivery",
+      "to": "last-mile"
+    },
+    {
+      "from": "delivery",
+      "to": "long-haul"
+    },
+    {
+      "from": "last-mile",
+      "to": "logistics-hubs"
+    },
+    {
+      "from": "long-haul",
+      "to": "logistics-hubs"
+    },
+    {
+      "from": "logistics-hubs",
+      "to": "warehouses-storage"
+    },
+    {
+      "from": "real-time-stock",
+      "to": "traffic-telematics-data"
+    },
+    {
+      "from": "supply-chain-awareness",
+      "to": "traffic-telematics-data"
+    },
+    {
+      "from": "last-mile",
+      "to": "trucks-hgv"
+    },
+    {
+      "from": "last-mile",
+      "to": "automated-delivery"
+    },
+    {
+      "from": "last-mile",
+      "to": "drones-scouts"
+    },
+    {
+      "from": "long-haul",
+      "to": "trucks-hgv"
+    },
+    {
+      "from": "long-haul",
+      "to": "automated-delivery"
+    },
+    {
+      "from": "automated-delivery",
+      "to": "drones-scouts"
+    },
+    {
+      "from": "trucks-hgv",
+      "to": "powertrain-fossil-electric"
+    },
+    {
+      "from": "automated-delivery",
+      "to": "powertrain-fossil-electric"
+    },
+    {
+      "from": "drones-scouts",
+      "to": "powertrain-fossil-electric"
+    },
+    {
+      "from": "trucks-hgv",
+      "to": "traffic-telematics-data"
+    },
+    {
+      "from": "automated-delivery",
+      "to": "traffic-telematics-data"
+    },
+    {
+      "from": "last-mile",
+      "to": "cities"
+    },
+    {
+      "from": "last-mile",
+      "to": "rural-areas"
+    },
+    {
+      "from": "logistics-hubs",
+      "to": "cities"
+    },
+    {
+      "from": "trucks-hgv",
+      "to": "hgv-skills"
+    },
+    {
+      "from": "long-haul",
+      "to": "hgv-skills"
+    },
+    {
+      "from": "long-haul",
+      "to": "regulation"
+    },
+    {
+      "from": "warehouses-storage",
+      "to": "regulation"
+    },
+    {
+      "from": "logistics-hubs",
+      "to": "sovereignty-cni-territorial"
+    },
+    {
+      "from": "warehouses-storage",
+      "to": "sovereignty-cni-territorial"
+    }
+  ],
+  "evolutions": [
+    {
+      "componentId": "last-mile",
+      "toMaturity": 0.72
+    },
+    {
+      "componentId": "automated-delivery",
+      "toMaturity": 0.55
+    },
+    {
+      "componentId": "drones-scouts",
+      "toMaturity": 0.42
+    },
+    {
+      "componentId": "real-time-stock",
+      "toMaturity": 0.72
+    },
+    {
+      "componentId": "powertrain-fossil-electric",
+      "toMaturity": 0.82
+    },
+    {
+      "componentId": "traffic-telematics-data",
+      "toMaturity": 0.85
+    },
+    {
+      "componentId": "supply-chain-awareness",
+      "toMaturity": 0.5
+    },
+    {
+      "componentId": "shops",
+      "toMaturity": 0.9
+    }
+  ],
+  "annotations": [
+    {
+      "id": 1,
+      "y": 0.48,
+      "x": 0.88,
+      "text": "Long-haul, warehousing, and shops behave as commoditised utility"
+    },
+    {
+      "id": 2,
+      "y": 0.32,
+      "x": 0.15,
+      "text": "Automated delivery / drones: Genesis/Custom-Built, poised to evolve"
+    },
+    {
+      "id": 3,
+      "y": 0.1,
+      "x": 0.24,
+      "text": "Sovereignty + CNI concerns are the main source of inertia"
+    },
+    {
+      "id": 4,
+      "y": 0.44,
+      "x": 0.4,
+      "text": "HGV skills shortage: Product-stage activity stuck behind a scarce resource"
+    }
+  ],
+  "notes": [],
+  "pipelines": []
+}

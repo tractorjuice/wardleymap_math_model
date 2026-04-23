@@ -1,0 +1,122 @@
+title Connected Customer Journey in Retail
+style wardley
+
+// Anchors — two user types: the retail customer and the producer supplying goods
+anchor Customer [0.98, 0.55]
+anchor Producer [0.95, 0.45]
+
+// Layer 1 — user needs (directly user-facing, close to the anchors)
+component Need to Acquire Goods [0.90, 0.78]
+component Need to Sell Goods [0.88, 0.55]
+component Goods and Services [0.82, 0.62]
+component Retail Experience [0.80, 0.40]
+
+// Layer 2 — channels the value flows through
+component Physical Store [0.72, 0.82]
+component E-Commerce Site [0.70, 0.72]
+component Mobile App [0.68, 0.60]
+component Telesales [0.66, 0.85]
+component Social Commerce [0.64, 0.35]
+
+// Layer 3 — experience layer (sensory, trust, engagement, discovery)
+component Sensory Experience [0.58, 0.30]
+component Virtual / AR Try-On [0.56, 0.20]
+component Personalisation Engine [0.54, 0.40]
+component Product Discovery [0.52, 0.48]
+component Engagement and Loyalty [0.50, 0.55]
+component Trust and Privacy [0.48, 0.50]
+component Returns and Reverse Logistics [0.46, 0.65]
+component Customer Support [0.44, 0.70]
+
+// Layer 4 — data and behavioural inputs (demographics, societal behaviour, segmentation)
+component Demographic Segmentation [0.38, 0.72]
+component Societal Behaviour Signals [0.36, 0.28]
+component Customer Data Platform [0.34, 0.55]
+component Consent Management [0.32, 0.60]
+
+// Layer 5 — commoditised infrastructure
+component Payment Processing [0.26, 0.90]
+component Identity / KYC [0.24, 0.78]
+component Inventory and Fulfilment [0.22, 0.72]
+component Logistics Network [0.20, 0.82]
+component CRM [0.18, 0.80]
+component Cloud Compute [0.10, 0.92]
+component CDN [0.08, 0.94]
+
+// Dependencies — Customer side
+Customer->Need to Acquire Goods
+Need to Acquire Goods->Goods and Services
+Need to Acquire Goods->Retail Experience
+Goods and Services->Physical Store
+Goods and Services->E-Commerce Site
+Goods and Services->Mobile App
+Goods and Services->Telesales
+Goods and Services->Social Commerce
+
+// Dependencies — Producer side
+Producer->Need to Sell Goods
+Need to Sell Goods->Goods and Services
+Need to Sell Goods->Inventory and Fulfilment
+
+// Experience layer sits on top of the channels
+Retail Experience->Sensory Experience
+Retail Experience->Personalisation Engine
+Retail Experience->Product Discovery
+Retail Experience->Engagement and Loyalty
+Retail Experience->Trust and Privacy
+Retail Experience->Returns and Reverse Logistics
+Retail Experience->Customer Support
+Physical Store->Sensory Experience
+E-Commerce Site->Virtual / AR Try-On
+Mobile App->Virtual / AR Try-On
+E-Commerce Site->Personalisation Engine
+Mobile App->Personalisation Engine
+Social Commerce->Engagement and Loyalty
+E-Commerce Site->Product Discovery
+Mobile App->Product Discovery
+Social Commerce->Product Discovery
+
+// Experience layer draws on behavioural and demographic data
+Personalisation Engine->Customer Data Platform
+Product Discovery->Customer Data Platform
+Engagement and Loyalty->Customer Data Platform
+Trust and Privacy->Consent Management
+Customer Data Platform->Demographic Segmentation
+Customer Data Platform->Societal Behaviour Signals
+
+// Channels depend on commodity infrastructure
+Physical Store->Payment Processing
+E-Commerce Site->Payment Processing
+Mobile App->Payment Processing
+Telesales->Payment Processing
+Social Commerce->Payment Processing
+E-Commerce Site->Identity / KYC
+Mobile App->Identity / KYC
+Trust and Privacy->Identity / KYC
+Returns and Reverse Logistics->Logistics Network
+Returns and Reverse Logistics->Inventory and Fulfilment
+Customer Support->CRM
+Engagement and Loyalty->CRM
+E-Commerce Site->Inventory and Fulfilment
+Mobile App->Inventory and Fulfilment
+Physical Store->Inventory and Fulfilment
+Inventory and Fulfilment->Logistics Network
+
+// Digital channels sit on cloud + CDN
+E-Commerce Site->Cloud Compute
+Mobile App->Cloud Compute
+Social Commerce->Cloud Compute
+Customer Data Platform->Cloud Compute
+E-Commerce Site->CDN
+Mobile App->CDN
+
+// Evolution movements (scenario, not forecast)
+evolve Virtual / AR Try-On 0.55
+evolve Personalisation Engine 0.70
+evolve Social Commerce 0.60
+evolve Societal Behaviour Signals 0.50
+
+// Strategic notes
+note Differentiation zone — experience and sensing [0.55, 0.22]
+note Commodity infrastructure — outsource / utility [0.18, 0.88]
+note Trust / consent is hardening under regulation [0.40, 0.55]

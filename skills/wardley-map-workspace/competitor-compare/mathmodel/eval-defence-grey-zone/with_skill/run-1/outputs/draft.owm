@@ -1,0 +1,185 @@
+title Grey Zone of Defence
+style wardley
+
+// Anchors — three user types
+anchor Government [0.98, 0.40]
+anchor Citizen [0.96, 0.55]
+anchor Supranational Body [0.93, 0.65]
+
+// User-need layer (directly visible to anchors)
+component Sovereignty [0.88, 0.30]
+component Security and Legitimacy [0.86, 0.45]
+component International Order [0.84, 0.55]
+
+// Sovereignty pillars under contest
+component Cyber Sovereignty [0.78, 0.35]
+component Territorial Sovereignty [0.76, 0.55]
+component Economic Sovereignty [0.74, 0.48]
+component Cultural Sovereignty [0.72, 0.30]
+
+// Effect types (what grey-zone action produces)
+component Coerce [0.66, 0.55]
+component Deter [0.64, 0.47]
+component Hearts and Minds [0.62, 0.58]
+component Kinetic [0.60, 0.80]
+component Propaganda [0.58, 0.65]
+
+// Consequences (visible outcomes)
+component Unintended Outcomes [0.56, 0.15]
+component Friendly Fire [0.54, 0.22]
+component Blowback [0.52, 0.28]
+
+// Meta / legitimacy / accountability
+component Legitimacy [0.68, 0.45]
+component Statecraft [0.56, 0.55]
+component Treaties [0.50, 0.85] inertia
+component Ethics in Grey Zone [0.48, 0.30]
+component Accountability [0.46, 0.40]
+component Attribution [0.44, 0.20]
+component Deniability [0.53, 0.58]
+
+// Actors operating in the space
+component Proxy Operator [0.50, 0.40]
+component Private Military Contractor [0.48, 0.65]
+component Non-State Actor [0.46, 0.55]
+component Adversary State [0.44, 0.48]
+
+// Theatres of competition
+component Land Operations [0.40, 0.88]
+component Electronic Warfare [0.38, 0.68]
+component Space Operations [0.36, 0.40]
+component Social Media Influence [0.40, 0.72]
+component Financial Warfare [0.38, 0.55]
+
+// Landscape layers (with awareness per layer — awareness sits above layer in value chain)
+component Physical Awareness [0.35, 0.70]
+component Virtual Awareness [0.33, 0.45]
+component Supply Chain Awareness [0.31, 0.30]
+component Physical Layer [0.28, 0.92]
+component Virtual Layer [0.26, 0.80]
+component Supply Chain Layer [0.24, 0.60]
+
+// Financial instruments / crypto
+component Crypto as Sovereignty Tool [0.34, 0.35]
+component Crypto Rails [0.14, 0.82]
+component Sanctions Regime [0.32, 0.70]
+component FX Weaponisation [0.30, 0.60]
+
+// Deep infrastructure / commodity utilities
+component Telecommunications [0.12, 0.92]
+component Satellite Services [0.06, 0.82]
+component Financial Rails [0.10, 0.95]
+component Cloud and Data Centres [0.08, 0.88]
+
+// Dependencies — anchors to user needs
+Government->Sovereignty
+Government->Security and Legitimacy
+Citizen->Security and Legitimacy
+Citizen->Cultural Sovereignty
+Supranational Body->International Order
+Supranational Body->Legitimacy
+Supranational Body->Treaties
+
+// User needs depend on sovereignty pillars
+Sovereignty->Cyber Sovereignty
+Sovereignty->Territorial Sovereignty
+Sovereignty->Economic Sovereignty
+Sovereignty->Cultural Sovereignty
+Security and Legitimacy->Legitimacy
+Security and Legitimacy->Cyber Sovereignty
+Security and Legitimacy->Territorial Sovereignty
+International Order->Legitimacy
+International Order->Treaties
+
+// Sovereignty pillars depend on effects and meta
+Cyber Sovereignty->Deter
+Cyber Sovereignty->Attribution
+Territorial Sovereignty->Deter
+Territorial Sovereignty->Coerce
+Territorial Sovereignty->Kinetic
+Economic Sovereignty->Coerce
+Economic Sovereignty->Financial Warfare
+Cultural Sovereignty->Hearts and Minds
+Cultural Sovereignty->Propaganda
+
+// Effects depend on theatres and actors
+Coerce->Adversary State
+Coerce->Proxy Operator
+Coerce->Financial Warfare
+Deter->Electronic Warfare
+Deter->Space Operations
+Hearts and Minds->Social Media Influence
+Hearts and Minds->Propaganda
+Kinetic->Land Operations
+Kinetic->Private Military Contractor
+Propaganda->Social Media Influence
+Propaganda->Non-State Actor
+
+// Consequences tied to effects
+Coerce->Blowback
+Kinetic->Friendly Fire
+Propaganda->Unintended Outcomes
+Hearts and Minds->Unintended Outcomes
+
+// Meta / accountability layer
+Legitimacy->Statecraft
+Legitimacy->Ethics in Grey Zone
+Statecraft->Treaties
+Statecraft->Deniability
+Accountability->Attribution
+Ethics in Grey Zone->Accountability
+Deniability->Proxy Operator
+Deniability->Non-State Actor
+Attribution->Virtual Awareness
+Attribution->Supply Chain Awareness
+
+// Actors operate through theatres
+Proxy Operator->Social Media Influence
+Proxy Operator->Financial Warfare
+Private Military Contractor->Land Operations
+Non-State Actor->Electronic Warfare
+Non-State Actor->Social Media Influence
+Adversary State->Electronic Warfare
+Adversary State->Space Operations
+Adversary State->Financial Warfare
+
+// Theatres depend on layers
+Land Operations->Physical Layer
+Electronic Warfare->Virtual Layer
+Electronic Warfare->Supply Chain Layer
+Space Operations->Physical Layer
+Space Operations->Satellite Services
+Social Media Influence->Virtual Layer
+Financial Warfare->Supply Chain Layer
+Financial Warfare->Sanctions Regime
+Financial Warfare->FX Weaponisation
+Financial Warfare->Crypto as Sovereignty Tool
+
+// Crypto split — sovereignty tool vs utility rails
+Crypto as Sovereignty Tool->Crypto Rails
+FX Weaponisation->Financial Rails
+Sanctions Regime->Financial Rails
+
+// Awareness depends on layers
+Physical Awareness->Physical Layer
+Virtual Awareness->Virtual Layer
+Supply Chain Awareness->Supply Chain Layer
+
+// Layers depend on deep infrastructure
+Virtual Layer->Telecommunications
+Virtual Layer->Cloud and Data Centres
+Supply Chain Layer->Financial Rails
+Physical Layer->Telecommunications
+
+// Crypto rails sits on financial rails
+Crypto Rails->Financial Rails
+
+// Evolution trajectories (scenarios, not forecasts)
+evolve Attribution 0.45
+evolve Crypto as Sovereignty Tool 0.60
+evolve Social Media Influence 0.88
+evolve Ethics in Grey Zone 0.55
+
+// Notes
+note Weaponised commodity zone [0.35, 0.85]
+note Genuinely novel — attribution and consequences [0.45, 0.18]

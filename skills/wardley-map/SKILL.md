@@ -32,6 +32,17 @@ Optional: **τ: V \ U → {A, P, D, K}** — component type (Activity, Practice,
 
 ## 2. Procedure
 
+### Step 0 — Strategic context (frame before you list)
+
+Before listing any component, state — in the output, not just internally — the four framing decisions the rest of the map hangs on. Maps built without an explicit question tend to generalise, producing plausible-looking outputs that don't answer anything.
+
+1. **Strategic question.** What decision does this map inform? ("Should we build or buy our auth system?" is stronger than "map our architecture".)
+2. **User anchor(s).** Who sits at the top of the value chain? Name them.
+3. **Core needs.** The 2–4 most important needs those users have.
+4. **Scope boundary.** One product? One business unit? An industry landscape? Specify.
+
+If the user's scenario didn't pin any of these down, pick the most defensible answer, record it in an "Assumptions" block at the top of the output, and flag it as an assumption the user can correct. **A map with the wrong question in mind gets the wrong components.** It's better to be wrong visibly than wrong invisibly.
+
 ### Step 1 — List components and anchors
 
 - Anchor set `U`: the user need(s). If the scenario has multiple user types (e.g., customer AND artisan), use multiple anchors.
@@ -119,6 +130,8 @@ Map stage picks to band midpoints:
 `ε(v) = mean of the four row picks`.
 
 Flag components where rows disagree strongly as "in transition" and report the range.
+
+**Record evidence as you score.** For each component, capture a one-line evidence citation — the observable signal that justifies the stage (vendor count, publication style, standards activity, recent regulation, market shakeout, etc.). Example: `AI Diagnostic Assistant — Stage II → "several startups (Aidoc, Viz.ai), FDA clearances trickling, no dominant vendor, clinician-led pilots dominate the literature"`. This becomes the rationale column in the output table (§3.2) and is the difference between a defensible map and an opinion.
 
 ### Step 4.5 — Deep placement (selective research)
 
@@ -248,6 +261,17 @@ pipeline Platform [start_ε, end_ε]
 
 Include multiple `anchor` lines if the scenario has more than one user type.
 
+### 3.2 Required — Component evolution rationale table
+
+After the OWM block, emit a table with one row per component (anchors excluded). This is the evidence record behind every placement — readers (and future reviewers) check it to see whether the map is defensible or guessed.
+
+| Component | Stage | ε | ν | Evidence |
+|---|---|---|---|---|
+| *e.g. AI Diagnostic Assistant* | Custom Built | 0.38 | 0.44 | *Several startups (Aidoc, Viz.ai); FDA clearances trickling; clinician-led pilots dominate literature.* |
+| *e.g. Cloud Compute* | Commodity (+utility) | 0.90 | 0.08 | *AWS, GCP, Azure — priced per-second, published standards, utility billing.* |
+
+Evidence cells should be **one sentence**, concrete, and preferably cite named vendors, standards, or events. Generic ("widely used, mature") is weak evidence; specific ("SOC 2 Type II required for enterprise deals since 2021") is strong. This table is where the skill's 16 iterations of placement discipline pay off; without it, placements look authoritative but aren't reviewable.
+
 ### 3.1 Optional — Mermaid wardley-beta block (for GitHub rendering)
 
 OWM is the authoritative output (pastes into [onlinewardleymaps.com](https://onlinewardleymaps.com/) and runs through the validator). For documents that will be viewed on GitHub, optionally also emit a [Mermaid `wardley-beta`](https://mermaid.js.org/) block so the map renders inline. Convert the OWM draft with the bundled script:
@@ -274,15 +298,26 @@ After the OWM output, produce the sections below. **Write in qualitative terms f
 
 **c. Dependency risks (top 3).** Edge `(a, b)` where a visible component depends on an immature foundation. Describe the risk qualitatively. "**Checkout → Fraud detection** — visible checkout experience depends on in-house ML that is still Custom Built."
 
-**d. Suggested gameplays** — name each play from Wardley's 61-play catalogue (full list in `references/gameplay-patterns.md`) and which component(s) it targets. Prefer named Wardley plays over generic advice. Cite by number and name (e.g., "#15 Open Approaches on Component X").
+**d. Build / Buy / Outsource recommendations.** For each component where the strategic question hinges on sourcing, give a one-line call and a reason grounded in its stage:
 
-**e. Doctrine violations** — if any of Wardley's 40 doctrine principles are clearly violated (missing anchor, unclear user, underspecified Knowledge layer), flag them. Full list in `references/doctrine.md`.
+| Component | Stage | Recommendation | Why |
+|---|---|---|---|
+| *e.g. Matching Algorithm* | Custom Built | **Build** | Core IP, differentiation-zone, no competitive product market yet. |
+| *e.g. Payment rails* | Commodity | **Rent** (Stripe / Adyen) | Utility market; building is strict-worse than renting. |
+| *e.g. Fraud detection* | Product, transitioning | **Buy** (Sift / Stripe Radar) | Competitive vendor market; in-house ML has no moat. |
+| *e.g. Auth protocols* | Product (standardising) | **Open-source collaborate** | OIDC / SAML / WebAuthn — join the standard rather than reinvent. |
 
-**f. Climatic context** — which of the 27 climatic patterns (see `references/climatic-patterns.md`) are actively shaping this map? Common: #3 Everything evolves, #15–17 Inertia, #27 Product-to-utility punctuated equilibrium.
+Rules of thumb: Genesis → **build** (nobody else has it yet). Custom Built → **build** only if it's a differentiator; otherwise **buy external expertise**. Product → **buy**. Commodity → **rent / consume as utility**. Stage II → III boundaries where ecosystem dynamics apply → **open-source collaborate**. Only include components where the sourcing decision is actually open; skip the obvious ones.
 
-**g. Deep-placement notes** — for any component where you ran targeted research (see step 4.5), note what you found and how it shifted the placement. Example: "Fraud Detection — initial cheat-sheet 0.35 (Custom). Vendor search found mature providers (Sift, Stripe Radar) and standardising APIs — shifted to 0.55 (early Product)." List the 2-4 components you did deep placement on. If you did none, say so.
+**e. Suggested gameplays** — name each play from Wardley's 61-play catalogue (full list in `references/gameplay-patterns.md`) and which component(s) it targets. Prefer named Wardley plays over generic advice. Cite by number and name (e.g., "#15 Open Approaches on Component X").
 
-**h. Caveat** — remind the user that evolution trajectories are scenarios, not forecasts. Wardley's climatic pattern #18: *"you cannot measure evolution over time or adoption."*
+**f. Doctrine violations** — if any of Wardley's 40 doctrine principles are clearly violated (missing anchor, unclear user, underspecified Knowledge layer), flag them. Full list in `references/doctrine.md`.
+
+**g. Climatic context** — which of the 27 climatic patterns (see `references/climatic-patterns.md`) are actively shaping this map? Common: #3 Everything evolves, #15–17 Inertia, #27 Product-to-utility punctuated equilibrium.
+
+**h. Deep-placement notes** — for any component where you ran targeted research (see step 4.5), note what you found and how it shifted the placement. Example: "Fraud Detection — initial cheat-sheet 0.35 (Custom). Vendor search found mature providers (Sift, Stripe Radar) and standardising APIs — shifted to 0.55 (early Product)." List the 2-4 components you did deep placement on. If you did none, say so.
+
+**i. Caveat** — remind the user that evolution trajectories are scenarios, not forecasts. Wardley's climatic pattern #18: *"you cannot measure evolution over time or adoption."*
 
 ---
 

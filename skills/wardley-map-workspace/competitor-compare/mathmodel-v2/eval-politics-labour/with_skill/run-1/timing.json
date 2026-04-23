@@ -1,0 +1,9 @@
+{
+  "scenario": "politics-labour",
+  "skill": "wardley-map (mathmodel v2)",
+  "run": 1,
+  "start_epoch": 1776939485.45,
+  "end_epoch": 1776939677.75,
+  "duration_seconds": 192.3,
+  "notes": "Validator script could not be run (bash denied node execution); validation performed manually by walking every edge against ν ordering and checking the 4 layout-checker classes by hand."
+}

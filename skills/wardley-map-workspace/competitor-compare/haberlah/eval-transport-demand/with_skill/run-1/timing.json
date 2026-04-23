@@ -1,0 +1,5 @@
+{
+  "total_tokens": null,
+  "duration_ms": 224432,
+  "notes": "Wall-clock duration measured inside a single agent turn (start=1776873459109ms, end=1776873683541ms). Token totals are not exposed inside the agent. The haberlah skill was invoked by reading its SKILL.md and the two most load-bearing references (evolution-assessment.md, owm-syntax.md). Per the BLIND CONTRACT, the reference .owm was not read. The skill's Step 1 clarifying questions were inferred from the scenario brief and recorded in the output.md 'Strategic Context' table. Validation was manual (Step 4): coordinate range check, visibility-ordering check on every dependency, acyclicity by construction (topological order in the OWM), evolve-arrows-point-rightward check, label-overlap check at Δ=0.06. No artifact .jsx was produced — the benchmark contract requires only output.md and draft.owm."
+}

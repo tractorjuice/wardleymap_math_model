@@ -1,0 +1,263 @@
+title Space-Based Telecoms Landscape (Feb 2023)
+style wardley
+
+// Anchors — three user classes with different needs
+anchor Consumer [0.98, 0.70]
+anchor Corporation [0.96, 0.60]
+anchor Government [0.94, 0.45]
+
+// User-visible services (what the anchors actually consume)
+component Rural / Remote Broadband [0.88, 0.55]
+component Mobile Connectivity (voice + data) [0.87, 0.85]
+component In-Flight / Maritime Connectivity [0.85, 0.50]
+component Enterprise WAN / Backhaul [0.84, 0.70]
+component Emergency / IoT Messaging [0.83, 0.25]
+component Direct-to-Device Satellite Messaging [0.82, 0.15]
+component Broadcast TV / Radio [0.86, 0.92]
+component Government / Military Secure Comms [0.80, 0.55]
+
+// Access layer — what kind of network reaches the user
+component Network Access [0.76, 0.80]
+component Terrestrial Mobile (4G/5G) [0.70, 0.88]
+component Fibre / Fixed Line [0.68, 0.95]
+component Non-Terrestrial Network (NTN, 3GPP Rel-17) [0.66, 0.28]
+component Satellite Direct-to-Cell (T-Mo/SpaceX, AST, Lynk) [0.64, 0.10]
+component Terrestrial Broadcast Tower [0.72, 0.94]
+
+// Topology & physical network substrate
+component Physical Network Topology [0.62, 0.70]
+component Ground-to-Satellite Link [0.58, 0.55]
+
+// User terminals & ground stations (the edge of the space network)
+component User Terminal (consumer dish) [0.60, 0.60]
+component Phased-Array User Terminal (electronic steering) [0.58, 0.35]
+component Gateway Ground Station [0.54, 0.65]
+component Teleport / Earth Station Network [0.52, 0.75]
+
+// Spectrum (regulated input — treated as a component with evolution)
+component Spectrum — C / Ku Band [0.50, 0.90]
+component Spectrum — Ka Band [0.48, 0.60]
+component Spectrum — V Band [0.46, 0.18]
+component Spectrum Licence (ITU / FCC filing) [0.56, 0.78]
+
+// Satellite platform — the bus itself
+component Satellite (GEO large bus) [0.44, 0.85]
+component Satellite (LEO microsat / smallsat) [0.42, 0.45]
+component Mega-Constellation (LEO fleet) [0.40, 0.25]
+
+// Satellite subsystems — what's inside the bus
+component Electric Propulsion (Hall-effect, Xenon) [0.36, 0.75]
+component Electric Propulsion (Hall-effect, Krypton) [0.34, 0.40]
+component Chemical Propulsion (apogee motor) [0.38, 0.92]
+component Spacecraft Power (solar + Li-ion) [0.32, 0.82]
+component Thermal Management — Radiative [0.30, 0.88]
+component Thermal Management — Thermoelectric (TEC) [0.28, 0.55]
+component Thermal Management — Cryogens (active) [0.26, 0.20]
+component Satellite Antenna (reflector / horn) [0.38, 0.80]
+component Phased-Array Satellite Antenna [0.36, 0.42]
+component Beamforming / Beam-Steering (on-board) [0.34, 0.30]
+component Optical Inter-Satellite Link (laser) [0.32, 0.22]
+
+// Control plane — how constellations are actually operated
+component Fleet Management / MOC [0.50, 0.55]
+component Orbit Determination & Tracking [0.44, 0.70]
+component Space Debris Tracking (SSA) [0.42, 0.30]
+component Collision-Avoidance Automation [0.40, 0.20]
+component Launch Manifest Automation [0.38, 0.32]
+
+// Launch segment (the bridge from factory to orbit)
+component Launcher — Expendable (legacy) [0.28, 0.92]
+component Launcher — Reusable Medium (Falcon 9) [0.26, 0.55]
+component Launcher — Reusable Heavy / Starship [0.24, 0.12]
+component Rideshare / Smallsat Launch Broker [0.30, 0.45]
+
+// Supply chain awareness (underneath)
+component Component-Level Supply Chain Awareness [0.20, 0.22]
+component Space-Grade Semiconductor Supply [0.18, 0.35]
+component RF / mmWave Chipsets [0.16, 0.65]
+
+// Cross-cutting regulation
+component Space Regulation (ITU / FCC / UNCOPUOS) [0.78, 0.50]
+component Orbital Debris Mitigation Rules (FCC 5-yr rule) [0.64, 0.22]
+component Export Control (ITAR / EAR / dual-use) [0.60, 0.85]
+component Launch Licensing [0.50, 0.70]
+
+// Substrate — the physics
+component Low Earth Orbit (shell / altitude) [0.14, 0.60]
+component Geostationary Orbit (GEO slot) [0.12, 0.92]
+component Cloud Compute & Data Platform [0.10, 0.95]
+
+// ============ Dependencies ============
+// (all edges satisfy nu(a) >= nu(b))
+
+// Anchor -> user needs
+Consumer->Rural / Remote Broadband
+Consumer->Mobile Connectivity (voice + data)
+Consumer->Broadcast TV / Radio
+Consumer->Direct-to-Device Satellite Messaging
+Consumer->Emergency / IoT Messaging
+Corporation->Enterprise WAN / Backhaul
+Corporation->In-Flight / Maritime Connectivity
+Corporation->Emergency / IoT Messaging
+Corporation->Rural / Remote Broadband
+Government->Government / Military Secure Comms
+Government->Emergency / IoT Messaging
+Government->Space Regulation (ITU / FCC / UNCOPUOS)
+Government->Rural / Remote Broadband
+
+// Services -> access
+Rural / Remote Broadband->Network Access
+Mobile Connectivity (voice + data)->Network Access
+Enterprise WAN / Backhaul->Network Access
+In-Flight / Maritime Connectivity->Network Access
+Emergency / IoT Messaging->Network Access
+Direct-to-Device Satellite Messaging->Network Access
+Government / Military Secure Comms->Network Access
+Broadcast TV / Radio->Terrestrial Broadcast Tower
+Broadcast TV / Radio->Satellite (GEO large bus)
+
+// Access -> topology choice
+Network Access->Terrestrial Mobile (4G/5G)
+Network Access->Fibre / Fixed Line
+Network Access->Non-Terrestrial Network (NTN, 3GPP Rel-17)
+Network Access->Satellite Direct-to-Cell (T-Mo/SpaceX, AST, Lynk)
+Non-Terrestrial Network (NTN, 3GPP Rel-17)->Physical Network Topology
+Satellite Direct-to-Cell (T-Mo/SpaceX, AST, Lynk)->Non-Terrestrial Network (NTN, 3GPP Rel-17)
+Terrestrial Mobile (4G/5G)->Physical Network Topology
+Fibre / Fixed Line->Physical Network Topology
+Terrestrial Broadcast Tower->Physical Network Topology
+
+// Topology -> ground-space link
+Physical Network Topology->Ground-to-Satellite Link
+Ground-to-Satellite Link->User Terminal (consumer dish)
+Ground-to-Satellite Link->Phased-Array User Terminal (electronic steering)
+Ground-to-Satellite Link->Gateway Ground Station
+
+// Terminals & stations -> spectrum + teleport
+User Terminal (consumer dish)->Spectrum — Ka Band
+User Terminal (consumer dish)->Spectrum — C / Ku Band
+Phased-Array User Terminal (electronic steering)->Spectrum — Ka Band
+Phased-Array User Terminal (electronic steering)->Spectrum — V Band
+Phased-Array User Terminal (electronic steering)->Beamforming / Beam-Steering (on-board)
+Gateway Ground Station->Teleport / Earth Station Network
+Gateway Ground Station->Spectrum — Ka Band
+Gateway Ground Station->Spectrum — C / Ku Band
+Teleport / Earth Station Network->Spectrum Licence (ITU / FCC filing)
+
+// Spectrum -> licence -> regulation
+Spectrum — C / Ku Band->Spectrum Licence (ITU / FCC filing)
+Spectrum — Ka Band->Spectrum Licence (ITU / FCC filing)
+Spectrum — V Band->Spectrum Licence (ITU / FCC filing)
+Spectrum Licence (ITU / FCC filing)->Space Regulation (ITU / FCC / UNCOPUOS)
+
+// Ground -> satellite
+Gateway Ground Station->Satellite (GEO large bus)
+Gateway Ground Station->Satellite (LEO microsat / smallsat)
+User Terminal (consumer dish)->Satellite (GEO large bus)
+Phased-Array User Terminal (electronic steering)->Satellite (LEO microsat / smallsat)
+Phased-Array User Terminal (electronic steering)->Mega-Constellation (LEO fleet)
+
+// Satellite -> constellation -> subsystems
+Satellite (LEO microsat / smallsat)->Mega-Constellation (LEO fleet)
+Mega-Constellation (LEO fleet)->Optical Inter-Satellite Link (laser)
+Satellite (GEO large bus)->Chemical Propulsion (apogee motor)
+Satellite (GEO large bus)->Electric Propulsion (Hall-effect, Xenon)
+Satellite (GEO large bus)->Spacecraft Power (solar + Li-ion)
+Satellite (GEO large bus)->Thermal Management — Radiative
+Satellite (GEO large bus)->Thermal Management — Cryogens (active)
+Satellite (GEO large bus)->Satellite Antenna (reflector / horn)
+Satellite (LEO microsat / smallsat)->Electric Propulsion (Hall-effect, Krypton)
+Satellite (LEO microsat / smallsat)->Electric Propulsion (Hall-effect, Xenon)
+Satellite (LEO microsat / smallsat)->Spacecraft Power (solar + Li-ion)
+Satellite (LEO microsat / smallsat)->Thermal Management — Radiative
+Satellite (LEO microsat / smallsat)->Thermal Management — Thermoelectric (TEC)
+Satellite (LEO microsat / smallsat)->Phased-Array Satellite Antenna
+Satellite (LEO microsat / smallsat)->Satellite Antenna (reflector / horn)
+Phased-Array Satellite Antenna->Beamforming / Beam-Steering (on-board)
+
+// Subsystems -> substrate / chipsets
+Electric Propulsion (Hall-effect, Xenon)->Space-Grade Semiconductor Supply
+Electric Propulsion (Hall-effect, Krypton)->Space-Grade Semiconductor Supply
+Phased-Array Satellite Antenna->RF / mmWave Chipsets
+Phased-Array User Terminal (electronic steering)->RF / mmWave Chipsets
+Beamforming / Beam-Steering (on-board)->Space-Grade Semiconductor Supply
+Optical Inter-Satellite Link (laser)->Space-Grade Semiconductor Supply
+
+// Control plane -> satellite / SSA
+Fleet Management / MOC->Satellite (LEO microsat / smallsat)
+Fleet Management / MOC->Satellite (GEO large bus)
+Fleet Management / MOC->Orbit Determination & Tracking
+Fleet Management / MOC->Collision-Avoidance Automation
+Orbit Determination & Tracking->Space Debris Tracking (SSA)
+Collision-Avoidance Automation->Space Debris Tracking (SSA)
+Space Debris Tracking (SSA)->Orbital Debris Mitigation Rules (FCC 5-yr rule)
+Launch Manifest Automation->Launcher — Reusable Medium (Falcon 9)
+Launch Manifest Automation->Rideshare / Smallsat Launch Broker
+
+// Launch -> orbit
+Mega-Constellation (LEO fleet)->Launcher — Reusable Medium (Falcon 9)
+Mega-Constellation (LEO fleet)->Launcher — Reusable Heavy / Starship
+Satellite (GEO large bus)->Launcher — Expendable (legacy)
+Satellite (LEO microsat / smallsat)->Rideshare / Smallsat Launch Broker
+Rideshare / Smallsat Launch Broker->Launcher — Reusable Medium (Falcon 9)
+Launcher — Expendable (legacy)->Launch Licensing
+Launcher — Reusable Medium (Falcon 9)->Launch Licensing
+Launcher — Reusable Heavy / Starship->Launch Licensing
+Launch Licensing->Space Regulation (ITU / FCC / UNCOPUOS)
+
+// Supply chain awareness
+Mega-Constellation (LEO fleet)->Component-Level Supply Chain Awareness
+Satellite (LEO microsat / smallsat)->Component-Level Supply Chain Awareness
+Component-Level Supply Chain Awareness->Space-Grade Semiconductor Supply
+Space-Grade Semiconductor Supply->Export Control (ITAR / EAR / dual-use)
+Satellite (LEO microsat / smallsat)->Export Control (ITAR / EAR / dual-use)
+
+// Regulation cross-cuts everything user-visible
+Space Regulation (ITU / FCC / UNCOPUOS)->Orbital Debris Mitigation Rules (FCC 5-yr rule)
+Space Regulation (ITU / FCC / UNCOPUOS)->Export Control (ITAR / EAR / dual-use)
+Space Regulation (ITU / FCC / UNCOPUOS)->Launch Licensing
+
+// Substrate
+Satellite (GEO large bus)->Geostationary Orbit (GEO slot)
+Satellite (LEO microsat / smallsat)->Low Earth Orbit (shell / altitude)
+Mega-Constellation (LEO fleet)->Low Earth Orbit (shell / altitude)
+Fleet Management / MOC->Cloud Compute & Data Platform
+Orbit Determination & Tracking->Cloud Compute & Data Platform
+Space Debris Tracking (SSA)->Cloud Compute & Data Platform
+Launch Manifest Automation->Cloud Compute & Data Platform
+
+// ============ Movement — evolve arrows (12-36 month horizon) ============
+evolve Non-Terrestrial Network (NTN, 3GPP Rel-17) 0.55
+evolve Satellite Direct-to-Device Messaging 0.40
+evolve Direct-to-Device Satellite Messaging 0.40
+evolve Satellite (LEO microsat / smallsat) 0.68
+evolve Mega-Constellation (LEO fleet) 0.50
+evolve Phased-Array User Terminal (electronic steering) 0.60
+evolve Phased-Array Satellite Antenna 0.62
+evolve Beamforming / Beam-Steering (on-board) 0.55
+evolve Optical Inter-Satellite Link (laser) 0.50
+evolve Electric Propulsion (Hall-effect, Krypton) 0.65
+evolve Launcher — Reusable Heavy / Starship 0.45
+evolve Space Debris Tracking (SSA) 0.55
+evolve Collision-Avoidance Automation 0.45
+evolve Spectrum — V Band 0.42
+evolve Orbital Debris Mitigation Rules (FCC 5-yr rule) 0.50
+evolve Component-Level Supply Chain Awareness 0.50
+
+// ============ Inertia ============
+inertia Satellite (GEO large bus)
+inertia Chemical Propulsion (apogee motor)
+inertia Thermal Management — Radiative
+inertia Spectrum — C / Ku Band
+inertia Launcher — Expendable (legacy)
+inertia Broadcast TV / Radio
+inertia Export Control (ITAR / EAR / dual-use)
+inertia Geostationary Orbit (GEO slot)
+
+// ============ Annotations ============
+note LEO / NTN frontier — still novel in Feb 2023 [0.38, 0.18]
+note Commoditised core — GEO, Ku, chemical prop [0.40, 0.92]
+note Direct-to-cell is genesis — AST / Lynk / T-Mo+SpaceX just announced [0.75, 0.08]
+note Regulatory bottleneck — FCC 5-yr rule (Sep 2022), ITU Article 22 [0.70, 0.38]
+note Launch cost revolution enables the map above it [0.25, 0.35]
+note Xenon shortage (Russia 2022) pushing Starlink to Krypton [0.33, 0.45]

@@ -1,0 +1,11 @@
+{
+  "scenario": "personal-conversational",
+  "skill": "wardley-map (mathmodel-v2)",
+  "run": 1,
+  "mode": "with_skill",
+  "blind": true,
+  "start_epoch_seconds": 1776939492.513668,
+  "end_epoch_seconds": 1776939874.496118,
+  "duration_seconds": 381.98,
+  "notes": "Node-based validator and layout-check scripts could not execute in this sandbox (bash denied node invocation). Validation was performed by manual edge audit against the visibility hard rule (ν(src) ≥ ν(tgt)) for all 42 edges. Expected validator output when run manually: 'OK: 24 components/anchors, 42 edges — no violations.' One stage-boundary straddle was corrected during layout check (LAMP/.NET ε 0.74 → 0.72)."
+}

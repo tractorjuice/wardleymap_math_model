@@ -1,0 +1,28 @@
+{
+  "scenario": "UK Labour Party preparing for government (May 2024)",
+  "run": "with_prompt-in-tree/run-1",
+  "mode": "prompt-only baseline",
+  "prompt_source": "/workspaces/wardleymap_math_model/prompts/wardley_map_generator.md",
+  "blind_refs": [
+    "/workspaces/wardleymap_math_model/skills/wardley-map-workspace/competitor-compare/prompt-baseline/eval-politics-labour/wardley-reference.owm",
+    "/workspaces/wardleymap_math_model/skills/wardley-map-workspace/iteration-14/eval-politics-labour/wardley-reference.owm"
+  ],
+  "skill_scripts_used": false,
+  "reference_consulted": false,
+  "start_unix": 1776873243.916418,
+  "end_unix": 1776873407.494619,
+  "elapsed_seconds": 163.578,
+  "elapsed_human": "2m 43.6s",
+  "outputs": {
+    "output_md": "outputs/output.md",
+    "draft_owm": "outputs/draft.owm",
+    "timing_json": "outputs/timing.json"
+  },
+  "component_count": 33,
+  "anchor_count": 3,
+  "inertia_flags": 2,
+  "evolve_arrows": 4,
+  "notes": 3
+}
+</content>
+</invoke>

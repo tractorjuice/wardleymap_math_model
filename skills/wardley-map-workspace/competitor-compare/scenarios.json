@@ -1,0 +1,130 @@
+{
+  "comment": "Canonical scenarios per benchmark. Used verbatim for every competitor so comparisons are apples-to-apples. The ai-trust scenario is lifted from BENCHMARK-METHODOLOGY.md §2(a); others are reconstructed from reference titles and content in practitioner voice without leaking Wardley's component names or placements.",
+  "benchmarks": {
+    "ai-trust": {
+      "reference": "iteration-10/eval-ai-trust/wardley-reference.owm",
+      "reference_title": "AI, TRUST, JUNE 2023",
+      "scenario": "It's June 2023. Map the AI trust landscape — what components determine whether individuals, government, and business can trust AI systems. Include technical components (models, algorithms, data, compute), governance components (regulations, audits, benchmarks, policy), control mechanisms (forensics, feedback loops, constitution), and outcome components (safety, reputation, competitive advantage). Tell me what's differentiating vs. commoditising and where trust itself is fragile."
+    },
+    "healthcare-clinical": {
+      "reference": "iteration-10/eval-healthcare-clinical/wardley-reference.owm",
+      "reference_title": "healthcare - clinical decision making - AUG 2022",
+      "scenario": "It's August 2022. Map the landscape of clinical decision making in healthcare — how a patient's ailment becomes a treatment and a measurable clinical outcome. Cover the people involved (patients, medical practitioners, medical institutions, payers) and the supporting apparatus: data sources and observation, diagnostic reasoning, decision support, permissible treatments, standards and guidelines, reviews and trials, and the different settings of care patients flow through. I'd like to see what's bespoke judgement versus industrialised process, and where fairness and the rules around exceptions sit."
+    },
+    "finance-risk": {
+      "reference": "iteration-10/eval-finance-risk/wardley-reference.owm",
+      "reference_title": "Finance- risk management",
+      "scenario": "Map risk management across the financial services landscape. I want to see how the public, corporations, and governments anchor demand for financial services, and how providers (retail banking, insurance, lending) deliver against that demand while being shaped by regulation, rating agencies, and sovereignty concerns. Include the risk types (credit, system, cybersecurity, cascade failure, third-party), the trust-and-assets layer connecting providers to customers, and the accountability chain back to society. I'm especially interested in where cost, value, trust, and supply-chain awareness sit on the evolution axis and where regulation is lagging the risk it's meant to cover."
+    },
+    "retail-journey": {
+      "reference": "iteration-11/eval-retail-journey/wardley-reference.owm",
+      "reference_title": "retail - connected journey",
+      "scenario": "Map the connected customer journey in retail — from the customer and producer down through the needs being met, the goods and services offered, the channels they flow through (stores, e-commerce, telesales), and the experience layer that sits on top. Cover the sensory and physical/virtual dimensions of shopping, trust and privacy, engagement and discovery, returns, and how societal behaviour and demographics shape all of it. Show me where the retail experience is still custom and where it's hardened into commodity infrastructure, and what that implies for differentiation."
+    },
+    "manufacturing": {
+      "reference": "iteration-12/eval-manufacturing-supply/wardley-reference.owm",
+      "reference_title": "manufacturing - SUPPLY CHAINs, Feb 2023",
+      "scenario": "It's February 2023. Map manufacturing supply chains — how a manufacturer gets from raw and refined materials through equipment, labour, and R&D into a product that reaches distributors. Include the government/regulation side (compliance, certification, lobbying, safety), the financial lens (ROCE, cost, capital, sales forecasting), the inventory and logistics decisions (just-in-time vs just-in-case, warehousing), and the awareness/visibility layer that tells you whether your chain is resilient. I want to understand where the supply chain itself sits on the evolution axis and what's industrialised versus still a bespoke judgment call."
+    },
+    "agriculture-regen": {
+      "reference": "iteration-12/eval-agriculture-regen/wardley-reference.owm",
+      "reference_title": "AGRICULTURE - regenerative farming - AUG 2022",
+      "scenario": "It's August 2022. Map the landscape of regenerative farming. Cover the actors (farmers, consumers, retailers, certification bodies, supranational bodies like the UN, national governments) and the practices — regenerative versus extractive at scale, crop choices (monoculture, rotation, diversity), the energy matrix beneath the soil (microbes, photosynthesis, petrochemical inputs), conservation and substrate, treaties and policy, and the measurement/grading/labelling that connects farming to consumer behaviour. I want to see what's still knowledge-based and where industrial practice has locked in, plus what the supply-chain awareness picture looks like."
+    },
+    "education-lifelong": {
+      "reference": "iteration-12/eval-education-lifelong/wardley-reference.owm",
+      "reference_title": "education - general",
+      "scenario": "Map the lifelong education and learning landscape. Include students, employees and employers, educators, institutions, government and regulators, and the wider community. I want to see the full apparatus: curricula (formal/informal), skills, certification and standards, assessment and verification, degrees versus micro-credentials and badges, digital identity, status and brand, inclusion/exclusion, the online/physical delivery split, and emerging pieces like AI tutors and community learning. Tell me what's industrialised, what's still artisanal, and where power and curriculum shape who gets included."
+    },
+    "gaming-economies": {
+      "reference": "iteration-12/eval-gaming-economies/wardley-reference.owm",
+      "reference_title": "Game Economies - November 2023",
+      "scenario": "It's November 2023. Map the landscape of game economies. Anchor it on publishers and players, and cover the full chain: how a game gets funded (VCs, private investors, funding models, business models), built (developers, engines, dev tools, hardware, game platform), distributed (game stores, catalogues, game-specific marketplaces, alternative distribution), and monetised (virtual items, in-game economy, licensing/subscriptions, advertising). Include the marketing and buzz apparatus — campaigns, tournaments, influencer communities, streaming content, social platforms — and player profiling. Show me where the economy is commoditised infrastructure versus where publishers and developers still have room to differentiate, and flag where toxicity or trust could collapse the whole thing."
+    },
+    "sustainability-supply": {
+      "reference": "iteration-12/eval-sustainability-supply/wardley-reference.owm",
+      "reference_title": "Supply Chain Sustainability",
+      "scenario": "Map supply-chain sustainability from producer to consumer. Include the actors (producer, retailer, consumer, regulator) and the chain itself — sourcing of raw materials and complex products, manufacturing, packaging and temperature/freshness handling, transportation (last mile, backhaul), distribution (online, storefront, coop), and end-of-life reusability and waste. Layer on the regulatory apparatus (laws, regulations, trade agreements, sanctions, guidelines, bureaucracy) plus the compliance side — monitoring, audit, disclosure, labels, certifications, and the rating mechanisms consumers see. I want to see where sustainability is open-market driven versus regulated, and where R&D and resource efficiency fit."
+    },
+    "cybersecurity-risk": {
+      "reference": "iteration-13/eval-cybersecurity-risk/wardley-reference.owm",
+      "reference_title": "Cyber security, risk management, MAY 2023",
+      "scenario": "It's May 2023. Map cybersecurity risk management from the executive's point of view. Anchor on executives and cover how P&L, compliance, and risk appetite drive the downstream apparatus: risk identification practice, asset inventory, risk registers, risk assessment methodology, risk quantification (FAIR, likelihood/impact, risk matrices), risk frameworks and compliance frameworks. Include the mitigation/transfer/acceptance mix and cyber insurance, the operational side (monitoring, SOC tools, reporting, incident response, security testing, pen testing, bug bounty), and the emerging LLM angle on both the defence and the risk. I want to see what's commoditised tooling, what's still expert judgement, and where the regulatory obligations are forcing the shape of the map."
+    },
+    "construction-supply": {
+      "reference": "iteration-14/eval-construction-supply/wardley-reference.owm",
+      "reference_title": "CONSTRUCTION - supply chain - MARCH, 2023",
+      "scenario": "It's March 2023. Map the construction supply chain end-to-end. Include the demand side (government, citizens, homes — private and social, mortgage companies) and the building-inspector/quality-assurance apparatus. Cover construction itself: labour (skilled and unskilled, certification, training), equipment and machinery, building materials (raw, recycled, novel, substitutable), distributors (traditional, integrated, platform), manufacture, logistics, and the planning/blueprint/regulation layer. Include emerging modes like modular, prefab, factory-mode, and test-driven approaches, plus awareness of the material supply chain and critical national infrastructure concerns around local supply of skilled labour. Show me what's still bespoke craft and what's ready to be industrialised."
+    },
+    "culture-gender": {
+      "reference": "iteration-14/eval-culture-gender/wardley-reference.owm",
+      "reference_title": "Gender MARCH 2022",
+      "scenario": "It's March 2022. Map the components that shape gender as a cultural construct. Start from identity and phenotype and work through sexual identity, sexual orientation, gender identity, and gender expression; include the lived-experience layer and how memory, stories, and symbols codify roles. Cover the collective structures (family, nation, patriarchy, matriarchy, corporation) and the values and rights/beliefs they carry, the hierarchies of authority and power, social class, property and ownership, and exclusion/self-expression. Underneath, include the biological substrate — genetic markers, epigenetics, environment. I'd like to see what's individual and emergent versus what's industrialised social machinery, and where power concentrates."
+    },
+    "defence-intelligence": {
+      "reference": "iteration-14/eval-defence-intelligence/wardley-reference.owm",
+      "reference_title": "DEFENCE - intelligence - MAR 2023",
+      "scenario": "It's March 2023. Map the defence intelligence landscape — how operational decisions get made. Include the actors (military, opponents, government, citizens, agencies) and the full collection/analysis chain: target discovery, intelligence gathering, sources (diverse and verified), collectors (people and machine), sensors (GPS, cameras, network signals), OSINT, social media and public data, crowdsourcing. Cover the analysis layer including AI, data science, and ML engines, plus the trust dimension (competence, integrity, benevolence) and the decision model (human-in-the-loop vs human-on-the-loop). Include adversarial capability — misinformation, attack vectors, prompt engineering — and the regulation/privacy/ownership constraints on data. I want to see what's commoditised and where the bleeding edge is right now."
+    },
+    "defence-grey-zone": {
+      "reference": "iteration-14/eval-defence-grey-zone/wardley-reference.owm",
+      "reference_title": "defence - the grey zone",
+      "scenario": "Map the grey zone of defence — below-threshold conflict between states and their proxies. Include the actors (supranationals, governments, private/proxy operators, people) and the sovereignty pillars under contest (cyber, territory, economic, culture). Cover the theatres of competition (land, electronic, space, social media, finance), the landscape layer (physical, virtual, supply chain) and the awareness that goes with each, the effect types (coerce, deter, hearts and minds, kinetic, propaganda) and their consequences including friendly fire and unintended outcomes. Include legitimacy, statecraft, treaties and ethics, accountability and attribution, deniability, and the role of crypto. Show me where the grey zone is weaponised-commodity versus where attribution and consequences are still genuinely novel."
+    },
+    "energy-disruption": {
+      "reference": "iteration-14/eval-energy-disruption/wardley-reference.owm",
+      "reference_title": "ENERGY - disruption, JULY 2022",
+      "scenario": "It's July 2022. Map the landscape of energy disruption — how today's user demand meets tomorrow's survivability. Cover the generation mix (renewable, fossil, solar microgen, gas, nuclear), the production/transmission/distribution chain with its capital intensity, the storage problem (electrical, hydrogen, potential energy, reserves), and the market layer (spot, OTC, public good, price, cost with externalities). Include consumer-facing pieces (today vs tomorrow behaviour, sustainability, security, education) and the control, regulation, and CO2 apparatus. I want to see where disruption is most likely, where infrastructure is locked-in, and what the supply-chain awareness and externality picture looks like."
+    },
+    "energy-storage": {
+      "reference": "iteration-14/eval-energy-storage/wardley-reference.owm",
+      "reference_title": "ENERGY - electrical energy storage, APRIL 2023",
+      "scenario": "It's April 2023. Map the landscape of electrical energy storage as it connects consumers, activity, control, electricity generation, and the grid. Cover the grid models — traditional (single-machine view) versus distributed (fault-tolerant, TCP/IP-style) — along with auto generation control, SCADA, spinning reserve, and fast-response systems. Include storage types (electrical, hydro, hydrogen), the energy platform and integration layer (pre-approval/discovery, adaptive, plug-and-play), and the chain underneath: sources, stockpile, material supply chain, and awareness of the energy supply chain. Show me where distributed fault-tolerant grids are evolving faster than the traditional control model, and where material supply chain risk is biting."
+    },
+    "government-digital-id": {
+      "reference": "iteration-14/eval-government-digital-id/wardley-reference.owm",
+      "reference_title": "GOVERNMENT - IDENTITY - NOV 2022",
+      "scenario": "It's November 2022. Map the landscape of government digital identity. Include the actors (government, society, citizens, corporations, entities, bad actors) and the core chain from service through claims and credentials to identity, identification (physical and digital), identifiers (mutable, immutable, connectedness), and authority (centralised, decentralised, issuing). Cover the trust layer (benevolence, capability, integrity) and the regulation/rules/exception apparatus, plus power (over, with, to) and the transport layer underneath (e.g. the internet). Show me where identity technology is still novel versus standardised, and where the tensions between centralised authority, self-sovereign identity, and bad-actor exploitation of rules sit."
+    },
+    "government-sovereignty": {
+      "reference": "iteration-14/eval-government-sovereignty/wardley-reference.owm",
+      "reference_title": "GOVERNMENT-SOVEREIGNTY - APRIL 2023",
+      "scenario": "It's April 2023. Map national sovereignty from a government's point of view. Anchor on the supranational layer, government, corporations and shareholders, and society. Include the pillars of sovereignty (territorial, economic, political, digital, cultural, security) and the theatres they play out in (land, supply chain, cyber, CNI). Cover the awareness apparatus (supply-chain awareness, territorial awareness, digital-chain awareness), the capability layer, the social norms (integrity, benevolence, fairness, competency, identity) and election legitimacy, the media mix (social media, mainstream media, education, art, propaganda), crisis response, international law and laws, and how perception of success and public belonging feed back into legitimacy. Show me where sovereignty is industrialised infrastructure and where it's still contested and fragile."
+    },
+    "personal-fin-inclusion": {
+      "reference": "iteration-14/eval-personal-fin-inclusion/wardley-reference.owm",
+      "reference_title": "Expand Digital Finance Inclusion",
+      "scenario": "Map the landscape of expanding digital financial inclusion, from the perspective of an individual in an underbanked region. Anchor on the individual and their needs — options, trade, equality, sustainability, inclusion — and work down through identity and trust, risk, behaviour, markets and exchange protocols, authority (centralised vs decentralised), and redistribution. Include banking provision (branches, banking services, online payments, financial infrastructure) and currency (fiat, cryptocurrency, CBDC), the technology stack (internet access, mobile device, consensus algorithms, computing infrastructure), network topology (mesh, satellite, 5G, copper), and the energy layer underneath (minigrids, renewable, fossil). Show me where the stack is commoditised globally and where local landscape constraints still dominate."
+    },
+    "personal-conversational": {
+      "reference": "iteration-14/eval-personal-conversational/wardley-reference.owm",
+      "reference_title": "Technology",
+      "scenario": "Map the personal-computing technology landscape now that conversational AI is reshaping the developer stack. Anchor on the user and their need, coming down through applications and devices into the IDE (human-centric and conversational AI+human modes), component libraries and services, legacy approaches, runtime (Serverless, LAMP/.Net), large language models and FinOps, operating systems and orchestration tools, containers, DevOps and legacy architecture, and compute (servers and cloud underneath it all). I want to see where the stack has commoditised to cloud-and-containers, where LLMs and conversational IDEs are still genesis/custom, and what this means for how people build software."
+    },
+    "politics-labour": {
+      "reference": "iteration-14/eval-politics-labour/wardley-reference.owm",
+      "reference_title": "Labour HQ values, MAY 2024, [created by LLM using GT]",
+      "scenario": "It's May 2024. Map the value landscape of the UK Labour Party as it prepares for government. Anchor on the leader (Keir Starmer), UK voters, and Labour Party members. Cover the policy apparatus — party policy framework, research and policy development, internal party democracy — and the campaign/engagement machinery: campaign strategies, public engagement, media relations, volunteer mobilisation, stakeholder engagement, fundraising, private sector collaboration. Include the substantive policy areas Labour is carrying: economic equality, workers' rights, anti-discrimination, social justice, healthcare access, education access, housing policy, infrastructure development, public sector investment, climate change action, national security, international relations, digital transformation, community programs. Tell me what's industrialised political machinery versus what's still being invented."
+    },
+    "telecoms-sovereignty": {
+      "reference": "iteration-14/eval-telecoms-sovereignty/wardley-reference.owm",
+      "reference_title": "TELECOMS - Sovereignty - OCT 2022",
+      "scenario": "It's October 2022. Map telecoms sovereignty from a nation-state's perspective. Anchor on government, the collective, corporations, and people, and cover the sovereignty pillars (territorial, political, cultural, economic, digital, CNI). Include the communication stack: access devices (smartphones, computers, radio/TV, sat phones, IoT), access networks (towers, cable, satellite, launch vehicles), network equipment and topology (fixed, mobile), control layer pieces (DNS-over-HTTPS, nation-state firewalls, SIMs, geofencing), and the underlying reality (geography, physical and information supply chains, compute, power, space). Include the theatre/awareness layer — awareness of land-sea-air-space and of supply chains — plus expertise and peering. Show me where telecoms is truly sovereign-controllable and where the chain depends on foreign actors."
+    },
+    "telecoms-space": {
+      "reference": "iteration-14/eval-telecoms-space/wardley-reference.owm",
+      "reference_title": "TELECOMS - Space - FEB 2023",
+      "scenario": "It's February 2023. Map the landscape of space-based telecoms. Anchor on consumers, corporations, and government, and cover the access stack: network access, physical network, broadcast, topology (mobile, fibre, non-terrestrial networks), ground stations, user terminals with phased-array antennas, spectrum (Ku/Ka/V bands), and the satellite itself (LEO microsats vs GEO). Include the satellite subsystems — propulsion (Krypton, Xenon), power, cooling (thermal electric, radiative, cryogens), antennas, optical sat-to-sat comms, launchers, beamforming and beam-steering — plus control systems (orbit tracking, debris tracking, fleet management), automation, and the supply-chain awareness underneath. Add space regulation as a cross-cutting concern. Show me where space telecoms has commoditised and where LEO/NTN is still novel."
+    },
+    "transport-logistics": {
+      "reference": "iteration-14/eval-transport-logistics/wardley-reference.owm",
+      "reference_title": "transportation - logistics",
+      "scenario": "Map the transportation logistics landscape — how goods move from producers to the public. Include the actors (government, society, producers, consumers, the public) and the commerce/supply-chain core: last mile, long haul, shops, e-commerce, logistics hubs, warehouses, storage, delivery, and real-time stock. Cover the vehicle and power layer (trucks, drones, scouts, electric vs fossil, autotrucks, automated delivery), the information layer (data, traffic, telematics), and the topology that ties it all to cities and rural areas. Include regulation, territorial/CNI sovereignty concerns, skills (especially HGV), and awareness of supply chain. Show me where logistics is commoditised utility and where automated delivery or sovereignty concerns will force it to evolve."
+    },
+    "transport-demand": {
+      "reference": "iteration-14/eval-transport-demand/wardley-reference.owm",
+      "reference_title": "transportation - changing consumer behaviour and demand, May 2022",
+      "scenario": "It's May 2022. Map how changing consumer behaviour is reshaping transport demand. Anchor on government, the transport public, and transport operators. Cover the user journey from A-to-B (ease of use, cost, access to service, personal and physical safety, awareness) through the transport information stack (transport integration, situational services, mobility hubs) to the mode choice (private, shared, distributed public). Include vehicles (car, train) and the connectivity/cybersecurity layer, city planning, public vs private infrastructure down to critical national infrastructure, regulation, sustainability and climate, plus the shocks that reshape demand and the virtual-space alternatives (zoom) that displace it. Show me where consumer behaviour is driving real evolution and where regulation and infrastructure are lagging."
+    }
+  }
+}

@@ -1,0 +1,184 @@
+title Gender as a Cultural Construct (March 2022)
+style wardley
+
+// Anchor — the lived subject
+anchor Individual [0.96, 0.40]
+
+// User-facing identity surface
+component Lived Experience [0.90, 0.35]
+component Self-Expression [0.87, 0.22]
+component Gender Expression [0.84, 0.32]
+component Exclusion [0.82, 0.55]
+
+// Identity layer — how the self is presented and understood
+component Identity [0.78, 0.38]
+component Gender Identity [0.74, 0.30]
+component Media Representation [0.72, 0.58]
+component Sexual Identity [0.70, 0.48]
+component Sexual Orientation [0.67, 0.45]
+component Phenotype [0.63, 0.78]
+
+// Codification — how roles become legible
+component Memory [0.60, 0.55]
+component Stories [0.57, 0.60]
+component Symbols [0.54, 0.65]
+component Gender Roles [0.50, 0.72]
+component Rituals [0.46, 0.68]
+
+// Rights, values, beliefs (the layer collectives carry)
+component Rights [0.48, 0.42]
+component Beliefs [0.44, 0.55]
+component Values [0.40, 0.48]
+component Religion [0.36, 0.82]
+component Law [0.38, 0.78]
+
+// Collective structures
+component Family [0.44, 0.78]
+component Community [0.40, 0.60]
+component Corporation [0.34, 0.82]
+component Nation [0.30, 0.85]
+component Patriarchy [0.26, 0.88]
+component Matriarchy [0.24, 0.45]
+
+// Hierarchies & power
+component Authority [0.28, 0.70]
+component Power Hierarchy [0.22, 0.72]
+component Social Class [0.20, 0.78]
+component Property and Ownership [0.18, 0.82]
+component Labour Division [0.23, 0.77]
+component Capital [0.16, 0.85]
+
+// Biological substrate
+component Biology [0.14, 0.70]
+component Hormones [0.12, 0.77]
+component Genetic Markers [0.10, 0.72]
+component Chromosomes [0.08, 0.90]
+component Epigenetics [0.08, 0.30]
+component Environment [0.05, 0.60]
+
+// Dependencies
+Individual->Lived Experience
+Individual->Self-Expression
+Individual->Identity
+Individual->Exclusion
+
+Lived Experience->Gender Expression
+Lived Experience->Media Representation
+Lived Experience->Memory
+Lived Experience->Stories
+
+Self-Expression->Gender Expression
+Self-Expression->Identity
+
+Gender Expression->Gender Identity
+Gender Expression->Symbols
+Gender Expression->Gender Roles
+
+Identity->Gender Identity
+Identity->Sexual Identity
+Identity->Phenotype
+
+Gender Identity->Sexual Orientation
+Gender Identity->Gender Roles
+Gender Identity->Biology
+
+Sexual Identity->Sexual Orientation
+Sexual Identity->Biology
+
+Sexual Orientation->Biology
+
+Phenotype->Biology
+Phenotype->Hormones
+
+Exclusion->Gender Roles
+Exclusion->Power Hierarchy
+Exclusion->Law
+
+Media Representation->Stories
+Media Representation->Symbols
+Media Representation->Gender Roles
+Media Representation->Corporation
+Media Representation->Nation
+
+Memory->Stories
+Memory->Rituals
+
+Stories->Symbols
+
+Symbols->Religion
+
+Gender Roles->Family
+Gender Roles->Religion
+Gender Roles->Labour Division
+
+Rituals->Family
+Rituals->Religion
+
+Rights->Law
+Rights->Nation
+
+Beliefs->Religion
+Beliefs->Values
+Beliefs->Community
+
+Religion->Patriarchy
+Religion->Authority
+
+Law->Nation
+Law->Authority
+
+Family->Patriarchy
+Family->Matriarchy
+Family->Labour Division
+Family->Property and Ownership
+Family->Values
+
+Community->Authority
+Community->Values
+
+Corporation->Capital
+Corporation->Labour Division
+Corporation->Authority
+
+Nation->Authority
+Nation->Power Hierarchy
+
+Patriarchy->Power Hierarchy
+Patriarchy->Property and Ownership
+Patriarchy->Labour Division
+
+Matriarchy->Power Hierarchy
+Matriarchy->Labour Division
+
+Authority->Power Hierarchy
+
+Power Hierarchy->Social Class
+Power Hierarchy->Property and Ownership
+
+Social Class->Property and Ownership
+Social Class->Capital
+
+Property and Ownership->Capital
+
+Labour Division->Capital
+Labour Division->Social Class
+
+Biology->Genetic Markers
+Biology->Hormones
+Biology->Chromosomes
+Biology->Epigenetics
+
+Genetic Markers->Chromosomes
+Hormones->Epigenetics
+Epigenetics->Environment
+Genetic Markers->Environment
+
+// Trajectories (scenarios, not forecasts)
+evolve Gender Identity 0.55
+evolve Rights 0.62
+evolve Patriarchy 0.70
+evolve Media Representation 0.72
+
+note Individual and emergent [0.85, 0.12]
+note Industrialised social machinery [0.25, 0.90]
+note Biological substrate [0.10, 0.50]

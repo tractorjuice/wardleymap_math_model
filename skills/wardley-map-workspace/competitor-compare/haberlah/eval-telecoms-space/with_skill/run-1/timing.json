@@ -1,0 +1,30 @@
+{
+  "skill": "haberlah/wardley-mapping",
+  "scenario": "eval-telecoms-space",
+  "run": 1,
+  "blind": true,
+  "start_ts_ms": 1776873452834,
+  "end_ts_ms": 1776873890113,
+  "duration_ms": 437279,
+  "duration_s": 437.279,
+  "outputs": [
+    "outputs/output.md",
+    "outputs/draft.owm",
+    "outputs/artifact.jsx",
+    "outputs/map_data.json"
+  ],
+  "validation": {
+    "tool": "scripts/validate_map.py",
+    "errors": 0,
+    "warnings": 1,
+    "warning_notes": "27 components > 18 readability threshold — accepted; scenario explicitly enumerates subsystems"
+  },
+  "counts": {
+    "components": 27,
+    "anchors": 3,
+    "links": 55,
+    "evolutions": 7,
+    "inertia": 2,
+    "annotations": 3
+  }
+}

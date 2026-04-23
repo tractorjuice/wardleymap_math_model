@@ -1,0 +1,237 @@
+title Clinical Decision Making in Healthcare (August 2022)
+style wardley
+
+// Anchors — four stakeholder user-needs
+anchor Patient [0.96, 0.48]
+anchor Medical Practitioner [0.94, 0.55]
+anchor Medical Institution [0.92, 0.62]
+anchor Payer [0.90, 0.70]
+
+// Patient-facing interactions
+component Symptom Presentation [0.88, 0.35]
+component Appointment Booking [0.86, 0.78]
+component Patient Portal [0.87, 0.72]
+component Shared Decision-Making [0.82, 0.32]
+component Informed Consent [0.80, 0.62]
+component Patient-Reported Outcomes [0.70, 0.38]
+
+// Practitioner-facing workflow
+component Clinical History-Taking [0.85, 0.42]
+component Physical Examination [0.82, 0.58]
+component Triage Assessment [0.80, 0.55]
+component Working Diagnosis [0.75, 0.45]
+component Treatment Plan [0.73, 0.48]
+component Order Entry (CPOE) [0.68, 0.72]
+component ePrescribing [0.66, 0.78]
+component Clinical Documentation [0.64, 0.65]
+
+// Care settings (multiple, each user-visible)
+component Primary Care Visit [0.78, 0.72]
+component Emergency Department [0.81, 0.65]
+component Outpatient Clinic [0.74, 0.72]
+component Inpatient Ward [0.72, 0.70]
+component Intensive Care Unit [0.70, 0.55]
+component Operating Theatre [0.68, 0.62]
+component Telehealth Consultation [0.66, 0.58]
+component Home Care / Hospice [0.62, 0.47]
+
+// Diagnostic reasoning and decision support
+component Differential Diagnosis [0.58, 0.40]
+component Bayesian Clinical Reasoning [0.52, 0.28]
+component Clinical Heuristics [0.55, 0.45]
+component MDT / Second Opinion [0.50, 0.42]
+component Clinical Decision Support (CDSS) [0.46, 0.55]
+component Risk Scores & Calculators [0.44, 0.70]
+component AI Diagnostic Assistant [0.40, 0.18]
+component Drug Interaction Checking [0.43, 0.82]
+component Dosing Calculators [0.40, 0.78]
+
+// Data sources and observation
+component Vital Signs & Bedside Monitoring [0.50, 0.82]
+component Laboratory Pathology [0.46, 0.78]
+component Medical Imaging [0.44, 0.65]
+component Point-of-Care Testing [0.42, 0.58]
+component Genomic & Molecular Testing [0.36, 0.35]
+component Wearables & Remote Monitoring [0.34, 0.38]
+
+// Standards, guidelines, permissible treatments
+component Clinical Guidelines (NICE/NCCN) [0.38, 0.72]
+component Formulary & Permissible Drugs [0.36, 0.74]
+component Standards of Care [0.42, 0.70]
+component Exception & Off-Label Pathway [0.58, 0.42]
+component Clinical Ethics Committee [0.28, 0.35]
+component Equity & Algorithmic Bias Review [0.26, 0.22]
+
+// Payer-side processes
+component Prior Authorisation [0.60, 0.60]
+component Medical Necessity Review [0.55, 0.55]
+component Claims Adjudication [0.48, 0.78]
+component Coverage Determination [0.42, 0.74]
+
+// Reviews, trials, evidence base
+component Randomised Controlled Trials [0.26, 0.55]
+component Meta-analyses (Cochrane) [0.32, 0.62]
+component Clinical Registries [0.20, 0.60]
+component Regulatory Approval (FDA/EMA/MHRA) [0.30, 0.78]
+component Peer-Reviewed Literature [0.24, 0.80]
+
+// Supporting infrastructure
+component Electronic Health Record [0.30, 0.68]
+component PACS (Imaging Archive) [0.22, 0.82]
+component Clinical Terminology (SNOMED/ICD/LOINC) [0.18, 0.72]
+component HL7 / FHIR Interoperability [0.15, 0.55]
+component Patient Identity & HIPAA [0.14, 0.80]
+component Cloud Utilities [0.08, 0.92]
+
+// Patient -> patient-facing
+Patient->Symptom Presentation
+Patient->Appointment Booking
+Patient->Patient Portal
+Patient->Shared Decision-Making
+Patient->Informed Consent
+Patient->Patient-Reported Outcomes
+
+// Practitioner -> clinical workflow
+Medical Practitioner->Clinical History-Taking
+Medical Practitioner->Physical Examination
+Medical Practitioner->Triage Assessment
+Medical Practitioner->Working Diagnosis
+Medical Practitioner->Treatment Plan
+Medical Practitioner->Order Entry (CPOE)
+Medical Practitioner->ePrescribing
+Medical Practitioner->Clinical Documentation
+
+// Institution -> care settings and workflow
+Medical Institution->Primary Care Visit
+Medical Institution->Emergency Department
+Medical Institution->Outpatient Clinic
+Medical Institution->Inpatient Ward
+Medical Institution->Intensive Care Unit
+Medical Institution->Operating Theatre
+Medical Institution->Telehealth Consultation
+Medical Institution->Home Care / Hospice
+Medical Institution->Standards of Care
+
+// Payer -> payer processes
+Payer->Prior Authorisation
+Payer->Medical Necessity Review
+Payer->Claims Adjudication
+Payer->Coverage Determination
+
+// Symptom -> presentation flow
+Symptom Presentation->Clinical History-Taking
+Appointment Booking->Primary Care Visit
+Appointment Booking->Outpatient Clinic
+Patient Portal->Electronic Health Record
+Patient Portal->Appointment Booking
+
+// Triage and diagnostic reasoning flow
+Clinical History-Taking->Working Diagnosis
+Physical Examination->Working Diagnosis
+Working Diagnosis->Differential Diagnosis
+Differential Diagnosis->Bayesian Clinical Reasoning
+Differential Diagnosis->Clinical Heuristics
+Differential Diagnosis->MDT / Second Opinion
+Differential Diagnosis->Clinical Decision Support (CDSS)
+Clinical Decision Support (CDSS)->Risk Scores & Calculators
+Clinical Decision Support (CDSS)->AI Diagnostic Assistant
+Clinical Decision Support (CDSS)->Clinical Guidelines (NICE/NCCN)
+
+// Data feeding reasoning
+Working Diagnosis->Vital Signs & Bedside Monitoring
+Working Diagnosis->Laboratory Pathology
+Working Diagnosis->Medical Imaging
+Working Diagnosis->Point-of-Care Testing
+Differential Diagnosis->Genomic & Molecular Testing
+Patient-Reported Outcomes->Wearables & Remote Monitoring
+
+// Treatment plan linkage
+Shared Decision-Making->Treatment Plan
+Informed Consent->Treatment Plan
+Treatment Plan->Standards of Care
+Treatment Plan->Clinical Guidelines (NICE/NCCN)
+Treatment Plan->Formulary & Permissible Drugs
+Treatment Plan->Exception & Off-Label Pathway
+Treatment Plan->Prior Authorisation
+Treatment Plan->ePrescribing
+Treatment Plan->Order Entry (CPOE)
+
+// Order / prescribing dependencies
+Order Entry (CPOE)->Electronic Health Record
+Order Entry (CPOE)->Drug Interaction Checking
+Order Entry (CPOE)->Dosing Calculators
+ePrescribing->Formulary & Permissible Drugs
+ePrescribing->Drug Interaction Checking
+Clinical Documentation->Electronic Health Record
+Clinical Documentation->Clinical Terminology (SNOMED/ICD/LOINC)
+
+// Care-setting dependencies on observation & infrastructure
+Emergency Department->Triage Assessment
+Emergency Department->Vital Signs & Bedside Monitoring
+Emergency Department->Laboratory Pathology
+Emergency Department->Medical Imaging
+Inpatient Ward->Vital Signs & Bedside Monitoring
+Inpatient Ward->Electronic Health Record
+Intensive Care Unit->Vital Signs & Bedside Monitoring
+Intensive Care Unit->Medical Imaging
+Operating Theatre->Medical Imaging
+Outpatient Clinic->Electronic Health Record
+Primary Care Visit->Electronic Health Record
+Primary Care Visit->Point-of-Care Testing
+Telehealth Consultation->Electronic Health Record
+Telehealth Consultation->Wearables & Remote Monitoring
+Home Care / Hospice->Wearables & Remote Monitoring
+
+// Imaging, labs, POC → infrastructure
+Medical Imaging->PACS (Imaging Archive)
+Laboratory Pathology->Clinical Terminology (SNOMED/ICD/LOINC)
+Genomic & Molecular Testing->Clinical Terminology (SNOMED/ICD/LOINC)
+PACS (Imaging Archive)->Cloud Utilities
+Electronic Health Record->Clinical Terminology (SNOMED/ICD/LOINC)
+Electronic Health Record->HL7 / FHIR Interoperability
+Electronic Health Record->Patient Identity & HIPAA
+Electronic Health Record->Cloud Utilities
+HL7 / FHIR Interoperability->Cloud Utilities
+
+// Guidelines / standards / formulary origins
+Clinical Guidelines (NICE/NCCN)->Meta-analyses (Cochrane)
+Standards of Care->Clinical Guidelines (NICE/NCCN)
+Formulary & Permissible Drugs->Regulatory Approval (FDA/EMA/MHRA)
+Meta-analyses (Cochrane)->Randomised Controlled Trials
+Meta-analyses (Cochrane)->Peer-Reviewed Literature
+Randomised Controlled Trials->Clinical Registries
+Regulatory Approval (FDA/EMA/MHRA)->Randomised Controlled Trials
+Peer-Reviewed Literature->Clinical Registries
+
+// Decision-support model provenance
+AI Diagnostic Assistant->Clinical Registries
+AI Diagnostic Assistant->Equity & Algorithmic Bias Review
+Risk Scores & Calculators->Meta-analyses (Cochrane)
+
+// Exception and fairness pathways
+Exception & Off-Label Pathway->Clinical Ethics Committee
+Exception & Off-Label Pathway->Medical Necessity Review
+Clinical Ethics Committee->Equity & Algorithmic Bias Review
+
+// Payer processes dependencies
+Prior Authorisation->Medical Necessity Review
+Medical Necessity Review->Clinical Guidelines (NICE/NCCN)
+Medical Necessity Review->Coverage Determination
+Claims Adjudication->Coverage Determination
+Claims Adjudication->Clinical Terminology (SNOMED/ICD/LOINC)
+Coverage Determination->Regulatory Approval (FDA/EMA/MHRA)
+
+// Evolution annotations — where 2022 was pushing things
+evolve AI Diagnostic Assistant 0.42
+evolve Telehealth Consultation 0.72
+evolve Wearables & Remote Monitoring 0.58
+evolve HL7 / FHIR Interoperability 0.72
+evolve Genomic & Molecular Testing 0.55
+
+// Component with supplier-side inertia — EHR vendors slowing interoperability
+component Legacy EHR Silos [0.28, 0.47] inertia
+Electronic Health Record->Legacy EHR Silos
+
+note Differentiation zone (bespoke judgement) [0.60, 0.22]
+note Industrialised rails [0.18, 0.88]
+note Fairness & exceptions [0.27, 0.30]

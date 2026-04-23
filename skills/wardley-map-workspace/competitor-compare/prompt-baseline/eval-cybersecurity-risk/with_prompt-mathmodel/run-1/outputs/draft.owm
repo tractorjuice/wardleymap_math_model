@@ -1,0 +1,140 @@
+title Cybersecurity Risk Management from the Executive View (May 2023)
+style wardley
+
+// ─── Anchor: the executive / board ─────────────────────────────
+anchor Executives [0.98, 0.55]
+
+// ─── Layer 1: strategic drivers the executive holds directly ───
+component P&L Impact Decision [0.92, 0.62]
+component Risk Appetite [0.90, 0.35]
+component Compliance Obligation [0.91, 0.58]
+component Board Risk Reporting [0.88, 0.55]
+
+// ─── Layer 2: risk governance — the framing apparatus ──────────
+component Risk Treatment Mix (Mitigate / Transfer / Accept) [0.82, 0.45]
+component Cyber Insurance [0.78, 0.62]
+component Compliance Frameworks (ISO 27001 / SOC 2 / PCI / NIST CSF) [0.80, 0.78] inertia
+component Regulatory Frameworks (GDPR / DORA / NIS2 / SEC Rules) [0.83, 0.70]
+component Risk Register [0.72, 0.72]
+
+// ─── Layer 3: assessment practice ──────────────────────────────
+component Risk Assessment Methodology [0.66, 0.55]
+component Risk Identification Practice [0.64, 0.50]
+component Risk Quantification (FAIR) [0.58, 0.28]
+component Likelihood / Impact Scoring [0.60, 0.70]
+component Risk Matrix (Heatmap) [0.62, 0.80] inertia
+component Asset Inventory [0.55, 0.65]
+component Threat Intelligence [0.52, 0.55]
+
+// ─── Layer 4: operational security apparatus ───────────────────
+component Security Reporting / Dashboards [0.48, 0.72]
+component Incident Response Process [0.46, 0.55]
+component Security Operations Centre (SOC) [0.44, 0.62]
+component Continuous Monitoring [0.42, 0.74]
+component Pen Testing [0.40, 0.68]
+component Bug Bounty Programme [0.38, 0.55]
+component Red Team / Purple Team Exercises [0.36, 0.38]
+component Security Testing (SAST / DAST) [0.34, 0.75]
+
+// ─── Layer 5: tooling — what they sit on ───────────────────────
+component SIEM [0.28, 0.72]
+component EDR / XDR [0.26, 0.70]
+component Vulnerability Scanning [0.24, 0.85]
+component Identity & Access Management [0.22, 0.82]
+component Cloud Security Posture Management [0.20, 0.60]
+
+// ─── Layer 6: the LLM angle (both defence and threat) ──────────
+component LLM-Augmented Defence (triage / summarisation copilots) [0.30, 0.18]
+component LLM-Assisted Threat (phishing / code attacks) [0.32, 0.15]
+component Foundation LLM APIs [0.10, 0.55]
+
+// ─── Layer 7: deep infrastructure ──────────────────────────────
+component Log / Telemetry Pipeline [0.14, 0.78]
+component Cloud Compute & Storage [0.08, 0.92]
+component Network / Firewall Infra [0.10, 0.88]
+
+// ─── Dependencies: executive → drivers → frameworks → practice → ops → tooling ─
+Executives->P&L Impact Decision
+Executives->Risk Appetite
+Executives->Compliance Obligation
+Executives->Board Risk Reporting
+
+P&L Impact Decision->Risk Treatment Mix (Mitigate / Transfer / Accept)
+P&L Impact Decision->Cyber Insurance
+Risk Appetite->Risk Treatment Mix (Mitigate / Transfer / Accept)
+Risk Appetite->Risk Assessment Methodology
+Compliance Obligation->Compliance Frameworks (ISO 27001 / SOC 2 / PCI / NIST CSF)
+Compliance Obligation->Regulatory Frameworks (GDPR / DORA / NIS2 / SEC Rules)
+Board Risk Reporting->Risk Register
+Board Risk Reporting->Security Reporting / Dashboards
+
+Risk Treatment Mix (Mitigate / Transfer / Accept)->Cyber Insurance
+Risk Treatment Mix (Mitigate / Transfer / Accept)->Risk Register
+Compliance Frameworks (ISO 27001 / SOC 2 / PCI / NIST CSF)->Risk Assessment Methodology
+Regulatory Frameworks (GDPR / DORA / NIS2 / SEC Rules)->Compliance Frameworks (ISO 27001 / SOC 2 / PCI / NIST CSF)
+Regulatory Frameworks (GDPR / DORA / NIS2 / SEC Rules)->Risk Register
+
+Risk Register->Risk Assessment Methodology
+Risk Register->Risk Identification Practice
+Risk Assessment Methodology->Risk Identification Practice
+Risk Assessment Methodology->Risk Quantification (FAIR)
+Risk Assessment Methodology->Likelihood / Impact Scoring
+Risk Assessment Methodology->Risk Matrix (Heatmap)
+Risk Identification Practice->Asset Inventory
+Risk Identification Practice->Threat Intelligence
+Risk Quantification (FAIR)->Asset Inventory
+Risk Quantification (FAIR)->Threat Intelligence
+Likelihood / Impact Scoring->Asset Inventory
+Risk Matrix (Heatmap)->Likelihood / Impact Scoring
+
+// ops depends on inventory + methodology
+Security Reporting / Dashboards->Security Operations Centre (SOC)
+Security Reporting / Dashboards->Continuous Monitoring
+Incident Response Process->Security Operations Centre (SOC)
+Security Operations Centre (SOC)->Continuous Monitoring
+Security Operations Centre (SOC)->SIEM
+Security Operations Centre (SOC)->EDR / XDR
+Continuous Monitoring->SIEM
+Continuous Monitoring->EDR / XDR
+Continuous Monitoring->Log / Telemetry Pipeline
+Pen Testing->Security Testing (SAST / DAST)
+Pen Testing->Vulnerability Scanning
+Bug Bounty Programme->Vulnerability Scanning
+Red Team / Purple Team Exercises->Pen Testing
+Red Team / Purple Team Exercises->Threat Intelligence
+Security Testing (SAST / DAST)->Vulnerability Scanning
+Asset Inventory->Cloud Security Posture Management
+Asset Inventory->Identity & Access Management
+Threat Intelligence->SIEM
+Threat Intelligence->LLM-Assisted Threat (phishing / code attacks)
+
+// tooling → infra
+SIEM->Log / Telemetry Pipeline
+SIEM->Cloud Compute & Storage
+EDR / XDR->Log / Telemetry Pipeline
+Vulnerability Scanning->Cloud Compute & Storage
+Identity & Access Management->Cloud Compute & Storage
+Cloud Security Posture Management->Cloud Compute & Storage
+Log / Telemetry Pipeline->Cloud Compute & Storage
+Log / Telemetry Pipeline->Network / Firewall Infra
+
+// LLM angle
+LLM-Augmented Defence (triage / summarisation copilots)->Foundation LLM APIs
+LLM-Augmented Defence (triage / summarisation copilots)->SIEM
+LLM-Augmented Defence (triage / summarisation copilots)->Log / Telemetry Pipeline
+LLM-Assisted Threat (phishing / code attacks)->Foundation LLM APIs
+Security Operations Centre (SOC)->LLM-Augmented Defence (triage / summarisation copilots)
+Incident Response Process->LLM-Augmented Defence (triage / summarisation copilots)
+
+// ─── Evolution scenarios (NOT forecasts, per Wardley climate) ──
+evolve Risk Quantification (FAIR) 0.55
+evolve LLM-Augmented Defence (triage / summarisation copilots) 0.55
+evolve Cyber Insurance 0.75
+evolve Bug Bounty Programme 0.72
+evolve Risk Register 0.85
+
+// ─── Strategic notes ───────────────────────────────────────────
+note Differentiation zone — FAIR quantification + LLM-assisted triage [0.45, 0.18]
+note Commodity — buy, don't build [0.15, 0.90]
+note Regulation is pulling the compliance stack rightward (DORA / SEC / NIS2) [0.80, 0.73]
+note Cyber insurance hardening = forced maturity of IR + MFA controls [0.72, 0.65]

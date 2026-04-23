@@ -1,0 +1,172 @@
+title Connected Customer Journey in Retail
+style wardley
+
+// Two anchors: the shopper and the producer that supplies goods
+anchor Customer [0.98, 0.55]
+anchor Producer [0.96, 0.60]
+
+// User needs
+component Needs Being Met [0.92, 0.45]
+component Goods [0.90, 0.78]
+component Services [0.88, 0.55]
+
+// Experience layer (what sits on top)
+component Retail Experience [0.86, 0.35]
+component Engagement & Discovery [0.82, 0.45]
+component Customer Service [0.80, 0.55]
+component Personalisation [0.78, 0.35]
+component Returns Experience [0.76, 0.52]
+component Loyalty Programme [0.74, 0.65]
+component In-store Sensory Experience [0.72, 0.30]
+component Recommendations [0.70, 0.55]
+component Trust Signals (reviews & ratings) [0.68, 0.65]
+component Social Commerce [0.66, 0.40]
+component Try-before-buy [0.65, 0.30]
+component Product Visualisation AR/VR [0.62, 0.22]
+component Store Associate [0.60, 0.40]
+
+// Channels
+component Physical Store [0.56, 0.70]
+component E-commerce Site [0.54, 0.78]
+component Mobile App [0.52, 0.72]
+component Marketplace Channel [0.50, 0.72]
+component Telesales [0.48, 0.85]
+
+// Transaction & trust layer
+component Checkout [0.46, 0.80]
+component Privacy & Consent [0.44, 0.55]
+component Customer Identity [0.42, 0.70]
+
+// Societal behaviour & demographics
+component Societal Behaviour Shift [0.40, 0.40]
+component Needs Analysis [0.38, 0.55]
+component Demographic Segmentation [0.36, 0.60]
+
+// Commerce backbone
+component Returns Logistics [0.38, 0.72]
+component Point of Sale [0.36, 0.85]
+component Payments [0.34, 0.90]
+component Order Management [0.30, 0.72]
+component Fulfilment [0.26, 0.78]
+component Last-mile Delivery [0.24, 0.70]
+component Inventory [0.22, 0.80]
+
+// Data & insight spine
+component CRM [0.20, 0.72]
+component Customer Data Platform [0.18, 0.55]
+component Recommender Model [0.16, 0.35]
+component Analytics [0.14, 0.68]
+component Data Protection [0.11, 0.85]
+
+// Supply side
+component Supply Chain [0.17, 0.68]
+component Logistics Network [0.12, 0.82]
+
+// Infrastructure / utilities
+component Authentication [0.10, 0.90]
+component Payment Rails [0.08, 0.95]
+component Cloud Utilities [0.06, 0.92]
+
+// Dependencies
+Customer->Needs Being Met
+Customer->Goods
+Customer->Services
+Customer->Retail Experience
+Producer->Goods
+Producer->Marketplace Channel
+Producer->Supply Chain
+
+Needs Being Met->Goods
+Needs Being Met->Services
+Needs Being Met->Needs Analysis
+
+Retail Experience->Engagement & Discovery
+Retail Experience->Personalisation
+Retail Experience->Customer Service
+Retail Experience->Returns Experience
+Retail Experience->In-store Sensory Experience
+
+Engagement & Discovery->Recommendations
+Engagement & Discovery->Social Commerce
+Engagement & Discovery->Loyalty Programme
+Engagement & Discovery->Trust Signals (reviews & ratings)
+
+Personalisation->Recommendations
+Personalisation->Customer Data Platform
+Recommendations->Recommender Model
+Recommendations->Customer Data Platform
+
+Loyalty Programme->CRM
+Customer Service->Store Associate
+Customer Service->CRM
+Returns Experience->Returns Logistics
+
+In-store Sensory Experience->Physical Store
+In-store Sensory Experience->Store Associate
+Store Associate->Physical Store
+Product Visualisation AR/VR->Mobile App
+Product Visualisation AR/VR->E-commerce Site
+Try-before-buy->Physical Store
+Try-before-buy->Product Visualisation AR/VR
+
+Goods->Physical Store
+Goods->E-commerce Site
+Goods->Mobile App
+Goods->Marketplace Channel
+Services->Customer Service
+
+Physical Store->Point of Sale
+Physical Store->Inventory
+E-commerce Site->Checkout
+E-commerce Site->Cloud Utilities
+Mobile App->Checkout
+Mobile App->Cloud Utilities
+Telesales->Order Management
+Social Commerce->Mobile App
+Marketplace Channel->Order Management
+
+Checkout->Payments
+Checkout->Customer Identity
+Checkout->Order Management
+Payments->Payment Rails
+Point of Sale->Payments
+Point of Sale->Inventory
+
+Order Management->Fulfilment
+Order Management->Inventory
+Fulfilment->Last-mile Delivery
+Fulfilment->Logistics Network
+Last-mile Delivery->Logistics Network
+Returns Logistics->Logistics Network
+Returns Logistics->Order Management
+Inventory->Supply Chain
+Supply Chain->Logistics Network
+
+Trust Signals (reviews & ratings)->CRM
+Customer Identity->Authentication
+Customer Identity->Data Protection
+Privacy & Consent->Data Protection
+Privacy & Consent->Customer Data Platform
+
+Societal Behaviour Shift->Demographic Segmentation
+Demographic Segmentation->Analytics
+Needs Analysis->Demographic Segmentation
+Needs Analysis->Analytics
+
+Customer Data Platform->Analytics
+Customer Data Platform->Data Protection
+CRM->Customer Data Platform
+Analytics->Cloud Utilities
+Recommender Model->Analytics
+Recommender Model->Cloud Utilities
+
+Authentication->Cloud Utilities
+
+evolve Personalisation 0.55
+evolve Product Visualisation AR/VR 0.50
+evolve Recommender Model 0.60
+evolve Social Commerce 0.65
+evolve Customer Data Platform 0.72
+
+note Differentiation zone [0.78, 0.28]
+note Commodity utility [0.12, 0.93]

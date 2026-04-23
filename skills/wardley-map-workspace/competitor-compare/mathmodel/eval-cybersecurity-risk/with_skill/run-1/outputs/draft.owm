@@ -1,0 +1,147 @@
+title Cybersecurity Risk Management (Executive View, May 2023)
+style wardley
+
+anchor Executive [0.97, 0.50]
+
+// Directly executive-facing outputs
+component P&L Impact [0.90, 0.85]
+component Risk Appetite [0.88, 0.40]
+component Regulatory Obligation [0.87, 0.70]
+component Board Risk Reporting [0.84, 0.55]
+component Cyber Insurance [0.82, 0.72]
+
+// Governance layer
+component Risk Management Program [0.76, 0.55]
+component Compliance Program [0.74, 0.77]
+component Risk Register [0.70, 0.65]
+component Mitigation/Transfer/Acceptance Mix [0.68, 0.42]
+
+// Frameworks and standards
+component Compliance Frameworks (SOC 2, ISO 27001, PCI-DSS) [0.62, 0.80]
+component Regulatory Regimes (GDPR, SEC, NIS2) [0.60, 0.68]
+component Risk Frameworks (NIST RMF, ISO 31000) [0.58, 0.72]
+
+// Risk analysis
+component Risk Assessment Methodology [0.56, 0.52]
+component Risk Identification Practice [0.54, 0.40]
+component AI Governance Practice [0.52, 0.08]
+component Risk Quantification (FAIR) [0.50, 0.30]
+component Likelihood/Impact Matrices [0.48, 0.78]
+
+// Asset and control ground truth
+component Asset Inventory [0.46, 0.55]
+component Security Control Catalogue [0.44, 0.70]
+component LLM Attack Surface [0.42, 0.12]
+component Third-Party/Vendor Risk [0.40, 0.60]
+
+// Operations
+component Security Operations Centre (SOC) [0.38, 0.65]
+component Continuous Monitoring [0.36, 0.78]
+component Incident Response [0.34, 0.55]
+component Security Testing [0.32, 0.62]
+component Pen Testing [0.30, 0.68]
+component Bug Bounty Program [0.28, 0.60]
+component LLM-Assisted Defence [0.26, 0.22]
+
+// Tooling
+component GRC Platforms [0.24, 0.68]
+component SIEM [0.22, 0.80]
+component SOAR [0.20, 0.65]
+component EDR/XDR [0.19, 0.78]
+component Vulnerability Scanners [0.18, 0.82]
+
+// Knowledge & data feeds
+component CISO Expert Judgement [0.17, 0.13]
+component Threat Intelligence Feeds [0.15, 0.65]
+component CVE/Vulnerability Data [0.13, 0.85]
+component Foundation LLM Models [0.14, 0.42]
+
+// Deep infra
+component Identity & Access Management [0.11, 0.80]
+component Log Storage/Data Lake [0.08, 0.88]
+component Cloud Utilities [0.05, 0.92]
+
+// Dependencies
+Executive->P&L Impact
+Executive->Risk Appetite
+Executive->Regulatory Obligation
+Executive->Board Risk Reporting
+Executive->Cyber Insurance
+
+P&L Impact->Risk Management Program
+Risk Appetite->Risk Management Program
+Regulatory Obligation->Compliance Program
+Board Risk Reporting->Risk Register
+Board Risk Reporting->Risk Management Program
+Cyber Insurance->Compliance Frameworks (SOC 2, ISO 27001, PCI-DSS)
+Cyber Insurance->Risk Register
+
+Risk Management Program->Risk Register
+Risk Management Program->Mitigation/Transfer/Acceptance Mix
+Risk Management Program->Risk Frameworks (NIST RMF, ISO 31000)
+Compliance Program->Compliance Frameworks (SOC 2, ISO 27001, PCI-DSS)
+Compliance Program->Regulatory Regimes (GDPR, SEC, NIS2)
+Risk Register->Risk Assessment Methodology
+Mitigation/Transfer/Acceptance Mix->Security Control Catalogue
+
+Risk Assessment Methodology->Risk Identification Practice
+Risk Assessment Methodology->Risk Quantification (FAIR)
+Risk Assessment Methodology->Likelihood/Impact Matrices
+Risk Assessment Methodology->CISO Expert Judgement
+Risk Identification Practice->Asset Inventory
+Risk Identification Practice->Third-Party/Vendor Risk
+Risk Identification Practice->LLM Attack Surface
+Risk Quantification (FAIR)->CISO Expert Judgement
+Likelihood/Impact Matrices->CISO Expert Judgement
+AI Governance Practice->LLM Attack Surface
+AI Governance Practice->CISO Expert Judgement
+
+Security Control Catalogue->Security Operations Centre (SOC)
+Security Control Catalogue->Security Testing
+Security Control Catalogue->Incident Response
+Security Operations Centre (SOC)->Continuous Monitoring
+Security Operations Centre (SOC)->Incident Response
+Continuous Monitoring->SIEM
+Continuous Monitoring->EDR/XDR
+Continuous Monitoring->LLM-Assisted Defence
+Incident Response->SOAR
+Incident Response->SIEM
+Security Testing->Pen Testing
+Security Testing->Bug Bounty Program
+Security Testing->Vulnerability Scanners
+Pen Testing->CISO Expert Judgement
+
+Compliance Program->GRC Platforms
+Risk Register->GRC Platforms
+Asset Inventory->GRC Platforms
+
+SIEM->Threat Intelligence Feeds
+SIEM->Log Storage/Data Lake
+EDR/XDR->Threat Intelligence Feeds
+SOAR->Log Storage/Data Lake
+Vulnerability Scanners->CVE/Vulnerability Data
+Threat Intelligence Feeds->CVE/Vulnerability Data
+
+SIEM->Cloud Utilities
+SOAR->Cloud Utilities
+EDR/XDR->Cloud Utilities
+Log Storage/Data Lake->Cloud Utilities
+GRC Platforms->Cloud Utilities
+Asset Inventory->Identity & Access Management
+Security Operations Centre (SOC)->Identity & Access Management
+Identity & Access Management->Cloud Utilities
+
+LLM-Assisted Defence->Foundation LLM Models
+LLM-Assisted Defence->Log Storage/Data Lake
+LLM Attack Surface->Foundation LLM Models
+
+evolve Risk Quantification (FAIR) 0.55
+evolve LLM-Assisted Defence 0.55
+evolve LLM Attack Surface 0.35
+evolve AI Governance Practice 0.45
+evolve Regulatory Regimes (GDPR, SEC, NIS2) 0.82
+
+note Board-level outputs [0.92, 0.20]
+note Expert-judgement core [0.55, 0.05]
+note Commoditised tooling [0.18, 0.95]
+note LLM in-transition zone [0.50, 0.24]

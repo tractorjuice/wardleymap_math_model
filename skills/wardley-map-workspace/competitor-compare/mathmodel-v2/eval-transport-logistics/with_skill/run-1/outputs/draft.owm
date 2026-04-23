@@ -1,0 +1,192 @@
+title Transport & Logistics Landscape
+style wardley
+
+// ===== Anchors (users) =====
+anchor Public [0.96, 0.85]
+anchor Consumer [0.96, 0.70]
+anchor Producer [0.96, 0.45]
+anchor Government [0.96, 0.55]
+anchor Society [0.96, 0.65]
+
+// ===== User-visible needs =====
+component Goods Availability [0.90, 0.85]
+component E-commerce [0.88, 0.78]
+component Shops [0.87, 0.88]
+component Delivery [0.86, 0.75]
+component Supply Chain Awareness [0.84, 0.38]
+component Regulation [0.83, 0.60]
+component Territorial Sovereignty [0.82, 0.20]
+
+// ===== Commerce / fulfilment layer =====
+component Last Mile [0.75, 0.68]
+component Order Management [0.73, 0.72]
+component Automated Delivery [0.70, 0.18]
+component Real-time Stock [0.66, 0.45]
+
+// ===== Distribution network =====
+component Long Haul [0.62, 0.80]
+component Logistics Hubs [0.58, 0.75]
+component Warehouses [0.55, 0.82]
+component Storage [0.52, 0.86]
+component HGV Skills [0.50, 0.58]
+
+// ===== Topology =====
+component Urban Routing [0.45, 0.60]
+component Rural Routing [0.43, 0.55]
+component Road Network [0.40, 0.88]
+component Rail Freight [0.38, 0.82]
+component Ports and Airfreight [0.36, 0.85]
+
+// ===== Vehicle layer =====
+component Trucks [0.32, 0.85]
+component Delivery Vans [0.30, 0.82]
+component Autotrucks [0.28, 0.22]
+component Drones [0.26, 0.15]
+component Scout Robots [0.24, 0.10]
+
+// ===== Power layer =====
+component Fossil Fuel Powertrain [0.22, 0.92]
+component Electric Powertrain [0.20, 0.55]
+component Fuel Distribution [0.18, 0.90]
+component EV Charging Network [0.16, 0.46]
+
+// ===== Information layer =====
+component Logistics Data Platforms [0.29, 0.52]
+component Telematics [0.23, 0.70]
+component Fleet Routing Software [0.21, 0.65]
+component Traffic Data [0.19, 0.72]
+component GPS / Positioning [0.15, 0.95]
+component Mobile Connectivity [0.13, 0.92]
+component Cloud Compute [0.08, 0.93]
+
+// ===== Commodity utilities =====
+component Electricity Grid [0.06, 0.96]
+component Payment Rails [0.11, 0.90]
+
+// ===== Knowledge / doctrine =====
+component CNI Protection Standards [0.49, 0.35]
+component Supply Chain Resilience Doctrine [0.45, 0.30]
+component Driver Licensing Regime [0.42, 0.78]
+
+// ===== Dependencies =====
+// Public / Consumer / Producer needs
+Public->Goods Availability
+Public->Regulation
+Public->Supply Chain Awareness
+Public->Territorial Sovereignty
+Consumer->E-commerce
+Consumer->Shops
+Consumer->Delivery
+Consumer->Goods Availability
+Producer->Long Haul
+Producer->Logistics Hubs
+Producer->Warehouses
+Producer->Order Management
+Government->Regulation
+Government->Territorial Sovereignty
+Government->CNI Protection Standards
+Society->Regulation
+Society->Supply Chain Awareness
+Society->Territorial Sovereignty
+
+// User-visible layer dependencies
+Goods Availability->Delivery
+Goods Availability->Shops
+Goods Availability->E-commerce
+E-commerce->Order Management
+E-commerce->Last Mile
+Shops->Last Mile
+Shops->Warehouses
+Delivery->Last Mile
+Delivery->Automated Delivery
+Supply Chain Awareness->Real-time Stock
+Supply Chain Awareness->Logistics Data Platforms
+Regulation->Driver Licensing Regime
+Regulation->CNI Protection Standards
+Territorial Sovereignty->Supply Chain Resilience Doctrine
+Territorial Sovereignty->CNI Protection Standards
+
+// Fulfilment to distribution
+Last Mile->Delivery Vans
+Last Mile->Urban Routing
+Last Mile->Rural Routing
+Last Mile->HGV Skills
+Last Mile->Automated Delivery
+Order Management->Logistics Data Platforms
+Order Management->Real-time Stock
+Real-time Stock->Logistics Data Platforms
+Real-time Stock->Telematics
+Automated Delivery->Drones
+Automated Delivery->Scout Robots
+Automated Delivery->Autotrucks
+
+// Distribution network
+Long Haul->Trucks
+Long Haul->Rail Freight
+Long Haul->Ports and Airfreight
+Long Haul->HGV Skills
+Long Haul->Road Network
+Logistics Hubs->Warehouses
+Logistics Hubs->Storage
+Logistics Hubs->Road Network
+Warehouses->Storage
+Warehouses->Logistics Data Platforms
+
+// Topology
+Urban Routing->Road Network
+Urban Routing->Traffic Data
+Rural Routing->Road Network
+Rural Routing->Traffic Data
+Road Network->Electricity Grid
+
+// Vehicles -> power
+Trucks->Fossil Fuel Powertrain
+Trucks->Electric Powertrain
+Delivery Vans->Fossil Fuel Powertrain
+Delivery Vans->Electric Powertrain
+Autotrucks->Electric Powertrain
+Autotrucks->Fleet Routing Software
+Autotrucks->Telematics
+Drones->Electric Powertrain
+Drones->Fleet Routing Software
+Scout Robots->Electric Powertrain
+Scout Robots->Fleet Routing Software
+Fossil Fuel Powertrain->Fuel Distribution
+Electric Powertrain->EV Charging Network
+EV Charging Network->Electricity Grid
+
+// Information layer
+Telematics->Mobile Connectivity
+Telematics->GPS / Positioning
+Traffic Data->Mobile Connectivity
+Traffic Data->Cloud Compute
+Fleet Routing Software->Traffic Data
+Fleet Routing Software->GPS / Positioning
+Fleet Routing Software->Cloud Compute
+Logistics Data Platforms->Cloud Compute
+Logistics Data Platforms->Mobile Connectivity
+GPS / Positioning->Mobile Connectivity
+
+// Commerce utilities
+E-commerce->Payment Rails
+Shops->Payment Rails
+
+// HGV skills and regulation feed in
+HGV Skills->Driver Licensing Regime
+CNI Protection Standards->Supply Chain Resilience Doctrine
+
+// ===== Evolution arrows (scenarios) =====
+evolve Automated Delivery 0.55
+evolve Autotrucks 0.52
+evolve Drones 0.45
+evolve Electric Powertrain 0.78
+evolve EV Charging Network 0.75
+evolve Logistics Data Platforms 0.72
+evolve Supply Chain Resilience Doctrine 0.55
+evolve Territorial Sovereignty 0.40
+
+// ===== Notes =====
+note Sovereignty / CNI pressure [0.80, 0.15]
+note Automation war [0.28, 0.35]
+note Utility commodity [0.10, 0.95]
+note Differentiation zone [0.55, 0.35]

@@ -1,0 +1,117 @@
+style wardley
+
+title Game Economies Landscape - November 2023
+
+anchor Publishers [0.97, 0.70]
+anchor Players [0.97, 0.84]
+
+// --- Funding ---
+component Business Models [0.86, 0.75] label [-45, -12]
+component Funding Models [0.84, 0.55] label [-42, 20]
+component VCs [0.80, 0.78] label [10, -8]
+component Private Investors [0.80, 0.68] label [-55, -10]
+
+// --- Build ---
+component Developers [0.74, 0.55] label [12, -10]
+component Game Engines [0.54, 0.78] label [-50, -12]
+component Dev Tools [0.50, 0.80] label [12, -6]
+component Game Platform [0.46, 0.72] label [-50, 12]
+component Hardware [0.38, 0.88] label [12, -4]
+
+// --- Distribution ---
+component Catalogues [0.76, 0.62] label [-48, 12]
+component Game Stores [0.68, 0.80] label [-48, -10]
+component Game Marketplaces [0.60, 0.58] label [10, -8]
+component Alternative Distribution [0.64, 0.32] label [-72, 14]
+
+// --- Monetisation ---
+component Licensing and Subscriptions [0.82, 0.72] label [-92, -14]
+component Virtual Items [0.58, 0.70] label [12, -8]
+component Advertising [0.66, 0.66] label [-54, 14]
+component In-game Economy [0.52, 0.52] label [-50, -12]
+
+// --- Marketing and Buzz ---
+component Campaigns [0.78, 0.78] label [10, -8]
+component Influencer Communities [0.72, 0.58] label [14, -6]
+component Tournaments [0.70, 0.52] label [-58, 14]
+component Streaming Content [0.68, 0.74] label [10, 14]
+component Social Platforms [0.64, 0.82] label [10, -6]
+
+// --- Profiling & Trust ---
+component Player Profiling [0.48, 0.56] label [10, -8]
+component Toxicity Moderation [0.30, 0.36] label [-66, 14]
+component Trust [0.26, 0.28] label [14, -6]
+
+
+// --- Dependencies ---
+
+// Publisher deps
+Publishers->Business Models
+Publishers->Funding Models
+Publishers->Developers
+Publishers->Game Stores
+Publishers->Catalogues
+Publishers->Licensing and Subscriptions
+Publishers->Campaigns
+Publishers->Player Profiling
+
+// Player deps
+Players->Game Stores
+Players->Social Platforms
+Players->Streaming Content
+Players->Tournaments
+Players->Virtual Items
+Players->In-game Economy
+Players->Hardware
+
+// Funding internal
+Funding Models->VCs
+Funding Models->Private Investors
+Business Models->Licensing and Subscriptions
+Business Models->Advertising
+Business Models->Virtual Items
+
+// Build internal
+Developers->Game Engines
+Developers->Dev Tools
+Developers->Game Platform
+Game Platform->Hardware
+Game Engines->Dev Tools
+Game Engines->Hardware
+
+// Distribution internal
+Game Stores->Game Platform
+Catalogues->Game Stores
+Game Marketplaces->Virtual Items
+Alternative Distribution->Game Platform
+
+// Monetisation internal
+Licensing and Subscriptions->Catalogues
+Virtual Items->In-game Economy
+In-game Economy->Player Profiling
+Advertising->Player Profiling
+Advertising->Social Platforms
+
+// Marketing & Buzz internal
+Campaigns->Social Platforms
+Campaigns->Influencer Communities
+Influencer Communities->Streaming Content
+Tournaments->Streaming Content
+Tournaments->Social Platforms
+Streaming Content->Social Platforms
+
+// Profiling & Trust cross-cutting
+Player Profiling->Trust
+Social Platforms->Toxicity Moderation
+Tournaments->Toxicity Moderation
+In-game Economy->Trust
+Toxicity Moderation->Trust
+Influencer Communities->Trust
+
+// Movement (natural evolution arrows)
+evolve Alternative Distribution 0.55
+evolve In-game Economy 0.70
+evolve Player Profiling 0.72
+evolve Tournaments 0.68
+evolve Toxicity Moderation 0.55
+evolve Catalogues 0.76

@@ -1,0 +1,99 @@
+title Personal Computing in the Conversational AI Era
+style wardley
+
+// Anchor — the user and their need
+anchor Developer [0.98, 0.55]
+anchor Build Working Software [0.94, 0.50]
+
+// Layer 1 — applications and devices directly used
+component Applications [0.86, 0.80]
+component Personal Devices [0.84, 0.88]
+
+// Layer 2 — development surface (IDE in two modes)
+component IDE (Human-centric) [0.76, 0.70]
+component IDE (Conversational AI+Human) [0.78, 0.18]
+component Conversational AI Assistant [0.74, 0.22]
+
+// Layer 3 — building blocks consumed by the IDE
+component Component Libraries [0.64, 0.72]
+component Managed Services (APIs) [0.62, 0.78]
+component Legacy Coding Approaches [0.60, 0.30] inertia
+
+// Layer 4 — runtimes and intelligence plane
+component Serverless Runtime [0.52, 0.72]
+component LAMP / .NET Runtime [0.50, 0.88]
+component Large Language Models [0.54, 0.28]
+component FinOps (LLM cost governance) [0.48, 0.20]
+
+// Layer 5 — platform / orchestration
+component Operating Systems [0.40, 0.90]
+component Orchestration (Kubernetes) [0.38, 0.78]
+component Containers [0.34, 0.85]
+
+// Layer 6 — delivery practice and legacy architecture
+component DevOps Practice [0.30, 0.70]
+component Legacy Architecture [0.28, 0.35] inertia
+
+// Layer 7 — compute substrate
+component Servers [0.16, 0.82]
+component Cloud Compute [0.12, 0.92]
+
+// Dependencies (A -> B means A depends on B)
+Developer->Build Working Software
+Build Working Software->Applications
+Build Working Software->Personal Devices
+Build Working Software->IDE (Human-centric)
+Build Working Software->IDE (Conversational AI+Human)
+
+Applications->Component Libraries
+Applications->Managed Services (APIs)
+Applications->Serverless Runtime
+Applications->LAMP / .NET Runtime
+
+IDE (Human-centric)->Component Libraries
+IDE (Human-centric)->Legacy Coding Approaches
+IDE (Human-centric)->DevOps Practice
+
+IDE (Conversational AI+Human)->Conversational AI Assistant
+IDE (Conversational AI+Human)->Component Libraries
+IDE (Conversational AI+Human)->Managed Services (APIs)
+IDE (Conversational AI+Human)->DevOps Practice
+
+Conversational AI Assistant->Large Language Models
+Conversational AI Assistant->FinOps (LLM cost governance)
+
+Managed Services (APIs)->Serverless Runtime
+Managed Services (APIs)->Orchestration (Kubernetes)
+
+Serverless Runtime->Containers
+Serverless Runtime->Operating Systems
+LAMP / .NET Runtime->Operating Systems
+LAMP / .NET Runtime->Servers
+
+Large Language Models->Cloud Compute
+FinOps (LLM cost governance)->Cloud Compute
+
+Orchestration (Kubernetes)->Containers
+Containers->Operating Systems
+Operating Systems->Servers
+Operating Systems->Cloud Compute
+
+DevOps Practice->Orchestration (Kubernetes)
+DevOps Practice->Containers
+Legacy Architecture->Servers
+Legacy Coding Approaches->LAMP / .NET Runtime
+
+Personal Devices->Operating Systems
+Servers->Cloud Compute
+
+// Evolution movements (scenario, not forecast)
+evolve Conversational AI Assistant 0.55
+evolve IDE (Conversational AI+Human) 0.55
+evolve Large Language Models 0.60
+evolve FinOps (LLM cost governance) 0.55
+
+// Strategic annotations
+note Genesis/custom frontier: LLMs + conversational IDE [0.66, 0.10]
+note Commoditised base: cloud + containers + OS [0.20, 0.95]
+note High differentiation zone [0.70, 0.15]
+note Outsource / utility candidates [0.15, 0.90]

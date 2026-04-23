@@ -1,0 +1,166 @@
+title Transportation Logistics Landscape
+style wardley
+
+// Anchors — user needs across the landscape
+anchor The Public [0.98, 0.55]
+anchor Consumer [0.96, 0.58]
+anchor Producer [0.94, 0.50]
+anchor Government [0.92, 0.35]
+anchor Society [0.90, 0.45]
+
+// Commerce surface — how users actually encounter the system
+component Shops [0.82, 0.80]
+component E-commerce [0.80, 0.65]
+component Delivery [0.78, 0.70]
+component Goods (physical) [0.76, 0.85]
+component Supply Chain Awareness [0.74, 0.20]
+
+// Supply-chain core
+component Last Mile [0.68, 0.55]
+component Long Haul [0.62, 0.80]
+component Delivery Drivers [0.58, 0.72]
+component Logistics Hubs [0.56, 0.45]
+component Warehouses [0.52, 0.70]
+component Storage [0.48, 0.78]
+component Real-time Stock [0.46, 0.35]
+component HGV Fleet Operations [0.44, 0.73]
+component Automated Delivery [0.42, 0.16]
+component Transport Regulation [0.41, 0.58]
+component HGV Skills [0.40, 0.48]
+component Fossil Trucks [0.39, 0.88] inertia
+component CNI Sovereignty Policy [0.38, 0.22]
+component Logistics Data Platforms [0.37, 0.38]
+component Emissions Regulation [0.36, 0.45]
+component Electric Trucks [0.37, 0.32]
+component Customs & Borders [0.34, 0.72]
+component Traffic Data [0.33, 0.55]
+component Warehouse Labour [0.32, 0.68]
+component Telematics [0.31, 0.52]
+component Autotrucks (autonomous HGV) [0.32, 0.18]
+component Drones [0.28, 0.17]
+component Scouts (ground robots) [0.26, 0.13]
+
+// Topology — physical network
+component Urban Topology (cities) [0.24, 0.82]
+component Rural Topology [0.22, 0.70]
+component EV Charging [0.21, 0.42]
+component Ports & Terminals [0.20, 0.85]
+component GPS / Navigation [0.19, 0.90]
+component Diesel Fuel [0.17, 0.92]
+component Road Network [0.15, 0.97]
+component Mobile Connectivity [0.13, 0.93]
+component Electricity (grid) [0.11, 0.96]
+component Cloud Utilities [0.09, 0.94]
+
+// Dependencies — edges (a depends on b; source ν must be >= target ν)
+
+// Anchor edges
+The Public->Shops
+The Public->Delivery
+The Public->Goods (physical)
+The Public->Supply Chain Awareness
+Consumer->E-commerce
+Consumer->Shops
+Consumer->Delivery
+Consumer->Goods (physical)
+Producer->Long Haul
+Producer->Logistics Hubs
+Producer->Warehouses
+Government->Transport Regulation
+Government->CNI Sovereignty Policy
+Government->Emissions Regulation
+Government->Customs & Borders
+Society->Supply Chain Awareness
+Society->Transport Regulation
+Society->Emissions Regulation
+
+// Commerce and delivery chain
+Shops->Last Mile
+Shops->Long Haul
+E-commerce->Last Mile
+E-commerce->Warehouses
+E-commerce->Real-time Stock
+Delivery->Last Mile
+Delivery->Delivery Drivers
+Goods (physical)->Long Haul
+Goods (physical)->Warehouses
+
+// Core logistics
+Last Mile->HGV Fleet Operations
+Last Mile->Automated Delivery
+Last Mile->Delivery Drivers
+Last Mile->Urban Topology (cities)
+Last Mile->Rural Topology
+Long Haul->HGV Fleet Operations
+Long Haul->Autotrucks (autonomous HGV)
+Long Haul->Road Network
+Long Haul->Ports & Terminals
+Long Haul->Customs & Borders
+Long Haul->CNI Sovereignty Policy
+Logistics Hubs->Warehouses
+Logistics Hubs->Real-time Stock
+Logistics Hubs->Logistics Data Platforms
+Warehouses->Storage
+Warehouses->Warehouse Labour
+Warehouses->Real-time Stock
+Storage->Warehouse Labour
+Real-time Stock->Logistics Data Platforms
+Real-time Stock->Telematics
+Real-time Stock->CNI Sovereignty Policy
+Delivery Drivers->HGV Skills
+
+// Vehicle / power layer
+HGV Fleet Operations->Fossil Trucks
+HGV Fleet Operations->Electric Trucks
+HGV Fleet Operations->HGV Skills
+HGV Fleet Operations->Telematics
+HGV Fleet Operations->Transport Regulation
+Fossil Trucks->Diesel Fuel
+Fossil Trucks->Road Network
+Fossil Trucks->Emissions Regulation
+Electric Trucks->EV Charging
+Electric Trucks->Electricity (grid)
+Electric Trucks->Road Network
+Electric Trucks->Emissions Regulation
+Autotrucks (autonomous HGV)->Telematics
+Autotrucks (autonomous HGV)->Road Network
+Drones->Mobile Connectivity
+Drones->GPS / Navigation
+Drones->Electricity (grid)
+Scouts (ground robots)->Mobile Connectivity
+Scouts (ground robots)->GPS / Navigation
+Automated Delivery->Drones
+Automated Delivery->Scouts (ground robots)
+Automated Delivery->Autotrucks (autonomous HGV)
+EV Charging->Electricity (grid)
+
+// Information layer
+Telematics->GPS / Navigation
+Telematics->Mobile Connectivity
+Telematics->Cloud Utilities
+Traffic Data->Telematics
+Traffic Data->Mobile Connectivity
+Logistics Data Platforms->Cloud Utilities
+Logistics Data Platforms->Traffic Data
+GPS / Navigation->Mobile Connectivity
+
+// Topology and infrastructure
+Urban Topology (cities)->Road Network
+Rural Topology->Road Network
+Ports & Terminals->Road Network
+
+// Evolution arrows — scenario trajectories, not forecasts
+evolve Autotrucks (autonomous HGV) 0.52
+evolve Automated Delivery 0.48
+evolve Drones 0.45
+evolve Real-time Stock 0.70
+evolve Electric Trucks 0.65
+evolve CNI Sovereignty Policy 0.48
+evolve Telematics 0.80
+evolve Logistics Data Platforms 0.72
+
+// Notes
+note Commoditised utility [0.15, 0.93]
+note Automation war [0.32, 0.17]
+note Sovereignty pressure [0.40, 0.22]
+note Differentiation zone [0.50, 0.35]

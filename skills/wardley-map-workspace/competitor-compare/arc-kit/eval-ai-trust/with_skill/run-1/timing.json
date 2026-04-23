@@ -1,0 +1,11 @@
+{
+  "run": 1,
+  "skill": "competitor-compare/arc-kit/skill (wardley-mapping)",
+  "scenario": "eval-ai-trust (June 2023 AI trust landscape)",
+  "blind": true,
+  "model": "claude-opus-4-7[1m]",
+  "start_ns": 1776875794890561878,
+  "end_ns": 1776876040520644441,
+  "elapsed_seconds": 245.630,
+  "notes": "First complete pass; skill followed literally (steps 1-6). Step 1 AskUserQuestion skipped because scenario already specified user, need, scope, goal, depth; answers inferred from the scenario brief. draft.owm written as OWM block unwrapped (no surrounding code fence). No iteration against any in-tree validator."
+}

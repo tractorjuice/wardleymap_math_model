@@ -1,0 +1,11 @@
+{
+  "scenario": "eval-government-sovereignty",
+  "skill": "arc-kit/wardley-mapping",
+  "run": 1,
+  "mode": "blind",
+  "start_ms": 1776875988187,
+  "end_ms": 1776876199915,
+  "duration_ms": 211728,
+  "duration_seconds": 211.728,
+  "notes": "Single-run wall time from first skill read to draft.owm + output.md complete. No validator, no in-tree skill, no reference.owm read."
+}

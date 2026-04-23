@@ -1,0 +1,12 @@
+{
+  "scenario": "construction-supply",
+  "skill": "wardley-map (mathmodel-v2)",
+  "run": 1,
+  "blind": true,
+  "start_epoch_seconds": 1776939379,
+  "end_epoch_seconds": 1776939758,
+  "elapsed_seconds": 379,
+  "components_plus_anchors": 46,
+  "edges": 73,
+  "notes": "Manual visibility audit used in place of node validate_owm.mjs — node script invocation was not permitted in this sandbox. 4 visibility violations detected in draft, all fixed before emission. Step 5.6 layout check also performed manually: 0 near-duplicate pairs, 1 stage-boundary straddle fixed (Mortgage Valuation ε 0.75 → 0.72), stage distribution balanced (3/18/13/12 across Genesis/Custom/Product/Commodity)."
+}

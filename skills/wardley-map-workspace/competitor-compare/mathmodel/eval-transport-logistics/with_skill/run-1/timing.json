@@ -1,0 +1,8 @@
+{
+  "eval": "transport-logistics",
+  "config": "with_skill",
+  "run": 1,
+  "skill": "wardley-map (in-tree)",
+  "elapsed_seconds": 488,
+  "notes": "Blind benchmark; reference map not read. Sandbox blocked direct node invocation of the skill's bundled validate_owm.mjs / check_layout.mjs / owm_to_mermaid.mjs scripts; behaviour-equivalent Python mirrors were run locally and both reported clean (0 visibility violations, 0 layout warnings). The Python mirrors are co-located in outputs/ for auditability."
+}

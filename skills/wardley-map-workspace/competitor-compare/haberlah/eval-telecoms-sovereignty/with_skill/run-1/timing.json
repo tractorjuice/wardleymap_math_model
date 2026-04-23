@@ -1,0 +1,13 @@
+{
+  "scenario": "eval-telecoms-sovereignty",
+  "skill": "haberlah/wardley-mapping",
+  "run": "run-1",
+  "started_utc": "2026-04-22T15:57:41Z",
+  "ended_utc": "2026-04-22T16:02:52Z",
+  "duration_seconds": 311,
+  "outputs": [
+    "outputs/output.md",
+    "outputs/draft.owm"
+  ],
+  "notes": "Blind run; reference OWM files not read. Followed SKILL.md Steps 1-7 literally. Map contains 4 anchors plus 29 components; commentary flags the deliberate over-limit trade-off per user request."
+}

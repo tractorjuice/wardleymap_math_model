@@ -1,0 +1,13 @@
+{
+  "scenario": "eval-government-sovereignty",
+  "mode": "prompt-baseline",
+  "prompt_file": "/workspaces/wardleymap_math_model/prompts/wardley_map_generator.md",
+  "start_unix_s": 1776873106.080725327,
+  "end_unix_s": 1776873259.317470853,
+  "elapsed_s": 153.236745526,
+  "outputs": [
+    "output.md",
+    "draft.owm",
+    "timing.json"
+  ]
+}

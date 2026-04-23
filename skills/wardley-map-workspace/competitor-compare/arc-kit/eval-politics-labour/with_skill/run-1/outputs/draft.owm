@@ -1,0 +1,106 @@
+title UK Labour Party — Preparing for Government (May 2024)
+
+anchor Keir Starmer [0.99, 0.42]
+anchor UK voters [0.97, 0.78]
+anchor Labour Party members [0.95, 0.60]
+
+component Government-in-waiting narrative [0.90, 0.32] label [-120, 8]
+component Public engagement [0.88, 0.70] label [-70, 14]
+component Media relations [0.86, 0.82] label [12, -8]
+component Campaign strategies [0.84, 0.62] label [-95, 14]
+component Volunteer mobilisation [0.82, 0.74] label [12, 0]
+component Stakeholder engagement [0.80, 0.55] label [-110, 14]
+component Fundraising [0.78, 0.78] label [10, -8]
+component Private sector collaboration [0.76, 0.36] label [-150, -2]
+component Polling and voter targeting [0.74, 0.80] label [6, -8]
+
+component Party policy framework [0.72, 0.48] label [-120, 14]
+component Internal party democracy [0.70, 0.55] label [-110, 0]
+component Research and policy development [0.68, 0.45] label [-150, 14]
+component Manifesto drafting [0.66, 0.50] label [-100, -2]
+
+component Economic equality policy [0.60, 0.38] label [-130, 14]
+component Workers' rights / New Deal for Working People [0.58, 0.30] label [-180, 14]
+component Anti-discrimination policy [0.55, 0.62] label [8, -4]
+component Social justice programmes [0.52, 0.46] label [-130, 0]
+component Healthcare access / NHS reform [0.62, 0.58] label [10, -6]
+component Education access [0.50, 0.62] label [8, 0]
+component Housing policy [0.48, 0.42] label [-90, 14]
+component Infrastructure development [0.44, 0.55] label [-130, 0]
+component Public sector investment [0.42, 0.40] label [-130, 14]
+component Climate change action / GB Energy [0.40, 0.28] label [-170, 14]
+component National security posture [0.45, 0.70] label [10, -2]
+component International relations [0.38, 0.65] label [8, 4]
+component Community programmes [0.35, 0.58] label [10, 0]
+component Digital transformation of government [0.30, 0.22] label [-170, 14]
+
+Keir Starmer->Government-in-waiting narrative
+Keir Starmer->Media relations
+Keir Starmer->Campaign strategies
+Keir Starmer->Party policy framework
+Keir Starmer->Manifesto drafting
+
+UK voters->Public engagement
+UK voters->Media relations
+UK voters->Campaign strategies
+UK voters->Polling and voter targeting
+UK voters->Healthcare access / NHS reform
+UK voters->Education access
+UK voters->Anti-discrimination policy
+UK voters->National security posture
+
+Labour Party members->Volunteer mobilisation
+Labour Party members->Internal party democracy
+Labour Party members->Fundraising
+Labour Party members->Party policy framework
+
+Government-in-waiting narrative->Party policy framework
+Government-in-waiting narrative->Manifesto drafting
+Public engagement->Campaign strategies
+Public engagement->Volunteer mobilisation
+Campaign strategies->Polling and voter targeting
+Campaign strategies->Media relations
+Campaign strategies->Fundraising
+Campaign strategies->Volunteer mobilisation
+Stakeholder engagement->Private sector collaboration
+Stakeholder engagement->Research and policy development
+
+Party policy framework->Research and policy development
+Party policy framework->Internal party democracy
+Party policy framework->Manifesto drafting
+Manifesto drafting->Research and policy development
+Manifesto drafting->Economic equality policy
+Manifesto drafting->Workers' rights / New Deal for Working People
+Manifesto drafting->Healthcare access / NHS reform
+Manifesto drafting->Education access
+Manifesto drafting->Housing policy
+Manifesto drafting->Climate change action / GB Energy
+Manifesto drafting->Public sector investment
+Manifesto drafting->Infrastructure development
+Manifesto drafting->National security posture
+Manifesto drafting->International relations
+Manifesto drafting->Digital transformation of government
+Manifesto drafting->Community programmes
+Manifesto drafting->Anti-discrimination policy
+Manifesto drafting->Social justice programmes
+
+Economic equality policy->Workers' rights / New Deal for Working People
+Economic equality policy->Public sector investment
+Workers' rights / New Deal for Working People->Social justice programmes
+Healthcare access / NHS reform->Public sector investment
+Education access->Public sector investment
+Housing policy->Infrastructure development
+Infrastructure development->Public sector investment
+Infrastructure development->Climate change action / GB Energy
+Climate change action / GB Energy->Infrastructure development
+Climate change action / GB Energy->Private sector collaboration
+Digital transformation of government->Public sector investment
+
+Anti-discrimination policy->Social justice programmes
+Community programmes->Social justice programmes
+
+evolve Workers' rights / New Deal for Working People 0.55
+evolve Climate change action / GB Energy 0.50
+evolve Digital transformation of government 0.45
+evolve Private sector collaboration 0.58
+evolve Government-in-waiting narrative 0.60

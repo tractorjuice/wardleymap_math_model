@@ -1,0 +1,176 @@
+title National Sovereignty (Government View, April 2023)
+style wardley
+
+// Anchors — four user types in the sovereignty chain
+anchor Supranational Layer [0.97, 0.68]
+anchor Government [0.95, 0.55]
+anchor Corporations and Shareholders [0.93, 0.72]
+anchor Society [0.91, 0.48]
+
+// Outcome layer — what "sovereignty" actually produces for the anchors
+component Legitimacy [0.86, 0.55]
+component Perception of Success [0.82, 0.58]
+component Public Belonging [0.80, 0.45]
+component Election Legitimacy [0.78, 0.52]
+
+// Pillars of sovereignty — the first-order claims a government asserts
+component Territorial Sovereignty [0.74, 0.78]
+component Economic Sovereignty [0.72, 0.65]
+component Political Sovereignty [0.70, 0.80]
+component Digital Sovereignty [0.68, 0.32]
+component Cultural Sovereignty [0.66, 0.70]
+component Security Sovereignty [0.64, 0.72]
+
+// Theatres — where the pillars actually play out
+component Land Theatre [0.58, 0.88]
+component Supply Chain Theatre [0.56, 0.55]
+component Cyber Theatre [0.54, 0.38]
+component CNI Theatre [0.52, 0.62]
+
+// Awareness apparatus — what the government sees
+component Territorial Awareness [0.48, 0.82]
+component Supply-Chain Awareness [0.46, 0.28]
+component Digital-Chain Awareness [0.44, 0.18]
+
+// Capability layer — what the government can do with what it sees
+component Capability Layer [0.40, 0.55]
+component Crisis Response [0.38, 0.42]
+component Intelligence Services [0.36, 0.70]
+component Armed Forces [0.34, 0.78]
+component Regulatory Enforcement [0.33, 0.68]
+component Diplomacy [0.32, 0.76]
+
+// Media mix — the channels that shape perception
+component Social Media [0.52, 0.68]
+component Mainstream Media [0.50, 0.85]
+component Education [0.48, 0.88]
+component Art [0.46, 0.82]
+component Propaganda [0.44, 0.78]
+
+// Social norms — the K-layer the legitimacy rests on
+component Integrity [0.23, 0.84]
+component Benevolence [0.21, 0.78]
+component Fairness [0.19, 0.86]
+component Competency [0.17, 0.80]
+component Identity [0.15, 0.72]
+
+// Legal foundation
+component International Law [0.26, 0.82]
+component Domestic Laws [0.28, 0.88]
+component Treaties and Alliances [0.30, 0.76]
+
+// Feedback and reinforcement
+component Civic Participation [0.60, 0.58]
+component Public Discourse [0.58, 0.62]
+
+// Dependencies — anchors into legitimacy/pillars
+Supranational Layer->Legitimacy
+Supranational Layer->Political Sovereignty
+Supranational Layer->International Law
+Supranational Layer->Treaties and Alliances
+Government->Legitimacy
+Government->Election Legitimacy
+Government->Territorial Sovereignty
+Government->Economic Sovereignty
+Government->Political Sovereignty
+Government->Digital Sovereignty
+Government->Cultural Sovereignty
+Government->Security Sovereignty
+Corporations and Shareholders->Economic Sovereignty
+Corporations and Shareholders->Digital Sovereignty
+Corporations and Shareholders->Perception of Success
+Society->Public Belonging
+Society->Election Legitimacy
+Society->Cultural Sovereignty
+Society->Legitimacy
+
+// Legitimacy depends on perception, belonging, elections
+Legitimacy->Perception of Success
+Legitimacy->Public Belonging
+Legitimacy->Election Legitimacy
+Perception of Success->Mainstream Media
+Perception of Success->Social Media
+Public Belonging->Cultural Sovereignty
+Public Belonging->Identity
+Election Legitimacy->Integrity
+Election Legitimacy->Fairness
+Election Legitimacy->Domestic Laws
+
+// Pillars depend on theatres
+Territorial Sovereignty->Land Theatre
+Territorial Sovereignty->CNI Theatre
+Economic Sovereignty->Supply Chain Theatre
+Economic Sovereignty->CNI Theatre
+Political Sovereignty->Civic Participation
+Political Sovereignty->International Law
+Digital Sovereignty->Cyber Theatre
+Digital Sovereignty->CNI Theatre
+Cultural Sovereignty->Public Discourse
+Cultural Sovereignty->Education
+Security Sovereignty->Land Theatre
+Security Sovereignty->Cyber Theatre
+Security Sovereignty->CNI Theatre
+
+// Theatres depend on awareness
+Land Theatre->Territorial Awareness
+Supply Chain Theatre->Supply-Chain Awareness
+Cyber Theatre->Digital-Chain Awareness
+CNI Theatre->Territorial Awareness
+CNI Theatre->Digital-Chain Awareness
+
+// Awareness depends on capability
+Territorial Awareness->Intelligence Services
+Supply-Chain Awareness->Intelligence Services
+Digital-Chain Awareness->Intelligence Services
+
+// Capability layer decomposition
+Capability Layer->Crisis Response
+Capability Layer->Intelligence Services
+Capability Layer->Armed Forces
+Capability Layer->Regulatory Enforcement
+Capability Layer->Diplomacy
+Crisis Response->Armed Forces
+Crisis Response->Regulatory Enforcement
+Diplomacy->Treaties and Alliances
+Diplomacy->International Law
+Regulatory Enforcement->Domestic Laws
+
+// Awareness/capability from pillar action
+Economic Sovereignty->Regulatory Enforcement
+Security Sovereignty->Armed Forces
+Security Sovereignty->Intelligence Services
+Political Sovereignty->Diplomacy
+
+// Civic participation and public discourse
+Election Legitimacy->Civic Participation
+Civic Participation->Public Discourse
+Public Discourse->Social Media
+Public Discourse->Mainstream Media
+Public Discourse->Education
+Public Discourse->Art
+
+// Media mix feeds the norms and perception
+Social Media->Propaganda
+Mainstream Media->Propaganda
+Education->Competency
+Education->Benevolence
+Art->Identity
+
+// Laws codify norms (laws depend on the norms they encode)
+Domestic Laws->Integrity
+Domestic Laws->Fairness
+Domestic Laws->Competency
+Domestic Laws->Benevolence
+International Law->Integrity
+International Law->Fairness
+
+// Evolve targets — the known 2023-era trajectories
+evolve Digital Sovereignty 0.55
+evolve Supply-Chain Awareness 0.50
+evolve Digital-Chain Awareness 0.45
+evolve Crisis Response 0.60
+evolve Cyber Theatre 0.62
+
+// Notes
+note Industrialised sovereignty [0.5, 0.88]
+note Contested and fragile [0.55, 0.22]

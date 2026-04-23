@@ -1,0 +1,205 @@
+title Telecoms Sovereignty (October 2022)
+style wardley
+
+// Anchors — four distinct user types per the scenario
+anchor Government [0.98, 0.35]
+anchor The Collective [0.96, 0.45]
+anchor Corporations [0.94, 0.60]
+anchor People [0.96, 0.70]
+
+// ===========================================================
+// Sovereignty pillars (user-visible policy outcomes)
+// ===========================================================
+component Territorial Sovereignty [0.90, 0.30]
+component Political Sovereignty [0.90, 0.40]
+component Cultural Sovereignty [0.88, 0.45]
+component Economic Sovereignty [0.88, 0.55]
+component Digital Sovereignty [0.87, 0.35]
+component CNI Protection [0.86, 0.45]
+
+// ===========================================================
+// Access devices (what citizens and corporations hold)
+// ===========================================================
+component Smartphones [0.80, 0.82]
+component Computers [0.78, 0.85]
+component Radio and TV Receivers [0.76, 0.88]
+component Sat Phones [0.74, 0.65]
+component IoT Devices [0.72, 0.70]
+
+// ===========================================================
+// Access networks (connecting devices to the backbone)
+// ===========================================================
+component Mobile Towers and RAN [0.64, 0.72]
+component Fixed Cable Access [0.62, 0.80]
+component Satellite Access [0.60, 0.58]
+component Launch Vehicles [0.40, 0.40]
+
+// ===========================================================
+// Network equipment and topology
+// ===========================================================
+component Fixed Network Topology [0.56, 0.78]
+component Mobile Network Core [0.54, 0.66]
+component Network Equipment Vendors [0.48, 0.65]
+component Subsea Cable Landings [0.44, 0.70]
+component International Peering [0.46, 0.60]
+
+// ===========================================================
+// Control layer (sovereign choke points)
+// ===========================================================
+component SIM and eSIM Identity [0.58, 0.73]
+component Nation-State Firewall and DPI [0.55, 0.68]
+component DNS Resolution [0.52, 0.85]
+component DNS over HTTPS [0.60, 0.78]
+component Geofencing and Lawful Intercept [0.56, 0.58]
+component Spectrum Allocation [0.52, 0.42]
+
+// ===========================================================
+// Theatre and awareness layer
+// ===========================================================
+component Awareness of Land-Sea-Air-Space [0.70, 0.30]
+component Supply Chain Awareness [0.69, 0.26]
+component Cyber Situational Awareness [0.66, 0.40]
+
+// ===========================================================
+// Expertise (knowledge layer)
+// ===========================================================
+component Telecoms Engineering Expertise [0.32, 0.45]
+component Regulatory Expertise [0.30, 0.60]
+component Cryptographic Expertise [0.28, 0.38]
+
+// ===========================================================
+// Underlying reality — supply chains, compute, power, space, geography
+// ===========================================================
+component Geography [0.08, 0.95]
+component Physical Supply Chains [0.26, 0.48]
+component Information Supply Chains [0.24, 0.45]
+component Semiconductor Fabrication [0.22, 0.55]
+component Rare Earths and Critical Minerals [0.15, 0.60]
+component Compute [0.23, 0.88]
+component Power Grid [0.10, 0.92]
+component Orbital Slots and Space [0.18, 0.48]
+
+// ===========================================================
+// Notes
+// ===========================================================
+note Sovereign-controllable zone [0.50, 0.18]
+note Foreign-actor dependency [0.25, 0.80]
+note Stage IV utilities [0.12, 0.97]
+
+// ===========================================================
+// Dependencies — Government anchor
+// ===========================================================
+Government->Territorial Sovereignty
+Government->Political Sovereignty
+Government->Digital Sovereignty
+Government->CNI Protection
+Government->Awareness of Land-Sea-Air-Space
+Government->Supply Chain Awareness
+Government->Cyber Situational Awareness
+Government->Spectrum Allocation
+Government->Geofencing and Lawful Intercept
+Government->Nation-State Firewall and DPI
+
+// The Collective anchor
+The Collective->Cultural Sovereignty
+The Collective->Political Sovereignty
+The Collective->Radio and TV Receivers
+The Collective->DNS Resolution
+
+// Corporations anchor
+Corporations->Economic Sovereignty
+Corporations->CNI Protection
+Corporations->Computers
+Corporations->IoT Devices
+Corporations->Fixed Cable Access
+Corporations->International Peering
+
+// People anchor
+People->Smartphones
+People->Computers
+People->Radio and TV Receivers
+People->Sat Phones
+People->Cultural Sovereignty
+
+// Sovereignty pillars → enabling layers
+Territorial Sovereignty->Awareness of Land-Sea-Air-Space
+Territorial Sovereignty->Subsea Cable Landings
+Political Sovereignty->Nation-State Firewall and DPI
+Political Sovereignty->Geofencing and Lawful Intercept
+Cultural Sovereignty->DNS Resolution
+Cultural Sovereignty->Radio and TV Receivers
+Economic Sovereignty->International Peering
+Economic Sovereignty->Physical Supply Chains
+Digital Sovereignty->DNS Resolution
+Digital Sovereignty->SIM and eSIM Identity
+Digital Sovereignty->Nation-State Firewall and DPI
+Digital Sovereignty->Cryptographic Expertise
+CNI Protection->Mobile Network Core
+CNI Protection->Fixed Network Topology
+CNI Protection->Power Grid
+CNI Protection->Cyber Situational Awareness
+
+// Devices → networks
+Smartphones->Mobile Towers and RAN
+Smartphones->SIM and eSIM Identity
+Computers->Fixed Cable Access
+Computers->DNS Resolution
+Radio and TV Receivers->Spectrum Allocation
+Sat Phones->Satellite Access
+IoT Devices->Mobile Towers and RAN
+IoT Devices->SIM and eSIM Identity
+
+// Access networks → network equipment and topology
+Mobile Towers and RAN->Mobile Network Core
+Mobile Towers and RAN->Network Equipment Vendors
+Mobile Towers and RAN->Spectrum Allocation
+Fixed Cable Access->Fixed Network Topology
+Fixed Cable Access->Subsea Cable Landings
+Satellite Access->Orbital Slots and Space
+Satellite Access->Launch Vehicles
+Launch Vehicles->Physical Supply Chains
+
+// Network cores and topology
+Mobile Network Core->Network Equipment Vendors
+Fixed Network Topology->Network Equipment Vendors
+Fixed Network Topology->International Peering
+Subsea Cable Landings->Geography
+International Peering->Subsea Cable Landings
+
+// Control layer
+SIM and eSIM Identity->Mobile Network Core
+SIM and eSIM Identity->Semiconductor Fabrication
+Nation-State Firewall and DPI->Network Equipment Vendors
+Nation-State Firewall and DPI->Telecoms Engineering Expertise
+DNS Resolution->Information Supply Chains
+DNS over HTTPS->DNS Resolution
+Geofencing and Lawful Intercept->Mobile Network Core
+Geofencing and Lawful Intercept->Regulatory Expertise
+Spectrum Allocation->Regulatory Expertise
+
+// Theatre / awareness
+Awareness of Land-Sea-Air-Space->Orbital Slots and Space
+Supply Chain Awareness->Physical Supply Chains
+Supply Chain Awareness->Information Supply Chains
+Cyber Situational Awareness->Compute
+
+// Network equipment depends on deep supply chains
+Network Equipment Vendors->Semiconductor Fabrication
+Network Equipment Vendors->Physical Supply Chains
+Network Equipment Vendors->Telecoms Engineering Expertise
+
+// Deep reality
+Semiconductor Fabrication->Rare Earths and Critical Minerals
+Semiconductor Fabrication->Power Grid
+Compute->Power Grid
+Compute->Semiconductor Fabrication
+Orbital Slots and Space->Geography
+Physical Supply Chains->Geography
+Information Supply Chains->Compute
+Rare Earths and Critical Minerals->Geography
+
+// Evolution targets — strategic scenarios
+evolve Nation-State Firewall and DPI 0.80
+evolve DNS over HTTPS 0.88
+evolve Satellite Access 0.75
+evolve SIM and eSIM Identity 0.82

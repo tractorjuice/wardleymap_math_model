@@ -1,0 +1,164 @@
+title UK Construction Supply Chain (March 2023)
+
+// Anchors (user-needs, top of map)
+anchor Citizens [0.97, 0.05]
+anchor Government Housing Policy [0.95, 0.08]
+anchor Mortgage Companies [0.93, 0.70]
+
+// Demand-side components
+component Completed Homes (Private) [0.88, 0.60]
+component Social Housing Stock [0.86, 0.55]
+component Commercial Buildings [0.86, 0.65]
+component Planning Permission [0.82, 0.50]
+component Building Regulations [0.82, 0.82]
+component Building Inspection / QA [0.78, 0.55]
+
+// Delivery / site layer
+component Main Contractor Delivery [0.74, 0.45]
+component Project Management [0.72, 0.55]
+component Site Works (Bespoke Build) [0.70, 0.28]
+
+// Labour
+component Skilled Trades (Bricklayers, Electricians, Plumbers) [0.64, 0.32]
+component Unskilled Site Labour [0.58, 0.70]
+component Certification (CSCS, Gas Safe, NICEIC) [0.60, 0.78]
+component Training / Apprenticeships [0.56, 0.40]
+
+// Emerging construction modes
+component Modular / Volumetric Construction [0.62, 0.40]
+component Prefabricated Panels [0.58, 0.55]
+component Factory-Mode Housing (MMC) [0.56, 0.30]
+component Test-Driven / Digital-Twin Methods [0.54, 0.18]
+
+// Design / blueprint layer
+component Architectural Design [0.68, 0.55]
+component Structural Engineering [0.66, 0.58]
+component Blueprints / Drawings [0.64, 0.65]
+component Building Information Modelling (BIM) [0.62, 0.60]
+
+// Distribution
+component Traditional Builders' Merchants [0.48, 0.72]
+component Integrated Distributors [0.46, 0.55]
+component Platform / Online Marketplaces [0.44, 0.42]
+
+// Manufacture
+component Component Manufacture (Windows, Doors, Fittings) [0.42, 0.70]
+component Cement / Concrete Production [0.40, 0.85]
+component Steel Production [0.38, 0.82]
+
+// Materials
+component Raw Materials (Aggregate, Timber, Steel Feedstock) [0.32, 0.88]
+component Recycled Materials [0.30, 0.55]
+component Novel Materials (Cross-Laminated Timber, Low-Carbon Cement) [0.28, 0.22]
+component Substitutable Materials (Hempcrete, Bio-Based) [0.26, 0.15]
+
+// Equipment / machinery
+component Heavy Plant & Machinery [0.50, 0.70]
+component Hand Tools / Small Plant [0.48, 0.85]
+
+// Logistics
+component Road Logistics / Haulage [0.36, 0.88]
+component Port / Import Logistics [0.34, 0.80]
+component Warehousing [0.34, 0.78]
+
+// Supply-chain resilience / CNI
+component Material Supply Chain Visibility [0.24, 0.30]
+component Critical National Infrastructure (Skilled Labour Supply) [0.22, 0.25]
+
+// Dependency edges (a depends on b; nu(a) >= nu(b))
+
+// Anchor to top-level demand
+edge Citizens -> Completed Homes (Private)
+edge Citizens -> Social Housing Stock
+edge Government Housing Policy -> Social Housing Stock
+edge Government Housing Policy -> Completed Homes (Private)
+edge Government Housing Policy -> Building Regulations
+edge Government Housing Policy -> Critical National Infrastructure (Skilled Labour Supply)
+edge Mortgage Companies -> Completed Homes (Private)
+edge Mortgage Companies -> Building Inspection / QA
+edge Completed Homes (Private) -> Planning Permission
+edge Completed Homes (Private) -> Building Inspection / QA
+edge Completed Homes (Private) -> Main Contractor Delivery
+edge Social Housing Stock -> Planning Permission
+edge Social Housing Stock -> Main Contractor Delivery
+edge Social Housing Stock -> Building Inspection / QA
+edge Commercial Buildings -> Planning Permission
+edge Commercial Buildings -> Main Contractor Delivery
+edge Commercial Buildings -> Building Inspection / QA
+
+// Planning / regulation stack
+edge Planning Permission -> Building Regulations
+edge Building Inspection / QA -> Building Regulations
+edge Building Inspection / QA -> Certification (CSCS, Gas Safe, NICEIC)
+
+// Delivery layer
+edge Main Contractor Delivery -> Project Management
+edge Main Contractor Delivery -> Site Works (Bespoke Build)
+edge Main Contractor Delivery -> Modular / Volumetric Construction
+edge Main Contractor Delivery -> Architectural Design
+edge Project Management -> Blueprints / Drawings
+edge Site Works (Bespoke Build) -> Skilled Trades (Bricklayers, Electricians, Plumbers)
+edge Site Works (Bespoke Build) -> Unskilled Site Labour
+edge Site Works (Bespoke Build) -> Heavy Plant & Machinery
+edge Site Works (Bespoke Build) -> Hand Tools / Small Plant
+
+// Labour dependencies
+edge Skilled Trades (Bricklayers, Electricians, Plumbers) -> Certification (CSCS, Gas Safe, NICEIC)
+edge Skilled Trades (Bricklayers, Electricians, Plumbers) -> Training / Apprenticeships
+edge Training / Apprenticeships -> Critical National Infrastructure (Skilled Labour Supply)
+
+// Emerging modes
+edge Modular / Volumetric Construction -> Prefabricated Panels
+edge Modular / Volumetric Construction -> Factory-Mode Housing (MMC)
+edge Modular / Volumetric Construction -> Test-Driven / Digital-Twin Methods
+edge Factory-Mode Housing (MMC) -> Component Manufacture (Windows, Doors, Fittings)
+edge Factory-Mode Housing (MMC) -> Prefabricated Panels
+edge Prefabricated Panels -> Component Manufacture (Windows, Doors, Fittings)
+edge Test-Driven / Digital-Twin Methods -> Building Information Modelling (BIM)
+
+// Design stack
+edge Architectural Design -> Structural Engineering
+edge Architectural Design -> Blueprints / Drawings
+edge Architectural Design -> Building Information Modelling (BIM)
+edge Structural Engineering -> Blueprints / Drawings
+
+// Distribution stack
+edge Site Works (Bespoke Build) -> Traditional Builders' Merchants
+edge Main Contractor Delivery -> Integrated Distributors
+edge Main Contractor Delivery -> Platform / Online Marketplaces
+edge Traditional Builders' Merchants -> Component Manufacture (Windows, Doors, Fittings)
+edge Traditional Builders' Merchants -> Cement / Concrete Production
+edge Integrated Distributors -> Component Manufacture (Windows, Doors, Fittings)
+edge Integrated Distributors -> Steel Production
+edge Platform / Online Marketplaces -> Component Manufacture (Windows, Doors, Fittings)
+edge Platform / Online Marketplaces -> Warehousing
+
+// Manufacture to materials
+edge Component Manufacture (Windows, Doors, Fittings) -> Raw Materials (Aggregate, Timber, Steel Feedstock)
+edge Component Manufacture (Windows, Doors, Fittings) -> Recycled Materials
+edge Cement / Concrete Production -> Raw Materials (Aggregate, Timber, Steel Feedstock)
+edge Steel Production -> Raw Materials (Aggregate, Timber, Steel Feedstock)
+edge Steel Production -> Recycled Materials
+
+// Novel / substitutable enter via manufacture and design
+edge Component Manufacture (Windows, Doors, Fittings) -> Novel Materials (Cross-Laminated Timber, Low-Carbon Cement)
+edge Architectural Design -> Novel Materials (Cross-Laminated Timber, Low-Carbon Cement)
+edge Architectural Design -> Substitutable Materials (Hempcrete, Bio-Based)
+
+// Logistics underpins distribution and manufacture
+edge Traditional Builders' Merchants -> Road Logistics / Haulage
+edge Integrated Distributors -> Road Logistics / Haulage
+edge Platform / Online Marketplaces -> Road Logistics / Haulage
+edge Warehousing -> Road Logistics / Haulage
+edge Raw Materials (Aggregate, Timber, Steel Feedstock) -> Port / Import Logistics
+edge Port / Import Logistics -> Road Logistics / Haulage
+
+// Supply-chain resilience / CNI
+edge Raw Materials (Aggregate, Timber, Steel Feedstock) -> Material Supply Chain Visibility
+edge Port / Import Logistics -> Material Supply Chain Visibility
+edge Material Supply Chain Visibility -> Critical National Infrastructure (Skilled Labour Supply)
+
+// Movement (all components evolve rightward; explicit arrows for key moves)
+// Modular / Prefab / Factory-Mode are accelerating rightward
+// Novel materials and digital-twin are emerging from genesis
+// Skilled trades have inertia (x)

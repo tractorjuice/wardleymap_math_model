@@ -1,0 +1,10 @@
+{
+  "scenario": "manufacturing",
+  "skill": "haberlah/wardley-mapping",
+  "skill_path": "skills/wardley-map-workspace/competitor-compare/haberlah/skill/",
+  "run": 1,
+  "start_epoch": 1776872875.971,
+  "end_epoch": 1776873447.355,
+  "elapsed_seconds": 571.384,
+  "notes": "First complete pass. Followed SKILL.md Steps 1-7 literally. Used skill's own validate_map.py (the skill's validator), not the in-tree validator. Validator returned 'Map is valid. No issues found.' Produced all three deliverables per SKILL.md: React artifact (.jsx inline in output.md), OWM text block, and strategic commentary. 16 components (15 + 1 anchor), 19 dependency edges, 3 evolution arrows, 1 inertia marker, 3 annotations."
+}

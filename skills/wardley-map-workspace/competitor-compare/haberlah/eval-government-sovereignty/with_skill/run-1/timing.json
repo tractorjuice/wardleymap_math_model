@@ -1,0 +1,17 @@
+{
+  "competitor": "haberlah",
+  "skill": "wardley-mapping",
+  "eval": "government-sovereignty",
+  "run": 1,
+  "started_at": "2026-04-22T15:58:02.965Z",
+  "finished_at": "2026-04-22T16:06:47.216Z",
+  "duration_seconds": 524.25,
+  "components": 35,
+  "anchors": 4,
+  "dependencies": 70,
+  "evolutions": 6,
+  "annotations": 5,
+  "inertia_markers": 2,
+  "validator": "scripts/validate_map.py",
+  "validator_result": "valid with 1 warning (>18 components)"
+}

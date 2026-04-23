@@ -1,0 +1,5 @@
+{
+  "total_tokens": null,
+  "duration_ms": null,
+  "notes": "Estimates unavailable from inside a single agent turn. The haberlah skill was invoked by reading its SKILL.md and three load-bearing references (evolution-assessment.md, owm-syntax.md, doctrine-and-gameplay.md) plus the canonical tea-shop example and a portion of ai-era-patterns.md. The draft was produced in a single pass without iterating against the external validator (per blind benchmark contract — reference .owm was not read). Skill Step 1 asks four clarifying questions; since this is an offline benchmark, those answers were inferred from the scenario brief and recorded in output.md's 'Strategic Context' table. Map is deliberately larger (22 components + 6 anchors = 28) than the skill's 8-15 guidance because the scenario names three parallel sub-chains (power, trust, regulation-rules-exceptions) attaching to the core chain — this is noted in output.md with a recommendation to split the authority-and-identifier region into a submap for a deeper pass."
+}

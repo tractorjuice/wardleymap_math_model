@@ -1,0 +1,181 @@
+title Energy Disruption Landscape — July 2022
+style wardley
+
+// Anchors (dual user need — today vs tomorrow)
+anchor Today's Consumer [0.96, 0.18]
+anchor Tomorrow's Consumer [0.94, 0.08]
+
+// --- Consumer-facing layer ---
+component Today Behaviour [0.88, 0.78]
+component Tomorrow Behaviour [0.86, 0.22]
+component Sustainability [0.82, 0.40]
+component Energy Security [0.84, 0.52]
+component Consumer Education [0.80, 0.33]
+component Price Signal [0.78, 0.72]
+component Cost With Externalities [0.76, 0.28]
+
+// --- Market layer ---
+component Spot Market [0.70, 0.82]
+component OTC Market [0.68, 0.78]
+component Public Good Framing [0.66, 0.32]
+component Retail Supply [0.72, 0.80]
+component Demand Response [0.64, 0.42]
+
+// --- Regulation / control / CO2 apparatus ---
+component Regulation [0.60, 0.68]
+component Carbon Pricing [0.58, 0.55]
+component CO2 Accounting [0.56, 0.48]
+component Grid Control Systems [0.50, 0.72]
+component Supply-Chain Awareness [0.54, 0.28]
+
+// --- Production / transmission / distribution ---
+component Distribution Network [0.48, 0.86] inertia
+component Transmission Grid [0.42, 0.88] inertia
+component Production Capacity [0.38, 0.76]
+component Capital Intensity [0.30, 0.60]
+component Interconnectors [0.34, 0.68]
+
+// --- Generation mix ---
+component Fossil (Coal/Oil) [0.33, 0.93] inertia
+component Gas Generation [0.34, 0.86]
+component Nuclear [0.30, 0.68]
+component Renewables (Wind) [0.36, 0.72]
+component Renewables (Utility Solar) [0.36, 0.78]
+component Solar Microgen [0.55, 0.58]
+component Biomass [0.28, 0.74]
+
+// --- Storage ---
+component Electrical Storage (Battery) [0.26, 0.52]
+component Hydrogen Storage [0.36, 0.22]
+component Potential Energy Storage (Pumped Hydro) [0.22, 0.78]
+component Strategic Reserves (Gas) [0.32, 0.84]
+component Thermal Storage [0.23, 0.38]
+
+// --- Fuel supply chain ---
+component LNG Imports [0.28, 0.72]
+component Pipeline Gas [0.30, 0.90] inertia
+component Uranium Fuel Cycle [0.20, 0.78]
+component Rare Earths & Battery Minerals [0.18, 0.44]
+component Solar Panel Supply [0.20, 0.70]
+component Wind Turbine Supply [0.22, 0.62]
+
+// --- Deep utilities / externalities ---
+component CO2 Emissions (Externality) [0.14, 0.32]
+component Primary Energy Resource [0.10, 0.78]
+component Geopolitical Stability [0.08, 0.20]
+component Climate System [0.05, 0.12]
+
+// --- Today consumer edges ---
+Today's Consumer->Today Behaviour
+Today's Consumer->Price Signal
+Today's Consumer->Energy Security
+Today's Consumer->Retail Supply
+
+// --- Tomorrow consumer edges ---
+Tomorrow's Consumer->Tomorrow Behaviour
+Tomorrow's Consumer->Sustainability
+Tomorrow's Consumer->Energy Security
+Tomorrow's Consumer->Consumer Education
+Tomorrow's Consumer->Cost With Externalities
+
+// --- Consumer layer → market layer ---
+Today Behaviour->Retail Supply
+Tomorrow Behaviour->Demand Response
+Price Signal->Spot Market
+Price Signal->OTC Market
+Sustainability->Public Good Framing
+Sustainability->CO2 Accounting
+Cost With Externalities->Carbon Pricing
+Cost With Externalities->CO2 Accounting
+Consumer Education->Public Good Framing
+Energy Security->Regulation
+Energy Security->Strategic Reserves (Gas)
+
+// --- Market layer → production/regulation ---
+Retail Supply->Spot Market
+Retail Supply->OTC Market
+Spot Market->Production Capacity
+Spot Market->Grid Control Systems
+OTC Market->Production Capacity
+Demand Response->Grid Control Systems
+Public Good Framing->Regulation
+
+// --- Regulation / CO2 apparatus ---
+Regulation->Grid Control Systems
+Regulation->Carbon Pricing
+Regulation->Supply-Chain Awareness
+Carbon Pricing->CO2 Accounting
+CO2 Accounting->CO2 Emissions (Externality)
+Supply-Chain Awareness->Rare Earths & Battery Minerals
+Supply-Chain Awareness->Solar Panel Supply
+Supply-Chain Awareness->Wind Turbine Supply
+Supply-Chain Awareness->Uranium Fuel Cycle
+
+// --- Grid / transmission / distribution ---
+Retail Supply->Distribution Network
+Grid Control Systems->Transmission Grid
+Grid Control Systems->Distribution Network
+Grid Control Systems->Interconnectors
+Grid Control Systems->Production Capacity
+Distribution Network->Transmission Grid
+Transmission Grid->Production Capacity
+Transmission Grid->Interconnectors
+Transmission Grid->Capital Intensity
+Distribution Network->Capital Intensity
+Interconnectors->Capital Intensity
+Production Capacity->Capital Intensity
+
+// --- Production → generation mix ---
+Production Capacity->Gas Generation
+Production Capacity->Nuclear
+Production Capacity->Renewables (Wind)
+Production Capacity->Renewables (Utility Solar)
+Production Capacity->Fossil (Coal/Oil)
+Production Capacity->Biomass
+Production Capacity->Electrical Storage (Battery)
+Production Capacity->Potential Energy Storage (Pumped Hydro)
+Production Capacity->Hydrogen Storage
+Production Capacity->Thermal Storage
+
+// --- Generation → fuel supply ---
+Gas Generation->Pipeline Gas
+Gas Generation->LNG Imports
+Fossil (Coal/Oil)->Pipeline Gas
+Nuclear->Uranium Fuel Cycle
+Renewables (Wind)->Wind Turbine Supply
+Renewables (Utility Solar)->Solar Panel Supply
+Today Behaviour->Solar Microgen
+Tomorrow Behaviour->Solar Microgen
+Solar Microgen->Distribution Network
+Solar Microgen->Solar Panel Supply
+Electrical Storage (Battery)->Rare Earths & Battery Minerals
+
+// --- Storage dependencies ---
+Strategic Reserves (Gas)->Pipeline Gas
+Strategic Reserves (Gas)->LNG Imports
+Hydrogen Storage->Renewables (Wind)
+Hydrogen Storage->Renewables (Utility Solar)
+
+// --- Foundational resources ---
+Pipeline Gas->Primary Energy Resource
+Pipeline Gas->Geopolitical Stability
+LNG Imports->Primary Energy Resource
+LNG Imports->Geopolitical Stability
+Uranium Fuel Cycle->Primary Energy Resource
+Uranium Fuel Cycle->Geopolitical Stability
+Rare Earths & Battery Minerals->Geopolitical Stability
+Solar Panel Supply->Geopolitical Stability
+Wind Turbine Supply->Geopolitical Stability
+CO2 Emissions (Externality)->Climate System
+Primary Energy Resource->Climate System
+Sustainability->Climate System
+
+// --- Evolution targets ---
+evolve Electrical Storage (Battery) 0.78
+evolve Hydrogen Storage 0.55
+evolve Demand Response 0.72
+evolve Carbon Pricing 0.78
+evolve Tomorrow Behaviour 0.55
+evolve Solar Microgen 0.80
+evolve Supply-Chain Awareness 0.60
+

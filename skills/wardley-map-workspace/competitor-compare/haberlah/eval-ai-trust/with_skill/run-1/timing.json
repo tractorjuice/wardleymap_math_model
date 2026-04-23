@@ -1,0 +1,5 @@
+{
+  "total_tokens": null,
+  "duration_ms": null,
+  "notes": "Estimates unavailable from inside a single agent turn. The haberlah skill was invoked by reading its SKILL.md and the three most load-bearing references (evolution-assessment.md, owm-syntax.md, ai-era-patterns.md), plus the canonical tea-shop example and part of the doctrine reference. The draft was produced in a single pass without iterating against an external validator (per benchmark contract). The skill's Step 1 asks four clarifying questions; since this is an offline benchmark, those answers were inferred from the scenario brief and recorded in the output.md 'Strategic Context' table."
+}

@@ -1,0 +1,205 @@
+title Government Digital Identity (November 2022)
+style wardley
+
+// ── Anchors: the user sets ─────────────────────────────────────────────
+anchor Citizen [0.98, 0.55]
+anchor Government [0.96, 0.70]
+anchor Corporation [0.94, 0.65]
+anchor Society [0.92, 0.45]
+anchor Bad Actor [0.90, 0.60]
+
+// ── Services & visible uses ────────────────────────────────────────────
+component Public Service Access [0.86, 0.60]
+component Private Sector Login [0.84, 0.75]
+component Age Verification [0.82, 0.45]
+component Cross-border Recognition [0.80, 0.50]
+component Identity Theft Exploit [0.82, 0.70]
+component Regulatory Arbitrage [0.80, 0.55]
+
+// ── Claims layer ───────────────────────────────────────────────────────
+component Claim [0.74, 0.60]
+component Self-asserted Claim [0.72, 0.55]
+component Verified Claim [0.70, 0.53]
+
+// ── Credentials layer ──────────────────────────────────────────────────
+component Credential [0.64, 0.65]
+component Physical Credential [0.62, 0.88]
+component Digital Credential [0.60, 0.55]
+component Verifiable Credential [0.58, 0.35]
+
+// ── Identity (concept) ─────────────────────────────────────────────────
+component Identity [0.54, 0.70]
+component Legal Identity [0.52, 0.80]
+component Digital Identity [0.50, 0.55]
+
+// ── Identification layer ───────────────────────────────────────────────
+component Identification Physical [0.46, 0.87]
+component Identification Digital [0.44, 0.58]
+
+// ── Identifiers layer ──────────────────────────────────────────────────
+component Identifier [0.38, 0.72]
+component Mutable Identifier [0.36, 0.82]
+component Immutable Identifier [0.34, 0.78]
+component Connectedness Identifier [0.32, 0.32]
+component Decentralised Identifier [0.30, 0.20]
+component Biometric Identifier [0.28, 0.72]
+
+// ── Authority layer ────────────────────────────────────────────────────
+component Issuing Authority [0.26, 0.82]
+component Centralised Authority [0.24, 0.88]
+component Civil Registry [0.22, 0.85]
+component Decentralised Authority [0.20, 0.22]
+
+// ── Trust layer (cross-cutting) ────────────────────────────────────────
+component Trust [0.48, 0.62]
+component Benevolence [0.42, 0.52]
+component Capability [0.40, 0.72]
+component Integrity [0.38, 0.64]
+
+// ── Regulation / rules / exception ─────────────────────────────────────
+component Regulation [0.56, 0.80]
+component Rules [0.50, 0.84]
+component Exception Handling [0.44, 0.50]
+
+// ── Power framings (how authority operates) ────────────────────────────
+component Power Over [0.18, 0.82]
+component Power With [0.16, 0.40]
+component Power To [0.17, 0.45]
+
+// ── Transport & cryptographic foundations ──────────────────────────────
+component OAuth / OIDC [0.22, 0.85]
+component FIDO2 WebAuthn [0.20, 0.72]
+component Public Key Infrastructure [0.14, 0.85]
+component Cryptography [0.10, 0.88]
+component Internet [0.06, 0.95]
+
+// ── Dependencies ───────────────────────────────────────────────────────
+// Citizen edges
+Citizen->Public Service Access
+Citizen->Private Sector Login
+Citizen->Age Verification
+Citizen->Cross-border Recognition
+Citizen->Trust
+
+// Government edges
+Government->Public Service Access
+Government->Regulation
+Government->Rules
+Government->Civil Registry
+Government->Power Over
+
+// Corporation edges
+Corporation->Private Sector Login
+Corporation->Verified Claim
+Corporation->Regulation
+Corporation->Age Verification
+
+// Society edges
+Society->Trust
+Society->Regulation
+Society->Power With
+
+// Bad actor edges
+Bad Actor->Identity Theft Exploit
+Bad Actor->Regulatory Arbitrage
+Bad Actor->Mutable Identifier
+Bad Actor->Exception Handling
+
+// Service → claim edges
+Public Service Access->Claim
+Public Service Access->Verified Claim
+Private Sector Login->Verified Claim
+Age Verification->Verified Claim
+Cross-border Recognition->Verified Claim
+Identity Theft Exploit->Credential
+Identity Theft Exploit->Mutable Identifier
+Regulatory Arbitrage->Rules
+Regulatory Arbitrage->Exception Handling
+
+// Claim → credential edges
+Claim->Credential
+Self-asserted Claim->Credential
+Verified Claim->Credential
+Verified Claim->Digital Credential
+
+// Credential decomposition
+Credential->Physical Credential
+Credential->Digital Credential
+Digital Credential->Verifiable Credential
+
+// Credential → identity edges
+Physical Credential->Identity
+Digital Credential->Identity
+Verifiable Credential->Digital Identity
+Credential->Identity
+
+// Identity decomposition
+Identity->Legal Identity
+Identity->Digital Identity
+Legal Identity->Identification Physical
+Digital Identity->Identification Digital
+
+// Identification → identifier edges
+Identification Physical->Identifier
+Identification Digital->Identifier
+Identification Physical->Biometric Identifier
+Identification Digital->Biometric Identifier
+
+// Identifier taxonomy
+Identifier->Mutable Identifier
+Identifier->Immutable Identifier
+Identifier->Connectedness Identifier
+Identifier->Decentralised Identifier
+Immutable Identifier->Biometric Identifier
+
+// Identifier → authority edges
+Mutable Identifier->Issuing Authority
+Immutable Identifier->Issuing Authority
+Biometric Identifier->Issuing Authority
+Connectedness Identifier->Decentralised Authority
+Decentralised Identifier->Decentralised Authority
+Issuing Authority->Centralised Authority
+Centralised Authority->Civil Registry
+
+// Trust decomposition
+Trust->Benevolence
+Trust->Capability
+Trust->Integrity
+Verified Claim->Trust
+Digital Identity->Trust
+
+// Regulation chain
+Regulation->Rules
+Rules->Exception Handling
+Exception Handling->Issuing Authority
+
+// Power framing edges (how authorities act)
+Centralised Authority->Power Over
+Decentralised Authority->Power With
+Decentralised Authority->Power To
+
+// Crypto / protocol plumbing
+Digital Credential->OAuth / OIDC
+Digital Credential->FIDO2 WebAuthn
+Verifiable Credential->Public Key Infrastructure
+Decentralised Identifier->Public Key Infrastructure
+OAuth / OIDC->Public Key Infrastructure
+FIDO2 WebAuthn->Public Key Infrastructure
+Public Key Infrastructure->Cryptography
+Cryptography->Internet
+OAuth / OIDC->Internet
+FIDO2 WebAuthn->Internet
+Identification Digital->Internet
+
+// Evolution arrows (scenarios, not forecasts)
+evolve Verifiable Credential 0.65
+evolve Decentralised Identifier 0.55
+evolve Decentralised Authority 0.48
+evolve Age Verification 0.70
+evolve Digital Identity 0.78
+
+// Notes (annotation anchors)
+note Central vs SSI tension [0.40, 0.20]
+note Rules-gap exploited by bad actors [0.78, 0.60]
+note Novel identity tech (SSI, DID, VC) [0.40, 0.32]
+note Standardised identity tech (passport, PKI, OAuth) [0.18, 0.90]

@@ -1,0 +1,317 @@
+title Energy Disruption Landscape (July 2022)
+style wardley
+
+// Anchors — who is on the demand side of energy in July 2022
+anchor Consumer (Household / Business) [0.98, 0.82]
+anchor Industrial Off-taker [0.96, 0.70]
+anchor National Government / Regulator [0.94, 0.40]
+anchor System Operator (TSO / ISO) [0.92, 0.55]
+
+// Consumer-facing layer — today vs tomorrow behaviour
+component Today's Consumer Behaviour (flick-the-switch) [0.88, 0.95]
+component Tomorrow's Consumer Behaviour (flex / self-gen) [0.88, 0.18]
+component Energy Security (reliability of supply) [0.86, 0.78]
+component Sustainability Expectation [0.84, 0.30]
+component Energy Literacy / Education [0.82, 0.22]
+component Consumer Bill / Tariff [0.80, 0.85]
+component Smart Meter / HEM [0.78, 0.70]
+component Time-of-Use / Demand Response [0.76, 0.38]
+component Consumer Self-generation (rooftop solar / battery) [0.74, 0.48]
+
+// Market layer — how energy is bought and sold
+component Spot Market (day-ahead / intraday) [0.80, 0.90]
+component OTC / Bilateral Contracts [0.78, 0.82]
+component Energy as Public Good [0.72, 0.15]
+component Wholesale Price (merchant signal) [0.76, 0.88]
+component Full-Cost (incl. externalities) Accounting [0.70, 0.22]
+component Capacity Market [0.70, 0.60]
+component Balancing / Ancillary Services Market [0.68, 0.65]
+component Carbon Price (ETS / floor) [0.66, 0.55]
+component Retail Supply (energy retailer) [0.74, 0.82]
+component PPA (Power Purchase Agreement) [0.68, 0.68]
+
+// Control / regulation / CO2 apparatus
+component Market Regulation (Ofgem / FERC / ACER) [0.64, 0.62]
+component Grid Code / Network Rules [0.60, 0.78]
+component Net-Zero Policy Commitment [0.62, 0.38]
+component CO2 MRV (emissions measurement) [0.58, 0.45]
+component Carbon Border Adjustment (CBAM) [0.56, 0.18]
+component Price Cap / Tariff Regulation [0.60, 0.72]
+component Subsidies (CfD / ITC / FIT) [0.58, 0.58]
+
+// Distribution layer
+component Distribution Network (DSO) [0.56, 0.88]
+component Local Network Reinforcement [0.54, 0.62]
+component EV Charging Infrastructure [0.52, 0.50]
+
+// Transmission layer
+component Transmission Network (AC grid) [0.50, 0.92]
+component HVDC Interconnector [0.48, 0.65]
+component Transmission Capex (locked-in assets) [0.46, 0.85]
+
+// Production / balancing layer
+component Central Production / Dispatch [0.44, 0.82]
+component Grid-Scale Inverter-Based Resource Control [0.42, 0.38]
+component Frequency / Voltage Stability [0.40, 0.78]
+component Flexibility / Firming Services [0.38, 0.30]
+component Capacity-Intensive Capex (asset lock-in) [0.36, 0.88]
+
+// Generation mix — the heart of the map
+component Fossil Generation (coal / gas peaker) [0.32, 0.96]
+component Gas CCGT (combined cycle) [0.30, 0.92]
+component Nuclear (existing fleet) [0.28, 0.78]
+component Nuclear (SMR / new build) [0.26, 0.22]
+component Utility-Scale Renewable (wind onshore / offshore) [0.30, 0.72]
+component Utility-Scale Solar PV [0.28, 0.72]
+component Solar Microgeneration (distributed rooftop) [0.30, 0.55]
+component Community / Microgrid Generation [0.26, 0.32]
+component Biomass / Waste-to-Energy [0.24, 0.60]
+component Geothermal / Tidal / Wave [0.20, 0.25]
+
+// Storage — the bottleneck
+component Storage (aggregate need) [0.52, 0.35]
+component Electrical Storage (Li-ion grid battery) [0.50, 0.58]
+component Electrical Storage (flow battery) [0.48, 0.28]
+component Hydrogen Storage / H2 Production (electrolyser) [0.46, 0.28]
+component Pumped Hydro (potential energy) [0.44, 0.80]
+component Compressed Air / Thermal Storage [0.42, 0.25]
+component Strategic Reserve (gas / oil inventory) [0.40, 0.82]
+
+// Upstream fuel / primary energy
+component Natural Gas Supply (pipeline / LNG) [0.24, 0.88]
+component Russian Gas Exposure [0.22, 0.90]
+component LNG Import Terminal (capex-heavy) [0.20, 0.55]
+component Coal Supply [0.18, 0.85]
+component Uranium Supply [0.16, 0.70]
+component Critical Minerals (Li / Co / Ni / REE) [0.16, 0.40]
+
+// Supply chain awareness / externality picture
+component Supply-Chain Awareness (energy system) [0.64, 0.25]
+component Scope 1-3 Emissions Disclosure [0.62, 0.32]
+component Externality Pricing (health / climate) [0.58, 0.20]
+component Just-Transition / Fuel Poverty [0.60, 0.28]
+component Geopolitical Risk (Russia / Ukraine) [0.42, 0.80]
+
+// Wholesale market dependencies
+Consumer (Household / Business)->Today's Consumer Behaviour (flick-the-switch)
+Consumer (Household / Business)->Tomorrow's Consumer Behaviour (flex / self-gen)
+Consumer (Household / Business)->Energy Security (reliability of supply)
+Consumer (Household / Business)->Sustainability Expectation
+Consumer (Household / Business)->Energy Literacy / Education
+Consumer (Household / Business)->Consumer Bill / Tariff
+Consumer (Household / Business)->Retail Supply (energy retailer)
+Industrial Off-taker->PPA (Power Purchase Agreement)
+Industrial Off-taker->OTC / Bilateral Contracts
+Industrial Off-taker->Consumer Bill / Tariff
+Industrial Off-taker->Energy Security (reliability of supply)
+Industrial Off-taker->Sustainability Expectation
+
+// Consumer-to-market / consumer-to-tech edges
+Today's Consumer Behaviour (flick-the-switch)->Consumer Bill / Tariff
+Tomorrow's Consumer Behaviour (flex / self-gen)->Smart Meter / HEM
+Tomorrow's Consumer Behaviour (flex / self-gen)->Time-of-Use / Demand Response
+Tomorrow's Consumer Behaviour (flex / self-gen)->Consumer Self-generation (rooftop solar / battery)
+Tomorrow's Consumer Behaviour (flex / self-gen)->Energy Literacy / Education
+Sustainability Expectation->Net-Zero Policy Commitment
+Sustainability Expectation->Carbon Price (ETS / floor)
+Energy Security (reliability of supply)->Strategic Reserve (gas / oil inventory)
+Energy Security (reliability of supply)->Capacity Market
+Consumer Bill / Tariff->Retail Supply (energy retailer)
+Consumer Bill / Tariff->Price Cap / Tariff Regulation
+Consumer Bill / Tariff->Wholesale Price (merchant signal)
+Smart Meter / HEM->Time-of-Use / Demand Response
+Smart Meter / HEM->Distribution Network (DSO)
+Time-of-Use / Demand Response->Spot Market (day-ahead / intraday)
+Time-of-Use / Demand Response->Flexibility / Firming Services
+Consumer Self-generation (rooftop solar / battery)->Solar Microgeneration (distributed rooftop)
+Consumer Self-generation (rooftop solar / battery)->Electrical Storage (Li-ion grid battery)
+Consumer Self-generation (rooftop solar / battery)->Distribution Network (DSO)
+
+// Retail & market
+Retail Supply (energy retailer)->Wholesale Price (merchant signal)
+Retail Supply (energy retailer)->OTC / Bilateral Contracts
+Retail Supply (energy retailer)->Spot Market (day-ahead / intraday)
+Retail Supply (energy retailer)->Balancing / Ancillary Services Market
+PPA (Power Purchase Agreement)->Utility-Scale Renewable (wind onshore / offshore)
+PPA (Power Purchase Agreement)->Utility-Scale Solar PV
+PPA (Power Purchase Agreement)->Wholesale Price (merchant signal)
+OTC / Bilateral Contracts->Wholesale Price (merchant signal)
+Spot Market (day-ahead / intraday)->Wholesale Price (merchant signal)
+Wholesale Price (merchant signal)->Central Production / Dispatch
+Wholesale Price (merchant signal)->Capacity Market
+Capacity Market->Central Production / Dispatch
+Capacity Market->Flexibility / Firming Services
+Balancing / Ancillary Services Market->Flexibility / Firming Services
+Balancing / Ancillary Services Market->Grid-Scale Inverter-Based Resource Control
+Carbon Price (ETS / floor)->CO2 MRV (emissions measurement)
+Full-Cost (incl. externalities) Accounting->CO2 MRV (emissions measurement)
+Full-Cost (incl. externalities) Accounting->Externality Pricing (health / climate)
+Energy as Public Good->Net-Zero Policy Commitment
+Energy as Public Good->Price Cap / Tariff Regulation
+Energy as Public Good->Just-Transition / Fuel Poverty
+
+// Regulation / CO2 apparatus
+National Government / Regulator->Market Regulation (Ofgem / FERC / ACER)
+National Government / Regulator->Net-Zero Policy Commitment
+National Government / Regulator->Price Cap / Tariff Regulation
+National Government / Regulator->Subsidies (CfD / ITC / FIT)
+National Government / Regulator->Carbon Border Adjustment (CBAM)
+National Government / Regulator->Just-Transition / Fuel Poverty
+Market Regulation (Ofgem / FERC / ACER)->Grid Code / Network Rules
+Market Regulation (Ofgem / FERC / ACER)->Price Cap / Tariff Regulation
+Market Regulation (Ofgem / FERC / ACER)->Capacity Market
+Market Regulation (Ofgem / FERC / ACER)->Balancing / Ancillary Services Market
+Net-Zero Policy Commitment->Carbon Price (ETS / floor)
+Net-Zero Policy Commitment->Subsidies (CfD / ITC / FIT)
+Net-Zero Policy Commitment->CO2 MRV (emissions measurement)
+Carbon Border Adjustment (CBAM)->CO2 MRV (emissions measurement)
+Subsidies (CfD / ITC / FIT)->Utility-Scale Renewable (wind onshore / offshore)
+Subsidies (CfD / ITC / FIT)->Utility-Scale Solar PV
+Subsidies (CfD / ITC / FIT)->Nuclear (SMR / new build)
+Subsidies (CfD / ITC / FIT)->Hydrogen Storage / H2 Production (electrolyser)
+Subsidies (CfD / ITC / FIT)->Consumer Self-generation (rooftop solar / battery)
+Grid Code / Network Rules->Transmission Network (AC grid)
+Grid Code / Network Rules->Distribution Network (DSO)
+Grid Code / Network Rules->Frequency / Voltage Stability
+
+// System operator / grid
+System Operator (TSO / ISO)->Central Production / Dispatch
+System Operator (TSO / ISO)->Frequency / Voltage Stability
+System Operator (TSO / ISO)->Capacity Market
+System Operator (TSO / ISO)->Balancing / Ancillary Services Market
+System Operator (TSO / ISO)->Flexibility / Firming Services
+System Operator (TSO / ISO)->Transmission Network (AC grid)
+Central Production / Dispatch->Frequency / Voltage Stability
+Central Production / Dispatch->Transmission Network (AC grid)
+Central Production / Dispatch->Grid-Scale Inverter-Based Resource Control
+Frequency / Voltage Stability->Transmission Network (AC grid)
+Flexibility / Firming Services->Storage (aggregate need)
+Flexibility / Firming Services->Gas CCGT (combined cycle)
+Flexibility / Firming Services->Fossil Generation (coal / gas peaker)
+Flexibility / Firming Services->Grid-Scale Inverter-Based Resource Control
+Grid-Scale Inverter-Based Resource Control->Utility-Scale Solar PV
+Grid-Scale Inverter-Based Resource Control->Utility-Scale Renewable (wind onshore / offshore)
+Grid-Scale Inverter-Based Resource Control->Electrical Storage (Li-ion grid battery)
+
+// Distribution / transmission physical chain
+Distribution Network (DSO)->Transmission Network (AC grid)
+Distribution Network (DSO)->Local Network Reinforcement
+Distribution Network (DSO)->EV Charging Infrastructure
+EV Charging Infrastructure->Distribution Network (DSO)
+EV Charging Infrastructure->Local Network Reinforcement
+Transmission Network (AC grid)->Transmission Capex (locked-in assets)
+Transmission Network (AC grid)->HVDC Interconnector
+HVDC Interconnector->Transmission Capex (locked-in assets)
+Local Network Reinforcement->Transmission Capex (locked-in assets)
+
+// Generation into the stack
+Central Production / Dispatch->Fossil Generation (coal / gas peaker)
+Central Production / Dispatch->Gas CCGT (combined cycle)
+Central Production / Dispatch->Nuclear (existing fleet)
+Central Production / Dispatch->Nuclear (SMR / new build)
+Central Production / Dispatch->Utility-Scale Renewable (wind onshore / offshore)
+Central Production / Dispatch->Utility-Scale Solar PV
+Central Production / Dispatch->Biomass / Waste-to-Energy
+Central Production / Dispatch->Geothermal / Tidal / Wave
+Central Production / Dispatch->Pumped Hydro (potential energy)
+Central Production / Dispatch->Capacity-Intensive Capex (asset lock-in)
+
+// Fuel dependencies
+Fossil Generation (coal / gas peaker)->Coal Supply
+Fossil Generation (coal / gas peaker)->Natural Gas Supply (pipeline / LNG)
+Fossil Generation (coal / gas peaker)->Capacity-Intensive Capex (asset lock-in)
+Gas CCGT (combined cycle)->Natural Gas Supply (pipeline / LNG)
+Gas CCGT (combined cycle)->Capacity-Intensive Capex (asset lock-in)
+Natural Gas Supply (pipeline / LNG)->Russian Gas Exposure
+Natural Gas Supply (pipeline / LNG)->LNG Import Terminal (capex-heavy)
+Natural Gas Supply (pipeline / LNG)->Geopolitical Risk (Russia / Ukraine)
+Russian Gas Exposure->Geopolitical Risk (Russia / Ukraine)
+LNG Import Terminal (capex-heavy)->Capacity-Intensive Capex (asset lock-in)
+Nuclear (existing fleet)->Uranium Supply
+Nuclear (existing fleet)->Capacity-Intensive Capex (asset lock-in)
+Nuclear (SMR / new build)->Uranium Supply
+Nuclear (SMR / new build)->Capacity-Intensive Capex (asset lock-in)
+Utility-Scale Renewable (wind onshore / offshore)->Critical Minerals (Li / Co / Ni / REE)
+Utility-Scale Renewable (wind onshore / offshore)->Capacity-Intensive Capex (asset lock-in)
+Utility-Scale Solar PV->Critical Minerals (Li / Co / Ni / REE)
+Utility-Scale Solar PV->Capacity-Intensive Capex (asset lock-in)
+Solar Microgeneration (distributed rooftop)->Critical Minerals (Li / Co / Ni / REE)
+Community / Microgrid Generation->Solar Microgeneration (distributed rooftop)
+Community / Microgrid Generation->Electrical Storage (Li-ion grid battery)
+Community / Microgrid Generation->Distribution Network (DSO)
+Biomass / Waste-to-Energy->Capacity-Intensive Capex (asset lock-in)
+
+// Storage dependencies
+Storage (aggregate need)->Electrical Storage (Li-ion grid battery)
+Storage (aggregate need)->Electrical Storage (flow battery)
+Storage (aggregate need)->Hydrogen Storage / H2 Production (electrolyser)
+Storage (aggregate need)->Pumped Hydro (potential energy)
+Storage (aggregate need)->Compressed Air / Thermal Storage
+Storage (aggregate need)->Strategic Reserve (gas / oil inventory)
+Electrical Storage (Li-ion grid battery)->Critical Minerals (Li / Co / Ni / REE)
+Electrical Storage (flow battery)->Critical Minerals (Li / Co / Ni / REE)
+Hydrogen Storage / H2 Production (electrolyser)->Utility-Scale Renewable (wind onshore / offshore)
+Hydrogen Storage / H2 Production (electrolyser)->Utility-Scale Solar PV
+Strategic Reserve (gas / oil inventory)->Natural Gas Supply (pipeline / LNG)
+Strategic Reserve (gas / oil inventory)->Coal Supply
+
+// Supply-chain awareness / externality edges
+Supply-Chain Awareness (energy system)->Scope 1-3 Emissions Disclosure
+Supply-Chain Awareness (energy system)->Critical Minerals (Li / Co / Ni / REE)
+Supply-Chain Awareness (energy system)->Natural Gas Supply (pipeline / LNG)
+Supply-Chain Awareness (energy system)->Russian Gas Exposure
+Scope 1-3 Emissions Disclosure->CO2 MRV (emissions measurement)
+Externality Pricing (health / climate)->CO2 MRV (emissions measurement)
+Externality Pricing (health / climate)->Carbon Price (ETS / floor)
+Just-Transition / Fuel Poverty->Price Cap / Tariff Regulation
+Just-Transition / Fuel Poverty->Subsidies (CfD / ITC / FIT)
+
+// Evolution arrows — expected movement by ~2025-2030 from Jul-2022 position
+evolve Tomorrow's Consumer Behaviour (flex / self-gen) 0.45
+evolve Sustainability Expectation 0.55
+evolve Energy Literacy / Education 0.50
+evolve Time-of-Use / Demand Response 0.62
+evolve Consumer Self-generation (rooftop solar / battery) 0.70
+evolve Smart Meter / HEM 0.88
+evolve Full-Cost (incl. externalities) Accounting 0.45
+evolve Energy as Public Good 0.35
+evolve CO2 MRV (emissions measurement) 0.72
+evolve Carbon Border Adjustment (CBAM) 0.55
+evolve Net-Zero Policy Commitment 0.65
+evolve EV Charging Infrastructure 0.78
+evolve Grid-Scale Inverter-Based Resource Control 0.65
+evolve Flexibility / Firming Services 0.60
+evolve Storage (aggregate need) 0.62
+evolve Electrical Storage (Li-ion grid battery) 0.82
+evolve Electrical Storage (flow battery) 0.50
+evolve Hydrogen Storage / H2 Production (electrolyser) 0.55
+evolve Compressed Air / Thermal Storage 0.45
+evolve Nuclear (SMR / new build) 0.45
+evolve Utility-Scale Solar PV 0.88
+evolve Utility-Scale Renewable (wind onshore / offshore) 0.85
+evolve Solar Microgeneration (distributed rooftop) 0.75
+evolve Community / Microgrid Generation 0.50
+evolve LNG Import Terminal (capex-heavy) 0.72
+evolve Supply-Chain Awareness (energy system) 0.50
+evolve Scope 1-3 Emissions Disclosure 0.58
+evolve Externality Pricing (health / climate) 0.40
+evolve Just-Transition / Fuel Poverty 0.48
+
+// Inertia markers — locked-in assets / legacy practice
+inertia Fossil Generation (coal / gas peaker)
+inertia Gas CCGT (combined cycle)
+inertia Natural Gas Supply (pipeline / LNG)
+inertia Russian Gas Exposure
+inertia Transmission Network (AC grid)
+inertia Transmission Capex (locked-in assets)
+inertia Capacity-Intensive Capex (asset lock-in)
+inertia Today's Consumer Behaviour (flick-the-switch)
+inertia Distribution Network (DSO)
+inertia Central Production / Dispatch
+inertia Strategic Reserve (gas / oil inventory)
+
+note Disruption zone — consumer flex, storage, microgen, MRV [0.72, 0.45]
+note Infrastructure lock-in — transmission, CCGT, LNG capex [0.36, 0.85]
+note Geopolitical shock frontier — Russian gas exposure [0.22, 0.92]
+note Externality gap — full-cost accounting still genesis [0.66, 0.20]
+note Storage is the pivot — electrical maturing, H2 still custom [0.50, 0.40]

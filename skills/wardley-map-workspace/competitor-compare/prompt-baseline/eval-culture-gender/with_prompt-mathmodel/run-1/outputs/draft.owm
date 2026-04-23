@@ -1,0 +1,126 @@
+title Gender as a Cultural Construct (March 2022)
+style wardley
+
+// Anchors — the lived user-needs the cultural construct serves
+anchor Individual [0.98, 0.25]
+anchor Society [0.96, 0.70]
+
+// Layer 1 — directly experienced identity surface
+component Gender Expression [0.90, 0.32]
+component Self Expression [0.88, 0.28]
+component Lived Experience [0.86, 0.22]
+component Exclusion [0.84, 0.55]
+
+// Layer 2 — identity constructs (individual, emergent)
+component Gender Identity [0.80, 0.30]
+component Sexual Orientation [0.78, 0.35]
+component Sexual Identity [0.76, 0.38]
+component Identity [0.74, 0.40]
+component Phenotype [0.72, 0.55]
+
+// Layer 3 — codifying mechanisms (memory, narrative, symbol)
+component Stories [0.68, 0.60]
+component Symbols [0.66, 0.62]
+component Memory [0.64, 0.45]
+component Roles [0.62, 0.75]
+
+// Layer 4 — values, rights and beliefs carried by collectives
+component Values [0.58, 0.68]
+component Rights [0.56, 0.72]
+component Beliefs [0.54, 0.80]
+
+// Layer 5 — collective structures (industrialised social machinery)
+component Family [0.50, 0.78]
+component Patriarchy [0.48, 0.88]
+component Matriarchy [0.46, 0.35]
+component Nation [0.44, 0.85]
+component Corporation [0.42, 0.82]
+
+// Layer 6 — power apparatus
+component Authority [0.38, 0.82]
+component Power [0.36, 0.85]
+component Social Class [0.34, 0.80]
+component Property [0.32, 0.90]
+component Ownership [0.30, 0.88]
+
+// Layer 7 — biological substrate
+component Environment [0.22, 0.70]
+component Epigenetics [0.14, 0.30]
+component Genetic Markers [0.08, 0.55]
+
+// Dependencies — Individual anchor path
+Individual->Gender Expression
+Individual->Self Expression
+Individual->Lived Experience
+Gender Expression->Gender Identity
+Self Expression->Gender Identity
+Self Expression->Exclusion
+Lived Experience->Gender Identity
+Lived Experience->Memory
+Gender Identity->Sexual Orientation
+Gender Identity->Sexual Identity
+Sexual Orientation->Identity
+Sexual Identity->Identity
+Identity->Phenotype
+Identity->Genetic Markers
+
+// Dependencies — Society anchor path
+Society->Exclusion
+Society->Roles
+Society->Family
+Society->Nation
+Society->Corporation
+Roles->Stories
+Roles->Symbols
+Roles->Values
+Stories->Memory
+Symbols->Memory
+Values->Beliefs
+Values->Rights
+Rights->Beliefs
+
+// Collective structures carry values/rights/beliefs
+Family->Values
+Family->Roles
+Patriarchy->Authority
+Patriarchy->Power
+Matriarchy->Authority
+Nation->Authority
+Nation->Rights
+Corporation->Ownership
+Corporation->Property
+
+// Power apparatus
+Authority->Social Class
+Authority->Power
+Power->Property
+Power->Ownership
+Social Class->Property
+Social Class->Ownership
+Ownership->Property
+
+// Biological substrate under phenotype and identity
+Phenotype->Genetic Markers
+Phenotype->Epigenetics
+Phenotype->Environment
+Epigenetics->Genetic Markers
+Epigenetics->Environment
+
+// Cross-links: memory/stories reinforcing the collective machinery
+Memory->Roles
+Stories->Roles
+Symbols->Roles
+
+// Inertia — patriarchy as entrenched (political capital, cultural capital, sunk social capital)
+component Patriarchy [0.48, 0.88] inertia
+
+// Evolution scenarios (NOT forecasts) — social reconfiguration pressure in 2022
+evolve Gender Identity 0.55
+evolve Rights 0.82
+evolve Roles 0.55
+
+// Notes
+note Individual / emergent zone [0.80, 0.20]
+note Industrialised social machinery [0.40, 0.85]
+note Power concentration [0.32, 0.88]
+note Biological substrate [0.15, 0.50]

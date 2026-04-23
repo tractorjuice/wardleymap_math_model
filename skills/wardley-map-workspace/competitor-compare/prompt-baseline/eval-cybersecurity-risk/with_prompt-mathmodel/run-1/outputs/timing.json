@@ -1,0 +1,17 @@
+{
+  "scenario": "eval-cybersecurity-risk",
+  "mode": "prompt-baseline",
+  "variant": "with_prompt-in-tree",
+  "run": 1,
+  "prompt_source": "/workspaces/wardleymap_math_model/prompts/wardley_map_generator.md",
+  "blind": true,
+  "start_epoch_s": 1776873007.455,
+  "end_epoch_s": 1776873325.595,
+  "duration_s": 318.140,
+  "generated_utc": "2026-04-22",
+  "outputs": [
+    "output.md",
+    "draft.owm",
+    "timing.json"
+  ]
+}

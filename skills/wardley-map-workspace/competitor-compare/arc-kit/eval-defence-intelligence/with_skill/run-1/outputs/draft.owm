@@ -1,0 +1,200 @@
+title Defence Intelligence Landscape (March 2023)
+
+anchor Decision-maker [0.97, 0.75]
+
+// --- User-facing actors and outcomes ---
+component Operational decision [0.92, 0.60] label [10, -4]
+component Decision model (HITL vs HOTL) [0.85, 0.40] label [-190, -4]
+component Trusted intelligence product [0.88, 0.50] label [10, -4]
+component Commander / operator [0.90, 0.70] label [10, -4]
+component Government / policy [0.84, 0.78] label [10, -4]
+component Agency (SIGINT / HUMINT / GEOINT) [0.80, 0.60] label [10, -4]
+component Opponent / adversary [0.78, 0.20] label [-140, -4]
+component Citizens / public [0.72, 0.88] label [10, -4]
+
+// --- The trust dimension (explicit request) ---
+component Trust assessment [0.72, 0.30] label [-130, -4]
+component Competence [0.66, 0.32] label [-100, 10]
+component Integrity [0.64, 0.28] label [-90, -4]
+component Benevolence [0.62, 0.24] label [-110, 10]
+
+// --- Analysis layer ---
+component Analyst judgement [0.70, 0.48] label [-130, -4]
+component Intelligence analysis [0.68, 0.55] label [10, -4]
+component Fusion / correlation [0.58, 0.42] label [-130, -4]
+component Data science pipeline [0.52, 0.60] label [10, -4]
+component ML / AI engine [0.42, 0.35] label [-120, -4]
+component LLM-assisted analysis [0.20, 0.28] label [-150, 10]
+component Computer vision (imagery) [0.50, 0.30] label [-170, -4]
+component Anomaly detection [0.48, 0.38] label [10, -4]
+
+// --- Target discovery ---
+component Target discovery [0.62, 0.50] label [-130, -4]
+component Prioritised intelligence requirement [0.58, 0.65] label [10, -4]
+component Tasking / collection plan [0.56, 0.68] label [10, -4]
+
+// --- Collection layer (people + machine) ---
+component Intelligence collection [0.72, 0.65] label [10, -4]
+component Human collector (HUMINT) [0.68, 0.75] label [10, -4]
+component Machine collector [0.52, 0.52] label [-120, -4]
+component Crowdsourced reporting [0.36, 0.45] label [-160, 10]
+
+// --- Sources ---
+component Source pool (diverse, verified) [0.66, 0.58] label [10, -4]
+component Source verification [0.52, 0.35] label [-130, -4]
+component Classified source (HUMINT/SIGINT) [0.70, 0.82] label [10, -4]
+component OSINT [0.50, 0.50] label [10, -4]
+component Social media feeds [0.40, 0.70] label [-140, -4]
+component Public data (news, registries) [0.36, 0.80] label [10, -4]
+component Crowdsourced photos / video [0.32, 0.55] label [-170, 10]
+
+// --- Sensors ---
+component Sensor network [0.50, 0.88] label [10, -4]
+component GPS / PNT [0.16, 0.92] label [10, -4]
+component Camera / EO-IR imagery [0.26, 0.82] label [10, -4]
+component Commercial satellite imagery [0.34, 0.78] label [-220, -4]
+component Network signals (SIGINT) [0.22, 0.85] label [10, -4]
+component RF / radar [0.20, 0.90] label [10, -4]
+
+// --- Adversarial capability ---
+component Adversarial capability [0.60, 0.18] label [10, -4]
+component Misinformation / deepfake [0.38, 0.22] label [-160, -4]
+component Attack vectors (cyber, kinetic) [0.42, 0.25] label [10, 10]
+component Prompt-engineering attack [0.14, 0.15] label [-180, -4]
+
+// --- Regulation / privacy / ownership ---
+component Regulation & legal framework [0.64, 0.90] label [10, -4]
+component Privacy & civil liberties [0.60, 0.85] label [10, 10]
+component Data ownership / provenance [0.42, 0.58] label [-180, -4]
+
+// --- Infrastructure (commodity floor) ---
+component Storage & data lake [0.10, 0.92] label [10, -4]
+component Compute (cloud / on-prem HPC) [0.06, 0.95] label [10, -4]
+component Secure network [0.14, 0.88] label [10, -4]
+
+// --- Dependencies: decision chain from the top ---
+Decision-maker->Operational decision
+Decision-maker->Commander / operator
+Decision-maker->Government / policy
+Decision-maker->Agency (SIGINT / HUMINT / GEOINT)
+Decision-maker->Citizens / public
+
+Operational decision->Trusted intelligence product
+Operational decision->Decision model (HITL vs HOTL)
+Operational decision->Regulation & legal framework
+
+Trusted intelligence product->Intelligence analysis
+Trusted intelligence product->Trust assessment
+
+Commander / operator->Intelligence analysis
+Commander / operator->Decision model (HITL vs HOTL)
+Commander / operator->Agency (SIGINT / HUMINT / GEOINT)
+
+Government / policy->Regulation & legal framework
+Government / policy->Agency (SIGINT / HUMINT / GEOINT)
+
+Agency (SIGINT / HUMINT / GEOINT)->Intelligence collection
+Agency (SIGINT / HUMINT / GEOINT)->Intelligence analysis
+Agency (SIGINT / HUMINT / GEOINT)->Target discovery
+
+// --- Opponent as both subject and actor ---
+Operational decision->Opponent / adversary
+Opponent / adversary->Adversarial capability
+Adversarial capability->Misinformation / deepfake
+Adversarial capability->Attack vectors (cyber, kinetic)
+Adversarial capability->Prompt-engineering attack
+
+// --- Trust stack ---
+Trust assessment->Competence
+Trust assessment->Integrity
+Trust assessment->Benevolence
+Trust assessment->Source verification
+
+// --- Analysis stack ---
+Intelligence analysis->Analyst judgement
+Intelligence analysis->Fusion / correlation
+Intelligence analysis->Data science pipeline
+Fusion / correlation->ML / AI engine
+Fusion / correlation->Analyst judgement
+Data science pipeline->ML / AI engine
+Data science pipeline->Anomaly detection
+ML / AI engine->LLM-assisted analysis
+ML / AI engine->Computer vision (imagery)
+ML / AI engine->Compute (cloud / on-prem HPC)
+LLM-assisted analysis->Compute (cloud / on-prem HPC)
+Computer vision (imagery)->Compute (cloud / on-prem HPC)
+Anomaly detection->Compute (cloud / on-prem HPC)
+
+// --- Target discovery stack ---
+Target discovery->Prioritised intelligence requirement
+Target discovery->Tasking / collection plan
+Tasking / collection plan->Intelligence collection
+
+// --- Collection stack ---
+Intelligence collection->Human collector (HUMINT)
+Intelligence collection->Machine collector
+Intelligence collection->Crowdsourced reporting
+Intelligence collection->Source pool (diverse, verified)
+
+Source pool (diverse, verified)->Classified source (HUMINT/SIGINT)
+Source pool (diverse, verified)->OSINT
+Source pool (diverse, verified)->Source verification
+Source pool (diverse, verified)->Data ownership / provenance
+
+Human collector (HUMINT)->Classified source (HUMINT/SIGINT)
+Machine collector->Sensor network
+Machine collector->OSINT
+Crowdsourced reporting->Crowdsourced photos / video
+Crowdsourced reporting->Social media feeds
+
+// --- OSINT sub-stack ---
+OSINT->Social media feeds
+OSINT->Public data (news, registries)
+OSINT->Crowdsourced photos / video
+OSINT->Commercial satellite imagery
+
+// --- Sensor sub-stack ---
+Sensor network->GPS / PNT
+Sensor network->Camera / EO-IR imagery
+Sensor network->Commercial satellite imagery
+Sensor network->Network signals (SIGINT)
+Sensor network->RF / radar
+Sensor network->Secure network
+Sensor network->Storage & data lake
+
+Classified source (HUMINT/SIGINT)->Network signals (SIGINT)
+Classified source (HUMINT/SIGINT)->Secure network
+
+// --- Regulation / data governance ---
+Regulation & legal framework->Privacy & civil liberties
+Regulation & legal framework->Data ownership / provenance
+Privacy & civil liberties->Citizens / public
+Data ownership / provenance->Storage & data lake
+
+// --- Source verification depends on OSINT & crowdsourced inputs ---
+Source verification->OSINT
+Source verification->Crowdsourced photos / video
+Source verification->Social media feeds
+
+// --- Decision model governs analysis and adversarial exposure ---
+Decision model (HITL vs HOTL)->Analyst judgement
+Decision model (HITL vs HOTL)->ML / AI engine
+Decision model (HITL vs HOTL)->Adversarial capability
+
+// --- Infrastructure floor ---
+Storage & data lake->Compute (cloud / on-prem HPC)
+Secure network->Compute (cloud / on-prem HPC)
+
+// --- Movement: evolution arrows (March 2023 signals) ---
+evolve LLM-assisted analysis 0.40
+evolve ML / AI engine 0.55
+evolve Computer vision (imagery) 0.65
+evolve Commercial satellite imagery 0.55
+evolve Crowdsourced reporting 0.50
+evolve OSINT 0.62
+evolve Source verification 0.50
+evolve Misinformation / deepfake 0.55
+evolve Prompt-engineering attack 0.35
+evolve Data ownership / provenance 0.55
+evolve Decision model (HITL vs HOTL) 0.55
+evolve Trust assessment 0.45

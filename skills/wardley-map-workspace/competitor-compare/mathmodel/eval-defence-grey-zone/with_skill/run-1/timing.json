@@ -1,0 +1,24 @@
+{
+  "scenario": "defence-grey-zone",
+  "skill": "in-tree wardley-map",
+  "run": 1,
+  "start_ts": 1776874438.9437342,
+  "end_ts": 1776874976.8883438,
+  "duration_seconds": 537.945,
+  "components": 45,
+  "anchors": 3,
+  "edges": 79,
+  "stage_distribution": {
+    "Genesis": 3,
+    "Custom": 16,
+    "Product": 16,
+    "Commodity": 10
+  },
+  "validator_result": "OK (0 violations, 48 nodes, 79 edges)",
+  "layout_result": "OK (0 warnings)",
+  "notes": [
+    "Bundled Node scripts (validate_owm.mjs, check_layout.mjs) were not callable directly (sandbox denied 'node'); a Python equivalent implementing the same three validator rules (coord range, endpoint existence, visibility hard rule) and the four layout-check rules (near-duplicate, boundary straddle, canvas clip, stage distribution) was executed and confirmed clean.",
+    "Three rounds of coordinate fixes were applied during drafting: (a) five visibility violations fixed (Deniability raised to 0.53 above proxy actors; three Awareness nodes placed above their Layers); (b) one near-duplicate pair fixed (Telecommunications vs Financial Rails); (c) three boundary straddles nudged (Deter, Economic Sovereignty, Friendly Fire).",
+    "Mermaid block constructed by hand following owm_to_mermaid.mjs conventions (double-quote all names, include 'size [1100, 800]', skip 'style wardley', preserve 'inertia' decorator in parentheses)."
+  ]
+}

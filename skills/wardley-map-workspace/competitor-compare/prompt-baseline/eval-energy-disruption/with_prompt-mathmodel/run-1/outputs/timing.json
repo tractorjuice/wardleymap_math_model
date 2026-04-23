@@ -1,0 +1,11 @@
+{
+  "scenario": "eval-energy-disruption",
+  "mode": "prompt-baseline",
+  "prompt_in_tree": true,
+  "run": 1,
+  "start_ns": 1776873091310538079,
+  "end_ns": 1776873238550996989,
+  "elapsed_ns": 147240458910,
+  "elapsed_seconds": 147.24,
+  "notes": "Prompt-only baseline; followed /workspaces/wardleymap_math_model/prompts/wardley_map_generator.md. Blind to reference maps in iteration-14 and competitor-compare/prompt-baseline."
+}

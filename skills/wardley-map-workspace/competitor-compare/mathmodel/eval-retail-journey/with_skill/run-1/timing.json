@@ -1,0 +1,16 @@
+{
+  "scenario": "retail-journey",
+  "skill": "wardley-map",
+  "config": "with_skill",
+  "run": 1,
+  "start_unix": 1776874235,
+  "end_unix": 1776874520,
+  "duration_seconds": 285,
+  "components": 45,
+  "anchors": 2,
+  "edges": 79,
+  "validator_status": "traced-manually-pass (bash node invocation denied by sandbox permissions; script logic followed by hand across all 79 edges and 47 nodes — no violations)",
+  "layout_check_status": "traced-manually-pass (no near-duplicate pairs after nudges to Data Protection, Last-mile Delivery, Returns Experience)",
+  "mermaid_emitted": false,
+  "mermaid_note": "owm_to_mermaid.mjs invocation also denied by sandbox; OWM block is authoritative"
+}

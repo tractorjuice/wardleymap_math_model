@@ -1,0 +1,164 @@
+title UK Labour Party preparing for government (May 2024)
+style wardley
+
+// Anchors (user needs)
+anchor Keir Starmer (Leader) [0.98, 0.55]
+anchor UK Voters [0.98, 0.70]
+anchor Labour Party Members [0.95, 0.60]
+
+// Leader-facing / top public layer
+component Public Messaging & Leadership Brand [0.90, 0.55]
+component Media Relations [0.87, 0.72]
+component Campaign Strategy [0.86, 0.60]
+component Public Engagement [0.85, 0.65]
+component Manifesto / Policy Platform [0.84, 0.52]
+
+// Engagement & mobilisation
+component Volunteer Mobilisation [0.78, 0.66]
+component Stakeholder Engagement [0.76, 0.58]
+component Fundraising [0.75, 0.70]
+component Private Sector Collaboration [0.72, 0.42]
+
+// Mission-led framing (Starmer's 5 missions)
+component Mission-Led Policy Framework [0.70, 0.35]
+
+// Substantive policy areas - industrialised (mature, established political terrain)
+component Workers' Rights Policy [0.69, 0.64]
+component Healthcare Access Policy (NHS) [0.67, 0.67]
+component Economic Equality Policy [0.66, 0.60]
+component Education Access Policy [0.64, 0.63]
+component Public Sector Investment [0.64, 0.56]
+component Anti-Discrimination Policy [0.61, 0.62]
+component National Security Policy [0.63, 0.71]
+component International Relations Policy [0.59, 0.68]
+component Social Justice Policy [0.61, 0.53]
+component Infrastructure Policy [0.57, 0.58]
+component Community Programs [0.55, 0.65]
+
+// Substantive policy areas - still being invented / novel framing
+component Housing Policy (Planning Reform) [0.54, 0.38]
+component Climate Change Action (Green Prosperity) [0.52, 0.32]
+component Digital Transformation Policy [0.52, 0.22]
+
+// Policy apparatus (mid-layer — behind the scenes)
+component Party Policy Framework [0.48, 0.55]
+component Research and Policy Development [0.44, 0.46]
+component Internal Party Democracy [0.40, 0.60]
+
+// Campaign & engagement infrastructure (mid-deep)
+component Polling & Voter Data Analytics [0.36, 0.78]
+component Ground Operations / Canvassing [0.34, 0.70]
+component Local Constituency Network (CLPs) [0.30, 0.60]
+component Trade Union Links [0.28, 0.55]
+
+// Data & digital infra
+component Membership CRM [0.22, 0.82]
+component Digital Advertising Platforms [0.20, 0.88]
+component Social Media Platforms [0.20, 0.92]
+component Donation / Payment Processing [0.15, 0.92]
+component Party Finance & Reporting [0.12, 0.82]
+component Electoral Law & Compliance [0.08, 0.80]
+
+// Dependencies (a -> b means a depends on b)
+
+// Anchors -> top layer
+Keir Starmer (Leader)->Public Messaging & Leadership Brand
+Keir Starmer (Leader)->Manifesto / Policy Platform
+Keir Starmer (Leader)->Campaign Strategy
+Keir Starmer (Leader)->Media Relations
+UK Voters->Public Messaging & Leadership Brand
+UK Voters->Public Engagement
+UK Voters->Manifesto / Policy Platform
+UK Voters->Media Relations
+Labour Party Members->Manifesto / Policy Platform
+Labour Party Members->Internal Party Democracy
+Labour Party Members->Volunteer Mobilisation
+Labour Party Members->Campaign Strategy
+
+// Top layer -> next
+Public Messaging & Leadership Brand->Media Relations
+Public Messaging & Leadership Brand->Mission-Led Policy Framework
+Campaign Strategy->Volunteer Mobilisation
+Campaign Strategy->Public Engagement
+Campaign Strategy->Polling & Voter Data Analytics
+Campaign Strategy->Ground Operations / Canvassing
+Campaign Strategy->Fundraising
+Campaign Strategy->Digital Advertising Platforms
+Public Engagement->Social Media Platforms
+Public Engagement->Stakeholder Engagement
+Public Engagement->Local Constituency Network (CLPs)
+Manifesto / Policy Platform->Party Policy Framework
+Manifesto / Policy Platform->Mission-Led Policy Framework
+Media Relations->Social Media Platforms
+
+// Engagement machinery
+Volunteer Mobilisation->Local Constituency Network (CLPs)
+Volunteer Mobilisation->Membership CRM
+Stakeholder Engagement->Private Sector Collaboration
+Stakeholder Engagement->Trade Union Links
+Fundraising->Donation / Payment Processing
+Fundraising->Membership CRM
+Fundraising->Party Finance & Reporting
+
+// Mission-led framework and policy apparatus
+Mission-Led Policy Framework->Party Policy Framework
+Mission-Led Policy Framework->Research and Policy Development
+Party Policy Framework->Research and Policy Development
+Party Policy Framework->Internal Party Democracy
+Internal Party Democracy->Local Constituency Network (CLPs)
+Internal Party Democracy->Trade Union Links
+
+// Manifesto -> policy areas (the manifesto packages the policies for voters)
+Manifesto / Policy Platform->Economic Equality Policy
+Manifesto / Policy Platform->Workers' Rights Policy
+Manifesto / Policy Platform->Healthcare Access Policy (NHS)
+Manifesto / Policy Platform->Education Access Policy
+Manifesto / Policy Platform->Housing Policy (Planning Reform)
+Manifesto / Policy Platform->Climate Change Action (Green Prosperity)
+Manifesto / Policy Platform->National Security Policy
+Manifesto / Policy Platform->International Relations Policy
+Manifesto / Policy Platform->Digital Transformation Policy
+Manifesto / Policy Platform->Anti-Discrimination Policy
+Manifesto / Policy Platform->Social Justice Policy
+Manifesto / Policy Platform->Infrastructure Policy
+Manifesto / Policy Platform->Public Sector Investment
+Manifesto / Policy Platform->Community Programs
+
+// Policy areas -> apparatus (policies are produced by the research/development machinery)
+Economic Equality Policy->Research and Policy Development
+Workers' Rights Policy->Research and Policy Development
+Workers' Rights Policy->Trade Union Links
+Healthcare Access Policy (NHS)->Research and Policy Development
+Education Access Policy->Research and Policy Development
+Anti-Discrimination Policy->Research and Policy Development
+Social Justice Policy->Research and Policy Development
+Infrastructure Policy->Research and Policy Development
+Public Sector Investment->Research and Policy Development
+National Security Policy->Research and Policy Development
+International Relations Policy->Research and Policy Development
+Community Programs->Research and Policy Development
+Housing Policy (Planning Reform)->Research and Policy Development
+Climate Change Action (Green Prosperity)->Research and Policy Development
+Digital Transformation Policy->Research and Policy Development
+
+// Infra layer
+Polling & Voter Data Analytics->Membership CRM
+Polling & Voter Data Analytics->Social Media Platforms
+Ground Operations / Canvassing->Local Constituency Network (CLPs)
+Ground Operations / Canvassing->Membership CRM
+Local Constituency Network (CLPs)->Membership CRM
+Digital Advertising Platforms->Social Media Platforms
+Membership CRM->Party Finance & Reporting
+Donation / Payment Processing->Party Finance & Reporting
+Party Finance & Reporting->Electoral Law & Compliance
+
+// Evolution arrows - where we expect Labour to push
+evolve Mission-Led Policy Framework 0.55
+evolve Digital Transformation Policy 0.50
+evolve Housing Policy (Planning Reform) 0.60
+evolve Climate Change Action (Green Prosperity) 0.55
+evolve Private Sector Collaboration 0.60
+
+// Notes
+note Industrialised political machinery [0.85, 0.85]
+note Still being invented [0.55, 0.18]

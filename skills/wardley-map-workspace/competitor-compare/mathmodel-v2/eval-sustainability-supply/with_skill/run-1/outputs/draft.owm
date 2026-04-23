@@ -1,0 +1,179 @@
+title Supply-Chain Sustainability (Producer to Consumer)
+style wardley
+
+// Anchors — four user types
+anchor Consumer [0.98, 0.60]
+anchor Retailer [0.96, 0.55]
+anchor Producer [0.94, 0.40]
+anchor Regulator [0.92, 0.50]
+
+// Consumer-facing needs
+component Sustainable Product [0.88, 0.55]
+component Sustainability Rating Label [0.85, 0.60]
+component Eco-Certification Mark [0.82, 0.72]
+component Product Price [0.86, 0.92]
+component Product Availability [0.84, 0.85]
+
+// Retail / distribution channels
+component Storefront Retail [0.78, 0.85]
+component Online Marketplace [0.76, 0.78]
+component Cooperative Distribution [0.74, 0.45]
+component Last-Mile Delivery [0.70, 0.72]
+component Backhaul Logistics [0.62, 0.68]
+
+// Chain operations (retailer / producer facing)
+component Packaging [0.66, 0.70]
+component Freshness Management [0.65, 0.52]
+component Cold-Chain Handling [0.60, 0.55]
+component Transportation Fleet [0.54, 0.82]
+component Warehousing [0.52, 0.88]
+
+// Producer / manufacturing layer
+component Manufacturing Operations [0.48, 0.65]
+component Complex Product Assembly [0.44, 0.55]
+component Raw Material Sourcing [0.42, 0.48]
+component Supplier Network [0.40, 0.58]
+component Supplier Code of Conduct [0.38, 0.40]
+
+// Sustainability-specific operations
+component Resource Efficiency Program [0.36, 0.35]
+component Circular / Reusability Design [0.34, 0.22]
+component End-of-Life Recovery [0.32, 0.30]
+component Waste Management [0.30, 0.78]
+component Recycling Infrastructure [0.22, 0.55]
+
+// R&D and innovation
+component Sustainability R&D [0.28, 0.18]
+component Low-Carbon Materials R&D [0.26, 0.15]
+component Green Chemistry [0.24, 0.20]
+
+// Compliance, monitoring, reporting
+component ESG Disclosure Report [0.70, 0.65]
+component Sustainability Audit [0.58, 0.52]
+component Third-Party Certification Body [0.56, 0.68]
+component Supply-Chain Monitoring [0.50, 0.42]
+component Traceability System [0.46, 0.38]
+component Carbon Accounting [0.44, 0.48]
+
+// Regulatory apparatus
+component Sustainability Laws [0.82, 0.55]
+component Environmental Regulation [0.80, 0.72]
+component Trade Agreements [0.72, 0.70]
+component Sanctions Regime [0.68, 0.62]
+component Regulatory Guidelines [0.64, 0.55]
+component Regulatory Bureaucracy [0.60, 0.78]
+
+// Deep infrastructure / utilities
+component Transport Fuel [0.16, 0.92]
+component Electricity Grid [0.12, 0.95]
+component Shipping Ports [0.14, 0.88]
+component Standards Bodies (ISO / GRI) [0.20, 0.82]
+
+// Dependencies — consumers
+Consumer->Sustainable Product
+Consumer->Sustainability Rating Label
+Consumer->Product Price
+Consumer->Product Availability
+Consumer->Eco-Certification Mark
+
+// Retailer dependencies
+Retailer->Sustainable Product
+Retailer->Storefront Retail
+Retailer->Online Marketplace
+Retailer->ESG Disclosure Report
+Retailer->Environmental Regulation
+
+// Producer dependencies
+Producer->Manufacturing Operations
+Producer->Raw Material Sourcing
+Producer->Sustainability R&D
+Producer->Supplier Code of Conduct
+Producer->ESG Disclosure Report
+Producer->Environmental Regulation
+
+// Regulator dependencies
+Regulator->Sustainability Laws
+Regulator->Environmental Regulation
+Regulator->Trade Agreements
+Regulator->Sanctions Regime
+Regulator->Regulatory Guidelines
+Regulator->Regulatory Bureaucracy
+Regulator->Supply-Chain Monitoring
+
+// Product surface → chain
+Sustainable Product->Manufacturing Operations
+Sustainable Product->Packaging
+Sustainable Product->Last-Mile Delivery
+Sustainable Product->Eco-Certification Mark
+Sustainability Rating Label->Third-Party Certification Body
+Eco-Certification Mark->Third-Party Certification Body
+
+// Distribution channels
+Storefront Retail->Backhaul Logistics
+Storefront Retail->Transportation Fleet
+Online Marketplace->Last-Mile Delivery
+Cooperative Distribution->Backhaul Logistics
+Last-Mile Delivery->Transportation Fleet
+Backhaul Logistics->Transportation Fleet
+
+// Handling layer
+Packaging->Manufacturing Operations
+Cold-Chain Handling->Transportation Fleet
+Cold-Chain Handling->Electricity Grid
+Freshness Management->Cold-Chain Handling
+Transportation Fleet->Transport Fuel
+Transportation Fleet->Shipping Ports
+Warehousing->Electricity Grid
+
+// Manufacturing chain
+Manufacturing Operations->Complex Product Assembly
+Manufacturing Operations->Raw Material Sourcing
+Manufacturing Operations->Resource Efficiency Program
+Manufacturing Operations->Electricity Grid
+Complex Product Assembly->Supplier Network
+Raw Material Sourcing->Supplier Network
+Raw Material Sourcing->Supplier Code of Conduct
+Supplier Network->Supplier Code of Conduct
+
+// Sustainability operations
+Resource Efficiency Program->Sustainability R&D
+Circular / Reusability Design->Sustainability R&D
+End-of-Life Recovery->Recycling Infrastructure
+End-of-Life Recovery->Waste Management
+Waste Management->Recycling Infrastructure
+Sustainable Product->Circular / Reusability Design
+
+// R&D
+Sustainability R&D->Low-Carbon Materials R&D
+Sustainability R&D->Green Chemistry
+
+// Compliance chain
+ESG Disclosure Report->Sustainability Audit
+ESG Disclosure Report->Carbon Accounting
+Sustainability Audit->Third-Party Certification Body
+Sustainability Audit->Traceability System
+Third-Party Certification Body->Standards Bodies (ISO / GRI)
+Supply-Chain Monitoring->Traceability System
+Supply-Chain Monitoring->Supplier Network
+Traceability System->Supplier Network
+Carbon Accounting->Standards Bodies (ISO / GRI)
+
+// Regulation
+Sustainability Laws->Regulatory Bureaucracy
+Environmental Regulation->Regulatory Guidelines
+Environmental Regulation->Regulatory Bureaucracy
+Trade Agreements->Regulatory Bureaucracy
+Sanctions Regime->Regulatory Bureaucracy
+Regulatory Guidelines->Standards Bodies (ISO / GRI)
+Environmental Regulation->Supply-Chain Monitoring
+
+// Evolve targets
+evolve Circular / Reusability Design 0.55
+evolve Carbon Accounting 0.70
+evolve ESG Disclosure Report 0.82
+evolve Traceability System 0.62
+evolve Sustainability Rating Label 0.78
+
+note Open market driven [0.70, 0.85]
+note Regulated zone [0.80, 0.55]
+note R&D differentiation [0.30, 0.15]

@@ -1,0 +1,10 @@
+{
+  "skill": "arc-kit wardley-mapping (competitor-compare/arc-kit/skill/SKILL.md)",
+  "eval": "eval-sustainability-supply",
+  "run": 1,
+  "start_utc": "2026-04-22T16:38:30Z",
+  "end_utc": "2026-04-22T16:41:29Z",
+  "elapsed_seconds": 163,
+  "blind": true,
+  "notes": "Blind benchmark: did not read wardley-reference.owm in either competitor-compare/arc-kit/eval-sustainability-supply/ or iteration-12/eval-sustainability-supply/. Did not use in-tree skill or validator. Followed arc-kit SKILL.md Steps 1-5 (non-interactive mode since scenario was provided). Produced draft.owm in OnlineWardleyMaps syntax and output.md with visual map, YAML structured output, analysis checklist, gameplay + climatic notes, and summary."
+}

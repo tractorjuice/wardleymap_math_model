@@ -1,0 +1,9 @@
+{
+  "scenario": "gaming-economies",
+  "config": "with_skill",
+  "run": 1,
+  "start_unix": 1776874255.003,
+  "end_unix": 1776874781.674,
+  "elapsed_seconds": 526.671,
+  "notes": "Blind benchmark. Validator script (node validate_owm.mjs) could not be invoked automatically due to tool-permission scope in this environment; the visibility hard rule, coord range, and endpoint existence checks documented in the validator were walked manually (65 edges, 0 violations). Layout checks (near-duplicate, boundary straddle, canvas clip, stage imbalance) also walked manually, 0 warnings."
+}

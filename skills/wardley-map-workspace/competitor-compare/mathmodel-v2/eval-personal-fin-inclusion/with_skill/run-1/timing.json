@@ -1,0 +1,36 @@
+{
+  "eval": "personal-fin-inclusion",
+  "config": "with_skill",
+  "run": 1,
+  "start_ns": 1776939461065099589,
+  "end_ns": 1776939876530040340,
+  "elapsed_ns": 415464940751,
+  "elapsed_seconds": 415.46,
+  "elapsed_minutes": 6.92,
+  "blind": true,
+  "skill_version": "wardley-map",
+  "validator_run": false,
+  "validator_reason": "node binary blocked by sandbox for this workspace path; manual audit of Step 5.5 rules performed (see output.md §g-validate).",
+  "layout_checker_run": false,
+  "layout_checker_reason": "same sandbox restriction; manual layout audit performed.",
+  "web_searches": 0,
+  "components": 48,
+  "anchors": 1,
+  "edges": 82,
+  "stage_distribution": {
+    "genesis": 3,
+    "custom_built": 14,
+    "product_rental": 15,
+    "commodity_utility": 12,
+    "anchor_plus_user_needs_in_stages": {
+      "anchor_at_epsilon": 0.48,
+      "user_needs": {
+        "options": 0.40,
+        "ability_to_trade": 0.55,
+        "equality_of_access": 0.30,
+        "sustainability": 0.22,
+        "financial_inclusion": 0.35
+      }
+    }
+  }
+}

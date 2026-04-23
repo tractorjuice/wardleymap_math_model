@@ -1,0 +1,132 @@
+title UK Labour Party - Preparing for Government (May 2024)
+style wardley
+
+// --- Anchors ---
+anchor UK Voters [0.97, 0.50]
+anchor Keir Starmer [0.95, 0.58]
+anchor Labour Members [0.93, 0.42]
+
+// --- Visible value proposition ---
+component Electoral Victory [0.88, 0.45]
+component Public Trust [0.86, 0.36]
+component Policy Platform [0.84, 0.40]
+
+// --- Campaign / engagement machinery ---
+component Campaign Strategy [0.78, 0.58]
+component Media Relations [0.76, 0.72]
+component Public Engagement [0.74, 0.55]
+component Volunteer Mobilisation [0.72, 0.65]
+component Stakeholder Engagement [0.70, 0.52]
+component Fundraising [0.68, 0.68]
+component Private Sector Collaboration [0.66, 0.36]
+
+// --- Policy apparatus ---
+component Party Policy Framework [0.64, 0.55]
+component Research and Policy Dev [0.60, 0.42]
+component Internal Party Democracy [0.58, 0.48]
+
+// --- Substantive policy areas ---
+component Anti-Discrimination Policy [0.55, 0.56]
+component Healthcare Access (NHS) [0.52, 0.64]
+component Education Access [0.49, 0.60]
+component National Security [0.50, 0.72]
+component International Relations [0.46, 0.68]
+component Community Programs [0.44, 0.46]
+component Workers Rights (New Deal) [0.42, 0.30]
+component Economic Equality [0.40, 0.22]
+component Social Justice [0.38, 0.38]
+component Infrastructure Development [0.36, 0.50]
+component Public Sector Investment [0.34, 0.34]
+component Housing Policy [0.32, 0.26] inertia
+component Climate Action (GB Energy) [0.29, 0.14]
+component Digital Transformation [0.26, 0.42]
+
+// --- Infrastructure / utilities ---
+component Voter Data and Analytics [0.18, 0.72]
+component Civil Service Apparatus [0.15, 0.86]
+component Funding Infrastructure [0.12, 0.78]
+component Electoral Regulation [0.10, 0.88]
+
+// --- Dependencies: voters / leader / members -> visible layer ---
+UK Voters->Electoral Victory
+UK Voters->Public Trust
+UK Voters->Policy Platform
+Keir Starmer->Electoral Victory
+Keir Starmer->Public Trust
+Keir Starmer->Policy Platform
+Labour Members->Policy Platform
+Labour Members->Internal Party Democracy
+Labour Members->Volunteer Mobilisation
+
+// --- Visible layer -> campaign machinery ---
+Electoral Victory->Campaign Strategy
+Electoral Victory->Public Engagement
+Public Trust->Media Relations
+Public Trust->Stakeholder Engagement
+Policy Platform->Party Policy Framework
+Policy Platform->Research and Policy Dev
+
+// --- Campaign machinery internal wiring ---
+Campaign Strategy->Media Relations
+Campaign Strategy->Public Engagement
+Campaign Strategy->Volunteer Mobilisation
+Campaign Strategy->Fundraising
+Campaign Strategy->Voter Data and Analytics
+Public Engagement->Volunteer Mobilisation
+Public Engagement->Voter Data and Analytics
+Stakeholder Engagement->Private Sector Collaboration
+Fundraising->Funding Infrastructure
+
+// --- Policy apparatus wiring ---
+Party Policy Framework->Internal Party Democracy
+Party Policy Framework->Research and Policy Dev
+Research and Policy Dev->Economic Equality
+Research and Policy Dev->Workers Rights (New Deal)
+Research and Policy Dev->Anti-Discrimination Policy
+Research and Policy Dev->Social Justice
+Research and Policy Dev->Healthcare Access (NHS)
+Research and Policy Dev->Education Access
+Research and Policy Dev->Housing Policy
+Research and Policy Dev->Infrastructure Development
+Research and Policy Dev->Public Sector Investment
+Research and Policy Dev->Climate Action (GB Energy)
+Research and Policy Dev->National Security
+Research and Policy Dev->International Relations
+Research and Policy Dev->Digital Transformation
+Research and Policy Dev->Community Programs
+
+// --- Policy areas -> state / infra ---
+Healthcare Access (NHS)->Civil Service Apparatus
+Education Access->Civil Service Apparatus
+Infrastructure Development->Civil Service Apparatus
+Public Sector Investment->Civil Service Apparatus
+National Security->Civil Service Apparatus
+International Relations->Civil Service Apparatus
+Digital Transformation->Civil Service Apparatus
+Housing Policy->Civil Service Apparatus
+Climate Action (GB Energy)->Civil Service Apparatus
+Community Programs->Civil Service Apparatus
+Workers Rights (New Deal)->Civil Service Apparatus
+Economic Equality->Civil Service Apparatus
+
+// --- Regulatory / data / funding utilities ---
+Campaign Strategy->Electoral Regulation
+Fundraising->Electoral Regulation
+Media Relations->Electoral Regulation
+Voter Data and Analytics->Electoral Regulation
+Volunteer Mobilisation->Funding Infrastructure
+
+// --- Evolution arrows: where the next 12-24 months move components ---
+evolve Campaign Strategy 0.70
+evolve Private Sector Collaboration 0.55
+evolve Climate Action (GB Energy) 0.42
+evolve Digital Transformation 0.55
+evolve Housing Policy 0.42
+evolve Research and Policy Dev 0.55
+evolve Infrastructure Development 0.58
+
+// --- Annotations ---
+annotation 1 [[0.78, 0.42]] Campaign op industrialising under McSweeney
+annotation 2 [[0.66, 0.24]] Business engagement being actively invented
+annotation 3 [[0.32, 0.22]] Climate / Housing delivery vehicles still Custom-Built
+annotation 4 [[0.15, 0.92]] Governing utilities Labour inherits day one

@@ -1,0 +1,8 @@
+{
+  "start": 1776874384.143,
+  "end": 1776874760.856,
+  "duration_seconds": 376.71,
+  "run": "with_skill/run-1",
+  "scenario": "energy-storage",
+  "skill": "wardley-map (in-tree)"
+}

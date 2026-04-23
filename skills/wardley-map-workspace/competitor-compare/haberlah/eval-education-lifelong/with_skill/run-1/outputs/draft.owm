@@ -1,0 +1,144 @@
+title Lifelong Education and Learning Landscape (2026)
+style wardley
+
+anchor Students [0.97, 0.42]
+anchor Employees [0.97, 0.56]
+anchor Employers [0.97, 0.70]
+anchor Educators [0.93, 0.32]
+anchor Institutions [0.93, 0.52]
+anchor Government [0.93, 0.18]
+anchor Community [0.93, 0.80]
+
+component Capability [0.86, 0.40]
+component Inclusion [0.84, 0.22]
+component Status and Brand [0.82, 0.60]
+
+component Formal Curriculum [0.74, 0.46]
+component Informal Curriculum [0.72, 0.28]
+component Skills Frameworks [0.66, 0.56]
+
+component Degrees [0.62, 0.82]
+component Micro-credentials [0.58, 0.32] inertia
+component Digital Identity [0.54, 0.16]
+
+component Assessment [0.48, 0.62]
+component Certification Standards [0.44, 0.72]
+component Accreditation [0.40, 0.78]
+component Verification [0.36, 0.30]
+
+component AI Tutors [0.32, 0.22]
+component Community Learning [0.30, 0.36]
+
+component Online Delivery [0.24, 0.74]
+component Physical Delivery [0.22, 0.90]
+component Funding [0.18, 0.68]
+
+component Content Libraries [0.12, 0.82]
+component Compute and Connectivity [0.06, 0.94]
+
+Students->Capability
+Students->Inclusion
+Students->Degrees
+Students->Micro-credentials
+Students->Formal Curriculum
+Students->Informal Curriculum
+
+Employees->Capability
+Employees->Micro-credentials
+Employees->Skills Frameworks
+
+Employers->Skills Frameworks
+Employers->Certification Standards
+Employers->Status and Brand
+Employers->Capability
+
+Educators->Formal Curriculum
+Educators->Informal Curriculum
+Educators->Assessment
+Educators->AI Tutors
+
+Institutions->Degrees
+Institutions->Status and Brand
+Institutions->Accreditation
+Institutions->Funding
+
+Government->Inclusion
+Government->Accreditation
+Government->Certification Standards
+Government->Funding
+
+Community->Community Learning
+Community->Informal Curriculum
+Community->Inclusion
+
+Capability->Formal Curriculum
+Capability->Informal Curriculum
+Capability->Skills Frameworks
+
+Status and Brand->Degrees
+Status and Brand->Accreditation
+
+Inclusion->Funding
+Inclusion->Digital Identity
+Inclusion->Physical Delivery
+
+Formal Curriculum->Assessment
+Formal Curriculum->Accreditation
+Formal Curriculum->Online Delivery
+Formal Curriculum->Physical Delivery
+
+Informal Curriculum->AI Tutors
+Informal Curriculum->Community Learning
+Informal Curriculum->Online Delivery
+
+Skills Frameworks->Micro-credentials
+Skills Frameworks->Certification Standards
+Skills Frameworks->Assessment
+
+Degrees->Assessment
+Degrees->Accreditation
+Degrees->Verification
+
+Micro-credentials->Assessment
+Micro-credentials->Verification
+Micro-credentials->Digital Identity
+
+Digital Identity->Verification
+
+Assessment->AI Tutors
+Assessment->Online Delivery
+Assessment->Physical Delivery
+
+Verification->Content Libraries
+
+Certification Standards->Accreditation
+Certification Standards->Verification
+
+Accreditation->Funding
+
+AI Tutors->Content Libraries
+AI Tutors->Compute and Connectivity
+
+Community Learning->Physical Delivery
+
+Online Delivery->Content Libraries
+Online Delivery->Compute and Connectivity
+
+Physical Delivery->Funding
+
+Funding->Compute and Connectivity
+
+Content Libraries->Compute and Connectivity
+
+evolve Micro-credentials 0.55
+evolve Digital Identity 0.40
+evolve AI Tutors 0.45
+evolve Skills Frameworks 0.70
+evolve Verification 0.55
+evolve Online Delivery 0.88
+
+annotation 1 [[0.60, 0.40]] Micro-credentials have inertia: incumbent degree model and rankings resist the badge stack despite Open Badges 3.0 and LER initiatives.
+annotation 2 [[0.34, 0.10]] AI Tutors moved from Genesis to early Custom-Built (2023-2026); Khanmigo, Squirrel AI, GPT-5 tutors widespread but outcome evidence thin.
+annotation 3 [[0.52, 0.08]] Digital Identity (learner wallets, verifiable credentials) is the unlock for portable micro-credentials - still pre-standard.
+annotation 4 [[0.86, 0.12]] Inclusion is contested and bespoke per jurisdiction; curriculum-shaping power sits here, not in the delivery stack.
+annotation 5 [[0.58, 0.88]] Degrees are Commodity in form but Product-to-Commodity in prestige: everyone has one, but brand hierarchy (status) is how employers sort.

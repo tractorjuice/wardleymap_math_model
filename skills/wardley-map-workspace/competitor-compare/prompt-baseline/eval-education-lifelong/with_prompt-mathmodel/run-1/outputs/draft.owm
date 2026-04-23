@@ -1,0 +1,167 @@
+title Lifelong Education and Learning Landscape
+style wardley
+
+// Anchors — six distinct user types in this ecosystem
+anchor Student / Learner [1.00, 0.50]
+anchor Employee [0.99, 0.55]
+anchor Employer [0.98, 0.60]
+anchor Educator [0.97, 0.45]
+anchor Government / Regulator [0.96, 0.50]
+anchor Wider Community [0.95, 0.35]
+
+// Layer 1 — user-facing propositions
+component Degree Qualification [0.88, 0.82]
+component Micro-credential / Badge [0.86, 0.45]
+component Skills Development [0.85, 0.55]
+component Employment Outcome [0.84, 0.70]
+component Status / Brand Signalling [0.83, 0.65]
+component Community Learning [0.82, 0.30]
+component Inclusion / Access [0.80, 0.40]
+
+// Layer 2 — delivery surfaces and programmes
+component Formal Curriculum [0.74, 0.70]
+component Informal Curriculum [0.72, 0.35]
+component Physical Classroom Delivery [0.70, 0.80]
+component Online Course Delivery [0.68, 0.72]
+component AI Tutor [0.66, 0.18]
+component Mentoring / Coaching [0.64, 0.35]
+component Peer / Community Study Groups [0.62, 0.40]
+
+// Layer 3 — assessment, verification, certification
+component Assessment [0.56, 0.68]
+component Verification of Learning [0.54, 0.45]
+component Certification Issuance [0.52, 0.72]
+component Accreditation Standards [0.50, 0.60]
+component Qualification Frameworks [0.48, 0.70]
+
+// Layer 4 — institutions and educators
+component Educational Institution [0.44, 0.65]
+component Teaching Workforce [0.42, 0.55]
+component Pedagogy [0.40, 0.50]
+component Funding / Tuition Model [0.38, 0.55]
+
+// Layer 5 — enabling platforms
+component Learning Management System [0.34, 0.78]
+component Content Library / OER [0.32, 0.60]
+component Digital Identity [0.30, 0.50]
+component Credential Wallet [0.28, 0.30]
+component Video Conferencing [0.26, 0.88]
+component Proctoring / Invigilation [0.24, 0.55]
+
+// Layer 6 — foundations (policy, data, infrastructure)
+component Regulation / Policy [0.22, 0.60]
+component Labour Market Data [0.20, 0.55]
+component Payment / Student Finance [0.18, 0.80]
+component Cloud Compute [0.14, 0.92]
+component Broadband / Connectivity [0.12, 0.90]
+component Foundation Models (LLMs) [0.10, 0.40]
+
+// Dependencies — anchors to propositions
+Student / Learner->Degree Qualification
+Student / Learner->Micro-credential / Badge
+Student / Learner->Skills Development
+Student / Learner->Inclusion / Access
+Student / Learner->Community Learning
+Employee->Skills Development
+Employee->Micro-credential / Badge
+Employee->Employment Outcome
+Employee->Status / Brand Signalling
+Employer->Skills Development
+Employer->Employment Outcome
+Employer->Status / Brand Signalling
+Employer->Verification of Learning
+Educator->Formal Curriculum
+Educator->Informal Curriculum
+Educator->Pedagogy
+Government / Regulator->Accreditation Standards
+Government / Regulator->Qualification Frameworks
+Government / Regulator->Inclusion / Access
+Government / Regulator->Regulation / Policy
+Wider Community->Community Learning
+Wider Community->Informal Curriculum
+Wider Community->Inclusion / Access
+
+// Dependencies — propositions to delivery
+Degree Qualification->Formal Curriculum
+Degree Qualification->Certification Issuance
+Degree Qualification->Status / Brand Signalling
+Micro-credential / Badge->Informal Curriculum
+Micro-credential / Badge->Online Course Delivery
+Micro-credential / Badge->Certification Issuance
+Skills Development->Formal Curriculum
+Skills Development->Informal Curriculum
+Skills Development->Mentoring / Coaching
+Skills Development->AI Tutor
+Skills Development->Peer / Community Study Groups
+Employment Outcome->Verification of Learning
+Employment Outcome->Labour Market Data
+Status / Brand Signalling->Educational Institution
+Status / Brand Signalling->Certification Issuance
+Community Learning->Informal Curriculum
+Community Learning->Peer / Community Study Groups
+Inclusion / Access->Funding / Tuition Model
+Inclusion / Access->Regulation / Policy
+Inclusion / Access->Broadband / Connectivity
+
+// Dependencies — delivery to assessment and institutions
+Formal Curriculum->Assessment
+Formal Curriculum->Pedagogy
+Formal Curriculum->Educational Institution
+Informal Curriculum->Content Library / OER
+Physical Classroom Delivery->Educational Institution
+Physical Classroom Delivery->Teaching Workforce
+Online Course Delivery->Learning Management System
+Online Course Delivery->Content Library / OER
+Online Course Delivery->Video Conferencing
+AI Tutor->Foundation Models (LLMs)
+AI Tutor->Content Library / OER
+Mentoring / Coaching->Teaching Workforce
+Peer / Community Study Groups->Online Course Delivery
+
+// Dependencies — assessment and verification
+Assessment->Proctoring / Invigilation
+Assessment->Pedagogy
+Verification of Learning->Digital Identity
+Verification of Learning->Credential Wallet
+Verification of Learning->Accreditation Standards
+Certification Issuance->Accreditation Standards
+Certification Issuance->Qualification Frameworks
+Certification Issuance->Digital Identity
+Accreditation Standards->Regulation / Policy
+Qualification Frameworks->Regulation / Policy
+
+// Dependencies — institutions to foundations
+Educational Institution->Teaching Workforce
+Educational Institution->Funding / Tuition Model
+Educational Institution->Pedagogy
+Teaching Workforce->Pedagogy
+Funding / Tuition Model->Payment / Student Finance
+Funding / Tuition Model->Regulation / Policy
+
+// Dependencies — platform to infrastructure
+Learning Management System->Cloud Compute
+Content Library / OER->Cloud Compute
+Digital Identity->Cloud Compute
+Credential Wallet->Digital Identity
+Video Conferencing->Broadband / Connectivity
+Video Conferencing->Cloud Compute
+Proctoring / Invigilation->Video Conferencing
+Proctoring / Invigilation->Digital Identity
+
+// Inertia — components resisting evolution
+component Degree Qualification [0.88, 0.82] inertia
+component Physical Classroom Delivery [0.70, 0.80] inertia
+component Teaching Workforce [0.42, 0.55] inertia
+
+// Evolution movements (scenario, not forecast)
+evolve AI Tutor 0.50
+evolve Micro-credential / Badge 0.65
+evolve Credential Wallet 0.55
+evolve Informal Curriculum 0.50
+evolve Community Learning 0.45
+
+// Notes — zones of contention
+note High differentiation: new credential + AI tutoring [0.75, 0.25]
+note Commoditised utilities [0.15, 0.90]
+note Power + curriculum gate who gets in [0.50, 0.55]
+note Industrialised: degree + LMS + finance [0.65, 0.85]

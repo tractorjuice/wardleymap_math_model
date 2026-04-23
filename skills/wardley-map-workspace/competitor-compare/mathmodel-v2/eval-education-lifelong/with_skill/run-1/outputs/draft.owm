@@ -1,0 +1,197 @@
+title Lifelong Education and Learning Landscape
+style wardley
+
+// --- Anchors (multi-stakeholder system: users with different needs) ---
+anchor Student / Learner [0.96, 0.55]
+anchor Employer [0.94, 0.65]
+anchor Educator [0.92, 0.45]
+
+// --- User-facing value: the things people actually receive or experience ---
+component Learning Outcomes [0.88, 0.30]
+component Jobs / Career Progression [0.86, 0.55]
+component Status / Brand of Institution [0.83, 0.60]
+component Sense of Belonging / Community [0.80, 0.35]
+
+// --- Credentials layer (what the learner leaves with) ---
+component Degree [0.75, 0.70]
+component Professional Qualification [0.72, 0.72]
+component Micro-credential / Digital Badge [0.70, 0.45]
+component Transcript / Skills Record [0.66, 0.55]
+
+// --- Curriculum and pedagogy ---
+component Formal Curriculum [0.68, 0.68]
+component Informal / Experiential Curriculum [0.63, 0.38]
+component Skills Taxonomy / Framework [0.55, 0.55]
+component Pedagogy / Teaching Practice [0.60, 0.55]
+component AI Tutor / Adaptive Learning [0.58, 0.28]
+component Community Learning / Peer Cohorts [0.55, 0.35]
+
+// --- Delivery ---
+component Classroom / Physical Delivery [0.60, 0.80]
+component Online Course Delivery (LMS) [0.50, 0.70]
+component MOOC / Open Course Platform [0.48, 0.68]
+component Learning Content / Courseware [0.45, 0.60]
+
+// --- Assessment and verification ---
+component Assessment (exams, projects) [0.62, 0.60]
+component Proctoring / Integrity Checks [0.42, 0.55]
+component Credential Verification [0.40, 0.60]
+component Skills Assessment / Testing [0.57, 0.52]
+
+// --- Identity and access ---
+component Digital Learner Identity [0.33, 0.45]
+component Verifiable Credentials / LER [0.35, 0.35]
+component Federated Login / SSO [0.30, 0.88]
+
+// --- Standards, governance, funding ---
+component Accreditation Body [0.28, 0.55]
+component Regulation / Government Policy [0.20, 0.52]
+component Public Funding / Student Finance [0.22, 0.65]
+component Employer Funding / L&D Budget [0.24, 0.60]
+component Quality Assurance Framework [0.30, 0.55]
+
+// --- Access, inclusion, equity ---
+component Inclusion / Access Programmes [0.48, 0.30]
+component Means-testing / Bursaries [0.32, 0.60]
+
+// --- Institution and staff ---
+component Teaching Staff / Faculty [0.58, 0.45]
+component Institution (school / university / provider) [0.50, 0.55]
+component Employer L&D Function [0.65, 0.58]
+
+// --- Data layer ---
+component Learner Data / Analytics [0.32, 0.55]
+component Labour Market Data [0.28, 0.62]
+
+// --- Deep commodity / utility infrastructure ---
+component Cloud Compute & Storage [0.10, 0.92]
+component Video Conferencing [0.12, 0.88]
+component Internet Access [0.08, 0.95]
+
+// --- Knowledge substrate ---
+component Subject Matter Knowledge [0.18, 0.55]
+component Learning Science / Research [0.15, 0.45]
+
+// === Dependencies ===
+
+// Students depend on
+Student / Learner->Learning Outcomes
+Student / Learner->Jobs / Career Progression
+Student / Learner->Sense of Belonging / Community
+Student / Learner->Degree
+Student / Learner->Micro-credential / Digital Badge
+Student / Learner->Status / Brand of Institution
+
+// Employers depend on
+Employer->Jobs / Career Progression
+Employer->Professional Qualification
+Employer->Skills Assessment / Testing
+Employer->Transcript / Skills Record
+Employer->Employer L&D Function
+Employer->Status / Brand of Institution
+
+// Educators depend on
+Educator->Pedagogy / Teaching Practice
+Educator->Teaching Staff / Faculty
+Educator->Formal Curriculum
+Educator->Institution (school / university / provider)
+
+// Outcomes are produced through curriculum and delivery
+Learning Outcomes->Formal Curriculum
+Learning Outcomes->Informal / Experiential Curriculum
+Learning Outcomes->Pedagogy / Teaching Practice
+Learning Outcomes->Assessment (exams, projects)
+
+// Credentials chain
+Degree->Formal Curriculum
+Degree->Assessment (exams, projects)
+Degree->Accreditation Body
+Professional Qualification->Skills Assessment / Testing
+Professional Qualification->Accreditation Body
+Micro-credential / Digital Badge->Skills Assessment / Testing
+Micro-credential / Digital Badge->Verifiable Credentials / LER
+Transcript / Skills Record->Verifiable Credentials / LER
+Transcript / Skills Record->Credential Verification
+
+// Curriculum and pedagogy
+Formal Curriculum->Subject Matter Knowledge
+Formal Curriculum->Skills Taxonomy / Framework
+Formal Curriculum->Quality Assurance Framework
+Informal / Experiential Curriculum->Community Learning / Peer Cohorts
+Informal / Experiential Curriculum->Learning Content / Courseware
+Pedagogy / Teaching Practice->Learning Science / Research
+Pedagogy / Teaching Practice->Teaching Staff / Faculty
+AI Tutor / Adaptive Learning->Learner Data / Analytics
+AI Tutor / Adaptive Learning->Learning Content / Courseware
+AI Tutor / Adaptive Learning->Cloud Compute & Storage
+Community Learning / Peer Cohorts->Online Course Delivery (LMS)
+
+// Status / brand
+Status / Brand of Institution->Institution (school / university / provider)
+Status / Brand of Institution->Accreditation Body
+
+// Sense of Belonging
+Sense of Belonging / Community->Community Learning / Peer Cohorts
+Sense of Belonging / Community->Classroom / Physical Delivery
+
+// Delivery
+Classroom / Physical Delivery->Institution (school / university / provider)
+Classroom / Physical Delivery->Teaching Staff / Faculty
+Online Course Delivery (LMS)->Learning Content / Courseware
+Online Course Delivery (LMS)->Cloud Compute & Storage
+Online Course Delivery (LMS)->Video Conferencing
+MOOC / Open Course Platform->Learning Content / Courseware
+MOOC / Open Course Platform->Cloud Compute & Storage
+Learning Content / Courseware->Subject Matter Knowledge
+
+// Assessment and verification
+Assessment (exams, projects)->Proctoring / Integrity Checks
+Assessment (exams, projects)->Teaching Staff / Faculty
+Skills Assessment / Testing->Skills Taxonomy / Framework
+Credential Verification->Verifiable Credentials / LER
+Credential Verification->Digital Learner Identity
+Proctoring / Integrity Checks->Digital Learner Identity
+
+// Identity
+Digital Learner Identity->Federated Login / SSO
+Verifiable Credentials / LER->Digital Learner Identity
+Verifiable Credentials / LER->Federated Login / SSO
+
+// Governance & funding
+Institution (school / university / provider)->Accreditation Body
+Institution (school / university / provider)->Public Funding / Student Finance
+Institution (school / university / provider)->Regulation / Government Policy
+Accreditation Body->Regulation / Government Policy
+Public Funding / Student Finance->Regulation / Government Policy
+Quality Assurance Framework->Regulation / Government Policy
+Employer L&D Function->Employer Funding / L&D Budget
+Employer L&D Function->Skills Taxonomy / Framework
+Employer L&D Function->Labour Market Data
+
+// Inclusion
+Inclusion / Access Programmes->Means-testing / Bursaries
+Inclusion / Access Programmes->Public Funding / Student Finance
+Means-testing / Bursaries->Public Funding / Student Finance
+
+// Skills frameworks linked to labour markets
+Skills Taxonomy / Framework->Labour Market Data
+Labour Market Data->Cloud Compute & Storage
+
+// Data
+Learner Data / Analytics->Cloud Compute & Storage
+
+// Infra
+Video Conferencing->Cloud Compute & Storage
+Cloud Compute & Storage->Internet Access
+Federated Login / SSO->Cloud Compute & Storage
+
+// --- Evolution targets (scenarios) ---
+evolve Micro-credential / Digital Badge 0.65
+evolve Verifiable Credentials / LER 0.60
+evolve AI Tutor / Adaptive Learning 0.50
+evolve Skills Taxonomy / Framework 0.72
+
+// --- Notes ---
+note Industrialised infrastructure [0.10, 0.90]
+note Artisanal / still-contested [0.65, 0.28]
+note Power & curriculum shape inclusion [0.25, 0.45]

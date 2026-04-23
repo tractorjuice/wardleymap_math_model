@@ -1,0 +1,99 @@
+title Electrical Energy Storage Landscape (April 2023)
+style wardley
+
+// Anchors — the scenario names "consumers" as the primary user need
+anchor Consumers [0.98, 0.70]
+
+// Top layer — what the consumer directly cares about
+component Activity [0.90, 0.55]
+component Control [0.85, 0.40]
+
+// Generation & grid — the visible electricity services
+component Electricity Generation [0.78, 0.72]
+component Grid [0.74, 0.68]
+
+// Grid models — two competing architectures
+component Traditional Grid (Single-Machine View) [0.66, 0.62] inertia
+component Distributed Grid (Fault-Tolerant, TCP/IP-style) [0.64, 0.32]
+
+// Legacy control plane — the SCADA / AGC world
+component Auto Generation Control (AGC) [0.58, 0.70]
+component SCADA [0.56, 0.78] inertia
+component Spinning Reserve [0.54, 0.72] inertia
+component Fast-Response Systems [0.52, 0.38]
+
+// Energy platform / integration layer
+component Energy Platform [0.48, 0.30]
+component Integration Layer (Pre-approval / Discovery) [0.44, 0.22]
+component Adaptive Integration [0.42, 0.18]
+component Plug-and-Play Integration [0.40, 0.28]
+
+// Storage types
+component Electrical Storage (Batteries) [0.36, 0.58]
+component Hydro Storage (Pumped) [0.34, 0.82]
+component Hydrogen Storage [0.32, 0.18]
+
+// Supply chain underneath
+component Sources [0.24, 0.70]
+component Stockpile [0.20, 0.55]
+component Material Supply Chain [0.14, 0.35]
+component Supply Chain Awareness [0.12, 0.22]
+
+// Dependencies — consumer chain
+Consumers->Activity
+Consumers->Control
+Activity->Electricity Generation
+Activity->Grid
+Control->Grid
+Control->Auto Generation Control (AGC)
+
+// Grid depends on one of two models
+Grid->Traditional Grid (Single-Machine View)
+Grid->Distributed Grid (Fault-Tolerant, TCP/IP-style)
+Electricity Generation->Grid
+
+// Traditional control plane
+Traditional Grid (Single-Machine View)->Auto Generation Control (AGC)
+Traditional Grid (Single-Machine View)->SCADA
+Auto Generation Control (AGC)->Spinning Reserve
+Auto Generation Control (AGC)->SCADA
+
+// Distributed model uses fast-response + platform
+Distributed Grid (Fault-Tolerant, TCP/IP-style)->Fast-Response Systems
+Distributed Grid (Fault-Tolerant, TCP/IP-style)->Energy Platform
+Fast-Response Systems->Electrical Storage (Batteries)
+
+// Platform / integration layer
+Energy Platform->Integration Layer (Pre-approval / Discovery)
+Integration Layer (Pre-approval / Discovery)->Adaptive Integration
+Integration Layer (Pre-approval / Discovery)->Plug-and-Play Integration
+Energy Platform->Electrical Storage (Batteries)
+Energy Platform->Hydro Storage (Pumped)
+Energy Platform->Hydrogen Storage
+
+// Spinning reserve is standby generation — generation calls on it
+Electricity Generation->Spinning Reserve
+Electricity Generation->Hydro Storage (Pumped)
+
+// Supply chain underneath storage
+Electrical Storage (Batteries)->Sources
+Electrical Storage (Batteries)->Material Supply Chain
+Hydrogen Storage->Sources
+Hydrogen Storage->Material Supply Chain
+Hydro Storage (Pumped)->Sources
+Sources->Stockpile
+Sources->Material Supply Chain
+Material Supply Chain->Supply Chain Awareness
+
+// Evolution movements — scenario, not forecast
+evolve Distributed Grid (Fault-Tolerant, TCP/IP-style) 0.55
+evolve Fast-Response Systems 0.60
+evolve Electrical Storage (Batteries) 0.72
+evolve Hydrogen Storage 0.40
+evolve Plug-and-Play Integration 0.50
+evolve Material Supply Chain 0.45
+
+// Strategic notes
+note Distributed grid evolving faster than traditional control [0.68, 0.45]
+note Material supply chain risk biting here [0.15, 0.30]
+note Legacy AGC/SCADA inertia zone [0.55, 0.75]

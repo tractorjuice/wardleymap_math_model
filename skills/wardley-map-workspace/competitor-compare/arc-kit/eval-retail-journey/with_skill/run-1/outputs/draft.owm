@@ -1,0 +1,152 @@
+title Connected Customer Journey in Retail
+
+// Anchors
+component Customer [0.95, 0.55]
+component Producer [0.93, 0.40]
+
+// Layer 1 — Needs being met (just below the anchors)
+component Need for Goods [0.87, 0.78]
+component Need for Convenience [0.86, 0.60]
+component Need for Trust [0.85, 0.38]
+component Need for Belonging [0.84, 0.30]
+
+// Layer 2 — Experience layer
+component Retail Experience [0.76, 0.40]
+component Engagement and Discovery [0.73, 0.35]
+component Sensory Experience [0.70, 0.22]
+component Brand and Storytelling [0.72, 0.48]
+
+// Layer 3 — Goods and services offered
+component Goods [0.63, 0.82]
+component Services [0.60, 0.55]
+component Product Range [0.58, 0.70]
+component Returns and Refunds [0.55, 0.68]
+
+// Layer 4 — Channels
+component Physical Store [0.47, 0.72]
+component E-commerce Site [0.45, 0.82]
+component Mobile App [0.43, 0.65]
+component Telesales [0.42, 0.88]
+component Social Commerce [0.40, 0.30]
+component Virtual / AR Channel [0.38, 0.18]
+
+// Layer 5 — Supporting trust and societal context (cross-cutting)
+component Trust and Privacy [0.52, 0.45]
+component Identity [0.48, 0.80]
+component Consent Management [0.46, 0.55]
+component Societal Behaviour and Demographics [0.50, 0.28]
+component Personalisation [0.44, 0.42]
+component Customer Data Platform [0.38, 0.48]
+
+// Layer 6 — Order and fulfilment plumbing
+component Order Management [0.32, 0.78]
+component Inventory [0.30, 0.85]
+component Delivery / Logistics [0.28, 0.80]
+component Reverse Logistics [0.27, 0.60]
+component Payments [0.26, 0.90]
+
+// Layer 7 — Commodity infrastructure (bottom, far right)
+component CRM Platform [0.22, 0.78]
+component Cloud Compute [0.10, 0.96]
+component Networking [0.08, 0.97]
+component Data Storage [0.08, 0.95]
+
+// Dependencies — from Customer anchor downward
+Customer->Need for Goods
+Customer->Need for Convenience
+Customer->Need for Trust
+Customer->Need for Belonging
+Producer->Goods
+Producer->Services
+
+// Needs depend on experience and goods/services
+Need for Goods->Goods
+Need for Goods->Services
+Need for Convenience->Retail Experience
+Need for Convenience->Services
+Need for Trust->Trust and Privacy
+Need for Trust->Brand and Storytelling
+Need for Belonging->Engagement and Discovery
+Need for Belonging->Brand and Storytelling
+
+// Experience layer composition
+Retail Experience->Engagement and Discovery
+Retail Experience->Sensory Experience
+Retail Experience->Brand and Storytelling
+Retail Experience->Personalisation
+Engagement and Discovery->Personalisation
+Engagement and Discovery->Social Commerce
+
+// Goods / services decompose into channels and returns
+Goods->Product Range
+Services->Returns and Refunds
+Services->Delivery / Logistics
+Product Range->Inventory
+Returns and Refunds->Reverse Logistics
+
+// Experience and goods flow through channels
+Retail Experience->Physical Store
+Retail Experience->E-commerce Site
+Retail Experience->Mobile App
+Retail Experience->Telesales
+Retail Experience->Social Commerce
+Retail Experience->Virtual / AR Channel
+Engagement and Discovery->E-commerce Site
+Engagement and Discovery->Mobile App
+Sensory Experience->Physical Store
+Sensory Experience->Virtual / AR Channel
+
+// Channels depend on commerce plumbing
+Physical Store->Payments
+Physical Store->Inventory
+E-commerce Site->Payments
+E-commerce Site->Order Management
+E-commerce Site->Identity
+Mobile App->Payments
+Mobile App->Order Management
+Mobile App->Identity
+Telesales->Order Management
+Telesales->CRM Platform
+Social Commerce->Identity
+Virtual / AR Channel->Identity
+
+// Trust / data cross-cutting
+Trust and Privacy->Identity
+Trust and Privacy->Consent Management
+Personalisation->Customer Data Platform
+Personalisation->Societal Behaviour and Demographics
+Customer Data Platform->Data Storage
+Consent Management->Data Storage
+Identity->Data Storage
+
+// Fulfilment plumbing dependencies
+Order Management->Inventory
+Order Management->Delivery / Logistics
+Order Management->Payments
+Returns and Refunds->Order Management
+Delivery / Logistics->Networking
+Reverse Logistics->Delivery / Logistics
+Inventory->Data Storage
+Payments->Networking
+CRM Platform->Data Storage
+CRM Platform->Cloud Compute
+
+// Everything ultimately rides on commodity infra
+Cloud Compute->Networking
+Data Storage->Cloud Compute
+
+// Movement — components evolving rightward
+evolve Personalisation 0.62
+evolve Sensory Experience 0.40
+evolve Virtual / AR Channel 0.45
+evolve Social Commerce 0.55
+evolve Returns and Refunds 0.78
+evolve Consent Management 0.72
+evolve Engagement and Discovery 0.55
+evolve Identity 0.92
+evolve Customer Data Platform 0.65
+
+// Inertia — resistance to movement
+// (in OWM there is no explicit inertia syntax; annotated below in output.md)
+
+// Anchors declared at top; no anchor keyword needed per OWM basic grammar

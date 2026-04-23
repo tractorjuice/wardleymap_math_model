@@ -1,0 +1,19 @@
+{
+  "run": "prompt-baseline/eval-personal-conversational/with_prompt-in-tree/run-1",
+  "scenario_id": "personal-conversational",
+  "instructions": "prompts/wardley_map_generator.md only; reference .owm files not read (blind)",
+  "start_epoch_s": 1776873238.931983802,
+  "end_epoch_s": 1776873364.042561348,
+  "duration_s": 125.11,
+  "outputs": {
+    "output_md": "outputs/output.md",
+    "draft_owm": "outputs/draft.owm",
+    "timing_json": "outputs/timing.json"
+  },
+  "components_count": 22,
+  "anchors_count": 2,
+  "edges_count": 34,
+  "evolve_directives": 4,
+  "inertia_markers": 2,
+  "notes": 4
+}

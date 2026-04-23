@@ -1,0 +1,278 @@
+(* ═══════════════════════════════════════════════════════════ *)
+(*  WARDLEY MAP LANGUAGE — BNF v2.0                           *)
+(*  Grammaire pour humains et LLMs                            *)
+(* ═══════════════════════════════════════════════════════════ *)
+
+
+(* ─── Document ─────────────────────────────────────────────── *)
+
+<document>          ::= <statement>*
+
+<statement>         ::= <comment>
+                      | <meta-decl>
+                      | <stage-decl>
+                      | <node-decl>
+                      | <pipeline-decl>
+                      | <edge>
+                      | <group-decl>
+                      | <annotation>
+                      | <signal>
+                      | <gameplay>
+                      | <legend-decl>
+                      | <focus-decl>
+                      | <blank-line>
+
+<blank-line>        ::= <newline>
+
+
+(* ─── Commentaires ─────────────────────────────────────────── *)
+
+<comment>           ::= "//" <text> <newline>
+                      | "/*" <text> "*/"
+
+
+(* ─── Métadonnées ──────────────────────────────────────────── *)
+
+<meta-decl>         ::= "title" ":" <text> <newline>
+                      | "date" ":" <date-value> <newline>
+                      | "author" ":" <text> <newline>
+                      | "scope" ":" <text> <newline>
+                      | "question" ":" <text> <newline>
+                      | "doctrine" ":" <doctrine-value> <newline>
+
+<doctrine-value>    ::= "hygiene" | "context" | "excellence" | "evolution"
+
+<date-value>        ::= <digit>{4} "-" <digit>{2} "-" <digit>{2}
+
+
+(* ─── Labels d'axes (phases d'évolution) ──────────────────── *)
+(*  Optionnel. Défaut : "" (vide) — seuls les indicateurs I–IV  *)
+(*  sont affichés aux frontières de zones.                     *)
+
+<stage-decl>        ::= "stages" ":" <stage-label> "," <stage-label> ","
+                         <stage-label> "," <stage-label> <newline>
+
+<stage-label>       ::= <text>
+
+
+(* ─── Noeuds / Composants ─────────────────────────────────── *)
+
+<node-decl>         ::= <node-kind>? <identifier> <newline>
+                      | <node-kind>? <identifier> ":" <node-shorthand> <newline>
+                      | <node-kind>? <identifier> "{" <node-config>* "}" <newline>
+
+<node-kind>         ::= "anchor"
+                      | "component"
+                      | "submap"
+
+<node-shorthand>    ::= <evolution-expr>
+                      | <evolution-expr> "(" <type-value> ")"
+                      | <evolution-expr> "@" <visibility>
+                      | <evolution-expr> "(" <type-value> ")" "@" <visibility>
+
+<node-config>       ::= <evolution-config>
+                      | <type-config>
+                      | <asset-config>
+                      | <color-config>
+                      | <visibility-config>
+                      | <cost-config>
+                      | <note-config>
+                      | <comment>
+
+<evolution-config>  ::= "evolution" ":" <evolution-expr> <newline>
+<type-config>       ::= "type" ":" <type-value> <newline>
+<color-config>      ::= "color" ":" <color-value> <newline>
+<visibility-config> ::= "visibility" ":" <visibility> <newline>
+<note-config>       ::= "note" ":" <text> <newline>
+
+<type-value>        ::= "build" | "buy" | "outsource"
+
+<asset-config>      ::= "asset" ":" <asset-value> <newline>
+<asset-value>       ::= "tech" | "financial" | "human" | "relational" | "social"
+
+<cost-config>       ::= "cost" ":" <text> <newline>
+
+<color-value>       ::= "#" <hex>{6}
+                      | "#" <hex>{3}
+                      | <css-color-name>
+
+<visibility>        ::= <decimal>
+                      (* 0.0 = bas de carte (infrastructure profonde)
+                         1.0 = haut de carte (visible utilisateur)
+                         Optionnel : calculé depuis le graphe de dépendances *)
+
+
+(* ─── Évolution ────────────────────────────────────────────── *)
+
+<evolution-expr>    ::= <position>
+                      | <position> ">>" <position>
+                      | <position> <inertia> ">>" <position>
+
+<position>          ::= <roman>
+                      | <roman> "." <digit>+
+
+<roman>             ::= "I" | "II" | "III" | "IV"
+
+<inertia>           ::= <inertia-level>
+                      | <inertia-level> "(" <inertia-kind> ("," <inertia-kind>)* ")"
+
+<inertia-level>     ::= "!"                     (* modérée *)
+                      | "!!"                    (* forte *)
+                      | "!!!"                   (* bloquante *)
+
+<inertia-kind>      ::= "tech" | "financial" | "human" | "relational" | "social"
+
+(* Sémantique de <position> :
+     Le chiffre romain identifie la phase (I → IV, gauche → droite).
+     Le suffixe décimal positionne dans la phase
+     (0 = début de phase, 9 = fin de phase).
+     I.0 = extrême gauche, IV.9 = extrême droite.              *)
+
+
+(* ─── Pipelines ────────────────────────────────────────────── *)
+(*  Un pipeline n'a pas de position propre.                     *)
+(*  Sa plage horizontale = min..max de ses membres.             *)
+(*  Sa visibilité verticale est déduite du graphe.              *)
+
+<pipeline-decl>     ::= "pipeline" <identifier> "{" <pipeline-member>+ "}"
+
+<pipeline-member>   ::= <identifier> ":" <position> <newline>
+
+
+(* ─── Chaîne de valeur (liens / edges) ─────────────────────── *)
+
+<edge>              ::= <edge-chain> <newline>
+
+<edge-chain>        ::= <node-ref> <link> <node-ref>
+                      | <edge-chain> <link> <node-ref>
+
+<link>              ::= "->"                            (* dépendance *)
+                      | "<->"                           (* bidirectionnel *)
+                      | "-[" <text> "]->"               (* dépendance annotée *)
+                      | "<-[" <text> "]->"              (* bidirectionnel annoté *)
+
+<node-ref>          ::= <identifier>
+                      | <identifier> ":" <identifier>
+                      (* pipeline:membre — ancre sur un membre spécifique *)
+
+
+(* ─── Groupes ──────────────────────────────────────────────── *)
+(*  Purement visuels / organisationnels.                        *)
+(*  Pas de namespace : les composants restent globaux.          *)
+
+<group-decl>        ::= "group" <identifier> "{" <group-body>* "}"
+
+<group-body>        ::= <node-decl>
+                      | <edge>
+                      | <color-directive>
+                      | <team-directive>
+                      | <comment>
+                      | <blank-line>
+
+<color-directive>   ::= "color" ":" <color-value> <newline>
+<team-directive>    ::= "team" ":" <team-type> <newline>
+<team-type>         ::= "explorer" | "settler" | "town-planner"
+                      | "pioneer" | "villager"
+
+
+(* ─── Annotations & signaux ────────────────────────────────── *)
+
+<annotation>        ::= "note" <quoted-text> "on" <identifier> <newline>
+                      | "warning" <quoted-text> "on" <identifier> <newline>
+
+<signal>            ::= "signal" <signal-type> "on" <identifier> <newline>
+<signal-type>       ::= "accelerating" | "stagnating" | "declining"
+                      | "co-evolution" | "red-queen"
+                      | "commoditization" | "network-effects"
+                      | "economies-of-scale"
+
+
+(* ─── Manœuvres stratégiques (gameplays) ──────────────────── *)
+
+<gameplay>          ::= "gameplay" <gameplay-type> "on" <identifier> <newline>
+                      | "gameplay" <gameplay-type> <quoted-text> "on" <identifier> <newline>
+
+<gameplay-type>     ::= "ILC" | "open-source" | "land-grab" | "embrace-extend"
+                      | "tower-moat" | "FUD" | "strangler-fig" | "signal-distortion"
+
+<quoted-text>       ::= '"' <text> '"'
+
+
+(* ─── Légende ─────────────────────────────────────────────── *)
+
+<legend-decl>       ::= "legend" <newline>
+                      (* Active l'affichage d'une légende à droite de la carte.
+                         Le contenu est auto-détecté à partir des éléments
+                         présents dans la carte. *)
+
+
+(* ─── Focus ──────────────────────────────────────────────────── *)
+
+<focus-decl>        ::= "focus" <identifier> <newline>
+                      (* Met en valeur le composant désigné et tous ses
+                         descendants dans la chaîne de valeur.
+                         Les éléments hors focus passent en opacité réduite.
+                         Plusieurs focus peuvent être déclarés — leurs
+                         sous-arbres sont réunis. *)
+
+
+(* ─── Terminaux ────────────────────────────────────────────── *)
+
+<identifier>        ::= <id-start> ( <id-char> | " " <id-char> )*
+                      (* Un identifiant ne peut PAS être un mot réservé.
+                         Terminé par : ":" | "->" | "<->" | "-[" | "{" | newline *)
+
+<id-start>          ::= <letter> | <digit>
+<id-char>           ::= <letter> | <digit> | "." | "-" | "'" | "_"
+
+<reserved>          ::= "anchor" | "component" | "submap"
+                      | "pipeline" | "group"
+                      | "note" | "warning" | "signal" | "gameplay" | "focus"
+                      | "title" | "date" | "author" | "scope" | "question"
+                      | "stages" | "doctrine"
+                      | "evolution" | "type" | "asset" | "color" | "visibility"
+                      | "cost" | "team"
+                      | "build" | "buy" | "outsource"
+                      | "tech" | "financial" | "human" | "relational" | "social"
+                      | "accelerating" | "stagnating" | "declining"
+                      | "co-evolution" | "red-queen" | "commoditization"
+                      | "network-effects" | "economies-of-scale"
+                      | "ILC" | "open-source" | "land-grab" | "embrace-extend"
+                      | "tower-moat" | "FUD" | "strangler-fig" | "signal-distortion"
+                      | "explorer" | "settler" | "town-planner"
+                      | "pioneer" | "villager"
+                      | "hygiene" | "context" | "excellence"
+                      | "legend"
+                      | "on"
+
+<letter>            ::= "a".."z" | "A".."Z" | <unicode-letter>
+<digit>             ::= "0".."9"
+<hex>               ::= "0".."9" | "a".."f" | "A".."F"
+<decimal>           ::= <digit> "." <digit>+
+<text>              ::= (* tout caractère jusqu'au délimiteur contextuel *)
+<css-color-name>    ::= (* 140+ noms CSS/HTML : Red, Blue, DarkSlateGray... *)
+<newline>           ::= "\n"
+
+
+(* ═══════════════════════════════════════════════════════════ *)
+(*  CONVENTIONS D'USAGE (non syntaxiques)                      *)
+(*                                                             *)
+(*  Ordre canonique recommandé :                               *)
+(*    1. Métadonnées (title, date, author, scope, question,    *)
+(*       doctrine)                                             *)
+(*    2. Configuration (stages)                                *)
+(*    3. Ancres et composants (anchor, node-decl, pipeline)    *)
+(*    4. Chaîne de valeur (edges)                              *)
+(*    5. Groupes (group)                                       *)
+(*    6. Annotations, signaux et gameplays                     *)
+(*       (note, warning, signal, gameplay)                     *)
+(*                                                             *)
+(*  Règles sémantiques :                                       *)
+(*    - Tout noeud référencé dans un edge, une annotation ou   *)
+(*      un pipeline doit avoir une position (evolution-expr)   *)
+(*      définie quelque part dans le document.                 *)
+(*    - Les identifiants dans les annotations/signaux doivent  *)
+(*      correspondre à un noeud existant.                      *)
+(*    - Un pipeline ne peut pas contenir un autre pipeline.    *)
+(*    - Les groupes ne créent pas de namespace.                *)
+(* ═══════════════════════════════════════════════════════════ *)

@@ -1,0 +1,168 @@
+title Personal Computing in the Age of Conversational AI (2026)
+style wardley
+
+// ------------------------------------------------------------
+// Anchor: the developer (and end-user of personal computing),
+// whose need is to build and run software.
+// ------------------------------------------------------------
+anchor Developer (End User) [0.98, 0.45]
+anchor Need: Build & Ship Software [0.94, 0.50]
+
+// ------------------------------------------------------------
+// User-facing surfaces: applications and devices
+// (the visible "tip of the iceberg")
+// ------------------------------------------------------------
+component Applications [0.88, 0.72]
+component Devices (Laptop / Desktop / Mobile) [0.86, 0.90]
+
+// ------------------------------------------------------------
+// IDE layer — split into human-centric and conversational modes
+// Human-centric IDEs are mature products; conversational
+// (AI+human) IDEs are still emerging from custom-built.
+// ------------------------------------------------------------
+component IDE (Human-centric) [0.78, 0.70]
+component IDE (Conversational AI+Human) [0.76, 0.28]
+
+// ------------------------------------------------------------
+// Supporting reusable building blocks and legacy approaches.
+// Libraries/services are product-stage; legacy approaches are
+// commodity but with strong inertia.
+// ------------------------------------------------------------
+component Component Libraries & Services [0.68, 0.68]
+component Legacy Approaches (Waterfall / Scripted) [0.66, 0.80]
+
+// ------------------------------------------------------------
+// Runtime layer
+// Serverless is productised and heading to commodity.
+// LAMP/.Net is a commodity runtime stack with inertia.
+// LLM inference runtime sits early — genesis/custom.
+// FinOps (cost governance for cloud & LLMs) is custom→product.
+// ------------------------------------------------------------
+component Runtime: Serverless (FaaS) [0.58, 0.66]
+component Runtime: LAMP / .Net [0.56, 0.85]
+component Large Language Models (LLMs) [0.60, 0.22]
+component FinOps (Cloud / LLM Cost Governance) [0.62, 0.38]
+
+// ------------------------------------------------------------
+// Operating systems & orchestration
+// OSes are commodity; Kubernetes-class orchestration is
+// product heading to commodity.
+// ------------------------------------------------------------
+component Operating Systems [0.46, 0.88]
+component Orchestration Tools (Kubernetes etc.) [0.48, 0.70]
+
+// ------------------------------------------------------------
+// Containers & DevOps
+// Containers are commodity; DevOps practices are product.
+// Legacy architecture (monoliths, pet servers) is commodity
+// with heavy inertia.
+// ------------------------------------------------------------
+component Containers [0.38, 0.86]
+component DevOps (CI/CD, IaC, SRE) [0.40, 0.68]
+component Legacy Architecture (Monoliths / Pet Servers) [0.36, 0.78]
+
+// ------------------------------------------------------------
+// Compute — the utility foundation
+// Cloud compute is near-pure utility; on-prem servers are
+// commodity but visibly less far right than the hyperscalers.
+// ------------------------------------------------------------
+component Compute: Servers (On-Prem) [0.18, 0.78]
+component Compute: Cloud (IaaS / Hyperscaler) [0.12, 0.94]
+
+// ------------------------------------------------------------
+// Dependencies (a -> b means a depends on b)
+// ------------------------------------------------------------
+
+// Developer + their need
+Developer (End User)->Need: Build & Ship Software
+Need: Build & Ship Software->Applications
+Need: Build & Ship Software->Devices (Laptop / Desktop / Mobile)
+Need: Build & Ship Software->IDE (Human-centric)
+Need: Build & Ship Software->IDE (Conversational AI+Human)
+
+// Applications depend on the toolchain & runtime
+Applications->IDE (Human-centric)
+Applications->IDE (Conversational AI+Human)
+Applications->Component Libraries & Services
+Applications->Runtime: Serverless (FaaS)
+Applications->Runtime: LAMP / .Net
+Applications->Devices (Laptop / Desktop / Mobile)
+
+// Devices run on an OS
+Devices (Laptop / Desktop / Mobile)->Operating Systems
+
+// IDE (human-centric) depends on OS, libs, legacy approaches
+IDE (Human-centric)->Operating Systems
+IDE (Human-centric)->Component Libraries & Services
+IDE (Human-centric)->Legacy Approaches (Waterfall / Scripted)
+
+// IDE (conversational) depends on LLMs, libs, OS, FinOps
+IDE (Conversational AI+Human)->Large Language Models (LLMs)
+IDE (Conversational AI+Human)->Component Libraries & Services
+IDE (Conversational AI+Human)->Operating Systems
+IDE (Conversational AI+Human)->FinOps (Cloud / LLM Cost Governance)
+
+// Libraries / legacy approaches depend on runtime
+Component Libraries & Services->Runtime: Serverless (FaaS)
+Component Libraries & Services->Runtime: LAMP / .Net
+Legacy Approaches (Waterfall / Scripted)->Runtime: LAMP / .Net
+Legacy Approaches (Waterfall / Scripted)->Legacy Architecture (Monoliths / Pet Servers)
+
+// Runtime depends on orchestration / OS / containers
+Runtime: Serverless (FaaS)->Orchestration Tools (Kubernetes etc.)
+Runtime: Serverless (FaaS)->Containers
+Runtime: LAMP / .Net->Operating Systems
+Runtime: LAMP / .Net->Legacy Architecture (Monoliths / Pet Servers)
+
+// LLM runtime depends on cloud compute + FinOps
+Large Language Models (LLMs)->Compute: Cloud (IaaS / Hyperscaler)
+Large Language Models (LLMs)->FinOps (Cloud / LLM Cost Governance)
+Large Language Models (LLMs)->Containers
+
+// FinOps depends on cloud
+FinOps (Cloud / LLM Cost Governance)->Compute: Cloud (IaaS / Hyperscaler)
+
+// Orchestration / containers / OS stack
+Orchestration Tools (Kubernetes etc.)->Containers
+Orchestration Tools (Kubernetes etc.)->Operating Systems
+Containers->Operating Systems
+Operating Systems->Compute: Servers (On-Prem)
+Operating Systems->Compute: Cloud (IaaS / Hyperscaler)
+
+// DevOps glues orchestration + runtime + legacy
+DevOps (CI/CD, IaC, SRE)->Containers
+DevOps (CI/CD, IaC, SRE)->Orchestration Tools (Kubernetes etc.)
+DevOps (CI/CD, IaC, SRE)->Runtime: Serverless (FaaS)
+DevOps (CI/CD, IaC, SRE)->Legacy Architecture (Monoliths / Pet Servers)
+
+// Legacy architecture runs on on-prem or cloud
+Legacy Architecture (Monoliths / Pet Servers)->Compute: Servers (On-Prem)
+Legacy Architecture (Monoliths / Pet Servers)->Compute: Cloud (IaaS / Hyperscaler)
+
+// ------------------------------------------------------------
+// Movement (→ evolving, >> accelerating, x inertia)
+// ------------------------------------------------------------
+evolve IDE (Conversational AI+Human) 0.62 // → product over ~2-3 yrs
+evolve Large Language Models (LLMs) 0.55   // → product-stage via hosted APIs
+evolve FinOps (Cloud / LLM Cost Governance) 0.60
+evolve Runtime: Serverless (FaaS) 0.82     // → commodity
+evolve Orchestration Tools (Kubernetes etc.) 0.86
+evolve Component Libraries & Services 0.80
+evolve Applications 0.82
+evolve Compute: Servers (On-Prem) 0.90     // being absorbed into cloud
+
+// Inertia markers (components stuck right but with resistance)
+annotation 1 [0.56, 0.85] Inertia: LAMP/.Net still entrenched in enterprise
+annotation 2 [0.36, 0.78] Inertia: legacy monoliths / pet servers
+annotation 3 [0.66, 0.80] Inertia: waterfall / scripted legacy approaches
+
+annotations [0.02, 0.92]
+
+// ------------------------------------------------------------
+// Notes
+// - ν(a) ≥ ν(b) holds on every edge above.
+// - Cloud/containers are the commoditised utility floor (right).
+// - LLMs and conversational IDEs are the genesis/custom frontier
+//   that is reshaping what "personal computing" means for
+//   developers building software in 2026.
+// ------------------------------------------------------------

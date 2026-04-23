@@ -1,0 +1,34 @@
+{
+  "scenario": "ai-trust",
+  "run": "run-1",
+  "skill": "skills/wardley-map/SKILL.md",
+  "start_ns": 1776874222430737004,
+  "end_ns": 1776874655128466508,
+  "elapsed_seconds": 432.70,
+  "validator": {
+    "ran_script": false,
+    "reason": "Bash tool access denied during this run; validation performed manually by transcribing validator logic. See output.md section 'Validator check' for results.",
+    "manual_result": "PASS",
+    "components": 41,
+    "anchors": 3,
+    "edges": 72,
+    "visibility_violations": 0,
+    "coord_range_violations": 0,
+    "unknown_endpoint_violations": 0
+  },
+  "layout_check": {
+    "ran_script": false,
+    "reason": "Bash tool access denied during this run; layout check performed manually.",
+    "manual_result": "PASS",
+    "near_duplicates": 0,
+    "boundary_straddles": 0,
+    "canvas_clips": 0,
+    "stage_imbalance": false,
+    "stage_shares": {
+      "genesis": 0.29,
+      "custom_built": 0.44,
+      "product_rental": 0.15,
+      "commodity_utility": 0.12
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "eval": "finance-risk",
+  "config": "with_skill",
+  "run": 1,
+  "skill": "wardley-map",
+  "skill_path": "/workspaces/wardleymap_math_model/skills/wardley-map/SKILL.md",
+  "started_utc": "2026-04-23T10:15:20Z",
+  "ended_utc": "2026-04-23T10:24:35Z",
+  "elapsed_seconds": 555,
+  "blind": true,
+  "reference_read": false,
+  "validator_run": true,
+  "validator_tool": "local python port of validate_owm.mjs (bundled node validator was blocked by session permissions; rules replicated verbatim from skills/wardley-map/scripts/validate_owm.mjs)",
+  "validator_result": "OK: 48 components/anchors, 102 edges, 0 violations",
+  "layout_check_run": true,
+  "layout_check_result": "0 near-duplicates, 0 stage-boundary straddles, 0 canvas-edge clips, stage balance 6/29/44/21 (Genesis/Custom/Product/Commodity)",
+  "notes": "Three anchors (Public, Corporations, Governments). 45 components across 7 conceptual bands: core needs, provider services, trust-and-assets layer, risk types, regulation, accountability chain, shared infrastructure. 4 components flagged for deep placement: Cascade Failure Risk (moved to Genesis 0.18), Supply-Chain Awareness (settled at 0.28), Core Banking Platforms (0.60 with evolve-to-0.78), Third-Party Risk Regulation (moved to Genesis/Custom boundary 0.20). Seven validator iterations to fix visibility violations; two coordinate nudges to clear near-duplicates. Explicit regulation-lag finding: Third-Party (+0.15), Cyber (+0.14), Cascade (orphan), Climate (overregulated relative to methodological maturity)."
+}

@@ -1,0 +1,147 @@
+title Government Digital Identity (November 2022)
+style wardley
+
+// Anchors — multiple user types: the scenario explicitly lists actors.
+// Note: "Bad Actors" is an adversarial anchor; they also have a "need" (to exploit).
+anchor Government [0.98, 0.55]
+anchor Society [0.98, 0.40]
+anchor Citizens [0.98, 0.50]
+anchor Corporations [0.97, 0.60]
+anchor Entities [0.96, 0.45]
+anchor Bad Actors [0.95, 0.30]
+
+// ---- Services layer (what the user actually consumes) ----
+component Public Service Access [0.88, 0.55]
+component Private Sector Service Access [0.86, 0.65]
+component Rule Exploitation [0.86, 0.20]
+
+// ---- Power layer — the social/political capabilities identity enables ----
+component Power Over [0.80, 0.50]
+component Power With [0.80, 0.35]
+component Power To [0.80, 0.30]
+
+// ---- Trust layer — the belief surface that identity operates through ----
+component Trust: Benevolence [0.74, 0.30]
+component Trust: Capability [0.74, 0.45]
+component Trust: Integrity [0.74, 0.40]
+
+// ---- Regulation / rules / exception apparatus ----
+component Regulation [0.70, 0.55]
+component Rules [0.68, 0.60]
+component Exception Handling [0.66, 0.35]
+
+// ---- Claims & credentials ----
+component Claims [0.62, 0.45]
+component Credentials [0.60, 0.55]
+component Verifiable Credentials [0.58, 0.25]
+
+// ---- Identity (conceptual) ----
+component Identity [0.52, 0.40]
+component Self-Sovereign Identity [0.50, 0.15]
+
+// ---- Identification (how identity is asserted / proven) ----
+component Physical Identification [0.44, 0.75]
+component Digital Identification [0.42, 0.45]
+
+// ---- Identifiers (the handle) ----
+component Mutable Identifiers [0.36, 0.60]
+component Immutable Identifiers [0.34, 0.50]
+component Connectedness of Identifiers [0.32, 0.30]
+
+// ---- Authority (who issues / governs the identity fabric) ----
+component Issuing Authority [0.28, 0.65]
+component Centralised Authority [0.26, 0.70]
+component Decentralised Authority [0.22, 0.20]
+
+// ---- Transport layer (underneath everything) ----
+component PKI [0.16, 0.75]
+component Cryptographic Primitives [0.12, 0.80]
+component The Internet [0.08, 0.95]
+
+// ---- Dependencies ----
+// Anchor edges
+Government->Public Service Access
+Government->Regulation
+Government->Power Over
+Society->Trust: Benevolence
+Society->Trust: Integrity
+Society->Rules
+Citizens->Public Service Access
+Citizens->Private Sector Service Access
+Citizens->Power To
+Citizens->Power With
+Corporations->Private Sector Service Access
+Corporations->Trust: Capability
+Entities->Digital Identification
+Entities->Credentials
+Bad Actors->Rule Exploitation
+
+// Service layer
+Public Service Access->Credentials
+Public Service Access->Regulation
+Private Sector Service Access->Credentials
+Private Sector Service Access->Regulation
+Rule Exploitation->Rules
+Rule Exploitation->Exception Handling
+
+// Power layer
+Power Over->Centralised Authority
+Power With->Decentralised Authority
+Power To->Self-Sovereign Identity
+
+// Trust layer
+Trust: Benevolence->Identity
+Trust: Capability->Credentials
+Trust: Integrity->Issuing Authority
+
+// Regulation apparatus
+Regulation->Rules
+Rules->Exception Handling
+Exception Handling->Claims
+
+// Claims -> Credentials -> Identity chain
+Claims->Credentials
+Credentials->Verifiable Credentials
+Credentials->Identity
+Verifiable Credentials->Decentralised Authority
+
+// Identity -> Identification
+Identity->Physical Identification
+Identity->Digital Identification
+Self-Sovereign Identity->Digital Identification
+
+// Identification -> Identifiers
+Physical Identification->Immutable Identifiers
+Digital Identification->Mutable Identifiers
+Digital Identification->Immutable Identifiers
+Digital Identification->Connectedness of Identifiers
+
+// Identifiers -> Authority
+Mutable Identifiers->Issuing Authority
+Immutable Identifiers->Issuing Authority
+Connectedness of Identifiers->Decentralised Authority
+Issuing Authority->Centralised Authority
+
+// Authority & crypto -> Transport
+Centralised Authority->PKI
+Decentralised Authority->Cryptographic Primitives
+Issuing Authority->PKI
+PKI->Cryptographic Primitives
+PKI->The Internet
+Cryptographic Primitives->The Internet
+Digital Identification->The Internet
+
+// Inertia: physical ID is not evolving easily — sunk capital + political capital.
+component Physical Identification [0.44, 0.75] inertia
+
+// Evolution movements (scenario, not forecast)
+evolve Verifiable Credentials 0.55
+evolve Self-Sovereign Identity 0.40
+evolve Decentralised Authority 0.45
+evolve Digital Identification 0.70
+
+// Notes — strategic tensions the scenario asks for
+note Novel — SSI / VC / decentralised auth [0.35, 0.15]
+note Standardised — PKI / Internet / PhysID [0.15, 0.85]
+note Tension: centralised vs SSI [0.30, 0.50]
+note Bad-actor rule-exploitation zone [0.80, 0.22]

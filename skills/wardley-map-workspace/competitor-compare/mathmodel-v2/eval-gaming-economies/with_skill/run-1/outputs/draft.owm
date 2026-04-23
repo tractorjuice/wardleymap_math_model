@@ -1,0 +1,164 @@
+title Gaming Economies Landscape (Nov 2023)
+style wardley
+
+// Two anchors — both user types in this economy
+anchor Publisher [0.98, 0.55]
+anchor Player [0.97, 0.62]
+
+// User-visible product / business outputs
+component Game Title [0.88, 0.55]
+component Game Brand / IP [0.84, 0.42]
+component Virtual Items [0.82, 0.70]
+component Game Store Front [0.80, 0.82]
+
+// Monetisation surface + live product
+component In-Game Economy [0.78, 0.45]
+component Marketing Campaign [0.76, 0.60]
+component Subscription Catalogue [0.74, 0.62]
+component Community / Forum [0.72, 0.58]
+component Esports Tournament [0.70, 0.55]
+
+// Buzz apparatus
+component Influencer Channel [0.68, 0.62]
+component Streaming Content [0.66, 0.72]
+component Alternative Distribution (Web / itch) [0.62, 0.48]
+component Advertising Placement [0.60, 0.82]
+component Social Platform [0.58, 0.88]
+
+// Data + trust layer
+component Player Profiling / Analytics [0.56, 0.55]
+component Trust & Safety (Moderation) [0.54, 0.35]
+
+// Build layer — studios and design
+component Game Developer (Studio) [0.52, 0.38]
+component Licensing Deal [0.50, 0.58]
+component Game Design [0.48, 0.32]
+component Game-Specific Marketplace [0.46, 0.58]
+component Game Engine [0.44, 0.70]
+component Live-Ops Platform [0.42, 0.52]
+component Matchmaking / Netcode [0.40, 0.58]
+component Anti-Cheat [0.38, 0.62]
+
+// Dev tools / pipeline
+component Asset Pipeline [0.36, 0.55]
+component Dev Tooling (CI, VCS) [0.32, 0.85]
+component Middleware (Physics / Audio) [0.30, 0.78]
+
+// Funding / capital
+component Funding Model [0.28, 0.45]
+component Game Platform (Console / PC / Mobile) [0.26, 0.82]
+component VC Capital [0.24, 0.55]
+component Private Investor [0.22, 0.42]
+
+// Infra and hardware
+component Hardware (Devices, GPUs) [0.22, 0.88]
+component Payment Processing [0.20, 0.92]
+component Player Identity / Auth [0.18, 0.85]
+component Game Server Hosting [0.16, 0.78]
+component Telemetry / Data Warehouse [0.14, 0.80]
+component Cloud Compute / CDN [0.10, 0.92]
+
+// Foundational utility
+component Electricity / Internet [0.04, 0.97]
+
+// ——— Dependencies ———
+
+// Player reaches product + buzz surfaces
+Player->Game Title
+Player->Virtual Items
+Player->Game Store Front
+Player->Subscription Catalogue
+Player->Community / Forum
+Player->Esports Tournament
+Player->Influencer Channel
+Player->Streaming Content
+Player->Alternative Distribution (Web / itch)
+Player->Social Platform
+
+// Publisher runs brand, monetisation, marketing, ops
+Publisher->Game Brand / IP
+Publisher->Marketing Campaign
+Publisher->Licensing Deal
+Publisher->Advertising Placement
+Publisher->Player Profiling / Analytics
+Publisher->Game Developer (Studio)
+Publisher->Funding Model
+Publisher->Subscription Catalogue
+Publisher->Game Store Front
+
+// Game title composition
+Game Title->Game Brand / IP
+Game Title->In-Game Economy
+Game Title->Game Developer (Studio)
+Game Title->Game Engine
+Game Title->Anti-Cheat
+Game Title->Matchmaking / Netcode
+Game Title->Live-Ops Platform
+
+// Monetisation chain
+Virtual Items->In-Game Economy
+Virtual Items->Game-Specific Marketplace
+In-Game Economy->Payment Processing
+In-Game Economy->Trust & Safety (Moderation)
+Game-Specific Marketplace->Payment Processing
+Game-Specific Marketplace->Player Identity / Auth
+Subscription Catalogue->Licensing Deal
+Subscription Catalogue->Game Platform (Console / PC / Mobile)
+Game Store Front->Payment Processing
+Game Store Front->Game Platform (Console / PC / Mobile)
+Alternative Distribution (Web / itch)->Payment Processing
+Advertising Placement->Player Profiling / Analytics
+
+// Buzz apparatus flows
+Marketing Campaign->Influencer Channel
+Marketing Campaign->Streaming Content
+Marketing Campaign->Social Platform
+Influencer Channel->Streaming Content
+Influencer Channel->Social Platform
+Esports Tournament->Streaming Content
+Esports Tournament->Advertising Placement
+Streaming Content->Social Platform
+Community / Forum->Trust & Safety (Moderation)
+
+// Data + trust plumbing
+Player Profiling / Analytics->Telemetry / Data Warehouse
+Player Profiling / Analytics->Player Identity / Auth
+Trust & Safety (Moderation)->Player Identity / Auth
+Trust & Safety (Moderation)->Telemetry / Data Warehouse
+
+// Build chain
+Game Developer (Studio)->Game Design
+Game Developer (Studio)->Game Engine
+Game Developer (Studio)->Dev Tooling (CI, VCS)
+Game Developer (Studio)->Asset Pipeline
+Game Developer (Studio)->Funding Model
+Game Engine->Middleware (Physics / Audio)
+Game Engine->Dev Tooling (CI, VCS)
+Asset Pipeline->Dev Tooling (CI, VCS)
+Live-Ops Platform->Game Server Hosting
+Live-Ops Platform->Telemetry / Data Warehouse
+Matchmaking / Netcode->Game Server Hosting
+Anti-Cheat->Player Identity / Auth
+
+// Funding chain
+Funding Model->VC Capital
+Funding Model->Private Investor
+
+// Platform + infra chain
+Game Platform (Console / PC / Mobile)->Hardware (Devices, GPUs)
+Game Server Hosting->Cloud Compute / CDN
+Telemetry / Data Warehouse->Cloud Compute / CDN
+Payment Processing->Player Identity / Auth
+Cloud Compute / CDN->Electricity / Internet
+Hardware (Devices, GPUs)->Electricity / Internet
+
+// Evolution arrows — visible industrialising pressure
+evolve Subscription Catalogue 0.80
+evolve Live-Ops Platform 0.70
+evolve Anti-Cheat 0.78
+evolve Trust & Safety (Moderation) 0.55
+evolve Game-Specific Marketplace 0.72
+
+note Differentiation zone [0.72, 0.32]
+note Commodity utility [0.12, 0.95]
+note Trust / toxicity risk [0.55, 0.22]

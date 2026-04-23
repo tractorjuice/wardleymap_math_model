@@ -1,0 +1,10 @@
+{
+  "scenario": "personal-conversational",
+  "skill": "in-tree wardley-map (skills/wardley-map/SKILL.md)",
+  "run": "run-1",
+  "started_at": "2026-04-22T16:13:59Z",
+  "finished_at": "2026-04-22T16:20:47Z",
+  "elapsed_seconds": 407,
+  "elapsed_human": "6m47s",
+  "notes": "Blind run. Validator and layout-check scripts were not runnable in the sandbox (Node invocation denied); both audits were performed by hand, reproducing the three validator checks (coords in [0,1]; edge endpoints declared; v(src) >= v(tgt) on every edge) and the four layout-check classes. Draft went through three revision cycles to clear visibility violations, near-duplicates, and stage-boundary straddles."
+}

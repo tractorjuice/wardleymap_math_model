@@ -1,0 +1,131 @@
+title Transportation Logistics Landscape
+style wardley
+
+// Anchors — five user types per scenario
+anchor Government [0.98, 0.55]
+anchor Society [0.97, 0.50]
+anchor Producers [0.96, 0.60]
+anchor Consumers [0.95, 0.70]
+anchor Public [0.94, 0.65]
+
+// Layer 1 — directly user-facing commerce / delivery channels
+component Shops [0.88, 0.80]
+component E-Commerce [0.86, 0.78]
+component Delivery [0.84, 0.70]
+component Awareness of Supply Chain [0.82, 0.35]
+
+// Layer 2 — commerce / supply-chain core
+component Last Mile [0.74, 0.65]
+component Long Haul [0.72, 0.78]
+component Logistics Hubs [0.68, 0.70]
+component Warehouses [0.66, 0.80]
+component Storage [0.64, 0.85]
+component Real-Time Stock [0.62, 0.55]
+
+// Layer 3 — vehicles and power (HGV-era trucks / fossil power carry inertia)
+component Trucks [0.52, 0.82] inertia
+component Autotrucks [0.50, 0.25]
+component Automated Delivery [0.48, 0.20]
+component Drones [0.46, 0.28]
+component Scouts [0.44, 0.30]
+component Electric Power [0.42, 0.55]
+component Fossil Power [0.40, 0.92] inertia
+
+// Layer 4 — information / data layer
+component Telematics [0.36, 0.65]
+component Traffic Data [0.34, 0.72]
+component Data [0.32, 0.80]
+
+// Layer 5 — topology, context, constraints
+component Cities [0.26, 0.88]
+component Rural Areas [0.24, 0.82]
+component Regulation [0.22, 0.62]
+component HGV Skills [0.20, 0.55] inertia
+component Territorial / CNI Sovereignty [0.18, 0.25]
+
+// Dependencies — anchors to channels / channels to core
+Consumers->Shops
+Consumers->E-Commerce
+Consumers->Delivery
+Public->Delivery
+Public->Shops
+Producers->Long Haul
+Producers->Logistics Hubs
+Producers->E-Commerce
+Society->Awareness of Supply Chain
+Society->Shops
+Government->Regulation
+Government->Territorial / CNI Sovereignty
+
+// Channels depend on the supply-chain core
+Shops->Last Mile
+Shops->Warehouses
+E-Commerce->Last Mile
+E-Commerce->Real-Time Stock
+E-Commerce->Warehouses
+Delivery->Last Mile
+Delivery->Long Haul
+Awareness of Supply Chain->Real-Time Stock
+Awareness of Supply Chain->Data
+
+// Core inter-dependencies
+Last Mile->Trucks
+Last Mile->Automated Delivery
+Last Mile->Drones
+Last Mile->Autotrucks
+Long Haul->Trucks
+Long Haul->Autotrucks
+Long Haul->HGV Skills
+Logistics Hubs->Warehouses
+Logistics Hubs->Long Haul
+Warehouses->Storage
+Warehouses->Real-Time Stock
+Real-Time Stock->Data
+Storage->Real-Time Stock
+
+// Vehicles and power
+Trucks->Fossil Power
+Trucks->Electric Power
+Autotrucks->Electric Power
+Autotrucks->Telematics
+Autotrucks->Traffic Data
+Automated Delivery->Electric Power
+Automated Delivery->Telematics
+Automated Delivery->Data
+Drones->Electric Power
+Drones->Traffic Data
+Drones->Regulation
+Scouts->Telematics
+Scouts->Data
+
+// Information layer
+Telematics->Data
+Traffic Data->Data
+
+// Topology and constraints
+Last Mile->Cities
+Last Mile->Rural Areas
+Long Haul->Cities
+Long Haul->Rural Areas
+Trucks->Regulation
+Autotrucks->Regulation
+Automated Delivery->Regulation
+Drones->HGV Skills
+Long Haul->Territorial / CNI Sovereignty
+Logistics Hubs->Territorial / CNI Sovereignty
+Data->Territorial / CNI Sovereignty
+
+// Evolution projections (scenario, not forecast)
+evolve Autotrucks 0.55
+evolve Automated Delivery 0.55
+evolve Drones 0.55
+evolve Electric Power 0.75
+evolve Territorial / CNI Sovereignty 0.45
+
+// Notes
+note Commoditised utility zone [0.55, 0.90]
+note Automation push — Genesis to Product [0.48, 0.35]
+note Sovereignty / CNI pressure — forces re-evolve [0.20, 0.30]
+note Differentiation zone (low ε, high ν) [0.80, 0.25]
+</content>
+</invoke>

@@ -1,0 +1,153 @@
+title Defence Intelligence Landscape (March 2023)
+style wardley
+
+// Anchors — multiple user types
+anchor Military Operational Decision [0.98, 0.50]
+anchor Government Policy Decision [0.96, 0.45]
+anchor Citizen Trust [0.94, 0.40]
+
+// Adversarial anchor (opponent perspective on the same landscape)
+anchor Opponent Operational Decision [0.92, 0.48]
+
+// Decision layer — how operational decisions get made
+component Human-in-the-Loop Decision [0.88, 0.55]
+component Human-on-the-Loop Decision [0.86, 0.30]
+component Commander Judgment [0.84, 0.25]
+component Rules of Engagement [0.82, 0.70]
+
+// Trust dimension (Practice)
+component Competence Assessment [0.80, 0.35]
+component Integrity Verification [0.78, 0.32]
+component Benevolence Signalling [0.76, 0.28]
+
+// Targeting and discovery
+component Target Discovery [0.75, 0.45]
+component Intelligence Requirements [0.72, 0.55]
+component Tasking & Collection Mgmt [0.70, 0.50]
+
+// Analysis layer
+component Intelligence Analysis [0.68, 0.50]
+component AI/ML Analysis Engine [0.60, 0.28]
+component Data Science Pipeline [0.58, 0.55]
+component Fusion & Correlation [0.62, 0.40]
+component Source Verification [0.64, 0.35]
+
+// Adversarial / threat layer
+component Misinformation Defence [0.56, 0.20]
+component Attack Vector Monitoring [0.54, 0.35]
+component Prompt Engineering Defence [0.52, 0.10]
+component Adversarial ML Hardening [0.50, 0.15]
+
+// Source aggregate — sits above collectors (it is the fused view of what collectors bring in)
+component Diverse Sources [0.55, 0.50]
+
+// Collectors
+component Human Collectors (HUMINT) [0.48, 0.78]
+component Machine Collectors [0.46, 0.55]
+component Crowdsourced Collection [0.44, 0.25]
+
+// Source types (feeds)
+component OSINT [0.40, 0.70]
+component Social Media Feeds [0.38, 0.82]
+component Public Data Sources [0.36, 0.80]
+
+// Sensors (infrastructure)
+component GPS [0.28, 0.92]
+component Camera / EO Imagery [0.26, 0.85]
+component Network Signal Intercept [0.24, 0.70]
+component Satellite Imagery [0.22, 0.75]
+
+// Data & regulatory substrate
+component Cloud Compute [0.18, 0.92]
+component Data Storage [0.16, 0.90]
+component Privacy Regulation [0.14, 0.55]
+component Data Ownership Rights [0.12, 0.40]
+component Cross-Border Data Law [0.10, 0.30]
+
+// Dependencies — user needs downward
+Military Operational Decision->Human-in-the-Loop Decision
+Military Operational Decision->Human-on-the-Loop Decision
+Military Operational Decision->Rules of Engagement
+Military Operational Decision->Target Discovery
+Government Policy Decision->Intelligence Analysis
+Government Policy Decision->Competence Assessment
+Citizen Trust->Integrity Verification
+Citizen Trust->Benevolence Signalling
+Citizen Trust->Privacy Regulation
+Opponent Operational Decision->Attack Vector Monitoring
+Opponent Operational Decision->Misinformation Defence
+
+// Decision → supporting cognition
+Human-in-the-Loop Decision->Commander Judgment
+Human-in-the-Loop Decision->Intelligence Analysis
+Human-on-the-Loop Decision->AI/ML Analysis Engine
+Human-on-the-Loop Decision->Intelligence Analysis
+Commander Judgment->Competence Assessment
+Rules of Engagement->Integrity Verification
+
+// Trust → verification chain
+Competence Assessment->Source Verification
+Integrity Verification->Source Verification
+Benevolence Signalling->Privacy Regulation
+
+// Targeting → collection
+Target Discovery->Intelligence Requirements
+Intelligence Requirements->Tasking & Collection Mgmt
+Tasking & Collection Mgmt->Human Collectors (HUMINT)
+Tasking & Collection Mgmt->Machine Collectors
+Tasking & Collection Mgmt->Crowdsourced Collection
+
+// Analysis layer dependencies
+Intelligence Analysis->AI/ML Analysis Engine
+Intelligence Analysis->Data Science Pipeline
+Intelligence Analysis->Fusion & Correlation
+Intelligence Analysis->Source Verification
+Fusion & Correlation->Diverse Sources
+Source Verification->Diverse Sources
+AI/ML Analysis Engine->Adversarial ML Hardening
+AI/ML Analysis Engine->Prompt Engineering Defence
+Data Science Pipeline->Cloud Compute
+Data Science Pipeline->Data Storage
+
+// Adversarial defences
+Misinformation Defence->Source Verification
+Misinformation Defence->OSINT
+Attack Vector Monitoring->Network Signal Intercept
+
+// Collector → sensors and sources
+Machine Collectors->Camera / EO Imagery
+Machine Collectors->Network Signal Intercept
+Machine Collectors->Satellite Imagery
+Machine Collectors->GPS
+Crowdsourced Collection->Social Media Feeds
+Crowdsourced Collection->Public Data Sources
+
+// Source types
+Diverse Sources->OSINT
+Diverse Sources->Human Collectors (HUMINT)
+Diverse Sources->Machine Collectors
+OSINT->Social Media Feeds
+OSINT->Public Data Sources
+
+// Regulatory substrate
+Privacy Regulation->Data Ownership Rights
+Data Ownership Rights->Cross-Border Data Law
+Social Media Feeds->Privacy Regulation
+Public Data Sources->Data Ownership Rights
+
+// Evolution movements (scenario, not forecast)
+evolve AI/ML Analysis Engine 0.55
+evolve Prompt Engineering Defence 0.40
+evolve Crowdsourced Collection 0.50
+evolve Adversarial ML Hardening 0.45
+evolve Human-on-the-Loop Decision 0.55
+
+// Inertia — legacy resistance
+component Legacy HUMINT Tradecraft [0.48, 0.55] inertia
+Human Collectors (HUMINT)->Legacy HUMINT Tradecraft
+
+// Notes
+note Bleeding edge: adversarial ML, prompt defence [0.52, 0.12]
+note Commodity utility layer [0.20, 0.90]
+note Trust stack — low maturity, high stakes [0.78, 0.30]
+note Regulatory war-zone (privacy vs ownership) [0.14, 0.42]

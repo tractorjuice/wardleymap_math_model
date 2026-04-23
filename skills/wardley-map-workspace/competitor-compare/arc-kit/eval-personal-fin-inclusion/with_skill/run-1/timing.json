@@ -1,0 +1,16 @@
+{
+  "scenario": "personal-fin-inclusion",
+  "skill": "arc-kit/wardley-mapping",
+  "run": 1,
+  "blind": true,
+  "start_epoch": 1776876049.544770936,
+  "end_epoch": 1776876223.159785245,
+  "duration_seconds": 173.615014309,
+  "start_iso": "2026-04-22T00:00:49.544Z",
+  "end_iso": "2026-04-22T00:03:43.159Z",
+  "outputs": {
+    "output_md": "outputs/output.md",
+    "draft_owm": "outputs/draft.owm"
+  },
+  "notes": "Single-shot generation under arc-kit skill SKILL.md; AskUserQuestion steps were bypassed (non-interactive benchmark context) and the skill's content/structure procedure was followed directly. No in-tree skill, in-tree validator, or reference .owm files were read."
+}

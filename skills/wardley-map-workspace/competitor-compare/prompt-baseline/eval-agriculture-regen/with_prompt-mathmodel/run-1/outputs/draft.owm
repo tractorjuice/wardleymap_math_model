@@ -1,0 +1,180 @@
+title Regenerative Farming Landscape (August 2022)
+style wardley
+
+// ============================================================
+// Anchors U — multiple user types in this landscape
+// ============================================================
+anchor Consumer [0.98, 0.72]
+anchor Farmer [0.96, 0.45]
+anchor National Government [0.94, 0.55]
+anchor Supranational Body (UN / FAO / IPCC) [0.92, 0.35]
+
+// ============================================================
+// Layer 1 — directly user-facing outputs and behaviours
+// ============================================================
+component Consumer Purchase Decision [0.90, 0.70]
+component Food Retail Shelf [0.86, 0.82]
+component Farm Output (Produce / Grain / Livestock) [0.84, 0.80]
+component Policy Levers (Subsidies / Taxes) [0.82, 0.55]
+
+// ============================================================
+// Layer 2 — brand-visible signals and mediating institutions
+// ============================================================
+component On-Pack Eco-Label [0.74, 0.60]
+component Carbon / Climate Label [0.72, 0.25]
+component Retailer Sourcing Standard [0.70, 0.55]
+component Certification Body (Organic / Regen) [0.68, 0.50]
+component Supply-Chain Traceability [0.66, 0.35]
+component National Farm Payment Scheme (e.g. ELM, CAP reform) [0.64, 0.40]
+
+// ============================================================
+// Layer 3 — practices at the farm level
+// ============================================================
+component Extractive Industrial Practice [0.60, 0.88] inertia
+component Monoculture Cropping [0.58, 0.85] inertia
+component Crop Rotation [0.56, 0.70]
+component Cover Cropping [0.54, 0.45]
+component Crop Diversity / Intercropping [0.52, 0.30]
+component No-Till / Reduced Till [0.50, 0.50]
+component Integrated Livestock Grazing [0.48, 0.35]
+component Agroforestry [0.46, 0.22]
+
+// ============================================================
+// Layer 4 — measurement, data, knowledge connecting farm to market
+// ============================================================
+component Soil Carbon Measurement [0.44, 0.28]
+component Remote Sensing / Satellite MRV [0.42, 0.45]
+component Farm Management Software [0.40, 0.65]
+component Outcome-Based Grading Schema [0.38, 0.20]
+component Regen Ag Knowledge (Agronomy) [0.36, 0.30]
+component Soil Microbiology Science [0.34, 0.18]
+
+// ============================================================
+// Layer 5 — the energy matrix beneath the soil
+// ============================================================
+component Photosynthesis [0.28, 0.95]
+component Soil Microbial Community [0.24, 0.22]
+component Mycorrhizal Networks [0.22, 0.15]
+component Synthetic Fertiliser (N-P-K) [0.20, 0.92] inertia
+component Pesticides / Herbicides [0.18, 0.88] inertia
+component Petrochemical Feedstocks [0.14, 0.95]
+component Fossil Fuel Energy [0.10, 0.96]
+
+// ============================================================
+// Layer 6 — conservation substrate and treaty framework
+// ============================================================
+component Soil Substrate [0.30, 0.80]
+component Water Cycle / Watershed [0.26, 0.70]
+component Biodiversity / Pollinators [0.24, 0.40]
+component Climate Treaty (Paris / UNFCCC COP27) [0.16, 0.30]
+component Biodiversity Treaty (CBD / Kunming-Montreal draft) [0.14, 0.18]
+component Land Tenure / Property Rights [0.12, 0.85]
+
+// ============================================================
+// Dependencies E — (A, B) means A depends on B
+// ============================================================
+
+// Consumers choose via labels and retail
+Consumer->Consumer Purchase Decision
+Consumer Purchase Decision->Food Retail Shelf
+Consumer Purchase Decision->On-Pack Eco-Label
+Consumer Purchase Decision->Carbon / Climate Label
+Food Retail Shelf->Farm Output (Produce / Grain / Livestock)
+Food Retail Shelf->Retailer Sourcing Standard
+Food Retail Shelf->Supply-Chain Traceability
+
+// Retailer standards pull from certification and traceability
+Retailer Sourcing Standard->Certification Body (Organic / Regen)
+Retailer Sourcing Standard->Supply-Chain Traceability
+On-Pack Eco-Label->Certification Body (Organic / Regen)
+Carbon / Climate Label->Soil Carbon Measurement
+Carbon / Climate Label->Outcome-Based Grading Schema
+
+// Certification depends on measurement and grading
+Certification Body (Organic / Regen)->Outcome-Based Grading Schema
+Certification Body (Organic / Regen)->Supply-Chain Traceability
+Supply-Chain Traceability->Remote Sensing / Satellite MRV
+Supply-Chain Traceability->Farm Management Software
+
+// Farmer's output flows from chosen practices
+Farmer->Farm Output (Produce / Grain / Livestock)
+Farm Output (Produce / Grain / Livestock)->Extractive Industrial Practice
+Farm Output (Produce / Grain / Livestock)->Crop Rotation
+Farm Output (Produce / Grain / Livestock)->Cover Cropping
+Farm Output (Produce / Grain / Livestock)->Crop Diversity / Intercropping
+Farm Output (Produce / Grain / Livestock)->No-Till / Reduced Till
+Farm Output (Produce / Grain / Livestock)->Integrated Livestock Grazing
+Farm Output (Produce / Grain / Livestock)->Agroforestry
+Farm Output (Produce / Grain / Livestock)->Monoculture Cropping
+
+// Extractive practice locks into petrochemical stack
+Extractive Industrial Practice->Monoculture Cropping
+Extractive Industrial Practice->Synthetic Fertiliser (N-P-K)
+Extractive Industrial Practice->Pesticides / Herbicides
+Monoculture Cropping->Synthetic Fertiliser (N-P-K)
+Monoculture Cropping->Pesticides / Herbicides
+Monoculture Cropping->Soil Substrate
+Synthetic Fertiliser (N-P-K)->Petrochemical Feedstocks
+Pesticides / Herbicides->Petrochemical Feedstocks
+Petrochemical Feedstocks->Fossil Fuel Energy
+
+// Regenerative practices tap the biological energy matrix
+Crop Rotation->Soil Substrate
+Crop Rotation->Regen Ag Knowledge (Agronomy)
+Cover Cropping->Soil Substrate
+Cover Cropping->Regen Ag Knowledge (Agronomy)
+Crop Diversity / Intercropping->Soil Microbial Community
+Crop Diversity / Intercropping->Regen Ag Knowledge (Agronomy)
+No-Till / Reduced Till->Soil Microbial Community
+No-Till / Reduced Till->Soil Substrate
+Integrated Livestock Grazing->Soil Substrate
+Integrated Livestock Grazing->Biodiversity / Pollinators
+Agroforestry->Photosynthesis
+Agroforestry->Biodiversity / Pollinators
+Agroforestry->Water Cycle / Watershed
+
+// Soil biology and photosynthesis as the real energy matrix
+Soil Substrate->Soil Microbial Community
+Soil Microbial Community->Mycorrhizal Networks
+Soil Microbial Community->Photosynthesis
+Mycorrhizal Networks->Photosynthesis
+
+// Measurement stack
+Soil Carbon Measurement->Soil Microbiology Science
+Soil Carbon Measurement->Remote Sensing / Satellite MRV
+Outcome-Based Grading Schema->Soil Carbon Measurement
+Outcome-Based Grading Schema->Regen Ag Knowledge (Agronomy)
+Regen Ag Knowledge (Agronomy)->Soil Microbiology Science
+Farm Management Software->Remote Sensing / Satellite MRV
+
+// Policy and treaties
+National Government->Policy Levers (Subsidies / Taxes)
+Policy Levers (Subsidies / Taxes)->National Farm Payment Scheme (e.g. ELM, CAP reform)
+National Farm Payment Scheme (e.g. ELM, CAP reform)->Outcome-Based Grading Schema
+Supranational Body (UN / FAO / IPCC)->Climate Treaty (Paris / UNFCCC COP27)
+Supranational Body (UN / FAO / IPCC)->Biodiversity Treaty (CBD / Kunming-Montreal draft)
+Policy Levers (Subsidies / Taxes)->Climate Treaty (Paris / UNFCCC COP27)
+Policy Levers (Subsidies / Taxes)->Biodiversity Treaty (CBD / Kunming-Montreal draft)
+Policy Levers (Subsidies / Taxes)->Land Tenure / Property Rights
+
+// Farmer incentive routes
+Farmer->National Farm Payment Scheme (e.g. ELM, CAP reform)
+Farmer->Regen Ag Knowledge (Agronomy)
+Farmer->Land Tenure / Property Rights
+
+// ============================================================
+// Evolution projections (scenario, not forecast)
+// ============================================================
+evolve Soil Carbon Measurement 0.55
+evolve Carbon / Climate Label 0.55
+evolve Outcome-Based Grading Schema 0.50
+evolve Remote Sensing / Satellite MRV 0.70
+evolve Regen Ag Knowledge (Agronomy) 0.55
+evolve Cover Cropping 0.65
+
+// ============================================================
+// Strategic notes
+// ============================================================
+note Knowledge-locked: regen practices still in Custom Built [0.50, 0.25]
+note Industrial lock-in: petrochemical matrix [0.15, 0.92]
+note Consumer awareness gap: label plumbing not yet commodity [0.72, 0.20]

@@ -1,0 +1,22 @@
+{
+  "scenario": "government-digital-id",
+  "skill": "wardley-map",
+  "config": "with_skill",
+  "run": 1,
+  "start_epoch": 1776874406.636,
+  "end_epoch": 1776874879.432,
+  "elapsed_seconds": 472.8,
+  "components": 42,
+  "anchors": 5,
+  "edges": 83,
+  "stage_distribution": {
+    "genesis_I": 2,
+    "custom_built_II": 6,
+    "product_plus_rental_III": 20,
+    "commodity_plus_utility_IV": 15
+  },
+  "validator_run": false,
+  "validator_reason": "Bash permission denied for node validate_owm.mjs at this path (not on allowlist for the competitor-compare directory); manually audited all 83 edges against the visibility constraint (every source ν >= target ν), all 47 coordinates in [0,1] range, every edge endpoint matches a declared component. Manual audit clean.",
+  "layout_checker_run": false,
+  "layout_checker_notes": "Manually addressed near-duplicate coordinates (nudged Connectedness Identifier, Decentralised Identifier, Benevolence, Capability, Integrity) and stage-boundary straddling (moved Verified Claim off ε=0.50 to 0.53; Decentralised Authority off ε=0.25 to 0.22; Rules from ε=0.82 to ε=0.84 for consistency). No canvas-edge clipping. Stage balance healthy (48% in Stage III)."
+}

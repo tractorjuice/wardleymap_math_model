@@ -1,0 +1,11 @@
+{
+  "scenario": "eval-manufacturing",
+  "skill": "arc-kit/wardley-mapping",
+  "run": "run-1",
+  "mode": "with_skill",
+  "start_utc": "2026-04-22T16:37:39.082Z",
+  "end_utc": "2026-04-22T16:40:17.288Z",
+  "elapsed_seconds": 158.206,
+  "blind": true,
+  "notes": "Blind run. Did not read the reference OWM file or its symlink target. Used only the arc-kit skill at competitor-compare/arc-kit/skill/SKILL.md and its references/."
+}

@@ -1,0 +1,192 @@
+title Manufacturing Supply Chain (Feb 2023)
+style wardley
+
+// Anchors — multiple user types
+anchor Manufacturer [0.97, 0.50]
+anchor Distributor [0.95, 0.60]
+anchor Regulator [0.93, 0.55]
+anchor Board / Investor [0.96, 0.70]
+
+// User-visible outputs & decisions
+component Finished Product [0.88, 0.72]
+component Order Fulfilment [0.85, 0.78]
+component Regulatory Compliance [0.84, 0.45]
+component ROCE / Financial Return [0.86, 0.82]
+component Supply Chain Resilience View [0.82, 0.20]
+
+// Strategic visibility / awareness layer
+component Risk Dashboard [0.80, 0.30]
+component Supply Chain Mapping [0.76, 0.22]
+component Tier-N Supplier Visibility [0.70, 0.18]
+component Sales Forecasting [0.78, 0.55]
+component Demand Signals [0.68, 0.60]
+component Insurance / Business Interruption [0.82, 0.82]
+
+// Core flow: assembly and production
+component Inventory Policy (JIT vs JIC) [0.72, 0.38]
+component Assembly Line [0.66, 0.72]
+component Quality Assurance [0.63, 0.70]
+component Product Design [0.64, 0.42]
+component Process Engineering [0.60, 0.55]
+component R&D [0.50, 0.30]
+
+// Inventory and logistics policy
+component Warehousing [0.58, 0.78]
+component Outbound Logistics [0.60, 0.80]
+component Safety Stock [0.60, 0.45]
+component Inbound Logistics [0.48, 0.78]
+component Freight & Shipping [0.44, 0.85]
+
+// Labour and skills
+component Skilled Operators [0.60, 0.48]
+component Labour Relations [0.56, 0.52]
+component Health & Safety Programme [0.54, 0.62]
+component Training [0.50, 0.55]
+
+// Equipment
+component Production Equipment [0.48, 0.65]
+component CNC / Robotics [0.44, 0.58]
+component Maintenance (CMMS) [0.42, 0.72]
+component Spare Parts [0.40, 0.77]
+
+// Materials: refined and raw
+component Refined Materials [0.52, 0.78] inertia
+component Raw Materials [0.46, 0.82]
+component Commodity Futures Hedging [0.42, 0.80]
+component Alternative / Second Source [0.38, 0.35]
+
+// Financial and capital
+component Working Capital [0.70, 0.70]
+component Capital Investment (CapEx) [0.66, 0.60]
+component Cost Accounting [0.64, 0.78]
+
+// Government / regulation / external
+component ESG Reporting [0.62, 0.38]
+component Tariffs & Sanctions Intel [0.60, 0.40]
+component Lobbying [0.56, 0.32]
+component Safety Certification [0.48, 0.68]
+component Standards Conformance (ISO) [0.44, 0.88]
+component Customs & Trade [0.40, 0.82]
+
+// IT / digital layer
+component ERP [0.40, 0.78] inertia
+component MES (Manufacturing Execution) [0.34, 0.62]
+component AI Demand Forecasting [0.46, 0.28]
+component Digital Twin [0.50, 0.22]
+
+// Deep utilities / foundations
+component Cloud / Compute [0.20, 0.90]
+component Banking / Payments [0.18, 0.92]
+component Energy [0.12, 0.92]
+component Water [0.06, 0.94]
+component Telecoms [0.09, 0.96]
+
+// Dependencies
+Manufacturer->Finished Product
+Manufacturer->Regulatory Compliance
+Manufacturer->Supply Chain Resilience View
+Manufacturer->Order Fulfilment
+Distributor->Order Fulfilment
+Distributor->Finished Product
+Board / Investor->ROCE / Financial Return
+Board / Investor->Supply Chain Resilience View
+Board / Investor->Insurance / Business Interruption
+Regulator->Regulatory Compliance
+
+Finished Product->Assembly Line
+Finished Product->Quality Assurance
+Finished Product->Product Design
+
+Order Fulfilment->Warehousing
+Order Fulfilment->Outbound Logistics
+Order Fulfilment->Sales Forecasting
+
+Regulatory Compliance->Safety Certification
+Regulatory Compliance->Standards Conformance (ISO)
+Regulatory Compliance->ESG Reporting
+Regulatory Compliance->Health & Safety Programme
+
+ROCE / Financial Return->Cost Accounting
+ROCE / Financial Return->Working Capital
+ROCE / Financial Return->Capital Investment (CapEx)
+
+Supply Chain Resilience View->Risk Dashboard
+Supply Chain Resilience View->Supply Chain Mapping
+Supply Chain Resilience View->Tier-N Supplier Visibility
+Supply Chain Resilience View->Tariffs & Sanctions Intel
+
+Risk Dashboard->Supply Chain Mapping
+Risk Dashboard->Demand Signals
+Supply Chain Mapping->Tier-N Supplier Visibility
+Sales Forecasting->Demand Signals
+Sales Forecasting->AI Demand Forecasting
+Insurance / Business Interruption->Risk Dashboard
+
+Inventory Policy (JIT vs JIC)->Safety Stock
+Inventory Policy (JIT vs JIC)->Demand Signals
+Inventory Policy (JIT vs JIC)->Warehousing
+
+Assembly Line->Skilled Operators
+Assembly Line->Production Equipment
+Assembly Line->Process Engineering
+Assembly Line->MES (Manufacturing Execution)
+Assembly Line->Refined Materials
+Assembly Line->Energy
+Quality Assurance->Standards Conformance (ISO)
+Quality Assurance->Skilled Operators
+Product Design->R&D
+Process Engineering->R&D
+
+Warehousing->Inbound Logistics
+Warehousing->ERP
+Warehousing->Energy
+Outbound Logistics->Freight & Shipping
+Inbound Logistics->Freight & Shipping
+Inbound Logistics->Customs & Trade
+Safety Stock->Warehousing
+Freight & Shipping->Energy
+
+Skilled Operators->Training
+Skilled Operators->Labour Relations
+Health & Safety Programme->Training
+
+Production Equipment->CNC / Robotics
+Production Equipment->Maintenance (CMMS)
+Production Equipment->Energy
+Maintenance (CMMS)->Spare Parts
+
+Refined Materials->Raw Materials
+Refined Materials->Inbound Logistics
+Raw Materials->Commodity Futures Hedging
+Raw Materials->Alternative / Second Source
+
+Working Capital->Cost Accounting
+Working Capital->Banking / Payments
+Capital Investment (CapEx)->Banking / Payments
+Cost Accounting->ERP
+
+Safety Certification->Standards Conformance (ISO)
+ESG Reporting->Lobbying
+ESG Reporting->Energy
+Tariffs & Sanctions Intel->Lobbying
+
+ERP->Cloud / Compute
+ERP->MES (Manufacturing Execution)
+MES (Manufacturing Execution)->Cloud / Compute
+AI Demand Forecasting->Cloud / Compute
+Digital Twin->AI Demand Forecasting
+
+Cloud / Compute->Energy
+Cloud / Compute->Telecoms
+
+// Evolution arrows (scenario, not forecast)
+evolve Supply Chain Mapping 0.55
+evolve Tier-N Supplier Visibility 0.50
+evolve AI Demand Forecasting 0.60
+evolve Digital Twin 0.50
+evolve Inventory Policy (JIT vs JIC) 0.55
+evolve ESG Reporting 0.70
+
+note Differentiation zone (visible + immature) [0.82, 0.12]
+note Commodity / utility foundation [0.10, 0.88]
+note Resilience / awareness layer [0.76, 0.08]

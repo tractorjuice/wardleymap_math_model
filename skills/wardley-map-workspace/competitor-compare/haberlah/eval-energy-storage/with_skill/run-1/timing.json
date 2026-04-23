@@ -1,0 +1,8 @@
+{
+  "skill": "haberlah/wardley-mapping",
+  "scenario": "eval-energy-storage",
+  "run": 1,
+  "start_unix": 1776873396.58,
+  "end_unix": 1776873604.60,
+  "duration_seconds": 208.02
+}

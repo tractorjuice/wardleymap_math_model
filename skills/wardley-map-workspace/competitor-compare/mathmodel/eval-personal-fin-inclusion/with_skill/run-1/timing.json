@@ -1,0 +1,12 @@
+{
+  "eval": "personal-fin-inclusion",
+  "config": "with_skill",
+  "run": 1,
+  "skill": "wardley-map",
+  "skill_path": "/workspaces/wardleymap_math_model/skills/wardley-map/SKILL.md",
+  "start_ns": 1776874416280940576,
+  "end_ns": 1776874785295813665,
+  "elapsed_ns": 369014873089,
+  "elapsed_seconds": 369.0,
+  "notes": "Full skill procedure executed. Validator (validate_owm.mjs) and layout check (check_layout.mjs) were blocked by sandbox permissions on the node invocation; the three structural checks (coord range, endpoint-existence, visibility hard-rule) plus near-duplicate and stage-boundary layout checks were walked by hand against the full draft, with 10 visibility violations fixed during a restructure and five stage-boundary nudges applied. Map has 34 components + 1 anchor, 88 edges, 5 evolve arrows, 2 notes. Deep placement notes cover CBDC, Cryptocurrency, Mobile Money Wallet, Mesh Networks, and Digital Identity."
+}

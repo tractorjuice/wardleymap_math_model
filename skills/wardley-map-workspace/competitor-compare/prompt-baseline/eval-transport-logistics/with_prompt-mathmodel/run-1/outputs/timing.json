@@ -1,0 +1,18 @@
+{
+  "scenario": "eval-transport-logistics",
+  "mode": "prompt-baseline",
+  "variant": "with_prompt-in-tree",
+  "run": 1,
+  "prompt_source": "/workspaces/wardleymap_math_model/prompts/wardley_map_generator.md",
+  "start_unix": 1776873213.435,
+  "end_unix": 1776873400.064,
+  "duration_seconds": 186.629,
+  "blind": true,
+  "reference_map_read": false,
+  "outputs": {
+    "output_md": "output.md",
+    "draft_owm": "draft.owm"
+  }
+}
+</content>
+</invoke>

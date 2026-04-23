@@ -1,0 +1,69 @@
+title Personal Computing in the Conversational AI Era
+style wardley
+
+anchor User [0.97, 0.50]
+
+component Applications [0.88, 0.78]
+component Devices [0.85, 0.88]
+component Conversational AI IDE [0.78, 0.32] inertia
+component IDE (Human-Centric) [0.72, 0.72]
+component Component Libraries [0.62, 0.88]
+component Services [0.58, 0.76]
+component Legacy Approaches [0.52, 0.48] inertia
+component Large Language Models [0.45, 0.54]
+component Serverless Runtime [0.44, 0.68]
+component FinOps [0.42, 0.35]
+component LAMP / .Net Runtime [0.40, 0.85] inertia
+component Orchestration [0.33, 0.72]
+component Operating Systems [0.30, 0.92]
+component Containers [0.22, 0.88]
+component DevOps [0.18, 0.70]
+component Legacy Architecture [0.16, 0.62] inertia
+component Compute (Cloud) [0.08, 0.92]
+
+User->Applications
+User->Devices
+Applications->IDE (Human-Centric)
+Applications->Conversational AI IDE
+Applications->Component Libraries
+Applications->Services
+Applications->Legacy Approaches
+Applications->DevOps
+Devices->Operating Systems
+Conversational AI IDE->IDE (Human-Centric)
+Conversational AI IDE->Large Language Models
+Conversational AI IDE->Component Libraries
+IDE (Human-Centric)->Component Libraries
+IDE (Human-Centric)->Services
+IDE (Human-Centric)->DevOps
+Component Libraries->Serverless Runtime
+Component Libraries->LAMP / .Net Runtime
+Services->Serverless Runtime
+Services->LAMP / .Net Runtime
+Services->DevOps
+Legacy Approaches->LAMP / .Net Runtime
+Legacy Approaches->Legacy Architecture
+Large Language Models->FinOps
+Large Language Models->Compute (Cloud)
+Serverless Runtime->Containers
+Serverless Runtime->Compute (Cloud)
+LAMP / .Net Runtime->Operating Systems
+LAMP / .Net Runtime->Containers
+FinOps->Compute (Cloud)
+Orchestration->Operating Systems
+Orchestration->Containers
+Orchestration->Compute (Cloud)
+Operating Systems->Compute (Cloud)
+Containers->Compute (Cloud)
+DevOps->Compute (Cloud)
+Legacy Architecture->Compute (Cloud)
+
+evolve Conversational AI IDE 0.55
+evolve Large Language Models 0.72
+evolve FinOps 0.58
+evolve Orchestration 0.85
+
+annotation 1 [[0.82, 0.28]] Conversational IDE + LLMs: the new Genesis/Custom frontier
+annotation 2 [[0.54, 0.60]] Evolution compression: LLMs moving Custom->Commodity in ~4 years
+annotation 3 [[0.25, 0.55]] Inertia cluster: legacy approaches, runtimes, and architecture resist movement
+annotation 4 [[0.12, 0.80]] Commoditised substrate: cloud, containers, OS, DevOps as unified utility

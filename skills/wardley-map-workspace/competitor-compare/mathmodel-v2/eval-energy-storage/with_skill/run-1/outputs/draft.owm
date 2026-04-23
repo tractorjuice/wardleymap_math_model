@@ -1,0 +1,88 @@
+title Electrical Energy Storage Landscape (April 2023)
+style wardley
+
+// Anchor — the user
+anchor Consumer [0.96, 0.55]
+
+// User-facing activity
+component Activity (energy use) [0.88, 0.70]
+
+// Control layer — what consumers rely on to keep lights on
+component Control [0.80, 0.40]
+component Electricity Generation [0.70, 0.78]
+component Grid [0.75, 0.62]
+
+// Two grid models
+component Traditional Grid Model [0.60, 0.55]
+component Distributed Fault-Tolerant Grid [0.58, 0.28]
+
+// Control-system components
+component SCADA [0.50, 0.72]
+component Auto Generation Control [0.48, 0.65]
+component Spinning Reserve [0.46, 0.70]
+component Fast-Response Systems [0.44, 0.40]
+
+// Energy storage (the map's subject)
+component Energy Storage [0.55, 0.45]
+component Electrical Storage (batteries) [0.40, 0.55]
+component Pumped Hydro Storage [0.38, 0.82]
+component Hydrogen Storage [0.36, 0.18]
+
+// Platform / integration layer
+component Energy Platform [0.32, 0.30]
+component Integration Layer [0.28, 0.32]
+component Pre-approval / Discovery [0.24, 0.22]
+component Adaptive Integration [0.22, 0.27]
+component Plug-and-Play Interface [0.20, 0.28]
+
+// Beneath: the supply chain for what storage is made of
+component Sources [0.18, 0.55]
+component Stockpile [0.15, 0.60]
+component Material Supply Chain [0.12, 0.35]
+component Energy Supply Chain Awareness [0.10, 0.20]
+
+// Dependencies
+Consumer->Activity (energy use)
+Activity (energy use)->Control
+Activity (energy use)->Electricity Generation
+Activity (energy use)->Grid
+Control->Grid
+Control->SCADA
+Control->Auto Generation Control
+Grid->Traditional Grid Model
+Grid->Distributed Fault-Tolerant Grid
+Grid->Electricity Generation
+Traditional Grid Model->SCADA
+Traditional Grid Model->Auto Generation Control
+Traditional Grid Model->Spinning Reserve
+Distributed Fault-Tolerant Grid->Fast-Response Systems
+Distributed Fault-Tolerant Grid->Energy Platform
+Electricity Generation->Spinning Reserve
+Electricity Generation->Energy Storage
+Energy Storage->Electrical Storage (batteries)
+Energy Storage->Pumped Hydro Storage
+Energy Storage->Hydrogen Storage
+Energy Storage->Energy Platform
+Fast-Response Systems->Electrical Storage (batteries)
+Energy Platform->Integration Layer
+Integration Layer->Pre-approval / Discovery
+Integration Layer->Adaptive Integration
+Integration Layer->Plug-and-Play Interface
+Electrical Storage (batteries)->Sources
+Electrical Storage (batteries)->Material Supply Chain
+Hydrogen Storage->Material Supply Chain
+Pumped Hydro Storage->Sources
+Sources->Stockpile
+Sources->Material Supply Chain
+Stockpile->Material Supply Chain
+Material Supply Chain->Energy Supply Chain Awareness
+
+evolve Distributed Fault-Tolerant Grid 0.55
+evolve Electrical Storage (batteries) 0.78
+evolve Hydrogen Storage 0.40
+evolve Energy Platform 0.55
+evolve Plug-and-Play Interface 0.60
+evolve Material Supply Chain 0.55
+
+note Distributed grid evolving faster than traditional [0.62, 0.35]
+note Supply chain risk bite [0.14, 0.30]

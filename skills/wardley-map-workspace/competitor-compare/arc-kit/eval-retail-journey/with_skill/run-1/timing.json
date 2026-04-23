@@ -1,0 +1,12 @@
+{
+  "run": "run-1",
+  "skill": "arc-kit wardley-mapping",
+  "skill_path": "/workspaces/wardleymap_math_model/skills/wardley-map-workspace/competitor-compare/arc-kit/skill/SKILL.md",
+  "eval": "eval-retail-journey",
+  "scenario_summary": "Connected customer journey in retail — customer, producer, needs, goods/services, channels (stores, e-commerce, telesales), experience layer, sensory/physical/virtual, trust and privacy, engagement and discovery, returns, societal behaviour and demographics.",
+  "started_at_epoch": 1776875882.477592,
+  "ended_at_epoch": 1776876113.831171,
+  "duration_seconds": 231.353579,
+  "blind": true,
+  "notes": "Reference .owm was NOT read during this run (blind benchmark). Skill procedure followed literally: Steps 1-6 per arc-kit SKILL.md. AskUserQuestion step (Step 1) executed non-interactively — context inferred from scenario. No in-tree validator or converter used; only the arc-kit skill's own references/."
+}

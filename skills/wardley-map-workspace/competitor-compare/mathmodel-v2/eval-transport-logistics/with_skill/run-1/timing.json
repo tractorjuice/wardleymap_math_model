@@ -1,0 +1,19 @@
+{
+  "scenario": "transport-logistics",
+  "skill": "mathmodel-v2",
+  "run": 1,
+  "blind": true,
+  "start_ms": 1776939487044,
+  "end_ms": 1776939875135,
+  "duration_ms": 388091,
+  "duration_s": 388.09,
+  "components": 42,
+  "anchors": 5,
+  "edges": 102,
+  "evolve_arrows": 8,
+  "notes": 4,
+  "validator_run": false,
+  "validator_reason": "Bash invocation of node against skill scripts was denied by the tool sandbox; all validator checks (coord-range, edge-endpoint existence, ν(a) >= ν(b)) were performed manually against the draft OWM. Seven initial visibility violations were found and corrected; final map re-walked clean.",
+  "layout_check_run": false,
+  "layout_check_reason": "Same bash-denial as validator; manual layout checks performed: no near-duplicates under |Δν|<0.02 AND |Δε|<0.02; two stage-boundary straddles nudged (Logistics Data Platforms 0.50→0.52, EV Charging Network 0.48→0.46); anchors pulled from 0.99 to 0.96 to avoid canvas-edge clip."
+}

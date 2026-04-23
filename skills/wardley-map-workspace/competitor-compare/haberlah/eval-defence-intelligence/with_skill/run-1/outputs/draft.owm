@@ -1,0 +1,76 @@
+title Defence Intelligence Landscape (March 2023)
+style wardley
+
+// Anchors: primary decision-maker plus oversight / citizen stakeholders
+anchor Military Command [0.97, 0.75]
+anchor Government [0.95, 0.65]
+anchor Citizens [0.93, 0.55]
+
+// Decision layer
+component Operational Decisions [0.87, 0.58]
+component Intelligence Agencies [0.82, 0.68]
+component Decision Model (HITL/HOTL) [0.78, 0.28]
+component Trust (Competence/Integrity/Benevolence) [0.70, 0.18]
+
+// Analysis layer
+component Intelligence Analysis [0.68, 0.45] inertia
+component Target Discovery [0.60, 0.55]
+component AI/ML Analytics Engine [0.52, 0.32]
+component Intelligence Collection [0.50, 0.58]
+
+// Source layer
+component Verified Diverse Sources [0.42, 0.50]
+component Regulation, Privacy & Ownership [0.40, 0.35]
+component OSINT [0.35, 0.68]
+component Social Media & Crowdsourcing [0.28, 0.62]
+component Adversarial Capability [0.28, 0.22]
+component Sensors (GPS/Cameras/Signals) [0.22, 0.82]
+
+// Dependencies — value chain from anchors down to sources
+Military Command->Operational Decisions
+Military Command->Intelligence Agencies
+Government->Operational Decisions
+Government->Regulation, Privacy & Ownership
+Citizens->Regulation, Privacy & Ownership
+
+Operational Decisions->Decision Model (HITL/HOTL)
+Operational Decisions->Intelligence Analysis
+Intelligence Agencies->Intelligence Analysis
+Intelligence Agencies->Target Discovery
+
+Decision Model (HITL/HOTL)->Trust (Competence/Integrity/Benevolence)
+Decision Model (HITL/HOTL)->AI/ML Analytics Engine
+
+Intelligence Analysis->AI/ML Analytics Engine
+Intelligence Analysis->Verified Diverse Sources
+Target Discovery->Intelligence Collection
+Intelligence Collection->Verified Diverse Sources
+AI/ML Analytics Engine->Verified Diverse Sources
+
+Verified Diverse Sources->OSINT
+Verified Diverse Sources->Social Media & Crowdsourcing
+Verified Diverse Sources->Sensors (GPS/Cameras/Signals)
+OSINT->Social Media & Crowdsourcing
+
+// Regulation constrains public-data sources and sensor use
+Regulation, Privacy & Ownership->OSINT
+Regulation, Privacy & Ownership->Social Media & Crowdsourcing
+Regulation, Privacy & Ownership->Sensors (GPS/Cameras/Signals)
+
+// Adversary contaminates crowd-sourced streams and targets the AI layer
+Social Media & Crowdsourcing->Adversarial Capability
+AI/ML Analytics Engine->Adversarial Capability
+
+// Evolution arrows (predicted 12-24 month movement)
+evolve AI/ML Analytics Engine 0.55
+evolve Decision Model (HITL/HOTL) 0.45
+evolve Trust (Competence/Integrity/Benevolence) 0.32
+evolve Adversarial Capability 0.42
+evolve Regulation, Privacy & Ownership 0.50
+evolve OSINT 0.78
+
+// Inertia marker above captures legacy tradecraft resistance to AI-native workflows
+
+annotation 1 [[0.30, 0.30]] Bleeding-edge zone: LLM-era analytics, HITL/HOTL doctrine, prompt-injection threat
+annotation 2 [[0.20, 0.82]] Commoditised: GPS, cameras, network signals are utility inputs
+annotation 3 [[0.42, 0.68]] OSINT tooling maturing toward commodity utility

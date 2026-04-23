@@ -1,0 +1,11 @@
+{
+  "scenario": "cybersecurity-risk",
+  "skill_config": "with_skill",
+  "skill_version": "wardley-map (mathmodel-v2)",
+  "run": 1,
+  "start_ms": 1776939372397,
+  "end_ms": 1776939711551,
+  "duration_ms": 339154,
+  "duration_seconds": 339.154,
+  "notes": "Blind benchmark. Reference map NOT read. Validator (validate_owm.mjs) could not be executed due to sandbox bash permission denial on the target path; every edge (~64) was walked manually against the three validator rules and two visibility violations were found and fixed (Risk Register and LLM Governance Policy). Layout check also performed manually: three issues fixed (one canvas-edge clip on the Exec anchor, one SOC/Security-Testing near-duplicate collision, one FAIR/Mitigation-Mix collision, one stage-boundary straddle on Vuln Mgmt)."
+}

@@ -1,0 +1,74 @@
+title Risk Management in Financial Services
+style wardley
+
+anchor Public [0.97, 0.55]
+anchor Corporations [0.95, 0.50]
+anchor Governments [0.96, 0.45]
+
+component Retail Banking [0.78, 0.82]
+component Insurance [0.76, 0.72]
+component Lending [0.74, 0.70]
+component Trust [0.68, 0.35] inertia
+component Assets [0.62, 0.78]
+component Rating Agencies [0.58, 0.68]
+component Regulation [0.62, 0.42] inertia
+component Value [0.54, 0.55]
+component Cost [0.52, 0.82]
+component Sovereignty [0.50, 0.22]
+component Credit Risk [0.46, 0.78]
+component System Risk [0.42, 0.52]
+component Cybersecurity Risk [0.38, 0.38]
+component Third-party Risk [0.34, 0.30]
+component Cascade Failure Risk [0.30, 0.18]
+component Supply-chain Awareness [0.22, 0.16]
+component Society [0.26, 0.48]
+component Accountability Chain [0.14, 0.32]
+
+Public->Retail Banking
+Public->Insurance
+Corporations->Lending
+Corporations->Insurance
+Corporations->Retail Banking
+Governments->Regulation
+Governments->Sovereignty
+Retail Banking->Trust
+Retail Banking->Assets
+Retail Banking->Cost
+Insurance->Trust
+Insurance->Assets
+Insurance->Rating Agencies
+Lending->Trust
+Lending->Assets
+Lending->Rating Agencies
+Lending->Credit Risk
+Retail Banking->Regulation
+Insurance->Regulation
+Lending->Regulation
+Rating Agencies->Credit Risk
+Trust->Value
+Assets->Value
+Value->Cost
+Regulation->Sovereignty
+Regulation->System Risk
+Regulation->Cybersecurity Risk
+Retail Banking->Cybersecurity Risk
+Insurance->System Risk
+Lending->System Risk
+System Risk->Cascade Failure Risk
+Cybersecurity Risk->Third-party Risk
+Third-party Risk->Supply-chain Awareness
+Cascade Failure Risk->Supply-chain Awareness
+Regulation->Society
+Society->Accountability Chain
+Supply-chain Awareness->Accountability Chain
+
+evolve Cybersecurity Risk 0.58
+evolve Third-party Risk 0.52
+evolve Supply-chain Awareness 0.40
+evolve Regulation 0.58
+evolve Sovereignty 0.40
+evolve Cascade Failure Risk 0.38
+
+annotation 1 [[0.42, 0.36]] Regulation lags the risks it's meant to cover
+annotation 2 [[0.22, 0.18]] Supply-chain awareness is weakly instrumented
+annotation 3 [[0.68, 0.38]] Trust carries inertia: bespoke to each institution

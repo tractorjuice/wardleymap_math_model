@@ -1,0 +1,150 @@
+title Connected Customer Journey in Retail
+style wardley
+
+// Two anchors: demand-side and supply-side of the journey
+anchor Customer [0.98, 0.60]
+anchor Producer [0.96, 0.47]
+
+// Needs being met (top of value chain)
+component Shopping Needs [0.90, 0.55]
+component Produce / Sell Goods [0.88, 0.47]
+component Retail Experience [0.85, 0.35]
+
+// Goods and services layer
+component Goods & Services [0.78, 0.70]
+component Assortment / Range [0.73, 0.55]
+component Merchandising [0.70, 0.40]
+
+// Channels
+component Physical Store [0.65, 0.55]
+component E-commerce Site [0.64, 0.72]
+component Mobile App [0.62, 0.68]
+component Telesales / Contact Centre [0.58, 0.80]
+component Marketplace Channel [0.60, 0.70]
+
+// Experience layer
+component Sensory Experience [0.68, 0.30]
+component Virtual / AR Try-on [0.60, 0.18]
+component Store Atmosphere [0.63, 0.45]
+component Personalisation Engine [0.55, 0.40]
+component Engagement & Discovery [0.57, 0.45]
+component Content & Editorial [0.55, 0.55]
+component Search & Browse [0.52, 0.78]
+component Recommendations [0.50, 0.55]
+
+// Trust / privacy / identity
+component Trust & Brand [0.50, 0.40]
+component Reviews & Ratings [0.48, 0.72]
+component Privacy & Consent [0.45, 0.55]
+component Identity / Login [0.42, 0.82]
+
+// Transaction + fulfilment
+component Checkout [0.46, 0.77]
+component Payment Processing [0.28, 0.92]
+component Fraud Detection [0.36, 0.65]
+component Order Management [0.44, 0.70]
+component Inventory Visibility [0.35, 0.62]
+component Delivery & Fulfilment [0.40, 0.65]
+component Returns & Reverse Logistics [0.42, 0.58]
+
+// Data + demographics shaping behaviour
+component Customer Data Platform [0.32, 0.55]
+component Demographic & Behavioural Data [0.30, 0.45]
+component Loyalty Programme [0.48, 0.60]
+component Societal Trends / Culture [0.25, 0.30]
+
+// Infrastructure (utility commodity)
+component Cloud Utilities [0.12, 0.92]
+component CRM / Marketing Platform [0.25, 0.72]
+component Analytics / BI [0.20, 0.80]
+component Telecoms & Network [0.10, 0.95]
+component Electricity [0.06, 0.97]
+
+// Dependencies — Customer side
+Customer->Shopping Needs
+Customer->Retail Experience
+Shopping Needs->Goods & Services
+Shopping Needs->Retail Experience
+Retail Experience->Sensory Experience
+Retail Experience->Engagement & Discovery
+Retail Experience->Trust & Brand
+Goods & Services->Assortment / Range
+Goods & Services->Merchandising
+Assortment / Range->Physical Store
+Assortment / Range->E-commerce Site
+Assortment / Range->Marketplace Channel
+Merchandising->Physical Store
+Merchandising->E-commerce Site
+
+// Channel dependencies
+Physical Store->Store Atmosphere
+Physical Store->Checkout
+Physical Store->Inventory Visibility
+E-commerce Site->Search & Browse
+E-commerce Site->Recommendations
+E-commerce Site->Checkout
+E-commerce Site->Identity / Login
+Mobile App->Search & Browse
+Mobile App->Checkout
+Mobile App->Identity / Login
+Telesales / Contact Centre->Order Management
+Marketplace Channel->Checkout
+Marketplace Channel->Order Management
+
+// Experience layer dependencies
+Sensory Experience->Store Atmosphere
+Sensory Experience->Virtual / AR Try-on
+Engagement & Discovery->Content & Editorial
+Engagement & Discovery->Search & Browse
+Engagement & Discovery->Recommendations
+Engagement & Discovery->Personalisation Engine
+Personalisation Engine->Customer Data Platform
+Recommendations->Customer Data Platform
+Content & Editorial->CRM / Marketing Platform
+Search & Browse->Cloud Utilities
+
+// Trust / identity
+Trust & Brand->Reviews & Ratings
+Trust & Brand->Privacy & Consent
+Reviews & Ratings->Customer Data Platform
+Privacy & Consent->Identity / Login
+Identity / Login->Cloud Utilities
+
+// Checkout / payments / fulfilment
+Checkout->Payment Processing
+Checkout->Fraud Detection
+Checkout->Order Management
+Payment Processing->Cloud Utilities
+Fraud Detection->Customer Data Platform
+Order Management->Inventory Visibility
+Order Management->Delivery & Fulfilment
+Order Management->Returns & Reverse Logistics
+Delivery & Fulfilment->Cloud Utilities
+
+// Data plane
+Customer Data Platform->Demographic & Behavioural Data
+Customer Data Platform->Analytics / BI
+Loyalty Programme->Customer Data Platform
+Demographic & Behavioural Data->Societal Trends / Culture
+Analytics / BI->Cloud Utilities
+CRM / Marketing Platform->Cloud Utilities
+
+// Utilities
+Cloud Utilities->Telecoms & Network
+Cloud Utilities->Electricity
+Physical Store->Electricity
+Telesales / Contact Centre->Telecoms & Network
+
+// Producer side
+Producer->Produce / Sell Goods
+Produce / Sell Goods->Goods & Services
+Produce / Sell Goods->Assortment / Range
+
+// Evolution trajectories
+evolve Personalisation Engine 0.62
+evolve Virtual / AR Try-on 0.45
+evolve Returns & Reverse Logistics 0.70
+evolve Fraud Detection 0.80
+
+note Differentiation zone [0.75, 0.28]
+note Utility commodity [0.15, 0.92]

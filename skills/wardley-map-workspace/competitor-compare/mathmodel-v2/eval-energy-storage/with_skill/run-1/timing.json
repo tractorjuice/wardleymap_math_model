@@ -1,0 +1,9 @@
+{
+  "eval": "eval-energy-storage",
+  "config": "with_skill",
+  "run": 1,
+  "start_ns": 1776939414437800356,
+  "end_ns": 1776939725246486791,
+  "duration_s": 310.808686435,
+  "notes": "Blind run using /workspaces/wardleymap_math_model/skills/wardley-map/SKILL.md. Validator and layout-check invocation were blocked by sandbox permissions; the map was walked manually against the same three validator rules (coords in [0,1], endpoints declared, nu(a) >= nu(b) on every edge) and manually against the layout advisory checks (near-duplicates, stage-boundary, canvas-edge, stage balance). One fix applied during validation: Grid(0.68) -> Electricity Generation(0.72) violated the visibility rule; Grid raised to 0.75 and Electricity Generation lowered to 0.70. Layout nudges: Adaptive Integration moved from epsilon=0.25 to 0.27 (stage boundary); Consumer anchor moved from nu=0.98 to 0.96 (canvas edge)."
+}

@@ -1,0 +1,12 @@
+{
+  "eval": "eval-finance-risk",
+  "skill": "arc-kit/wardley-mapping",
+  "run": "run-1",
+  "mode": "with_skill",
+  "blind": true,
+  "start_epoch_s": 1776875827.050502718,
+  "end_epoch_s": 1776875962.654567120,
+  "elapsed_s": 135.604064402,
+  "start_iso": "2026-04-22T00:00:00Z-approx",
+  "notes": "Followed arc-kit SKILL.md steps 1-5 (Step 6 optional math not applied). Outputs: output.md + draft.owm. Did not read the reference .owm at any point."
+}

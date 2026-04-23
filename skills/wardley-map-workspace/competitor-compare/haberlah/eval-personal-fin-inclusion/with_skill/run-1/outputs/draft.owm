@@ -1,0 +1,157 @@
+title Digital Financial Inclusion - Individual in an Underbanked Region
+style wardley
+
+// --- Anchor: the individual and their top-level needs ---
+anchor Individual [0.98, 0.30]
+component Options [0.93, 0.28]
+component Trade [0.93, 0.40]
+component Equality [0.93, 0.18]
+component Sustainability [0.93, 0.12]
+component Inclusion [0.93, 0.22]
+
+// --- Second layer: identity, trust, risk, behaviour ---
+component Identity [0.84, 0.55]
+component Trust [0.84, 0.33]
+component Risk Management [0.82, 0.48]
+component User Behaviour [0.82, 0.20]
+
+// --- Markets, exchange, authority, redistribution ---
+component Markets [0.74, 0.62]
+component Exchange Protocols [0.72, 0.52]
+component Centralised Authority [0.70, 0.78]
+component Decentralised Authority [0.70, 0.22]
+component Redistribution [0.72, 0.30]
+
+// --- Banking provision (pipeline: branches -> online -> infrastructure) ---
+component Branch Banking [0.60, 0.38] inertia
+component Banking Services [0.60, 0.62]
+component Online Payments [0.58, 0.80]
+component Financial Infrastructure [0.48, 0.82]
+
+// --- Currency layer ---
+component Fiat Currency [0.55, 0.88]
+component Cryptocurrency [0.55, 0.32]
+component CBDC [0.55, 0.12]
+
+// --- Technology stack ---
+component Mobile Device [0.40, 0.86]
+component Internet Access [0.38, 0.82]
+component Consensus Algorithms [0.35, 0.40]
+component Computing Infrastructure [0.32, 0.88]
+
+// --- Network topology ---
+component 5G Network [0.22, 0.55]
+component Satellite Network [0.22, 0.35]
+component Copper Network [0.22, 0.82] inertia
+component Mesh Network [0.22, 0.20]
+
+// --- Energy layer ---
+component Fossil Energy [0.08, 0.82] inertia
+component Renewable Energy [0.08, 0.55]
+component Minigrid Energy [0.08, 0.28]
+
+// --- Dependencies: anchor to needs ---
+Individual->Options
+Individual->Trade
+Individual->Equality
+Individual->Sustainability
+Individual->Inclusion
+
+// Needs to enablers
+Options->Markets
+Trade->Markets
+Trade->Exchange Protocols
+Equality->Redistribution
+Equality->Inclusion
+Inclusion->Banking Services
+Inclusion->Identity
+Sustainability->Renewable Energy
+
+// Identity / trust / risk / behaviour layer
+Identity->Centralised Authority
+Identity->Decentralised Authority
+Trust->Identity
+Trust->Risk Management
+Trust->Centralised Authority
+Risk Management->Banking Services
+User Behaviour->Mobile Device
+User Behaviour->Trust
+
+// Markets / exchange / authority
+Markets->Banking Services
+Markets->Fiat Currency
+Markets->Cryptocurrency
+Exchange Protocols->Online Payments
+Exchange Protocols->Cryptocurrency
+Centralised Authority->Fiat Currency
+Centralised Authority->CBDC
+Decentralised Authority->Cryptocurrency
+Decentralised Authority->Consensus Algorithms
+Redistribution->CBDC
+Redistribution->Banking Services
+
+// Banking provision
+Banking Services->Branch Banking
+Banking Services->Online Payments
+Banking Services->Financial Infrastructure
+Branch Banking->Financial Infrastructure
+Online Payments->Financial Infrastructure
+Online Payments->Mobile Device
+Financial Infrastructure->Fiat Currency
+Financial Infrastructure->Computing Infrastructure
+
+// Currency to tech
+Fiat Currency->Computing Infrastructure
+Cryptocurrency->Consensus Algorithms
+Cryptocurrency->Computing Infrastructure
+CBDC->Consensus Algorithms
+CBDC->Computing Infrastructure
+
+// Tech stack internals
+Mobile Device->Internet Access
+Internet Access->5G Network
+Internet Access->Satellite Network
+Internet Access->Copper Network
+Internet Access->Mesh Network
+Consensus Algorithms->Computing Infrastructure
+Computing Infrastructure->Fossil Energy
+Computing Infrastructure->Renewable Energy
+
+// Network to energy
+5G Network->Fossil Energy
+5G Network->Renewable Energy
+Satellite Network->Renewable Energy
+Copper Network->Fossil Energy
+Mesh Network->Minigrid Energy
+Mesh Network->Renewable Energy
+
+// --- Evolution arrows: where the stack is moving next ---
+evolve Cryptocurrency 0.55
+evolve CBDC 0.42
+evolve Consensus Algorithms 0.62
+evolve Mesh Network 0.45
+evolve Minigrid Energy 0.52
+evolve Decentralised Authority 0.45
+evolve Satellite Network 0.60
+
+// --- Build / Buy / Outsource guidance ---
+buy Mobile Device
+buy Fiat Currency
+buy Computing Infrastructure
+buy Internet Access
+buy Copper Network
+buy Fossil Energy
+outsource Online Payments
+outsource Financial Infrastructure
+build Identity
+build Trust
+build Decentralised Authority
+build CBDC
+build Mesh Network
+build Minigrid Energy
+build Redistribution
+
+// --- Annotations ---
+annotation 1 [[0.80, 0.85]] Globally commoditised: fiat rails, mobile, compute, copper, fossil energy
+annotation 2 [[0.35, 0.20]] Local constraints still dominate: identity, trust, mesh, minigrids, CBDC
+annotation 3 [[0.55, 0.50]] Evolution battleground: crypto/CBDC/consensus squeeze traditional banking rails

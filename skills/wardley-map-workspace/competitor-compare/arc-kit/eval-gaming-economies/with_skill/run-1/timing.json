@@ -1,0 +1,13 @@
+{
+  "scenario": "eval-gaming-economies",
+  "skill": "arc-kit/wardley-mapping",
+  "run": 1,
+  "blind": true,
+  "start_unix": 1776875973.086,
+  "end_unix": 1776876195.013,
+  "duration_seconds": 221.927,
+  "outputs": [
+    "outputs/output.md",
+    "outputs/draft.owm"
+  ]
+}

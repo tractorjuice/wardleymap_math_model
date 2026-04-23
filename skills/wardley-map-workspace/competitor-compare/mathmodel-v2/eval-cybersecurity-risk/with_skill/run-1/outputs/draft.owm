@@ -1,0 +1,146 @@
+title Executive View of Cybersecurity Risk Management (May 2023)
+style wardley
+
+// Anchors - the executive is the primary decision-maker
+anchor Executive / Board [0.96, 0.55]
+
+// User-visible executive drivers (why the exec cares)
+component P&L / Shareholder Value [0.93, 0.70]
+component Regulatory Obligations [0.90, 0.62]
+component Risk Appetite Statement [0.88, 0.40]
+component Board Risk Reporting [0.85, 0.55]
+
+// Translation layer (CISO function)
+component CISO Function [0.80, 0.55]
+component Risk Identification Practice [0.75, 0.35]
+component Risk Assessment Methodology [0.72, 0.45]
+
+// Frameworks (standards layer)
+component Compliance Frameworks (ISO 27001, SOC 2) [0.68, 0.82]
+component Risk Frameworks (NIST CSF, ISO 31000) [0.66, 0.72]
+component FAIR Quantification [0.62, 0.46]
+component Likelihood / Impact Scoring [0.60, 0.78]
+component Risk Matrices (Heatmaps) [0.58, 0.85]
+
+// Risk register + treatment decisions
+component Risk Register [0.74, 0.70]
+component Mitigation / Transfer / Acceptance Mix [0.62, 0.42]
+component Cyber Insurance [0.55, 0.58]
+
+// Asset & data foundation
+component Asset Inventory [0.52, 0.65]
+component CMDB / Asset Discovery Tools [0.40, 0.72]
+component Threat Intelligence Feeds [0.42, 0.66]
+
+// Operational security layer
+component Security Operations (SOC) [0.50, 0.55]
+component SIEM / XDR Tooling [0.38, 0.72]
+component SOAR / Automation [0.35, 0.55]
+component Continuous Monitoring [0.45, 0.68]
+component Vulnerability Management [0.40, 0.77]
+
+// Testing / assurance
+component Security Testing Programme [0.48, 0.52]
+component Penetration Testing [0.42, 0.70]
+component Bug Bounty [0.35, 0.60]
+component Red Team Exercises [0.38, 0.45]
+
+// Incident response
+component Incident Response [0.45, 0.62]
+component IR Playbooks / Runbooks [0.33, 0.58]
+component Forensics & Investigation [0.30, 0.50]
+
+// LLM angle (May 2023 - very early)
+component LLM-Assisted Defence (SOC copilot) [0.32, 0.15]
+component LLM as Attack Vector (prompt injection, shadow AI) [0.70, 0.12]
+component LLM Governance Policy [0.58, 0.18]
+
+// Expert judgement & knowledge
+component Security Expertise (internal) [0.25, 0.30]
+component External Advisory / Consultancy [0.22, 0.55]
+component Audit Evidence Collection [0.28, 0.70]
+
+// Commodity infrastructure the whole apparatus runs on
+component Identity / SSO [0.18, 0.85]
+component Endpoint Protection (EDR) [0.22, 0.78]
+component Cloud Security Posture Management [0.20, 0.68]
+component Logging / Log Storage [0.12, 0.90]
+component Cloud Utilities (compute, storage, network) [0.08, 0.92]
+
+// Dependencies
+Executive / Board->P&L / Shareholder Value
+Executive / Board->Regulatory Obligations
+Executive / Board->Risk Appetite Statement
+Executive / Board->Board Risk Reporting
+Board Risk Reporting->CISO Function
+Risk Appetite Statement->CISO Function
+Regulatory Obligations->Compliance Frameworks (ISO 27001, SOC 2)
+P&L / Shareholder Value->Cyber Insurance
+CISO Function->Risk Identification Practice
+CISO Function->Risk Assessment Methodology
+CISO Function->Risk Register
+CISO Function->Mitigation / Transfer / Acceptance Mix
+Risk Assessment Methodology->Risk Frameworks (NIST CSF, ISO 31000)
+Risk Assessment Methodology->FAIR Quantification
+Risk Assessment Methodology->Likelihood / Impact Scoring
+Likelihood / Impact Scoring->Risk Matrices (Heatmaps)
+FAIR Quantification->Threat Intelligence Feeds
+Risk Register->Asset Inventory
+Risk Register->Risk Assessment Methodology
+Risk Identification Practice->Asset Inventory
+Risk Identification Practice->Threat Intelligence Feeds
+Asset Inventory->CMDB / Asset Discovery Tools
+Mitigation / Transfer / Acceptance Mix->Cyber Insurance
+Mitigation / Transfer / Acceptance Mix->Security Operations (SOC)
+Mitigation / Transfer / Acceptance Mix->Security Testing Programme
+Mitigation / Transfer / Acceptance Mix->LLM Governance Policy
+Compliance Frameworks (ISO 27001, SOC 2)->Audit Evidence Collection
+Compliance Frameworks (ISO 27001, SOC 2)->Risk Frameworks (NIST CSF, ISO 31000)
+Security Operations (SOC)->Continuous Monitoring
+Security Operations (SOC)->Incident Response
+Security Operations (SOC)->Vulnerability Management
+Security Operations (SOC)->LLM-Assisted Defence (SOC copilot)
+Continuous Monitoring->SIEM / XDR Tooling
+Continuous Monitoring->SOAR / Automation
+Continuous Monitoring->Logging / Log Storage
+SIEM / XDR Tooling->Logging / Log Storage
+SIEM / XDR Tooling->Cloud Utilities (compute, storage, network)
+SOAR / Automation->Cloud Utilities (compute, storage, network)
+Vulnerability Management->Endpoint Protection (EDR)
+Vulnerability Management->Cloud Security Posture Management
+Security Testing Programme->Penetration Testing
+Security Testing Programme->Bug Bounty
+Security Testing Programme->Red Team Exercises
+Penetration Testing->Security Expertise (internal)
+Penetration Testing->External Advisory / Consultancy
+Red Team Exercises->Security Expertise (internal)
+Bug Bounty->External Advisory / Consultancy
+Incident Response->IR Playbooks / Runbooks
+Incident Response->Forensics & Investigation
+Forensics & Investigation->Security Expertise (internal)
+Forensics & Investigation->Logging / Log Storage
+IR Playbooks / Runbooks->Security Expertise (internal)
+Risk Identification Practice->LLM as Attack Vector (prompt injection, shadow AI)
+LLM Governance Policy->LLM-Assisted Defence (SOC copilot)
+LLM-Assisted Defence (SOC copilot)->Cloud Utilities (compute, storage, network)
+Endpoint Protection (EDR)->Cloud Utilities (compute, storage, network)
+Cloud Security Posture Management->Cloud Utilities (compute, storage, network)
+Logging / Log Storage->Cloud Utilities (compute, storage, network)
+Identity / SSO->Cloud Utilities (compute, storage, network)
+CMDB / Asset Discovery Tools->Cloud Utilities (compute, storage, network)
+Audit Evidence Collection->Logging / Log Storage
+Audit Evidence Collection->External Advisory / Consultancy
+CISO Function->Security Expertise (internal)
+CISO Function->External Advisory / Consultancy
+Executive / Board->Identity / SSO
+
+evolve FAIR Quantification 0.65
+evolve LLM-Assisted Defence (SOC copilot) 0.45
+evolve Cyber Insurance 0.72
+evolve Bug Bounty 0.75
+evolve LLM Governance Policy 0.50
+
+note Expert judgement zone [0.35, 0.30]
+note Commoditised tooling [0.20, 0.88]
+note Regulation-forced shape [0.72, 0.78]
+note Genesis - LLM frontier [0.35, 0.12]

@@ -1,0 +1,252 @@
+title Regenerative Farming Landscape (Aug 2022)
+style wardley
+
+// Anchors — multi-stakeholder landscape: who has a stake in what food is grown and how
+anchor Consumer (Food Buyer) [0.98, 0.80]
+anchor Farmer (Producer) [0.96, 0.55]
+anchor Retailer / Food Brand [0.94, 0.70]
+anchor National Government [0.92, 0.45]
+anchor Supranational Body (UN / FAO / IPCC) [0.90, 0.30]
+anchor Certification Body [0.88, 0.58]
+
+// Consumer-facing services / choices
+component Food Purchase Decision [0.84, 0.85]
+component Dietary Shift (plant-rich / reduced meat) [0.82, 0.35]
+component Trust in Food Provenance [0.80, 0.55]
+component On-Pack Eco / Carbon Label [0.78, 0.18]
+component Organic Label (EU / USDA) [0.76, 0.78]
+component Fair Trade / Provenance Label [0.74, 0.70]
+
+// Retail / brand layer
+component Retailer Sustainability Commitment [0.70, 0.42]
+component Scope 3 Supply Chain Disclosure [0.68, 0.22]
+component Supplier Scorecard / Procurement Spec [0.66, 0.55]
+component Private-Label Regen Range [0.64, 0.25]
+
+// Policy & treaty layer
+component National Ag Subsidy Regime (CAP / Farm Bill) [0.72, 0.92]
+component UK ELM / US IRA Soil-Carbon Payments [0.66, 0.28]
+component Paris Agreement (climate) [0.64, 0.75]
+component UNFCCC Art. 4 — Agriculture / Koronivia [0.60, 0.40]
+component CBD / Biodiversity Framework [0.58, 0.55]
+component UN Food Systems Summit follow-up [0.56, 0.20]
+component National Soil Health Strategy [0.54, 0.35]
+
+// Measurement / MRV (the bridge between practice and market)
+component Farm-Level GHG Accounting [0.60, 0.28]
+component Soil Organic Carbon Measurement [0.58, 0.22]
+component Remote-Sensing Field Monitoring [0.56, 0.45]
+component On-Farm Biodiversity Monitoring [0.54, 0.15]
+component MRV Standard (VCS / Gold Std / ISO 14064) [0.52, 0.42]
+component Soil-Carbon Credit Marketplace [0.48, 0.20]
+component Regenerative Certification Scheme (ROC / RA) [0.50, 0.30]
+
+// Farming practices — the working layer
+component Regenerative Practice Bundle [0.46, 0.28]
+component Extractive Industrial Practice [0.44, 0.92]
+component Crop Rotation [0.42, 0.72]
+component Polyculture / Crop Diversity [0.40, 0.22]
+component Cover Cropping [0.38, 0.38]
+component No-Till / Reduced Tillage [0.36, 0.55]
+component Integrated Livestock / Managed Grazing [0.34, 0.32]
+component Agroforestry / Hedgerows [0.32, 0.25]
+component Monoculture Cropping [0.44, 0.95]
+component Precision Ag (variable-rate inputs) [0.42, 0.60]
+
+// Knowledge / advisory layer
+component Agronomist Advisory (conventional) [0.40, 0.80]
+component Regen Agronomist / Peer Network [0.38, 0.22]
+component Farmer-to-Farmer Knowledge Exchange [0.36, 0.45]
+component Public Ag Extension Service [0.34, 0.65]
+
+// Energy matrix beneath the soil
+component Soil Microbiome Science [0.28, 0.12]
+component Mycorrhizal / Fungal Networks (applied) [0.26, 0.15]
+component Photosynthesis → Root Exudate Pathway [0.24, 0.10]
+component Soil Organic Matter Stock [0.30, 0.40]
+component Biological Nitrogen Fixation (legume) [0.28, 0.68]
+component Synthetic Nitrogen Fertiliser (Haber-Bosch) [0.30, 0.96]
+component Phosphate Rock / P-K Fertiliser [0.28, 0.90]
+component Synthetic Pesticide / Herbicide [0.26, 0.95]
+component Seed Variety (F1 hybrid / commodity) [0.24, 0.88]
+component Heritage / Open-Pollinated Seed [0.22, 0.42]
+
+// Conservation & substrate
+component Arable Land (substrate) [0.16, 0.95]
+component Water (irrigation / rainfall) [0.14, 0.92]
+component Pollinator Services [0.12, 0.55]
+component Biodiversity Reserve / Set-Aside [0.10, 0.50]
+component Climate / Weather Pattern [0.08, 0.70]
+component Fossil Fuel Feedstock (for Haber-Bosch) [0.12, 0.95]
+
+// Supply-chain awareness infrastructure
+component Supply Chain Traceability (IoT / blockchain pilot) [0.50, 0.25]
+component Satellite Imagery (Sentinel / Planet) [0.18, 0.82]
+component Cloud Compute & Data Platform [0.10, 0.95]
+
+// Dependencies — from anchor downward
+
+// Consumer decision chain
+Consumer (Food Buyer)->Food Purchase Decision
+Consumer (Food Buyer)->Dietary Shift (plant-rich / reduced meat)
+Consumer (Food Buyer)->Trust in Food Provenance
+Food Purchase Decision->On-Pack Eco / Carbon Label
+Food Purchase Decision->Organic Label (EU / USDA)
+Food Purchase Decision->Fair Trade / Provenance Label
+Trust in Food Provenance->Organic Label (EU / USDA)
+Trust in Food Provenance->On-Pack Eco / Carbon Label
+
+// Retailer / brand
+Retailer / Food Brand->Retailer Sustainability Commitment
+Retailer / Food Brand->Private-Label Regen Range
+Retailer / Food Brand->Supplier Scorecard / Procurement Spec
+Retailer Sustainability Commitment->Scope 3 Supply Chain Disclosure
+Private-Label Regen Range->Regenerative Certification Scheme (ROC / RA)
+Supplier Scorecard / Procurement Spec->MRV Standard (VCS / Gold Std / ISO 14064)
+On-Pack Eco / Carbon Label->MRV Standard (VCS / Gold Std / ISO 14064)
+Organic Label (EU / USDA)->Certification Body
+Fair Trade / Provenance Label->Certification Body
+Regenerative Certification Scheme (ROC / RA)->Certification Body
+
+// Policy / treaty linkage
+National Government->National Ag Subsidy Regime (CAP / Farm Bill)
+National Government->UK ELM / US IRA Soil-Carbon Payments
+National Government->National Soil Health Strategy
+Supranational Body (UN / FAO / IPCC)->Paris Agreement (climate)
+Supranational Body (UN / FAO / IPCC)->UNFCCC Art. 4 — Agriculture / Koronivia
+Supranational Body (UN / FAO / IPCC)->CBD / Biodiversity Framework
+Supranational Body (UN / FAO / IPCC)->UN Food Systems Summit follow-up
+Paris Agreement (climate)->UNFCCC Art. 4 — Agriculture / Koronivia
+National Ag Subsidy Regime (CAP / Farm Bill)->UNFCCC Art. 4 — Agriculture / Koronivia
+UK ELM / US IRA Soil-Carbon Payments->MRV Standard (VCS / Gold Std / ISO 14064)
+UK ELM / US IRA Soil-Carbon Payments->Soil Organic Carbon Measurement
+National Soil Health Strategy->Soil Organic Carbon Measurement
+
+// Measurement / MRV
+MRV Standard (VCS / Gold Std / ISO 14064)->Farm-Level GHG Accounting
+MRV Standard (VCS / Gold Std / ISO 14064)->Soil Organic Carbon Measurement
+Farm-Level GHG Accounting->Soil Organic Carbon Measurement
+Farm-Level GHG Accounting->Remote-Sensing Field Monitoring
+Soil-Carbon Credit Marketplace->MRV Standard (VCS / Gold Std / ISO 14064)
+Soil-Carbon Credit Marketplace->Soil Organic Carbon Measurement
+Regenerative Certification Scheme (ROC / RA)->Farm-Level GHG Accounting
+Regenerative Certification Scheme (ROC / RA)->On-Farm Biodiversity Monitoring
+On-Farm Biodiversity Monitoring->Remote-Sensing Field Monitoring
+Remote-Sensing Field Monitoring->Satellite Imagery (Sentinel / Planet)
+Remote-Sensing Field Monitoring->Cloud Compute & Data Platform
+Supply Chain Traceability (IoT / blockchain pilot)->Cloud Compute & Data Platform
+Scope 3 Supply Chain Disclosure->Supply Chain Traceability (IoT / blockchain pilot)
+Scope 3 Supply Chain Disclosure->Farm-Level GHG Accounting
+
+// Farmer chain — this is where practice meets knowledge meets substrate
+Farmer (Producer)->Regenerative Practice Bundle
+Farmer (Producer)->Extractive Industrial Practice
+Farmer (Producer)->Monoculture Cropping
+Farmer (Producer)->Precision Ag (variable-rate inputs)
+Farmer (Producer)->National Ag Subsidy Regime (CAP / Farm Bill)
+Farmer (Producer)->UK ELM / US IRA Soil-Carbon Payments
+Farmer (Producer)->Agronomist Advisory (conventional)
+Farmer (Producer)->Regen Agronomist / Peer Network
+Farmer (Producer)->Farmer-to-Farmer Knowledge Exchange
+Farmer (Producer)->Public Ag Extension Service
+
+// Regenerative practice bundle
+Regenerative Practice Bundle->Crop Rotation
+Regenerative Practice Bundle->Polyculture / Crop Diversity
+Regenerative Practice Bundle->Cover Cropping
+Regenerative Practice Bundle->No-Till / Reduced Tillage
+Regenerative Practice Bundle->Integrated Livestock / Managed Grazing
+Regenerative Practice Bundle->Agroforestry / Hedgerows
+Regenerative Practice Bundle->Regen Agronomist / Peer Network
+Regenerative Practice Bundle->Heritage / Open-Pollinated Seed
+
+// Extractive / conventional practice
+Extractive Industrial Practice->Monoculture Cropping
+Extractive Industrial Practice->Synthetic Nitrogen Fertiliser (Haber-Bosch)
+Extractive Industrial Practice->Phosphate Rock / P-K Fertiliser
+Extractive Industrial Practice->Synthetic Pesticide / Herbicide
+Extractive Industrial Practice->Seed Variety (F1 hybrid / commodity)
+Extractive Industrial Practice->Agronomist Advisory (conventional)
+Monoculture Cropping->Synthetic Nitrogen Fertiliser (Haber-Bosch)
+Monoculture Cropping->Synthetic Pesticide / Herbicide
+Precision Ag (variable-rate inputs)->Synthetic Nitrogen Fertiliser (Haber-Bosch)
+Precision Ag (variable-rate inputs)->Remote-Sensing Field Monitoring
+
+// Biology — the energy matrix
+Crop Rotation->Biological Nitrogen Fixation (legume)
+Crop Rotation->Soil Organic Matter Stock
+Cover Cropping->Soil Organic Matter Stock
+Cover Cropping->Soil Microbiome Science
+No-Till / Reduced Tillage->Soil Organic Matter Stock
+No-Till / Reduced Tillage->Mycorrhizal / Fungal Networks (applied)
+Integrated Livestock / Managed Grazing->Soil Organic Matter Stock
+Polyculture / Crop Diversity->Mycorrhizal / Fungal Networks (applied)
+Polyculture / Crop Diversity->Pollinator Services
+Agroforestry / Hedgerows->Pollinator Services
+Agroforestry / Hedgerows->Biodiversity Reserve / Set-Aside
+Soil Organic Matter Stock->Soil Microbiome Science
+Soil Organic Matter Stock->Photosynthesis → Root Exudate Pathway
+Mycorrhizal / Fungal Networks (applied)->Soil Microbiome Science
+Mycorrhizal / Fungal Networks (applied)->Photosynthesis → Root Exudate Pathway
+Biological Nitrogen Fixation (legume)->Soil Microbiome Science
+Soil Microbiome Science->Arable Land (substrate)
+Photosynthesis → Root Exudate Pathway->Arable Land (substrate)
+
+// Input supply chain
+Synthetic Nitrogen Fertiliser (Haber-Bosch)->Fossil Fuel Feedstock (for Haber-Bosch)
+Phosphate Rock / P-K Fertiliser->Fossil Fuel Feedstock (for Haber-Bosch)
+
+// Substrate / conservation
+Regenerative Practice Bundle->Arable Land (substrate)
+Extractive Industrial Practice->Arable Land (substrate)
+Crop Rotation->Arable Land (substrate)
+Monoculture Cropping->Arable Land (substrate)
+Regenerative Practice Bundle->Water (irrigation / rainfall)
+Extractive Industrial Practice->Water (irrigation / rainfall)
+Regenerative Practice Bundle->Pollinator Services
+Regenerative Practice Bundle->Climate / Weather Pattern
+Extractive Industrial Practice->Climate / Weather Pattern
+Biodiversity Reserve / Set-Aside->Arable Land (substrate)
+
+// Knowledge
+Agronomist Advisory (conventional)->Precision Ag (variable-rate inputs)
+Agronomist Advisory (conventional)->Synthetic Pesticide / Herbicide
+Regen Agronomist / Peer Network->Soil Microbiome Science
+Regen Agronomist / Peer Network->Farmer-to-Farmer Knowledge Exchange
+Public Ag Extension Service->Agronomist Advisory (conventional)
+
+// Seed
+Heritage / Open-Pollinated Seed->Polyculture / Crop Diversity
+Seed Variety (F1 hybrid / commodity)->Monoculture Cropping
+
+// Evolution arrows — where we expect movement by ~2025-2030
+evolve Regenerative Practice Bundle 0.58
+evolve On-Pack Eco / Carbon Label 0.48
+evolve Scope 3 Supply Chain Disclosure 0.55
+evolve UK ELM / US IRA Soil-Carbon Payments 0.55
+evolve Farm-Level GHG Accounting 0.58
+evolve Soil Organic Carbon Measurement 0.52
+evolve MRV Standard (VCS / Gold Std / ISO 14064) 0.68
+evolve Regenerative Certification Scheme (ROC / RA) 0.58
+evolve Soil-Carbon Credit Marketplace 0.50
+evolve Soil Microbiome Science 0.35
+evolve Mycorrhizal / Fungal Networks (applied) 0.35
+evolve No-Till / Reduced Tillage 0.72
+evolve Cover Cropping 0.58
+evolve Supply Chain Traceability (IoT / blockchain pilot) 0.55
+evolve UN Food Systems Summit follow-up 0.45
+
+// Inertia markers — locked-in industrial practice
+inertia Synthetic Nitrogen Fertiliser (Haber-Bosch)
+inertia Synthetic Pesticide / Herbicide
+inertia Monoculture Cropping
+inertia National Ag Subsidy Regime (CAP / Farm Bill)
+inertia Agronomist Advisory (conventional)
+inertia Extractive Industrial Practice
+inertia Seed Variety (F1 hybrid / commodity)
+
+note Knowledge frontier — soil biology [0.22, 0.08]
+note Industrial lock-in — fossil-fuel-backed inputs [0.26, 0.98]
+note MRV is the crossing bridge — practice to market [0.56, 0.50]
+note Policy catalyst zone [0.65, 0.45]
+note Supply-chain awareness is patchy — Scope 3 still custom [0.66, 0.20]

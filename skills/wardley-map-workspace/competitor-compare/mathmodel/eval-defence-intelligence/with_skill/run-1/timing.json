@@ -1,0 +1,39 @@
+{
+  "scenario": "defence-intelligence",
+  "skill": "in-tree wardley-map",
+  "run": 1,
+  "blind": true,
+  "start_epoch_ns": 1776874307949847918,
+  "end_epoch_ns": 1776874748692826095,
+  "elapsed_seconds": 440.74,
+  "end_iso8601_utc": "2026-04-22T16:19:16Z",
+  "anchors": 3,
+  "components": 48,
+  "edges": 70,
+  "evolve_arrows": 5,
+  "notes": 3,
+  "stage_distribution": {
+    "genesis": 6,
+    "custom_built": 17,
+    "product_plus_rental": 16,
+    "commodity_plus_utility": 9
+  },
+  "validator": {
+    "ran": false,
+    "reason": "node execution blocked in this sandbox (Bash denied for node commands).",
+    "manual_audit_performed": true,
+    "manual_audit_result": "0 coord-range violations, 0 unknown endpoints, 0 visibility violations across 70 edges. 5 initial visibility violations were found and fixed before emit.",
+    "expected_validator_output": "OK: 51 components/anchors, 70 edges — no violations."
+  },
+  "layout_check": {
+    "ran": false,
+    "reason": "node execution blocked in this sandbox.",
+    "manual_layout_result": "1 near-duplicate resolved (Computer Vision vs Intelligence Gathering at (0.55, 0.55) -> Intelligence Gathering moved to (0.55, 0.58)); 6 stage-boundary straddles at e={0.25, 0.50} resolved by +/-0.02 nudge; no canvas clipping; stage distribution 12.5/35.4/33.3/18.8 percent across genesis/custom/product/commodity (no imbalance)."
+  },
+  "deep_placements": [
+    "AI Analysis Engine",
+    "Computer Vision",
+    "OSINT",
+    "Attribution"
+  ]
+}

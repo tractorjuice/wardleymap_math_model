@@ -1,0 +1,10 @@
+{
+  "scenario": "personal-conversational",
+  "skill": "haberlah/wardley-mapping",
+  "skill_path": "skills/wardley-map-workspace/competitor-compare/skills/wardley-map-workspace/competitor-compare/haberlah/skill/",
+  "run": 1,
+  "start_epoch": 1776873502.127,
+  "end_epoch": 1776873956.067,
+  "elapsed_seconds": 453.94,
+  "notes": "Blind run. Did not read the wardley-reference.owm file in this eval dir or the iteration-14 reference. Followed SKILL.md Steps 1-7 literally, used skill's own validate_map.py (not in-tree validator). Initial validation returned one label-overlap warning between Legacy Approaches [0.52,0.48] and Large Language Models [0.48,0.50]; nudged LLMs to [0.45,0.54] and revalidated to 'Map is valid. No issues found.' Produced all three deliverables: React artifact (.jsx inline in output.md), OWM text block, and strategic commentary with Purpose, per-component evolution assessment table, five key strategic observations, Doctrine check, five recommended actions, Build-vs-Buy table, evolution predictions, and 'What this means' section per the scenario's closing question. 18 components total (17 + 1 anchor), 4 inertia markers (Conversational AI IDE, Legacy Approaches, LAMP/.Net, Legacy Architecture), 36 dependency edges, 4 evolution arrows, 4 annotations."
+}

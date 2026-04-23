@@ -1,0 +1,218 @@
+title Government Digital Identity Landscape (Nov 2022)
+style wardley
+
+// Anchors (user needs)
+anchor Citizen [0.96, 0.42]
+anchor Government [0.94, 0.40]
+anchor Corporation [0.92, 0.55]
+anchor Society [0.95, 0.30]
+anchor Bad Actor [0.93, 0.50]
+
+// Top-of-chain services (what users actually consume)
+component Public Service Access [0.88, 0.55]
+component Private Service Access [0.86, 0.62]
+component Entitlement and Benefit [0.84, 0.48]
+component Civic Participation [0.82, 0.35]
+component Identity Fraud Exploit [0.85, 0.45]
+
+// Service + claims layer
+component Service Delivery [0.78, 0.58]
+component Claims [0.72, 0.45]
+component Consent and Disclosure [0.70, 0.32]
+
+// Credentials layer
+component Verifiable Credential [0.66, 0.30]
+component Digital Wallet [0.64, 0.28]
+component Physical Credential (e.g. Passport) [0.68, 0.82] inertia
+component Credential Issuance [0.62, 0.55]
+component Credential Revocation [0.60, 0.42]
+
+// Identity layer
+component Identity (Legal) [0.58, 0.70]
+component Identity (Digital) [0.56, 0.40]
+component Identity (Self-Sovereign) [0.54, 0.20]
+
+// Identity Provider (placed above Identification layer)
+component Identity Provider (IdP) [0.51, 0.55]
+
+// Identification layer (physical + digital)
+component Identification (Physical) [0.50, 0.78]
+component Identification (Digital) [0.48, 0.45]
+component Document Verification [0.47, 0.72]
+component Biometric Identification [0.46, 0.58]
+component Liveness Detection [0.44, 0.38]
+
+// Identifiers layer (mutable, immutable, connectedness)
+component Identifier (Mutable) [0.40, 0.65]
+component Identifier (Immutable) [0.38, 0.55]
+component National ID Number [0.36, 0.85] inertia
+component Identifier (Connectedness / Relational) [0.34, 0.22]
+component Decentralised Identifier (DID) [0.32, 0.18]
+
+// Authority layer
+component Issuing Authority [0.30, 0.60]
+component Centralised Authority [0.28, 0.68] inertia
+component Decentralised Authority [0.26, 0.22]
+component Trust Framework [0.24, 0.32]
+component Assurance Level (LoA) [0.23, 0.58]
+
+// Trust layer (benevolence, capability, integrity)
+component Trust - Capability [0.22, 0.42]
+component Trust - Integrity [0.20, 0.35]
+component Trust - Benevolence [0.18, 0.25]
+
+// Cryptographic foundations (PKI + ZKP are mid-chain primitives)
+component Public Key Infrastructure (PKI) [0.19, 0.78]
+component Zero-Knowledge Proofs [0.17, 0.22]
+
+// Regulation / rules / exception apparatus
+component Rules and Policy [0.16, 0.55]
+component Regulation (eIDAS, GDPR) [0.14, 0.62]
+component Exception Handling [0.12, 0.28]
+
+// Oversight
+component Audit and Oversight [0.11, 0.45]
+component Cryptography [0.10, 0.88]
+
+// Power layer (over, with, to)
+component Power Over [0.09, 0.52]
+component Power With [0.08, 0.28]
+component Power To [0.07, 0.35]
+
+// Transport / foundation
+component Mobile Network [0.06, 0.90]
+component Internet [0.05, 0.92]
+component Cloud Utilities [0.04, 0.90]
+
+// Dependencies - user side
+Citizen->Public Service Access
+Citizen->Private Service Access
+Citizen->Entitlement and Benefit
+Citizen->Civic Participation
+Government->Public Service Access
+Government->Entitlement and Benefit
+Government->Audit and Oversight
+Corporation->Private Service Access
+Corporation->Public Service Access
+Society->Civic Participation
+Society->Regulation (eIDAS, GDPR)
+Bad Actor->Identity Fraud Exploit
+
+// Fraud chain (bad actor path)
+Identity Fraud Exploit->Credential Issuance
+Identity Fraud Exploit->Exception Handling
+Identity Fraud Exploit->Identification (Digital)
+
+// Top chain
+Public Service Access->Service Delivery
+Private Service Access->Service Delivery
+Entitlement and Benefit->Service Delivery
+Civic Participation->Service Delivery
+Service Delivery->Claims
+Service Delivery->Identity Provider (IdP)
+Claims->Consent and Disclosure
+Claims->Verifiable Credential
+Claims->Physical Credential (e.g. Passport)
+
+// Credential chain
+Consent and Disclosure->Digital Wallet
+Verifiable Credential->Digital Wallet
+Verifiable Credential->Credential Issuance
+Physical Credential (e.g. Passport)->Credential Issuance
+Digital Wallet->Credential Issuance
+Credential Issuance->Credential Revocation
+Credential Issuance->Identity (Legal)
+Credential Issuance->Identity (Digital)
+Credential Revocation->Identity (Digital)
+
+// Identity chain
+Identity (Legal)->Identification (Physical)
+Identity (Digital)->Identification (Digital)
+Identity (Digital)->Identity (Self-Sovereign)
+Identity (Self-Sovereign)->Decentralised Identifier (DID)
+
+// IdP
+Identity Provider (IdP)->Centralised Authority
+Identity Provider (IdP)->Identification (Digital)
+
+// Identification chain
+Identification (Physical)->Document Verification
+Identification (Physical)->Biometric Identification
+Identification (Digital)->Biometric Identification
+Identification (Digital)->Liveness Detection
+Identification (Digital)->Identifier (Mutable)
+Identification (Digital)->Identifier (Immutable)
+Document Verification->Identifier (Immutable)
+Biometric Identification->Identifier (Immutable)
+Liveness Detection->Identifier (Immutable)
+
+// Identifiers chain
+Identifier (Mutable)->National ID Number
+Identifier (Immutable)->National ID Number
+Identifier (Immutable)->Identifier (Connectedness / Relational)
+Identifier (Connectedness / Relational)->Decentralised Identifier (DID)
+National ID Number->Issuing Authority
+Identifier (Mutable)->Issuing Authority
+Identifier (Immutable)->Issuing Authority
+Decentralised Identifier (DID)->Decentralised Authority
+
+// Authority chain
+Issuing Authority->Centralised Authority
+Issuing Authority->Trust Framework
+Centralised Authority->Trust Framework
+Decentralised Authority->Trust Framework
+
+// Trust layer
+Trust Framework->Trust - Capability
+Trust Framework->Trust - Integrity
+Trust Framework->Assurance Level (LoA)
+Assurance Level (LoA)->Trust - Capability
+Assurance Level (LoA)->Trust - Integrity
+Trust - Capability->Trust - Benevolence
+Trust - Integrity->Trust - Benevolence
+
+// Rules / regulation
+Trust - Benevolence->Rules and Policy
+Trust - Capability->Rules and Policy
+Trust - Integrity->Rules and Policy
+Rules and Policy->Regulation (eIDAS, GDPR)
+Rules and Policy->Exception Handling
+Regulation (eIDAS, GDPR)->Audit and Oversight
+Exception Handling->Audit and Oversight
+
+// Power
+Audit and Oversight->Power Over
+Rules and Policy->Power Over
+Trust - Benevolence->Power With
+Trust - Benevolence->Power To
+Power Over->Power To
+Power With->Power To
+
+// Crypto foundations
+Verifiable Credential->Public Key Infrastructure (PKI)
+Digital Wallet->Public Key Infrastructure (PKI)
+Decentralised Identifier (DID)->Public Key Infrastructure (PKI)
+Identity (Self-Sovereign)->Zero-Knowledge Proofs
+Public Key Infrastructure (PKI)->Cryptography
+Zero-Knowledge Proofs->Cryptography
+
+// Transport
+Power To->Internet
+Cryptography->Internet
+Identity Provider (IdP)->Internet
+Digital Wallet->Mobile Network
+Identification (Digital)->Mobile Network
+Identity Provider (IdP)->Cloud Utilities
+Internet->Cloud Utilities
+Mobile Network->Internet
+
+// Evolution signals
+evolve Identity (Self-Sovereign) 0.45
+evolve Decentralised Identifier (DID) 0.40
+evolve Verifiable Credential 0.55
+evolve Digital Wallet 0.55
+evolve Zero-Knowledge Proofs 0.45
+
+note Tension: centralised vs decentralised authority [0.26, 0.45]
+note SSI / DID / VC cluster moving fast [0.45, 0.20]
+note Bad-actor exploits weak issuance + exceptions [0.80, 0.35]

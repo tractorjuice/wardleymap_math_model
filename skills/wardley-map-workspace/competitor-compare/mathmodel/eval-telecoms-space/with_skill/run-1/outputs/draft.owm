@@ -1,0 +1,183 @@
+title Space-Based Telecoms (Feb 2023)
+style wardley
+
+// Three anchors - the demand side
+anchor Consumer [0.97, 0.60]
+anchor Corporation [0.94, 0.55]
+anchor Government [0.91, 0.50]
+
+// User-facing services / access layer (d=1)
+component Consumer Broadband (LEO) [0.88, 0.55]
+component Direct-to-Cell Voice/SMS [0.85, 0.20]
+component DTH Broadcast (TV/Radio) [0.83, 0.88]
+component Maritime/Aviation Connectivity [0.82, 0.60]
+component Enterprise Backhaul [0.80, 0.70]
+component Defence / Secure Comms [0.78, 0.55]
+component IoT / M2M Backhaul [0.76, 0.35]
+
+// Access and topology (d=2)
+component Network Access [0.70, 0.55]
+component Mobile Topology (3GPP) [0.68, 0.82]
+component Fibre Topology [0.65, 0.85]
+component Non-Terrestrial Network Topology [0.63, 0.30]
+component Broadcast Topology [0.60, 0.88]
+
+// Edge hardware - user side
+component User Terminals (Phased-Array) [0.58, 0.55]
+component Legacy VSAT Terminals [0.55, 0.82]
+
+// Physical network / ground segment (d=3)
+component Physical Network [0.50, 0.78]
+component Ground Stations [0.48, 0.72]
+component Teleport Operations [0.45, 0.85]
+component Gateway Antennas [0.42, 0.78]
+
+// Orbital assets (d=3-4) - the satellite itself
+component LEO Microsat Constellation [0.40, 0.45]
+component GEO Satellite [0.38, 0.80]
+
+// Control plane (d=4) - visibility ordered by dependency depth:
+// Fleet Mgmt uses Autonomous Coll uses Debris uses Orbit Tracking
+component Fleet / Constellation Management [0.32, 0.40]
+component Autonomous Collision Avoidance [0.30, 0.20]
+component Debris Tracking (Conjunction) [0.28, 0.35]
+component Orbit Tracking (SSA) [0.26, 0.60]
+component Supply-Chain Awareness [0.24, 0.30]
+
+// Spectrum (cross-cutting, treated as infrastructure dependency)
+component Ku-band Spectrum [0.20, 0.85]
+component Ka-band Spectrum [0.20, 0.72]
+component V-band Spectrum [0.18, 0.30]
+
+// Satellite subsystems (d=4-5)
+component Onboard Phased-Array Antennas [0.18, 0.55]
+component Beamforming / Beam-Steering [0.16, 0.45]
+component Optical Inter-Sat Links [0.14, 0.32]
+component Xenon Electric Propulsion [0.14, 0.60]
+component Krypton Electric Propulsion [0.13, 0.38]
+component Spacecraft Power (Solar/Batteries) [0.12, 0.72]
+component Thermal-Electric Cooling [0.11, 0.55]
+component Radiative Cooling [0.10, 0.85]
+component Cryogenic Cooling [0.09, 0.22]
+
+// Launch (deep infra)
+component Reusable Launchers [0.08, 0.55]
+component Expendable Launchers [0.07, 0.82]
+component Rideshare / Small-Launch Services [0.07, 0.48]
+
+// Foundational utilities (d=5-6)
+component Cloud Compute (Ground) [0.06, 0.92]
+component Terrestrial Power Grid [0.04, 0.96]
+
+// Cross-cutting regulation
+component Space Regulation (ITU/FCC) [0.35, 0.55]
+
+// --- Dependencies ---
+
+// Anchors to user-facing services
+Consumer->Consumer Broadband (LEO)
+Consumer->Direct-to-Cell Voice/SMS
+Consumer->DTH Broadcast (TV/Radio)
+Corporation->Maritime/Aviation Connectivity
+Corporation->Enterprise Backhaul
+Corporation->IoT / M2M Backhaul
+Corporation->Consumer Broadband (LEO)
+Government->Defence / Secure Comms
+Government->Enterprise Backhaul
+Government->Space Regulation (ITU/FCC)
+
+// User-facing to access/topology
+Consumer Broadband (LEO)->Network Access
+Consumer Broadband (LEO)->User Terminals (Phased-Array)
+Direct-to-Cell Voice/SMS->Non-Terrestrial Network Topology
+Direct-to-Cell Voice/SMS->Mobile Topology (3GPP)
+DTH Broadcast (TV/Radio)->Broadcast Topology
+Maritime/Aviation Connectivity->Network Access
+Maritime/Aviation Connectivity->User Terminals (Phased-Array)
+Enterprise Backhaul->Network Access
+Enterprise Backhaul->Fibre Topology
+Defence / Secure Comms->Network Access
+Defence / Secure Comms->User Terminals (Phased-Array)
+IoT / M2M Backhaul->Non-Terrestrial Network Topology
+
+// Access to physical
+Network Access->Physical Network
+Network Access->Legacy VSAT Terminals
+Mobile Topology (3GPP)->Non-Terrestrial Network Topology
+Non-Terrestrial Network Topology->Physical Network
+Broadcast Topology->Physical Network
+
+// Physical to ground segment + space
+Physical Network->Ground Stations
+Physical Network->LEO Microsat Constellation
+Physical Network->GEO Satellite
+Ground Stations->Teleport Operations
+Ground Stations->Gateway Antennas
+Teleport Operations->Cloud Compute (Ground)
+Gateway Antennas->Ka-band Spectrum
+
+// Terminals
+User Terminals (Phased-Array)->Onboard Phased-Array Antennas
+User Terminals (Phased-Array)->Ku-band Spectrum
+User Terminals (Phased-Array)->Ka-band Spectrum
+Legacy VSAT Terminals->Ku-band Spectrum
+
+// Satellites to subsystems
+LEO Microsat Constellation->Onboard Phased-Array Antennas
+LEO Microsat Constellation->Beamforming / Beam-Steering
+LEO Microsat Constellation->Optical Inter-Sat Links
+LEO Microsat Constellation->Krypton Electric Propulsion
+LEO Microsat Constellation->Spacecraft Power (Solar/Batteries)
+LEO Microsat Constellation->Thermal-Electric Cooling
+LEO Microsat Constellation->Radiative Cooling
+LEO Microsat Constellation->Reusable Launchers
+LEO Microsat Constellation->Fleet / Constellation Management
+LEO Microsat Constellation->V-band Spectrum
+LEO Microsat Constellation->Ka-band Spectrum
+GEO Satellite->Onboard Phased-Array Antennas
+GEO Satellite->Xenon Electric Propulsion
+GEO Satellite->Spacecraft Power (Solar/Batteries)
+GEO Satellite->Radiative Cooling
+GEO Satellite->Cryogenic Cooling
+GEO Satellite->Expendable Launchers
+GEO Satellite->Ku-band Spectrum
+GEO Satellite->Ka-band Spectrum
+
+// Beamforming/antennas
+Onboard Phased-Array Antennas->Beamforming / Beam-Steering
+
+// Control plane
+Fleet / Constellation Management->Orbit Tracking (SSA)
+Fleet / Constellation Management->Debris Tracking (Conjunction)
+Fleet / Constellation Management->Autonomous Collision Avoidance
+Fleet / Constellation Management->Supply-Chain Awareness
+Debris Tracking (Conjunction)->Orbit Tracking (SSA)
+Autonomous Collision Avoidance->Debris Tracking (Conjunction)
+
+// Launchers
+Reusable Launchers->Rideshare / Small-Launch Services
+Reusable Launchers->Terrestrial Power Grid
+
+// Regulation (cross-cutting)
+Space Regulation (ITU/FCC)->Ku-band Spectrum
+Space Regulation (ITU/FCC)->Ka-band Spectrum
+Space Regulation (ITU/FCC)->V-band Spectrum
+LEO Microsat Constellation->Space Regulation (ITU/FCC)
+GEO Satellite->Space Regulation (ITU/FCC)
+
+// Foundational
+Cloud Compute (Ground)->Terrestrial Power Grid
+Ground Stations->Terrestrial Power Grid
+
+// Evolution arrows (scenarios, not forecasts)
+evolve Non-Terrestrial Network Topology 0.60
+evolve Direct-to-Cell Voice/SMS 0.55
+evolve User Terminals (Phased-Array) 0.75
+evolve Optical Inter-Sat Links 0.60
+evolve Krypton Electric Propulsion 0.65
+evolve LEO Microsat Constellation 0.70
+evolve Reusable Launchers 0.75
+evolve Debris Tracking (Conjunction) 0.60
+
+note Build / differentiate (LEO + NTN frontier) [0.55, 0.30]
+note Commodity / utility zone [0.15, 0.90]

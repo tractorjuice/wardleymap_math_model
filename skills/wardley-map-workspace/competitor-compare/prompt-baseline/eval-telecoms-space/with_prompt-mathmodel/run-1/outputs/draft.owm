@@ -1,0 +1,133 @@
+title Space-Based Telecoms Landscape (Feb 2023)
+style wardley
+
+// Three anchors — user needs
+anchor Consumers [0.98, 0.70]
+anchor Corporations [0.97, 0.60]
+anchor Government [0.96, 0.50]
+
+// Layer 1 — user-facing network access
+component Network Access [0.88, 0.72]
+component Broadcast [0.86, 0.80]
+component Physical Network [0.82, 0.70]
+
+// Layer 2 — topology
+component Mobile Topology [0.75, 0.88]
+component Fibre Topology [0.74, 0.90]
+component Non-Terrestrial Networks [0.72, 0.30]
+
+// Layer 3 — space access stack
+component User Terminals [0.64, 0.58]
+component Phased-Array Antennas [0.58, 0.48]
+component Ground Stations [0.60, 0.62]
+component Spectrum Ku/Ka [0.55, 0.85]
+component Spectrum V-band [0.53, 0.18]
+
+// Layer 4 — satellite platform
+component GEO Satellite [0.48, 0.82]
+component LEO Microsat [0.46, 0.55]
+
+// Layer 5 — satellite subsystems
+component Satellite Antennas [0.38, 0.70]
+component Beamforming [0.36, 0.52]
+component Beam-Steering [0.34, 0.50]
+component Optical Sat-to-Sat Comms [0.32, 0.28]
+component Power Subsystem [0.30, 0.88]
+component Thermal Electric Cooling [0.28, 0.58]
+component Radiative Cooling [0.27, 0.85]
+component Cryogenic Cooling [0.25, 0.30]
+component Xenon Propulsion [0.24, 0.62]
+component Krypton Propulsion [0.22, 0.32]
+
+// Layer 6 — launch and control
+component Launchers [0.20, 0.62]
+component Fleet Management [0.22, 0.50]
+component Orbit Tracking [0.18, 0.55]
+component Debris Tracking [0.16, 0.38]
+component Constellation Automation [0.12, 0.20]
+component Supply-Chain Awareness [0.08, 0.35]
+
+// Cross-cutting (regulation sits deep — every regulated component "depends on" it)
+component Space Regulation [0.10, 0.42]
+
+// Dependencies — user → access
+Consumers->Network Access
+Consumers->Broadcast
+Corporations->Network Access
+Corporations->Physical Network
+Government->Network Access
+Government->Physical Network
+Government->Broadcast
+
+// Access → topology
+Network Access->Mobile Topology
+Network Access->Fibre Topology
+Network Access->Non-Terrestrial Networks
+Physical Network->Mobile Topology
+Physical Network->Fibre Topology
+Physical Network->Non-Terrestrial Networks
+Broadcast->Non-Terrestrial Networks
+
+// Topology → space stack
+Non-Terrestrial Networks->User Terminals
+Non-Terrestrial Networks->Ground Stations
+Non-Terrestrial Networks->Spectrum Ku/Ka
+Non-Terrestrial Networks->Spectrum V-band
+User Terminals->Phased-Array Antennas
+User Terminals->Spectrum Ku/Ka
+Ground Stations->Spectrum Ku/Ka
+
+// Space stack → satellites
+User Terminals->LEO Microsat
+User Terminals->GEO Satellite
+Ground Stations->LEO Microsat
+Ground Stations->GEO Satellite
+Phased-Array Antennas->Beamforming
+Phased-Array Antennas->Beam-Steering
+
+// Satellites → subsystems
+LEO Microsat->Satellite Antennas
+LEO Microsat->Optical Sat-to-Sat Comms
+LEO Microsat->Power Subsystem
+LEO Microsat->Thermal Electric Cooling
+LEO Microsat->Krypton Propulsion
+LEO Microsat->Xenon Propulsion
+GEO Satellite->Satellite Antennas
+GEO Satellite->Power Subsystem
+GEO Satellite->Radiative Cooling
+GEO Satellite->Cryogenic Cooling
+GEO Satellite->Xenon Propulsion
+Satellite Antennas->Beamforming
+Satellite Antennas->Beam-Steering
+
+// Satellites → launch and ops
+LEO Microsat->Launchers
+GEO Satellite->Launchers
+LEO Microsat->Fleet Management
+GEO Satellite->Fleet Management
+Fleet Management->Orbit Tracking
+Fleet Management->Debris Tracking
+Fleet Management->Constellation Automation
+Launchers->Supply-Chain Awareness
+LEO Microsat->Supply-Chain Awareness
+
+// Cross-cutting regulation (touches multiple layers)
+Non-Terrestrial Networks->Space Regulation
+Spectrum Ku/Ka->Space Regulation
+Spectrum V-band->Space Regulation
+Launchers->Space Regulation
+Debris Tracking->Space Regulation
+
+// Evolution movements (scenario, not forecast — Feb 2023 signals)
+evolve Non-Terrestrial Networks 0.55
+evolve Phased-Array Antennas 0.70
+evolve Optical Sat-to-Sat Comms 0.50
+evolve Krypton Propulsion 0.55
+evolve LEO Microsat 0.72
+evolve Constellation Automation 0.45
+evolve Spectrum V-band 0.35
+
+// Notes
+note LEO/NTN frontier — differentiation zone [0.55, 0.25]
+note Commoditised telecoms core [0.78, 0.88]
+note Utility candidates — outsource [0.20, 0.85]

@@ -1,0 +1,75 @@
+title AI Trust Landscape (June 2023)
+
+anchor Stakeholder (individual/government/business) [0.97, 0.55]
+
+component Trust in AI systems [0.90, 0.20] label [-110, -6]
+component Safety (outcome) [0.82, 0.18] label [-100, 6]
+component Reputation (outcome) [0.82, 0.35] label [-110, 8]
+component Competitive advantage (outcome) [0.82, 0.50] label [-140, 6]
+component Regulations [0.70, 0.22] label [-60, -10]
+component Policy and sector guidance [0.72, 0.30] label [-110, 10]
+component Audits [0.58, 0.15] label [10, 6]
+component Benchmarks (evals) [0.55, 0.38] label [-100, 8]
+component Safety benchmarks [0.52, 0.30] label [-110, 8]
+component Red teaming and feedback loops [0.48, 0.42] label [-140, 6]
+component Constitutional AI [0.44, 0.10] label [-110, 8]
+component Forensics (provenance, watermarking, deepfake detection) [0.40, 0.12] label [-200, -10]
+component Foundation models [0.35, 0.55] label [-90, -10]
+component Training data [0.22, 0.70] label [-30, -14]
+component Algorithms (transformer, RLHF techniques) [0.18, 0.62] label [-60, 14]
+component Compute (GPU/cloud) [0.08, 0.88] label [-25, 12]
+
+Stakeholder (individual/government/business)->Trust in AI systems
+Stakeholder (individual/government/business)->Safety (outcome)
+Stakeholder (individual/government/business)->Reputation (outcome)
+Stakeholder (individual/government/business)->Competitive advantage (outcome)
+
+Trust in AI systems->Safety (outcome)
+Trust in AI systems->Reputation (outcome)
+Trust in AI systems->Competitive advantage (outcome)
+Trust in AI systems->Regulations
+Trust in AI systems->Policy and sector guidance
+Trust in AI systems->Audits
+
+Safety (outcome)->Benchmarks (evals)
+Safety (outcome)->Safety benchmarks
+Safety (outcome)->Red teaming and feedback loops
+Safety (outcome)->Forensics (provenance, watermarking, deepfake detection)
+
+Reputation (outcome)->Audits
+Reputation (outcome)->Benchmarks (evals)
+Reputation (outcome)->Forensics (provenance, watermarking, deepfake detection)
+
+Competitive advantage (outcome)->Foundation models
+Competitive advantage (outcome)->Red teaming and feedback loops
+Competitive advantage (outcome)->Training data
+
+Regulations->Audits
+Regulations->Benchmarks (evals)
+Policy and sector guidance->Regulations
+Policy and sector guidance->Benchmarks (evals)
+
+Audits->Benchmarks (evals)
+Audits->Safety benchmarks
+Audits->Forensics (provenance, watermarking, deepfake detection)
+
+Benchmarks (evals)->Foundation models
+Safety benchmarks->Foundation models
+Red teaming and feedback loops->Foundation models
+Constitutional AI->Foundation models
+Forensics (provenance, watermarking, deepfake detection)->Foundation models
+
+Foundation models->Algorithms (transformer, RLHF techniques)
+Foundation models->Training data
+Foundation models->Compute (GPU/cloud)
+
+Training data->Compute (GPU/cloud)
+Algorithms (transformer, RLHF techniques)->Compute (GPU/cloud)
+
+evolve Regulations 0.55
+evolve Audits 0.45
+evolve Benchmarks (evals) 0.60
+evolve Foundation models 0.75
+evolve Red teaming and feedback loops 0.60
+evolve Constitutional AI 0.35
+evolve Forensics (provenance, watermarking, deepfake detection) 0.35

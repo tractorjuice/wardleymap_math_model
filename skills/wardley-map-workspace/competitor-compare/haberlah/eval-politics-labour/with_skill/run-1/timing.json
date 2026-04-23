@@ -1,0 +1,17 @@
+{
+  "scenario": "eval-politics-labour",
+  "skill": "haberlah/wardley-mapping",
+  "skill_path": "skills/wardley-map-workspace/competitor-compare/skills/wardley-map-workspace/competitor-compare/haberlah/skill",
+  "run": 1,
+  "blind": true,
+  "start_iso": "2026-04-22T15:57:59.688Z",
+  "end_iso": "2026-04-22T16:04:12.756Z",
+  "start_epoch_s": 1776873479.851,
+  "end_epoch_s": 1776873853.731,
+  "duration_s": 373.88,
+  "outputs": [
+    "outputs/output.md",
+    "outputs/draft.owm",
+    "outputs/wardley-map-labour.jsx"
+  ]
+}

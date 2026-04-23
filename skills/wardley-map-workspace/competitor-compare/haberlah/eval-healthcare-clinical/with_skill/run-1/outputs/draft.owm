@@ -1,0 +1,66 @@
+title Clinical Decision Making in Healthcare (Aug 2022)
+style wardley
+
+anchor Patient [0.97, 0.46]
+anchor Medical Practitioner [0.93, 0.36]
+anchor Medical Institution [0.90, 0.58]
+anchor Payer [0.86, 0.70]
+
+component Treatment Decision [0.80, 0.38]
+component Care Setting [0.76, 0.52]
+component Measured Outcome [0.72, 0.62]
+component Diagnostic Reasoning [0.68, 0.30] inertia
+component Clinical Decision Support [0.60, 0.44] inertia
+component Clinical Guidelines [0.54, 0.66] inertia
+component Permissible Treatments Formulary [0.50, 0.76]
+component Exception & Appeals Rules [0.46, 0.28]
+component Fairness & Equity Controls [0.42, 0.20]
+component Patient History & Examination [0.38, 0.55]
+component Diagnostic Tests & Imaging [0.32, 0.78]
+component Electronic Health Record [0.26, 0.70]
+component Clinical Trials & Reviews [0.22, 0.42]
+component Evidence Base & Literature [0.18, 0.58]
+component Coding & Billing Standards [0.12, 0.85]
+component Connectivity & Compute [0.06, 0.90]
+
+Patient->Treatment Decision
+Patient->Measured Outcome
+Patient->Care Setting
+Medical Practitioner->Treatment Decision
+Medical Practitioner->Diagnostic Reasoning
+Medical Institution->Care Setting
+Medical Institution->Clinical Guidelines
+Payer->Permissible Treatments Formulary
+Payer->Measured Outcome
+Payer->Exception & Appeals Rules
+Treatment Decision->Diagnostic Reasoning
+Treatment Decision->Clinical Decision Support
+Treatment Decision->Permissible Treatments Formulary
+Treatment Decision->Exception & Appeals Rules
+Treatment Decision->Fairness & Equity Controls
+Diagnostic Reasoning->Clinical Decision Support
+Diagnostic Reasoning->Patient History & Examination
+Diagnostic Reasoning->Diagnostic Tests & Imaging
+Clinical Decision Support->Clinical Guidelines
+Clinical Decision Support->Electronic Health Record
+Clinical Guidelines->Evidence Base & Literature
+Clinical Guidelines->Clinical Trials & Reviews
+Permissible Treatments Formulary->Clinical Trials & Reviews
+Permissible Treatments Formulary->Coding & Billing Standards
+Measured Outcome->Electronic Health Record
+Measured Outcome->Coding & Billing Standards
+Patient History & Examination->Electronic Health Record
+Diagnostic Tests & Imaging->Electronic Health Record
+Electronic Health Record->Connectivity & Compute
+Clinical Trials & Reviews->Evidence Base & Literature
+Coding & Billing Standards->Connectivity & Compute
+Care Setting->Electronic Health Record
+
+evolve Clinical Decision Support 0.62
+evolve Diagnostic Reasoning 0.48
+evolve Electronic Health Record 0.82
+evolve Fairness & Equity Controls 0.42
+
+annotation 1 [[0.30, 0.22]] Bespoke judgement cluster
+annotation 2 [[0.18, 0.80]] Industrialised process cluster
+annotation 3 [[0.58, 0.55]] Build vs. buy frontier: CDS consolidating

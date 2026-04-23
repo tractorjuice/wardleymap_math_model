@@ -1,0 +1,190 @@
+title National Sovereignty from a Government's Point of View (April 2023)
+style wardley
+
+// Anchors — multiple user/stakeholder types surrounding the state
+anchor Supranational Layer [0.98, 0.55]
+anchor Government [0.97, 0.40]
+anchor Corporations and Shareholders [0.96, 0.70]
+anchor Society [0.95, 0.45]
+
+// Pillars of sovereignty — what each anchor needs satisfied
+component Territorial Sovereignty [0.88, 0.65]
+component Economic Sovereignty [0.86, 0.60]
+component Political Sovereignty [0.86, 0.38]
+component Digital Sovereignty [0.84, 0.28]
+component Cultural Sovereignty [0.82, 0.30]
+component Security Sovereignty [0.84, 0.55]
+
+// Social norms and legitimacy signals that feed Government + Society
+component Election Legitimacy [0.82, 0.42]
+component Perception of Success [0.80, 0.30]
+component Public Belonging [0.79, 0.28]
+component Integrity (norm) [0.76, 0.25]
+component Benevolence (norm) [0.75, 0.22]
+component Fairness (norm) [0.75, 0.30]
+component Competency (norm) [0.74, 0.40]
+component Identity (norm) [0.74, 0.27]
+
+// Theatres — where the pillars play out
+component Land Theatre [0.68, 0.72]
+component Supply Chain Theatre [0.66, 0.55]
+component Cyber Theatre [0.64, 0.35]
+component Critical National Infrastructure (CNI) [0.62, 0.60]
+
+// International legal / normative frame
+component International Law [0.70, 0.55]
+component National Laws [0.72, 0.70]
+
+// Crisis and response
+component Crisis Response [0.58, 0.45]
+
+// Media mix — shapes perception / norms
+component Mainstream Media [0.60, 0.75]
+component Social Media [0.58, 0.80]
+component Education [0.56, 0.55]
+component Art [0.54, 0.35]
+component Propaganda [0.52, 0.45]
+
+// Awareness apparatus — sensing layer
+component Territorial Awareness [0.46, 0.55]
+component Supply-Chain Awareness [0.44, 0.30]
+component Digital-Chain Awareness [0.42, 0.22]
+
+// Capability layer — how awareness is turned into action
+component Intelligence Capability [0.34, 0.55]
+component Military Capability [0.32, 0.75]
+component Cyber Capability [0.30, 0.35]
+component Diplomatic Capability [0.33, 0.65]
+component Regulatory Capability [0.31, 0.60]
+component Industrial Capability [0.29, 0.55]
+
+// Infrastructure that capability rests on
+component Surveillance Sensors [0.20, 0.80]
+component Telecoms Networks [0.18, 0.88]
+component Cloud Compute [0.16, 0.90]
+component Semiconductors [0.14, 0.55]
+component Energy Grid [0.13, 0.85]
+component Data Platforms [0.15, 0.70]
+
+// Dependencies — anchors depend on pillars
+Supranational Layer->International Law
+Supranational Layer->Economic Sovereignty
+Supranational Layer->Political Sovereignty
+Government->Political Sovereignty
+Government->Territorial Sovereignty
+Government->Security Sovereignty
+Government->Digital Sovereignty
+Government->Economic Sovereignty
+Government->Cultural Sovereignty
+Government->National Laws
+Government->Election Legitimacy
+Government->Crisis Response
+Corporations and Shareholders->Economic Sovereignty
+Corporations and Shareholders->Digital Sovereignty
+Corporations and Shareholders->National Laws
+Society->Public Belonging
+Society->Perception of Success
+Society->Cultural Sovereignty
+Society->Election Legitimacy
+Society->National Laws
+
+// Legitimacy feedback loop — norms into election legitimacy and political sovereignty
+Election Legitimacy->Integrity (norm)
+Election Legitimacy->Benevolence (norm)
+Election Legitimacy->Fairness (norm)
+Election Legitimacy->Competency (norm)
+Election Legitimacy->Identity (norm)
+Political Sovereignty->Election Legitimacy
+Political Sovereignty->Perception of Success
+Political Sovereignty->Public Belonging
+Cultural Sovereignty->Identity (norm)
+Cultural Sovereignty->Public Belonging
+
+// Pillars depend on theatres
+Territorial Sovereignty->Land Theatre
+Economic Sovereignty->Supply Chain Theatre
+Digital Sovereignty->Cyber Theatre
+Security Sovereignty->CNI Theatre
+Security Sovereignty->Land Theatre
+Security Sovereignty->Cyber Theatre
+Economic Sovereignty->CNI Theatre
+
+// Laws sit above theatres and capability
+National Laws->International Law
+National Laws->Regulatory Capability
+International Law->Diplomatic Capability
+
+// Theatres depend on awareness
+Land Theatre->Territorial Awareness
+Supply Chain Theatre->Supply-Chain Awareness
+Cyber Theatre->Digital-Chain Awareness
+Critical National Infrastructure (CNI)->Digital-Chain Awareness
+Critical National Infrastructure (CNI)->Territorial Awareness
+
+// Crisis response orchestrates capability
+Crisis Response->Intelligence Capability
+Crisis Response->Military Capability
+Crisis Response->Cyber Capability
+Crisis Response->Diplomatic Capability
+Crisis Response->Regulatory Capability
+Crisis Response->Industrial Capability
+
+// Media mix shapes perception, belonging and norms
+Perception of Success->Mainstream Media
+Perception of Success->Social Media
+Public Belonging->Education
+Public Belonging->Art
+Identity (norm)->Education
+Identity (norm)->Art
+Integrity (norm)->Mainstream Media
+Fairness (norm)->Social Media
+Propaganda->Mainstream Media
+Propaganda->Social Media
+Political Sovereignty->Propaganda
+
+// Awareness depends on capability
+Territorial Awareness->Intelligence Capability
+Supply-Chain Awareness->Intelligence Capability
+Supply-Chain Awareness->Industrial Capability
+Digital-Chain Awareness->Cyber Capability
+Digital-Chain Awareness->Intelligence Capability
+
+// Capability depends on infrastructure
+Intelligence Capability->Surveillance Sensors
+Intelligence Capability->Data Platforms
+Military Capability->Telecoms Networks
+Military Capability->Energy Grid
+Military Capability->Semiconductors
+Cyber Capability->Cloud Compute
+Cyber Capability->Telecoms Networks
+Cyber Capability->Data Platforms
+Industrial Capability->Semiconductors
+Industrial Capability->Energy Grid
+Regulatory Capability->Data Platforms
+
+// Media mix rests on telecoms + cloud
+Mainstream Media->Telecoms Networks
+Social Media->Cloud Compute
+Social Media->Telecoms Networks
+Education->Data Platforms
+
+// Inertia — components visibly resisting evolution
+component Legacy CNI Assets [0.55, 0.45] inertia
+Critical National Infrastructure (CNI)->Legacy CNI Assets
+// Inertia form: sunk capital + re-architecture cost (CNI rewire is multi-decade)
+
+component Domestic Fab Base [0.22, 0.30] inertia
+Semiconductors->Domestic Fab Base
+// Inertia form: political capital + second-sourcing risk (fabs are geopolitical)
+
+// Evolution movements (scenario — NOT a forecast; cf. climatic pattern)
+evolve Digital Sovereignty 0.45
+evolve Cyber Theatre 0.55
+evolve Digital-Chain Awareness 0.40
+evolve Cyber Capability 0.55
+evolve Semiconductors 0.45
+
+// Notes — where sovereignty is industrialised vs. contested
+note Industrialised infrastructure [0.15, 0.88]
+note Contested + fragile frontier [0.75, 0.22]
+note Legitimacy feedback loop [0.80, 0.32]

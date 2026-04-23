@@ -1,0 +1,144 @@
+title Space-Based Telecoms (February 2023)
+style wardley
+
+// Anchors — users of the space-telecoms value chain
+anchor Consumers [0.97, 0.45]
+anchor Corporations [0.97, 0.55]
+anchor Government [0.97, 0.65]
+
+// User-visible services
+component Network Access [0.90, 0.55]
+component Broadcast [0.82, 0.85]
+component Space Regulation [0.82, 0.50]
+
+// Access-stack topology
+component Mobile Topology (4G/5G) [0.74, 0.78]
+component Fibre Topology [0.74, 0.86]
+component NTN Topology [0.74, 0.30] inertia
+component Physical Network [0.66, 0.80]
+
+// Edge and terminal
+component User Terminals (Phased Array) [0.58, 0.38]
+component Ground Stations [0.60, 0.58]
+component Spectrum (Ku/Ka/V) [0.56, 0.70]
+
+// Satellite platform
+component LEO Microsats [0.48, 0.35]
+component GEO Satellites [0.48, 0.78]
+
+// Satellite subsystems
+component Beamforming / Beam-Steering [0.38, 0.32] inertia
+component Satellite Antennas [0.38, 0.65]
+component Optical Sat-to-Sat Comms [0.38, 0.18]
+component Satellite Propulsion (Kr/Xe) [0.30, 0.55]
+component Thermal Control (TE/Rad/Cryo) [0.30, 0.62]
+component Satellite Power [0.30, 0.82]
+
+// Launch and orbit services
+component Launchers [0.22, 0.58]
+component Orbit Tracking [0.22, 0.68]
+component Debris Tracking [0.22, 0.42]
+
+// Ops and supply chain underneath
+component Fleet Management [0.14, 0.35]
+component Automation [0.14, 0.22]
+component Supply-Chain Awareness [0.06, 0.22]
+
+// Anchor -> service
+Consumers->Network Access
+Corporations->Network Access
+Government->Network Access
+Consumers->Broadcast
+Corporations->Broadcast
+Government->Broadcast
+Consumers->Space Regulation
+Corporations->Space Regulation
+Government->Space Regulation
+
+// Service -> topology
+Network Access->Mobile Topology (4G/5G)
+Network Access->Fibre Topology
+Network Access->NTN Topology
+Broadcast->NTN Topology
+Broadcast->GEO Satellites
+
+// Topology -> transport
+Mobile Topology (4G/5G)->Physical Network
+Fibre Topology->Physical Network
+NTN Topology->Physical Network
+NTN Topology->User Terminals (Phased Array)
+NTN Topology->Ground Stations
+NTN Topology->Spectrum (Ku/Ka/V)
+
+// Physical network shares ground segment
+Physical Network->Ground Stations
+
+// Edge -> satellite platform
+User Terminals (Phased Array)->LEO Microsats
+User Terminals (Phased Array)->GEO Satellites
+Ground Stations->LEO Microsats
+Ground Stations->GEO Satellites
+Spectrum (Ku/Ka/V)->Space Regulation
+Spectrum (Ku/Ka/V)->LEO Microsats
+Spectrum (Ku/Ka/V)->GEO Satellites
+
+// Satellite -> subsystems
+LEO Microsats->Beamforming / Beam-Steering
+LEO Microsats->Satellite Antennas
+LEO Microsats->Optical Sat-to-Sat Comms
+LEO Microsats->Satellite Propulsion (Kr/Xe)
+LEO Microsats->Thermal Control (TE/Rad/Cryo)
+LEO Microsats->Satellite Power
+GEO Satellites->Satellite Antennas
+GEO Satellites->Satellite Propulsion (Kr/Xe)
+GEO Satellites->Thermal Control (TE/Rad/Cryo)
+GEO Satellites->Satellite Power
+
+// Satellite -> launch / ops
+LEO Microsats->Launchers
+GEO Satellites->Launchers
+LEO Microsats->Orbit Tracking
+GEO Satellites->Orbit Tracking
+LEO Microsats->Fleet Management
+GEO Satellites->Fleet Management
+
+// Ops stack
+Orbit Tracking->Debris Tracking
+Fleet Management->Orbit Tracking
+Fleet Management->Automation
+Debris Tracking->Automation
+Automation->Supply-Chain Awareness
+
+// Regulation is a cross-cutting dependency for launch and orbit
+Launchers->Space Regulation
+Orbit Tracking->Space Regulation
+Debris Tracking->Space Regulation
+
+// Supply chain sits underneath hardware
+Launchers->Supply-Chain Awareness
+Satellite Propulsion (Kr/Xe)->Supply-Chain Awareness
+Satellite Power->Supply-Chain Awareness
+Satellite Antennas->Supply-Chain Awareness
+Thermal Control (TE/Rad/Cryo)->Supply-Chain Awareness
+
+// Evolution arrows — predicted 12-24 month movement
+evolve NTN Topology 0.48
+evolve User Terminals (Phased Array) 0.55
+evolve LEO Microsats 0.52
+evolve Optical Sat-to-Sat Comms 0.35
+evolve Beamforming / Beam-Steering 0.50
+evolve Fleet Management 0.48
+evolve Debris Tracking 0.58
+
+annotation 1 [[0.78, 0.20]] LEO / NTN frontier: still novel in Feb 2023
+annotation 2 [[0.30, 0.82]] Commoditised subsystems — buy, do not build
+annotation 3 [[0.50, 0.50]] Regulation as cross-cutting climate
+
+build Optical Sat-to-Sat Comms
+build Fleet Management
+build NTN Topology
+buy Satellite Power
+buy Thermal Control (TE/Rad/Cryo)
+buy Launchers
+outsource Physical Network
+outsource Ground Stations

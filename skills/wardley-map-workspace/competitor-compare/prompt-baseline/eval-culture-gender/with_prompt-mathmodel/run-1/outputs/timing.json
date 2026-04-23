@@ -1,0 +1,23 @@
+{
+  "scenario": "eval-culture-gender",
+  "variant": "with_prompt-in-tree",
+  "run": 1,
+  "baseline": "prompt-only",
+  "prompt_source": "/workspaces/wardleymap_math_model/prompts/wardley_map_generator.md",
+  "date_of_scenario": "March 2022",
+  "start_ns": 1776872989370646464,
+  "end_ns": 1776873118209505475,
+  "elapsed_ns": 128838859011,
+  "elapsed_seconds": 128.839,
+  "outputs": {
+    "owm": "draft.owm",
+    "analysis": "output.md",
+    "timing": "timing.json"
+  },
+  "component_count": 29,
+  "anchor_count": 2,
+  "dependency_count": 43,
+  "inertia_markers": 1,
+  "evolve_markers": 3,
+  "notes": 4
+}

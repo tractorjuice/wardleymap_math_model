@@ -1,0 +1,20 @@
+{
+  "scenario": "agriculture-regen",
+  "mode": "prompt-only-baseline",
+  "prompt_source": "/workspaces/wardleymap_math_model/prompts/wardley_map_generator.md",
+  "run": 1,
+  "pass": "first",
+  "blind": true,
+  "reference_files_consulted": [],
+  "start_utc": "2026-04-22T15:47:44Z",
+  "draft_written_utc": "2026-04-22T15:48:38Z",
+  "end_utc": "2026-04-22T15:50:18Z",
+  "duration_seconds": 154,
+  "outputs": {
+    "owm": "/workspaces/wardleymap_math_model/skills/wardley-map-workspace/competitor-compare/prompt-baseline/eval-agriculture-regen/with_prompt-in-tree/run-1/outputs/draft.owm",
+    "writeup": "/workspaces/wardleymap_math_model/skills/wardley-map-workspace/competitor-compare/prompt-baseline/eval-agriculture-regen/with_prompt-in-tree/run-1/outputs/output.md"
+  },
+  "component_count": 39,
+  "anchor_count": 4,
+  "notes": "Prompt-only baseline. No skill references, no validator, no benchmark corpus consulted. Four anchors (Consumer, Farmer, National Government, Supranational Body) reflecting the multi-user nature of the landscape. Inertia markers on monoculture, synthetic fertiliser, pesticides and extractive industrial practice per prompt section 8."
+}

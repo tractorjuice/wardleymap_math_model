@@ -1,0 +1,115 @@
+title Manufacturing Supply Chain (Feb 2023)
+
+anchor Product delivered to distributors [0.96, 0.60]
+
+// --- User-facing / top of value chain ---
+component Distributors [0.88, 0.75]
+component Sales Forecasting [0.85, 0.55]
+component Supply Chain Resilience Awareness [0.86, 0.20]
+
+// --- Product & operations ---
+component Finished Product [0.80, 0.70]
+component Quality Control [0.74, 0.65]
+component Manufacturing Operations [0.72, 0.60]
+
+// --- Inventory & logistics decisions ---
+component Inventory Strategy (JIT vs JIC) [0.70, 0.35]
+component Warehousing [0.66, 0.78]
+component Logistics & Freight [0.64, 0.80]
+
+// --- Regulation / government ---
+component Safety & Compliance [0.68, 0.72]
+component Product Certification [0.62, 0.68]
+component Regulatory Lobbying [0.60, 0.30]
+
+// --- Financial lens ---
+component ROCE / Capital Efficiency [0.58, 0.60]
+component Cost Accounting [0.56, 0.82]
+component Capital Investment [0.54, 0.55]
+
+// --- Inputs: labour, equipment, R&D ---
+component Skilled Labour [0.50, 0.50]
+component Manufacturing Equipment [0.46, 0.70]
+component R&D / Process Innovation [0.44, 0.20]
+
+// --- Materials ---
+component Refined Materials [0.36, 0.72]
+component Raw Materials [0.24, 0.85]
+
+// --- Underlying commodities ---
+component Energy [0.18, 0.88]
+component Transport Fuel [0.16, 0.90]
+component ERP / MRP Systems [0.30, 0.72]
+component Supplier Data & Telemetry [0.28, 0.40]
+
+// ========= Edges =========
+
+// Anchor to immediate dependencies
+Product delivered to distributors -> Distributors
+Product delivered to distributors -> Sales Forecasting
+Product delivered to distributors -> Supply Chain Resilience Awareness
+Product delivered to distributors -> Finished Product
+
+// Distribution chain
+Distributors -> Logistics & Freight
+Distributors -> Warehousing
+
+// Sales forecasting pulls from data & ERP
+Sales Forecasting -> ERP / MRP Systems
+Sales Forecasting -> Supplier Data & Telemetry
+
+// Resilience awareness layer
+Supply Chain Resilience Awareness -> Supplier Data & Telemetry
+Supply Chain Resilience Awareness -> Inventory Strategy (JIT vs JIC)
+Supply Chain Resilience Awareness -> Sales Forecasting
+
+// Finished product comes from operations + QC
+Finished Product -> Quality Control
+Finished Product -> Manufacturing Operations
+Finished Product -> Product Certification
+
+// Quality control + compliance
+Quality Control -> Safety & Compliance
+Product Certification -> Safety & Compliance
+Safety & Compliance -> Regulatory Lobbying
+
+// Manufacturing operations
+Manufacturing Operations -> Manufacturing Equipment
+Manufacturing Operations -> Skilled Labour
+Manufacturing Operations -> Refined Materials
+Manufacturing Operations -> Energy
+Manufacturing Operations -> ERP / MRP Systems
+
+// Inventory + warehousing + logistics
+Inventory Strategy (JIT vs JIC) -> Warehousing
+Inventory Strategy (JIT vs JIC) -> Logistics & Freight
+Warehousing -> Logistics & Freight
+Logistics & Freight -> Transport Fuel
+
+// Financial lens
+ROCE / Capital Efficiency -> Cost Accounting
+ROCE / Capital Efficiency -> Capital Investment
+Capital Investment -> Manufacturing Equipment
+Capital Investment -> R&D / Process Innovation
+Cost Accounting -> Energy
+Cost Accounting -> Raw Materials
+Cost Accounting -> Skilled Labour
+
+// Equipment + R&D
+Manufacturing Equipment -> R&D / Process Innovation
+R&D / Process Innovation -> Skilled Labour
+
+// Materials supply
+Refined Materials -> Raw Materials
+Refined Materials -> Energy
+Raw Materials -> Transport Fuel
+
+// Evolution arrows (movement)
+evolve Inventory Strategy (JIT vs JIC) 0.55 label [-15, 5]
+evolve Supply Chain Resilience Awareness 0.45 label [-10, 5]
+evolve R&D / Process Innovation 0.35 label [-5, 5]
+evolve Sales Forecasting 0.70 label [-5, 5]
+evolve Regulatory Lobbying 0.40 label [-5, 5]
+
+// Inertia markers
+// Cost Accounting and Warehousing carry inertia (embedded practices, capex)

@@ -1,0 +1,149 @@
+title Lifelong Education and Learning Landscape
+
+// ---- Anchors (users with demand for lifelong learning) ----
+component Students [0.30, 0.97]
+component Employees [0.32, 0.95]
+component Employers [0.48, 0.93]
+component Community [0.20, 0.92]
+component Government and Regulators [0.38, 0.90]
+
+// ---- Learning outcomes users actually want (visible, partly productised) ----
+component Jobs and Livelihoods [0.72, 0.82]
+component Social Mobility [0.25, 0.80]
+component Personal Growth [0.28, 0.78]
+component Civic Participation [0.22, 0.76]
+
+// ---- Status, brand and recognition ----
+component Status and Brand [0.58, 0.70]
+component Inclusion and Exclusion [0.22, 0.68]
+
+// ---- Credentialing surface ----
+component Degrees [0.60, 0.62]
+component Micro-credentials and Badges [0.48, 0.64]
+component Certification and Standards [0.68, 0.60]
+
+// ---- Assessment / verification ----
+component Assessment [0.55, 0.54]
+component Verification [0.56, 0.52]
+component Digital Identity [0.50, 0.50]
+
+// ---- Curricula ----
+component Formal Curriculum [0.52, 0.46]
+component Informal Curriculum [0.30, 0.44]
+component Skills [0.58, 0.42]
+
+// ---- Delivery split ----
+component Blended Delivery [0.60, 0.40]
+component AI Tutors [0.18, 0.38]
+component Online Delivery [0.72, 0.34]
+component Physical Delivery [0.70, 0.32]
+component Community Learning [0.26, 0.30]
+
+// ---- Educators and institutions ----
+component Educators [0.42, 0.26]
+component Institutions [0.58, 0.24]
+
+// ---- Shaping forces: power, accreditation, funding ----
+component Accreditation Bodies [0.50, 0.18]
+component Funding [0.62, 0.16]
+component Power and Curriculum Shaping [0.28, 0.12]
+
+// ---- Dependency edges (a depends on b => nu(a) >= nu(b) where nu is Y coord) ----
+Students->Jobs and Livelihoods
+Students->Social Mobility
+Students->Personal Growth
+Students->Degrees
+Students->Micro-credentials and Badges
+Students->Educators
+Students->Institutions
+
+Employees->Jobs and Livelihoods
+Employees->Micro-credentials and Badges
+Employees->Skills
+Employees->Online Delivery
+Employees->AI Tutors
+
+Employers->Skills
+Employers->Certification and Standards
+Employers->Assessment
+Employers->Verification
+
+Community->Community Learning
+Community->Informal Curriculum
+Community->Civic Participation
+Community->Inclusion and Exclusion
+
+Government and Regulators->Accreditation Bodies
+Government and Regulators->Funding
+Government and Regulators->Power and Curriculum Shaping
+Government and Regulators->Certification and Standards
+
+Jobs and Livelihoods->Status and Brand
+Jobs and Livelihoods->Certification and Standards
+Social Mobility->Inclusion and Exclusion
+Social Mobility->Degrees
+Personal Growth->Informal Curriculum
+Personal Growth->Community Learning
+Civic Participation->Community Learning
+
+Status and Brand->Institutions
+Status and Brand->Degrees
+Inclusion and Exclusion->Power and Curriculum Shaping
+Inclusion and Exclusion->Funding
+
+Degrees->Assessment
+Degrees->Formal Curriculum
+Degrees->Institutions
+Degrees->Certification and Standards
+Micro-credentials and Badges->Verification
+Micro-credentials and Badges->Assessment
+Micro-credentials and Badges->Skills
+Micro-credentials and Badges->Digital Identity
+Certification and Standards->Assessment
+Certification and Standards->Accreditation Bodies
+
+Assessment->Formal Curriculum
+Assessment->Skills
+Verification->Digital Identity
+Digital Identity->Institutions
+
+Formal Curriculum->Educators
+Formal Curriculum->Power and Curriculum Shaping
+Informal Curriculum->Educators
+Informal Curriculum->Community Learning
+Skills->Educators
+Skills->Physical Delivery
+Skills->Online Delivery
+
+Physical Delivery->Institutions
+Physical Delivery->Educators
+Online Delivery->Institutions
+Online Delivery->Educators
+Blended Delivery->Physical Delivery
+Blended Delivery->Online Delivery
+AI Tutors->Online Delivery
+AI Tutors->Educators
+Community Learning->Educators
+
+Educators->Institutions
+Educators->Funding
+Institutions->Accreditation Bodies
+Institutions->Funding
+Institutions->Power and Curriculum Shaping
+Accreditation Bodies->Power and Curriculum Shaping
+Funding->Power and Curriculum Shaping
+
+// ---- Movement (evolution direction) ----
+evolve Micro-credentials and Badges 0.48->0.68
+evolve Digital Identity 0.50->0.70
+evolve Online Delivery 0.72->0.88
+evolve AI Tutors 0.18->0.55
+evolve Blended Delivery 0.60->0.78
+evolve Verification 0.56->0.72
+evolve Skills 0.58->0.74
+evolve Informal Curriculum 0.30->0.48
+evolve Community Learning 0.26->0.44
+evolve Degrees 0.60->0.58 inertia
+evolve Formal Curriculum 0.52->0.54 inertia
+evolve Institutions 0.58->0.60 inertia
+evolve Accreditation Bodies 0.50->0.54 inertia

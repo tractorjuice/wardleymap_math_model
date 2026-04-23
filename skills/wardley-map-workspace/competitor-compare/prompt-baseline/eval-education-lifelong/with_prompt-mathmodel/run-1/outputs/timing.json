@@ -1,0 +1,12 @@
+{
+  "scenario": "eval-education-lifelong",
+  "run": "run-1",
+  "variant": "with_prompt-in-tree",
+  "instructions": "/workspaces/wardleymap_math_model/prompts/wardley_map_generator.md",
+  "blind": true,
+  "start_ns": 1776872873609842809,
+  "end_ns": 1776872995444590314,
+  "duration_ns": 121834747505,
+  "duration_s": 121.834747505,
+  "notes": "First pass. Prompt-only baseline; did not read reference .owm files. Generated OWM draft, strategic analysis markdown, and this timing file."
+}

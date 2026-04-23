@@ -1,0 +1,17 @@
+{
+  "scenario": "defence-intelligence",
+  "skill": "wardley-map",
+  "skill_path": "/workspaces/wardleymap_math_model/skills/wardley-map/SKILL.md",
+  "run": 1,
+  "start_epoch": 1776939380,
+  "end_epoch": 1776939854,
+  "duration_seconds": 474,
+  "components": 48,
+  "anchors": 3,
+  "edges": 84,
+  "validator_run": false,
+  "validator_reason": "Bash `node` execution denied by sandbox permission system on every invocation; manual walk performed against validate_owm.mjs rules (coordinate range, edge endpoints, visibility hard rule) and check_layout.mjs rules (near-duplicate coords, stage-boundary straddling, canvas clipping, stage distribution). All rules pass post-fix per §g of output.md.",
+  "blind": true,
+  "reference_read": false,
+  "notes": "Map emphasises March 2023 snapshot date (GPT-4 launched 14 Mar 2023, JWCC awarded Dec 2022, NIST AI RMF v1.0 Jan 2023). Four components received deep-placement research: LLM Synthesis, Model Evaluation/Red-Teaming, Classified Cloud Compute, Prompt Injection/LLM Attacks."
+}

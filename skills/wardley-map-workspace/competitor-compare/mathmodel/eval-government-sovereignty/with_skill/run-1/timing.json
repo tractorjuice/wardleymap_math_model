@@ -1,0 +1,18 @@
+{
+  "scenario": "government-sovereignty",
+  "skill": "wardley-map",
+  "variant": "with_skill",
+  "run": 1,
+  "started_at_utc": "2026-04-22T16:13:20Z",
+  "finished_at_utc": "2026-04-22T16:21:39Z",
+  "duration_seconds": 482,
+  "validator_run": false,
+  "validator_reason": "node invocations for this path were outside the current bash allowlist in this sandbox; manual edge-walk of all 81 edges performed and documented in output.md. All visibility constraints verified to pass; all endpoints declared; all coordinates in [0,1].",
+  "layout_check_run": false,
+  "layout_check_reason": "same as validator; manual layout check performed. Fixes applied: Election Legitimacy and Diplomacy and Treaties and Alliances nudged off stage boundaries; anchor ν values pulled back from 0.98 borderline to 0.97; norm cluster spread to avoid near-duplicate collisions.",
+  "components": 41,
+  "anchors": 4,
+  "edges": 81,
+  "evolves": 5,
+  "notes": 2
+}

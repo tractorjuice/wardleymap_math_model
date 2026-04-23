@@ -1,0 +1,163 @@
+title AI Trust Landscape (June 2023)
+style wardley
+
+// Three anchors — the scenario names three user types
+anchor Individual [0.98, 0.45]
+anchor Government [0.97, 0.35]
+anchor Business [0.96, 0.50]
+
+// Outcome components (user-visible trust outcomes)
+component Trustworthy AI Output [0.88, 0.40]
+component AI Safety [0.86, 0.20]
+component Reputation [0.85, 0.30]
+component Competitive Advantage [0.83, 0.35]
+component User Consent & Control [0.82, 0.60]
+component Liability & Accountability [0.80, 0.15]
+
+// Governance / policy layer (government-visible)
+component AI Regulation (EU AI Act) [0.75, 0.20]
+component Sector Regulation (GDPR, HIPAA) [0.72, 0.65]
+component NIST AI RMF [0.70, 0.40]
+component AI Policy [0.68, 0.15]
+component International Standards [0.62, 0.35]
+component Professional Ethics Codes [0.58, 0.30]
+
+// Trust mechanisms — user-perceivable controls
+component Transparency & Explainability [0.70, 0.30]
+component AI Certifications & Seals [0.68, 0.10]
+component Third-Party AI Audits [0.65, 0.20]
+component Incident Reporting [0.60, 0.30]
+component Content Authenticity (C2PA) [0.56, 0.30]
+component Benchmarks & Evaluations [0.54, 0.45]
+component Model Cards & Datasheets [0.50, 0.40]
+component Bias & Fairness Testing [0.48, 0.45]
+
+// Control mechanisms (from scenario brief)
+component Human Oversight [0.55, 0.35]
+component Red Teaming [0.52, 0.35]
+component Guardrails & Filters [0.48, 0.40]
+component AI Forensics [0.46, 0.15]
+component Watermarking & Provenance [0.44, 0.12]
+component Feedback Loops (RLHF) [0.42, 0.35]
+component Constitutional AI [0.40, 0.13]
+component Alignment Research [0.36, 0.08]
+component Telemetry & Monitoring [0.38, 0.60]
+
+// Technical — model & data layer
+component Prompt Engineering [0.45, 0.55]
+component Fine-Tuning [0.36, 0.58]
+component Foundation Models [0.34, 0.44]
+component Open Model Weights [0.36, 0.38]
+component Training Data [0.26, 0.70]
+component Data Provenance [0.22, 0.18]
+component Copyright-Clean Data [0.20, 0.20]
+
+// Compute & infrastructure (deep)
+component Training Infrastructure [0.18, 0.77]
+component Inference Infrastructure [0.22, 0.80]
+component GPU Compute [0.15, 0.85]
+component Cloud Compute [0.10, 0.92]
+component Electricity [0.05, 0.96]
+
+// Dependencies — Individual
+Individual->Trustworthy AI Output
+Individual->User Consent & Control
+Individual->AI Safety
+
+// Dependencies — Government
+Government->AI Safety
+Government->AI Regulation (EU AI Act)
+Government->AI Policy
+Government->Liability & Accountability
+Government->Incident Reporting
+
+// Dependencies — Business
+Business->Reputation
+Business->Competitive Advantage
+Business->Liability & Accountability
+Business->Trustworthy AI Output
+Business->Sector Regulation (GDPR, HIPAA)
+
+// Outcome -> mechanism
+Trustworthy AI Output->Foundation Models
+Trustworthy AI Output->Guardrails & Filters
+Trustworthy AI Output->Transparency & Explainability
+Trustworthy AI Output->Benchmarks & Evaluations
+AI Safety->Red Teaming
+AI Safety->Alignment Research
+AI Safety->Human Oversight
+AI Safety->Constitutional AI
+Reputation->Third-Party AI Audits
+Reputation->AI Certifications & Seals
+Reputation->Incident Reporting
+Competitive Advantage->Foundation Models
+Competitive Advantage->Fine-Tuning
+Competitive Advantage->Open Model Weights
+User Consent & Control->Transparency & Explainability
+User Consent & Control->Data Provenance
+Liability & Accountability->AI Regulation (EU AI Act)
+Liability & Accountability->AI Forensics
+Liability & Accountability->Watermarking & Provenance
+
+// Governance edges
+AI Regulation (EU AI Act)->AI Policy
+NIST AI RMF->International Standards
+Sector Regulation (GDPR, HIPAA)->AI Policy
+AI Policy->Professional Ethics Codes
+
+// Trust mechanism edges
+Transparency & Explainability->Model Cards & Datasheets
+Third-Party AI Audits->Benchmarks & Evaluations
+Third-Party AI Audits->Model Cards & Datasheets
+AI Certifications & Seals->Third-Party AI Audits
+AI Certifications & Seals->International Standards
+Incident Reporting->Telemetry & Monitoring
+Benchmarks & Evaluations->Bias & Fairness Testing
+Benchmarks & Evaluations->Foundation Models
+Content Authenticity (C2PA)->Watermarking & Provenance
+Bias & Fairness Testing->Training Data
+
+// Control mechanism edges
+Red Teaming->Foundation Models
+Red Teaming->Guardrails & Filters
+Human Oversight->Feedback Loops (RLHF)
+Feedback Loops (RLHF)->Foundation Models
+Telemetry & Monitoring->Inference Infrastructure
+Guardrails & Filters->Foundation Models
+Constitutional AI->Foundation Models
+Constitutional AI->Alignment Research
+Alignment Research->Foundation Models
+AI Forensics->Watermarking & Provenance
+Watermarking & Provenance->Foundation Models
+
+// Technical layer edges
+Foundation Models->Training Data
+Foundation Models->Training Infrastructure
+Foundation Models->GPU Compute
+Fine-Tuning->Foundation Models
+Fine-Tuning->Training Infrastructure
+Prompt Engineering->Foundation Models
+Training Data->Data Provenance
+Training Data->Copyright-Clean Data
+Open Model Weights->Foundation Models
+
+// Infrastructure edges
+Training Infrastructure->GPU Compute
+Training Infrastructure->Cloud Compute
+Inference Infrastructure->GPU Compute
+Inference Infrastructure->Cloud Compute
+GPU Compute->Electricity
+Cloud Compute->Electricity
+
+// Evolution arrows — plausible 2023→2025 scenarios, not forecasts
+evolve Foundation Models 0.60
+evolve Benchmarks & Evaluations 0.65
+evolve AI Regulation (EU AI Act) 0.45
+evolve Guardrails & Filters 0.60
+evolve Third-Party AI Audits 0.45
+evolve Constitutional AI 0.30
+
+// Notes
+note Fragile trust zone [0.50, 0.15]
+note Rent, don't build [0.15, 0.88]
+note Differentiation core [0.35, 0.38]

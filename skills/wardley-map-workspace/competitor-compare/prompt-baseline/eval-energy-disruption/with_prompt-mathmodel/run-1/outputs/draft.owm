@@ -1,0 +1,143 @@
+title Energy Disruption Landscape - July 2022
+style wardley
+
+// === Anchors (user needs) ===
+// Two user types: today's consumer demand (works fine with current grid)
+// and tomorrow's survivability need (driven by climate + energy security).
+anchor Today Demand [0.98, 0.82]
+anchor Tomorrow Survivability [0.95, 0.28]
+
+// === Consumer-facing layer ===
+component Today Behaviour [0.90, 0.80]
+component Tomorrow Behaviour [0.88, 0.25]
+component Sustainability [0.85, 0.30]
+component Security of Supply [0.87, 0.45]
+component Education [0.82, 0.28]
+
+// === Market layer ===
+component Price [0.75, 0.88]
+component Cost with Externalities [0.72, 0.22]
+component Spot Market [0.70, 0.85]
+component OTC Market [0.68, 0.78]
+component Public Good Framing [0.65, 0.30]
+
+// === Control / regulation / externality apparatus ===
+component Regulation [0.63, 0.55]
+component CO2 Accounting [0.60, 0.35]
+component Control and Balancing [0.58, 0.70]
+component Supply Chain Awareness [0.55, 0.22]
+
+// === Distribution / transmission chain ===
+component Distribution Network [0.50, 0.80]
+component Transmission Network [0.45, 0.82]
+component Production and Conversion [0.42, 0.75]
+
+// === Storage problem ===
+component Electrical Storage [0.40, 0.35]
+component Hydrogen Storage [0.38, 0.15]
+component Potential Energy Storage [0.36, 0.60]
+component Fuel Reserves [0.34, 0.78]
+
+// === Generation mix ===
+component Gas Generation [0.30, 0.82]
+component Nuclear Generation [0.28, 0.60]
+component Fossil Generation [0.26, 0.88]
+component Renewable Generation [0.24, 0.55]
+component Solar Microgen [0.22, 0.40]
+
+// === Capital intensity / infrastructure lock-in (inertia) ===
+component Legacy Grid Infrastructure [0.18, 0.85] inertia
+component Fossil Capex Lock-in [0.15, 0.70] inertia
+component Nuclear Build Programme [0.12, 0.35] inertia
+
+// === Dependencies ===
+// Anchors -> top-level consumer pieces
+Today Demand->Today Behaviour
+Today Demand->Price
+Today Demand->Security of Supply
+Tomorrow Survivability->Tomorrow Behaviour
+Tomorrow Survivability->Sustainability
+Tomorrow Survivability->Security of Supply
+Tomorrow Survivability->Education
+Tomorrow Survivability->Cost with Externalities
+
+// Consumer -> market
+Today Behaviour->Price
+Tomorrow Behaviour->Cost with Externalities
+Tomorrow Behaviour->Sustainability
+Education->Sustainability
+Education->Public Good Framing
+Sustainability->CO2 Accounting
+Sustainability->Public Good Framing
+Security of Supply->Regulation
+
+// Market internals
+Price->Spot Market
+Price->OTC Market
+Cost with Externalities->CO2 Accounting
+Cost with Externalities->Supply Chain Awareness
+Cost with Externalities->Public Good Framing
+Spot Market->Control and Balancing
+OTC Market->Control and Balancing
+
+// Regulation / control layer
+Regulation->CO2 Accounting
+Regulation->Control and Balancing
+Public Good Framing->Regulation
+CO2 Accounting->Supply Chain Awareness
+Control and Balancing->Distribution Network
+Control and Balancing->Transmission Network
+
+// Distribution chain
+Distribution Network->Transmission Network
+Transmission Network->Production and Conversion
+Production and Conversion->Gas Generation
+Production and Conversion->Nuclear Generation
+Production and Conversion->Fossil Generation
+Production and Conversion->Renewable Generation
+Production and Conversion->Solar Microgen
+
+// Storage sits between generation and the network
+Distribution Network->Electrical Storage
+Distribution Network->Solar Microgen
+Transmission Network->Potential Energy Storage
+Production and Conversion->Hydrogen Storage
+Production and Conversion->Fuel Reserves
+
+// Storage -> generation
+Electrical Storage->Renewable Generation
+Potential Energy Storage->Renewable Generation
+Hydrogen Storage->Renewable Generation
+Fuel Reserves->Gas Generation
+Fuel Reserves->Fossil Generation
+
+// Generation -> infrastructure / inertia
+Gas Generation->Legacy Grid Infrastructure
+Gas Generation->Fossil Capex Lock-in
+Fossil Generation->Legacy Grid Infrastructure
+Fossil Generation->Fossil Capex Lock-in
+Nuclear Generation->Nuclear Build Programme
+Renewable Generation->Legacy Grid Infrastructure
+Solar Microgen->Legacy Grid Infrastructure
+
+// Supply chain awareness crosses into generation
+Supply Chain Awareness->Renewable Generation
+Supply Chain Awareness->Nuclear Generation
+Supply Chain Awareness->Fuel Reserves
+
+// === Evolution projections (scenario, not forecast) ===
+evolve Hydrogen Storage 0.35
+evolve Electrical Storage 0.60
+evolve Solar Microgen 0.70
+evolve Renewable Generation 0.75
+evolve CO2 Accounting 0.60
+evolve Supply Chain Awareness 0.55
+evolve Tomorrow Behaviour 0.55
+evolve Cost with Externalities 0.55
+evolve Nuclear Generation 0.65
+
+// === Notes ===
+note Disruption zone [0.55, 0.12]
+note Infrastructure lock-in [0.15, 0.82]
+note Externality gap [0.70, 0.20]
+note Storage is the choke point [0.38, 0.08]

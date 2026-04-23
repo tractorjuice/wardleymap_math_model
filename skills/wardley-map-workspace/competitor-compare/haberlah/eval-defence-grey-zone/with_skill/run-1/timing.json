@@ -1,0 +1,5 @@
+{
+  "total_tokens": null,
+  "duration_ms": null,
+  "notes": "Estimates unavailable from inside a single agent turn. The haberlah skill was invoked by reading its SKILL.md and the three references specified by the workflow (evolution-assessment.md, owm-syntax.md, doctrine-and-gameplay.md), plus ai-era-patterns.md and part of the tea-shop canonical example. The draft was produced in a single pass without iterating against an external validator (per benchmark contract). The skill's Step 1 asks four clarifying questions; since this is an offline benchmark, those answers were inferred from the scenario brief and recorded in the output.md 'Strategic Context' table. Component count (17 non-anchor + 4 anchors = 21 nodes) exceeds the skill's 15-component guidance because the brief explicitly enumerates four actor classes, four sovereignty pillars, five theatres, three landscape layers, and multiple cross-cutting governance concepts; the commentary's Open Questions flag submap decomposition as the doctrine-compliant next step."
+}

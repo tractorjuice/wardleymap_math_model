@@ -1,0 +1,174 @@
+title Lifelong Education and Learning Landscape
+style wardley
+
+// Anchors — the distinct user types in the scenario
+anchor Learner [0.98, 0.45]
+anchor Employer [0.95, 0.60]
+anchor Educator [0.93, 0.40]
+anchor Regulator [0.90, 0.55]
+
+// Near-user outcomes (what each user actually pursues)
+component Knowledge and Skills [0.86, 0.35]
+component Economic Mobility [0.85, 0.40]
+component Employability [0.84, 0.55]
+component Inclusion and Access [0.80, 0.30]
+component Status and Brand [0.78, 0.65]
+
+// Credentials and recognition (the artefacts users carry)
+component Degree [0.74, 0.72]
+component Professional Certification [0.72, 0.78]
+component Micro-credential [0.70, 0.40]
+component Digital Badge [0.68, 0.45]
+component Transcript of Record [0.66, 0.80]
+
+// Delivery experience — what a learner actually does
+component Formal Curriculum [0.64, 0.60]
+component Informal Learning [0.62, 0.30]
+component Community Learning [0.60, 0.22]
+component Workplace Learning [0.58, 0.48]
+component Online Course Delivery [0.56, 0.72]
+component In-Person Teaching [0.54, 0.62]
+component AI Tutor [0.52, 0.23]
+component Open Educational Resources [0.50, 0.53]
+
+// Institutions, employers and the human layer
+component Educational Institution [0.48, 0.58]
+component Teaching Workforce [0.46, 0.42]
+component Employer Hiring Process [0.44, 0.60]
+component Community Educator [0.42, 0.30]
+
+// Assessment, verification and standards
+component Assessment [0.40, 0.48]
+component Skills Taxonomy [0.38, 0.40]
+component Competency Framework [0.36, 0.45]
+component Credential Verification [0.34, 0.42]
+component Quality Assurance [0.32, 0.55]
+component Accreditation [0.30, 0.60]
+
+// Policy, regulation and funding
+component Curriculum Policy [0.28, 0.38]
+component Regulatory Framework [0.26, 0.55]
+component Public Funding [0.24, 0.70]
+component Student Finance [0.22, 0.78]
+
+// Identity, infrastructure and platforms
+component Digital Learner Identity [0.20, 0.35]
+component Learning Record Store [0.18, 0.55]
+component Learning Management System [0.16, 0.78]
+component Content Hosting and Video [0.14, 0.88]
+component Identity and Access Management [0.12, 0.90]
+component Cloud Utilities [0.10, 0.92]
+component Connectivity [0.08, 0.93]
+
+// Knowledge base
+component Pedagogy [0.06, 0.55]
+component Subject-matter Expertise [0.04, 0.60]
+
+// Dependencies
+Learner->Knowledge and Skills
+Learner->Inclusion and Access
+Learner->Status and Brand
+Learner->Economic Mobility
+Employer->Employability
+Employer->Status and Brand
+Employer->Employer Hiring Process
+Educator->Knowledge and Skills
+Educator->Teaching Workforce
+Regulator->Regulatory Framework
+Regulator->Accreditation
+
+Knowledge and Skills->Formal Curriculum
+Knowledge and Skills->Informal Learning
+Knowledge and Skills->Workplace Learning
+Knowledge and Skills->Community Learning
+Employability->Professional Certification
+Employability->Degree
+Employability->Micro-credential
+Employability->Workplace Learning
+Economic Mobility->Degree
+Economic Mobility->Employability
+Inclusion and Access->Community Learning
+Inclusion and Access->Public Funding
+Inclusion and Access->Digital Badge
+Inclusion and Access->Open Educational Resources
+Status and Brand->Degree
+Status and Brand->Educational Institution
+
+Degree->Educational Institution
+Degree->Formal Curriculum
+Degree->Assessment
+Degree->Transcript of Record
+Professional Certification->Assessment
+Professional Certification->Competency Framework
+Professional Certification->Credential Verification
+Micro-credential->Digital Badge
+Micro-credential->Competency Framework
+Micro-credential->Credential Verification
+Digital Badge->Digital Learner Identity
+Digital Badge->Credential Verification
+Transcript of Record->Credential Verification
+
+Formal Curriculum->In-Person Teaching
+Formal Curriculum->Online Course Delivery
+Formal Curriculum->Curriculum Policy
+Formal Curriculum->Pedagogy
+Informal Learning->Open Educational Resources
+Informal Learning->AI Tutor
+Informal Learning->Community Learning
+Community Learning->Community Educator
+Community Learning->Open Educational Resources
+Workplace Learning->Online Course Delivery
+Workplace Learning->Employer Hiring Process
+Online Course Delivery->Learning Management System
+Online Course Delivery->Content Hosting and Video
+Online Course Delivery->AI Tutor
+In-Person Teaching->Teaching Workforce
+In-Person Teaching->Educational Institution
+AI Tutor->Content Hosting and Video
+AI Tutor->Cloud Utilities
+AI Tutor->Pedagogy
+Open Educational Resources->Content Hosting and Video
+
+Educational Institution->Accreditation
+Educational Institution->Public Funding
+Educational Institution->Teaching Workforce
+Teaching Workforce->Pedagogy
+Teaching Workforce->Subject-matter Expertise
+Employer Hiring Process->Credential Verification
+Employer Hiring Process->Skills Taxonomy
+Community Educator->Pedagogy
+
+Assessment->Competency Framework
+Assessment->Quality Assurance
+Skills Taxonomy->Competency Framework
+Competency Framework->Curriculum Policy
+Credential Verification->Digital Learner Identity
+Quality Assurance->Accreditation
+Accreditation->Regulatory Framework
+
+Curriculum Policy->Regulatory Framework
+Regulatory Framework->Public Funding
+Public Funding->Student Finance
+
+Digital Learner Identity->Identity and Access Management
+Digital Learner Identity->Learning Record Store
+Learning Record Store->Cloud Utilities
+Learning Management System->Cloud Utilities
+Learning Management System->Identity and Access Management
+Content Hosting and Video->Cloud Utilities
+Content Hosting and Video->Connectivity
+Identity and Access Management->Cloud Utilities
+Cloud Utilities->Connectivity
+
+// Evolution scenarios
+evolve AI Tutor 0.55
+evolve Micro-credential 0.62
+evolve Digital Badge 0.65
+evolve Digital Learner Identity 0.60
+evolve Skills Taxonomy 0.60
+evolve Credential Verification 0.65
+
+// Annotations
+note Industrialised backbone [0.15, 0.90]
+note Power & curriculum gatekeeping [0.28, 0.45]
+note Artisanal learner experience [0.60, 0.28]

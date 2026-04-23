@@ -1,0 +1,173 @@
+title AI Trust Landscape (June 2023)
+style wardley
+
+// Anchors — three user types whose trust is in question
+anchor Individual [0.96, 0.55]
+anchor Government / Regulator [0.96, 0.40]
+anchor Business [0.93, 0.60]
+
+// ===== Outcome / trust-interface layer (user-visible trust signals)
+component Trusted AI Output [0.88, 0.35]
+component Safety (behaviour) [0.85, 0.28]
+component Reputation / Brand Trust [0.82, 0.52]
+component Competitive Advantage [0.80, 0.55]
+component Disclosure & Labelling [0.78, 0.32]
+component Explanations to Users [0.76, 0.22]
+component Consent & Opt-out [0.74, 0.45]
+
+// ===== Governance / assurance layer (how trust is demonstrated)
+component AI Regulation [0.72, 0.18]
+component Certification Schemes [0.70, 0.22]
+component Risk Assessment Process [0.68, 0.38]
+component Third-Party Audits [0.66, 0.26]
+component AI Standards (ISO/IEEE) [0.64, 0.30]
+component Policy Frameworks [0.62, 0.28]
+component Model Evaluation Suites [0.60, 0.40]
+component Public Benchmarks [0.56, 0.47]
+component Incident Reporting [0.54, 0.20]
+
+// ===== Control mechanisms (what actually shapes model behaviour)
+component Constitutional AI / Policies [0.52, 0.18]
+component Red-teaming [0.50, 0.30]
+component Human Feedback (RLHF) [0.48, 0.45]
+component Guardrails / Safety Filters [0.46, 0.35]
+component Human Oversight / HITL [0.44, 0.32]
+component Alignment Research [0.42, 0.12]
+component Interpretability [0.40, 0.10]
+component Provenance & Watermarking [0.38, 0.15]
+component AI Forensics [0.36, 0.08]
+component Feedback Loops / Telemetry [0.34, 0.48]
+
+// ===== Model layer (built on top of foundation model)
+component Prompt / System Design [0.33, 0.40]
+component Fine-tuning [0.32, 0.45]
+component Model Cards / Documentation [0.31, 0.32]
+component Foundation Model [0.30, 0.35]
+
+// ===== Data layer
+component Training Data [0.24, 0.42]
+component Data Quality & Curation [0.22, 0.30]
+component Data Provenance [0.20, 0.15]
+component Privacy / PII Handling [0.19, 0.55]
+component Copyright & Licensing [0.17, 0.22]
+
+// ===== Algorithms / methods
+component Training Algorithms [0.21, 0.58]
+component ML Frameworks [0.16, 0.78]
+
+// ===== Compute & infra utilities
+component GPUs / Accelerators [0.14, 0.72]
+component Cloud Compute [0.10, 0.90]
+component Networking / CDN [0.08, 0.92]
+component Electricity [0.05, 0.97]
+
+// ===== Knowledge base
+component Ethics / Values (society) [0.12, 0.60]
+component Legal Doctrine (liability) [0.10, 0.52]
+
+// ===== Dependencies
+// Individual users
+Individual->Trusted AI Output
+Individual->Safety (behaviour)
+Individual->Explanations to Users
+Individual->Consent & Opt-out
+Individual->Disclosure & Labelling
+
+// Government
+Government / Regulator->AI Regulation
+Government / Regulator->Policy Frameworks
+Government / Regulator->Incident Reporting
+Government / Regulator->Third-Party Audits
+Government / Regulator->Safety (behaviour)
+
+// Business
+Business->Reputation / Brand Trust
+Business->Competitive Advantage
+Business->Trusted AI Output
+Business->Risk Assessment Process
+Business->Certification Schemes
+
+// Trust-surface to governance / control
+Trusted AI Output->Guardrails / Safety Filters
+Trusted AI Output->Foundation Model
+Safety (behaviour)->Guardrails / Safety Filters
+Safety (behaviour)->Red-teaming
+Safety (behaviour)->Alignment Research
+Reputation / Brand Trust->Third-Party Audits
+Reputation / Brand Trust->Public Benchmarks
+Competitive Advantage->Foundation Model
+Competitive Advantage->Fine-tuning
+Disclosure & Labelling->Provenance & Watermarking
+Disclosure & Labelling->Model Cards / Documentation
+Explanations to Users->Interpretability
+Consent & Opt-out->Privacy / PII Handling
+
+// Governance internals
+AI Regulation->Policy Frameworks
+AI Regulation->Legal Doctrine (liability)
+Certification Schemes->AI Standards (ISO/IEEE)
+Certification Schemes->Third-Party Audits
+AI Standards (ISO/IEEE)->Policy Frameworks
+Third-Party Audits->Model Evaluation Suites
+Third-Party Audits->Red-teaming
+Risk Assessment Process->Model Evaluation Suites
+Risk Assessment Process->Incident Reporting
+Policy Frameworks->Ethics / Values (society)
+Model Evaluation Suites->Public Benchmarks
+Model Evaluation Suites->Foundation Model
+Incident Reporting->AI Forensics
+
+// Control mechanisms to model & data
+Constitutional AI / Policies->Foundation Model
+Constitutional AI / Policies->Alignment Research
+Red-teaming->Foundation Model
+Human Feedback (RLHF)->Foundation Model
+Human Feedback (RLHF)->Training Data
+Guardrails / Safety Filters->Foundation Model
+Human Oversight / HITL->Feedback Loops / Telemetry
+Alignment Research->Interpretability
+Interpretability->Foundation Model
+Provenance & Watermarking->Foundation Model
+Provenance & Watermarking->Data Provenance
+AI Forensics->Feedback Loops / Telemetry
+AI Forensics->Foundation Model
+Feedback Loops / Telemetry->Cloud Compute
+
+// Model layer
+Prompt / System Design->Foundation Model
+Fine-tuning->Foundation Model
+Fine-tuning->Training Data
+Model Cards / Documentation->Foundation Model
+Foundation Model->Training Data
+Foundation Model->Training Algorithms
+Foundation Model->ML Frameworks
+Foundation Model->GPUs / Accelerators
+
+// Data layer
+Training Data->Data Quality & Curation
+Training Data->Data Provenance
+Training Data->Copyright & Licensing
+Training Data->Privacy / PII Handling
+Data Quality & Curation->Data Provenance
+
+// Algorithms / compute
+Training Algorithms->ML Frameworks
+ML Frameworks->GPUs / Accelerators
+GPUs / Accelerators->Cloud Compute
+Cloud Compute->Networking / CDN
+Cloud Compute->Electricity
+Networking / CDN->Electricity
+
+// Evolution arrows — where things are visibly moving (June 2023)
+evolve AI Regulation 0.45
+evolve Third-Party Audits 0.50
+evolve Public Benchmarks 0.70
+evolve Guardrails / Safety Filters 0.55
+evolve Human Feedback (RLHF) 0.65
+evolve Foundation Model 0.55
+evolve Provenance & Watermarking 0.40
+evolve Model Cards / Documentation 0.55
+
+note Differentiation zone [0.62, 0.22]
+note Utility / commodity [0.10, 0.88]
+note Trust fragility: governance still Custom [0.64, 0.33]

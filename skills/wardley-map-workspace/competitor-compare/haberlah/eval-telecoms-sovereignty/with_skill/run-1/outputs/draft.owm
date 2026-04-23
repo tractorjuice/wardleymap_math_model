@@ -1,0 +1,171 @@
+title Telecoms Sovereignty — Nation-State Perspective (October 2022)
+style wardley
+
+// Anchors: four user groups that depend on sovereign telecoms
+anchor Government [0.97, 0.60]
+anchor The Collective [0.97, 0.54]
+anchor Corporations [0.97, 0.48]
+anchor People [0.97, 0.42]
+
+// Sovereignty pillars — the needs the anchors have
+component Territorial Sovereignty [0.90, 0.55]
+component Political Sovereignty [0.90, 0.50]
+component Cultural Sovereignty [0.90, 0.45]
+component Economic Sovereignty [0.90, 0.40]
+component Digital Sovereignty [0.90, 0.48]
+component CNI Sovereignty [0.90, 0.58]
+
+// Theatre / awareness layer
+component Land-Sea-Air-Space Awareness [0.82, 0.55] inertia
+component Supply-Chain Awareness [0.82, 0.32]
+
+// Access devices
+component Smartphones [0.73, 0.88]
+component Computers [0.73, 0.85]
+component Radio and TV [0.73, 0.93]
+component Sat Phones [0.73, 0.58]
+component IoT Devices [0.73, 0.62]
+
+// Control layer (policy / sovereignty levers on traffic)
+component DNS-over-HTTPS [0.64, 0.65]
+component Nation-State Firewall [0.64, 0.55]
+component SIMs / eSIM [0.64, 0.82]
+component Geofencing [0.64, 0.60]
+
+// Network topology
+component Fixed Network [0.55, 0.82]
+component Mobile Network [0.55, 0.82]
+
+// Access networks (transport)
+component Towers (RAN) [0.46, 0.80]
+component Cable (Fibre / Subsea) [0.46, 0.84]
+component Satellite Broadband [0.46, 0.55]
+component Launch Vehicles [0.38, 0.52]
+
+// Network equipment
+component Network Equipment [0.50, 0.78]
+
+// Expertise and peering
+component Expertise [0.40, 0.30] inertia
+component Peering / IXPs [0.40, 0.90]
+
+// Reality / foundations
+component Physical Supply Chain [0.22, 0.70] inertia
+component Information Supply Chain [0.22, 0.32] inertia
+component Compute [0.18, 0.88]
+component Fab / Semiconductor Capability [0.18, 0.30] inertia
+component Power [0.10, 0.92]
+component Geography [0.06, 0.98]
+component Orbital Slots & Spectrum [0.28, 0.50]
+
+// --- Anchor -> pillar dependencies ---
+Government->Territorial Sovereignty
+Government->Political Sovereignty
+Government->CNI Sovereignty
+Government->Digital Sovereignty
+The Collective->Cultural Sovereignty
+The Collective->Political Sovereignty
+Corporations->Economic Sovereignty
+Corporations->Digital Sovereignty
+People->Cultural Sovereignty
+People->Digital Sovereignty
+
+// --- Pillar -> awareness / control ---
+Territorial Sovereignty->Land-Sea-Air-Space Awareness
+CNI Sovereignty->Land-Sea-Air-Space Awareness
+CNI Sovereignty->Supply-Chain Awareness
+Economic Sovereignty->Supply-Chain Awareness
+Digital Sovereignty->DNS-over-HTTPS
+Digital Sovereignty->Nation-State Firewall
+Political Sovereignty->Nation-State Firewall
+Political Sovereignty->Geofencing
+Cultural Sovereignty->Geofencing
+
+// --- Awareness -> devices / networks ---
+Land-Sea-Air-Space Awareness->Satellite Broadband
+Land-Sea-Air-Space Awareness->Sat Phones
+Land-Sea-Air-Space Awareness->IoT Devices
+Supply-Chain Awareness->Information Supply Chain
+Supply-Chain Awareness->Physical Supply Chain
+
+// --- Pillars -> devices (user-facing) ---
+Cultural Sovereignty->Radio and TV
+Cultural Sovereignty->Smartphones
+Economic Sovereignty->Computers
+Economic Sovereignty->Smartphones
+
+// --- Control layer -> networks ---
+DNS-over-HTTPS->Fixed Network
+DNS-over-HTTPS->Mobile Network
+Nation-State Firewall->Fixed Network
+Nation-State Firewall->Mobile Network
+Geofencing->Mobile Network
+SIMs / eSIM->Mobile Network
+
+// --- Devices -> networks ---
+Smartphones->Mobile Network
+Smartphones->SIMs / eSIM
+Computers->Fixed Network
+Radio and TV->Cable (Fibre / Subsea)
+Sat Phones->Satellite Broadband
+IoT Devices->Mobile Network
+IoT Devices->Fixed Network
+
+// --- Networks -> transport ---
+Fixed Network->Cable (Fibre / Subsea)
+Fixed Network->Network Equipment
+Fixed Network->Peering / IXPs
+Mobile Network->Towers (RAN)
+Mobile Network->Network Equipment
+Mobile Network->Peering / IXPs
+Satellite Broadband->Launch Vehicles
+
+// --- Transport -> foundations ---
+Towers (RAN)->Power
+Towers (RAN)->Geography
+Cable (Fibre / Subsea)->Geography
+Cable (Fibre / Subsea)->Power
+Satellite Broadband->Orbital Slots & Spectrum
+Launch Vehicles->Orbital Slots & Spectrum
+Network Equipment->Physical Supply Chain
+Network Equipment->Information Supply Chain
+Peering / IXPs->Fixed Network
+
+// --- Everything needs compute, power, geography, expertise ---
+Network Equipment->Compute
+Compute->Fab / Semiconductor Capability
+Compute->Power
+Fab / Semiconductor Capability->Physical Supply Chain
+Physical Supply Chain->Geography
+Information Supply Chain->Expertise
+Land-Sea-Air-Space Awareness->Expertise
+Supply-Chain Awareness->Expertise
+Nation-State Firewall->Expertise
+DNS-over-HTTPS->Expertise
+
+// --- Evolution arrows (predicted movement 12-24 months) ---
+evolve Satellite Broadband 0.72
+evolve Launch Vehicles 0.68
+evolve DNS-over-HTTPS 0.78
+evolve Supply-Chain Awareness 0.48
+evolve IoT Devices 0.78
+evolve Nation-State Firewall 0.68
+
+// --- Build/Buy indicators ---
+build Nation-State Firewall
+build Supply-Chain Awareness
+build Land-Sea-Air-Space Awareness
+build Expertise
+buy Smartphones
+buy Computers
+buy SIMs / eSIM
+buy Peering / IXPs
+buy Power
+outsource Launch Vehicles
+outsource Compute
+
+// --- Annotations: where sovereignty is truly controllable ---
+annotation 1 [[0.64, 0.55]] Sovereign levers: firewalls, geofencing, DoH policy
+annotation 2 [[0.22, 0.70]] Foreign-dependent: fabs, subsea cable, launch
+annotation 3 [[0.06, 0.98]] Geography — the only truly sovereign asset
+annotation 4 [[0.46, 0.55]] LEO constellations erode sovereign control of access

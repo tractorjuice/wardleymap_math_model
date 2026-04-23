@@ -1,0 +1,288 @@
+title Telecoms Sovereignty — Nation-State Perspective (Oct 2022)
+style wardley
+
+// === Anchors — the four stakeholders with a claim on telecoms sovereignty ===
+anchor Government [0.98, 0.55]
+anchor The Collective (society / civil society) [0.96, 0.40]
+anchor Corporations (telcos / OEMs / platforms) [0.94, 0.70]
+anchor People (citizens / subscribers) [0.92, 0.80]
+
+// === Sovereignty pillars — what the nation is trying to defend ===
+// (positioned high on visibility because they are the outputs the state cares about;
+//  evolution varies because some are well-doctrine'd and some are still being defined)
+component Territorial Sovereignty [0.90, 0.78]
+component Political Sovereignty [0.88, 0.60]
+component Cultural Sovereignty [0.86, 0.48]
+component Economic Sovereignty [0.84, 0.70]
+component Digital Sovereignty [0.82, 0.32]
+component CNI Protection (telecoms as CNI) [0.80, 0.55]
+
+// === Access devices — what the citizen holds ===
+component Smartphone [0.76, 0.92]
+component Personal Computer [0.74, 0.94]
+component Radio / TV Receiver [0.72, 0.96]
+component Satellite Phone [0.70, 0.55]
+component IoT Endpoint [0.68, 0.72]
+component SIM / eSIM [0.66, 0.88]
+
+// === Access networks — how signal reaches the device ===
+component Mobile Tower / Cell Site [0.60, 0.90]
+component Fibre / Copper Cable (last mile) [0.58, 0.92]
+component Submarine Cable [0.56, 0.82]
+component GEO Satellite Link [0.54, 0.78]
+component LEO Satellite Constellation (Starlink / OneWeb) [0.52, 0.45]
+component Launch Vehicle (commercial) [0.50, 0.58]
+component Launch Vehicle (sovereign) [0.48, 0.30]
+
+// === Network equipment & topology ===
+component Fixed Network Core [0.44, 0.82]
+component Mobile Network Core (4G/5G RAN + EPC/5GC) [0.42, 0.80]
+component Network Equipment Vendor (Ericsson / Nokia / Huawei / ZTE) [0.40, 0.75]
+component Open RAN [0.40, 0.32]
+component Internet Exchange Point (IXP) [0.38, 0.82]
+component Peering Relationship [0.36, 0.72]
+component Tier-1 Transit [0.34, 0.85]
+
+// === Control layer — where the nation-state exercises technical control ===
+component Nation-State Firewall (GFW-style / DPI) [0.54, 0.55]
+component Lawful Intercept Apparatus [0.52, 0.82]
+component DNS-over-HTTPS (DoH) [0.50, 0.70]
+component National DNS Resolver [0.48, 0.68]
+component Geofencing / Geolocation Block [0.46, 0.62]
+component SIM Registration Regime [0.44, 0.78]
+component BGP Route Filtering [0.42, 0.70]
+component Kill-Switch / Network Shutdown [0.40, 0.50]
+component Content Takedown / Legal Order [0.38, 0.60]
+
+// === Theatre / awareness layer — what the nation can see ===
+component Land-Sea-Air-Space Situational Awareness [0.32, 0.35]
+component Submarine Cable Route Awareness [0.30, 0.30]
+component Space Domain Awareness (SDA) [0.28, 0.28]
+component Supply-Chain Intelligence (components / vendors) [0.26, 0.22]
+component Threat Intel / Adversary Tracking [0.24, 0.45]
+
+// === Expertise & workforce ===
+component Telecoms Engineering Workforce [0.22, 0.50]
+component RF / Spectrum Expertise [0.20, 0.55]
+component Semiconductor Design Expertise [0.18, 0.35]
+component Cryptographic Expertise [0.16, 0.60]
+component Space / Launch Expertise [0.14, 0.30]
+
+// === Underlying reality — physical + informational substrate ===
+component Physical Supply Chain (hardware) [0.24, 0.58]
+component Information Supply Chain (firmware / patches / CVE feeds) [0.22, 0.50]
+component Silicon / Semiconductor Fab [0.18, 0.55]
+component Rare Earths & Metals [0.16, 0.72]
+component Compute (data centre / cloud) [0.14, 0.85]
+component Power Grid [0.12, 0.90]
+component Spectrum (radio) [0.10, 0.75]
+component Space (orbital slots) [0.08, 0.55]
+component Geography (territory / sea / airspace / orbit) [0.06, 0.95]
+
+// =====================================================================
+// Dependencies — from anchors down through pillars, stack, substrate
+// =====================================================================
+
+// --- Government's claim on sovereignty ---
+Government->Territorial Sovereignty
+Government->Political Sovereignty
+Government->Economic Sovereignty
+Government->Digital Sovereignty
+Government->CNI Protection (telecoms as CNI)
+
+// --- The Collective cares about cultural / political sovereignty ---
+The Collective (society / civil society)->Cultural Sovereignty
+The Collective (society / civil society)->Political Sovereignty
+The Collective (society / civil society)->Digital Sovereignty
+
+// --- Corporations operate the chain and depend on economic + CNI rules ---
+Corporations (telcos / OEMs / platforms)->Economic Sovereignty
+Corporations (telcos / OEMs / platforms)->CNI Protection (telecoms as CNI)
+Corporations (telcos / OEMs / platforms)->Mobile Network Core (4G/5G RAN + EPC/5GC)
+Corporations (telcos / OEMs / platforms)->Fixed Network Core
+Corporations (telcos / OEMs / platforms)->Network Equipment Vendor (Ericsson / Nokia / Huawei / ZTE)
+Corporations (telcos / OEMs / platforms)->Peering Relationship
+Corporations (telcos / OEMs / platforms)->Tier-1 Transit
+Corporations (telcos / OEMs / platforms)->Smartphone
+Corporations (telcos / OEMs / platforms)->SIM / eSIM
+
+// --- People consume devices and expect connectivity ---
+People (citizens / subscribers)->Smartphone
+People (citizens / subscribers)->Personal Computer
+People (citizens / subscribers)->Radio / TV Receiver
+People (citizens / subscribers)->IoT Endpoint
+People (citizens / subscribers)->Cultural Sovereignty
+People (citizens / subscribers)->Political Sovereignty
+
+// --- Sovereignty pillars depend on the telecoms stack ---
+Territorial Sovereignty->Land-Sea-Air-Space Situational Awareness
+Territorial Sovereignty->Submarine Cable Route Awareness
+Territorial Sovereignty->Space Domain Awareness (SDA)
+Political Sovereignty->Nation-State Firewall (GFW-style / DPI)
+Political Sovereignty->Content Takedown / Legal Order
+Political Sovereignty->Kill-Switch / Network Shutdown
+Political Sovereignty->Lawful Intercept Apparatus
+Cultural Sovereignty->Content Takedown / Legal Order
+Cultural Sovereignty->Geofencing / Geolocation Block
+Cultural Sovereignty->National DNS Resolver
+Economic Sovereignty->Network Equipment Vendor (Ericsson / Nokia / Huawei / ZTE)
+Economic Sovereignty->Supply-Chain Intelligence (components / vendors)
+Economic Sovereignty->Physical Supply Chain (hardware)
+Digital Sovereignty->DNS-over-HTTPS (DoH)
+Digital Sovereignty->National DNS Resolver
+Digital Sovereignty->Nation-State Firewall (GFW-style / DPI)
+Digital Sovereignty->BGP Route Filtering
+Digital Sovereignty->Compute (data centre / cloud)
+Digital Sovereignty->Cryptographic Expertise
+CNI Protection (telecoms as CNI)->Mobile Network Core (4G/5G RAN + EPC/5GC)
+CNI Protection (telecoms as CNI)->Fixed Network Core
+CNI Protection (telecoms as CNI)->Submarine Cable
+CNI Protection (telecoms as CNI)->Power Grid
+CNI Protection (telecoms as CNI)->Threat Intel / Adversary Tracking
+CNI Protection (telecoms as CNI)->Supply-Chain Intelligence (components / vendors)
+
+// --- Devices depend on networks + SIM + supply chain ---
+Smartphone->SIM / eSIM
+Smartphone->Mobile Tower / Cell Site
+Smartphone->Physical Supply Chain (hardware)
+Smartphone->Silicon / Semiconductor Fab
+Personal Computer->Fibre / Copper Cable (last mile)
+Personal Computer->Physical Supply Chain (hardware)
+Personal Computer->Silicon / Semiconductor Fab
+Radio / TV Receiver->Spectrum (radio)
+Satellite Phone->GEO Satellite Link
+Satellite Phone->LEO Satellite Constellation (Starlink / OneWeb)
+IoT Endpoint->Mobile Tower / Cell Site
+IoT Endpoint->SIM / eSIM
+SIM / eSIM->SIM Registration Regime
+SIM / eSIM->Cryptographic Expertise
+
+// --- Access networks depend on physical plant + spectrum + orbit ---
+Mobile Tower / Cell Site->Spectrum (radio)
+Mobile Tower / Cell Site->Power Grid
+Mobile Tower / Cell Site->Mobile Network Core (4G/5G RAN + EPC/5GC)
+Mobile Tower / Cell Site->Geography (territory / sea / airspace / orbit)
+Fibre / Copper Cable (last mile)->Fixed Network Core
+Fibre / Copper Cable (last mile)->Geography (territory / sea / airspace / orbit)
+Submarine Cable->Geography (territory / sea / airspace / orbit)
+Submarine Cable->Physical Supply Chain (hardware)
+GEO Satellite Link->Launch Vehicle (commercial)
+GEO Satellite Link->Space (orbital slots)
+GEO Satellite Link->Spectrum (radio)
+LEO Satellite Constellation (Starlink / OneWeb)->Launch Vehicle (commercial)
+LEO Satellite Constellation (Starlink / OneWeb)->Space (orbital slots)
+LEO Satellite Constellation (Starlink / OneWeb)->Spectrum (radio)
+Launch Vehicle (commercial)->Space (orbital slots)
+Launch Vehicle (commercial)->Space / Launch Expertise
+Launch Vehicle (sovereign)->Space / Launch Expertise
+Launch Vehicle (sovereign)->Physical Supply Chain (hardware)
+Launch Vehicle (sovereign)->Rare Earths & Metals
+
+// --- Network cores depend on equipment vendors, IXPs, transit ---
+Mobile Network Core (4G/5G RAN + EPC/5GC)->Network Equipment Vendor (Ericsson / Nokia / Huawei / ZTE)
+Mobile Network Core (4G/5G RAN + EPC/5GC)->Open RAN
+Mobile Network Core (4G/5G RAN + EPC/5GC)->Telecoms Engineering Workforce
+Mobile Network Core (4G/5G RAN + EPC/5GC)->Information Supply Chain (firmware / patches / CVE feeds)
+Fixed Network Core->Network Equipment Vendor (Ericsson / Nokia / Huawei / ZTE)
+Fixed Network Core->Telecoms Engineering Workforce
+Fixed Network Core->Information Supply Chain (firmware / patches / CVE feeds)
+Network Equipment Vendor (Ericsson / Nokia / Huawei / ZTE)->Physical Supply Chain (hardware)
+Network Equipment Vendor (Ericsson / Nokia / Huawei / ZTE)->Silicon / Semiconductor Fab
+Open RAN->Semiconductor Design Expertise
+Open RAN->Information Supply Chain (firmware / patches / CVE feeds)
+Internet Exchange Point (IXP)->Peering Relationship
+Internet Exchange Point (IXP)->Compute (data centre / cloud)
+Peering Relationship->Tier-1 Transit
+Tier-1 Transit->Submarine Cable
+
+// --- Control layer depends on network reachability + legal authority ---
+Nation-State Firewall (GFW-style / DPI)->Fixed Network Core
+Nation-State Firewall (GFW-style / DPI)->Mobile Network Core (4G/5G RAN + EPC/5GC)
+Nation-State Firewall (GFW-style / DPI)->BGP Route Filtering
+Nation-State Firewall (GFW-style / DPI)->Cryptographic Expertise
+Lawful Intercept Apparatus->Mobile Network Core (4G/5G RAN + EPC/5GC)
+Lawful Intercept Apparatus->Fixed Network Core
+DNS-over-HTTPS (DoH)->Cryptographic Expertise
+National DNS Resolver->DNS-over-HTTPS (DoH)
+Geofencing / Geolocation Block->Mobile Tower / Cell Site
+Geofencing / Geolocation Block->SIM / eSIM
+SIM Registration Regime->SIM / eSIM
+BGP Route Filtering->Peering Relationship
+BGP Route Filtering->Tier-1 Transit
+Kill-Switch / Network Shutdown->Mobile Network Core (4G/5G RAN + EPC/5GC)
+Kill-Switch / Network Shutdown->Fixed Network Core
+Content Takedown / Legal Order->National DNS Resolver
+
+// --- Awareness layer depends on sensors, intel, compute ---
+Land-Sea-Air-Space Situational Awareness->Space Domain Awareness (SDA)
+Land-Sea-Air-Space Situational Awareness->Geography (territory / sea / airspace / orbit)
+Land-Sea-Air-Space Situational Awareness->Compute (data centre / cloud)
+Submarine Cable Route Awareness->Submarine Cable
+Submarine Cable Route Awareness->Geography (territory / sea / airspace / orbit)
+Space Domain Awareness (SDA)->Space (orbital slots)
+Space Domain Awareness (SDA)->Space / Launch Expertise
+Supply-Chain Intelligence (components / vendors)->Physical Supply Chain (hardware)
+Supply-Chain Intelligence (components / vendors)->Information Supply Chain (firmware / patches / CVE feeds)
+Threat Intel / Adversary Tracking->Information Supply Chain (firmware / patches / CVE feeds)
+Threat Intel / Adversary Tracking->Cryptographic Expertise
+
+// --- Expertise grounds the whole stack ---
+Telecoms Engineering Workforce->RF / Spectrum Expertise
+RF / Spectrum Expertise->Spectrum (radio)
+Semiconductor Design Expertise->Silicon / Semiconductor Fab
+Cryptographic Expertise->Compute (data centre / cloud)
+
+// --- Underlying reality dependencies ---
+Physical Supply Chain (hardware)->Silicon / Semiconductor Fab
+Physical Supply Chain (hardware)->Rare Earths & Metals
+Physical Supply Chain (hardware)->Geography (territory / sea / airspace / orbit)
+Information Supply Chain (firmware / patches / CVE feeds)->Compute (data centre / cloud)
+Silicon / Semiconductor Fab->Rare Earths & Metals
+Silicon / Semiconductor Fab->Power Grid
+Compute (data centre / cloud)->Power Grid
+Compute (data centre / cloud)->Geography (territory / sea / airspace / orbit)
+Power Grid->Geography (territory / sea / airspace / orbit)
+Spectrum (radio)->Geography (territory / sea / airspace / orbit)
+Space (orbital slots)->Geography (territory / sea / airspace / orbit)
+
+// =====================================================================
+// Evolution arrows — expected movement over the next 3-5 years (2022 → 2027)
+// =====================================================================
+evolve LEO Satellite Constellation (Starlink / OneWeb) 0.68
+evolve Launch Vehicle (commercial) 0.78
+evolve Open RAN 0.55
+evolve Nation-State Firewall (GFW-style / DPI) 0.72
+evolve DNS-over-HTTPS (DoH) 0.85
+evolve National DNS Resolver 0.82
+evolve Geofencing / Geolocation Block 0.80
+evolve SIM Registration Regime 0.88
+evolve BGP Route Filtering 0.82
+evolve Kill-Switch / Network Shutdown 0.68
+evolve Supply-Chain Intelligence (components / vendors) 0.45
+evolve Space Domain Awareness (SDA) 0.48
+evolve Submarine Cable Route Awareness 0.55
+evolve Digital Sovereignty 0.55
+evolve Launch Vehicle (sovereign) 0.45
+evolve Information Supply Chain (firmware / patches / CVE feeds) 0.68
+
+// =====================================================================
+// Inertia markers — where foreign dependency or legacy lock-in blocks movement
+// =====================================================================
+inertia Network Equipment Vendor (Ericsson / Nokia / Huawei / ZTE)
+inertia Silicon / Semiconductor Fab
+inertia Rare Earths & Metals
+inertia Submarine Cable
+inertia Tier-1 Transit
+inertia Physical Supply Chain (hardware)
+inertia Space / Launch Expertise
+inertia Launch Vehicle (sovereign)
+
+// =====================================================================
+// Annotations — where sovereignty is real vs. where it leaks
+// =====================================================================
+note Truly sovereign-controllable (law + territory) [0.47, 0.60]
+note Foreign-controlled bottlenecks [0.17, 0.55]
+note Awareness gap — most nations see poorly into space + supply chain [0.28, 0.22]
+note Hardware / silicon dependency is the deepest leak [0.18, 0.58]
+note Control layer is where digital sovereignty is fought [0.48, 0.65]
+note Space & launch — sovereignty frontier post-Ukraine [0.12, 0.32]

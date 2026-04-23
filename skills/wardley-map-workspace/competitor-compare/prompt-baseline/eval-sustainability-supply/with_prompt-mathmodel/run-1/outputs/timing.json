@@ -1,0 +1,18 @@
+{
+  "scenario": "eval-sustainability-supply",
+  "mode": "prompt-baseline",
+  "variant": "with_prompt-in-tree",
+  "run": 1,
+  "prompt_source": "/workspaces/wardleymap_math_model/prompts/wardley_map_generator.md",
+  "skill_used": false,
+  "blind": true,
+  "start_ns": 1776872983214722319,
+  "end_ns": 1776873121998819574,
+  "duration_s": 138.784,
+  "outputs": [
+    "output.md",
+    "draft.owm",
+    "timing.json"
+  ],
+  "notes": "Generated using only the standalone wardley_map_generator.md prompt (no SKILL.md, no validator, no benchmark references). References to reference .owm files were not read per blind-mode instructions."
+}

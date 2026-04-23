@@ -1,0 +1,72 @@
+title AI Trust Landscape (June 2023)
+style wardley
+
+anchor Individuals [0.96, 0.50]
+anchor Government [0.96, 0.40]
+anchor Business [0.96, 0.60]
+
+component Trusted AI Output [0.86, 0.15]
+component Safety [0.82, 0.25]
+component Reputation [0.80, 0.55]
+component Competitive Advantage [0.78, 0.60]
+component Regulations [0.70, 0.20]
+component AI Policy [0.64, 0.25]
+component Audits [0.60, 0.30]
+component Benchmarks [0.55, 0.45]
+component Feedback Loops [0.48, 0.32]
+component Constitution [0.45, 0.10]
+component Forensics [0.42, 0.10]
+component AI Models [0.33, 0.33] inertia
+component Algorithms [0.25, 0.60]
+component Training Data [0.20, 0.35]
+component Compute [0.10, 0.82]
+
+Individuals->Trusted AI Output
+Individuals->Safety
+Government->Safety
+Government->Regulations
+Business->Reputation
+Business->Competitive Advantage
+Business->Trusted AI Output
+
+Trusted AI Output->Safety
+Trusted AI Output->Forensics
+Trusted AI Output->Benchmarks
+Trusted AI Output->Constitution
+
+Safety->Audits
+Safety->Feedback Loops
+Safety->Regulations
+
+Reputation->Audits
+Reputation->Benchmarks
+Reputation->AI Policy
+
+Competitive Advantage->AI Models
+Competitive Advantage->Training Data
+
+Regulations->Audits
+Regulations->AI Policy
+AI Policy->Audits
+Audits->AI Models
+Audits->Training Data
+
+Benchmarks->AI Models
+Feedback Loops->AI Models
+Constitution->AI Models
+Forensics->AI Models
+
+AI Models->Algorithms
+AI Models->Training Data
+AI Models->Compute
+Training Data->Compute
+Algorithms->Compute
+
+evolve AI Models 0.55
+evolve Benchmarks 0.65
+evolve Regulations 0.40
+evolve Feedback Loops 0.55
+
+annotation 1 [[0.40, 0.12]] Fragile: Constitution and Forensics are Genesis-stage; trust depends on them but neither is proven at scale.
+annotation 2 [[0.72, 0.22]] EU AI Act still in trilogue June 2023 — regulatory regime is nascent.
+annotation 3 [[0.15, 0.82]] Compute (NVIDIA H100 / hyperscaler GPU) is the only true commodity in the stack.

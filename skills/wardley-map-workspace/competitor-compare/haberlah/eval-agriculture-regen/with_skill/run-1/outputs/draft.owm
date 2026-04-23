@@ -1,0 +1,78 @@
+title Regenerative Farming Landscape (August 2022)
+style wardley
+
+anchor Consumers [0.97, 0.70]
+anchor Farmers [0.97, 0.40]
+anchor Retailers [0.94, 0.62]
+anchor National Governments [0.94, 0.30]
+anchor UN / Supranational Bodies [0.94, 0.18]
+anchor Certification Bodies [0.94, 0.50]
+
+component Supply-Chain Awareness [0.86, 0.30]
+component Eco-Label / Grading [0.82, 0.45]
+component Regenerative Certification [0.78, 0.18]
+component Organic Certification [0.75, 0.70]
+component Farm Subsidies & Policy [0.72, 0.40]
+component Climate & Biodiversity Treaties [0.68, 0.32]
+component Soil Carbon Measurement [0.62, 0.15]
+component Regenerative Practices [0.55, 0.22]
+component Crop Rotation & Diversity [0.50, 0.50]
+component Monoculture at Scale [0.48, 0.88] inertia
+component Conservation & Substrate [0.38, 0.28]
+component Soil Microbiome [0.28, 0.12]
+component Photosynthesis [0.18, 0.95]
+component Petrochemical Inputs [0.15, 0.85] inertia
+
+Consumers->Eco-Label / Grading
+Consumers->Supply-Chain Awareness
+Consumers->Organic Certification
+Retailers->Supply-Chain Awareness
+Retailers->Eco-Label / Grading
+Retailers->Organic Certification
+Farmers->Regenerative Practices
+Farmers->Monoculture at Scale
+Farmers->Crop Rotation & Diversity
+Farmers->Farm Subsidies & Policy
+Certification Bodies->Regenerative Certification
+Certification Bodies->Organic Certification
+Certification Bodies->Soil Carbon Measurement
+National Governments->Farm Subsidies & Policy
+National Governments->Climate & Biodiversity Treaties
+UN / Supranational Bodies->Climate & Biodiversity Treaties
+
+Supply-Chain Awareness->Eco-Label / Grading
+Supply-Chain Awareness->Regenerative Certification
+Supply-Chain Awareness->Organic Certification
+Eco-Label / Grading->Regenerative Certification
+Eco-Label / Grading->Organic Certification
+Regenerative Certification->Soil Carbon Measurement
+Regenerative Certification->Regenerative Practices
+Organic Certification->Crop Rotation & Diversity
+Organic Certification->Conservation & Substrate
+Farm Subsidies & Policy->Monoculture at Scale
+Farm Subsidies & Policy->Regenerative Practices
+Farm Subsidies & Policy->Crop Rotation & Diversity
+Farm Subsidies & Policy->Climate & Biodiversity Treaties
+Climate & Biodiversity Treaties->Soil Carbon Measurement
+Soil Carbon Measurement->Soil Microbiome
+Soil Carbon Measurement->Conservation & Substrate
+Regenerative Practices->Crop Rotation & Diversity
+Regenerative Practices->Conservation & Substrate
+Regenerative Practices->Soil Microbiome
+Crop Rotation & Diversity->Soil Microbiome
+Crop Rotation & Diversity->Photosynthesis
+Monoculture at Scale->Petrochemical Inputs
+Monoculture at Scale->Photosynthesis
+Conservation & Substrate->Soil Microbiome
+Soil Microbiome->Photosynthesis
+
+evolve Regenerative Certification 0.45
+evolve Soil Carbon Measurement 0.40
+evolve Supply-Chain Awareness 0.55
+evolve Regenerative Practices 0.45
+evolve Climate & Biodiversity Treaties 0.55
+
+annotation 1 [[0.50, 0.10]] Lock-in zone: Monoculture + Petrochemical Inputs are Commodity with explicit inertia — subsidies, seed/fertiliser supply chains, and insurance are optimised for this state.
+annotation 2 [[0.28, 0.18]] Knowledge frontier: Soil Microbiome and Soil Carbon Measurement are Genesis — the scientific foundations of regen farming are not yet measurable at scale.
+annotation 3 [[0.85, 0.18]] Supply-chain awareness is Custom-Built; each retailer's traceability stack is bespoke. It's the bottleneck translating farm practice into consumer choice.
+annotation 4 [[0.70, 0.85]] Regen vs. organic: Organic is Product (mature standards, 50+ years); Regenerative is Genesis (ROC launched 2020, Savory EOV, Regen Network all competing, no consensus).

@@ -1,0 +1,22 @@
+{
+  "scenario_id": "cybersecurity-risk",
+  "skill": "haberlah/wardley-mapping",
+  "skill_path": "skills/wardley-map-workspace/competitor-compare/skills/wardley-map-workspace/competitor-compare/haberlah/skill/",
+  "run": 1,
+  "start_unix": 1776873365.137,
+  "end_unix": 1776873764.171,
+  "elapsed_seconds": 399.034,
+  "deliverables": {
+    "output_md": "outputs/output.md",
+    "draft_owm": "outputs/draft.owm"
+  },
+  "counts": {
+    "anchors": 1,
+    "components": 22,
+    "total_nodes": 23,
+    "dependencies": 34,
+    "evolutions": 7,
+    "inertia_markers": 4,
+    "annotations": 4
+  }
+}

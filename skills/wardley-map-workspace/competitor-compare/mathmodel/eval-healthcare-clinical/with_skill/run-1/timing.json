@@ -1,0 +1,9 @@
+{
+  "scenario": "healthcare-clinical",
+  "variant": "with_skill",
+  "run": 1,
+  "start_epoch_s": 1776874232.821,
+  "end_epoch_s": 1776874697.302,
+  "elapsed_s": 464.481,
+  "notes": "Bash permission was denied for node validate_owm.mjs / check_layout.mjs / owm_to_mermaid.mjs invocations; validator rules were verified by manual audit of coords and every edge. Mermaid block produced manually following the converter's double-quote convention."
+}

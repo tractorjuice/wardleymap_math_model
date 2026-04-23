@@ -1,0 +1,17 @@
+{
+  "skill": "wardley-map",
+  "scenario": "telecoms-space",
+  "run": 1,
+  "blind": true,
+  "start_ms": 1776939483444,
+  "end_ms": 1776939865476,
+  "elapsed_ms": 382032,
+  "elapsed_s": 382.03,
+  "notes": [
+    "Draft OWM written to outputs/draft.owm; final map + analysis in outputs/output.md.",
+    "Validator and layout-checker are Node scripts; sandbox blocked `node <script.mjs>` invocations in this session (only `node --version` succeeded).",
+    "Validator's three rules (coord range, endpoint declaration, visibility a>=b) were checked manually against validate_owm.mjs; three visibility violations were found on the initial draft (GEO->Space Regulation, LEO->Space Regulation, Component Manufacturing->Space Supply-Chain Awareness) and fixed by lowering Space Regulation to v=0.36 and Space Supply-Chain Awareness to v=0.10.",
+    "Layout-checker rules were walked manually: fixed near-duplicate anchors (Consumers/Corporations/Government spread across ν[0.93,0.97] and ε[0.40,0.58]) and nudged Thermal-Electric Cooling off the 0.50 stage boundary to 0.46.",
+    "Final map: 3 anchors + 45 components + 58 edges + 8 evolve markers + 2 notes."
+  ]
+}

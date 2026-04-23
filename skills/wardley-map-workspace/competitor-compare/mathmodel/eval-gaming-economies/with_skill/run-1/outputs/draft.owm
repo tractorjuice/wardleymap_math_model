@@ -1,0 +1,129 @@
+title Game Economies Landscape (November 2023)
+style wardley
+
+// Anchors — two users: the commercial publisher and the end player
+anchor Publisher [0.98, 0.50]
+anchor Player [0.96, 0.60]
+
+// User-facing experience (what Publisher and Player directly consume)
+component Game [0.90, 0.55]
+component Virtual Items and Cosmetics [0.85, 0.70]
+component In-Game Economy [0.82, 0.58]
+component Tournaments and Esports [0.80, 0.45]
+component Marketing Campaigns [0.83, 0.60]
+component Influencer Communities [0.76, 0.60]
+component Streaming Content [0.74, 0.80]
+component Community Management [0.73, 0.55]
+component Player Social Platforms [0.70, 0.78]
+
+// Publisher-side commercial layer
+component Monetisation Model [0.66, 0.62]
+component Licensing and Subscriptions [0.62, 0.65]
+component In-Game Advertising [0.61, 0.68]
+component Business Model [0.58, 0.45]
+component Funding and Investment [0.54, 0.55]
+component Player Profiling and Analytics [0.52, 0.62]
+component Trust and Safety [0.48, 0.30]
+
+// Distribution layer
+component Subscription Catalogues [0.64, 0.55]
+component Game Stores [0.60, 0.72]
+component Game-specific Marketplaces [0.44, 0.48]
+component Alternative Distribution [0.40, 0.15]
+
+// Production layer (how a game gets built)
+component Game Development [0.42, 0.42]
+component Developer Talent [0.38, 0.40]
+component Game Engine [0.34, 0.68]
+component Dev Tooling [0.30, 0.60]
+component AI Content Tooling [0.28, 0.18]
+component Live Operations Platform [0.33, 0.52]
+component Matchmaking [0.31, 0.55]
+component Anti-cheat [0.28, 0.45]
+
+// Deep infrastructure
+component Gaming Hardware [0.24, 0.80]
+component Cloud Gaming [0.22, 0.40]
+component Backend Services [0.18, 0.78]
+component Payment Processing [0.16, 0.90]
+component Identity and Auth [0.14, 0.88]
+component CDN [0.12, 0.92]
+component Telemetry Infrastructure [0.11, 0.82]
+component Object Storage [0.09, 0.93]
+component Cloud Compute [0.08, 0.90]
+
+// Dependencies — what each node depends on
+Publisher->Game
+Publisher->Monetisation Model
+Publisher->Business Model
+Publisher->Marketing Campaigns
+Publisher->Player Profiling and Analytics
+Publisher->Funding and Investment
+Publisher->Game Stores
+Publisher->Community Management
+Player->Game
+Player->Virtual Items and Cosmetics
+Player->In-Game Economy
+Player->Tournaments and Esports
+Player->Streaming Content
+Player->Influencer Communities
+Player->Player Social Platforms
+Game->Game Development
+Game->Game Stores
+Game->Licensing and Subscriptions
+Virtual Items and Cosmetics->In-Game Economy
+Virtual Items and Cosmetics->Game-specific Marketplaces
+In-Game Economy->Monetisation Model
+In-Game Economy->Trust and Safety
+Tournaments and Esports->Community Management
+Tournaments and Esports->Streaming Content
+Streaming Content->Player Social Platforms
+Influencer Communities->Streaming Content
+Influencer Communities->Player Social Platforms
+Marketing Campaigns->Influencer Communities
+Marketing Campaigns->Player Social Platforms
+Marketing Campaigns->Player Profiling and Analytics
+Community Management->Player Social Platforms
+Community Management->Trust and Safety
+Monetisation Model->In-Game Advertising
+Monetisation Model->Game-specific Marketplaces
+Monetisation Model->Licensing and Subscriptions
+Subscription Catalogues->Licensing and Subscriptions
+Licensing and Subscriptions->Payment Processing
+In-Game Advertising->Player Profiling and Analytics
+Business Model->Funding and Investment
+Player Profiling and Analytics->Telemetry Infrastructure
+Trust and Safety->Anti-cheat
+Game Stores->Payment Processing
+Game Stores->CDN
+Subscription Catalogues->Game Stores
+Game-specific Marketplaces->Payment Processing
+Alternative Distribution->CDN
+Game Development->Developer Talent
+Game Development->Game Engine
+Game Development->Dev Tooling
+Game Development->AI Content Tooling
+Game Development->Live Operations Platform
+Game Development->Gaming Hardware
+Game Engine->Dev Tooling
+Live Operations Platform->Matchmaking
+Live Operations Platform->Backend Services
+Matchmaking->Backend Services
+Anti-cheat->Backend Services
+Backend Services->Cloud Compute
+Backend Services->Object Storage
+Backend Services->Identity and Auth
+Cloud Gaming->Cloud Compute
+Cloud Gaming->CDN
+Telemetry Infrastructure->Cloud Compute
+CDN->Cloud Compute
+Object Storage->Cloud Compute
+
+evolve Trust and Safety 0.55
+evolve AI Content Tooling 0.45
+evolve Cloud Gaming 0.60
+evolve Alternative Distribution 0.35
+
+note Differentiation zone [0.72, 0.30]
+note Utility commodity [0.10, 0.95]
+note Trust collapse risk [0.48, 0.18]

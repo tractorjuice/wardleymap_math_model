@@ -1,0 +1,193 @@
+title Clinical Decision Making in Healthcare (August 2022)
+style wardley
+
+// Anchors — four user types with different needs in this landscape
+anchor Patient [0.99, 0.52]
+anchor Clinician [0.95, 0.48]
+anchor Institution [0.92, 0.60]
+anchor Payer [0.90, 0.70]
+
+// Top of chain — needs & outcomes
+component Treatment Received [0.86, 0.58]
+component Clinical Outcome [0.83, 0.45]
+component Care Pathway [0.80, 0.55]
+component Consent & Shared Decision [0.78, 0.35]
+
+// Settings of care (where the patient flows through)
+component Primary Care Visit [0.74, 0.70]
+component Emergency Department [0.72, 0.72]
+component Specialist Clinic [0.70, 0.62]
+component Inpatient Ward [0.68, 0.68]
+component Telehealth Visit [0.66, 0.55]
+component Home / Community Care [0.64, 0.42]
+
+// Diagnostic reasoning (higher in chain — clinician-visible)
+component Clinical Judgement [0.62, 0.20]
+component Differential Diagnosis [0.60, 0.40]
+component Patient History & Symptoms [0.58, 0.60]
+component Physical Examination [0.56, 0.49]
+component Risk Stratification [0.54, 0.48]
+component Exception / Edge-Case Handling [0.52, 0.18]
+component Diagnosis Code [0.50, 0.82]
+
+// Decision support (mid chain — tools the clinician invokes)
+component Clinical Decision Support (CDS) [0.48, 0.52]
+component Drug Interaction Check [0.46, 0.80]
+component Order Sets & Protocols [0.44, 0.68]
+component AI Diagnostic Assistant [0.42, 0.28]
+
+// Data sources and observation
+component Lab Tests [0.44, 0.82]
+component Medical Imaging [0.42, 0.72]
+component Pathology [0.40, 0.78]
+component Vital Signs Monitoring [0.38, 0.78]
+component Genomic Testing [0.36, 0.38]
+component Wearables & Remote Monitoring [0.34, 0.42]
+
+// Permissible treatments (mid chain — ordered by clinician)
+component Prescribed Medications [0.52, 0.78]
+component Surgical Intervention [0.50, 0.58]
+component Procedural Intervention [0.48, 0.55]
+component Therapy Referral [0.46, 0.62]
+component Off-Label / Compassionate Use [0.44, 0.22]
+
+// Standards, guidelines, evidence
+component Clinical Guidelines [0.36, 0.68]
+component Medical Knowledge Base [0.32, 0.72]
+component Evidence Base (RCTs) [0.30, 0.62]
+component Peer Review & Journals [0.26, 0.75]
+component Clinical Trials [0.24, 0.45]
+component Real-World Evidence [0.10, 0.38]
+
+// Regulation & ethics
+component Medical Ethics Review [0.22, 0.42]
+component Regulatory Approval (FDA/EMA/MHRA) [0.20, 0.72]
+component Malpractice / Legal Framework [0.18, 0.82]
+
+// Fairness & equity
+component Algorithmic Fairness Audit [0.14, 0.20]
+component Health Equity Monitoring [0.12, 0.28]
+
+// Payer / coverage / reimbursement
+component Prior Authorization [0.38, 0.62]
+component Coverage Policy [0.32, 0.68]
+component Reimbursement Coding [0.26, 0.85]
+component Formulary [0.24, 0.80]
+
+// Infrastructure / data plumbing
+component Electronic Health Record (EHR) [0.28, 0.78]
+component Health Data Interoperability (HL7 FHIR) [0.20, 0.60]
+component Health Data Privacy (HIPAA/GDPR) [0.16, 0.82]
+component Identity & Access Management [0.14, 0.88]
+component Cloud & Compute [0.08, 0.92]
+
+// Notes
+note Bespoke judgement zone [0.55, 0.22]
+note Industrialised process zone [0.30, 0.82]
+note Fairness & exception handling [0.15, 0.22]
+
+// Dependencies
+Patient->Treatment Received
+Patient->Clinical Outcome
+Patient->Care Pathway
+Patient->Consent & Shared Decision
+Clinician->Care Pathway
+Clinician->Clinical Judgement
+Clinician->Clinical Decision Support (CDS)
+Institution->Care Pathway
+Institution->Clinical Guidelines
+Institution->Electronic Health Record (EHR)
+Payer->Coverage Policy
+Payer->Reimbursement Coding
+Payer->Prior Authorization
+
+Care Pathway->Primary Care Visit
+Care Pathway->Emergency Department
+Care Pathway->Specialist Clinic
+Care Pathway->Inpatient Ward
+Care Pathway->Telehealth Visit
+Care Pathway->Home / Community Care
+Care Pathway->Differential Diagnosis
+
+Treatment Received->Prescribed Medications
+Treatment Received->Surgical Intervention
+Treatment Received->Procedural Intervention
+Treatment Received->Therapy Referral
+Treatment Received->Off-Label / Compassionate Use
+
+Consent & Shared Decision->Clinical Judgement
+Consent & Shared Decision->Medical Ethics Review
+
+Primary Care Visit->Patient History & Symptoms
+Primary Care Visit->Physical Examination
+Emergency Department->Vital Signs Monitoring
+Emergency Department->Physical Examination
+Specialist Clinic->Medical Imaging
+Specialist Clinic->Pathology
+Inpatient Ward->Vital Signs Monitoring
+Telehealth Visit->Electronic Health Record (EHR)
+Home / Community Care->Wearables & Remote Monitoring
+
+Clinical Judgement->Differential Diagnosis
+Clinical Judgement->Exception / Edge-Case Handling
+Clinical Judgement->Patient History & Symptoms
+Differential Diagnosis->Physical Examination
+Differential Diagnosis->Lab Tests
+Differential Diagnosis->Medical Imaging
+Differential Diagnosis->Diagnosis Code
+Differential Diagnosis->Risk Stratification
+Risk Stratification->AI Diagnostic Assistant
+Risk Stratification->Real-World Evidence
+Diagnosis Code->Reimbursement Coding
+
+Clinical Decision Support (CDS)->Clinical Guidelines
+Clinical Decision Support (CDS)->Drug Interaction Check
+Clinical Decision Support (CDS)->Order Sets & Protocols
+Clinical Decision Support (CDS)->AI Diagnostic Assistant
+AI Diagnostic Assistant->Electronic Health Record (EHR)
+Order Sets & Protocols->Clinical Guidelines
+
+Lab Tests->Electronic Health Record (EHR)
+Medical Imaging->Electronic Health Record (EHR)
+Pathology->Electronic Health Record (EHR)
+Vital Signs Monitoring->Electronic Health Record (EHR)
+Genomic Testing->Medical Knowledge Base
+Wearables & Remote Monitoring->Health Data Interoperability (HL7 FHIR)
+
+Prescribed Medications->Formulary
+Prescribed Medications->Drug Interaction Check
+Prescribed Medications->Regulatory Approval (FDA/EMA/MHRA)
+Surgical Intervention->Clinical Guidelines
+Procedural Intervention->Clinical Guidelines
+Therapy Referral->Coverage Policy
+Off-Label / Compassionate Use->Medical Ethics Review
+
+Clinical Guidelines->Evidence Base (RCTs)
+Clinical Guidelines->Medical Knowledge Base
+Medical Knowledge Base->Peer Review & Journals
+Evidence Base (RCTs)->Clinical Trials
+Evidence Base (RCTs)->Real-World Evidence
+Clinical Trials->Regulatory Approval (FDA/EMA/MHRA)
+Clinical Trials->Medical Ethics Review
+
+Prior Authorization->Coverage Policy
+Coverage Policy->Reimbursement Coding
+Coverage Policy->Formulary
+
+Electronic Health Record (EHR)->Health Data Interoperability (HL7 FHIR)
+Electronic Health Record (EHR)->Identity & Access Management
+Electronic Health Record (EHR)->Health Data Privacy (HIPAA/GDPR)
+Electronic Health Record (EHR)->Cloud & Compute
+Health Data Interoperability (HL7 FHIR)->Cloud & Compute
+Identity & Access Management->Cloud & Compute
+
+AI Diagnostic Assistant->Algorithmic Fairness Audit
+Algorithmic Fairness Audit->Health Equity Monitoring
+Clinical Judgement->Malpractice / Legal Framework
+Medical Ethics Review->Malpractice / Legal Framework
+
+evolve AI Diagnostic Assistant 0.55
+evolve Health Data Interoperability (HL7 FHIR) 0.80
+evolve Real-World Evidence 0.55
+evolve Algorithmic Fairness Audit 0.45
+evolve Wearables & Remote Monitoring 0.62

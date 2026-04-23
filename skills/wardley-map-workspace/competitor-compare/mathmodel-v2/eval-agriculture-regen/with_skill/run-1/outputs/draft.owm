@@ -1,0 +1,224 @@
+title Regenerative Farming Landscape (August 2022)
+style wardley
+
+// Anchors — multiple user types
+anchor Consumer [0.99, 0.62]
+anchor Farmer [0.96, 0.40]
+anchor National Government [0.93, 0.55]
+
+// Consumer-facing
+component Affordable Food [0.90, 0.80]
+component Trusted Food Label [0.86, 0.42]
+component Brand Story / Provenance [0.82, 0.55]
+component Supermarket Shelf Choice [0.88, 0.78]
+
+// Retail / supply chain tier
+component Retailer Sourcing Policy [0.78, 0.48]
+component Food Processor / Brand [0.76, 0.58]
+component Commodity Trader [0.74, 0.72]
+component Supply Chain Traceability [0.70, 0.32]
+
+// Certification and labels
+component Regenerative Certification [0.73, 0.22]
+component Organic Certification [0.71, 0.62]
+component Fair Trade / Rainforest Alliance [0.71, 0.68]
+component Carbon / Climate Label [0.64, 0.18]
+
+// Measurement & data (the "grading" layer)
+component Soil Health Metrics [0.58, 0.28]
+component Soil Carbon MRV [0.54, 0.20]
+component Remote Sensing / Satellite Data [0.50, 0.55]
+component Farm Data Platform [0.48, 0.45]
+component Biodiversity Metrics [0.52, 0.18]
+
+// Farmer-facing practice & income
+component Farm Income / Margin [0.92, 0.70]
+component Subsidy / Basic Payment [0.88, 0.58]
+component Carbon Credits (Soil) [0.78, 0.22]
+component Ecosystem Service Payments [0.83, 0.22]
+component Crop Insurance [0.72, 0.70]
+component Agronomic Advice [0.70, 0.50]
+component Farm Management Software [0.66, 0.62]
+
+// Practices — regenerative
+component Cover Cropping [0.60, 0.42]
+component No-Till / Min-Till [0.58, 0.52]
+component Crop Rotation (Diverse) [0.56, 0.48]
+component Agroforestry [0.52, 0.22]
+component Integrated Livestock Grazing [0.50, 0.32]
+component Reduced Synthetic Inputs [0.54, 0.38]
+
+// Practices — extractive / incumbent
+component Monoculture at Scale [0.62, 0.88] inertia
+component Conventional Tillage [0.58, 0.85] inertia
+component Synthetic Fertiliser Application [0.60, 0.90] inertia
+component Pesticide / Herbicide Programme [0.56, 0.86] inertia
+
+// Inputs — physical substrate
+component Seeds (Commercial Varieties) [0.44, 0.80]
+component Heritage / Diverse Seed Stock [0.40, 0.30]
+component Synthetic Fertiliser (N, P, K) [0.38, 0.92]
+component Agrochemical Inputs [0.36, 0.88]
+component Diesel / Farm Fuel [0.32, 0.95]
+component Farm Machinery [0.34, 0.82]
+
+// The "energy matrix beneath the soil"
+component Soil Organic Matter [0.28, 0.35]
+component Soil Microbiome [0.24, 0.28]
+component Mycorrhizal Networks [0.20, 0.20]
+component Water Cycle / Infiltration [0.16, 0.60]
+component Photosynthesis [0.12, 0.97]
+
+// Land and conservation
+component Land Tenure [0.42, 0.85]
+component Conservation Reserve / Set-aside [0.45, 0.55]
+component Hedgerows / Field Margins [0.43, 0.58]
+
+// Policy layer
+component National Farm Policy (e.g. ELMs, Farm Bill) [0.82, 0.38]
+component EU CAP Reform [0.80, 0.52]
+component Farm-to-Fork Strategy (EU) [0.76, 0.30]
+component Treaties / Supranational Frameworks [0.64, 0.35]
+component UN FAO / SDG 2 Guidance [0.60, 0.42]
+component IPCC Land-Use Science [0.44, 0.55]
+component COP Climate Commitments [0.58, 0.38]
+
+// Knowledge
+component Regenerative Agronomy Knowledge [0.30, 0.22]
+component Conventional Agronomy Knowledge [0.32, 0.78]
+
+// Dependencies
+Consumer->Affordable Food
+Consumer->Supermarket Shelf Choice
+Consumer->Trusted Food Label
+Consumer->Brand Story / Provenance
+
+Farmer->Farm Income / Margin
+Farmer->Subsidy / Basic Payment
+Farmer->Agronomic Advice
+Farmer->Crop Insurance
+Farmer->Land Tenure
+
+National Government->National Farm Policy (e.g. ELMs, Farm Bill)
+National Government->Treaties / Supranational Frameworks
+National Government->COP Climate Commitments
+
+Supermarket Shelf Choice->Retailer Sourcing Policy
+Supermarket Shelf Choice->Food Processor / Brand
+Trusted Food Label->Regenerative Certification
+Trusted Food Label->Organic Certification
+Trusted Food Label->Fair Trade / Rainforest Alliance
+Trusted Food Label->Carbon / Climate Label
+Brand Story / Provenance->Supply Chain Traceability
+Brand Story / Provenance->Food Processor / Brand
+Affordable Food->Commodity Trader
+Affordable Food->Monoculture at Scale
+
+Retailer Sourcing Policy->Supply Chain Traceability
+Retailer Sourcing Policy->Regenerative Certification
+Retailer Sourcing Policy->Carbon / Climate Label
+Food Processor / Brand->Commodity Trader
+Food Processor / Brand->Supply Chain Traceability
+Commodity Trader->Monoculture at Scale
+
+Supply Chain Traceability->Farm Data Platform
+Supply Chain Traceability->Remote Sensing / Satellite Data
+
+Regenerative Certification->Soil Health Metrics
+Regenerative Certification->Biodiversity Metrics
+Regenerative Certification->Soil Carbon MRV
+Organic Certification->Reduced Synthetic Inputs
+Fair Trade / Rainforest Alliance->Supply Chain Traceability
+Carbon / Climate Label->Soil Carbon MRV
+
+Soil Health Metrics->Soil Organic Matter
+Soil Health Metrics->Soil Microbiome
+Soil Carbon MRV->Remote Sensing / Satellite Data
+Soil Carbon MRV->Soil Organic Matter
+Remote Sensing / Satellite Data->Farm Data Platform
+Biodiversity Metrics->Remote Sensing / Satellite Data
+
+Farm Income / Margin->Subsidy / Basic Payment
+Farm Income / Margin->Carbon Credits (Soil)
+Farm Income / Margin->Ecosystem Service Payments
+Farm Income / Margin->Crop Insurance
+Farm Income / Margin->Commodity Trader
+Subsidy / Basic Payment->National Farm Policy (e.g. ELMs, Farm Bill)
+Subsidy / Basic Payment->EU CAP Reform
+Carbon Credits (Soil)->Soil Carbon MRV
+Ecosystem Service Payments->Biodiversity Metrics
+Ecosystem Service Payments->National Farm Policy (e.g. ELMs, Farm Bill)
+Crop Insurance->Conventional Agronomy Knowledge
+Agronomic Advice->Regenerative Agronomy Knowledge
+Agronomic Advice->Conventional Agronomy Knowledge
+Farm Management Software->Farm Data Platform
+
+Cover Cropping->Regenerative Agronomy Knowledge
+Cover Cropping->Heritage / Diverse Seed Stock
+No-Till / Min-Till->Farm Machinery
+No-Till / Min-Till->Regenerative Agronomy Knowledge
+Crop Rotation (Diverse)->Heritage / Diverse Seed Stock
+Crop Rotation (Diverse)->Regenerative Agronomy Knowledge
+Agroforestry->Land Tenure
+Agroforestry->Regenerative Agronomy Knowledge
+Integrated Livestock Grazing->Land Tenure
+Integrated Livestock Grazing->Regenerative Agronomy Knowledge
+Reduced Synthetic Inputs->Regenerative Agronomy Knowledge
+
+Monoculture at Scale->Seeds (Commercial Varieties)
+Monoculture at Scale->Conventional Agronomy Knowledge
+Monoculture at Scale->Farm Machinery
+Monoculture at Scale->Land Tenure
+Conventional Tillage->Farm Machinery
+Conventional Tillage->Diesel / Farm Fuel
+Synthetic Fertiliser Application->Synthetic Fertiliser (N, P, K)
+Synthetic Fertiliser Application->Farm Machinery
+Pesticide / Herbicide Programme->Agrochemical Inputs
+Pesticide / Herbicide Programme->Farm Machinery
+
+Seeds (Commercial Varieties)->Conventional Agronomy Knowledge
+Farm Machinery->Diesel / Farm Fuel
+Synthetic Fertiliser (N, P, K)->Diesel / Farm Fuel
+Agrochemical Inputs->Diesel / Farm Fuel
+
+Cover Cropping->Soil Microbiome
+Cover Cropping->Soil Organic Matter
+No-Till / Min-Till->Soil Microbiome
+No-Till / Min-Till->Soil Organic Matter
+Crop Rotation (Diverse)->Soil Microbiome
+Agroforestry->Mycorrhizal Networks
+Integrated Livestock Grazing->Soil Microbiome
+Reduced Synthetic Inputs->Soil Microbiome
+
+Soil Microbiome->Photosynthesis
+Soil Microbiome->Mycorrhizal Networks
+Soil Organic Matter->Soil Microbiome
+Soil Organic Matter->Water Cycle / Infiltration
+Mycorrhizal Networks->Photosynthesis
+
+Conservation Reserve / Set-aside->Land Tenure
+Hedgerows / Field Margins->Land Tenure
+Hedgerows / Field Margins->Regenerative Agronomy Knowledge
+
+National Farm Policy (e.g. ELMs, Farm Bill)->IPCC Land-Use Science
+National Farm Policy (e.g. ELMs, Farm Bill)->UN FAO / SDG 2 Guidance
+EU CAP Reform->Farm-to-Fork Strategy (EU)
+Farm-to-Fork Strategy (EU)->IPCC Land-Use Science
+Treaties / Supranational Frameworks->UN FAO / SDG 2 Guidance
+Treaties / Supranational Frameworks->COP Climate Commitments
+COP Climate Commitments->IPCC Land-Use Science
+UN FAO / SDG 2 Guidance->IPCC Land-Use Science
+
+// Evolution trajectories (scenarios)
+evolve Regenerative Certification 0.52
+evolve Soil Carbon MRV 0.55
+evolve Carbon / Climate Label 0.48
+evolve Carbon Credits (Soil) 0.55
+evolve Regenerative Agronomy Knowledge 0.50
+evolve Farm Data Platform 0.70
+evolve National Farm Policy (e.g. ELMs, Farm Bill) 0.55
+
+// Notes
+note Genesis / Custom zone — knowledge-led [0.35, 0.15]
+note Industrial lock-in [0.55, 0.92]
+note Utility substrate [0.15, 0.95]

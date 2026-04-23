@@ -1,0 +1,119 @@
+title Game Economies - November 2023
+style wardley
+
+// Anchors (users)
+anchor Players [0.97, 0.55]
+anchor Publishers [0.95, 0.62]
+
+// User-facing product layer
+component Game Title [0.88, 0.45]
+component Business Models [0.84, 0.42]
+component Developers [0.82, 0.38]
+
+// Capital and buzz layer (fund + market + rally)
+component Funding [0.78, 0.70]
+component Tournaments & Influencers [0.72, 0.52]
+component Streaming & Social [0.68, 0.86]
+
+// Instrumentation and economy mechanics
+component Player Profiling [0.62, 0.55]
+component In-Game Economy [0.58, 0.33]
+component Virtual Items & Marketplaces [0.55, 0.55]
+component Licensing & Subscriptions [0.50, 0.62]
+component Advertising [0.46, 0.66]
+
+// Channels
+component Game Stores & Catalogues [0.42, 0.72]
+
+// Build / run infrastructure
+component Game Engines [0.35, 0.60]
+component Game Platforms [0.28, 0.68]
+component Hardware [0.15, 0.90]
+
+// Cross-cutting risk
+component Trust & Anti-Toxicity [0.30, 0.22] inertia
+
+// Dependencies: Players
+Players->Game Title
+Players->Game Stores & Catalogues
+Players->Streaming & Social
+Players->Tournaments & Influencers
+Players->Virtual Items & Marketplaces
+Players->Licensing & Subscriptions
+
+// Dependencies: Publishers
+Publishers->Game Title
+Publishers->Developers
+Publishers->Funding
+Publishers->Business Models
+Publishers->Tournaments & Influencers
+Publishers->Player Profiling
+Publishers->Licensing & Subscriptions
+Publishers->Advertising
+
+// Product layer dependencies
+Game Title->Developers
+Game Title->In-Game Economy
+Game Title->Game Engines
+Game Title->Game Stores & Catalogues
+Game Title->Game Platforms
+Business Models->In-Game Economy
+Business Models->Licensing & Subscriptions
+Business Models->Advertising
+Business Models->Virtual Items & Marketplaces
+
+// Developer dependencies
+Developers->Game Engines
+Developers->Game Platforms
+Developers->Player Profiling
+
+// Economy / monetisation dependencies
+In-Game Economy->Virtual Items & Marketplaces
+Virtual Items & Marketplaces->Game Platforms
+Licensing & Subscriptions->Game Stores & Catalogues
+Advertising->Game Platforms
+Player Profiling->Game Platforms
+
+// Channel dependencies
+Game Stores & Catalogues->Game Platforms
+Game Stores & Catalogues->Hardware
+Game Platforms->Hardware
+Game Engines->Hardware
+Streaming & Social->Hardware
+
+// Buzz/marketing dependencies
+Tournaments & Influencers->Streaming & Social
+Tournaments & Influencers->Game Title
+
+// Trust cross-cuts the social/economy/title layers
+Game Title->Trust & Anti-Toxicity
+Streaming & Social->Trust & Anti-Toxicity
+In-Game Economy->Trust & Anti-Toxicity
+Virtual Items & Marketplaces->Trust & Anti-Toxicity
+
+// Evolution arrows - predicted 12-24 month movement
+evolve In-Game Economy 0.50
+evolve Player Profiling 0.72
+evolve Trust & Anti-Toxicity 0.42
+evolve Licensing & Subscriptions 0.75
+evolve Business Models 0.55
+evolve Game Stores & Catalogues 0.82
+
+// Build / buy / outsource indicators
+build Game Title
+build Business Models
+build In-Game Economy
+buy Game Engines
+buy Game Platforms
+buy Hardware
+buy Game Stores & Catalogues
+buy Streaming & Social
+buy Licensing & Subscriptions
+outsource Funding
+outsource Advertising
+
+// Strategic annotations
+annotation 1 [[0.30, 0.22]] Toxicity / trust is still Custom-Built - collapse risk
+annotation 2 [[0.62, 0.55]] Player data is the differentiation moat for publishers
+annotation 3 [[0.42, 0.72]] Storefronts becoming utilities - 30% tax under pressure
+annotation 4 [[0.58, 0.33]] Live-service economy design is where publishers still win

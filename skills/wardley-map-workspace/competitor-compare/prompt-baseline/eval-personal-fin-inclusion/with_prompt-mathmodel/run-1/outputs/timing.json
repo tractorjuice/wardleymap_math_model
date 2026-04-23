@@ -1,0 +1,25 @@
+{
+  "run": "prompt-baseline/eval-personal-fin-inclusion/with_prompt-in-tree/run-1",
+  "scenario": "Digital financial inclusion from the perspective of an individual in an underbanked region",
+  "prompt_only": true,
+  "instructions_file": "/workspaces/wardleymap_math_model/prompts/wardley_map_generator.md",
+  "reference_read": false,
+  "skill_used": false,
+  "validator_used": false,
+  "start_ns": 1776873089590487885,
+  "end_ns": 1776873422656502576,
+  "duration_ns": 333066014691,
+  "duration_seconds": 333.07,
+  "duration_minutes": 5.55,
+  "outputs": [
+    "output.md",
+    "draft.owm",
+    "timing.json"
+  ],
+  "component_count": 32,
+  "anchor_count": 1,
+  "edge_count": 58,
+  "inertia_markers": 3,
+  "evolve_directives": 7,
+  "notes": 3
+}

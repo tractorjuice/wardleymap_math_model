@@ -1,0 +1,22 @@
+{
+  "run": "prompt-baseline/eval-defence-intelligence/with_prompt-in-tree/run-1",
+  "scenario": "Defence Intelligence Landscape (March 2023)",
+  "mode": "prompt-only",
+  "prompt_source": "/workspaces/wardleymap_math_model/prompts/wardley_map_generator.md",
+  "reference_read": false,
+  "skill_used": false,
+  "start_unix": 1776873019.444,
+  "end_unix": 1776873182.308,
+  "elapsed_seconds": 162.864,
+  "outputs": {
+    "map": "outputs/draft.owm",
+    "analysis": "outputs/output.md",
+    "timing": "outputs/timing.json"
+  },
+  "components_total": 40,
+  "anchors": 4,
+  "inertia_marked": 1,
+  "evolve_statements": 5,
+  "notes": 4,
+  "dependencies_approx": 52
+}

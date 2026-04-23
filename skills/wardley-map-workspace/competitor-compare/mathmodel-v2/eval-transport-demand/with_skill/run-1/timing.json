@@ -1,0 +1,23 @@
+{
+  "skill": "wardley-map",
+  "scenario": "transport-demand",
+  "run": 1,
+  "blind": true,
+  "start_epoch": 1776938658.981687,
+  "end_epoch": 1776938973.736763,
+  "duration_seconds": 314.755,
+  "duration_minutes": 5.25,
+  "components_generated": 24,
+  "anchors": 3,
+  "edges": 60,
+  "validator_pass": true,
+  "layout_pass": true,
+  "layout_iterations": 1,
+  "deep_placement_components": 4,
+  "new_features_present": {
+    "step_0_strategic_context": true,
+    "step_4b_evidence_citations": true,
+    "section_3_2_evolution_rationale_table": true,
+    "section_4d_build_buy_outsource_table": true
+  }
+}

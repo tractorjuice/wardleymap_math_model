@@ -1,0 +1,168 @@
+title Space-Based Telecoms Landscape (Feb 2023)
+style wardley
+
+// Anchors — three user types
+anchor Consumers [0.97, 0.58]
+anchor Corporations [0.95, 0.52]
+anchor Government [0.93, 0.40]
+
+// User needs / services (user-facing)
+component Connectivity [0.88, 0.58]
+component Broadcast Services [0.84, 0.80]
+component Secure / Sovereign Comms [0.82, 0.35]
+component Backhaul & Enterprise Links [0.80, 0.62]
+
+// Access stack
+component Network Access [0.74, 0.70]
+component Non-Terrestrial Network Service [0.70, 0.20]
+component Mobile Access [0.72, 0.82]
+component Fibre Access [0.70, 0.88]
+
+// Topology / physical layer
+component Physical Network [0.62, 0.68]
+component User Terminals [0.60, 0.45]
+component Phased-Array Antennas [0.48, 0.30]
+component Spectrum Licensing [0.56, 0.72]
+component Ku-band Spectrum [0.42, 0.88]
+component Ka-band Spectrum [0.40, 0.72]
+component V-band Spectrum [0.38, 0.22]
+
+// Ground segment
+component Ground Stations [0.50, 0.55]
+component Ground-Station-as-a-Service [0.46, 0.40]
+
+// Satellites — two generations
+component GEO Satellite [0.44, 0.82]
+component LEO Microsatellite [0.42, 0.35]
+
+// Inter-satellite / beam
+component Optical Inter-Satellite Links [0.34, 0.18]
+component Beamforming & Beam-Steering [0.32, 0.38]
+component Satellite Antennas [0.30, 0.70]
+
+// Satellite subsystems
+component Propulsion (Xenon Hall-effect) [0.24, 0.78]
+component Propulsion (Krypton Hall-effect) [0.22, 0.40]
+component Power Subsystem (Solar + Battery) [0.22, 0.85]
+component Thermal-Electric Cooling [0.20, 0.46]
+component Radiative Cooling [0.18, 0.88]
+component Cryogenic Cooling [0.16, 0.18]
+
+// Launch
+component Launch Services [0.28, 0.55]
+component Reusable Launch [0.26, 0.30]
+
+// Control / ops
+component Orbit Tracking [0.36, 0.62]
+component Debris Tracking & Collision Avoidance [0.30, 0.30]
+component Fleet Management [0.28, 0.42]
+component Network Automation & Orchestration [0.26, 0.45]
+
+// Supply chain
+component Space Supply-Chain Awareness [0.10, 0.25]
+component Component Manufacturing [0.14, 0.70]
+
+// Deep utilities
+component Terrestrial Cloud & Compute [0.12, 0.90]
+component Electrical Power [0.08, 0.95]
+
+// Cross-cutting
+component Space Regulation [0.36, 0.42]
+component Spectrum Regulation (ITU) [0.48, 0.78]
+
+// ---- Dependencies ----
+Consumers->Connectivity
+Consumers->Broadcast Services
+Corporations->Connectivity
+Corporations->Backhaul & Enterprise Links
+Corporations->Broadcast Services
+Government->Secure / Sovereign Comms
+Government->Connectivity
+Government->Broadcast Services
+
+Connectivity->Network Access
+Broadcast Services->Network Access
+Backhaul & Enterprise Links->Network Access
+Secure / Sovereign Comms->Network Access
+Secure / Sovereign Comms->Space Regulation
+
+Network Access->Non-Terrestrial Network Service
+Network Access->Mobile Access
+Network Access->Fibre Access
+Network Access->Physical Network
+
+Non-Terrestrial Network Service->Physical Network
+Non-Terrestrial Network Service->User Terminals
+Non-Terrestrial Network Service->Spectrum Licensing
+
+Physical Network->User Terminals
+Physical Network->Ground Stations
+Physical Network->GEO Satellite
+Physical Network->LEO Microsatellite
+Physical Network->Spectrum Licensing
+
+User Terminals->Phased-Array Antennas
+User Terminals->Component Manufacturing
+Phased-Array Antennas->Beamforming & Beam-Steering
+Phased-Array Antennas->Component Manufacturing
+
+Spectrum Licensing->Ku-band Spectrum
+Spectrum Licensing->Ka-band Spectrum
+Spectrum Licensing->V-band Spectrum
+Spectrum Licensing->Spectrum Regulation (ITU)
+
+Ground Stations->Ground-Station-as-a-Service
+Ground Stations->Terrestrial Cloud & Compute
+Ground Stations->Electrical Power
+Ground-Station-as-a-Service->Terrestrial Cloud & Compute
+
+GEO Satellite->Satellite Antennas
+GEO Satellite->Propulsion (Xenon Hall-effect)
+GEO Satellite->Power Subsystem (Solar + Battery)
+GEO Satellite->Radiative Cooling
+GEO Satellite->Launch Services
+GEO Satellite->Orbit Tracking
+GEO Satellite->Space Regulation
+
+LEO Microsatellite->Satellite Antennas
+LEO Microsatellite->Propulsion (Krypton Hall-effect)
+LEO Microsatellite->Power Subsystem (Solar + Battery)
+LEO Microsatellite->Thermal-Electric Cooling
+LEO Microsatellite->Cryogenic Cooling
+LEO Microsatellite->Optical Inter-Satellite Links
+LEO Microsatellite->Beamforming & Beam-Steering
+LEO Microsatellite->Launch Services
+LEO Microsatellite->Orbit Tracking
+LEO Microsatellite->Debris Tracking & Collision Avoidance
+LEO Microsatellite->Fleet Management
+LEO Microsatellite->Space Regulation
+
+Satellite Antennas->Component Manufacturing
+Beamforming & Beam-Steering->Component Manufacturing
+
+Launch Services->Reusable Launch
+Launch Services->Component Manufacturing
+Reusable Launch->Component Manufacturing
+
+Orbit Tracking->Debris Tracking & Collision Avoidance
+Orbit Tracking->Terrestrial Cloud & Compute
+Debris Tracking & Collision Avoidance->Space Supply-Chain Awareness
+Fleet Management->Network Automation & Orchestration
+Fleet Management->Terrestrial Cloud & Compute
+Network Automation & Orchestration->Terrestrial Cloud & Compute
+
+Component Manufacturing->Space Supply-Chain Awareness
+Component Manufacturing->Electrical Power
+Terrestrial Cloud & Compute->Electrical Power
+
+evolve Non-Terrestrial Network Service 0.55
+evolve LEO Microsatellite 0.60
+evolve Optical Inter-Satellite Links 0.45
+evolve Phased-Array Antennas 0.60
+evolve Reusable Launch 0.60
+evolve Debris Tracking & Collision Avoidance 0.55
+evolve Propulsion (Krypton Hall-effect) 0.65
+evolve Space Supply-Chain Awareness 0.45
+
+note Differentiation zone (LEO/NTN novelty) [0.55, 0.20]
+note Commodity utility layer [0.10, 0.92]

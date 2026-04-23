@@ -1,0 +1,137 @@
+title Risk Management in Financial Services
+style wardley
+
+// Anchors — three distinct user / demand types
+anchor Public [0.98, 0.55]
+anchor Corporations [0.97, 0.60]
+anchor Governments [0.96, 0.50]
+
+// Society / accountability layer (above providers in the accountability chain)
+component Society Accountability [0.90, 0.35]
+component Trust [0.88, 0.40]
+
+// Providers — the delivery layer customers see
+component Retail Banking [0.82, 0.78]
+component Insurance [0.80, 0.65]
+component Lending [0.78, 0.70]
+
+// Trust-and-assets bridge connecting providers to customers
+component Assets Under Management [0.72, 0.60]
+component Customer Trust Layer [0.74, 0.45]
+component Identity and KYC [0.68, 0.72]
+
+// Oversight / shaping forces acting on providers
+component Regulation [0.65, 0.38]
+component Rating Agencies [0.62, 0.70]
+component Sovereignty Concerns [0.60, 0.25]
+
+// Risk types the map is meant to surface
+component Credit Risk [0.55, 0.78]
+component Systemic Risk [0.52, 0.45]
+component Cybersecurity Risk [0.50, 0.55]
+component Cascade Failure Risk [0.46, 0.30]
+component Third-Party Risk [0.44, 0.42]
+
+// Cross-cutting concepts the scenario calls out on the evolution axis
+component Cost [0.38, 0.82]
+component Value [0.36, 0.40]
+component Supply Chain Awareness [0.30, 0.28]
+
+// Supporting data / infrastructure
+component Risk Models [0.28, 0.50]
+component Transaction Data [0.22, 0.80]
+component Core Banking Platform [0.18, 0.70]
+component Cloud Infrastructure [0.12, 0.90]
+component Payment Rails [0.10, 0.88]
+
+// Demand edges — anchors to providers
+Public->Retail Banking
+Public->Insurance
+Public->Lending
+Corporations->Retail Banking
+Corporations->Insurance
+Corporations->Lending
+Governments->Regulation
+Governments->Sovereignty Concerns
+Governments->Insurance
+
+// Accountability chain back to society
+Society Accountability->Regulation
+Society Accountability->Trust
+Trust->Customer Trust Layer
+Public->Trust
+Corporations->Trust
+
+// Providers to trust-and-assets bridge
+Retail Banking->Assets Under Management
+Retail Banking->Customer Trust Layer
+Retail Banking->Identity and KYC
+Insurance->Assets Under Management
+Insurance->Customer Trust Layer
+Lending->Assets Under Management
+Lending->Identity and KYC
+Lending->Customer Trust Layer
+
+// Oversight shaping providers
+Regulation->Retail Banking
+Regulation->Insurance
+Regulation->Lending
+Rating Agencies->Lending
+Rating Agencies->Insurance
+Sovereignty Concerns->Regulation
+Sovereignty Concerns->Cloud Infrastructure
+
+// Risks attach to provider surfaces (a provider "depends on" managing each risk)
+Retail Banking->Credit Risk
+Lending->Credit Risk
+Insurance->Systemic Risk
+Retail Banking->Systemic Risk
+Retail Banking->Cybersecurity Risk
+Insurance->Cybersecurity Risk
+Lending->Cybersecurity Risk
+Retail Banking->Cascade Failure Risk
+Insurance->Cascade Failure Risk
+Retail Banking->Third-Party Risk
+Insurance->Third-Party Risk
+Lending->Third-Party Risk
+
+// Risks and cross-cutting concepts
+Credit Risk->Risk Models
+Systemic Risk->Risk Models
+Cybersecurity Risk->Cloud Infrastructure
+Cascade Failure Risk->Supply Chain Awareness
+Third-Party Risk->Supply Chain Awareness
+Third-Party Risk->Cloud Infrastructure
+
+// Cost / Value / Trust / Supply-chain awareness placement on evolution axis
+Retail Banking->Cost
+Retail Banking->Value
+Insurance->Cost
+Insurance->Value
+Lending->Cost
+Lending->Value
+Customer Trust Layer->Value
+Trust->Value
+
+// Data / infrastructure
+Risk Models->Transaction Data
+Identity and KYC->Core Banking Platform
+Assets Under Management->Core Banking Platform
+Core Banking Platform->Cloud Infrastructure
+Core Banking Platform->Payment Rails
+Transaction Data->Cloud Infrastructure
+
+// Regulation-lagging-risk inertia: regulation is less evolved than the risks it covers
+component Regulation [0.65, 0.38] inertia
+// 17-forms inertia note: "political capital" + "existing practice" resist regulatory evolution.
+
+// Evolution movements (scenario, not forecast)
+evolve Cybersecurity Risk 0.75
+evolve Third-Party Risk 0.60
+evolve Supply Chain Awareness 0.55
+evolve Regulation 0.55
+
+// Strategic notes
+note Regulation lagging the risks it covers [0.66, 0.55]
+note High differentiation zone [0.70, 0.25]
+note Utility / outsource candidates [0.15, 0.90]

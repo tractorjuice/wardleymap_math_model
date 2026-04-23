@@ -1,0 +1,187 @@
+title Digital Financial Inclusion - Individual in an Underbanked Region
+style wardley
+
+// Anchor - the individual and their top-level needs
+anchor Individual (Underbanked) [0.97, 0.48]
+
+// User needs (top of value chain)
+component Options [0.90, 0.40]
+component Ability to Trade [0.90, 0.55]
+component Equality of Access [0.88, 0.30]
+component Sustainability [0.87, 0.22]
+component Financial Inclusion [0.89, 0.35]
+
+// Identity & Trust layer
+component Proof of Identity [0.80, 0.55]
+component Trust in Counterparty [0.82, 0.38]
+component KYC / AML Compliance [0.72, 0.70]
+component Digital ID Credentials [0.68, 0.45]
+
+// Risk & Behaviour
+component Credit Risk Assessment [0.70, 0.55]
+component Fraud Detection [0.67, 0.65]
+component Financial Literacy / Behaviour [0.73, 0.28]
+component Consumer Protection [0.70, 0.45]
+
+// Markets & Exchange Protocols
+component Exchange / Remittance [0.76, 0.60]
+component Savings Product [0.74, 0.55]
+component Credit / Microloan [0.73, 0.52]
+component P2P Marketplace [0.84, 0.42]
+component Payment Protocols [0.64, 0.78]
+
+// Authority & Redistribution
+component Central Bank Authority [0.48, 0.72]
+component Decentralised Governance [0.55, 0.20]
+component Regulatory Framework [0.60, 0.55]
+component Redistribution / Social Transfer [0.71, 0.45]
+
+// Banking provision
+component Bank Branch [0.62, 0.80] inertia
+component Agent / Mobile Money Agent [0.70, 0.62]
+component Banking Services [0.60, 0.68]
+component Online Payments [0.58, 0.82]
+component Financial Infrastructure [0.45, 0.78]
+
+// Currency
+component Fiat Currency [0.52, 0.92]
+component Cryptocurrency [0.42, 0.35]
+component CBDC [0.44, 0.18]
+component Stablecoin [0.46, 0.42]
+
+// Technology stack
+component Mobile Device [0.40, 0.88]
+component Mobile Wallet App [0.52, 0.68]
+component Internet Access [0.35, 0.82]
+component Consensus Algorithm [0.30, 0.38]
+component Computing Infrastructure [0.22, 0.88]
+component Cloud Utilities [0.18, 0.92]
+
+// Network topology
+component 5G Network [0.28, 0.58]
+component Copper / DSL [0.25, 0.94] inertia
+component Mesh Network [0.26, 0.30]
+component Satellite Connectivity [0.24, 0.48]
+
+// Energy layer
+component Grid Electricity [0.12, 0.90]
+component Minigrid [0.10, 0.40]
+component Renewable Generation [0.09, 0.55]
+component Fossil Generation [0.08, 0.92] inertia
+
+// Dependencies (a -> b means a depends on b)
+Individual (Underbanked)->Options
+Individual (Underbanked)->Ability to Trade
+Individual (Underbanked)->Equality of Access
+Individual (Underbanked)->Sustainability
+Individual (Underbanked)->Financial Inclusion
+
+Options->Savings Product
+Options->Credit / Microloan
+Options->P2P Marketplace
+
+Ability to Trade->Exchange / Remittance
+Ability to Trade->Payment Protocols
+Ability to Trade->Agent / Mobile Money Agent
+
+Equality of Access->Redistribution / Social Transfer
+Equality of Access->Financial Literacy / Behaviour
+Equality of Access->Digital ID Credentials
+
+Sustainability->Renewable Generation
+Sustainability->Minigrid
+
+Financial Inclusion->Banking Services
+Financial Inclusion->Agent / Mobile Money Agent
+Financial Inclusion->Mobile Wallet App
+Financial Inclusion->Consumer Protection
+
+// Identity & trust wiring
+Proof of Identity->Digital ID Credentials
+Proof of Identity->KYC / AML Compliance
+Trust in Counterparty->Proof of Identity
+Trust in Counterparty->Fraud Detection
+Trust in Counterparty->Regulatory Framework
+Digital ID Credentials->Regulatory Framework
+
+// Risk & behaviour wiring
+Credit Risk Assessment->Digital ID Credentials
+Credit Risk Assessment->Financial Infrastructure
+Fraud Detection->Financial Infrastructure
+Consumer Protection->Regulatory Framework
+Financial Literacy / Behaviour->Mobile Device
+
+// Markets & exchange
+Exchange / Remittance->Payment Protocols
+Exchange / Remittance->Fiat Currency
+Exchange / Remittance->Stablecoin
+Savings Product->Banking Services
+Savings Product->Fiat Currency
+Credit / Microloan->Credit Risk Assessment
+Credit / Microloan->Banking Services
+P2P Marketplace->Payment Protocols
+P2P Marketplace->Trust in Counterparty
+Payment Protocols->Financial Infrastructure
+Payment Protocols->Online Payments
+
+// Authority & redistribution
+Regulatory Framework->Central Bank Authority
+Fiat Currency->Central Bank Authority
+Decentralised Governance->Consensus Algorithm
+Redistribution / Social Transfer->Digital ID Credentials
+Redistribution / Social Transfer->Banking Services
+
+// Banking provision
+Bank Branch->Banking Services
+Bank Branch->Grid Electricity
+Agent / Mobile Money Agent->Banking Services
+Agent / Mobile Money Agent->Mobile Device
+Banking Services->Financial Infrastructure
+Banking Services->Fiat Currency
+Online Payments->Financial Infrastructure
+Online Payments->Internet Access
+Financial Infrastructure->Computing Infrastructure
+
+// Currency wiring
+Cryptocurrency->Consensus Algorithm
+Cryptocurrency->Computing Infrastructure
+CBDC->Computing Infrastructure
+Stablecoin->Cryptocurrency
+
+// Tech stack wiring
+Mobile Wallet App->Mobile Device
+Mobile Wallet App->Internet Access
+Mobile Device->Internet Access
+Mobile Device->Grid Electricity
+Internet Access->5G Network
+Internet Access->Copper / DSL
+Internet Access->Satellite Connectivity
+Internet Access->Mesh Network
+Consensus Algorithm->Computing Infrastructure
+Computing Infrastructure->Cloud Utilities
+Computing Infrastructure->Grid Electricity
+Cloud Utilities->Grid Electricity
+
+// Network topology wiring
+5G Network->Grid Electricity
+Copper / DSL->Grid Electricity
+Satellite Connectivity->Grid Electricity
+
+// Energy wiring
+Grid Electricity->Renewable Generation
+Grid Electricity->Fossil Generation
+Minigrid->Renewable Generation
+Minigrid->Fossil Generation
+
+// Evolution targets (scenario arrows, not forecasts)
+evolve CBDC 0.55
+evolve Digital ID Credentials 0.72
+evolve Mesh Network 0.55
+evolve Minigrid 0.70
+evolve Stablecoin 0.65
+evolve Consensus Algorithm 0.62
+
+// Landscape annotations
+note Global commodity stack [0.15, 0.90]
+note Local-constraint zone [0.55, 0.25]
+note Differentiation zone [0.80, 0.30]

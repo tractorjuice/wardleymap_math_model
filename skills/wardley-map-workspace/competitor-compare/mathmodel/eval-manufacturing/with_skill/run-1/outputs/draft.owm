@@ -1,0 +1,165 @@
+title Manufacturing Supply Chain (Feb 2023)
+style wardley
+
+// Anchors - three user types
+anchor Manufacturer [0.98, 0.45]
+anchor Distributor [0.96, 0.60]
+anchor Regulator [0.94, 0.55]
+
+// User-facing deliverables / outcomes
+component Finished Product [0.88, 0.62]
+component Sales & Operations Planning [0.87, 0.48]
+component Compliance Certification [0.86, 0.55]
+component Sales Forecast [0.84, 0.42]
+component Resilience Dashboard [0.82, 0.22]
+component Return on Capital Employed (ROCE) [0.80, 0.45]
+
+// Planning / awareness layer
+component Scenario Planning [0.78, 0.30]
+component Supply Chain Visibility Platform [0.74, 0.32]
+component Demand Signal (POS / Orders) [0.72, 0.58]
+component Supplier Risk Scoring [0.70, 0.28]
+component Working Capital [0.72, 0.55]
+component Inventory Policy (JIT vs JIC) [0.68, 0.40]
+
+// Production & fulfilment core
+component Production Scheduling [0.66, 0.55]
+component Quality Assurance [0.64, 0.65]
+component Distribution & Freight [0.62, 0.72]
+component Warehousing [0.58, 0.78]
+
+// Finance layer
+component Cost of Goods Sold [0.56, 0.60]
+component Capital Expenditure [0.52, 0.45]
+
+// Regulatory layer
+component Industry Lobbying [0.55, 0.28]
+component ESG Reporting [0.54, 0.35]
+component Customs & Trade Compliance [0.50, 0.72]
+component Product Safety Testing [0.48, 0.68]
+component Standards & Certification Bodies [0.38, 0.82]
+
+// Manufacturing inputs (tier-1)
+component Tier-N Supplier Mapping [0.46, 0.22]
+component R&D [0.44, 0.22]
+component Contract Manufacturing [0.42, 0.55]
+component Equipment & Machinery [0.40, 0.62]
+component Components & Sub-assemblies [0.36, 0.60]
+component Packaging [0.34, 0.82]
+
+// Practice / knowledge & labour
+component Lean Manufacturing [0.45, 0.60]
+component Refined Materials [0.30, 0.72]
+component Skilled Labour [0.28, 0.42]
+
+// Tier-2 inputs
+component Raw Materials [0.24, 0.78]
+
+// Utility / infrastructure
+component ERP System [0.20, 0.72]
+component Logistics Network (Ports / Rail / Road) [0.16, 0.84]
+component Energy [0.12, 0.92]
+component Fuel [0.10, 0.90]
+component Water [0.08, 0.95]
+component Telecoms / Connectivity [0.05, 0.95]
+
+// Dependencies - Manufacturer
+Manufacturer->Finished Product
+Manufacturer->Compliance Certification
+Manufacturer->Sales & Operations Planning
+Manufacturer->Resilience Dashboard
+Manufacturer->Return on Capital Employed (ROCE)
+
+// Distributor path
+Distributor->Finished Product
+Distributor->Distribution & Freight
+Distributor->Demand Signal (POS / Orders)
+
+// Regulator path
+Regulator->Compliance Certification
+Regulator->Product Safety Testing
+Regulator->Customs & Trade Compliance
+
+// Finished product path
+Finished Product->Production Scheduling
+Finished Product->Quality Assurance
+Finished Product->Packaging
+Finished Product->Distribution & Freight
+
+// S&OP orchestrates forecast, production, inventory
+Sales & Operations Planning->Sales Forecast
+Sales & Operations Planning->Production Scheduling
+Sales & Operations Planning->Inventory Policy (JIT vs JIC)
+
+// Forecasting / awareness
+Sales Forecast->Demand Signal (POS / Orders)
+Sales Forecast->Scenario Planning
+Scenario Planning->Supply Chain Visibility Platform
+Resilience Dashboard->Supply Chain Visibility Platform
+Resilience Dashboard->Supplier Risk Scoring
+Resilience Dashboard->Tier-N Supplier Mapping
+Supply Chain Visibility Platform->ERP System
+Supplier Risk Scoring->Tier-N Supplier Mapping
+
+// Financial layer
+Return on Capital Employed (ROCE)->Cost of Goods Sold
+Return on Capital Employed (ROCE)->Working Capital
+Return on Capital Employed (ROCE)->Capital Expenditure
+Cost of Goods Sold->Refined Materials
+Cost of Goods Sold->Skilled Labour
+Cost of Goods Sold->Energy
+Working Capital->Inventory Policy (JIT vs JIC)
+Capital Expenditure->Equipment & Machinery
+
+// Production
+Production Scheduling->Equipment & Machinery
+Production Scheduling->Components & Sub-assemblies
+Production Scheduling->Contract Manufacturing
+Production Scheduling->Lean Manufacturing
+Quality Assurance->Product Safety Testing
+Quality Assurance->Lean Manufacturing
+Lean Manufacturing->Skilled Labour
+
+// Inventory / logistics
+Inventory Policy (JIT vs JIC)->Warehousing
+Inventory Policy (JIT vs JIC)->Logistics Network (Ports / Rail / Road)
+Distribution & Freight->Warehousing
+Distribution & Freight->Logistics Network (Ports / Rail / Road)
+Distribution & Freight->Customs & Trade Compliance
+Distribution & Freight->Fuel
+Warehousing->Energy
+
+// Regulatory
+Compliance Certification->Standards & Certification Bodies
+Compliance Certification->Product Safety Testing
+Compliance Certification->ESG Reporting
+Product Safety Testing->Standards & Certification Bodies
+Industry Lobbying->Standards & Certification Bodies
+Customs & Trade Compliance->Logistics Network (Ports / Rail / Road)
+ESG Reporting->ERP System
+
+// Inputs
+Contract Manufacturing->Skilled Labour
+Contract Manufacturing->Refined Materials
+Components & Sub-assemblies->Refined Materials
+Packaging->Refined Materials
+Refined Materials->Raw Materials
+Raw Materials->Logistics Network (Ports / Rail / Road)
+R&D->Skilled Labour
+Equipment & Machinery->Energy
+
+// Utilities
+ERP System->Telecoms / Connectivity
+Logistics Network (Ports / Rail / Road)->Fuel
+Energy->Telecoms / Connectivity
+Skilled Labour->Water
+
+evolve Inventory Policy (JIT vs JIC) 0.55
+evolve Supply Chain Visibility Platform 0.55
+evolve Tier-N Supplier Mapping 0.45
+evolve ESG Reporting 0.60
+evolve R&D 0.40
+
+note Resilience / awareness gap [0.76, 0.18]
+note Utility layer [0.10, 0.88]
+note Bespoke judgment zone [0.55, 0.20]

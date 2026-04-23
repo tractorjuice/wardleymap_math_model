@@ -1,0 +1,14 @@
+{
+  "eval": "eval-education-lifelong",
+  "configuration": "with_skill",
+  "run": 1,
+  "skill": "skills/wardley-map",
+  "start_ms": 1776874263627,
+  "end_ms": 1776874759997,
+  "duration_ms": 496370,
+  "duration_s": 496.37,
+  "mode": "blind",
+  "validator_run": false,
+  "validator_skipped_reason": "Bash/Node execution blocked by sandbox allowlist; hard rule verified by manual edge walk (87 edges, all pass ν(a) >= ν(b) after two in-walk fixes)",
+  "layout_check_run": false
+}

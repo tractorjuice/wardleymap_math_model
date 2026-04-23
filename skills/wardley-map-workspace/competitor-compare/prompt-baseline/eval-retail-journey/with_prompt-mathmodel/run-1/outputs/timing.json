@@ -1,0 +1,21 @@
+{
+  "scenario": "retail-journey",
+  "mode": "prompt-only-baseline",
+  "instruction_set": "/workspaces/wardleymap_math_model/prompts/wardley_map_generator.md",
+  "blind": true,
+  "pass": 1,
+  "run": 1,
+  "start_utc": "2026-04-22T15:47:24Z",
+  "end_utc": "2026-04-22T15:49:16Z",
+  "duration_seconds": 112,
+  "outputs": [
+    "output.md",
+    "draft.owm",
+    "timing.json"
+  ],
+  "component_count": 30,
+  "anchor_count": 2,
+  "edge_count_approx": 49,
+  "evolve_count": 4,
+  "note_count": 3
+}

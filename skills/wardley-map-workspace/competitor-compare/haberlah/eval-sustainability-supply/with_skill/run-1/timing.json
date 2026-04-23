@@ -1,0 +1,10 @@
+{
+  "skill": "haberlah/wardley-mapping",
+  "scenario": "eval-sustainability-supply",
+  "run": 1,
+  "mode": "with_skill",
+  "start_epoch": 1776873277.624219,
+  "end_epoch": 1776873521.503451,
+  "elapsed_seconds": 243.879232,
+  "blind": true
+}

@@ -1,0 +1,18 @@
+{
+  "scenario": "sustainability-supply",
+  "skill": "in-tree wardley-map (skills/wardley-map/SKILL.md)",
+  "run": "run-1",
+  "blind": true,
+  "started_at": "2026-04-22T16:11:52Z",
+  "ended_at": "2026-04-22T16:17:36Z",
+  "duration_seconds": 344,
+  "components_count": 45,
+  "anchors_count": 4,
+  "edges_count": 87,
+  "validator_status": "manual-walk-equivalent-to-validator",
+  "validator_note": "node scripts/validate_owm.mjs was blocked by sandbox in this environment (node --version allowed, but node <script> denied). Performed equivalent manual walk covering all three validator rules: coordinate range, edge endpoints, visibility constraint. One violation found on first pass (Raw Material Sourcing 0.38 -> Traceability Data 0.40) and fixed by raising source to 0.41. All 87 edges subsequently satisfy nu(src) >= nu(tgt).",
+  "layout_check_status": "manual-walk-equivalent-to-check-layout",
+  "layout_check_note": "node scripts/check_layout.mjs also blocked. Manually checked the four layout rules: no near-duplicate coordinates (|dv|<0.02 AND |de|<0.02), no stage-boundary straddling after nudges (Sustainability Rating 0.48->0.52, ESG Reporting Data 0.50->0.52, Complex Product Sourcing 0.48->0.47), no canvas-edge clipping, stage balance reasonable (Genesis 4 / Custom 17 / Product 12 / Commodity 12 excl anchors).",
+  "mermaid_block_included": false,
+  "mermaid_note": "node scripts/owm_to_mermaid.mjs blocked; OWM is authoritative per skill."
+}

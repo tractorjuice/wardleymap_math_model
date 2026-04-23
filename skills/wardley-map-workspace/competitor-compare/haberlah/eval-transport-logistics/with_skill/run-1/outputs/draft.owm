@@ -1,0 +1,121 @@
+title Transportation Logistics Landscape
+style wardley
+
+// Anchors (users) at the top of the value chain.
+// The Public is the primary end-user; Producers and Government are
+// secondary anchors since the scenario explicitly names them as actors.
+anchor The Public [0.97, 0.60] label [10, -6]
+anchor Producers [0.94, 0.48] label [-70, -6]
+anchor Government [0.95, 0.32] label [-78, -6]
+
+// Retail / commerce surface — what the public physically or digitally touches.
+component Shops [0.88, 0.80] label [-28, -10]
+component E-commerce [0.86, 0.68] label [10, -4]
+
+// User-facing supply chain capabilities
+component Delivery [0.80, 0.58] label [10, 0]
+component Real-Time Stock [0.74, 0.30] label [10, 0]
+component Supply Chain Awareness [0.78, 0.18] label [10, -4]
+
+// Core physical flow
+component Last Mile [0.66, 0.48] label [10, 0]
+component Long Haul [0.60, 0.80] label [10, 0]
+component Logistics Hubs [0.54, 0.62] label [10, 0]
+component Warehouses & Storage [0.48, 0.82] label [10, 0]
+
+// Vehicle / power layer
+component Trucks (HGV) [0.38, 0.80] label [10, 0]
+component Automated Delivery [0.34, 0.18] label [10, -4]
+component Drones & Scouts [0.30, 0.12] label [10, 0]
+component Powertrain (Fossil/Electric) [0.26, 0.60] label [10, 0]
+
+// Information layer — shared data utility feeding real-time stock & awareness
+component Traffic & Telematics Data [0.42, 0.70] label [10, 0]
+
+// Topology
+component Cities [0.22, 0.86] label [10, 0]
+component Rural Areas [0.20, 0.72] label [10, 0]
+
+// Enablers — regulation, sovereignty, skills
+component Regulation [0.14, 0.66] label [10, 0]
+component HGV Skills [0.44, 0.40] label [10, 0] inertia
+component Sovereignty (CNI/Territorial) [0.10, 0.24] label [10, 0] inertia
+
+// Dependencies — anchors to needs
+The Public->Shops
+The Public->E-commerce
+The Public->Supply Chain Awareness
+Producers->Long Haul
+Producers->Warehouses & Storage
+Government->Regulation
+Government->Sovereignty (CNI/Territorial)
+
+// Commerce surface -> capabilities
+Shops->Delivery
+Shops->Real-Time Stock
+E-commerce->Delivery
+E-commerce->Real-Time Stock
+
+// Capabilities -> physical flow
+Delivery->Last Mile
+Delivery->Long Haul
+Last Mile->Logistics Hubs
+Long Haul->Logistics Hubs
+Logistics Hubs->Warehouses & Storage
+Real-Time Stock->Traffic & Telematics Data
+Supply Chain Awareness->Traffic & Telematics Data
+
+// Physical flow -> vehicle layer
+Last Mile->Trucks (HGV)
+Last Mile->Automated Delivery
+Last Mile->Drones & Scouts
+Long Haul->Trucks (HGV)
+Long Haul->Automated Delivery
+Automated Delivery->Drones & Scouts
+
+// Vehicle layer -> power
+Trucks (HGV)->Powertrain (Fossil/Electric)
+Automated Delivery->Powertrain (Fossil/Electric)
+Drones & Scouts->Powertrain (Fossil/Electric)
+
+// Information layer feeds vehicles
+Trucks (HGV)->Traffic & Telematics Data
+Automated Delivery->Traffic & Telematics Data
+
+// Topology constrains the physical flow
+Last Mile->Cities
+Last Mile->Rural Areas
+Logistics Hubs->Cities
+
+// Skills & regulation
+Trucks (HGV)->HGV Skills
+Long Haul->HGV Skills
+Long Haul->Regulation
+Warehouses & Storage->Regulation
+Logistics Hubs->Sovereignty (CNI/Territorial)
+Warehouses & Storage->Sovereignty (CNI/Territorial)
+
+// Evolution arrows — where market forces push rightward
+evolve Last Mile 0.72
+evolve Automated Delivery 0.55
+evolve Drones & Scouts 0.42
+evolve Real-Time Stock 0.72
+evolve Powertrain (Fossil/Electric) 0.82
+evolve Traffic & Telematics Data 0.85
+evolve Supply Chain Awareness 0.50
+evolve Shops 0.90
+
+// Strategic notes
+annotation 1 [[0.48, 0.88]] Long-haul, warehousing, and shops behave as commoditised utility
+annotation 2 [[0.32, 0.15]] Automated delivery / drones: Genesis/Custom-Built, poised to evolve
+annotation 3 [[0.10, 0.24]] Sovereignty + CNI concerns are the main source of inertia
+annotation 4 [[0.44, 0.40]] HGV skills shortage: Product-stage activity stuck behind a scarce resource
+
+// Build/buy/outsource guidance
+build Automated Delivery
+build Supply Chain Awareness
+buy Traffic & Telematics Data
+buy Real-Time Stock
+buy Powertrain (Fossil/Electric)
+outsource Long Haul
+outsource Warehouses & Storage

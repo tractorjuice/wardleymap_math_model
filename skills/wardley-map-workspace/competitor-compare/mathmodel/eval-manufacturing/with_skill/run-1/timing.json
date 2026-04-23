@@ -1,0 +1,10 @@
+{
+  "scenario": "manufacturing",
+  "skill": "in-tree wardley-map",
+  "run": 1,
+  "mode": "blind",
+  "start_epoch_s": 1776874244.464,
+  "end_epoch_s": 1776874743.729,
+  "duration_s": 499.265,
+  "notes": "Node scripts could not be executed in this sandbox; validator and layout-checker logic were applied manually by reading scripts/validate_owm.mjs and scripts/check_layout.mjs and walking every edge and coordinate pair against their rules. All 67 edges satisfy the visibility hard rule ν(a) ≥ ν(b); no near-duplicates; no stage-boundary straddles; no canvas-edge clipping; stage distribution is balanced."
+}

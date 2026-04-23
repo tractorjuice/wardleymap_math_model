@@ -1,0 +1,124 @@
+title National Sovereignty (Government View, April 2023)
+style wardley
+
+anchor Supranational [0.98, 0.40]
+anchor Society [0.96, 0.52]
+anchor Government [0.94, 0.65]
+anchor Corporations & Shareholders [0.92, 0.80]
+
+component Legitimacy [0.88, 0.40]
+component Perception of Success [0.84, 0.30]
+component Public Belonging [0.82, 0.20]
+component Election Legitimacy [0.78, 0.45]
+component Territorial Sovereignty [0.74, 0.78]
+component Economic Sovereignty [0.72, 0.52]
+component Security Sovereignty [0.70, 0.62]
+component Political Sovereignty [0.68, 0.42]
+component Cultural Sovereignty [0.66, 0.28]
+component Digital Sovereignty [0.64, 0.17] inertia
+component Land [0.60, 0.86]
+component CNI [0.58, 0.58]
+component Supply Chain [0.56, 0.30] inertia
+component Cyber [0.54, 0.22]
+component Integrity [0.51, 0.38]
+component Competency [0.49, 0.52]
+component Fairness [0.47, 0.22]
+component Benevolence [0.45, 0.30]
+component Identity [0.43, 0.14]
+component Territorial Awareness [0.40, 0.75]
+component Crisis Response [0.38, 0.50]
+component Supply-Chain Awareness [0.36, 0.22]
+component Digital-Chain Awareness [0.34, 0.12]
+component Capability Layer [0.30, 0.48]
+component Laws [0.26, 0.82]
+component International Law [0.24, 0.52]
+component Mainstream Media [0.20, 0.70]
+component Education [0.18, 0.62]
+component Social Media [0.16, 0.82]
+component Art [0.14, 0.55]
+component Propaganda [0.10, 0.35]
+
+Supranational->International Law
+Supranational->Legitimacy
+Society->Legitimacy
+Society->Public Belonging
+Society->Perception of Success
+Government->Legitimacy
+Government->Territorial Sovereignty
+Government->Economic Sovereignty
+Government->Political Sovereignty
+Government->Security Sovereignty
+Government->Digital Sovereignty
+Government->Cultural Sovereignty
+Government->Election Legitimacy
+Government->Crisis Response
+Corporations & Shareholders->Economic Sovereignty
+Corporations & Shareholders->Digital Sovereignty
+Corporations & Shareholders->Supply Chain
+Legitimacy->Election Legitimacy
+Legitimacy->Perception of Success
+Legitimacy->Public Belonging
+Perception of Success->Capability Layer
+Perception of Success->Crisis Response
+Public Belonging->Identity
+Public Belonging->Cultural Sovereignty
+Election Legitimacy->Integrity
+Election Legitimacy->Fairness
+Election Legitimacy->Competency
+Election Legitimacy->Social Media
+Election Legitimacy->Mainstream Media
+Territorial Sovereignty->Land
+Territorial Sovereignty->Territorial Awareness
+Economic Sovereignty->Supply Chain
+Economic Sovereignty->CNI
+Economic Sovereignty->Laws
+Security Sovereignty->Land
+Security Sovereignty->Cyber
+Security Sovereignty->CNI
+Security Sovereignty->Crisis Response
+Political Sovereignty->Election Legitimacy
+Political Sovereignty->International Law
+Political Sovereignty->Laws
+Digital Sovereignty->Cyber
+Digital Sovereignty->CNI
+Digital Sovereignty->Digital-Chain Awareness
+Cultural Sovereignty->Education
+Cultural Sovereignty->Art
+Cultural Sovereignty->Mainstream Media
+Cultural Sovereignty->Social Media
+Cultural Sovereignty->Propaganda
+Cultural Sovereignty->Identity
+CNI->Capability Layer
+Supply Chain->Supply-Chain Awareness
+Supply Chain->Capability Layer
+Cyber->Digital-Chain Awareness
+Cyber->Capability Layer
+Integrity->Laws
+Competency->Capability Layer
+Fairness->Laws
+Benevolence->Laws
+Identity->Education
+Identity->Social Media
+Territorial Awareness->Capability Layer
+Crisis Response->Capability Layer
+Crisis Response->Mainstream Media
+Supply-Chain Awareness->Capability Layer
+Digital-Chain Awareness->Capability Layer
+Capability Layer->Laws
+Mainstream Media->Laws
+Social Media->Laws
+Propaganda->Mainstream Media
+Propaganda->Social Media
+
+evolve Digital Sovereignty 0.35
+evolve Supply Chain 0.45
+evolve Cyber 0.38
+evolve Supply-Chain Awareness 0.42
+evolve Digital-Chain Awareness 0.32
+evolve Election Legitimacy 0.55
+
+annotation 1 [[0.66, 0.22]] Digital sovereignty: genesis/custom; EU-US-China divergence, strong industry inertia
+annotation 2 [[0.56, 0.34]] Supply chain re-assessment wave post-COVID & Ukraine; JIT vs JIC re-opening
+annotation 3 [[0.78, 0.48]] Contested zone: election legitimacy dragged leftward by 2020-2021 disinformation wave
+annotation 4 [[0.60, 0.88]] Industrialised: Westphalian land, borders, military doctrine
+annotation 5 [[0.16, 0.84]] Commodity platforms (Meta/X/TikTok) dominate the attention layer

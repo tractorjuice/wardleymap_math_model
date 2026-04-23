@@ -1,0 +1,10 @@
+{
+  "scenario": "culture-gender",
+  "skill": "in-tree wardley-map",
+  "run": 1,
+  "start_utc": "2026-04-22T16:12:02.774Z",
+  "end_utc": "2026-04-22T16:19:54.851Z",
+  "elapsed_seconds": 472.08,
+  "elapsed_human": "7m 52s",
+  "notes": "Validator and layout scripts could not be executed in the sandbox (node execution blocked for these scripts); all visibility and layout checks performed by hand. 38 components, 1 anchor, 83 edges. Final map passes: every edge satisfies nu(a) >= nu(b); no near-duplicate coordinates; no stage-boundary straddlers (two components nudged from eps=0.75 to 0.77); no canvas-edge clipping; stage distribution 1/10/14/13 Genesis/Custom/Product/Commodity."
+}

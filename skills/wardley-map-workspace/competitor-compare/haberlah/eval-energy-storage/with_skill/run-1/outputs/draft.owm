@@ -1,0 +1,68 @@
+title Electrical Energy Storage Landscape (April 2023)
+style wardley
+
+anchor Consumers [0.97, 0.88]
+anchor Activity [0.93, 0.72]
+
+component Control [0.87, 0.55]
+component Electricity Generation [0.80, 0.80]
+component Traditional Grid [0.72, 0.82] inertia
+component Distributed Grid [0.70, 0.30]
+component SCADA [0.63, 0.78]
+component Auto Generation Control [0.55, 0.72]
+component Spinning Reserve [0.50, 0.82]
+component Fast-Response Systems [0.48, 0.42]
+component Energy Platform [0.62, 0.36]
+component Pre-approval Discovery [0.57, 0.10]
+component Adaptive [0.45, 0.14]
+component Plug-and-play [0.53, 0.22]
+component Electrical Storage [0.42, 0.55]
+component Hydro Storage [0.38, 0.88]
+component Hydrogen Storage [0.36, 0.15]
+component Sources [0.26, 0.78]
+component Stockpile [0.20, 0.68]
+component Material Supply Chain [0.13, 0.55] inertia
+component Supply Chain Awareness [0.08, 0.18]
+
+Consumers->Activity
+Activity->Control
+Activity->Electricity Generation
+Control->Traditional Grid
+Control->Distributed Grid
+Control->SCADA
+Control->Auto Generation Control
+Control->Spinning Reserve
+Control->Fast-Response Systems
+Traditional Grid->SCADA
+Traditional Grid->Auto Generation Control
+Distributed Grid->Energy Platform
+Distributed Grid->Fast-Response Systems
+Electricity Generation->Sources
+Electricity Generation->Spinning Reserve
+Energy Platform->Pre-approval Discovery
+Energy Platform->Adaptive
+Energy Platform->Plug-and-play
+Energy Platform->Electrical Storage
+Fast-Response Systems->Electrical Storage
+Spinning Reserve->Hydro Storage
+Electrical Storage->Material Supply Chain
+Hydro Storage->Sources
+Hydrogen Storage->Sources
+Energy Platform->Hydrogen Storage
+Sources->Stockpile
+Stockpile->Material Supply Chain
+Material Supply Chain->Supply Chain Awareness
+
+evolve Distributed Grid 0.55
+evolve Energy Platform 0.55
+evolve Fast-Response Systems 0.68
+evolve Plug-and-play 0.45
+evolve Adaptive 0.40
+evolve Pre-approval Discovery 0.42
+evolve Hydrogen Storage 0.35
+evolve Electrical Storage 0.75
+evolve Supply Chain Awareness 0.40
+
+annotation 1 [[0.72, 0.58]] Distributed fault-tolerant grid evolving faster than traditional control model
+annotation 2 [[0.18, 0.40]] Material supply chain risk: concentration + long ramp = inertia
+annotation 3 [[0.55, 0.30]] Energy platform stack (discovery, adaptive, plug-and-play) moving from Genesis to Product

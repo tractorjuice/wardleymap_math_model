@@ -1,0 +1,177 @@
+title Game Economies Landscape (November 2023)
+style wardley
+
+// Anchors — two user types: publishers (commissioning/producing) and players (consuming)
+anchor Publishers [0.98, 0.55]
+anchor Players [0.96, 0.70]
+
+// Layer 1 — directly user-facing experiences
+component Game Title [0.88, 0.45]
+component Player Community [0.86, 0.55]
+component Brand / Franchise [0.84, 0.35]
+
+// Layer 2 — distribution and storefronts
+component Game Stores [0.78, 0.80]
+component Game Catalogues / Subscription Services [0.76, 0.55]
+component Game-Specific Marketplaces [0.72, 0.45]
+component Alternative Distribution [0.70, 0.30]
+
+// Layer 3 — monetisation surfaces
+component Virtual Items / Skins [0.68, 0.55]
+component In-Game Economy [0.66, 0.45]
+component Licensing / Subscriptions [0.64, 0.70]
+component In-Game Advertising [0.60, 0.60]
+
+// Layer 4 — marketing & buzz apparatus
+component Marketing Campaigns [0.74, 0.75]
+component Esports Tournaments [0.68, 0.50]
+component Influencer Communities [0.66, 0.55]
+component Streaming Content (Twitch / YouTube Gaming) [0.70, 0.70]
+component Social Platforms [0.62, 0.85]
+component Player Profiling / Analytics [0.50, 0.55]
+
+// Layer 5 — production: developers and creative work
+component Developers / Studios [0.58, 0.35]
+component Live-Ops Team [0.52, 0.45]
+component Game Design / IP [0.54, 0.25]
+component QA / Playtesting [0.46, 0.55]
+component Localisation [0.42, 0.70]
+
+// Layer 6 — build tooling and engines
+component Game Engines [0.44, 0.70]
+component Dev Tools (Asset pipelines, VCS, CI) [0.40, 0.72]
+component Middleware (Physics / Audio / Networking SDKs) [0.36, 0.65]
+component Anti-Cheat Services [0.38, 0.55]
+
+// Layer 7 — funding and business models
+component VC / Private Investors [0.60, 0.60]
+component Funding Models (Publisher advance / Crowdfunding / Grants) [0.56, 0.50]
+component Business Models (F2P / Premium / Live-service / Subscription) [0.58, 0.55]
+
+// Layer 8 — trust & safety (the collapse vector)
+component Player Trust [0.80, 0.30]
+component Content Moderation / Toxicity Management [0.48, 0.35]
+component Account Security / Fraud Prevention [0.44, 0.60]
+
+// Layer 9 — hardware and platforms
+component Game Platforms (Consoles / PC / Mobile) [0.54, 0.78]
+component Client Hardware (GPUs, Consoles, Phones) [0.30, 0.88]
+component Controllers / Peripherals [0.26, 0.85]
+
+// Layer 10 — deep infrastructure
+component Payment Processing [0.28, 0.90]
+component CDN / Game Delivery [0.22, 0.92]
+component Cloud Compute [0.18, 0.92]
+component Matchmaking / Multiplayer Backend [0.32, 0.70]
+component Telemetry / Data Pipeline [0.24, 0.75]
+component Identity / Auth [0.20, 0.88]
+
+// Dependencies: anchors -> experience
+Publishers->Game Title
+Publishers->Brand / Franchise
+Publishers->Business Models (F2P / Premium / Live-service / Subscription)
+Publishers->Marketing Campaigns
+Publishers->Player Profiling / Analytics
+Players->Game Title
+Players->Player Community
+Players->Game Stores
+Players->Streaming Content (Twitch / YouTube Gaming)
+
+// Experience -> distribution & monetisation
+Game Title->Game Stores
+Game Title->Game Catalogues / Subscription Services
+Game Title->Game-Specific Marketplaces
+Game Title->Alternative Distribution
+Game Title->Virtual Items / Skins
+Game Title->In-Game Economy
+Game Title->Licensing / Subscriptions
+Game Title->In-Game Advertising
+Brand / Franchise->Marketing Campaigns
+Brand / Franchise->Esports Tournaments
+Player Community->Influencer Communities
+Player Community->Social Platforms
+Player Community->Streaming Content (Twitch / YouTube Gaming)
+
+// Distribution dependencies
+Game Stores->Payment Processing
+Game Stores->CDN / Game Delivery
+Game Stores->Identity / Auth
+Game Catalogues / Subscription Services->Game Stores
+Game-Specific Marketplaces->Payment Processing
+Alternative Distribution->CDN / Game Delivery
+
+// Monetisation dependencies
+Virtual Items / Skins->In-Game Economy
+In-Game Economy->Telemetry / Data Pipeline
+In-Game Economy->Account Security / Fraud Prevention
+Licensing / Subscriptions->Payment Processing
+In-Game Advertising->Player Profiling / Analytics
+
+// Marketing dependencies
+Marketing Campaigns->Social Platforms
+Marketing Campaigns->Influencer Communities
+Marketing Campaigns->Streaming Content (Twitch / YouTube Gaming)
+Esports Tournaments->Streaming Content (Twitch / YouTube Gaming)
+Esports Tournaments->Player Community
+Influencer Communities->Social Platforms
+Streaming Content (Twitch / YouTube Gaming)->CDN / Game Delivery
+Player Profiling / Analytics->Telemetry / Data Pipeline
+
+// Game Title -> production
+Game Title->Developers / Studios
+Game Title->Live-Ops Team
+Developers / Studios->Game Design / IP
+Developers / Studios->Game Engines
+Developers / Studios->Dev Tools (Asset pipelines, VCS, CI)
+Developers / Studios->Middleware (Physics / Audio / Networking SDKs)
+Developers / Studios->QA / Playtesting
+Developers / Studios->Localisation
+Live-Ops Team->Telemetry / Data Pipeline
+Live-Ops Team->Matchmaking / Multiplayer Backend
+Live-Ops Team->Anti-Cheat Services
+
+// Build -> platforms & infra
+Game Engines->Middleware (Physics / Audio / Networking SDKs)
+Game Engines->Game Platforms (Consoles / PC / Mobile)
+Dev Tools (Asset pipelines, VCS, CI)->Cloud Compute
+Game Platforms (Consoles / PC / Mobile)->Client Hardware (GPUs, Consoles, Phones)
+Game Platforms (Consoles / PC / Mobile)->Controllers / Peripherals
+Matchmaking / Multiplayer Backend->Cloud Compute
+Anti-Cheat Services->Identity / Auth
+
+// Funding chain
+Publishers->VC / Private Investors
+Publishers->Funding Models (Publisher advance / Crowdfunding / Grants)
+Developers / Studios->Funding Models (Publisher advance / Crowdfunding / Grants)
+Funding Models (Publisher advance / Crowdfunding / Grants)->VC / Private Investors
+Business Models (F2P / Premium / Live-service / Subscription)->In-Game Economy
+Business Models (F2P / Premium / Live-service / Subscription)->Licensing / Subscriptions
+
+// Trust & safety
+Players->Player Trust
+Player Trust->Content Moderation / Toxicity Management
+Player Trust->Account Security / Fraud Prevention
+Player Trust->Anti-Cheat Services
+Content Moderation / Toxicity Management->Social Platforms
+Content Moderation / Toxicity Management->Player Community
+
+// Evolution movements (scenario, not forecast) — Nov 2023 signals
+evolve Game Engines 0.82
+evolve Cloud Compute 0.95
+evolve Virtual Items / Skins 0.70
+evolve Anti-Cheat Services 0.72
+evolve Player Profiling / Analytics 0.72
+evolve Game-Specific Marketplaces 0.60
+
+// Inertia — sunk capital in console exclusivity; re-architecture cost in legacy engines
+component Console Exclusivity Deals [0.52, 0.45] inertia
+Publishers->Console Exclusivity Deals
+
+// Pipelines: the monetisation surface is a spectrum of offers
+pipeline Business Models (F2P / Premium / Live-service / Subscription) [0.35, 0.80]
+
+// Strategic notes
+note Differentiation zone — IP, design, live-ops [0.62, 0.22]
+note Commoditised infrastructure — buy, don't build [0.20, 0.88]
+note Trust collapse vector — toxicity & fraud [0.55, 0.30]
+note Buzz apparatus — rented from platforms [0.66, 0.78]

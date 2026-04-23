@@ -1,0 +1,184 @@
+title Transportation Logistics Landscape — Goods from Producers to the Public
+
+// ===== Anchors (users) =====
+component The Public [0.96, 0.60]
+component Consumers [0.94, 0.58]
+component Producers [0.93, 0.30]
+component Society [0.92, 0.35]
+component Government [0.91, 0.25]
+
+// ===== Layer A — Needs / outcomes (just below the anchors) =====
+component Goods Delivered to the Public [0.88, 0.72]
+component Awareness of Supply Chain [0.86, 0.18]
+component Territorial / CNI Sovereignty [0.84, 0.15]
+component Logistics Regulation [0.83, 0.50]
+
+// ===== Layer B — Commerce front-end (where goods reach buyers) =====
+component Shops [0.78, 0.82]
+component E-commerce [0.76, 0.78]
+component Real-time Stock Visibility [0.74, 0.45]
+
+// ===== Layer C — Fulfilment plumbing =====
+component Last Mile Delivery [0.66, 0.70]
+component Long Haul Transport [0.64, 0.84]
+component Logistics Hubs [0.60, 0.75]
+component Warehouses [0.58, 0.82]
+component Storage [0.56, 0.88]
+component Delivery Operations [0.62, 0.68]
+
+// ===== Layer D — Topology (physical geography) =====
+component Cities [0.50, 0.92]
+component Rural Areas [0.48, 0.85]
+
+// ===== Layer E — Vehicle and power =====
+component Trucks (HGV) [0.42, 0.86]
+component Fossil-fuel Powertrain [0.40, 0.92]
+component Electric Powertrain [0.38, 0.50]
+component Autotrucks (autonomous HGV) [0.36, 0.18]
+component Delivery Drones [0.34, 0.14]
+component Scouts (route/advance vehicles) [0.32, 0.22]
+component Automated Delivery (robots/lockers) [0.30, 0.28]
+
+// ===== Layer F — Information layer =====
+component Logistics Data [0.28, 0.60]
+component Traffic Data [0.26, 0.72]
+component Telematics [0.24, 0.68]
+
+// ===== Layer G — Skills (workforce) =====
+component HGV Driver Skills [0.22, 0.45]
+component Logistics Workforce [0.20, 0.55]
+
+// ===== Layer H — Commodity underlays =====
+component Roads [0.14, 0.95]
+component Electricity Grid [0.12, 0.94]
+component Fuel Supply [0.10, 0.93]
+component Mobile Networks [0.08, 0.92]
+component Cloud / Data Storage [0.06, 0.96]
+
+// =========================================================
+// Dependencies (a -> b means a depends on b; nu(a) >= nu(b))
+// =========================================================
+
+// Users to the core outcomes
+The Public -> Goods Delivered to the Public
+Consumers -> Goods Delivered to the Public
+Consumers -> Shops
+Consumers -> E-commerce
+Producers -> Long Haul Transport
+Producers -> Logistics Hubs
+Society -> Awareness of Supply Chain
+Society -> Territorial / CNI Sovereignty
+Government -> Logistics Regulation
+Government -> Territorial / CNI Sovereignty
+
+// Outcome decomposes into commerce channels and fulfilment
+Goods Delivered to the Public -> Shops
+Goods Delivered to the Public -> E-commerce
+Goods Delivered to the Public -> Last Mile Delivery
+Goods Delivered to the Public -> Real-time Stock Visibility
+
+// Awareness and regulation touch the whole chain
+Awareness of Supply Chain -> Logistics Data
+Awareness of Supply Chain -> Telematics
+Awareness of Supply Chain -> Real-time Stock Visibility
+Territorial / CNI Sovereignty -> Long Haul Transport
+Territorial / CNI Sovereignty -> Logistics Hubs
+Territorial / CNI Sovereignty -> Fuel Supply
+Territorial / CNI Sovereignty -> Mobile Networks
+Logistics Regulation -> HGV Driver Skills
+Logistics Regulation -> Autotrucks (autonomous HGV)
+Logistics Regulation -> Delivery Drones
+Logistics Regulation -> Automated Delivery (robots/lockers)
+
+// Commerce front-end
+Shops -> Warehouses
+Shops -> Last Mile Delivery
+Shops -> Real-time Stock Visibility
+E-commerce -> Warehouses
+E-commerce -> Last Mile Delivery
+E-commerce -> Delivery Operations
+E-commerce -> Real-time Stock Visibility
+Real-time Stock Visibility -> Logistics Data
+Real-time Stock Visibility -> Telematics
+
+// Fulfilment dependencies
+Last Mile Delivery -> Delivery Operations
+Last Mile Delivery -> Automated Delivery (robots/lockers)
+Last Mile Delivery -> Delivery Drones
+Last Mile Delivery -> Cities
+Long Haul Transport -> Trucks (HGV)
+Long Haul Transport -> Autotrucks (autonomous HGV)
+Long Haul Transport -> Logistics Hubs
+Long Haul Transport -> Roads
+Logistics Hubs -> Warehouses
+Logistics Hubs -> Storage
+Logistics Hubs -> Cities
+Warehouses -> Storage
+Delivery Operations -> Trucks (HGV)
+Delivery Operations -> HGV Driver Skills
+Delivery Operations -> Logistics Workforce
+Delivery Operations -> Telematics
+
+// Topology
+Cities -> Roads
+Rural Areas -> Roads
+Last Mile Delivery -> Rural Areas
+
+// Vehicle and power
+Trucks (HGV) -> Fossil-fuel Powertrain
+Trucks (HGV) -> Electric Powertrain
+Autotrucks (autonomous HGV) -> Electric Powertrain
+Autotrucks (autonomous HGV) -> Telematics
+Autotrucks (autonomous HGV) -> Logistics Data
+Delivery Drones -> Electric Powertrain
+Delivery Drones -> Telematics
+Scouts (route/advance vehicles) -> Telematics
+Scouts (route/advance vehicles) -> Electric Powertrain
+Automated Delivery (robots/lockers) -> Electric Powertrain
+Automated Delivery (robots/lockers) -> Cities
+Fossil-fuel Powertrain -> Fuel Supply
+Electric Powertrain -> Electricity Grid
+
+// Information layer dependencies
+Logistics Data -> Cloud / Data Storage
+Traffic Data -> Mobile Networks
+Traffic Data -> Cloud / Data Storage
+Telematics -> Mobile Networks
+Telematics -> Cloud / Data Storage
+Telematics -> Traffic Data
+
+// Skills
+HGV Driver Skills -> Logistics Workforce
+
+// =========================================================
+// Movement (evolve) — components expected to drift rightward
+// =========================================================
+
+// Automated delivery pressure — scenario-specified acceleration
+evolve Autotrucks (autonomous HGV) 0.55 label [-10, 5]
+evolve Delivery Drones 0.50 label [-5, 10]
+evolve Automated Delivery (robots/lockers) 0.60 label [-10, 5]
+evolve Scouts (route/advance vehicles) 0.55 label [-5, 5]
+
+// Electrification of powertrain
+evolve Electric Powertrain 0.82 label [-5, 5]
+
+// Awareness and sovereignty rising up the agenda
+evolve Awareness of Supply Chain 0.45 label [-10, 5]
+evolve Territorial / CNI Sovereignty 0.40 label [-10, 5]
+
+// Real-time stock visibility and telematics heading toward commodity
+evolve Real-time Stock Visibility 0.75 label [-5, 5]
+evolve Telematics 0.85 label [-5, 5]
+
+// Regulation evolving to catch up with automation
+evolve Logistics Regulation 0.70 label [-10, 5]
+
+// =========================================================
+// Inertia (advisory — OWM has no first-class inertia keyword;
+// annotated here and in output.md)
+// =========================================================
+// - Fossil-fuel Powertrain: sunk capex in diesel fleets; tank/pump infra.
+// - HGV Driver Skills: unionised, licensed; workforce reshaping is slow.
+// - Shops: physical retail footprint and leases resist channel shift.
+// - Fuel Supply: entrenched distribution and tax regimes.

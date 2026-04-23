@@ -1,0 +1,101 @@
+title Electrical Energy Storage Landscape (April 2023)
+style wardley
+
+// Anchors — two users: energy consumer and grid operator
+anchor Consumer [0.97, 0.80]
+anchor Grid Operator [0.94, 0.55]
+
+// User-facing activity
+component Electricity Supply [0.88, 0.82]
+component Activity (Consumption Demand) [0.90, 0.78]
+component Grid Reliability [0.86, 0.60]
+
+// Control plane (just below Grid Operator anchor)
+component Control [0.82, 0.55]
+component Energy Platform [0.76, 0.35]
+component Discovery and Pre-approval [0.68, 0.28]
+component Adaptive Integration [0.65, 0.22]
+component Plug-and-Play Connection [0.62, 0.18]
+
+// Grid models (the core comparison in the scenario)
+component Traditional Grid (single-machine view) [0.72, 0.78]
+component Distributed Fault-Tolerant Grid [0.70, 0.38]
+
+// Control mechanisms
+component SCADA [0.58, 0.70]
+component Auto Generation Control [0.55, 0.68]
+component Spinning Reserve [0.52, 0.80]
+component Fast-Response Systems [0.50, 0.40]
+
+// Electricity generation
+component Electricity Generation [0.44, 0.60]
+
+// Storage types
+component Electrical Storage (Batteries) [0.42, 0.55]
+component Pumped Hydro Storage [0.40, 0.82]
+component Hydrogen Storage [0.38, 0.22]
+
+// Chain underneath — sources and supply chain
+component Energy Sources [0.30, 0.60]
+component Stockpile [0.26, 0.55]
+component Material Supply Chain [0.20, 0.38]
+component Supply Chain Awareness [0.18, 0.25]
+
+// Deep commodity infrastructure
+component Power Electronics [0.22, 0.78]
+component Telemetry and Comms [0.15, 0.80]
+component Cloud Utilities [0.08, 0.92]
+
+// Dependencies
+Consumer->Electricity Supply
+Consumer->Activity (Consumption Demand)
+Grid Operator->Grid Reliability
+Grid Operator->Control
+Activity (Consumption Demand)->Electricity Supply
+Electricity Supply->Traditional Grid (single-machine view)
+Electricity Supply->Distributed Fault-Tolerant Grid
+Grid Reliability->Control
+Grid Reliability->Energy Platform
+Control->SCADA
+Control->Auto Generation Control
+Control->Fast-Response Systems
+Control->Spinning Reserve
+Control->Energy Platform
+Traditional Grid (single-machine view)->SCADA
+Traditional Grid (single-machine view)->Auto Generation Control
+Distributed Fault-Tolerant Grid->Fast-Response Systems
+Fast-Response Systems->Electrical Storage (Batteries)
+Spinning Reserve->Electricity Generation
+Energy Platform->Discovery and Pre-approval
+Energy Platform->Adaptive Integration
+Energy Platform->Plug-and-Play Connection
+Energy Platform->Distributed Fault-Tolerant Grid
+Energy Platform->Electrical Storage (Batteries)
+Energy Platform->Hydrogen Storage
+Traditional Grid (single-machine view)->Electricity Generation
+Distributed Fault-Tolerant Grid->Electricity Generation
+Distributed Fault-Tolerant Grid->Telemetry and Comms
+Electricity Generation->Energy Sources
+Electrical Storage (Batteries)->Material Supply Chain
+Electrical Storage (Batteries)->Power Electronics
+Pumped Hydro Storage->Energy Sources
+Hydrogen Storage->Material Supply Chain
+Energy Sources->Stockpile
+Stockpile->Material Supply Chain
+Material Supply Chain->Supply Chain Awareness
+SCADA->Telemetry and Comms
+SCADA->Cloud Utilities
+Auto Generation Control->Telemetry and Comms
+Telemetry and Comms->Cloud Utilities
+Power Electronics->Material Supply Chain
+
+evolve Distributed Fault-Tolerant Grid 0.62
+evolve Energy Platform 0.58
+evolve Electrical Storage (Batteries) 0.70
+evolve Hydrogen Storage 0.42
+evolve Plug-and-Play Connection 0.45
+
+note Distributed grid evolving faster than traditional [0.44, 0.50]
+note Material supply chain risk bites here [0.16, 0.30]
+note Moat / differentiation zone [0.62, 0.25]
+note Utility / commodity zone [0.12, 0.90]

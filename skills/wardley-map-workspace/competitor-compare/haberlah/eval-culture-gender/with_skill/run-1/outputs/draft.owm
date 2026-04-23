@@ -1,0 +1,74 @@
+title Gender as a Cultural Construct (March 2022)
+style wardley
+
+// Anchor: the individual person whose gender is lived, expressed, constructed
+anchor Individual [0.97, 0.40]
+
+// Lived & expressed layer (individual / emergent cluster)
+component Identity [0.88, 0.55]
+component Lived Experience [0.82, 0.32]
+component Self-Expression [0.80, 0.50]
+component Gender Expression [0.72, 0.55]
+component Gender Identity [0.68, 0.42]
+component Sexual Identity [0.64, 0.57]
+component Sexual Orientation [0.55, 0.65]
+
+// Embodied substrate bridge
+component Phenotype [0.50, 0.82]
+
+// Cultural codification layer: memory, stories, symbols codify roles
+component Memory Stories Symbols [0.48, 0.72] inertia
+
+// Values and beliefs carried by collectives
+component Values Rights Beliefs [0.40, 0.63]
+
+// Collective structures (industrialised social machinery)
+component Family [0.38, 0.86]
+component Institutions [0.28, 0.93]
+
+// Power hierarchies (asymmetry: Patriarchy dominant, Matriarchy rare)
+component Matriarchy [0.25, 0.28]
+component Patriarchy [0.18, 0.92] inertia
+
+// Structural machinery of exclusion / concentration
+component Class Property Ownership [0.10, 0.90]
+
+// Biological substrate (genetic markers, epigenetics, environment)
+component Biological Substrate [0.08, 0.75]
+
+// Dependencies (a -> b means a depends on b)
+Individual->Identity
+Individual->Lived Experience
+Individual->Self-Expression
+Identity->Gender Identity
+Identity->Sexual Identity
+Identity->Gender Expression
+Lived Experience->Gender Expression
+Lived Experience->Memory Stories Symbols
+Self-Expression->Gender Expression
+Gender Expression->Gender Identity
+Gender Identity->Sexual Orientation
+Sexual Identity->Sexual Orientation
+Gender Expression->Phenotype
+Gender Identity->Phenotype
+Sexual Orientation->Phenotype
+Phenotype->Biological Substrate
+Memory Stories Symbols->Values Rights Beliefs
+Values Rights Beliefs->Family
+Values Rights Beliefs->Institutions
+Family->Patriarchy
+Family->Matriarchy
+Institutions->Patriarchy
+Patriarchy->Class Property Ownership
+Matriarchy->Class Property Ownership
+Patriarchy->Biological Substrate
+
+// Predicted 12-24 month evolution (from March 2022)
+evolve Gender Identity 0.55
+evolve Lived Experience 0.45
+
+// Strategic annotations
+annotation 1 [[0.18, 0.92]] Power concentrates here: Patriarchy is Commodity-stage, ubiquitous, invisible, high inertia
+annotation 2 [[0.82, 0.32]] Individual & emergent zone (top-left): bespoke per person, actively evolving
+annotation 3 [[0.25, 0.28]] Matriarchy: Custom-Built, rare; the asymmetry is the power story
+annotation 4 [[0.68, 0.42]] Active frontier: contested and rapidly hardening into Product stage

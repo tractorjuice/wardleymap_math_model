@@ -1,0 +1,143 @@
+title Grey Zone of Defence — Below-Threshold Conflict (2026)
+
+anchor People (population / civil society) [0.97, 0.32]
+anchor Governments (states) [0.95, 0.52]
+anchor Supranationals (UN, NATO, EU, AU) [0.93, 0.18]
+anchor Private & Proxy Operators [0.91, 0.68]
+
+component Sovereignty — Territorial [0.86, 0.76] label [-20, -10]
+component Sovereignty — Cyber [0.84, 0.38] label [-110, -8]
+component Sovereignty — Economic [0.82, 0.62] label [-130, 10]
+component Sovereignty — Cultural [0.80, 0.24] label [-120, 10]
+
+component Legitimacy [0.78, 0.40] label [-60, -10]
+component Statecraft [0.76, 0.55] label [-10, 6]
+component Treaties & International Law [0.74, 0.70] label [10, 4]
+component Ethics (jus in bello / grey-zone ethics) [0.72, 0.22] label [-170, 4]
+component Accountability [0.70, 0.28] label [-90, 10]
+component Attribution [0.68, 0.30] label [-80, -10]
+component Deniability [0.66, 0.35] label [10, 6]
+
+component Effect — Deter [0.64, 0.72] label [10, 4]
+component Effect — Coerce [0.62, 0.55] label [-60, -10]
+component Effect — Hearts & Minds [0.60, 0.50] label [-110, 8]
+component Effect — Propaganda [0.58, 0.68] label [10, 2]
+component Effect — Kinetic (sub-threshold) [0.56, 0.48] label [-140, 6]
+
+component Consequence — Unintended outcome [0.54, 0.18] label [-160, -8]
+component Consequence — Friendly fire (cognitive) [0.52, 0.22] label [-160, 8]
+
+component Theatre — Land (below threshold) [0.50, 0.70] label [10, 4]
+component Theatre — Electronic (EW / SIGINT) [0.48, 0.60] label [-80, -10]
+component Theatre — Space [0.46, 0.28] label [-60, -10]
+component Theatre — Social media [0.44, 0.78] label [10, 4]
+component Theatre — Finance [0.42, 0.68] label [10, 4]
+
+component Landscape — Physical [0.36, 0.80] label [10, 4]
+component Landscape — Virtual [0.34, 0.72] label [10, 4]
+component Landscape — Supply chain [0.32, 0.58] label [-130, 10]
+component Awareness — Physical [0.30, 0.56] label [-100, -8]
+component Awareness — Virtual [0.28, 0.40] label [-90, 8]
+component Awareness — Supply chain [0.26, 0.30] label [-140, 8]
+
+component Crypto / Stablecoin rails [0.22, 0.55] label [-60, 10]
+component Offensive cyber tools (malware, zero-days) [0.20, 0.48] label [-10, -10]
+component Disinfo tooling (bots, generative AI) [0.18, 0.72] label [10, 4]
+component Private military / cyber contractors [0.16, 0.62] label [10, 4]
+component Dark-pattern influence ops [0.14, 0.20] label [-90, 8]
+component Cognitive / neuro-weapons [0.10, 0.08] label [-40, 10]
+
+People (population / civil society)->Sovereignty — Territorial
+People (population / civil society)->Sovereignty — Cultural
+People (population / civil society)->Legitimacy
+Governments (states)->Sovereignty — Territorial
+Governments (states)->Sovereignty — Cyber
+Governments (states)->Sovereignty — Economic
+Governments (states)->Sovereignty — Cultural
+Governments (states)->Statecraft
+Governments (states)->Treaties & International Law
+Governments (states)->Legitimacy
+Supranationals (UN, NATO, EU, AU)->Treaties & International Law
+Supranationals (UN, NATO, EU, AU)->Legitimacy
+Supranationals (UN, NATO, EU, AU)->Attribution
+Private & Proxy Operators->Statecraft
+Private & Proxy Operators->Deniability
+Private & Proxy Operators->Effect — Kinetic (sub-threshold)
+Private & Proxy Operators->Effect — Propaganda
+
+Sovereignty — Cyber->Attribution
+Sovereignty — Cyber->Accountability
+Sovereignty — Cyber->Theatre — Electronic (EW / SIGINT)
+Sovereignty — Territorial->Theatre — Land (below threshold)
+Sovereignty — Economic->Theatre — Finance
+Sovereignty — Economic->Landscape — Supply chain
+Sovereignty — Cultural->Theatre — Social media
+Sovereignty — Cultural->Effect — Hearts & Minds
+
+Legitimacy->Ethics (jus in bello / grey-zone ethics)
+Legitimacy->Accountability
+Legitimacy->Attribution
+Statecraft->Treaties & International Law
+Statecraft->Effect — Deter
+Statecraft->Effect — Coerce
+Statecraft->Effect — Hearts & Minds
+Treaties & International Law->Ethics (jus in bello / grey-zone ethics)
+Treaties & International Law->Attribution
+Accountability->Attribution
+Attribution->Deniability
+Attribution->Awareness — Virtual
+Attribution->Awareness — Supply chain
+Deniability->Private military / cyber contractors
+Deniability->Crypto / Stablecoin rails
+
+Effect — Deter->Theatre — Space
+Effect — Deter->Theatre — Electronic (EW / SIGINT)
+Effect — Coerce->Theatre — Finance
+Effect — Coerce->Theatre — Land (below threshold)
+Effect — Hearts & Minds->Theatre — Social media
+Effect — Hearts & Minds->Effect — Propaganda
+Effect — Propaganda->Theatre — Social media
+Effect — Propaganda->Disinfo tooling (bots, generative AI)
+Effect — Kinetic (sub-threshold)->Theatre — Land (below threshold)
+Effect — Kinetic (sub-threshold)->Private military / cyber contractors
+
+Effect — Coerce->Consequence — Unintended outcome
+Effect — Propaganda->Consequence — Friendly fire (cognitive)
+Effect — Hearts & Minds->Consequence — Friendly fire (cognitive)
+Effect — Kinetic (sub-threshold)->Consequence — Unintended outcome
+
+Theatre — Land (below threshold)->Landscape — Physical
+Theatre — Electronic (EW / SIGINT)->Landscape — Virtual
+Theatre — Electronic (EW / SIGINT)->Offensive cyber tools (malware, zero-days)
+Theatre — Space->Landscape — Physical
+Theatre — Space->Landscape — Virtual
+Theatre — Social media->Landscape — Virtual
+Theatre — Social media->Disinfo tooling (bots, generative AI)
+Theatre — Finance->Landscape — Supply chain
+Theatre — Finance->Crypto / Stablecoin rails
+
+Landscape — Physical->Awareness — Physical
+Landscape — Virtual->Awareness — Virtual
+Landscape — Supply chain->Awareness — Supply chain
+Awareness — Virtual->Offensive cyber tools (malware, zero-days)
+Awareness — Supply chain->Crypto / Stablecoin rails
+Awareness — Virtual->Disinfo tooling (bots, generative AI)
+
+Disinfo tooling (bots, generative AI)->Dark-pattern influence ops
+Disinfo tooling (bots, generative AI)->Cognitive / neuro-weapons
+Private military / cyber contractors->Offensive cyber tools (malware, zero-days)
+
+evolve Sovereignty — Cyber 0.60
+evolve Attribution 0.55
+evolve Accountability 0.50
+evolve Awareness — Virtual 0.60
+evolve Awareness — Supply chain 0.55
+evolve Disinfo tooling (bots, generative AI) 0.75
+evolve Offensive cyber tools (malware, zero-days) 0.65
+evolve Crypto / Stablecoin rails 0.55
+evolve Effect — Propaganda 0.78
+evolve Theatre — Social media 0.70
+evolve Theatre — Space 0.60
+evolve Ethics (jus in bello / grey-zone ethics) 0.45
+evolve Dark-pattern influence ops 0.40
+evolve Cognitive / neuro-weapons 0.25

@@ -1,0 +1,11 @@
+{
+  "scenario": "eval-agriculture-regen",
+  "skill": "arc-kit/wardley-mapping",
+  "run": 1,
+  "mode": "with_skill",
+  "blind": true,
+  "start_utc": "2026-04-22T16:39:25Z",
+  "end_utc": "2026-04-22T16:43:00Z",
+  "duration_seconds": 214,
+  "notes": "Blind benchmark: arc-kit wardley-mapping skill applied to the Aug 2022 regenerative-farming scenario. Did not read the reference .owm in either the competitor-compare or iteration-12 locations. Followed SKILL.md's 7-step process adapted for non-interactive mode (AskUserQuestion not available in the benchmark harness, so Step 1 / Step 3 / Step 5 user-clarification was resolved from the scenario brief alone). Output files: outputs/draft.owm (55 components, 6 anchors, 110+ edges, 15 evolve arrows, 7 inertia markers) and outputs/output.md (structured YAML + narrative + analysis checklist reflection)."
+}

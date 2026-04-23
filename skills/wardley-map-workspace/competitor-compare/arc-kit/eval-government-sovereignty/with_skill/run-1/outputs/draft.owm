@@ -1,0 +1,162 @@
+title National Sovereignty from a Government Point of View (April 2023)
+
+// Anchors (top of map)
+component Supranational Layer [0.97, 0.35]
+component Government [0.96, 0.42]
+component Corporations and Shareholders [0.94, 0.58]
+component Society [0.95, 0.30]
+
+// Election legitimacy (closely tied to government + society)
+component Election Legitimacy [0.88, 0.40]
+
+// Pillars of sovereignty
+component Political Sovereignty [0.82, 0.40]
+component Economic Sovereignty [0.82, 0.55]
+component Territorial Sovereignty [0.83, 0.70]
+component Security Sovereignty [0.82, 0.62]
+component Digital Sovereignty [0.82, 0.22]
+component Cultural Sovereignty [0.81, 0.32]
+
+// Perception / belonging feedback into legitimacy
+component Perception of Success [0.75, 0.45]
+component Public Belonging [0.75, 0.35]
+
+// Social norms (trust substrate under legitimacy)
+component Integrity [0.70, 0.30]
+component Benevolence [0.70, 0.38]
+component Fairness [0.70, 0.46]
+component Competency [0.70, 0.54]
+component Identity [0.70, 0.25]
+
+// Media mix (shapes norms, belonging, perception)
+component Social Media [0.62, 0.72]
+component Mainstream Media [0.62, 0.78]
+component Education [0.62, 0.66]
+component Art [0.62, 0.28]
+component Propaganda [0.62, 0.34]
+
+// International law + laws (constrains pillars)
+component International Law [0.58, 0.45]
+component Domestic Laws [0.58, 0.72]
+
+// Theatres (where pillars play out)
+component Land [0.50, 0.82]
+component Supply Chain [0.50, 0.55]
+component Cyber [0.50, 0.35]
+component CNI [0.50, 0.68]
+
+// Crisis response (cross-cuts theatres)
+component Crisis Response [0.44, 0.48]
+
+// Awareness apparatus
+component Territorial Awareness [0.36, 0.78]
+component Supply-Chain Awareness [0.36, 0.40]
+component Digital-Chain Awareness [0.36, 0.20]
+
+// Capability layer (underlies awareness + theatres)
+component Capability Layer [0.22, 0.48]
+
+// Dependencies - from anchors into pillars and legitimacy
+Society -> Election Legitimacy
+Government -> Election Legitimacy
+Government -> Political Sovereignty
+Government -> Economic Sovereignty
+Government -> Territorial Sovereignty
+Government -> Security Sovereignty
+Government -> Digital Sovereignty
+Government -> Cultural Sovereignty
+Supranational Layer -> Political Sovereignty
+Supranational Layer -> Economic Sovereignty
+Supranational Layer -> International Law
+Corporations and Shareholders -> Economic Sovereignty
+Corporations and Shareholders -> Digital Sovereignty
+Corporations and Shareholders -> Supply Chain
+Society -> Cultural Sovereignty
+Society -> Political Sovereignty
+
+// Election legitimacy rests on perception, belonging, and norms
+Election Legitimacy -> Perception of Success
+Election Legitimacy -> Public Belonging
+Election Legitimacy -> Integrity
+Election Legitimacy -> Benevolence
+Election Legitimacy -> Fairness
+Election Legitimacy -> Competency
+Election Legitimacy -> Identity
+
+// Pillars -> theatres + norms
+Political Sovereignty -> International Law
+Political Sovereignty -> Domestic Laws
+Political Sovereignty -> Fairness
+Political Sovereignty -> Competency
+Economic Sovereignty -> Supply Chain
+Economic Sovereignty -> Domestic Laws
+Economic Sovereignty -> Perception of Success
+Territorial Sovereignty -> Land
+Territorial Sovereignty -> International Law
+Security Sovereignty -> CNI
+Security Sovereignty -> Cyber
+Security Sovereignty -> Land
+Security Sovereignty -> Crisis Response
+Digital Sovereignty -> Cyber
+Digital Sovereignty -> CNI
+Digital Sovereignty -> Supply Chain
+Cultural Sovereignty -> Identity
+Cultural Sovereignty -> Art
+Cultural Sovereignty -> Education
+
+// Perception/belonging rest on media mix and norms
+Perception of Success -> Mainstream Media
+Perception of Success -> Social Media
+Perception of Success -> Competency
+Public Belonging -> Identity
+Public Belonging -> Education
+Public Belonging -> Art
+Public Belonging -> Social Media
+
+// Norms shaped by media and laws
+Integrity -> Mainstream Media
+Benevolence -> Mainstream Media
+Fairness -> Domestic Laws
+Competency -> Education
+Identity -> Education
+Identity -> Art
+Propaganda -> Social Media
+Propaganda -> Mainstream Media
+
+// Laws depend on the capability layer via courts/enforcement
+International Law -> Domestic Laws
+Domestic Laws -> Capability Layer
+
+// Theatres rest on awareness and capability
+Land -> Territorial Awareness
+Supply Chain -> Supply-Chain Awareness
+Cyber -> Digital-Chain Awareness
+CNI -> Digital-Chain Awareness
+CNI -> Supply-Chain Awareness
+Crisis Response -> Territorial Awareness
+Crisis Response -> Supply-Chain Awareness
+Crisis Response -> Digital-Chain Awareness
+Crisis Response -> Capability Layer
+
+// Awareness rests on capability
+Territorial Awareness -> Capability Layer
+Supply-Chain Awareness -> Capability Layer
+Digital-Chain Awareness -> Capability Layer
+
+// Movement annotations (evolution arrows)
+// Digital sovereignty accelerating right (post-CHIPS, post-Ukraine)
+Digital Sovereignty ->> 0.40
+// Supply-chain awareness evolving fast post-COVID / Ukraine
+Supply-Chain Awareness ->> 0.55
+// Cyber theatre industrialising
+Cyber -> 0.50
+// Social media weaponisation pushing it further right as utility
+Social Media -> 0.82
+// Mainstream media mature but subject to trust decay - inertia
+Mainstream Media x
+// Propaganda evolving with generative AI - acceleration
+Propaganda ->> 0.50
+// Election legitimacy contested, not drifting naturally
+Election Legitimacy x
+// Cultural sovereignty sticky - inertia from identity
+Cultural Sovereignty x

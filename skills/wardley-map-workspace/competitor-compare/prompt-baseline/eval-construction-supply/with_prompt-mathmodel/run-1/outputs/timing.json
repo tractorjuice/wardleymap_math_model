@@ -1,0 +1,25 @@
+{
+  "run": "prompt-baseline/eval-construction-supply/with_prompt-in-tree/run-1",
+  "scenario": "Construction supply chain end-to-end (March 2023)",
+  "method": "prompt-only baseline (prompts/wardley_map_generator.md)",
+  "blind": true,
+  "reference_consulted": false,
+  "start_epoch_s": 1776872992.406225463,
+  "end_epoch_s": 1776873144.459752256,
+  "elapsed_seconds": 152.053526793,
+  "elapsed_human": "2m 32s",
+  "outputs": [
+    "draft.owm",
+    "output.md",
+    "timing.json"
+  ],
+  "map_stats": {
+    "anchors": 5,
+    "components": 42,
+    "dependency_edges_estimate": 70,
+    "evolve_statements": 7,
+    "inertia_components": 3,
+    "pipelines": 2,
+    "notes": 4
+  }
+}

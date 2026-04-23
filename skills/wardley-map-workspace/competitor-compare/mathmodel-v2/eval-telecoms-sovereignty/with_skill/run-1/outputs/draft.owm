@@ -1,0 +1,135 @@
+title Telecoms Sovereignty (Nation-State Perspective, Oct 2022)
+style wardley
+
+// Anchors — four user types per the scenario
+anchor Government [0.96, 0.50]
+anchor The Collective [0.94, 0.45]
+anchor Corporations [0.92, 0.55]
+anchor People [0.90, 0.60]
+
+// Sovereignty pillars (user-facing needs)
+component Territorial Sovereignty [0.86, 0.40]
+component Political Sovereignty [0.84, 0.35]
+component Cultural Sovereignty [0.82, 0.45]
+component Economic Sovereignty [0.80, 0.55]
+component Digital Sovereignty [0.78, 0.30]
+component CNI Sovereignty [0.76, 0.48]
+
+// Theatre / awareness layer
+component Land-Sea-Air-Space Awareness [0.72, 0.40]
+component Supply Chain Awareness [0.70, 0.22]
+
+// Access devices (user-visible edge)
+component Smartphones [0.66, 0.83]
+component Computers [0.64, 0.78]
+component Radio and TV [0.62, 0.88]
+component Satellite Phones [0.60, 0.62]
+component IoT Devices [0.58, 0.55]
+
+// Control layer (nation-state levers)
+component Nation-State Firewalls [0.54, 0.42]
+component Geofencing [0.52, 0.38]
+component DNS-over-HTTPS [0.50, 0.58]
+component SIMs [0.48, 0.85]
+
+// Access networks
+component Mobile Towers [0.46, 0.80]
+component Fixed Cable Network [0.44, 0.82]
+component Satellite Constellations [0.42, 0.52]
+component Launch Vehicles [0.28, 0.45]
+
+// Network equipment and topology
+component Mobile Network Equipment [0.38, 0.70]
+component Fixed Network Equipment [0.36, 0.78]
+component Network Topology and Peering [0.34, 0.60]
+component Submarine Cables [0.30, 0.72]
+
+// Foundational / reality layer
+component Compute [0.22, 0.82]
+component Power Grid [0.18, 0.90]
+component Geography [0.14, 0.95]
+component Space [0.12, 0.40]
+component Physical Supply Chains [0.16, 0.52]
+component Information Supply Chains [0.24, 0.48]
+
+// Knowledge / expertise
+component Telecoms Expertise [0.26, 0.55]
+
+// Dependencies
+Government->Territorial Sovereignty
+Government->Political Sovereignty
+Government->Digital Sovereignty
+Government->CNI Sovereignty
+The Collective->Cultural Sovereignty
+The Collective->Political Sovereignty
+Corporations->Economic Sovereignty
+Corporations->Digital Sovereignty
+People->Cultural Sovereignty
+People->Smartphones
+People->Computers
+People->Radio and TV
+
+Territorial Sovereignty->Land-Sea-Air-Space Awareness
+Political Sovereignty->Nation-State Firewalls
+Political Sovereignty->Geofencing
+Cultural Sovereignty->Radio and TV
+Cultural Sovereignty->DNS-over-HTTPS
+Economic Sovereignty->Supply Chain Awareness
+Economic Sovereignty->Network Topology and Peering
+Digital Sovereignty->DNS-over-HTTPS
+Digital Sovereignty->Nation-State Firewalls
+Digital Sovereignty->SIMs
+CNI Sovereignty->Mobile Towers
+CNI Sovereignty->Fixed Cable Network
+CNI Sovereignty->Power Grid
+
+Land-Sea-Air-Space Awareness->Satellite Constellations
+Land-Sea-Air-Space Awareness->Space
+Supply Chain Awareness->Physical Supply Chains
+Supply Chain Awareness->Information Supply Chains
+
+Smartphones->SIMs
+Smartphones->Mobile Towers
+Smartphones->Mobile Network Equipment
+Computers->Fixed Cable Network
+Computers->Network Topology and Peering
+Radio and TV->Mobile Towers
+Satellite Phones->Satellite Constellations
+IoT Devices->Mobile Towers
+IoT Devices->SIMs
+
+Nation-State Firewalls->Network Topology and Peering
+Geofencing->Mobile Towers
+DNS-over-HTTPS->Network Topology and Peering
+SIMs->Mobile Network Equipment
+
+Mobile Towers->Mobile Network Equipment
+Mobile Towers->Power Grid
+Fixed Cable Network->Fixed Network Equipment
+Fixed Cable Network->Submarine Cables
+Satellite Constellations->Launch Vehicles
+Satellite Constellations->Space
+Launch Vehicles->Space
+Launch Vehicles->Physical Supply Chains
+
+Mobile Network Equipment->Telecoms Expertise
+Mobile Network Equipment->Physical Supply Chains
+Fixed Network Equipment->Physical Supply Chains
+Network Topology and Peering->Telecoms Expertise
+Network Topology and Peering->Submarine Cables
+Submarine Cables->Geography
+
+Compute->Power Grid
+Compute->Physical Supply Chains
+Power Grid->Geography
+Physical Supply Chains->Geography
+Information Supply Chains->Compute
+
+Telecoms Expertise->Geography
+
+evolve Nation-State Firewalls 0.58
+evolve Satellite Constellations 0.68
+evolve DNS-over-HTTPS 0.72
+
+note Sovereign-controllable zone [0.78, 0.20]
+note Foreign-dependent commodity foundation [0.18, 0.78]

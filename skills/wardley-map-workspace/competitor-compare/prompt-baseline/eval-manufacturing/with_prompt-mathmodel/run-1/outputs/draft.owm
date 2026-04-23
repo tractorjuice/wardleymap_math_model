@@ -1,0 +1,138 @@
+title Manufacturing Supply Chain (Feb 2023)
+style wardley
+
+// Anchors — three distinct user types in this scenario
+anchor Distributor [0.98, 0.70]
+anchor Regulator [0.96, 0.55]
+anchor Investor / Board [0.94, 0.60]
+
+// Layer 1 — directly user-facing deliverables
+component Finished Product [0.88, 0.72]
+component Compliance Certification [0.86, 0.58]
+component ROCE Reporting [0.84, 0.78]
+component Sales Forecast [0.82, 0.45]
+
+// Layer 2 — awareness / visibility layer
+component Supply Chain Visibility [0.76, 0.28]
+component Resilience Dashboard [0.74, 0.22]
+component Risk Register [0.72, 0.55]
+component Demand Signal [0.70, 0.50]
+
+// Layer 3 — core manufacturing activities
+component Product Assembly [0.64, 0.55]
+component Quality Assurance [0.62, 0.62]
+component Packaging [0.58, 0.78]
+component Safety Testing [0.56, 0.48]
+
+// Layer 4 — supply chain decisions (strategic practices)
+component Inventory Policy (JIT vs JIC) [0.50, 0.32]
+component Warehousing [0.48, 0.72]
+component Logistics & Freight [0.46, 0.82]
+component Supplier Selection [0.44, 0.40]
+component Second-Source Strategy [0.42, 0.25]
+
+// Layer 5 — inputs & enabling functions
+component Equipment / Machinery [0.36, 0.60]
+component Skilled Labour [0.34, 0.45]
+component R&D [0.32, 0.28]
+component Capital / Financing [0.30, 0.78]
+component Cost Accounting [0.28, 0.82]
+
+// Layer 6 — regulatory / external engagement
+component Safety Standards Mgmt [0.26, 0.50]
+component Lobbying [0.24, 0.35]
+component Audit Trail [0.22, 0.68]
+
+// Layer 7 — raw / refined inputs
+component Refined Materials [0.18, 0.82]
+component Raw Materials [0.12, 0.88]
+component Energy [0.10, 0.90]
+
+// Layer 8 — deep infrastructure / knowledge
+component ERP / MRP [0.22, 0.75]
+component Materials Science (K) [0.08, 0.30]
+component Process Engineering (K) [0.14, 0.45]
+
+// Dependencies — Distributor anchor
+Distributor->Finished Product
+Distributor->Sales Forecast
+Finished Product->Product Assembly
+Finished Product->Packaging
+Finished Product->Quality Assurance
+Finished Product->Compliance Certification
+
+// Dependencies — Regulator anchor
+Regulator->Compliance Certification
+Regulator->Safety Standards Mgmt
+Regulator->Audit Trail
+Compliance Certification->Safety Testing
+Compliance Certification->Safety Standards Mgmt
+Safety Standards Mgmt->Lobbying
+Audit Trail->ERP / MRP
+
+// Dependencies — Investor / Board anchor
+Investor / Board->ROCE Reporting
+Investor / Board->Sales Forecast
+ROCE Reporting->Cost Accounting
+ROCE Reporting->Capital / Financing
+Sales Forecast->Demand Signal
+Sales Forecast->Supply Chain Visibility
+
+// Awareness / visibility layer
+Supply Chain Visibility->Resilience Dashboard
+Supply Chain Visibility->Risk Register
+Supply Chain Visibility->Demand Signal
+Resilience Dashboard->Supplier Selection
+Resilience Dashboard->Second-Source Strategy
+Risk Register->Supplier Selection
+Risk Register->Inventory Policy (JIT vs JIC)
+
+// Manufacturing dependencies
+Product Assembly->Equipment / Machinery
+Product Assembly->Skilled Labour
+Product Assembly->Refined Materials
+Product Assembly->R&D
+Quality Assurance->Safety Testing
+Quality Assurance->Process Engineering (K)
+Packaging->Refined Materials
+Safety Testing->Process Engineering (K)
+
+// Supply chain decisions
+Inventory Policy (JIT vs JIC)->Warehousing
+Inventory Policy (JIT vs JIC)->Logistics & Freight
+Inventory Policy (JIT vs JIC)->Supplier Selection
+Warehousing->Logistics & Freight
+Logistics & Freight->Refined Materials
+Supplier Selection->Refined Materials
+Supplier Selection->Second-Source Strategy
+Second-Source Strategy->Supplier Selection
+
+// Inputs
+Equipment / Machinery->Capital / Financing
+Skilled Labour->Capital / Financing
+R&D->Materials Science (K)
+R&D->Process Engineering (K)
+R&D->Skilled Labour
+Refined Materials->Raw Materials
+Refined Materials->Energy
+Raw Materials->Energy
+
+// Cross-cutting
+Cost Accounting->ERP / MRP
+Capital / Financing->Cost Accounting
+
+// Inertia — pandemic-era JIT is being rethought but org practices stick
+component Inventory Policy (JIT vs JIC) [0.50, 0.32] inertia
+
+// Evolution movements (scenario, not forecast)
+evolve Supply Chain Visibility 0.50
+evolve Second-Source Strategy 0.45
+evolve Inventory Policy (JIT vs JIC) 0.50
+evolve R&D 0.40
+
+// Strategic notes
+note Differentiation zone — resilience & visibility [0.70, 0.20]
+note Commodity / outsource candidates [0.15, 0.88]
+note Post-COVID / Ukraine war — JIT under pressure [0.55, 0.15]
+</content>
+</invoke>

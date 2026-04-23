@@ -1,0 +1,11 @@
+{
+  "skill": "haberlah/wardley-mapping",
+  "scenario": "eval-culture-gender",
+  "run": 1,
+  "mode": "with_skill",
+  "blind": true,
+  "start_epoch_s": 1776873145.748,
+  "end_epoch_s": 1776873480.882,
+  "duration_s": 335.134,
+  "notes": "Blind run — haberlah skill, did not read reference .owm. 17 components (scenario-driven; flagged in output.md as >15 threshold)."
+}

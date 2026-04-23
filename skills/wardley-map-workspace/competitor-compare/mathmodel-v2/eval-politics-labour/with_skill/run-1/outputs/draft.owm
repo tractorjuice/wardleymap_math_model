@@ -1,0 +1,170 @@
+title UK Labour Party — May 2024, Preparing for Government
+style wardley
+
+// Anchors — three user types
+anchor Keir Starmer (Leader) [0.97, 0.35]
+anchor UK Voters [0.97, 0.55]
+anchor Labour Party Members [0.97, 0.45]
+
+// --- Directly user-facing: campaign / engagement surface ---
+component Campaign Strategy [0.88, 0.62]
+component Public Engagement [0.86, 0.68]
+component Media Relations [0.84, 0.78]
+component Manifesto [0.83, 0.58]
+component Leader's Speeches [0.85, 0.55]
+component Party Policy Framework [0.80, 0.60]
+component Internal Party Democracy [0.78, 0.40]
+component Stakeholder Engagement [0.75, 0.55]
+component Volunteer Mobilisation [0.73, 0.72]
+component Fundraising [0.70, 0.70]
+
+// --- Substantive policy areas users care about ---
+component Economic Equality Policy [0.68, 0.38]
+component Workers' Rights Policy [0.66, 0.55]
+component Anti-Discrimination Policy [0.64, 0.72]
+component Social Justice Policy [0.62, 0.45]
+component Healthcare Access (NHS) Policy [0.68, 0.78]
+component Education Access Policy [0.66, 0.77]
+component Housing Policy [0.64, 0.42]
+component Infrastructure Policy [0.62, 0.62]
+component Public Sector Investment Policy [0.60, 0.58]
+component Climate Change Action Policy [0.58, 0.48]
+component National Security Policy [0.60, 0.82]
+component International Relations Policy [0.58, 0.78]
+component Digital Transformation Policy [0.52, 0.32]
+component Community Programs [0.56, 0.65]
+
+// --- Mid-chain: policy machinery ---
+component Research and Policy Development [0.48, 0.48]
+component Private Sector Collaboration [0.46, 0.55]
+component Focus Groups and Polling [0.45, 0.80]
+component Canvassing Operations [0.54, 0.78]
+component Constituency Labour Parties (CLPs) [0.52, 0.65]
+component Trade Union Relationships [0.50, 0.60]
+
+// --- Deeper: enabling infrastructure ---
+component Digital Campaign Platform [0.35, 0.65]
+component Voter Database (Contact Creator) [0.32, 0.70]
+component Donor CRM [0.30, 0.82]
+component Social Media Channels [0.33, 0.88]
+component Party Staff / HQ [0.28, 0.48]
+component Shadow Cabinet [0.30, 0.42]
+component NEC (National Executive Committee) [0.26, 0.40]
+component Party Conference [0.28, 0.58]
+component Selection Processes [0.54, 0.48]
+
+// --- Commodity / utility layer ---
+component Broadcast Media (BBC, ITV, Sky) [0.18, 0.90]
+component Print Press [0.16, 0.92]
+component Email / SMS Platforms [0.12, 0.93]
+component Payment Processing [0.10, 0.94]
+component Cloud Utilities [0.08, 0.95]
+component Electoral Commission Compliance [0.14, 0.88]
+
+// --- Dependencies ---
+Keir Starmer (Leader)->Leader's Speeches
+Keir Starmer (Leader)->Manifesto
+Keir Starmer (Leader)->Shadow Cabinet
+Keir Starmer (Leader)->Media Relations
+Keir Starmer (Leader)->Campaign Strategy
+
+UK Voters->Manifesto
+UK Voters->Public Engagement
+UK Voters->Media Relations
+UK Voters->Healthcare Access (NHS) Policy
+UK Voters->Education Access Policy
+UK Voters->Housing Policy
+UK Voters->Economic Equality Policy
+UK Voters->Workers' Rights Policy
+UK Voters->National Security Policy
+UK Voters->Climate Change Action Policy
+
+Labour Party Members->Internal Party Democracy
+Labour Party Members->Party Policy Framework
+Labour Party Members->Volunteer Mobilisation
+Labour Party Members->Party Conference
+Labour Party Members->Constituency Labour Parties (CLPs)
+
+// Campaign layer
+Campaign Strategy->Research and Policy Development
+Campaign Strategy->Focus Groups and Polling
+Campaign Strategy->Canvassing Operations
+Campaign Strategy->Digital Campaign Platform
+Public Engagement->Volunteer Mobilisation
+Public Engagement->Canvassing Operations
+Public Engagement->Social Media Channels
+Media Relations->Broadcast Media (BBC, ITV, Sky)
+Media Relations->Print Press
+Media Relations->Social Media Channels
+Manifesto->Party Policy Framework
+Manifesto->Research and Policy Development
+Leader's Speeches->Research and Policy Development
+Leader's Speeches->Media Relations
+
+// Policy framework
+Party Policy Framework->Research and Policy Development
+Party Policy Framework->Internal Party Democracy
+Party Policy Framework->Party Conference
+Internal Party Democracy->NEC (National Executive Committee)
+Internal Party Democracy->Constituency Labour Parties (CLPs)
+Internal Party Democracy->Trade Union Relationships
+
+// Engagement machinery
+Stakeholder Engagement->Trade Union Relationships
+Stakeholder Engagement->Private Sector Collaboration
+Volunteer Mobilisation->Constituency Labour Parties (CLPs)
+Volunteer Mobilisation->Digital Campaign Platform
+Fundraising->Donor CRM
+Fundraising->Private Sector Collaboration
+Fundraising->Trade Union Relationships
+Fundraising->Payment Processing
+Fundraising->Electoral Commission Compliance
+
+// Policy areas → research and stakeholder inputs
+Economic Equality Policy->Research and Policy Development
+Workers' Rights Policy->Research and Policy Development
+Workers' Rights Policy->Trade Union Relationships
+Anti-Discrimination Policy->Research and Policy Development
+Social Justice Policy->Research and Policy Development
+Healthcare Access (NHS) Policy->Research and Policy Development
+Education Access Policy->Research and Policy Development
+Housing Policy->Research and Policy Development
+Infrastructure Policy->Research and Policy Development
+Infrastructure Policy->Private Sector Collaboration
+Public Sector Investment Policy->Research and Policy Development
+Climate Change Action Policy->Research and Policy Development
+Climate Change Action Policy->Private Sector Collaboration
+National Security Policy->Research and Policy Development
+International Relations Policy->Research and Policy Development
+Digital Transformation Policy->Research and Policy Development
+Digital Transformation Policy->Private Sector Collaboration
+Community Programs->Constituency Labour Parties (CLPs)
+
+// Research and operations
+Research and Policy Development->Party Staff / HQ
+Research and Policy Development->Shadow Cabinet
+Canvassing Operations->Voter Database (Contact Creator)
+Canvassing Operations->Constituency Labour Parties (CLPs)
+Focus Groups and Polling->Party Staff / HQ
+Digital Campaign Platform->Voter Database (Contact Creator)
+Digital Campaign Platform->Email / SMS Platforms
+Digital Campaign Platform->Cloud Utilities
+Voter Database (Contact Creator)->Cloud Utilities
+Donor CRM->Cloud Utilities
+Donor CRM->Electoral Commission Compliance
+Social Media Channels->Cloud Utilities
+Party Staff / HQ->NEC (National Executive Committee)
+Shadow Cabinet->Party Staff / HQ
+Selection Processes->NEC (National Executive Committee)
+Selection Processes->Constituency Labour Parties (CLPs)
+Party Conference->NEC (National Executive Committee)
+Email / SMS Platforms->Cloud Utilities
+Payment Processing->Cloud Utilities
+
+evolve Digital Campaign Platform 0.78
+evolve Voter Database (Contact Creator) 0.85
+evolve Research and Policy Development 0.62
+evolve Internal Party Democracy 0.55
+
+note Industrialised machinery [0.20, 0.90]
+note Differentiation zone [0.75, 0.38]

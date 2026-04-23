@@ -1,0 +1,174 @@
+title Grey Zone of Defence — Below-Threshold Competition
+style wardley
+
+// Anchor set U — four classes of actor who have needs in the grey zone
+anchor Supranationals [0.99, 0.45]
+anchor Governments [0.98, 0.55]
+anchor Private-Proxy Operators [0.96, 0.72]
+anchor People [0.97, 0.40]
+
+// Sovereignty pillars under contest — what the actors are defending/attacking
+component Cyber Sovereignty [0.90, 0.50]
+component Territorial Sovereignty [0.92, 0.30]
+component Economic Sovereignty [0.91, 0.55]
+component Cultural Sovereignty [0.89, 0.35]
+
+// Statecraft frame — how competition is normatively governed
+component Legitimacy [0.86, 0.40]
+component Statecraft [0.85, 0.55]
+component Treaties [0.83, 0.30]
+component Ethics [0.82, 0.25]
+
+// Theatres of competition — the arenas in which effects are produced
+component Land Theatre [0.78, 0.80]
+component Finance Theatre [0.76, 0.75]
+component Electronic Theatre [0.74, 0.60]
+component Space Theatre [0.72, 0.35]
+component Social Media Theatre [0.73, 0.82]
+
+// Effect types — the grammar of below-threshold action
+component Kinetic Effect [0.66, 0.78]
+component Coerce Effect [0.64, 0.55]
+component Deter Effect [0.63, 0.50]
+component Hearts and Minds Effect [0.62, 0.45]
+component Propaganda Effect [0.65, 0.70]
+
+// Consequences — downstream, partly-governed outcomes
+component Friendly Fire [0.55, 0.25]
+component Unintended Outcomes [0.54, 0.20]
+component Accountability [0.52, 0.30]
+component Attribution [0.50, 0.45]
+component Deniability [0.51, 0.60]
+
+// Landscape layer — where the contest physically/logically lives
+component Physical Landscape [0.42, 0.80]
+component Virtual Landscape [0.40, 0.65]
+component Supply Chain Landscape [0.38, 0.70]
+
+// Awareness of each landscape layer — ISR / OSINT / supply-chain visibility
+component Physical Awareness (ISR) [0.33, 0.55]
+component Virtual Awareness (SIGINT-OSINT) [0.31, 0.50]
+component Supply Chain Awareness [0.29, 0.35]
+
+// Foundational enablers — the commoditised and the still-genuinely-novel
+component Crypto (Payments, Anonymity) [0.22, 0.70]
+component Cyber Toolkits (exploits, C2) [0.20, 0.60]
+component PMCs-Proxy Forces [0.24, 0.78]
+component Disinformation Infrastructure [0.18, 0.82]
+component Commercial Satellites [0.15, 0.72]
+component Public Cloud [0.12, 0.92]
+component Global Payment Rails [0.10, 0.88]
+
+// Dependencies — (A,B) means A depends on B
+
+// Anchors into pillars
+Supranationals->Legitimacy
+Supranationals->Treaties
+Supranationals->Cyber Sovereignty
+Supranationals->Territorial Sovereignty
+Governments->Statecraft
+Governments->Cyber Sovereignty
+Governments->Territorial Sovereignty
+Governments->Economic Sovereignty
+Governments->Cultural Sovereignty
+Governments->Legitimacy
+Private-Proxy Operators->Statecraft
+Private-Proxy Operators->Deniability
+Private-Proxy Operators->Economic Sovereignty
+People->Cultural Sovereignty
+People->Territorial Sovereignty
+People->Legitimacy
+
+// Statecraft frame into the pillars and theatres
+Statecraft->Treaties
+Statecraft->Ethics
+Statecraft->Legitimacy
+Legitimacy->Ethics
+
+// Sovereignty pillars map onto theatres
+Cyber Sovereignty->Electronic Theatre
+Cyber Sovereignty->Social Media Theatre
+Territorial Sovereignty->Land Theatre
+Territorial Sovereignty->Space Theatre
+Economic Sovereignty->Finance Theatre
+Cultural Sovereignty->Social Media Theatre
+
+// Theatres produce effects
+Land Theatre->Kinetic Effect
+Land Theatre->Coerce Effect
+Electronic Theatre->Coerce Effect
+Electronic Theatre->Deter Effect
+Space Theatre->Deter Effect
+Social Media Theatre->Propaganda Effect
+Social Media Theatre->Hearts and Minds Effect
+Finance Theatre->Coerce Effect
+Finance Theatre->Deter Effect
+
+// Effects produce consequences
+Kinetic Effect->Friendly Fire
+Kinetic Effect->Unintended Outcomes
+Propaganda Effect->Unintended Outcomes
+Coerce Effect->Attribution
+Deter Effect->Attribution
+Hearts and Minds Effect->Unintended Outcomes
+
+// Consequences feed accountability loop
+Attribution->Accountability
+Friendly Fire->Accountability
+Unintended Outcomes->Accountability
+Deniability->Attribution
+Accountability->Legitimacy
+
+// Theatres rest on landscape layers
+Land Theatre->Physical Landscape
+Electronic Theatre->Virtual Landscape
+Space Theatre->Physical Landscape
+Social Media Theatre->Virtual Landscape
+Finance Theatre->Virtual Landscape
+Finance Theatre->Supply Chain Landscape
+
+// Each landscape layer has a paired awareness capability
+Physical Landscape->Physical Awareness (ISR)
+Virtual Landscape->Virtual Awareness (SIGINT-OSINT)
+Supply Chain Landscape->Supply Chain Awareness
+
+// Attribution depends on awareness
+Attribution->Virtual Awareness (SIGINT-OSINT)
+Attribution->Physical Awareness (ISR)
+Attribution->Supply Chain Awareness
+
+// Foundational enablers
+Virtual Landscape->Public Cloud
+Virtual Awareness (SIGINT-OSINT)->Commercial Satellites
+Physical Awareness (ISR)->Commercial Satellites
+Supply Chain Landscape->Global Payment Rails
+Finance Theatre->Global Payment Rails
+Electronic Theatre->Cyber Toolkits (exploits, C2)
+Social Media Theatre->Disinformation Infrastructure
+Land Theatre->PMCs-Proxy Forces
+Private-Proxy Operators->PMCs-Proxy Forces
+Economic Sovereignty->Global Payment Rails
+Deniability->Crypto (Payments, Anonymity)
+Deniability->PMCs-Proxy Forces
+Finance Theatre->Crypto (Payments, Anonymity)
+Cyber Toolkits (exploits, C2)->Public Cloud
+Disinformation Infrastructure->Public Cloud
+
+// Evolution movements (scenario, NOT forecast — Wardley's climatic pattern
+// says evolution cannot be measured over time)
+evolve Attribution 0.60
+evolve Deniability 0.75
+evolve Crypto (Payments, Anonymity) 0.85
+evolve Disinformation Infrastructure 0.90
+evolve Supply Chain Awareness 0.55
+evolve Space Theatre 0.55
+
+// Inertia — where existing capital resists evolution
+component Treaties [0.83, 0.30] inertia
+component Ethics [0.82, 0.25] inertia
+
+// Strategic notes
+note Weaponised-commodity zone: exploits, disinfo, crypto, proxies [0.20, 0.78]
+note Genuinely novel: attribution, accountability, friendly-fire, treaty gap [0.55, 0.25]
+note Differentiation pressure: sovereignty pillars + statecraft frame [0.88, 0.35]
+note Utility-grade enablers (cloud, payment rails, sat imagery) [0.13, 0.88]

@@ -1,0 +1,150 @@
+title Telecoms Sovereignty (Nation-State View, Oct 2022)
+style wardley
+
+// Anchor set U — four user types per the scenario
+anchor Government [0.98, 0.35]
+anchor The Collective [0.97, 0.30]
+anchor Corporations [0.96, 0.55]
+anchor People [0.95, 0.70]
+
+// Sovereignty pillars — the needs the anchors want satisfied
+component Territorial Sovereignty [0.90, 0.30]
+component Political Sovereignty [0.89, 0.28]
+component Cultural Sovereignty [0.88, 0.32]
+component Economic Sovereignty [0.87, 0.45]
+component Digital Sovereignty [0.86, 0.35]
+component CNI Sovereignty [0.85, 0.40]
+
+// Theatre / awareness layer — what a sovereign must SEE
+component Land-Sea-Air-Space Awareness [0.80, 0.32]
+component Supply-Chain Awareness [0.78, 0.20]
+component Peering Awareness [0.76, 0.55]
+
+// Access devices (directly used by People / Corporations)
+component Smartphones [0.78, 0.88]
+component Computers [0.76, 0.88]
+component Radio / TV [0.74, 0.90]
+component Satellite Phones [0.70, 0.55]
+component IoT Devices [0.68, 0.65]
+
+// Access networks
+component Mobile Towers [0.62, 0.78]
+component Fixed Cable [0.60, 0.82]
+component Satellite Access [0.58, 0.55]
+component Launch Vehicles [0.40, 0.45]
+
+// Network equipment and topology
+component Fixed Network Equipment [0.52, 0.78]
+component Mobile Network Equipment [0.50, 0.78]
+component Network Topology (Fixed) [0.48, 0.68]
+component Network Topology (Mobile) [0.46, 0.68]
+
+// Control / governance layer
+component DNS-over-HTTPS [0.58, 0.80]
+component Nation-State Firewall [0.56, 0.45]
+component SIMs / eSIMs [0.64, 0.88]
+component Geofencing [0.54, 0.55]
+
+// Expertise (Knowledge layer)
+component Telecoms Expertise [0.40, 0.40]
+component Standards Bodies (3GPP/ITU) [0.38, 0.72]
+
+// Underlying reality
+component Compute [0.30, 0.85]
+component Power [0.25, 0.90]
+component Physical Supply Chain [0.22, 0.55]
+component Information Supply Chain [0.20, 0.55]
+component Space (Orbits) [0.18, 0.45]
+component Geography [0.12, 0.95]
+
+// ---------- Dependencies ----------
+
+// Anchors -> pillars
+Government->Territorial Sovereignty
+Government->Political Sovereignty
+Government->Digital Sovereignty
+Government->CNI Sovereignty
+The Collective->Cultural Sovereignty
+The Collective->Political Sovereignty
+Corporations->Economic Sovereignty
+Corporations->Digital Sovereignty
+People->Cultural Sovereignty
+People->Digital Sovereignty
+
+// Pillars -> theatre/awareness and stack
+Territorial Sovereignty->Land-Sea-Air-Space Awareness
+Territorial Sovereignty->Geography
+Political Sovereignty->Nation-State Firewall
+Political Sovereignty->Supply-Chain Awareness
+Cultural Sovereignty->Radio / TV
+Cultural Sovereignty->Smartphones
+Economic Sovereignty->Peering Awareness
+Economic Sovereignty->Standards Bodies (3GPP/ITU)
+Digital Sovereignty->DNS-over-HTTPS
+Digital Sovereignty->Nation-State Firewall
+Digital Sovereignty->SIMs / eSIMs
+Digital Sovereignty->Geofencing
+CNI Sovereignty->Fixed Network Equipment
+CNI Sovereignty->Mobile Network Equipment
+CNI Sovereignty->Power
+CNI Sovereignty->Compute
+
+// Awareness -> reality
+Land-Sea-Air-Space Awareness->Geography
+Land-Sea-Air-Space Awareness->Space (Orbits)
+Supply-Chain Awareness->Physical Supply Chain
+Supply-Chain Awareness->Information Supply Chain
+Peering Awareness->Standards Bodies (3GPP/ITU)
+
+// Devices -> access networks
+Smartphones->Mobile Towers
+Smartphones->SIMs / eSIMs
+Computers->Fixed Cable
+Radio / TV->Mobile Towers
+Satellite Phones->Satellite Access
+IoT Devices->Mobile Towers
+IoT Devices->Fixed Cable
+
+// Access networks -> equipment / topology / reality
+Mobile Towers->Mobile Network Equipment
+Mobile Towers->Network Topology (Mobile)
+Fixed Cable->Fixed Network Equipment
+Fixed Cable->Network Topology (Fixed)
+Satellite Access->Launch Vehicles
+Satellite Access->Space (Orbits)
+Launch Vehicles->Physical Supply Chain
+
+// Equipment / topology -> reality
+Fixed Network Equipment->Compute
+Fixed Network Equipment->Power
+Fixed Network Equipment->Physical Supply Chain
+Mobile Network Equipment->Compute
+Mobile Network Equipment->Power
+Mobile Network Equipment->Physical Supply Chain
+Network Topology (Fixed)->Geography
+Network Topology (Mobile)->Geography
+
+// Control layer -> underpinnings
+DNS-over-HTTPS->Compute
+DNS-over-HTTPS->Information Supply Chain
+Nation-State Firewall->Compute
+Nation-State Firewall->Telecoms Expertise
+SIMs / eSIMs->Physical Supply Chain
+Geofencing->Network Topology (Mobile)
+
+// Expertise ties
+Telecoms Expertise->Standards Bodies (3GPP/ITU)
+
+// Inertia markers — components that are sticky by Oct 2022
+component Copper Last-Mile [0.45, 0.75] inertia
+Fixed Cable->Copper Last-Mile
+// Sunk capital + human capital inertia forms dominate this one
+
+// Evolution movements (scenario, not forecast)
+evolve Satellite Access 0.75
+evolve Nation-State Firewall 0.70
+evolve Launch Vehicles 0.65
+
+// Strategic notes
+note Sovereign-controllable zone [0.82, 0.18]
+note Foreign-dependent chokepoints [0.25, 0.80]

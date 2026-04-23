@@ -1,0 +1,106 @@
+title Government Digital Identity (November 2022)
+style wardley
+
+anchor Citizens [0.97, 0.55]
+anchor Government [0.97, 0.40]
+anchor Society [0.97, 0.70]
+anchor Corporations [0.97, 0.60]
+anchor Entities [0.97, 0.48]
+anchor Bad Actors [0.97, 0.20]
+
+component Public Service [0.88, 0.55]
+component Power-to [0.84, 0.28]
+component Power-with [0.83, 0.45]
+component Power-over [0.82, 0.62]
+component Regulation [0.76, 0.50]
+component Rules [0.70, 0.60]
+component Exceptions [0.70, 0.30]
+component Trust [0.68, 0.35]
+component Benevolence [0.62, 0.22]
+component Capability [0.61, 0.58]
+component Integrity [0.60, 0.40]
+component Claims [0.55, 0.55]
+component Credentials [0.48, 0.50]
+component Identity [0.42, 0.48]
+component Self-Sovereign Identity [0.40, 0.18] inertia
+component Digital Identification [0.33, 0.40]
+component Physical Identification [0.32, 0.72]
+component Issuing Authority [0.25, 0.62]
+component Decentralised Authority [0.24, 0.20]
+component Centralised Authority [0.24, 0.80]
+component Mutable Identifiers [0.18, 0.55]
+component Connectedness [0.16, 0.35]
+component Immutable Identifiers [0.15, 0.70]
+component Internet [0.05, 0.92]
+
+Citizens->Public Service
+Government->Public Service
+Society->Public Service
+Corporations->Public Service
+Entities->Public Service
+Bad Actors->Exceptions
+
+Citizens->Power-to
+Government->Power-over
+Society->Power-with
+Corporations->Power-with
+
+Public Service->Claims
+Public Service->Trust
+Public Service->Regulation
+
+Power-to->Self-Sovereign Identity
+Power-over->Centralised Authority
+Power-with->Decentralised Authority
+
+Regulation->Rules
+Regulation->Exceptions
+Rules->Credentials
+Exceptions->Rules
+
+Trust->Benevolence
+Trust->Capability
+Trust->Integrity
+
+Benevolence->Identity
+Capability->Credentials
+Integrity->Identity
+
+Claims->Credentials
+Credentials->Identity
+Credentials->Issuing Authority
+
+Identity->Digital Identification
+Identity->Physical Identification
+
+Self-Sovereign Identity->Decentralised Authority
+Self-Sovereign Identity->Digital Identification
+
+Digital Identification->Mutable Identifiers
+Digital Identification->Immutable Identifiers
+Digital Identification->Connectedness
+Digital Identification->Issuing Authority
+Physical Identification->Issuing Authority
+Physical Identification->Centralised Authority
+
+Issuing Authority->Centralised Authority
+Issuing Authority->Decentralised Authority
+
+Mutable Identifiers->Internet
+Immutable Identifiers->Internet
+Connectedness->Internet
+Centralised Authority->Internet
+Decentralised Authority->Internet
+Digital Identification->Internet
+
+evolve Self-Sovereign Identity 0.38
+evolve Digital Identification 0.62
+evolve Credentials 0.70
+evolve Decentralised Authority 0.40
+evolve Regulation 0.65
+evolve Claims 0.72
+
+annotation 1 [[0.42, 0.18]] SSI + W3C VCs/DIDs (2022 recommendations) — adoption still bespoke and pilot-stage.
+annotation 2 [[0.27, 0.80]] Centralised Authority (Aadhaar, Estonia e-ID, SingPass) — Commodity in mature regimes.
+annotation 3 [[0.78, 0.55]] eIDAS 2 / EU Digital Identity Wallet in trilogue November 2022.
+annotation 4 [[0.72, 0.30]] Exceptions apparatus: where bad actors exploit gaps between rule and reality.

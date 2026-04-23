@@ -1,0 +1,10 @@
+{
+  "scenario": "eval-construction-supply",
+  "skill": "arc-kit/wardley-mapping",
+  "run": 1,
+  "mode": "blind",
+  "start_epoch_s": 1776875915.874169992,
+  "end_epoch_s": 1776876103.279650057,
+  "duration_s": 187.405480065,
+  "notes": "Blind run: did not read either wardley-reference.owm; used only arc-kit SKILL.md + its references/evolution-stages.md. Outputs: output.md, draft.owm."
+}

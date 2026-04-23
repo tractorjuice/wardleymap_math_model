@@ -1,0 +1,192 @@
+title Defence Intelligence Landscape (March 2023)
+style wardley
+
+// Anchors — multiple user types
+anchor Military Commanders [0.97, 0.62]
+anchor Government Decision-Makers [0.95, 0.55]
+anchor Citizens [0.93, 0.48]
+
+// Core needs / outputs
+component Operational Decisions [0.88, 0.55]
+component Intelligence Product / Assessment [0.82, 0.53]
+component Public Accountability [0.80, 0.35]
+
+// Decision model layer
+component Human-in-the-Loop Control [0.76, 0.32]
+component Human-on-the-Loop Supervision [0.74, 0.28]
+component Trust Framework (competence/integrity/benevolence) [0.72, 0.17]
+
+// Analysis layer
+component Intelligence Analysts [0.68, 0.45]
+component AI Analysis Engine [0.65, 0.22]
+component Model Evaluation / Red-Teaming [0.63, 0.18]
+component Pattern-of-Life Analytics [0.60, 0.35]
+component ML Models (mission-specific) [0.58, 0.28]
+component Bias & Integrity Auditing [0.56, 0.22]
+component Large Language Model Synthesis [0.53, 0.12]
+component Geospatial Analysis (GEOINT) [0.51, 0.58]
+component Data Science Pipelines [0.49, 0.52]
+
+// Collection management
+component Collection Planning [0.66, 0.38]
+component Target Discovery [0.62, 0.42]
+component Source Verification [0.54, 0.30]
+component Provenance & Chain-of-Custody [0.45, 0.35]
+
+// Collectors
+component Human Collectors (HUMINT officers) [0.47, 0.55]
+component Machine / Autonomous Collectors [0.44, 0.27]
+component Crowdsourcing Platforms [0.42, 0.38]
+
+// Adversary threats (above sources because they exploit them)
+component Prompt Injection / LLM Attacks [0.55, 0.10]
+component Adversary Misinformation Campaigns [0.52, 0.60]
+component Cyber Attack Vectors [0.48, 0.58]
+component Deepfakes / Synthetic Media [0.40, 0.22]
+
+// Raw sources
+component HUMINT Sources [0.40, 0.55]
+component SIGINT Feeds [0.39, 0.68]
+component GEOINT Imagery (commercial satellite) [0.36, 0.72]
+component OSINT Feeds [0.34, 0.68]
+component Social Media Streams [0.30, 0.78]
+component Public / Government Datasets [0.28, 0.82]
+
+// Sensors
+component Cameras / EO-IR Sensors [0.24, 0.78]
+component Network Signal Interception [0.22, 0.62]
+component Drone / UAS Platforms [0.20, 0.58]
+component Commercial Satellite Imagery [0.17, 0.70]
+component GPS Positioning [0.14, 0.92]
+
+// Data platform layer
+component Classified Data Lake [0.32, 0.55]
+component Secure Cross-Domain Transfer [0.26, 0.40]
+component Cloud Compute (classified / IL5-IL6) [0.18, 0.72]
+component Compute Infrastructure (commercial) [0.13, 0.88]
+component Networking / Transit [0.09, 0.92]
+component Storage [0.07, 0.93]
+
+// Cross-cutting actors / context
+component Partner Agencies (Five Eyes) [0.64, 0.62]
+component Opponents / Adversaries [0.60, 0.45]
+component Intelligence Oversight (ISC / FISA courts) [0.58, 0.65]
+
+// Regulation / constraint layer (deep practice constraints)
+component Ethics / IHL Compliance [0.50, 0.45]
+component Data Ownership & Licensing [0.36, 0.55]
+component Data Privacy Regulation (GDPR / Part 4 IPA) [0.33, 0.72]
+
+// Dependencies — Anchors to top-of-chain
+Military Commanders->Operational Decisions
+Government Decision-Makers->Operational Decisions
+Government Decision-Makers->Intelligence Product / Assessment
+Citizens->Public Accountability
+
+// Decisions depend on assessment + controls + trust + partners
+Operational Decisions->Intelligence Product / Assessment
+Operational Decisions->Human-in-the-Loop Control
+Operational Decisions->Human-on-the-Loop Supervision
+Operational Decisions->Trust Framework (competence/integrity/benevolence)
+Operational Decisions->Partner Agencies (Five Eyes)
+Operational Decisions->Opponents / Adversaries
+Operational Decisions->Ethics / IHL Compliance
+Public Accountability->Intelligence Oversight (ISC / FISA courts)
+
+// Assessment depends on analysis layer
+Intelligence Product / Assessment->Intelligence Analysts
+Intelligence Product / Assessment->AI Analysis Engine
+Intelligence Product / Assessment->Collection Planning
+Intelligence Product / Assessment->Source Verification
+
+// Decision-model controls depend on trust
+Human-in-the-Loop Control->Trust Framework (competence/integrity/benevolence)
+Human-on-the-Loop Supervision->Trust Framework (competence/integrity/benevolence)
+Trust Framework (competence/integrity/benevolence)->Model Evaluation / Red-Teaming
+Trust Framework (competence/integrity/benevolence)->Bias & Integrity Auditing
+Trust Framework (competence/integrity/benevolence)->Provenance & Chain-of-Custody
+
+// Analysis layer dependencies
+Intelligence Analysts->Pattern-of-Life Analytics
+Intelligence Analysts->Geospatial Analysis (GEOINT)
+Intelligence Analysts->Data Science Pipelines
+AI Analysis Engine->ML Models (mission-specific)
+AI Analysis Engine->Large Language Model Synthesis
+AI Analysis Engine->Data Science Pipelines
+Model Evaluation / Red-Teaming->ML Models (mission-specific)
+Model Evaluation / Red-Teaming->Large Language Model Synthesis
+Bias & Integrity Auditing->Data Science Pipelines
+Pattern-of-Life Analytics->Data Science Pipelines
+ML Models (mission-specific)->Data Science Pipelines
+Data Science Pipelines->Classified Data Lake
+Geospatial Analysis (GEOINT)->GEOINT Imagery (commercial satellite)
+Large Language Model Synthesis->Cloud Compute (classified / IL5-IL6)
+
+// Collection planning drives target discovery and collectors
+Collection Planning->Target Discovery
+Collection Planning->Source Verification
+Target Discovery->Human Collectors (HUMINT officers)
+Target Discovery->Machine / Autonomous Collectors
+Target Discovery->Crowdsourcing Platforms
+Source Verification->Provenance & Chain-of-Custody
+Source Verification->HUMINT Sources
+Source Verification->OSINT Feeds
+Provenance & Chain-of-Custody->Classified Data Lake
+
+// Collectors to sources
+Human Collectors (HUMINT officers)->HUMINT Sources
+Machine / Autonomous Collectors->SIGINT Feeds
+Machine / Autonomous Collectors->Drone / UAS Platforms
+Crowdsourcing Platforms->Social Media Streams
+Crowdsourcing Platforms->Public / Government Datasets
+
+// Sources to sensors
+SIGINT Feeds->Network Signal Interception
+GEOINT Imagery (commercial satellite)->Commercial Satellite Imagery
+OSINT Feeds->Public / Government Datasets
+OSINT Feeds->Social Media Streams
+
+// Sensors to underlying utilities
+Cameras / EO-IR Sensors->Drone / UAS Platforms
+Drone / UAS Platforms->Networking / Transit
+Network Signal Interception->Networking / Transit
+
+// Data platform & compute
+Classified Data Lake->Cloud Compute (classified / IL5-IL6)
+Classified Data Lake->Secure Cross-Domain Transfer
+Cloud Compute (classified / IL5-IL6)->Compute Infrastructure (commercial)
+Compute Infrastructure (commercial)->Storage
+Compute Infrastructure (commercial)->Networking / Transit
+Secure Cross-Domain Transfer->Networking / Transit
+
+// Adversarial dependencies — threats exploit the chain (so threat is "above" what it exploits)
+Prompt Injection / LLM Attacks->Large Language Model Synthesis
+Adversary Misinformation Campaigns->Social Media Streams
+Cyber Attack Vectors->Networking / Transit
+Deepfakes / Synthetic Media->Social Media Streams
+Opponents / Adversaries->Adversary Misinformation Campaigns
+Opponents / Adversaries->Cyber Attack Vectors
+Opponents / Adversaries->Deepfakes / Synthetic Media
+Opponents / Adversaries->Prompt Injection / LLM Attacks
+
+// Oversight chain
+Intelligence Oversight (ISC / FISA courts)->Ethics / IHL Compliance
+Intelligence Oversight (ISC / FISA courts)->Data Privacy Regulation (GDPR / Part 4 IPA)
+Ethics / IHL Compliance->Data Ownership & Licensing
+Ethics / IHL Compliance->Data Privacy Regulation (GDPR / Part 4 IPA)
+
+// Partner agencies share classified pipelines
+Partner Agencies (Five Eyes)->Secure Cross-Domain Transfer
+
+// Evolution targets (what's moving)
+evolve Large Language Model Synthesis 0.55
+evolve AI Analysis Engine 0.45
+evolve Machine / Autonomous Collectors 0.52
+evolve Crowdsourcing Platforms 0.60
+evolve Prompt Injection / LLM Attacks 0.40
+evolve Model Evaluation / Red-Teaming 0.45
+
+// Notes
+note Bleeding edge [0.52, 0.13]
+note Commodity foundation [0.08, 0.90]
+note Differentiation zone [0.60, 0.28]

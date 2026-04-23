@@ -1,0 +1,157 @@
+title Defence Intelligence Landscape (March 2023)
+style wardley
+
+// Anchors — multiple user needs
+anchor Military Commander [0.98, 0.45]
+anchor Government Decision-Maker [0.95, 0.50]
+anchor Citizen Oversight [0.92, 0.55]
+
+// Decision layer (user-facing)
+component Operational Decision [0.88, 0.40]
+component Intelligence Briefing [0.85, 0.55]
+component Human-in-the-Loop Control [0.82, 0.30]
+component Human-on-the-Loop Control [0.80, 0.20]
+component Target Designation [0.78, 0.45]
+
+// Analysis layer
+component Intelligence Analyst [0.72, 0.45]
+component Threat Assessment [0.70, 0.52]
+component Signal Fusion [0.65, 0.40]
+component AI Analysis Engine [0.62, 0.22]
+component Data Science Pipeline [0.60, 0.45]
+component Machine Learning Engine [0.58, 0.35]
+component Computer Vision [0.55, 0.55]
+component Natural Language Processing [0.53, 0.52]
+component Anomaly Detection [0.52, 0.45]
+component Attribution [0.50, 0.23]
+
+// Trust dimension
+component Trust — Competence [0.68, 0.35]
+component Trust — Integrity [0.66, 0.30]
+component Trust — Benevolence [0.64, 0.20]
+component Source Verification [0.52, 0.48]
+component Provenance Tracking [0.48, 0.30]
+component Red-Team / Bias Audit [0.45, 0.22]
+
+// Collection layer — tasking and targeting
+component Target Discovery [0.62, 0.48]
+component Intelligence Gathering [0.55, 0.58]
+component Human Collectors [0.42, 0.55]
+component Machine Collectors [0.40, 0.45]
+
+// Sources
+component OSINT [0.50, 0.70]
+component Social Media Feeds [0.48, 0.85]
+component Public Data [0.45, 0.82]
+component Crowdsourcing [0.43, 0.40]
+
+// Sensors
+component GPS [0.30, 0.95]
+component EO/IR Cameras [0.32, 0.75]
+component Network / SIGINT Sensors [0.28, 0.60]
+component Satellite Imagery [0.35, 0.70]
+component UAV / Drone Imagery [0.38, 0.62]
+
+// Adversarial capability (red team / threat — visible to defenders, exploits underlying tech)
+component Misinformation [0.64, 0.55]
+component Deepfakes [0.60, 0.30]
+component Prompt Injection [0.58, 0.18]
+component Adversarial ML [0.60, 0.27]
+component Cyber Attack Vectors [0.56, 0.60]
+
+// Regulation / constraints
+component Classification Regime [0.40, 0.85]
+component Data Privacy Regulation [0.42, 0.65]
+component Data Ownership [0.38, 0.55]
+component International Law (LOAC) [0.36, 0.85]
+component Oversight Bodies [0.44, 0.70]
+
+// Infrastructure
+component Classified Networks [0.22, 0.70]
+component Secure Cloud Compute [0.18, 0.80]
+component Data Storage [0.15, 0.88]
+component Identity / Auth [0.14, 0.85]
+
+// Dependencies
+Military Commander->Operational Decision
+Government Decision-Maker->Intelligence Briefing
+Government Decision-Maker->Operational Decision
+Citizen Oversight->Oversight Bodies
+Citizen Oversight->Intelligence Briefing
+Operational Decision->Human-in-the-Loop Control
+Operational Decision->Human-on-the-Loop Control
+Operational Decision->Target Designation
+Operational Decision->Intelligence Briefing
+Intelligence Briefing->Intelligence Analyst
+Intelligence Briefing->Threat Assessment
+Human-in-the-Loop Control->Intelligence Analyst
+Human-on-the-Loop Control->AI Analysis Engine
+Target Designation->Signal Fusion
+Target Designation->Target Discovery
+Intelligence Analyst->Signal Fusion
+Intelligence Analyst->Trust — Competence
+Threat Assessment->Signal Fusion
+Threat Assessment->Attribution
+Signal Fusion->AI Analysis Engine
+Signal Fusion->Data Science Pipeline
+Signal Fusion->Intelligence Gathering
+AI Analysis Engine->Machine Learning Engine
+AI Analysis Engine->Computer Vision
+AI Analysis Engine->Natural Language Processing
+AI Analysis Engine->Anomaly Detection
+AI Analysis Engine->Red-Team / Bias Audit
+Data Science Pipeline->Machine Learning Engine
+Data Science Pipeline->Secure Cloud Compute
+Machine Learning Engine->Secure Cloud Compute
+Computer Vision->Secure Cloud Compute
+Natural Language Processing->Secure Cloud Compute
+Attribution->Provenance Tracking
+Trust — Competence->Red-Team / Bias Audit
+Trust — Integrity->Provenance Tracking
+Trust — Benevolence->Oversight Bodies
+Source Verification->Provenance Tracking
+Target Discovery->Intelligence Gathering
+Intelligence Gathering->Human Collectors
+Intelligence Gathering->Machine Collectors
+Intelligence Gathering->OSINT
+Intelligence Gathering->Source Verification
+Human Collectors->Classified Networks
+Machine Collectors->EO/IR Cameras
+Machine Collectors->Network / SIGINT Sensors
+Machine Collectors->Satellite Imagery
+Machine Collectors->UAV / Drone Imagery
+OSINT->Social Media Feeds
+OSINT->Public Data
+OSINT->Crowdsourcing
+Social Media Feeds->Data Privacy Regulation
+Public Data->Data Ownership
+UAV / Drone Imagery->GPS
+Satellite Imagery->GPS
+EO/IR Cameras->Classified Networks
+Network / SIGINT Sensors->Classified Networks
+Misinformation->Social Media Feeds
+Misinformation->Deepfakes
+Deepfakes->Machine Learning Engine
+Prompt Injection->Natural Language Processing
+Adversarial ML->Machine Learning Engine
+Cyber Attack Vectors->Classified Networks
+Intelligence Gathering->Classification Regime
+Intelligence Gathering->International Law (LOAC)
+Intelligence Briefing->Oversight Bodies
+Oversight Bodies->Data Privacy Regulation
+Classified Networks->Secure Cloud Compute
+Classified Networks->Identity / Auth
+Secure Cloud Compute->Data Storage
+Secure Cloud Compute->Identity / Auth
+
+// Evolution targets — where the industrialising pressure points
+evolve AI Analysis Engine 0.55
+evolve Computer Vision 0.78
+evolve OSINT 0.82
+evolve Attribution 0.45
+evolve Human-on-the-Loop Control 0.45
+
+// Notes
+note Bleeding edge [0.55, 0.20]
+note Industrialising [0.45, 0.55]
+note Commodity utility [0.18, 0.90]
