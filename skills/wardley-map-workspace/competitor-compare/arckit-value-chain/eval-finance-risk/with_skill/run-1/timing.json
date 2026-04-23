@@ -1,0 +1,18 @@
+{
+  "scenario": "finance-risk",
+  "skill": "arckit-wardley.value-chain",
+  "skill_path": "skills/wardley-map-workspace/competitor-compare/arckit-value-chain/skill/SKILL.md",
+  "run": 1,
+  "blind": true,
+  "partial_map": true,
+  "evolution_placeholder": 0.50,
+  "start_utc": "2026-04-23T11:33:07.866Z",
+  "end_utc": "2026-04-23T11:34:26.943Z",
+  "duration_seconds": 79.077,
+  "components_total": 22,
+  "anchors": 3,
+  "non_anchor_components": 19,
+  "edges": 43,
+  "visibility_range": [0.22, 0.95],
+  "notes": "Partial-map skill run: components + visibility only, evolution fixed at 0.50 placeholder as per skill contract. No mathmodel, no validator. Blind run — did not read reference OWM files."
+}

@@ -1,0 +1,82 @@
+title Risk Management in Financial Services
+
+anchor Public [0.95, 0.50]
+anchor Corporations [0.95, 0.50]
+anchor Governments [0.95, 0.50]
+
+component Retail Banking [0.82, 0.50]
+component Insurance [0.80, 0.50]
+component Lending [0.80, 0.50]
+
+component Trust [0.70, 0.50]
+component Assets [0.68, 0.50]
+component Customer Relationships [0.72, 0.50]
+
+component Regulation [0.58, 0.50]
+component Rating Agencies [0.55, 0.50]
+component Sovereignty [0.50, 0.50]
+
+component Credit Risk [0.48, 0.50]
+component Systemic Risk [0.45, 0.50]
+component Cybersecurity Risk [0.46, 0.50]
+component Cascade Failure Risk [0.42, 0.50]
+component Third Party Risk [0.44, 0.50]
+
+component Accountability [0.38, 0.50]
+component Society [0.32, 0.50]
+
+component Cost [0.25, 0.50]
+component Value [0.28, 0.50]
+component Supply Chain Awareness [0.22, 0.50]
+
+Public -> Retail Banking
+Public -> Insurance
+Public -> Lending
+Corporations -> Retail Banking
+Corporations -> Insurance
+Corporations -> Lending
+Governments -> Regulation
+Governments -> Sovereignty
+
+Retail Banking -> Trust
+Retail Banking -> Customer Relationships
+Retail Banking -> Assets
+Insurance -> Trust
+Insurance -> Customer Relationships
+Insurance -> Assets
+Lending -> Trust
+Lending -> Customer Relationships
+Lending -> Assets
+
+Retail Banking -> Regulation
+Insurance -> Regulation
+Lending -> Regulation
+Retail Banking -> Rating Agencies
+Insurance -> Rating Agencies
+Lending -> Rating Agencies
+
+Trust -> Credit Risk
+Trust -> Systemic Risk
+Trust -> Cybersecurity Risk
+Assets -> Credit Risk
+Customer Relationships -> Cybersecurity Risk
+Regulation -> Systemic Risk
+Regulation -> Cascade Failure Risk
+Regulation -> Third Party Risk
+Rating Agencies -> Credit Risk
+
+Credit Risk -> Accountability
+Systemic Risk -> Accountability
+Cybersecurity Risk -> Accountability
+Cascade Failure Risk -> Accountability
+Third Party Risk -> Accountability
+
+Accountability -> Society
+Sovereignty -> Society
+
+Cost -> Supply Chain Awareness
+Value -> Cost
+Trust -> Value
+Assets -> Cost
+
+style wardley

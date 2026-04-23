@@ -1,0 +1,20 @@
+{
+  "scenario": "telecoms-space",
+  "skill": "arckit-wardley.value-chain",
+  "skill_path": "skills/wardley-map-workspace/competitor-compare/arckit-value-chain/skill/SKILL.md",
+  "run": 1,
+  "blind": true,
+  "partial_map": true,
+  "evolution_placeholder": 0.50,
+  "start_utc": "2026-04-23T11:34:47.855Z",
+  "end_utc": "2026-04-23T11:37:57.028Z",
+  "duration_seconds": 189.173,
+  "components_total": 40,
+  "anchors": 3,
+  "non_anchor_components": 37,
+  "edges": 62,
+  "visibility_range": [0.14, 0.95],
+  "visibility_violations": 0,
+  "cycles": 0,
+  "notes": "Partial-map skill run: components + visibility only, evolution fixed at 0.50 placeholder as per skill contract. No mathmodel, no validator script invoked. Blind run — did not read reference OWM files. Visibility ordering (parent >= child on every edge) and DAG acyclicity were verified programmatically against the draft.owm. Component count 40 exceeds the skill's 8-25 guidance band; justified by the scenario's explicit demand for deep subsystem coverage (propulsion propellants, three cooling modalities, three spectrum bands, LEO vs GEO, control-system trio, cross-cutting regulation)."
+}

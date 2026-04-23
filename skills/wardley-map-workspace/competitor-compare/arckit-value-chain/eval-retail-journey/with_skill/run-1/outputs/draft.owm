@@ -1,0 +1,56 @@
+title Connected Retail Customer Journey — Value Chain
+
+anchor Customer [0.98, 0.50]
+anchor Producer [0.95, 0.50]
+
+component Retail Need Fulfilment [0.92, 0.50]
+component Shopping Experience [0.85, 0.50]
+component Goods and Services Offering [0.82, 0.50]
+component Engagement and Discovery [0.75, 0.50]
+component Sensory and Physical-Virtual Experience [0.72, 0.50]
+component Returns Handling [0.68, 0.50]
+component Trust and Privacy [0.64, 0.50]
+component Channel Delivery [0.60, 0.50]
+component Physical Store [0.55, 0.50]
+component E-commerce Storefront [0.55, 0.50]
+component Telesales [0.55, 0.50]
+component Societal and Demographic Insight [0.50, 0.50]
+component Customer Identity [0.40, 0.50]
+component Order Management [0.38, 0.50]
+component Fulfilment and Logistics [0.28, 0.50]
+component Payment Processing [0.22, 0.50]
+component Data and Analytics Platform [0.18, 0.50]
+component Cloud Hosting [0.08, 0.50]
+
+Customer -> Retail Need Fulfilment
+Producer -> Goods and Services Offering
+Retail Need Fulfilment -> Shopping Experience
+Retail Need Fulfilment -> Goods and Services Offering
+Shopping Experience -> Engagement and Discovery
+Shopping Experience -> Sensory and Physical-Virtual Experience
+Shopping Experience -> Returns Handling
+Shopping Experience -> Trust and Privacy
+Goods and Services Offering -> Channel Delivery
+Engagement and Discovery -> Channel Delivery
+Engagement and Discovery -> Societal and Demographic Insight
+Sensory and Physical-Virtual Experience -> Channel Delivery
+Returns Handling -> Fulfilment and Logistics
+Returns Handling -> Order Management
+Trust and Privacy -> Customer Identity
+Channel Delivery -> Physical Store
+Channel Delivery -> E-commerce Storefront
+Channel Delivery -> Telesales
+Physical Store -> Order Management
+E-commerce Storefront -> Order Management
+E-commerce Storefront -> Customer Identity
+Telesales -> Order Management
+Societal and Demographic Insight -> Data and Analytics Platform
+Customer Identity -> Data and Analytics Platform
+Order Management -> Payment Processing
+Order Management -> Fulfilment and Logistics
+Payment Processing -> Cloud Hosting
+Fulfilment and Logistics -> Cloud Hosting
+Data and Analytics Platform -> Cloud Hosting
+Customer Identity -> Cloud Hosting
+
+style wardley

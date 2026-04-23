@@ -1,0 +1,9 @@
+{
+  "skill": "arckit-wardley.value-chain",
+  "scenario": "retail-journey",
+  "run": 1,
+  "start_unix_ns": 1776943946869080224,
+  "end_unix_ns": 1776944094417342662,
+  "elapsed_seconds": 147.548,
+  "notes": "Partial-map skill: Y-axis (visibility) only; evolution held at placeholder epsilon=0.50 for every component. Blind run — reference OWM not read."
+}

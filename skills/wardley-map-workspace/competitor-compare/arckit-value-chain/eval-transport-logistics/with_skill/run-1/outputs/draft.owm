@@ -1,0 +1,101 @@
+title Transport & Logistics — value chain
+
+// ---------- Anchors / actors (top of chain) ----------
+component Public [0.97, 0.50]
+component Consumers [0.95, 0.50]
+component Society [0.95, 0.50]
+component Government [0.95, 0.50]
+component Producers [0.93, 0.50]
+
+// ---------- Level 1: user-facing commerce surfaces ----------
+component Shops [0.85, 0.50]
+component E-commerce [0.83, 0.50]
+component Delivery [0.82, 0.50]
+component Supply Chain Awareness [0.80, 0.50]
+
+// ---------- Level 2: core logistics operations ----------
+component Last Mile [0.70, 0.50]
+component Long Haul [0.66, 0.50]
+component Real-Time Stock [0.60, 0.50]
+component Logistics Hubs [0.62, 0.50]
+component Warehouses [0.58, 0.50]
+component Storage [0.55, 0.50]
+
+// ---------- Level 3: vehicles, skills & automation ----------
+component Trucks [0.45, 0.50]
+component HGV Skills [0.44, 0.50]
+component Scouts [0.42, 0.50]
+component Autotrucks [0.42, 0.50]
+component Drones [0.40, 0.50]
+component Automated Delivery [0.40, 0.50]
+
+// ---------- Level 4: information, regulation, sovereignty ----------
+component Telematics [0.32, 0.50]
+component CNI Sovereignty [0.30, 0.50]
+component Regulation [0.28, 0.50]
+component Traffic Data [0.28, 0.50]
+component Electric Power [0.22, 0.50]
+component Fossil Fuel [0.20, 0.50]
+component Data [0.18, 0.50]
+component Cities & Rural Topology [0.15, 0.50]
+
+// ---------- Edges: actors -> commerce surfaces ----------
+Public -> Shops
+Public -> E-commerce
+Public -> Delivery
+Consumers -> Shops
+Consumers -> E-commerce
+Consumers -> Delivery
+Society -> Supply Chain Awareness
+Government -> Regulation
+Government -> CNI Sovereignty
+Producers -> Long Haul
+Producers -> Warehouses
+
+// ---------- Edges: commerce surfaces -> operations ----------
+Shops -> Last Mile
+Shops -> Real-Time Stock
+E-commerce -> Last Mile
+E-commerce -> Real-Time Stock
+E-commerce -> Logistics Hubs
+Delivery -> Last Mile
+Delivery -> Long Haul
+Supply Chain Awareness -> Real-Time Stock
+
+// ---------- Edges: operations -> sub-operations ----------
+Last Mile -> Logistics Hubs
+Last Mile -> Trucks
+Last Mile -> Automated Delivery
+Last Mile -> Cities & Rural Topology
+Long Haul -> Logistics Hubs
+Long Haul -> Trucks
+Long Haul -> Autotrucks
+Long Haul -> Cities & Rural Topology
+Logistics Hubs -> Warehouses
+Warehouses -> Storage
+Real-Time Stock -> Telematics
+Real-Time Stock -> Data
+
+// ---------- Edges: vehicles & automation -> power/data/skills/reg ----------
+Trucks -> Fossil Fuel
+Trucks -> HGV Skills
+Autotrucks -> Electric Power
+Autotrucks -> Telematics
+Autotrucks -> Regulation
+Automated Delivery -> Electric Power
+Automated Delivery -> Telematics
+Automated Delivery -> Regulation
+Drones -> Electric Power
+Drones -> Regulation
+Scouts -> Telematics
+Scouts -> Data
+Telematics -> Data
+Telematics -> Traffic Data
+Traffic Data -> Data
+
+// ---------- Edges: CNI sovereignty -> deep infra ----------
+CNI Sovereignty -> Electric Power
+CNI Sovereignty -> Fossil Fuel
+CNI Sovereignty -> Data
+
+style wardley

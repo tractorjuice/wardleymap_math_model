@@ -1,0 +1,11 @@
+{
+  "scenario": "culture-gender",
+  "skill": "arckit-wardley.value-chain",
+  "run": 1,
+  "mode": "blind",
+  "start_utc": "2026-04-23T11:32:44Z",
+  "end_utc": "2026-04-23T11:35:53Z",
+  "duration_seconds": 189,
+  "model": "claude-opus-4-7[1m]",
+  "notes": "Partial map; evolution placeholder epsilon=0.50 for all components per skill spec."
+}

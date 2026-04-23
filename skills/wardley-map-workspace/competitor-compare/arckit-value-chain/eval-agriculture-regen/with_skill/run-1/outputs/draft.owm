@@ -1,0 +1,59 @@
+title Regenerative Agriculture Landscape (August 2022)
+
+anchor Consumer Access to Regenerative Food [0.95, 0.50]
+
+component Consumer Purchasing Decision [0.90, 0.50]
+component Retail Distribution [0.85, 0.50]
+component Food Production [0.85, 0.50]
+component Product Labelling [0.78, 0.50]
+component Supply Chain Transparency [0.72, 0.50]
+component Farm Management [0.70, 0.50]
+component Measurement and Grading [0.65, 0.50]
+component Certification and Standards [0.60, 0.50]
+component Regenerative Practice [0.58, 0.50]
+component Extractive Practice [0.58, 0.50]
+component National Agricultural Policy [0.52, 0.50]
+component Crop Rotation [0.48, 0.50]
+component Crop Diversity [0.48, 0.50]
+component Monoculture [0.46, 0.50]
+component Conservation Practice [0.42, 0.50]
+component International Policy Framework [0.38, 0.50]
+component Petrochemical Inputs [0.32, 0.50]
+component Soil Health [0.28, 0.50]
+component Soil Microbial Activity [0.18, 0.50]
+component Photosynthesis [0.10, 0.50]
+
+Consumer Access to Regenerative Food->Consumer Purchasing Decision
+Consumer Access to Regenerative Food->Retail Distribution
+Consumer Access to Regenerative Food->Food Production
+Consumer Purchasing Decision->Product Labelling
+Consumer Purchasing Decision->Retail Distribution
+Retail Distribution->Supply Chain Transparency
+Retail Distribution->Food Production
+Food Production->Farm Management
+Product Labelling->Measurement and Grading
+Product Labelling->Certification and Standards
+Supply Chain Transparency->Measurement and Grading
+Supply Chain Transparency->Certification and Standards
+Farm Management->Regenerative Practice
+Farm Management->Extractive Practice
+Farm Management->National Agricultural Policy
+Measurement and Grading->Certification and Standards
+Certification and Standards->National Agricultural Policy
+Certification and Standards->Regenerative Practice
+Regenerative Practice->Crop Rotation
+Regenerative Practice->Crop Diversity
+Regenerative Practice->Conservation Practice
+Regenerative Practice->Soil Health
+Extractive Practice->Monoculture
+Extractive Practice->Petrochemical Inputs
+National Agricultural Policy->International Policy Framework
+Crop Rotation->Soil Health
+Crop Diversity->Soil Health
+Conservation Practice->Soil Health
+Monoculture->Soil Health
+Monoculture->Petrochemical Inputs
+Soil Health->Soil Microbial Activity
+Soil Microbial Activity->Photosynthesis
+
+style wardley

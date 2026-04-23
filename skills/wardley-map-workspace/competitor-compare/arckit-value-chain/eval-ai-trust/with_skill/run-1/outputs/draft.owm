@@ -1,0 +1,66 @@
+title AI Trust Landscape (June 2023)
+anchor Stakeholder Trust in AI [0.95, 0.50]
+
+component Individual User Trust [0.88, 0.50]
+component Government Regulatory Confidence [0.88, 0.50]
+component Business Risk Acceptance [0.88, 0.50]
+
+component AI System Outputs [0.78, 0.50]
+component Safety Assurance [0.72, 0.50]
+component Reputation Signal [0.70, 0.50]
+component Competitive Advantage [0.68, 0.50]
+
+component Regulation and Policy [0.62, 0.50]
+component Independent Audits [0.58, 0.50]
+component Public Benchmarks [0.55, 0.50]
+component Incident Forensics [0.50, 0.50]
+component Human Feedback Loop [0.48, 0.50]
+component Model Constitution [0.45, 0.50]
+
+component Foundation Models [0.42, 0.50]
+component Training Algorithms [0.35, 0.50]
+component Evaluation Harness [0.32, 0.50]
+component Training Data [0.25, 0.50]
+component Compute Infrastructure [0.12, 0.50]
+
+Stakeholder Trust in AI -> Individual User Trust
+Stakeholder Trust in AI -> Government Regulatory Confidence
+Stakeholder Trust in AI -> Business Risk Acceptance
+
+Individual User Trust -> AI System Outputs
+Individual User Trust -> Reputation Signal
+Government Regulatory Confidence -> Regulation and Policy
+Government Regulatory Confidence -> Independent Audits
+Government Regulatory Confidence -> Safety Assurance
+Business Risk Acceptance -> Competitive Advantage
+Business Risk Acceptance -> Safety Assurance
+Business Risk Acceptance -> Reputation Signal
+
+AI System Outputs -> Foundation Models
+AI System Outputs -> Safety Assurance
+Safety Assurance -> Independent Audits
+Safety Assurance -> Public Benchmarks
+Safety Assurance -> Incident Forensics
+Safety Assurance -> Model Constitution
+Reputation Signal -> Public Benchmarks
+Reputation Signal -> Incident Forensics
+Competitive Advantage -> Foundation Models
+Competitive Advantage -> Training Data
+
+Regulation and Policy -> Public Benchmarks
+Independent Audits -> Evaluation Harness
+Independent Audits -> Incident Forensics
+Public Benchmarks -> Evaluation Harness
+Incident Forensics -> Evaluation Harness
+Human Feedback Loop -> Foundation Models
+Model Constitution -> Foundation Models
+
+Foundation Models -> Training Algorithms
+Foundation Models -> Training Data
+Foundation Models -> Compute Infrastructure
+Foundation Models -> Human Feedback Loop
+Training Algorithms -> Compute Infrastructure
+Evaluation Harness -> Foundation Models
+Training Data -> Compute Infrastructure
+
+style wardley

@@ -1,0 +1,59 @@
+title Construction Supply Chain (March 2023)
+
+anchor Safe Compliant Home [0.97, 0.50]
+
+component Home Purchase / Tenancy [0.90, 0.50]
+component Completed Dwelling Handover [0.88, 0.50]
+component Mortgage & Finance [0.82, 0.50]
+component Building Inspection & Certification [0.80, 0.50]
+component Construction Delivery [0.72, 0.50]
+component Planning Permission [0.68, 0.50]
+component Bespoke Site Construction [0.62, 0.50]
+component Modular / Prefab Assembly [0.58, 0.50]
+component Blueprints & Design [0.55, 0.50]
+component Building Regulations [0.50, 0.50]
+component Skilled Labour [0.48, 0.50]
+component Unskilled Labour [0.45, 0.50]
+component Factory Manufacture of Components [0.42, 0.50]
+component Equipment & Machinery [0.40, 0.50]
+component Labour Certification & Training [0.35, 0.50]
+component Building Materials Distribution [0.32, 0.50]
+component Recycled & Novel Materials [0.25, 0.50]
+component Raw Building Materials [0.20, 0.50]
+component Logistics & Transport [0.15, 0.50]
+component International Material Supply Chain [0.10, 0.50]
+component Energy & Fuel [0.06, 0.50]
+
+Safe Compliant Home -> Home Purchase / Tenancy
+Safe Compliant Home -> Completed Dwelling Handover
+Safe Compliant Home -> Building Inspection & Certification
+Home Purchase / Tenancy -> Mortgage & Finance
+Completed Dwelling Handover -> Construction Delivery
+Completed Dwelling Handover -> Building Inspection & Certification
+Building Inspection & Certification -> Building Regulations
+Construction Delivery -> Planning Permission
+Construction Delivery -> Bespoke Site Construction
+Construction Delivery -> Modular / Prefab Assembly
+Construction Delivery -> Blueprints & Design
+Planning Permission -> Building Regulations
+Bespoke Site Construction -> Skilled Labour
+Bespoke Site Construction -> Unskilled Labour
+Bespoke Site Construction -> Equipment & Machinery
+Bespoke Site Construction -> Building Materials Distribution
+Modular / Prefab Assembly -> Factory Manufacture of Components
+Modular / Prefab Assembly -> Blueprints & Design
+Modular / Prefab Assembly -> Skilled Labour
+Factory Manufacture of Components -> Building Materials Distribution
+Factory Manufacture of Components -> Equipment & Machinery
+Skilled Labour -> Labour Certification & Training
+Unskilled Labour -> Labour Certification & Training
+Building Materials Distribution -> Raw Building Materials
+Building Materials Distribution -> Recycled & Novel Materials
+Building Materials Distribution -> Logistics & Transport
+Raw Building Materials -> International Material Supply Chain
+Recycled & Novel Materials -> Raw Building Materials
+Logistics & Transport -> Energy & Fuel
+Equipment & Machinery -> Energy & Fuel
+International Material Supply Chain -> Energy & Fuel
+
+style wardley

@@ -1,0 +1,13 @@
+{
+  "eval": "healthcare-clinical",
+  "skill": "arckit-wardley.value-chain",
+  "run": 1,
+  "mode": "with_skill",
+  "blind": true,
+  "start_ms": 1776944010176,
+  "end_ms": 1776944150057,
+  "duration_ms": 139881,
+  "duration_s": 139.881,
+  "date": "2026-04-23",
+  "notes": "Partial-map output: components + dependencies + visibility, ε=0.50 placeholder. No reference files read. No mathmodel skill or validator used."
+}

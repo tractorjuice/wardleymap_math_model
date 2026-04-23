@@ -1,0 +1,107 @@
+title Transport Demand — Changing Consumer Behaviour (May 2022)
+
+anchor Government [0.98, 0.50]
+anchor Transport Public [0.96, 0.50]
+anchor Transport Operators [0.94, 0.50]
+
+component A to B Journey [0.90, 0.50]
+component Ease of Use [0.84, 0.50]
+component Cost [0.84, 0.50]
+component Access to Service [0.84, 0.50]
+component Personal and Physical Safety [0.84, 0.50]
+component Awareness [0.84, 0.50]
+
+component Mode Choice [0.76, 0.50]
+component Private Transport [0.70, 0.50]
+component Shared Transport [0.70, 0.50]
+component Distributed Public Transport [0.70, 0.50]
+
+component Virtual Space Alternatives [0.72, 0.50]
+component Zoom [0.64, 0.50]
+
+component Transport Information Stack [0.66, 0.50]
+component Transport Integration [0.60, 0.50]
+component Situational Services [0.60, 0.50]
+component Mobility Hubs [0.58, 0.50]
+
+component Vehicles [0.54, 0.50]
+component Car [0.48, 0.50]
+component Train [0.48, 0.50]
+
+component Connectivity [0.40, 0.50]
+component Cybersecurity [0.38, 0.50]
+
+component City Planning [0.44, 0.50]
+component Public Infrastructure [0.34, 0.50]
+component Private Infrastructure [0.34, 0.50]
+component Critical National Infrastructure [0.22, 0.50]
+
+component Regulation [0.50, 0.50]
+component Sustainability and Climate [0.46, 0.50]
+component Demand Shocks [0.68, 0.50]
+
+Government -> Regulation
+Government -> Critical National Infrastructure
+Government -> City Planning
+Government -> Sustainability and Climate
+
+Transport Public -> A to B Journey
+Transport Public -> Virtual Space Alternatives
+Transport Operators -> Mode Choice
+Transport Operators -> Transport Information Stack
+Transport Operators -> Vehicles
+
+A to B Journey -> Ease of Use
+A to B Journey -> Cost
+A to B Journey -> Access to Service
+A to B Journey -> Personal and Physical Safety
+A to B Journey -> Awareness
+A to B Journey -> Mode Choice
+A to B Journey -> Demand Shocks
+
+Ease of Use -> Transport Information Stack
+Access to Service -> Mode Choice
+Awareness -> Transport Information Stack
+
+Virtual Space Alternatives -> Zoom
+Zoom -> Connectivity
+
+Mode Choice -> Private Transport
+Mode Choice -> Shared Transport
+Mode Choice -> Distributed Public Transport
+
+Private Transport -> Car
+Shared Transport -> Car
+Distributed Public Transport -> Train
+
+Transport Information Stack -> Transport Integration
+Transport Information Stack -> Situational Services
+Transport Information Stack -> Mobility Hubs
+Transport Integration -> Connectivity
+Situational Services -> Connectivity
+Mobility Hubs -> Public Infrastructure
+
+Vehicles -> Car
+Vehicles -> Train
+Car -> Private Infrastructure
+Train -> Public Infrastructure
+Car -> Connectivity
+Train -> Connectivity
+
+Connectivity -> Cybersecurity
+Connectivity -> Critical National Infrastructure
+Cybersecurity -> Critical National Infrastructure
+
+City Planning -> Public Infrastructure
+City Planning -> Private Infrastructure
+Public Infrastructure -> Critical National Infrastructure
+Private Infrastructure -> Critical National Infrastructure
+
+Regulation -> Sustainability and Climate
+Regulation -> Cybersecurity
+Mode Choice -> Sustainability and Climate
+
+Mode Choice -> Demand Shocks
+Virtual Space Alternatives -> Demand Shocks
+
+style wardley

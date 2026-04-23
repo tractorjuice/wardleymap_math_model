@@ -1,0 +1,13 @@
+{
+  "skill": "arckit-wardley.value-chain",
+  "eval": "energy-storage",
+  "run": 1,
+  "start_ms": 1776943998000,
+  "end_ms": 1776944259000,
+  "duration_ms": 261000,
+  "duration_s": 261.0,
+  "epsilon_placeholder": 0.50,
+  "component_count": 23,
+  "edge_count": 35,
+  "blind": true
+}

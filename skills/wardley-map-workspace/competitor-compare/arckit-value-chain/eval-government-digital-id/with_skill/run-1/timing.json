@@ -1,0 +1,12 @@
+{
+  "skill": "arckit-wardley.value-chain",
+  "eval": "government-digital-id",
+  "run": 1,
+  "mode": "with_skill",
+  "blind": true,
+  "start_utc": "2026-04-23T11:33:19Z",
+  "end_utc": "2026-04-23T11:35:33Z",
+  "duration_seconds": 134,
+  "model": "claude-opus-4-7 (1M context)",
+  "notes": "Partial-map value-chain skill; evolution axis left at ε=0.50 placeholder per skill design. Reference OWM files were not read."
+}

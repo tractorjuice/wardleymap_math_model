@@ -1,0 +1,66 @@
+title Defence Grey Zone — Value Chain (ArcKit partial map, ε placeholders)
+
+anchor Sovereignty Maintenance [0.98, 0.50]
+
+component Cyber Sovereignty [0.88, 0.50]
+component Territorial Integrity [0.88, 0.50]
+component Economic Sovereignty [0.88, 0.50]
+component Cultural Sovereignty [0.88, 0.50]
+
+component Statecraft [0.78, 0.50]
+component Legitimacy [0.78, 0.50]
+component Effect Delivery [0.74, 0.50]
+component Theatre Operations [0.72, 0.50]
+component Situational Awareness [0.68, 0.50]
+component Consequence Management [0.62, 0.50]
+
+component Treaties and Norms [0.55, 0.50]
+component Ethics Framework [0.55, 0.50]
+component Accountability Mechanisms [0.48, 0.50]
+component Attribution [0.42, 0.50]
+component Deniability Management [0.42, 0.50]
+
+component Proxy Operator Capacity [0.30, 0.50]
+component Landscape Layer [0.18, 0.50]
+component Crypto Rails [0.12, 0.50]
+
+Sovereignty Maintenance -> Cyber Sovereignty
+Sovereignty Maintenance -> Territorial Integrity
+Sovereignty Maintenance -> Economic Sovereignty
+Sovereignty Maintenance -> Cultural Sovereignty
+
+Cyber Sovereignty -> Statecraft
+Cyber Sovereignty -> Effect Delivery
+Cyber Sovereignty -> Situational Awareness
+Territorial Integrity -> Statecraft
+Territorial Integrity -> Theatre Operations
+Economic Sovereignty -> Statecraft
+Economic Sovereignty -> Theatre Operations
+Cultural Sovereignty -> Legitimacy
+Cultural Sovereignty -> Effect Delivery
+
+Statecraft -> Treaties and Norms
+Statecraft -> Accountability Mechanisms
+Statecraft -> Deniability Management
+Legitimacy -> Ethics Framework
+Legitimacy -> Accountability Mechanisms
+Effect Delivery -> Theatre Operations
+Effect Delivery -> Consequence Management
+Theatre Operations -> Situational Awareness
+Theatre Operations -> Proxy Operator Capacity
+Situational Awareness -> Landscape Layer
+Consequence Management -> Attribution
+Consequence Management -> Ethics Framework
+
+Treaties and Norms -> Attribution
+Ethics Framework -> Attribution
+Accountability Mechanisms -> Attribution
+Attribution -> Landscape Layer
+Deniability Management -> Proxy Operator Capacity
+Deniability Management -> Crypto Rails
+
+Proxy Operator Capacity -> Landscape Layer
+Proxy Operator Capacity -> Crypto Rails
+Landscape Layer -> Crypto Rails
+
+style wardley

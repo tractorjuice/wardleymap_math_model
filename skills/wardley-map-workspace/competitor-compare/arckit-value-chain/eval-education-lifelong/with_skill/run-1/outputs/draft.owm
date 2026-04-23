@@ -1,0 +1,68 @@
+title Lifelong Learning Value Chain
+
+anchor Learner Thriving [0.95, 0.50]
+
+component Curriculum and Learning Experience [0.82, 0.50]
+component Credentialing and Recognition [0.80, 0.50]
+component Employability and Status Signalling [0.78, 0.50]
+component Inclusive Access [0.76, 0.50]
+
+component Teaching and Tutoring [0.66, 0.50]
+component Curriculum Design [0.64, 0.50]
+component Assessment and Verification [0.62, 0.50]
+component Credential Issuance [0.60, 0.50]
+component Community Learning [0.58, 0.50]
+
+component Skills Frameworks and Standards [0.46, 0.50]
+component AI Tutors [0.44, 0.50]
+component Content Production [0.42, 0.50]
+component Learning Delivery Platform [0.40, 0.50]
+component Digital Identity [0.38, 0.50]
+component Labour Market Signals [0.36, 0.50]
+
+component Regulation and Accreditation [0.24, 0.50]
+component Funding and Subsidy [0.22, 0.50]
+component Data and Learning Records [0.18, 0.50]
+component Connectivity [0.12, 0.50]
+component Cloud Compute and Storage [0.08, 0.50]
+
+Learner Thriving -> Curriculum and Learning Experience
+Learner Thriving -> Credentialing and Recognition
+Learner Thriving -> Employability and Status Signalling
+Learner Thriving -> Inclusive Access
+
+Curriculum and Learning Experience -> Teaching and Tutoring
+Curriculum and Learning Experience -> Curriculum Design
+Curriculum and Learning Experience -> Community Learning
+Credentialing and Recognition -> Assessment and Verification
+Credentialing and Recognition -> Credential Issuance
+Employability and Status Signalling -> Credential Issuance
+Employability and Status Signalling -> Labour Market Signals
+Inclusive Access -> Learning Delivery Platform
+Inclusive Access -> Funding and Subsidy
+
+Teaching and Tutoring -> AI Tutors
+Teaching and Tutoring -> Content Production
+Teaching and Tutoring -> Learning Delivery Platform
+Curriculum Design -> Skills Frameworks and Standards
+Curriculum Design -> Content Production
+Assessment and Verification -> Skills Frameworks and Standards
+Assessment and Verification -> Digital Identity
+Credential Issuance -> Digital Identity
+Credential Issuance -> Regulation and Accreditation
+Community Learning -> Learning Delivery Platform
+
+Skills Frameworks and Standards -> Regulation and Accreditation
+AI Tutors -> Cloud Compute and Storage
+AI Tutors -> Data and Learning Records
+Content Production -> Cloud Compute and Storage
+Learning Delivery Platform -> Cloud Compute and Storage
+Learning Delivery Platform -> Connectivity
+Digital Identity -> Data and Learning Records
+Labour Market Signals -> Data and Learning Records
+
+Regulation and Accreditation -> Funding and Subsidy
+Data and Learning Records -> Cloud Compute and Storage
+Connectivity -> Cloud Compute and Storage
+
+style wardley

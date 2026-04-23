@@ -1,0 +1,21 @@
+{
+  "scenario": "defence-intelligence",
+  "skill": "arckit-wardley.value-chain",
+  "skill_path": "/workspaces/wardleymap_math_model/skills/wardley-map-workspace/competitor-compare/arckit-value-chain/skill/SKILL.md",
+  "run": 1,
+  "blind": true,
+  "partial_map": true,
+  "epsilon_placeholder": 0.50,
+  "reference_read": false,
+  "start_utc": 1776943963.033851,
+  "end_utc": 1776944087.347984,
+  "duration_seconds": 124.314133,
+  "model": "claude-opus-4-7[1m]",
+  "outputs": {
+    "output_md": "outputs/output.md",
+    "draft_owm": "outputs/draft.owm"
+  },
+  "components_count": 29,
+  "anchors_count": 3,
+  "notes": "Blind run. Did not read wardley-reference.owm in either eval-defence-intelligence or iteration-14. Value-chain skill applied as specified (7 steps); evolution axis uniformly set to 0.50 per skill placeholder convention."
+}

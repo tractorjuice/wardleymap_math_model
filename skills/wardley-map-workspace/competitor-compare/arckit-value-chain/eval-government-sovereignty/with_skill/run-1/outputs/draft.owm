@@ -1,0 +1,130 @@
+title Government Sovereignty — Value Chain (ArcKit partial map, ε placeholders)
+
+anchor Supranational Layer [0.98, 0.50]
+
+component Government [0.92, 0.50]
+component Corporations and Shareholders [0.92, 0.50]
+component Society [0.92, 0.50]
+
+component Territorial Sovereignty [0.84, 0.50]
+component Economic Sovereignty [0.84, 0.50]
+component Political Sovereignty [0.84, 0.50]
+component Digital Sovereignty [0.84, 0.50]
+component Cultural Sovereignty [0.84, 0.50]
+component Security Sovereignty [0.84, 0.50]
+
+component Election Legitimacy [0.76, 0.50]
+component Perception of Success [0.76, 0.50]
+component Public Belonging [0.76, 0.50]
+
+component Land Theatre [0.68, 0.50]
+component Supply Chain Theatre [0.68, 0.50]
+component Cyber Theatre [0.68, 0.50]
+component CNI Theatre [0.68, 0.50]
+
+component Integrity Norm [0.60, 0.50]
+component Benevolence Norm [0.60, 0.50]
+component Fairness Norm [0.60, 0.50]
+component Competency Norm [0.60, 0.50]
+component Identity Norm [0.60, 0.50]
+
+component Crisis Response [0.52, 0.50]
+
+component Social Media [0.44, 0.50]
+component Mainstream Media [0.44, 0.50]
+component Education [0.44, 0.50]
+component Art [0.44, 0.50]
+component Propaganda [0.44, 0.50]
+
+component Capability Layer [0.36, 0.50]
+
+component Territorial Awareness [0.26, 0.50]
+component Supply Chain Awareness [0.26, 0.50]
+component Digital Chain Awareness [0.26, 0.50]
+
+component Domestic Law [0.16, 0.50]
+component International Law [0.08, 0.50]
+
+Supranational Layer -> Government
+Supranational Layer -> Corporations and Shareholders
+Supranational Layer -> Society
+
+Government -> Territorial Sovereignty
+Government -> Political Sovereignty
+Government -> Digital Sovereignty
+Government -> Security Sovereignty
+Government -> Economic Sovereignty
+Corporations and Shareholders -> Economic Sovereignty
+Corporations and Shareholders -> Digital Sovereignty
+Corporations and Shareholders -> Supply Chain Theatre
+Society -> Cultural Sovereignty
+Society -> Political Sovereignty
+Society -> Public Belonging
+
+Territorial Sovereignty -> Land Theatre
+Territorial Sovereignty -> CNI Theatre
+Economic Sovereignty -> Supply Chain Theatre
+Economic Sovereignty -> CNI Theatre
+Political Sovereignty -> Election Legitimacy
+Political Sovereignty -> Perception of Success
+Digital Sovereignty -> Cyber Theatre
+Digital Sovereignty -> CNI Theatre
+Cultural Sovereignty -> Public Belonging
+Cultural Sovereignty -> Perception of Success
+Security Sovereignty -> Land Theatre
+Security Sovereignty -> Cyber Theatre
+Security Sovereignty -> CNI Theatre
+
+Election Legitimacy -> Integrity Norm
+Election Legitimacy -> Fairness Norm
+Election Legitimacy -> Competency Norm
+Election Legitimacy -> Identity Norm
+Perception of Success -> Mainstream Media
+Perception of Success -> Social Media
+Perception of Success -> Crisis Response
+Public Belonging -> Benevolence Norm
+Public Belonging -> Identity Norm
+
+Land Theatre -> Capability Layer
+Land Theatre -> Territorial Awareness
+Supply Chain Theatre -> Capability Layer
+Supply Chain Theatre -> Supply Chain Awareness
+Cyber Theatre -> Capability Layer
+Cyber Theatre -> Digital Chain Awareness
+CNI Theatre -> Capability Layer
+CNI Theatre -> Crisis Response
+
+Integrity Norm -> Mainstream Media
+Integrity Norm -> Education
+Benevolence Norm -> Education
+Benevolence Norm -> Art
+Fairness Norm -> Domestic Law
+Fairness Norm -> Education
+Competency Norm -> Capability Layer
+Competency Norm -> Education
+Identity Norm -> Art
+Identity Norm -> Education
+
+Crisis Response -> Mainstream Media
+Crisis Response -> Capability Layer
+Crisis Response -> Domestic Law
+
+Social Media -> Propaganda
+Mainstream Media -> Propaganda
+Education -> Domestic Law
+Art -> Propaganda
+Propaganda -> Capability Layer
+
+Capability Layer -> Territorial Awareness
+Capability Layer -> Supply Chain Awareness
+Capability Layer -> Digital Chain Awareness
+Capability Layer -> Domestic Law
+
+Territorial Awareness -> Domestic Law
+Territorial Awareness -> International Law
+Supply Chain Awareness -> International Law
+Digital Chain Awareness -> International Law
+
+Domestic Law -> International Law
+
+style wardley

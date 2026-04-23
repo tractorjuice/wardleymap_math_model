@@ -1,0 +1,13 @@
+{
+  "skill": "arckit-wardley.value-chain",
+  "scenario": "manufacturing",
+  "run": 1,
+  "blind": true,
+  "partial_map": true,
+  "evolution_placeholder": 0.50,
+  "start_ns": 1776943938912866961,
+  "end_ns": 1776944111682113772,
+  "duration_ns": 172769246811,
+  "duration_seconds": 172.77,
+  "notes": "Blind benchmark — reference OWM files were not read. Value chain has 19 components + anchor, 29 edges. Evolution placeholders at 0.50 per partial-map skill contract."
+}

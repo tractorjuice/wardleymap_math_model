@@ -1,0 +1,10 @@
+{
+  "start_epoch": 1776943964.1584997,
+  "end_epoch": 1776944093.664623,
+  "duration_seconds": 129.506,
+  "start_iso": "2026-04-23T11:32:44.158500+00:00",
+  "end_iso": "2026-04-23T11:34:53.664623+00:00",
+  "skill": "arckit-wardley.value-chain",
+  "scenario": "transport-demand",
+  "run": 1
+}

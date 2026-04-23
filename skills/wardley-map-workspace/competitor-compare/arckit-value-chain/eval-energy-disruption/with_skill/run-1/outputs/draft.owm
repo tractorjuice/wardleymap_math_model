@@ -1,0 +1,98 @@
+title Energy Disruption — July 2022
+
+anchor Today Behaviour [0.98, 0.50]
+anchor Tomorrow Behaviour [0.96, 0.50]
+
+component Affordability [0.92, 0.50]
+component Reliability [0.90, 0.50]
+component Sustainability [0.88, 0.50]
+component Security of Supply [0.86, 0.50]
+component Education [0.84, 0.50]
+
+component Retail Price [0.78, 0.50]
+component Spot Market [0.72, 0.50]
+component OTC Market [0.70, 0.50]
+component Public Good Framing [0.68, 0.50]
+component Regulation [0.66, 0.50]
+component Control (Grid Balancing) [0.64, 0.50]
+component CO2 Accounting [0.62, 0.50]
+component Cost with Externalities [0.60, 0.50]
+component Supply Chain Awareness [0.58, 0.50]
+
+component Distribution [0.50, 0.50]
+component Transmission [0.44, 0.50]
+component Production (Generation Ops) [0.40, 0.50]
+component Capital Intensity [0.36, 0.50]
+
+component Generation Mix [0.34, 0.50]
+component Renewables (Wind) [0.28, 0.50]
+component Solar Microgen [0.27, 0.50]
+component Gas Generation [0.26, 0.50]
+component Nuclear Generation [0.24, 0.50]
+component Fossil Generation [0.22, 0.50]
+
+component Storage [0.20, 0.50]
+component Electrical Storage (Batteries) [0.16, 0.50]
+component Hydrogen Storage [0.14, 0.50]
+component Potential Energy Storage (Pumped Hydro) [0.13, 0.50]
+component Strategic Reserves [0.12, 0.50]
+
+component Externalities (Air, Climate, Land) [0.08, 0.50]
+
+Today Behaviour -> Affordability
+Today Behaviour -> Reliability
+Today Behaviour -> Retail Price
+Tomorrow Behaviour -> Sustainability
+Tomorrow Behaviour -> Security of Supply
+Tomorrow Behaviour -> Education
+
+Affordability -> Retail Price
+Reliability -> Control (Grid Balancing)
+Reliability -> Distribution
+Sustainability -> CO2 Accounting
+Sustainability -> Cost with Externalities
+Security of Supply -> Supply Chain Awareness
+Security of Supply -> Strategic Reserves
+Education -> Public Good Framing
+
+Retail Price -> Spot Market
+Retail Price -> OTC Market
+Retail Price -> Regulation
+Spot Market -> Production (Generation Ops)
+OTC Market -> Production (Generation Ops)
+Public Good Framing -> Regulation
+Regulation -> Control (Grid Balancing)
+Regulation -> CO2 Accounting
+Control (Grid Balancing) -> Transmission
+Control (Grid Balancing) -> Generation Mix
+CO2 Accounting -> Generation Mix
+CO2 Accounting -> Externalities (Air, Climate, Land)
+Cost with Externalities -> Externalities (Air, Climate, Land)
+Supply Chain Awareness -> Generation Mix
+Supply Chain Awareness -> Capital Intensity
+
+Distribution -> Transmission
+Transmission -> Production (Generation Ops)
+Production (Generation Ops) -> Generation Mix
+Production (Generation Ops) -> Capital Intensity
+Capital Intensity -> Generation Mix
+
+Generation Mix -> Renewables (Wind)
+Generation Mix -> Solar Microgen
+Generation Mix -> Gas Generation
+Generation Mix -> Nuclear Generation
+Generation Mix -> Fossil Generation
+Generation Mix -> Storage
+
+Storage -> Electrical Storage (Batteries)
+Storage -> Hydrogen Storage
+Storage -> Potential Energy Storage (Pumped Hydro)
+Storage -> Strategic Reserves
+
+Renewables (Wind) -> Externalities (Air, Climate, Land)
+Solar Microgen -> Externalities (Air, Climate, Land)
+Gas Generation -> Externalities (Air, Climate, Land)
+Nuclear Generation -> Externalities (Air, Climate, Land)
+Fossil Generation -> Externalities (Air, Climate, Land)
+
+style wardley

@@ -1,0 +1,18 @@
+{
+  "scenario": "personal-fin-inclusion",
+  "skill": "arckit-wardley.value-chain",
+  "skill_path": "skills/wardley-map-workspace/competitor-compare/arckit-value-chain/skill/SKILL.md",
+  "run": 1,
+  "blind": true,
+  "start_ns": 1776944022586225599,
+  "end_ns": 1776944156955220916,
+  "duration_seconds": 134.4,
+  "outputs": {
+    "output_md": "outputs/output.md",
+    "draft_owm": "outputs/draft.owm"
+  },
+  "components": 29,
+  "anchor": "Individual",
+  "evolution_placeholder": 0.50,
+  "notes": "Partial-map skill: value chain only, evolution axis placeholder at 0.50 per skill contract."
+}

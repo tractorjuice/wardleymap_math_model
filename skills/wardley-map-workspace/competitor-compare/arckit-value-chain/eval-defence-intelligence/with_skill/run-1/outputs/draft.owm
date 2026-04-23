@@ -1,0 +1,73 @@
+title Defence Intelligence Value Chain (March 2023)
+
+anchor Commander [0.98, 0.05]
+anchor Government [0.96, 0.08]
+anchor Citizens [0.94, 0.06]
+
+component Operational Decision [0.88, 0.50] label [-10, 10]
+component Decision Model (HITL/HOTL) [0.82, 0.50] label [5, -5]
+component Trusted Intelligence [0.78, 0.50] label [-15, -5]
+component Trust Assessment [0.72, 0.50] label [10, 5]
+component Analysis Layer [0.66, 0.50] label [-20, 5]
+component AI and ML Engines [0.58, 0.50] label [5, -10]
+component Data Science [0.56, 0.50] label [-25, 10]
+component Intelligence Gathering [0.60, 0.50] label [-15, -10]
+component Target Discovery [0.54, 0.50] label [5, 5]
+component Sources (Verified) [0.48, 0.50] label [-20, -10]
+component OSINT [0.42, 0.50] label [10, -5]
+component Social Media Data [0.36, 0.50] label [-25, 5]
+component Crowdsourcing [0.34, 0.50] label [5, 10]
+component Collectors (Human and Machine) [0.44, 0.50] label [-25, -10]
+component Sensors [0.30, 0.50] label [10, 5]
+component GPS [0.18, 0.50] label [5, -5]
+component Cameras [0.22, 0.50] label [-15, 10]
+component Network Signal Intercept [0.26, 0.50] label [5, -10]
+component Adversarial Capability [0.52, 0.50] label [10, 10]
+component Misinformation [0.38, 0.50] label [5, 5]
+component Attack Vectors [0.32, 0.50] label [-20, 5]
+component Prompt Engineering Attacks [0.28, 0.50] label [10, -5]
+component Regulation and Privacy [0.50, 0.50] label [-15, 5]
+component Data Ownership [0.40, 0.50] label [10, -10]
+component Competence [0.68, 0.50] label [5, 5]
+component Integrity [0.70, 0.50] label [-15, 10]
+component Benevolence [0.64, 0.50] label [10, 5]
+component Agencies [0.80, 0.50] label [-25, -5]
+component Opponents [0.84, 0.50] label [5, 10]
+
+Commander->Operational Decision
+Government->Operational Decision
+Citizens->Operational Decision
+Agencies->Operational Decision
+Opponents->Adversarial Capability
+Operational Decision->Decision Model (HITL/HOTL)
+Operational Decision->Trusted Intelligence
+Decision Model (HITL/HOTL)->Trust Assessment
+Decision Model (HITL/HOTL)->Analysis Layer
+Trusted Intelligence->Analysis Layer
+Trusted Intelligence->Trust Assessment
+Trusted Intelligence->Regulation and Privacy
+Trust Assessment->Competence
+Trust Assessment->Integrity
+Trust Assessment->Benevolence
+Analysis Layer->AI and ML Engines
+Analysis Layer->Data Science
+Analysis Layer->Intelligence Gathering
+Intelligence Gathering->Target Discovery
+Intelligence Gathering->Sources (Verified)
+Intelligence Gathering->Collectors (Human and Machine)
+Sources (Verified)->OSINT
+Sources (Verified)->Social Media Data
+Sources (Verified)->Crowdsourcing
+Collectors (Human and Machine)->Sensors
+Sensors->GPS
+Sensors->Cameras
+Sensors->Network Signal Intercept
+AI and ML Engines->Data Science
+Adversarial Capability->Misinformation
+Adversarial Capability->Attack Vectors
+Adversarial Capability->Prompt Engineering Attacks
+Misinformation->Social Media Data
+Prompt Engineering Attacks->AI and ML Engines
+Regulation and Privacy->Data Ownership
+
+style wardley

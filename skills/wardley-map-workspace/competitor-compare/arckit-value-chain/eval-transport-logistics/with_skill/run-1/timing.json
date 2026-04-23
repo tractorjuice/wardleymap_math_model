@@ -1,0 +1,14 @@
+{
+  "skill": "arckit-wardley.value-chain",
+  "scenario": "transport-logistics",
+  "run": 1,
+  "mode": "with_skill",
+  "blind": true,
+  "start_unix": 1776944023.008,
+  "end_unix": 1776944212.476,
+  "duration_seconds": 189.468,
+  "evolution_placeholder": 0.50,
+  "component_count": 29,
+  "edge_count": 53,
+  "notes": "Blind run. Reference OWM files were not read. Value-chain-only skill; all ε set to 0.50 placeholder per skill spec."
+}

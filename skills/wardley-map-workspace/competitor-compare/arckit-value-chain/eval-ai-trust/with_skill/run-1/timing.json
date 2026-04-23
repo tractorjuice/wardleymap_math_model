@@ -1,0 +1,19 @@
+{
+  "scenario": "ai-trust",
+  "skill": "arckit-wardley.value-chain",
+  "skill_path": "skills/wardley-map-workspace/competitor-compare/arckit-value-chain/skill/SKILL.md",
+  "run": 1,
+  "blind": true,
+  "validator_iteration": false,
+  "start_utc": "2026-04-23T11:09:45Z",
+  "end_utc": "2026-04-23T11:11:56Z",
+  "start_epoch_s": 1776942585,
+  "end_epoch_s": 1776942716,
+  "duration_s": 131,
+  "components_declared": 18,
+  "anchors_declared": 1,
+  "edges_declared": 38,
+  "evolution_assessed": false,
+  "epsilon_filler_value": 0.50,
+  "notes": "Partial-map value-chain skill; epsilon placeholder 0.50 used solely to satisfy OWM [v, e] coordinate shape. No validator iteration per benchmark instructions."
+}

@@ -1,0 +1,12 @@
+{
+  "scenario": "personal-conversational",
+  "skill": "arckit-wardley.value-chain",
+  "skill_path": "skills/wardley-map-workspace/competitor-compare/arckit-value-chain/skill/SKILL.md",
+  "mode": "with_skill",
+  "run": 1,
+  "start_utc": "2026-04-23T11:33:40Z",
+  "end_utc": "2026-04-23T11:35:30Z",
+  "duration_seconds": 110,
+  "blind": true,
+  "notes": "Value-chain-only skill. Evolution axis left as placeholder (0.50) per skill design; anchor at (0.95, 0.02). 20 components across 7 visibility tiers. No reference .owm was read."
+}

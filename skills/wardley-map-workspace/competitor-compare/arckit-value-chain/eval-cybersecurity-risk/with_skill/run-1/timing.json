@@ -1,0 +1,10 @@
+{
+  "skill": "arckit-wardley.value-chain",
+  "scenario": "cybersecurity-risk",
+  "run": 1,
+  "blind": true,
+  "start_epoch": 1776943913.414831,
+  "end_epoch": 1776944135.938727,
+  "duration_seconds": 222.524,
+  "note": "Partial-map skill. Visibility assigned per skill Step 5. Evolution is a placeholder (epsilon = 0.50) per skill scope; no evolution reasoning performed. OWM structurally validated by manual inspection against validate_owm.mjs rules (coords in [0,1], edge endpoints declared, visibility invariant v(src) >= v(tgt) on every edge, DAG property guaranteed by strictly-decreasing visibility along each edge). Node validator script not invoked (Bash permission not available in this session)."
+}

@@ -1,0 +1,81 @@
+title Electrical Energy Storage Landscape — April 2023
+
+anchor Consumer [0.97, 0.50]
+
+component Activity [0.90, 0.50]
+component Control [0.82, 0.50]
+
+component Traditional Grid Model [0.72, 0.50]
+component Distributed Grid Model [0.72, 0.50]
+
+component Grid [0.65, 0.50]
+component Auto Generation Control [0.60, 0.50]
+component SCADA [0.55, 0.50]
+
+component Electricity Generation [0.50, 0.50]
+component Fast-Response Systems [0.46, 0.50]
+component Spinning Reserve [0.44, 0.50]
+
+component Energy Platform [0.40, 0.50]
+component Integration Layer [0.34, 0.50]
+component Pre-approval / Discovery [0.30, 0.50]
+component Adaptive Integration [0.28, 0.50]
+component Plug-and-Play [0.26, 0.50]
+
+component Electrical Storage [0.32, 0.50]
+component Hydro Storage [0.28, 0.50]
+component Hydrogen Storage [0.24, 0.50]
+
+component Sources [0.18, 0.50]
+component Stockpile [0.14, 0.50]
+component Material Supply Chain [0.10, 0.50]
+component Awareness of Energy Supply Chain [0.07, 0.50]
+
+Consumer -> Activity
+Activity -> Control
+
+Control -> Traditional Grid Model
+Control -> Distributed Grid Model
+Control -> Auto Generation Control
+Control -> SCADA
+
+Traditional Grid Model -> Grid
+Traditional Grid Model -> SCADA
+Traditional Grid Model -> Spinning Reserve
+
+Distributed Grid Model -> Grid
+Distributed Grid Model -> Fast-Response Systems
+Distributed Grid Model -> Energy Platform
+
+Grid -> Electricity Generation
+
+Auto Generation Control -> SCADA
+Auto Generation Control -> Spinning Reserve
+Auto Generation Control -> Fast-Response Systems
+
+Electricity Generation -> Sources
+Electricity Generation -> Energy Platform
+
+Fast-Response Systems -> Electrical Storage
+
+Energy Platform -> Integration Layer
+Energy Platform -> Electrical Storage
+Energy Platform -> Hydro Storage
+Energy Platform -> Hydrogen Storage
+
+Integration Layer -> Pre-approval / Discovery
+Integration Layer -> Adaptive Integration
+Integration Layer -> Plug-and-Play
+
+Electrical Storage -> Material Supply Chain
+Electrical Storage -> Sources
+Hydro Storage -> Sources
+Hydrogen Storage -> Sources
+Hydrogen Storage -> Material Supply Chain
+
+Sources -> Stockpile
+Sources -> Material Supply Chain
+Stockpile -> Material Supply Chain
+Material Supply Chain -> Awareness of Energy Supply Chain
+
+style wardley

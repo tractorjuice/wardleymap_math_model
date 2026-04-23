@@ -1,0 +1,10 @@
+{
+  "skill": "arckit-wardley.value-chain",
+  "scenario": "government-sovereignty",
+  "run": 1,
+  "mode": "blind",
+  "start_epoch": 1776944066.235,
+  "end_epoch": 1776944253.863,
+  "duration_seconds": 187.628,
+  "notes": "Partial map — Y-axis + dependencies only; epsilon=0.50 placeholder on all components. 33 components, 11 layers, anchor: Supranational Layer."
+}

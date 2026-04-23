@@ -1,0 +1,19 @@
+{
+  "scenario": "defence-grey-zone",
+  "skill": "arckit-wardley.value-chain",
+  "skill_path": "skills/wardley-map-workspace/competitor-compare/arckit-value-chain/skill/SKILL.md",
+  "run": 1,
+  "blind": true,
+  "partial_map": true,
+  "evolution_placeholder": 0.50,
+  "start_unix": 1776943967.289,
+  "end_unix": 1776944149.059,
+  "duration_seconds": 181.77,
+  "outputs": {
+    "draft_owm": "outputs/draft.owm",
+    "output_md": "outputs/output.md"
+  },
+  "component_count": 19,
+  "edge_count": 32,
+  "notes": "Blind run; reference map not read. Partial-map skill: ε=0.50 placeholder across all components. Anchor chosen: 'Sovereignty Maintenance' (state defending under below-threshold contest)."
+}

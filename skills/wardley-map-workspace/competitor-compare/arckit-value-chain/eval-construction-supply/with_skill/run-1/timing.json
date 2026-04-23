@@ -1,0 +1,10 @@
+{
+  "skill": "arckit-wardley.value-chain",
+  "scenario": "construction-supply",
+  "run": 1,
+  "started_at": "2026-04-23T11:32:46Z",
+  "finished_at": "2026-04-23T11:35:11Z",
+  "duration_seconds": 145,
+  "blind": true,
+  "notes": "Partial-map (value-chain) skill. Evolution axis left at epsilon=0.50 placeholder per benchmark protocol. Reference OWM files not read."
+}

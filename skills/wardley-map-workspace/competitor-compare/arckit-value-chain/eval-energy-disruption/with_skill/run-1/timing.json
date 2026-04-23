@@ -1,0 +1,10 @@
+{
+  "skill": "arckit-wardley.value-chain",
+  "scenario": "energy-disruption",
+  "run": 1,
+  "mode": "blind",
+  "start_unix": 1776943990.009643959,
+  "end_unix": 1776944110.786043587,
+  "duration_seconds": 120.776,
+  "notes": "Partial-map skill — evolution axis (epsilon) set to 0.50 placeholder for all components by design."
+}

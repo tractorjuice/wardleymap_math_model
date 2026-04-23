@@ -1,0 +1,13 @@
+{
+  "skill": "arckit-wardley.value-chain",
+  "eval": "sustainability-supply",
+  "run": 1,
+  "start_ms": 1776943945308,
+  "end_ms": 1776944050944,
+  "duration_ms": 105636,
+  "duration_s": 105.636,
+  "epsilon_placeholder": 0.50,
+  "component_count": 23,
+  "edge_count": 34,
+  "blind": true
+}

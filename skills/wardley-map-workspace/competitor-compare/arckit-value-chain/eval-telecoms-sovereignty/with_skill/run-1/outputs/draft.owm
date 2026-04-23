@@ -1,0 +1,151 @@
+title Telecoms Sovereignty (Nation-State View, Oct 2022)
+
+// === Anchors (users) ===
+anchor Government [0.98, 0.50]
+anchor Collective [0.97, 0.50]
+anchor Corporations [0.96, 0.50]
+anchor People [0.95, 0.50]
+
+// === Sovereignty pillars (the needs the anchors express) ===
+component Territorial Sovereignty [0.90, 0.50]
+component Political Sovereignty [0.90, 0.50]
+component Cultural Sovereignty [0.89, 0.50]
+component Economic Sovereignty [0.89, 0.50]
+component Digital Sovereignty [0.88, 0.50]
+component CNI Sovereignty [0.88, 0.50]
+
+// === Theatre / awareness layer ===
+component Awareness Land-Sea-Air-Space [0.82, 0.50]
+component Supply Chain Awareness [0.80, 0.50]
+
+// === Access devices ===
+component Smartphones [0.78, 0.50]
+component Computers [0.78, 0.50]
+component Radio and TV Receivers [0.76, 0.50]
+component Satellite Phones [0.74, 0.50]
+component IoT Devices [0.72, 0.50]
+
+// === Control layer (state-operable chokepoints) ===
+component DNS-over-HTTPS [0.70, 0.50]
+component Nation-State Firewalls [0.68, 0.50]
+component SIMs [0.66, 0.50]
+component Geofencing [0.64, 0.50]
+
+// === Access networks ===
+component Mobile Towers [0.60, 0.50]
+component Fixed Cable Networks [0.58, 0.50]
+component Satellite Access [0.56, 0.50]
+component Launch Vehicles [0.42, 0.50]
+
+// === Network equipment and topology ===
+component Fixed Network Topology [0.52, 0.50]
+component Mobile Network Topology [0.52, 0.50]
+component Network Equipment [0.48, 0.50]
+component Peering and Interconnect [0.46, 0.50]
+component Telecoms Expertise [0.44, 0.50]
+
+// === Underlying reality ===
+component Compute [0.36, 0.50]
+component Power [0.32, 0.50]
+component Information Supply Chain [0.28, 0.50]
+component Physical Supply Chain [0.26, 0.50]
+component Space (Orbital Environment) [0.22, 0.50]
+component Geography [0.10, 0.50]
+
+// === Dependencies: anchors -> pillars ===
+Government -> Territorial Sovereignty
+Government -> Political Sovereignty
+Government -> CNI Sovereignty
+Government -> Digital Sovereignty
+Collective -> Cultural Sovereignty
+Collective -> Political Sovereignty
+Corporations -> Economic Sovereignty
+Corporations -> Digital Sovereignty
+People -> Cultural Sovereignty
+People -> Political Sovereignty
+People -> Digital Sovereignty
+
+// === Pillars -> awareness + control + access ===
+Territorial Sovereignty -> Awareness Land-Sea-Air-Space
+Territorial Sovereignty -> Geography
+Political Sovereignty -> Nation-State Firewalls
+Political Sovereignty -> DNS-over-HTTPS
+Political Sovereignty -> Geofencing
+Cultural Sovereignty -> Radio and TV Receivers
+Cultural Sovereignty -> Smartphones
+Economic Sovereignty -> Supply Chain Awareness
+Economic Sovereignty -> Peering and Interconnect
+Digital Sovereignty -> DNS-over-HTTPS
+Digital Sovereignty -> Nation-State Firewalls
+Digital Sovereignty -> SIMs
+Digital Sovereignty -> Compute
+CNI Sovereignty -> Mobile Network Topology
+CNI Sovereignty -> Fixed Network Topology
+CNI Sovereignty -> Power
+CNI Sovereignty -> Telecoms Expertise
+
+// === Awareness -> reality ===
+Awareness Land-Sea-Air-Space -> Space (Orbital Environment)
+Awareness Land-Sea-Air-Space -> Geography
+Awareness Land-Sea-Air-Space -> Satellite Access
+Supply Chain Awareness -> Information Supply Chain
+Supply Chain Awareness -> Physical Supply Chain
+
+// === Access devices -> control + access networks ===
+Smartphones -> SIMs
+Smartphones -> Mobile Towers
+Smartphones -> DNS-over-HTTPS
+Computers -> Fixed Cable Networks
+Computers -> DNS-over-HTTPS
+Radio and TV Receivers -> Satellite Access
+Radio and TV Receivers -> Mobile Towers
+Satellite Phones -> Satellite Access
+IoT Devices -> Mobile Towers
+IoT Devices -> SIMs
+
+// === Control layer -> networks / compute ===
+DNS-over-HTTPS -> Compute
+DNS-over-HTTPS -> Peering and Interconnect
+Nation-State Firewalls -> Network Equipment
+Nation-State Firewalls -> Peering and Interconnect
+SIMs -> Mobile Network Topology
+SIMs -> Physical Supply Chain
+Geofencing -> Mobile Network Topology
+Geofencing -> Awareness Land-Sea-Air-Space
+
+// === Access networks -> equipment/topology/reality ===
+Mobile Towers -> Network Equipment
+Mobile Towers -> Mobile Network Topology
+Mobile Towers -> Power
+Fixed Cable Networks -> Network Equipment
+Fixed Cable Networks -> Fixed Network Topology
+Fixed Cable Networks -> Geography
+Satellite Access -> Launch Vehicles
+Satellite Access -> Space (Orbital Environment)
+Satellite Access -> Network Equipment
+Launch Vehicles -> Physical Supply Chain
+Launch Vehicles -> Telecoms Expertise
+
+// === Equipment/topology -> deeper reality ===
+Fixed Network Topology -> Network Equipment
+Fixed Network Topology -> Geography
+Mobile Network Topology -> Network Equipment
+Mobile Network Topology -> Power
+Network Equipment -> Physical Supply Chain
+Network Equipment -> Information Supply Chain
+Network Equipment -> Telecoms Expertise
+Peering and Interconnect -> Network Equipment
+Peering and Interconnect -> Telecoms Expertise
+Telecoms Expertise -> Information Supply Chain
+
+// === Underlying reality cross-links ===
+Compute -> Power
+Compute -> Physical Supply Chain
+Compute -> Information Supply Chain
+Power -> Physical Supply Chain
+Power -> Geography
+Information Supply Chain -> Physical Supply Chain
+Physical Supply Chain -> Geography
+Space (Orbital Environment) -> Geography
+
+style wardley

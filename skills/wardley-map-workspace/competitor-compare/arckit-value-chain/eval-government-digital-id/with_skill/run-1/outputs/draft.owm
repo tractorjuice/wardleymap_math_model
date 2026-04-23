@@ -1,0 +1,64 @@
+title Government Digital Identity — Value Chain (November 2022)
+
+anchor Citizen Access to Services [0.97, 0.50]
+
+component Service Delivery [0.90, 0.50]
+component Regulation and Rules [0.86, 0.50]
+component Exception Handling [0.82, 0.50]
+component Trust Assessment [0.80, 0.50]
+component Claims Exchange [0.74, 0.50]
+component Power Relations [0.70, 0.50]
+component Verifiable Credentials [0.66, 0.50]
+component Identity Assertion [0.58, 0.50]
+component Physical Identification [0.52, 0.50]
+component Digital Identification [0.52, 0.50]
+component Authority and Issuance [0.46, 0.50]
+component Identifier Management [0.38, 0.50]
+component Connectedness Graph [0.32, 0.50]
+component Cryptographic Key Material [0.24, 0.50]
+component Biometric Capture [0.22, 0.50]
+component Transport Layer [0.08, 0.50]
+
+Citizen Access to Services -> Service Delivery
+Citizen Access to Services -> Regulation and Rules
+Citizen Access to Services -> Trust Assessment
+
+Service Delivery -> Claims Exchange
+Service Delivery -> Power Relations
+Service Delivery -> Transport Layer
+
+Regulation and Rules -> Exception Handling
+Regulation and Rules -> Authority and Issuance
+
+Trust Assessment -> Claims Exchange
+Trust Assessment -> Authority and Issuance
+
+Claims Exchange -> Verifiable Credentials
+Claims Exchange -> Transport Layer
+
+Verifiable Credentials -> Identity Assertion
+Verifiable Credentials -> Cryptographic Key Material
+
+Identity Assertion -> Physical Identification
+Identity Assertion -> Digital Identification
+
+Physical Identification -> Identifier Management
+Physical Identification -> Biometric Capture
+
+Digital Identification -> Identifier Management
+Digital Identification -> Cryptographic Key Material
+Digital Identification -> Transport Layer
+
+Authority and Issuance -> Identifier Management
+Authority and Issuance -> Cryptographic Key Material
+
+Identifier Management -> Connectedness Graph
+Identifier Management -> Transport Layer
+
+Connectedness Graph -> Transport Layer
+
+Power Relations -> Authority and Issuance
+
+Exception Handling -> Identity Assertion
+
+style wardley

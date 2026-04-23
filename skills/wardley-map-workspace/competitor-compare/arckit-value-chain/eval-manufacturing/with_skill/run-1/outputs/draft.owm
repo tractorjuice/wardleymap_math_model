@@ -1,0 +1,55 @@
+title Manufacturing Supply Chain Value Chain (February 2023)
+
+anchor Distributor Delivery [0.97, 0.50]
+
+component Product Assembly [0.88, 0.50]
+component Sales Forecasting [0.84, 0.50]
+component Regulatory Compliance [0.82, 0.50]
+component Chain Resilience Visibility [0.80, 0.50]
+component Quality Assurance [0.78, 0.50]
+component ROCE Management [0.76, 0.50]
+component Inventory Strategy [0.72, 0.50]
+component Product R&D [0.70, 0.50]
+component Safety Certification [0.68, 0.50]
+component Lobbying [0.66, 0.50]
+component Cost Accounting [0.64, 0.50]
+component Warehousing [0.60, 0.50]
+component Skilled Labour [0.56, 0.50]
+component Production Equipment [0.52, 0.50]
+component Logistics Transport [0.48, 0.50]
+component Capital Financing [0.44, 0.50]
+component Refined Materials [0.32, 0.50]
+component Energy Supply [0.22, 0.50]
+component Raw Materials [0.16, 0.50]
+
+Distributor Delivery->Product Assembly
+Distributor Delivery->Sales Forecasting
+Distributor Delivery->Regulatory Compliance
+Distributor Delivery->Chain Resilience Visibility
+Distributor Delivery->Quality Assurance
+Distributor Delivery->ROCE Management
+Product Assembly->Product R&D
+Product Assembly->Skilled Labour
+Product Assembly->Production Equipment
+Product Assembly->Refined Materials
+Product Assembly->Inventory Strategy
+Regulatory Compliance->Safety Certification
+Regulatory Compliance->Lobbying
+Quality Assurance->Safety Certification
+Quality Assurance->Skilled Labour
+ROCE Management->Cost Accounting
+ROCE Management->Capital Financing
+Sales Forecasting->Chain Resilience Visibility
+Chain Resilience Visibility->Inventory Strategy
+Chain Resilience Visibility->Logistics Transport
+Inventory Strategy->Warehousing
+Inventory Strategy->Logistics Transport
+Warehousing->Logistics Transport
+Product R&D->Skilled Labour
+Production Equipment->Capital Financing
+Refined Materials->Raw Materials
+Refined Materials->Energy Supply
+Production Equipment->Energy Supply
+Warehousing->Energy Supply
+
+style wardley

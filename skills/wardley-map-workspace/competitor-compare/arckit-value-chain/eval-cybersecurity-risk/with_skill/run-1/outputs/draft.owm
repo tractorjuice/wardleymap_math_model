@@ -1,0 +1,97 @@
+title Cybersecurity Risk Management - Executive View (May 2023)
+
+anchor Executive [0.97, 0.50]
+
+component P&L protection [0.90, 0.50]
+component Compliance obligation [0.90, 0.50]
+component Risk appetite [0.88, 0.50]
+component Board-level reporting [0.86, 0.50]
+
+component Risk identification practice [0.78, 0.50]
+component Risk treatment mix [0.76, 0.50]
+
+component Risk assessment methodology [0.70, 0.50]
+component Risk register [0.68, 0.50]
+component Compliance framework [0.66, 0.50]
+component Risk framework [0.64, 0.50]
+component Asset inventory [0.62, 0.50]
+component Risk quantification [0.58, 0.50]
+
+component Mitigation controls [0.56, 0.50]
+component Risk transfer [0.54, 0.50]
+component Risk acceptance [0.52, 0.50]
+component Cyber insurance [0.50, 0.50]
+
+component Incident response [0.48, 0.50]
+component Security monitoring [0.46, 0.50]
+component Security testing [0.44, 0.50]
+
+component Penetration testing [0.40, 0.50]
+component Bug bounty [0.38, 0.50]
+component LLM attack surface [0.38, 0.50]
+component LLM-assisted defence [0.36, 0.50]
+component Vulnerability scanning [0.34, 0.50]
+
+component SOC tooling [0.30, 0.50]
+component SIEM [0.26, 0.50]
+component EDR [0.26, 0.50]
+
+component Identity and access [0.22, 0.50]
+component Logging and telemetry [0.18, 0.50]
+component Cloud compute [0.10, 0.50]
+
+Executive -> P&L protection
+Executive -> Compliance obligation
+Executive -> Risk appetite
+Executive -> Board-level reporting
+
+P&L protection -> Risk identification practice
+P&L protection -> Risk treatment mix
+Compliance obligation -> Compliance framework
+Compliance obligation -> Risk framework
+Risk appetite -> Risk treatment mix
+Risk appetite -> Risk quantification
+Board-level reporting -> Risk register
+Board-level reporting -> Risk quantification
+
+Risk identification practice -> Asset inventory
+Risk identification practice -> Risk assessment methodology
+Risk identification practice -> Risk register
+Risk identification practice -> LLM attack surface
+
+Risk assessment methodology -> Risk quantification
+Risk assessment methodology -> Risk framework
+Compliance framework -> Risk framework
+Risk register -> Asset inventory
+
+Risk treatment mix -> Mitigation controls
+Risk treatment mix -> Risk transfer
+Risk treatment mix -> Risk acceptance
+Risk transfer -> Cyber insurance
+
+Mitigation controls -> Security monitoring
+Mitigation controls -> Incident response
+Mitigation controls -> Security testing
+Mitigation controls -> Identity and access
+
+Security testing -> Penetration testing
+Security testing -> Bug bounty
+Security testing -> Vulnerability scanning
+
+Security monitoring -> SOC tooling
+Security monitoring -> LLM-assisted defence
+Incident response -> SOC tooling
+
+SOC tooling -> SIEM
+SOC tooling -> EDR
+SIEM -> Logging and telemetry
+EDR -> Logging and telemetry
+
+LLM-assisted defence -> Logging and telemetry
+
+Identity and access -> Cloud compute
+Logging and telemetry -> Cloud compute
+SIEM -> Cloud compute
+EDR -> Cloud compute
+
+style wardley

@@ -1,0 +1,12 @@
+{
+  "skill": "arckit-wardley.value-chain",
+  "scenario": "agriculture-regen",
+  "run": 1,
+  "blind": true,
+  "partial_map": true,
+  "evolution_placeholder": 0.50,
+  "start_iso": "2026-04-23T11:32:54Z",
+  "end_iso": "2026-04-23T11:36:44Z",
+  "duration_seconds": 230,
+  "notes": "Blind benchmark — reference OWM files were not read. Value chain has 20 components + anchor, 31 edges. Evolution placeholders at 0.50 per partial-map skill contract."
+}

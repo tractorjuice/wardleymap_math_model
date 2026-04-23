@@ -1,0 +1,110 @@
+title Game Economies Landscape (November 2023)
+
+anchor Players [0.96, 0.05] label [5, -10]
+anchor Publishers [0.94, 0.10] label [5, -10]
+
+// ============ Direct player-facing experiences ============
+component Games [0.86, 0.50] label [5, 5]
+component In-Game Economy [0.80, 0.50] label [5, 5]
+component Virtual Items [0.78, 0.50] label [5, 5]
+component Tournaments [0.76, 0.50] label [5, 5]
+component Streaming Content [0.74, 0.50] label [5, 5]
+component Influencer Communities [0.72, 0.50] label [5, 5]
+component Marketing Campaigns [0.70, 0.50] label [5, 5]
+
+// ============ Distribution layer ============
+component Game Stores [0.66, 0.50] label [5, 5]
+component Game-Specific Marketplaces [0.62, 0.50] label [5, 5]
+component Game Catalogues [0.60, 0.50] label [5, 5]
+component Alternative Distribution [0.58, 0.50] label [5, 5]
+
+// ============ Monetisation apparatus ============
+component Licensing and Subscriptions [0.64, 0.50] label [5, 5]
+component Advertising [0.56, 0.50] label [5, 5]
+component Business Models [0.54, 0.50] label [5, 5]
+
+// ============ Production / build layer ============
+component Developers [0.50, 0.50] label [5, 5]
+component Game Engines [0.42, 0.50] label [5, 5]
+component Dev Tools [0.38, 0.50] label [5, 5]
+component Game Platform [0.34, 0.50] label [5, 5]
+component Hardware [0.20, 0.50] label [5, 5]
+
+// ============ Funding layer ============
+component Funding Models [0.46, 0.50] label [5, 5]
+component VCs [0.40, 0.50] label [5, 5]
+component Private Investors [0.36, 0.50] label [5, 5]
+
+// ============ Player profiling / social / trust ============
+component Player Profiling [0.48, 0.50] label [5, 5]
+component Social Platforms [0.68, 0.50] label [5, 5]
+component Trust and Safety [0.30, 0.50] label [5, 5]
+
+// ============ Dependencies: player need ============
+Players->Games
+Players->Social Platforms
+Players->Streaming Content
+Players->Influencer Communities
+Players->Tournaments
+
+// Games are the locus of play
+Games->In-Game Economy
+Games->Virtual Items
+Games->Game Stores
+Games->Game Catalogues
+Games->Developers
+
+In-Game Economy->Virtual Items
+In-Game Economy->Trust and Safety
+Virtual Items->Game-Specific Marketplaces
+
+// ============ Dependencies: publisher need ============
+Publishers->Games
+Publishers->Marketing Campaigns
+Publishers->Licensing and Subscriptions
+Publishers->Advertising
+Publishers->Business Models
+Publishers->Player Profiling
+Publishers->Developers
+Publishers->Funding Models
+
+Marketing Campaigns->Influencer Communities
+Marketing Campaigns->Streaming Content
+Marketing Campaigns->Tournaments
+Marketing Campaigns->Social Platforms
+Marketing Campaigns->Player Profiling
+
+Tournaments->Streaming Content
+Streaming Content->Social Platforms
+Influencer Communities->Social Platforms
+
+// Distribution
+Game Stores->Alternative Distribution
+Game Catalogues->Game Stores
+Game-Specific Marketplaces->Game Stores
+Alternative Distribution->Game Platform
+
+// Monetisation
+Licensing and Subscriptions->Business Models
+Advertising->Player Profiling
+Business Models->Funding Models
+Player Profiling->Trust and Safety
+
+// Production
+Developers->Game Engines
+Developers->Dev Tools
+Developers->Game Platform
+Developers->Funding Models
+Game Engines->Dev Tools
+Game Engines->Hardware
+Dev Tools->Hardware
+Game Platform->Hardware
+
+// Funding
+Funding Models->VCs
+Funding Models->Private Investors
+
+// Social/trust plumbing
+Social Platforms->Trust and Safety
+
+style wardley

@@ -1,0 +1,133 @@
+title Space-Based Telecoms Landscape
+
+anchor Consumers [0.95, 0.50]
+anchor Corporations [0.95, 0.50]
+anchor Government [0.95, 0.50]
+
+component Network Access [0.86, 0.50]
+component Broadcast [0.84, 0.50]
+
+component Physical Network [0.78, 0.50]
+component Topology [0.76, 0.50]
+
+component Mobile [0.70, 0.50]
+component Fibre [0.68, 0.50]
+component Non-Terrestrial Networks [0.70, 0.50]
+
+component User Terminals [0.62, 0.50]
+component Ground Stations [0.60, 0.50]
+component Satellite [0.58, 0.50]
+
+component Phased-Array Antennas [0.54, 0.50]
+component Spectrum [0.52, 0.50]
+component LEO Microsats [0.50, 0.50]
+component GEO Satellites [0.50, 0.50]
+
+component Ku Band [0.44, 0.50]
+component Ka Band [0.44, 0.50]
+component V Band [0.42, 0.50]
+
+component Antennas [0.46, 0.50]
+component Control Systems [0.44, 0.50]
+component Launchers [0.42, 0.50]
+
+component Beamforming [0.38, 0.50]
+component Beam-Steering [0.38, 0.50]
+component Optical Sat-to-Sat Comms [0.36, 0.50]
+
+component Propulsion [0.38, 0.50]
+component Power Subsystem [0.38, 0.50]
+component Cooling Subsystem [0.36, 0.50]
+
+component Fleet Management [0.36, 0.50]
+component Orbit Tracking [0.34, 0.50]
+component Debris Tracking [0.34, 0.50]
+
+component Krypton Propellant [0.28, 0.50]
+component Xenon Propellant [0.28, 0.50]
+component Thermal Electric Cooling [0.26, 0.50]
+component Radiative Cooling [0.26, 0.50]
+component Cryogens [0.24, 0.50]
+
+component Automation [0.22, 0.50]
+component Space Regulation [0.20, 0.50]
+component Supply-Chain Awareness [0.14, 0.50]
+
+Consumers -> Network Access
+Consumers -> Broadcast
+Corporations -> Network Access
+Corporations -> Broadcast
+Government -> Network Access
+Government -> Broadcast
+Government -> Space Regulation
+
+Network Access -> Physical Network
+Network Access -> Topology
+Broadcast -> Physical Network
+Broadcast -> Topology
+
+Physical Network -> User Terminals
+Physical Network -> Ground Stations
+Topology -> Mobile
+Topology -> Fibre
+Topology -> Non-Terrestrial Networks
+
+Non-Terrestrial Networks -> Satellite
+Non-Terrestrial Networks -> Ground Stations
+Non-Terrestrial Networks -> User Terminals
+Non-Terrestrial Networks -> Spectrum
+
+User Terminals -> Phased-Array Antennas
+Ground Stations -> Spectrum
+Ground Stations -> Antennas
+
+Spectrum -> Ku Band
+Spectrum -> Ka Band
+Spectrum -> V Band
+
+Satellite -> LEO Microsats
+Satellite -> GEO Satellites
+Satellite -> Antennas
+Satellite -> Propulsion
+Satellite -> Power Subsystem
+Satellite -> Cooling Subsystem
+Satellite -> Control Systems
+Satellite -> Launchers
+
+LEO Microsats -> Optical Sat-to-Sat Comms
+LEO Microsats -> Propulsion
+GEO Satellites -> Propulsion
+
+Antennas -> Beamforming
+Antennas -> Beam-Steering
+Phased-Array Antennas -> Beamforming
+Phased-Array Antennas -> Beam-Steering
+
+Propulsion -> Krypton Propellant
+Propulsion -> Xenon Propellant
+
+Cooling Subsystem -> Thermal Electric Cooling
+Cooling Subsystem -> Radiative Cooling
+Cooling Subsystem -> Cryogens
+
+Control Systems -> Orbit Tracking
+Control Systems -> Debris Tracking
+Control Systems -> Fleet Management
+
+Fleet Management -> Automation
+Orbit Tracking -> Automation
+Debris Tracking -> Automation
+
+Launchers -> Space Regulation
+Satellite -> Space Regulation
+Spectrum -> Space Regulation
+Debris Tracking -> Space Regulation
+
+Launchers -> Supply-Chain Awareness
+Propulsion -> Supply-Chain Awareness
+Power Subsystem -> Supply-Chain Awareness
+Cooling Subsystem -> Supply-Chain Awareness
+Antennas -> Supply-Chain Awareness
+Automation -> Supply-Chain Awareness
+
+style wardley

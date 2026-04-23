@@ -1,0 +1,38 @@
+{
+  "skill": "arckit-wardley.value-chain",
+  "skill_path": "skills/wardley-map-workspace/competitor-compare/arckit-value-chain/skill/SKILL.md",
+  "scenario": "education-lifelong",
+  "run": 1,
+  "mode": "blind",
+  "started_at": "2026-04-23T11:32:40Z",
+  "completed_at": "2026-04-23T11:35:00Z",
+  "elapsed_seconds": 140,
+  "evolution_convention": "partial-map placeholder epsilon=0.50 for all components (value-chain stage; evolution deferred to subsequent full-map pass)",
+  "anchor": "Learner Thriving (Learner gains the skills and recognised credentials to thrive in work and life)",
+  "component_count": 20,
+  "anchor_visibility": 0.95,
+  "edge_count": 30,
+  "levels": 6,
+  "references_read": [
+    "skills/wardley-map-workspace/competitor-compare/arckit-value-chain/skill/SKILL.md"
+  ],
+  "references_not_read_blind": [
+    "skills/wardley-map-workspace/competitor-compare/arckit-value-chain/eval-education-lifelong/wardley-reference.owm",
+    "skills/wardley-map-workspace/iteration-12/eval-education-lifelong/wardley-reference.owm"
+  ],
+  "outputs": {
+    "draft_owm": "outputs/draft.owm",
+    "writeup": "outputs/output.md"
+  },
+  "validation": {
+    "validator_script": "skills/wardley-map/scripts/validate_owm.mjs",
+    "validator_run": false,
+    "validator_run_reason": "Bash permission for node validator denied in this session; manual checks performed instead",
+    "manual_checks": {
+      "visibility_ordering_all_edges_a_ge_b": true,
+      "components_declared_before_edges": true,
+      "coordinates_in_unit_interval": true,
+      "dag_acyclic": true
+    }
+  }
+}

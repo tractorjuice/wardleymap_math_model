@@ -1,0 +1,10 @@
+{
+  "skill": "arckit-wardley.value-chain",
+  "scenario": "politics-labour",
+  "run": 1,
+  "blind": true,
+  "start_ns": 1776944034610774449,
+  "end_ns": 1776944202703440534,
+  "duration_s": 168.09,
+  "notes": "Partial-map skill: components + dependencies + visibility only; evolution held at epsilon=0.50 placeholder per skill spec. 26 components, 47 edges, all edges satisfy visibility(parent) >= visibility(child) (manually verified; bash node validator blocked in this harness)."
+}

@@ -1,0 +1,85 @@
+title Sustainable Supply Chain — Producer to Consumer
+
+anchor Sustainable Consumption [0.95, 0.50]
+
+component Consumer Rating Mechanisms [0.88, 0.50]
+component Labels and Certifications [0.82, 0.50]
+component Distribution [0.78, 0.50]
+component Last Mile Transportation [0.70, 0.50]
+component Packaging [0.68, 0.50]
+component Temperature and Freshness Handling [0.62, 0.50]
+component Disclosure [0.55, 0.50]
+component Backhaul Transportation [0.55, 0.50]
+component Manufacturing [0.50, 0.50]
+component Audit [0.45, 0.50]
+component Sourcing of Complex Products [0.45, 0.50]
+component End of Life Reusability [0.40, 0.50]
+component Monitoring [0.38, 0.50]
+component Waste Management [0.35, 0.50]
+component Guidelines [0.30, 0.50]
+component Sourcing of Raw Materials [0.30, 0.50]
+component Regulations and Laws [0.25, 0.50]
+component Resource Efficiency [0.22, 0.50]
+component Trade Agreements [0.20, 0.50]
+component R and D [0.18, 0.50]
+component Sanctions [0.15, 0.50]
+component Bureaucracy [0.10, 0.50]
+
+Sustainable Consumption -> Consumer Rating Mechanisms
+Sustainable Consumption -> Labels and Certifications
+Sustainable Consumption -> Distribution
+
+Consumer Rating Mechanisms -> Labels and Certifications
+Consumer Rating Mechanisms -> Disclosure
+
+Labels and Certifications -> Audit
+Labels and Certifications -> Monitoring
+
+Distribution -> Last Mile Transportation
+Distribution -> Packaging
+
+Last Mile Transportation -> Backhaul Transportation
+Last Mile Transportation -> Temperature and Freshness Handling
+
+Packaging -> Manufacturing
+Packaging -> End of Life Reusability
+
+Temperature and Freshness Handling -> Manufacturing
+
+Backhaul Transportation -> Manufacturing
+
+Manufacturing -> Sourcing of Complex Products
+Manufacturing -> Resource Efficiency
+Manufacturing -> R and D
+
+Sourcing of Complex Products -> Sourcing of Raw Materials
+
+End of Life Reusability -> Waste Management
+End of Life Reusability -> R and D
+
+Waste Management -> Regulations and Laws
+
+Disclosure -> Regulations and Laws
+Disclosure -> Guidelines
+
+Audit -> Regulations and Laws
+Audit -> Guidelines
+
+Monitoring -> Regulations and Laws
+
+Sourcing of Raw Materials -> Trade Agreements
+Sourcing of Raw Materials -> Resource Efficiency
+
+Guidelines -> Bureaucracy
+
+Regulations and Laws -> Trade Agreements
+Regulations and Laws -> Sanctions
+Regulations and Laws -> Bureaucracy
+
+Trade Agreements -> Bureaucracy
+
+Sanctions -> Bureaucracy
+
+Resource Efficiency -> R and D
+
+style wardley

@@ -1,0 +1,22 @@
+{
+  "skill": "arckit-wardley.value-chain",
+  "skill_path": "skills/wardley-map-workspace/competitor-compare/arckit-value-chain/skill/SKILL.md",
+  "scenario": "telecoms-sovereignty",
+  "scenario_date": "2022-10",
+  "run": 1,
+  "blind": true,
+  "started_utc": "2026-04-23T11:33:54Z",
+  "finished_utc": "2026-04-23T11:36:39Z",
+  "elapsed_seconds": 165,
+  "model": "claude-opus-4-7[1m]",
+  "partial_map": true,
+  "evolution_placeholder": 0.50,
+  "component_count": 32,
+  "anchor_count": 4,
+  "dependency_edge_count": 78,
+  "outputs": {
+    "output_md": "outputs/output.md",
+    "draft_owm": "outputs/draft.owm"
+  },
+  "notes": "Value-chain (partial-map) skill: visibility assigned, evolution left at 0.50 placeholder per skill design. Blind run: no reference .owm consulted."
+}

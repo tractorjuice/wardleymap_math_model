@@ -1,0 +1,56 @@
+title Personal Computing in the Age of Conversational AI
+
+anchor Developer [0.95, 0.02]
+component Build Software Productively [0.90, 0.50]
+component Applications [0.82, 0.50]
+component Devices [0.78, 0.50]
+component IDE (Human) [0.74, 0.50]
+component IDE (Conversational AI + Human) [0.72, 0.50]
+component Component Libraries [0.62, 0.50]
+component Services [0.60, 0.50]
+component Legacy Approaches [0.58, 0.50]
+component Runtime (Serverless) [0.50, 0.50]
+component Runtime (LAMP / .NET) [0.48, 0.50]
+component Large Language Models [0.46, 0.50]
+component FinOps [0.44, 0.50]
+component Operating Systems [0.36, 0.50]
+component Orchestration Tools [0.34, 0.50]
+component Containers [0.26, 0.50]
+component DevOps [0.20, 0.50]
+component Legacy Architecture [0.18, 0.50]
+component Servers [0.10, 0.50]
+component Cloud Compute [0.08, 0.50]
+
+Developer->Build Software Productively
+Build Software Productively->Applications
+Build Software Productively->Devices
+Applications->IDE (Human)
+Applications->IDE (Conversational AI + Human)
+IDE (Human)->Component Libraries
+IDE (Human)->Services
+IDE (Human)->Legacy Approaches
+IDE (Conversational AI + Human)->Component Libraries
+IDE (Conversational AI + Human)->Services
+IDE (Conversational AI + Human)->Large Language Models
+Component Libraries->Runtime (Serverless)
+Component Libraries->Runtime (LAMP / .NET)
+Services->Runtime (Serverless)
+Services->Runtime (LAMP / .NET)
+Legacy Approaches->Runtime (LAMP / .NET)
+Large Language Models->FinOps
+Large Language Models->Cloud Compute
+Runtime (Serverless)->Operating Systems
+Runtime (Serverless)->Orchestration Tools
+Runtime (LAMP / .NET)->Operating Systems
+FinOps->Cloud Compute
+Operating Systems->Containers
+Orchestration Tools->Containers
+Containers->DevOps
+Containers->Legacy Architecture
+DevOps->Servers
+DevOps->Cloud Compute
+Legacy Architecture->Servers
+Servers->Cloud Compute
+Devices->Operating Systems
+
+style wardley

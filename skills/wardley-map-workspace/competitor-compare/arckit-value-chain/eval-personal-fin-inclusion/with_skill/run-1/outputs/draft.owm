@@ -1,0 +1,104 @@
+title Personal Financial Inclusion (value chain, evolution placeholder)
+
+anchor Individual [0.96, 0.50]
+
+component Inclusion [0.90, 0.50]
+component Trade [0.88, 0.50]
+component Options [0.87, 0.50]
+component Equality [0.86, 0.50]
+component Sustainability [0.85, 0.50]
+
+component Identity and Trust [0.78, 0.50]
+component Risk Management [0.76, 0.50]
+component Behaviour and Literacy [0.74, 0.50]
+component Markets and Exchange [0.72, 0.50]
+component Authority and Governance [0.70, 0.50]
+component Redistribution [0.68, 0.50]
+
+component Banking Services [0.60, 0.50]
+component Online Payments [0.58, 0.50]
+component Bank Branches [0.56, 0.50]
+component Fiat Currency [0.55, 0.50]
+component CBDC [0.54, 0.50]
+component Cryptocurrency [0.53, 0.50]
+
+component Financial Infrastructure [0.45, 0.50]
+component Consensus Algorithms [0.42, 0.50]
+
+component Mobile Device [0.35, 0.50]
+component Internet Access [0.32, 0.50]
+component Computing Infrastructure [0.28, 0.50]
+
+component 5G Network [0.22, 0.50]
+component Satellite Network [0.20, 0.50]
+component Mesh Network [0.18, 0.50]
+component Copper Network [0.16, 0.50]
+
+component Minigrids [0.10, 0.50]
+component Renewable Energy [0.08, 0.50]
+component Fossil Energy [0.06, 0.50]
+
+Individual -> Inclusion
+Individual -> Trade
+Individual -> Options
+Individual -> Equality
+Individual -> Sustainability
+
+Inclusion -> Identity and Trust
+Inclusion -> Redistribution
+Trade -> Markets and Exchange
+Trade -> Banking Services
+Options -> Banking Services
+Options -> Authority and Governance
+Equality -> Redistribution
+Equality -> Authority and Governance
+Sustainability -> Authority and Governance
+
+Identity and Trust -> Banking Services
+Identity and Trust -> Authority and Governance
+Risk Management -> Banking Services
+Risk Management -> Markets and Exchange
+Behaviour and Literacy -> Banking Services
+Behaviour and Literacy -> Mobile Device
+Markets and Exchange -> Fiat Currency
+Markets and Exchange -> Cryptocurrency
+Markets and Exchange -> CBDC
+Authority and Governance -> Fiat Currency
+Authority and Governance -> CBDC
+Redistribution -> Banking Services
+Redistribution -> Online Payments
+
+Banking Services -> Bank Branches
+Banking Services -> Online Payments
+Banking Services -> Financial Infrastructure
+Online Payments -> Financial Infrastructure
+Online Payments -> Mobile Device
+Bank Branches -> Financial Infrastructure
+Fiat Currency -> Financial Infrastructure
+CBDC -> Financial Infrastructure
+CBDC -> Consensus Algorithms
+Cryptocurrency -> Consensus Algorithms
+
+Financial Infrastructure -> Computing Infrastructure
+Financial Infrastructure -> Internet Access
+Consensus Algorithms -> Computing Infrastructure
+Consensus Algorithms -> Internet Access
+
+Mobile Device -> Internet Access
+Internet Access -> 5G Network
+Internet Access -> Satellite Network
+Internet Access -> Mesh Network
+Internet Access -> Copper Network
+
+5G Network -> Fossil Energy
+5G Network -> Renewable Energy
+Satellite Network -> Renewable Energy
+Mesh Network -> Minigrids
+Copper Network -> Fossil Energy
+Computing Infrastructure -> Fossil Energy
+Computing Infrastructure -> Renewable Energy
+
+Minigrids -> Renewable Energy
+Minigrids -> Fossil Energy
+
+style wardley

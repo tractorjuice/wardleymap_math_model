@@ -1,0 +1,76 @@
+title Gender as a Cultural Construct (March 2022)
+
+anchor Gendered Self [0.95, 0.50]
+
+component Gender Expression [0.86, 0.50]
+component Gender Identity [0.84, 0.50]
+component Lived Experience [0.82, 0.50]
+component Sexual Orientation [0.72, 0.50]
+component Sexual Identity [0.70, 0.50]
+component Self-Expression [0.68, 0.50]
+component Exclusion [0.66, 0.50]
+component Memory and Stories [0.60, 0.50]
+component Symbols and Roles [0.58, 0.50]
+component Values and Beliefs [0.56, 0.50]
+component Rights [0.54, 0.50]
+component Identity [0.50, 0.50]
+component Family [0.44, 0.50]
+component Corporation [0.42, 0.50]
+component Nation [0.40, 0.50]
+component Patriarchy [0.38, 0.50]
+component Matriarchy [0.36, 0.50]
+component Authority and Power [0.30, 0.50]
+component Social Class [0.28, 0.50]
+component Property and Ownership [0.26, 0.50]
+component Phenotype [0.18, 0.50]
+component Epigenetics [0.12, 0.50]
+component Environment [0.08, 0.50]
+component Genetic Markers [0.04, 0.50]
+
+Gendered Self -> Gender Expression
+Gendered Self -> Gender Identity
+Gendered Self -> Lived Experience
+Gender Expression -> Symbols and Roles
+Gender Expression -> Self-Expression
+Gender Identity -> Sexual Identity
+Gender Identity -> Sexual Orientation
+Gender Identity -> Identity
+Lived Experience -> Memory and Stories
+Lived Experience -> Exclusion
+Lived Experience -> Self-Expression
+Sexual Orientation -> Identity
+Sexual Identity -> Identity
+Self-Expression -> Values and Beliefs
+Exclusion -> Authority and Power
+Exclusion -> Social Class
+Memory and Stories -> Symbols and Roles
+Memory and Stories -> Family
+Symbols and Roles -> Values and Beliefs
+Values and Beliefs -> Family
+Values and Beliefs -> Nation
+Values and Beliefs -> Corporation
+Values and Beliefs -> Patriarchy
+Values and Beliefs -> Matriarchy
+Values and Beliefs -> Rights
+Exclusion -> Rights
+Rights -> Nation
+Rights -> Authority and Power
+Identity -> Phenotype
+Family -> Authority and Power
+Family -> Property and Ownership
+Corporation -> Authority and Power
+Corporation -> Property and Ownership
+Nation -> Authority and Power
+Nation -> Social Class
+Patriarchy -> Authority and Power
+Patriarchy -> Social Class
+Matriarchy -> Authority and Power
+Authority and Power -> Social Class
+Social Class -> Property and Ownership
+Phenotype -> Environment
+Phenotype -> Epigenetics
+Phenotype -> Genetic Markers
+Epigenetics -> Environment
+Epigenetics -> Genetic Markers
+
+style wardley

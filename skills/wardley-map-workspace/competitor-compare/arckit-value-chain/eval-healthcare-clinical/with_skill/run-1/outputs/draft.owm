@@ -1,0 +1,66 @@
+title Clinical Decision Making in Healthcare (August 2022)
+
+anchor Patient [0.97, 0.50]
+
+component Effective Treatment and Outcome [0.90, 0.50]
+component Medical Practitioner [0.85, 0.50]
+component Medical Institution [0.80, 0.50]
+component Setting of Care [0.76, 0.50]
+component Clinical Judgement [0.72, 0.50]
+component Diagnostic Reasoning [0.68, 0.50]
+component Decision Support [0.60, 0.50]
+component Permissible Treatments [0.58, 0.50]
+component Payer Reimbursement [0.55, 0.50]
+component Exceptions and Appeals [0.54, 0.50]
+component Standards and Guidelines [0.52, 0.50]
+component Fairness and Equity Review [0.48, 0.50]
+component Patient Observation and History [0.46, 0.50]
+component Diagnostic Tests and Imaging [0.42, 0.50]
+component Evidence Base [0.38, 0.50]
+component Clinical Trials and Reviews [0.34, 0.50]
+component Patient Data Sources [0.28, 0.50]
+component Electronic Health Record [0.22, 0.50]
+component Health Data Standards [0.15, 0.50]
+component Compute and Storage Infrastructure [0.08, 0.50]
+
+Patient->Effective Treatment and Outcome
+Effective Treatment and Outcome->Medical Practitioner
+Effective Treatment and Outcome->Medical Institution
+Effective Treatment and Outcome->Setting of Care
+Effective Treatment and Outcome->Payer Reimbursement
+Medical Practitioner->Clinical Judgement
+Medical Practitioner->Diagnostic Reasoning
+Medical Institution->Setting of Care
+Medical Institution->Standards and Guidelines
+Setting of Care->Permissible Treatments
+Clinical Judgement->Diagnostic Reasoning
+Clinical Judgement->Decision Support
+Diagnostic Reasoning->Patient Observation and History
+Diagnostic Reasoning->Diagnostic Tests and Imaging
+Diagnostic Reasoning->Decision Support
+Decision Support->Standards and Guidelines
+Decision Support->Evidence Base
+Decision Support->Electronic Health Record
+Permissible Treatments->Standards and Guidelines
+Permissible Treatments->Payer Reimbursement
+Permissible Treatments->Exceptions and Appeals
+Standards and Guidelines->Evidence Base
+Standards and Guidelines->Fairness and Equity Review
+Exceptions and Appeals->Fairness and Equity Review
+Exceptions and Appeals->Standards and Guidelines
+Payer Reimbursement->Standards and Guidelines
+Payer Reimbursement->Electronic Health Record
+Patient Observation and History->Patient Data Sources
+Patient Observation and History->Electronic Health Record
+Diagnostic Tests and Imaging->Patient Data Sources
+Diagnostic Tests and Imaging->Health Data Standards
+Evidence Base->Clinical Trials and Reviews
+Evidence Base->Health Data Standards
+Clinical Trials and Reviews->Patient Data Sources
+Patient Data Sources->Electronic Health Record
+Patient Data Sources->Health Data Standards
+Electronic Health Record->Health Data Standards
+Electronic Health Record->Compute and Storage Infrastructure
+Health Data Standards->Compute and Storage Infrastructure
+
+style wardley

@@ -1,0 +1,93 @@
+title UK Labour Party - May 2024 - Preparing for Government (Value Chain)
+
+anchor UK Voter Choice [0.98, 0.50]
+
+component Keir Starmer (Leader) [0.94, 0.50]
+component Labour Party Members [0.92, 0.50]
+component Campaign Strategy [0.86, 0.50]
+component Public Engagement [0.84, 0.50]
+component Media Relations [0.82, 0.50]
+component Stakeholder Engagement [0.78, 0.50]
+component Volunteer Mobilisation [0.76, 0.50]
+component Fundraising [0.74, 0.50]
+component Private Sector Collaboration [0.72, 0.50]
+component Party Policy Framework [0.70, 0.50]
+component Internal Party Democracy [0.68, 0.50]
+component Research and Policy Development [0.62, 0.50]
+component Economic Equality Policy [0.60, 0.50]
+component Workers Rights Policy [0.58, 0.50]
+component Healthcare Access Policy [0.58, 0.50]
+component Education Access Policy [0.56, 0.50]
+component Housing Policy [0.56, 0.50]
+component Anti-Discrimination Policy [0.54, 0.50]
+component Social Justice Policy [0.54, 0.50]
+component Climate Change Action Policy [0.52, 0.50]
+component Infrastructure Development Policy [0.50, 0.50]
+component Public Sector Investment Policy [0.50, 0.50]
+component National Security Policy [0.48, 0.50]
+component International Relations Policy [0.48, 0.50]
+component Digital Transformation Policy [0.52, 0.50]
+component Community Programs [0.42, 0.50]
+
+UK Voter Choice -> Keir Starmer (Leader)
+UK Voter Choice -> Labour Party Members
+UK Voter Choice -> Campaign Strategy
+UK Voter Choice -> Public Engagement
+UK Voter Choice -> Media Relations
+
+Keir Starmer (Leader) -> Party Policy Framework
+Keir Starmer (Leader) -> Media Relations
+Keir Starmer (Leader) -> Campaign Strategy
+
+Labour Party Members -> Internal Party Democracy
+Labour Party Members -> Volunteer Mobilisation
+Labour Party Members -> Party Policy Framework
+
+Campaign Strategy -> Media Relations
+Campaign Strategy -> Volunteer Mobilisation
+Campaign Strategy -> Fundraising
+Campaign Strategy -> Stakeholder Engagement
+Campaign Strategy -> Party Policy Framework
+
+Public Engagement -> Community Programs
+Public Engagement -> Volunteer Mobilisation
+Public Engagement -> Media Relations
+
+Media Relations -> Party Policy Framework
+
+Stakeholder Engagement -> Private Sector Collaboration
+Stakeholder Engagement -> Party Policy Framework
+
+Volunteer Mobilisation -> Community Programs
+
+Fundraising -> Private Sector Collaboration
+
+Party Policy Framework -> Research and Policy Development
+Party Policy Framework -> Internal Party Democracy
+
+Internal Party Democracy -> Research and Policy Development
+
+Research and Policy Development -> Economic Equality Policy
+Research and Policy Development -> Workers Rights Policy
+Research and Policy Development -> Healthcare Access Policy
+Research and Policy Development -> Education Access Policy
+Research and Policy Development -> Housing Policy
+Research and Policy Development -> Anti-Discrimination Policy
+Research and Policy Development -> Social Justice Policy
+Research and Policy Development -> Climate Change Action Policy
+Research and Policy Development -> Infrastructure Development Policy
+Research and Policy Development -> Public Sector Investment Policy
+Research and Policy Development -> National Security Policy
+Research and Policy Development -> International Relations Policy
+Research and Policy Development -> Digital Transformation Policy
+
+Economic Equality Policy -> Workers Rights Policy
+Economic Equality Policy -> Public Sector Investment Policy
+Healthcare Access Policy -> Public Sector Investment Policy
+Education Access Policy -> Public Sector Investment Policy
+Housing Policy -> Infrastructure Development Policy
+Social Justice Policy -> Anti-Discrimination Policy
+Climate Change Action Policy -> Infrastructure Development Policy
+Digital Transformation Policy -> Infrastructure Development Policy
+
+style wardley
