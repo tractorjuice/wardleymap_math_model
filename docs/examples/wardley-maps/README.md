@@ -14,11 +14,10 @@ Five maps from [`swardley/WARDLEY-MAP-REPOSITORY`](https://github.com/swardley/W
 
 `scripts/owm_to_mermaid.mjs` (Node) parses each `.owm` source and emits a Mermaid block. The converter:
 
-- Keeps `title`, `anchor`, `component`, edges (`src -> dst`), and `note`.
-- Drops `pipeline`, `evolution` stage overrides, `style`, `market`, `evolve`, label offsets, and comments — Mermaid `wardley-beta` doesn't support them.
-- Sanitises component/anchor names: replaces `/` with ` and `, strips `()[]{}`, normalises whitespace.
-- Quotes `note` text and rewrites em-dashes / apostrophes / semicolons (Mermaid's `note` parser is strict about these).
-- Drops edges whose endpoints aren't declared — OWM sometimes references components that were never introduced. Stderr logs how many were kept vs dropped per map.
+- Keeps `title`, custom `evolution` stages, `anchor`, `component`, dependency links (`->`), flow links (`+>`), `note`, `evolve`, pipelines, label offsets, inertia, and build/buy/outsource/market decorators where the OWM source maps cleanly to Mermaid.
+- Drops OWM-only directives such as `style wardley`, axis overrides, `ecosystem`, `submap`, `url`, and pioneer/settler/townplanner markers.
+- Always double-quotes component, anchor, and edge names. Mermaid 11.15 supports unquoted hyphenated names, but quoted `STRING` names are still the safest representation for slashes, punctuation, reserved-keyword prefixes, and numeric labels.
+- Drops links whose endpoints aren't declared — OWM reference maps sometimes include links to components that were never introduced.
 
 ## Reproducing
 

@@ -2,7 +2,7 @@
 
 Source: [`/workspaces/wardleymap_math_model/skills/wardley-map-workspace/arc-kit-compare/eval-telecoms-sovereignty/wardley-reference.owm`](../../../skills/wardley-map-workspace/arc-kit-compare/eval-telecoms-sovereignty/wardley-reference.owm)
 
-Converted from OWM via `scripts/owm_to_mermaid.mjs` (Node) — port of [arc-kit's convert.mjs](https://github.com/tractorjuice/arc-kit/blob/main/tests/mermaid-wardley/convert.mjs) with added explicit-block pipeline handling, evolution-stage quoting, and `label [dx, dy]` preservation on both top-level and pipeline-child components. All names double-quoted because mermaid's `NAME_WITH_SPACES` terminal excludes hyphens and lexes keywords like `label`/`evolve` eagerly as prefixes; quoting uses the `STRING` alternative and accepts any text verbatim.
+Converted from OWM via `scripts/owm_to_mermaid.mjs` (Node) — port of [arc-kit's convert.mjs](https://github.com/tractorjuice/arc-kit/blob/main/tests/mermaid-wardley/convert.mjs) with added explicit-block pipeline handling, evolution-stage quoting, and `label [dx, dy]` preservation on both top-level and pipeline-child components. All names are double-quoted because Mermaid's `STRING` alternative is the safest representation for punctuation, slashes, reserved-keyword prefixes, and numeric labels.
 
 ```mermaid
 wardley-beta
@@ -89,20 +89,12 @@ evolve "DNSoverHTTPS" 0.70
 
 "GOVERNMENT" -> "COLLECTIVE"
 "COLLECTIVE" -> "people"
-"COLLECTIVE" -> "behaviours"
 "GOVERNMENT" -> "LEGITIMACY"
 "LEGITIMACY" -> "SOVEREIGNTY"
 "people" -> "perception of success"
 "perception of success" -> "CNI"
-"territorial" -> "landscape"
-"digital" -> "supply-chains"
-"economic" -> "supply-chains"
-"physical geography" -> "territorial"
-"awareness of physical geography" -> "territorial"
 "digital" -> "awareness of supply-chains"
 "awareness of supply-chains" -> "economic"
-"awareness of physical geography" -> "geography"
-"supply chain" -> "awareness of supply-chains"
 "satellite" -> "launch vehicles"
 "awareness of land-sea-air-space" -> "territorial"
 "geography" -> "awareness of land-sea-air-space"
@@ -113,44 +105,22 @@ evolve "DNSoverHTTPS" 0.70
 "Compute" -> "Power"
 "CNI" -> "COMMUNICATION"
 component "Real estate" [0.29, 0.31] label [-95, 4]
-"mobile" -> "Real estate"
 component "EXPERTISE" [0.27, 0.46] label [-73, 1]
-"Software" -> "EXPERTISE"
-"CNI" -> "BACKHAUL/INTERNET CORE"
-"BACKHAUL/INTERNET CORE" -> "Real estate"
 "Real estate" -> "geography"
-"NETWORK EQPT" -> "supply chain"
 "NETWORK EQPT" -> "EXPERTISE"
-"BACKHAUL/INTERNET CORE" -> "NETWORK EQPT"
 "awareness of supply-chains" -> "EXPERTISE"
 "EXPERTISE" -> "awareness of land-sea-air-space"
 "information supply chain" -> "NETWORK EQPT"
 "NETWORK EQPT" -> "physical supply chain"
 "information supply chain" -> "awareness of supply-chains"
 "physical supply chain" -> "awareness of supply-chains"
-"people" -> "individual sovereignty"
-"1" -> "P2P"
-"Fixed" -> "P2P"
 "Towers" -> "Real estate"
-"Mobile" -> "broadcast"
-"Mobile" -> "broadcast topology"
-"broadcast topology" -> "P2P"
-"P2P" -> "peering"
-"P2P" -> "NETWORK EQPT"
 "cable" -> "Real estate"
-"FTTP" -> "Real estate"
-"satellite" -> "freespace laser"
-"Fixed" -> "Directionally Constrained Medium"
-"Fixed" -> "Isolated Tunnel"
-"Fixed" -> "Isolated Medium"
-"Shared Medium" -> "Mobile"
-"Fixed" -> "Isolated Medium Topology"
-"NETWORK EQPT" -> "Isolated Medium Topology"
-"Isolated Medium Topology" -> "peering"
 "NETWORK TOPOLOGY" -> "NETWORK EQPT"
 "Mobile" -> "satellite"
 "CONTROL LAYER" -> "NETWORK TOPOLOGY"
 "CONTROL LAYER" -> "ACCESS NETWORK"
 "corporation" -> "SOVEREIGNTY"
 "satellite" -> "doves"
+
 ```

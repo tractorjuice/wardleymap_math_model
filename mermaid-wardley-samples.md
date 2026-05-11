@@ -1,8 +1,8 @@
 # Mermaid Wardley Map samples — GitHub rendering test
 
-Four increasingly-featured examples to verify GitHub's Mermaid renderer (v11.44-ish) handles the `wardley-beta` diagram type introduced in mermaid 11.14. Syntax reference: [mcraddock — Bringing Wardley Maps to Mermaid](https://medium.com/@mcraddock/bringing-wardley-maps-to-mermaid-a-journey-from-idea-to-open-source-contribution-8fe5009eafd3).
+Four increasingly-featured examples to verify GitHub's Mermaid renderer handles the `wardley-beta` diagram type introduced in mermaid 11.14. Syntax reference: [Mermaid Wardley Maps](https://mermaid.ai/open-source/syntax/wardley.html).
 
-Coordinates are `[visibility, evolution]` on $[0, 1]$ — same convention as OWM. Top-right corner is the anchor; bottom-left is commodity infrastructure.
+Coordinates are `[visibility, evolution]` on $[0, 1]$ — same convention as OWM. Top-right corner is a highly evolved anchor; commodity infrastructure sits toward the bottom-right.
 
 ---
 

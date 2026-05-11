@@ -2,7 +2,7 @@
 
 Source: [`/workspaces/wardleymap_math_model/skills/wardley-map-workspace/arc-kit-compare/eval-ai-trust/wardley-reference.owm`](../../../skills/wardley-map-workspace/arc-kit-compare/eval-ai-trust/wardley-reference.owm)
 
-Converted from OWM via `scripts/owm_to_mermaid.mjs` (Node) — port of [arc-kit's convert.mjs](https://github.com/tractorjuice/arc-kit/blob/main/tests/mermaid-wardley/convert.mjs) with added explicit-block pipeline handling, evolution-stage quoting, and `label [dx, dy]` preservation on both top-level and pipeline-child components. All names double-quoted because mermaid's `NAME_WITH_SPACES` terminal excludes hyphens and lexes keywords like `label`/`evolve` eagerly as prefixes; quoting uses the `STRING` alternative and accepts any text verbatim.
+Converted from OWM via `scripts/owm_to_mermaid.mjs` (Node) — port of [arc-kit's convert.mjs](https://github.com/tractorjuice/arc-kit/blob/main/tests/mermaid-wardley/convert.mjs) with added explicit-block pipeline handling, evolution-stage quoting, and `label [dx, dy]` preservation on both top-level and pipeline-child components. All names are double-quoted because Mermaid's `STRING` alternative is the safest representation for punctuation, slashes, reserved-keyword prefixes, and numeric labels.
 
 ```mermaid
 wardley-beta
@@ -72,7 +72,6 @@ component "Technologists" [0.04, 0.18] label [-41, 19]
 component "Source" [0.07, 0.55] label [-22, 19]
 
 "Reputation" -> "CONTROLS"
-"Transparency" -> "Whitehat Developer"
 "Transparency" -> "Algorithm / Model"
 "business" -> "Safety"
 "government" -> "Safety"
@@ -117,8 +116,6 @@ component "Source" [0.07, 0.55] label [-22, 19]
 "Algorithm / Model" -> "Ranking (Reputation Engine / Trust Broker)"
 "Competitive advantage" -> "Asymmetrical"
 "Asymmetrical" -> "ACCESS"
-"Safety" -> "Shared Responsibilities"
-"Power" -> "Shared Responsibilities"
 
 note "+Speed:human->computation" [0.17, 0.01]
 
@@ -127,4 +124,5 @@ component "Computation language" [0.24, 0.28] label [-5, 10]
 evolve "Forensics" 0.2
 evolve "Regulations" 0.3
 evolve "Policy" 0.3
+
 ```

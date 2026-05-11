@@ -11,12 +11,10 @@
  * `STRING | ID | NAME_WITH_SPACES` everywhere a name is expected; using
  * STRING (double-quoted) sidesteps every collision at once.
  *
- * Why quoting matters:
- *   - NAME_WITH_SPACES is defined as
- *     /(?!title\s|accTitle|accDescr)[A-Za-z][A-Za-z0-9_()&]*(?:[ \t]+[A-Za-z(][A-Za-z0-9_()&]*)*\/
- *     so hyphens and slashes aren't allowed in bare names. A name like
- *     `real-time processing` splits into `real` + stray `-time` and parsing
- *     fails (the `-` is mistaken for the start of `->`).
+ * Why quoting still matters:
+ *   - Mermaid 11.15 allows hyphens in unquoted component names, but quoted
+ *     STRING names remain the safest cross-version representation for OWM
+ *     names containing slashes, punctuation, or other parser-sensitive text.
  *   - Keyword terminals (`label`, `evolve`, `note`, `pipeline`, …) are
  *     matched eagerly at any word boundary; a bare name starting with one
  *     (e.g. `labelling`) is lexed as keyword+suffix and fails.
@@ -40,6 +38,17 @@ function quoteName(name) {
   return '"' + name.replace(/"/g, "'") + '"';
 }
 
+function unquoteName(name) {
+  name = name.trim();
+  if (
+    (name.startsWith('"') && name.endsWith('"')) ||
+    (name.startsWith("'") && name.endsWith("'"))
+  ) {
+    return name.slice(1, -1);
+  }
+  return name;
+}
+
 function inlineCommentStrip(s) {
   // remove trailing // comment unless part of a URL (://)
   const m = s.match(/^(.+?)\s+\/\/(?!\/)(.*)$/);
@@ -53,20 +62,24 @@ export function convert(owm, filename = '') {
   let hasTitle = false;
 
   // ── Pass 1: sourcing, component coords, pipeline ranges
-  const sourcing = {};               // name(lower) → 'build'|'buy'|'outsource'
+  const sourcing = {};               // name(lower) → 'build'|'buy'|'outsource'|'market'
   const compCoords = {};             // name(orig-case) → {vis, evo}
+  const declaredNames = new Set();    // names Mermaid can resolve in links
   const pipelineRanges = {};         // name(orig-case) → {min, max}
   const explicitBlockPipelines = new Set();
 
-  const SRC_RE  = /^(build|buy|outsource)\s+(.+)$/i;
+  const SRC_RE  = /^(build|buy|outsource|market)\s+(.+)$/i;
+  const NODE_RE = /^(anchor|component)\s+(.+?)\s*\[\s*[\d.]+(?:\s*,\s*[\d.]+)?\s*\]/i;
   const COMP_RE = /^component\s+(.+?)\s*\[\s*([\d.]+)\s*,\s*([\d.]+)\s*\]/i;
   const PIPE_RE = /^pipeline\s+(.+?)\s*\[\s*([\d.]+)\s*,\s*([\d.]+)\s*\]\s*$/i;
+  const MARKET_COMP_RE = /^market\s+(.+?)\s*(\[[\d.,\s]+\])/i;
 
   // Pre-scan for `pipeline X [min, max]` followed by `{`
   let pendingExplicit = null;
   for (const raw of lines) {
-    const s = raw.trim();
+    let s = raw.trim();
     if (!s || s.startsWith('//')) continue;
+    s = inlineCommentStrip(s);
     if (pendingExplicit !== null) {
       if (s === '{') explicitBlockPipelines.add(pendingExplicit);
       pendingExplicit = null;
@@ -76,13 +89,18 @@ export function convert(owm, filename = '') {
   }
 
   for (const raw of lines) {
-    const s = raw.trim();
+    let s = raw.trim();
     if (s.startsWith('//')) continue;
+    s = inlineCommentStrip(s);
     const ms = s.match(SRC_RE);
-    if (ms) {
-      sourcing[ms[2].trim().toLowerCase()] = ms[1].toLowerCase();
+    if (ms && !/\[\s*[\d.]+/.test(ms[2])) {
+      sourcing[unquoteName(ms[2]).toLowerCase()] = ms[1].toLowerCase();
       continue;
     }
+    const mn = s.match(NODE_RE);
+    if (mn) declaredNames.add(unquoteName(mn[2]));
+    const mm = s.match(MARKET_COMP_RE);
+    if (mm) declaredNames.add(unquoteName(mm[1]));
     const mc = s.match(COMP_RE);
     if (mc) {
       const ml = s.match(/\blabel\s*\[\s*(-?\d+)\s*,\s*(-?\d+)\s*\]/i);
@@ -126,10 +144,9 @@ export function convert(owm, filename = '') {
   let pendingPipelineName = null;
 
   const DROP_SINGLE_RE   = /^(ecosystem|submap|url|pioneer|settler|townplanner)\s+/i;
-  const MARKET_DROP_RE   = /^market\s+[^\[\]]+\[\s*[\d.]+\s*,/i;
   const AXIS_DROP_RE     = /^[xy]-axis\s+/i;
   const STYLE_WARDLEY_RE = /^style\s+wardley\s*$/i;
-  const BBO_RE           = /^(build|buy|outsource)\s+/i;
+  const BBO_RE           = /^(build|buy|outsource|market)\s+/i;
 
   for (const raw of lines) {
     let s = raw.trim();
@@ -143,10 +160,18 @@ export function convert(owm, filename = '') {
     if (pendingPipelineName && s !== '{') pendingPipelineName = null;
 
     if (STYLE_WARDLEY_RE.test(s)) continue;
-    if (BBO_RE.test(s))           continue;
     if (AXIS_DROP_RE.test(s))     continue;
-    if (MARKET_DROP_RE.test(s))   continue;
     if (DROP_SINGLE_RE.test(s))   continue;
+
+    // OWM sometimes represents market nodes directly. Mermaid models the same
+    // sourcing marker as a component decorator.
+    const mmc = s.match(MARKET_COMP_RE);
+    if (mmc) {
+      out.push(`component ${quoteName(mmc[1].trim())} ${mmc[2]} (market)`);
+      continue;
+    }
+
+    if (BBO_RE.test(s)) continue;
 
     // title
     if (/^title\s+/i.test(s)) {
@@ -257,7 +282,9 @@ export function convert(owm, filename = '') {
       } else {
         let line = `component ${qname} ${coords}${labelSuffix}`;
         const decorators = [];
-        if (sourcing[cname.toLowerCase()]) decorators.push(`(${sourcing[cname.toLowerCase()]})`);
+        if (sourcing[unquoteName(cname).toLowerCase()]) {
+          decorators.push(`(${sourcing[unquoteName(cname).toLowerCase()]})`);
+        }
         if (hasInertia) decorators.push('(inertia)');
         if (decorators.length) line += ' ' + decorators.join(' ');
         out.push(line);
@@ -276,7 +303,7 @@ export function convert(owm, filename = '') {
     }
 
     // evolve
-    const mev = s.match(/^evolve\s+(.+?)\s+([\d.]+)/i);
+    const mev = s.match(/^evolve\s+(.+?)\s+\[?\s*([\d.]+)\s*\]?/i);
     if (mev) {
       out.push(`evolve ${quoteName(mev[1].trim())} ${mev[2]}`);
       continue;
@@ -308,17 +335,21 @@ export function convert(owm, filename = '') {
       continue;
     }
 
-    // link (edge)
-    if (s.includes('->') && !/^(evolve|component|pipeline|anchor|note)\s/i.test(s)) {
+    // link (edge or flow). Drop links whose endpoints are not declared because
+    // Mermaid's renderer cannot place a dependency for an absent component.
+    if ((s.includes('->') || s.includes('+>')) && !/^(evolve|component|pipeline|anchor|note)\s/i.test(s)) {
       let link = s;
       let annotation = '';
       const semi = link.indexOf(';');
       if (semi > 0) { annotation = link.slice(semi); link = link.slice(0, semi).trim(); }
-      const arrow = link.indexOf('->');
-      if (arrow > 0) {
-        const left  = quoteName(link.slice(0, arrow).trim());
-        const right = quoteName(link.slice(arrow + 2).trim());
-        link = `${left} -> ${right}`;
+      const ml = link.match(/^(.+?)\s*(->|\+>)\s*(.+)$/);
+      if (ml) {
+        const leftName = unquoteName(ml[1]);
+        const rightName = unquoteName(ml[3]);
+        if (!declaredNames.has(leftName) || !declaredNames.has(rightName)) continue;
+        const left = quoteName(ml[1].trim());
+        const right = quoteName(ml[3].trim());
+        link = `${left} ${ml[2]} ${right}`;
       }
       out.push(link + annotation);
       continue;

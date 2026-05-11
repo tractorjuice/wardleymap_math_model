@@ -2,7 +2,7 @@
 
 Source: [`/workspaces/wardleymap_math_model/skills/wardley-map-workspace/arc-kit-compare/eval-culture-gender/wardley-reference.owm`](../../../skills/wardley-map-workspace/arc-kit-compare/eval-culture-gender/wardley-reference.owm)
 
-Converted from OWM via `scripts/owm_to_mermaid.mjs` (Node) — port of [arc-kit's convert.mjs](https://github.com/tractorjuice/arc-kit/blob/main/tests/mermaid-wardley/convert.mjs) with added explicit-block pipeline handling, evolution-stage quoting, and `label [dx, dy]` preservation on both top-level and pipeline-child components. All names double-quoted because mermaid's `NAME_WITH_SPACES` terminal excludes hyphens and lexes keywords like `label`/`evolve` eagerly as prefixes; quoting uses the `STRING` alternative and accepts any text verbatim.
+Converted from OWM via `scripts/owm_to_mermaid.mjs` (Node) — port of [arc-kit's convert.mjs](https://github.com/tractorjuice/arc-kit/blob/main/tests/mermaid-wardley/convert.mjs) with added explicit-block pipeline handling, evolution-stage quoting, and `label [dx, dy]` preservation on both top-level and pipeline-child components. All names are double-quoted because Mermaid's `STRING` alternative is the safest representation for punctuation, slashes, reserved-keyword prefixes, and numeric labels.
 
 ```mermaid
 wardley-beta
@@ -65,9 +65,7 @@ component "SOCIAL CLASS" [0.70, 0.57] label [-82, 25]
 "lived experience" -> "phenotype"
 
 evolution "concept" -> "emerging" -> "converging" -> "accepted"
-"society" -> "ROLES"
 "ROLES" -> "phenotype"
-"phenotype" -> "genetic sex"
 "epigentic" -> "environment"
 "lived experience" -> "memory"
 "ROLES" -> "memory"
@@ -111,4 +109,5 @@ evolution "concept" -> "emerging" -> "converging" -> "accepted"
 "SEXUAL ORIENTATION" -> "SOCIAL CLASS"
 "SEXUAL IDENTITY" -> "SOCIAL CLASS"
 "lived experience" -> "SOCIAL CLASS"
+
 ```

@@ -120,7 +120,7 @@ Produce the map in OWM text syntax. Coordinates are [visibility, evolution] with
     Component A->Component B
 
     // Optional: evolution movements
-    evolve Component Name [target ε]
+    evolve Component Name target_ε
 
     // Optional: strategic notes
     note Note text [ν, ε]
