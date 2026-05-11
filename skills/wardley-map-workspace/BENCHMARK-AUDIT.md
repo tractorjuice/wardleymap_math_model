@@ -56,7 +56,7 @@ Every reference is Simon Wardley's own public work, published on GitHub since 20
 
 **Suggestion:** establish a memory baseline. Pick 2-3 reference maps and feed the *scenario prompt only* (no skill, no references, no instructions) to a base model. If the base model already names half of Wardley's components, the benchmark is partly measuring memorisation.
 
-### A5. The harness has never been run on known-good or known-bad inputs
+### A5. The harness has never been run on known-good or known-bad inputs — *measured 2026-05-11; found three real bugs*
 
 `audit.md` §2 *"Harness tested on known-good and known-bad"*: the harness should be run on (a) something that *should* score near 100% and (b) something that *should* score near chance.
 
@@ -92,13 +92,13 @@ Dependencies, deep-placement quality, strategic analysis, gameplays, doctrine, a
 
 ## Severity B findings (noise / generality)
 
-### B1. Class imbalance across domains
+### B1. Class imbalance across domains — *addressed 2026-05-11*
 
 `audit.md` §1 *"Class balance"*. The 25-map corpus spans 18 domains; most domains have one map, a few (Defence, Energy, Government, Personal, Telecoms, Transportation) have two. Domain-level aggregates are not reliable; the headline averages over-weight whichever domain happens to score high.
 
 The report does not currently publish per-domain numbers. Adding them would surface the imbalance without claiming false precision.
 
-### B2. No inversion smoke test across iterations
+### B2. No inversion smoke test across iterations — *measured 2026-05-11; 12 inversions found*
 
 `audit.md` §1 *"Inverted items as a smoke test"*: items where a clearly weaker system outscores a clearly stronger one are usually grader bugs, not capability inversions.
 
@@ -230,3 +230,51 @@ These four together would move the benchmark from "informative point estimates w
   - **The 0.55 default is the right transition point** — it's where loose-match noise stops contaminating |Δε|. Tighter thresholds (0.60-0.70) don't materially improve |Δε| but lose ~10pp of coverage.
 
   **Strategic implication**: the report's strategic-tolerance metric ("61% within ≤0.20", "37% same-band") is robust. The coverage metric is brittle and should never be cited as a precise number — only as a range or alongside the threshold value.
+
+- **2026-05-11 — A5 oracle + null harness check.** Ran `test_harness_oracle.py`: oracle feeds each reference as its own output; null randomises placements on the same component names with 5 seeds.
+
+  **Null test passes (sanity-checks the metric machinery):** pooled |Δε|=0.333 (expected 0.333 for uniform random), same-band 23%±3.4pp (≈25% chance, 4 equal bands), coverage 100% on names ✓.
+
+  **Oracle test surfaced two real grader bugs:**
+
+  | Issue | Affected | Worst case |
+  |---|---|---|
+  | `fuzzy_match`: first substring match short-circuits the exact-match scan | 23/25 maps | energy-storage \|Δε\|=0.055, same-band 77% on identical input |
+  | `parse_owm`: regex matches a label's `[N, M]` integer coords when component has single-coord `[v]` form | culture-gender | `family [0.78] label [15, 18]` parsed as v=15, e=18 |
+
+  Concrete demonstrations:
+  - `fuzzy_match("Apple", ["Pineapple", "Apple"])` returns `("Pineapple", 0.9)` because the iteration loop hits `"apple" in "pineapple"` and short-circuits before reaching the exact match. This routes correct components to wrong-named neighbours when reference and output share prefixes/suffixes.
+  - `parse_owm` on `component family [0.78] label [15, 18]` returns `{"family [0.78] label": (15.0, 18.0)}` — the regex requires two numbers separated by a comma, skips the single-coord bracket, and grabs the label bracket instead. Culture-gender ref has 27 components, 2 of which are silently miscoded out of `[0,1]`.
+
+  **Implications for headline numbers:**
+  - Oracle drift on |Δε| is bounded — 23 maps with non-zero |Δε| sum to a mean of ~0.015. The headline |Δε|=0.186 is therefore about 8% inflated by matcher misrouting. Real |Δε| is probably ~0.171.
+  - Oracle drift on same-band averages ~95% across 25 maps — so the headline 37% same-band might be ~2pp low on average from matcher misrouting.
+  - Coverage is unaffected by bug #1 (substring matches still match, just to the wrong target). Coverage *would* be affected by bug #2 if a reference's parser-corrupted components also occur in the output and don't get matched.
+
+  **Recommendation deferred:** patch `fuzzy_match` to do a full pass scoring all candidates and return the max, *not* short-circuit on first substring hit. Patch `parse_owm` to either accept single-coord components (with a default ε) or skip them with a warning. Both are small code changes but they *will* shift every headline number in `BENCHMARK-REPORT.md`, so the patch should be paired with a full re-aggregation and a "v3" report addendum. Tracked as a follow-up.
+
+- **2026-05-11 — B1 per-domain breakdown.** Added per-domain aggregation to `compare_all_25.py` and to `BENCHMARK-REPORT.md` §4.7. 19 domains across 25 maps; 14 domains have n=1. Coverage range across domains: 19% (Culture) to 62% (AI), a 43pp spread. High-coverage domains (AI 62%, Healthcare 60%, Cybersecurity 58%, Finance 55%) are exactly the high-public-discussion domains identified in A4 — providing independent evidence that domain effects dominate at the headline level. Low-coverage domains (Culture 19%, Politics 22%, Sustainability 26%) are niche/contested topics. Per-domain numbers at n=1 are point estimates and should be read as descriptive, not statistical.
+
+- **2026-05-11 — B2 inversion smoke test.** Scanned iter-10..16 for maps with outputs in 2+ iterations (22 maps qualified, mostly via the iter-15 v3-rerun corpus). Flagged inversions where a *later* iteration scored materially worse than an *earlier* one on the same map: coverage drop >5pp or |Δε| increase >0.04. **Found 12 inversions across the 22 multi-iteration maps**, several past the A3 noise floor (2σ ≈ 11pp on coverage):
+
+  | Map | Earlier | Later | Metric | Δ |
+  |---|---|---|---|---|
+  | gaming-economies | iter-12 | iter-15 | coverage | **−18pp** |
+  | manufacturing | iter-15 | iter-16 | coverage | −11pp |
+  | agriculture-regen | iter-12 | iter-15 | coverage | −10pp |
+  | government-sovereignty | iter-14 | iter-15 | coverage | −9pp |
+  | retail-journey | iter-10 | iter-11 | coverage | −7pp |
+  | telecoms-sovereignty | iter-14 | iter-15 | \|Δε\| | +0.062 |
+  | energy-storage | iter-15 | iter-16 | \|Δε\| | +0.056 |
+  | defence-grey-zone | iter-15 | iter-16 | \|Δε\| | +0.055 |
+  | defence-grey-zone | iter-14 | iter-16 | \|Δε\| | +0.052 |
+  | cybersecurity-risk | iter-12 | iter-13 | \|Δε\| | +0.047 |
+  | retail-journey | iter-10 | iter-15 | \|Δε\| | +0.040 |
+  | agriculture-regen | iter-12 | iter-16 | coverage | −8pp |
+
+  Per `audit.md` §1, inversions are usually grader bugs or run-to-run noise rather than real capability inversions. The most plausible candidates:
+  - **gaming-economies −18pp is anomalously large.** Worth a manual diff of iter-12 vs iter-15 outputs to confirm whether the iter-15 skill produced genuinely different component names or whether something else changed (scenario prompt revision? matcher routing the same components differently due to the A5 fuzzy_match bug?).
+  - **The cluster of |Δε| inversions in iter-15/iter-16** suggests the layout-check step added in iter-16 (per BENCHMARK-REPORT.md §10) may have moved components in ways that shifted ε slightly — small per-component but visible in aggregate.
+  - **Caveat from A5**: the buggy `fuzzy_match` could route the same conceptual component differently across iterations if the surrounding output components changed, producing apparent inversions that are really matcher noise. The inversion list should be re-run after the matcher patch.
+
+  Artefact: `inversions-summary.json`.

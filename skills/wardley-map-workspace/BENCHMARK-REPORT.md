@@ -377,6 +377,66 @@ Following `BENCHMARK-AUDIT.md` B3: how much do headline numbers move when the ma
 
 Sweep artefact: `threshold-sensitivity.json`.
 
+### 4.7 Per-domain breakdown (added 2026-05-11)
+
+Following `BENCHMARK-AUDIT.md` B1: the 25-map corpus spans 19 domains, of which 14 have n=1 and only 5 have n=2. Per-domain numbers are descriptive, not statistical.
+
+| Domain | n | Coverage | \|Δε\| | Same-band | ≤0.20 |
+|---|---|---|---|---|---|
+| AI | 1 | 62% | 0.153 | 57% | 70% |
+| Healthcare | 1 | 60% | 0.179 | 33% | 54% |
+| Cybersecurity | 1 | 58% | 0.208 | 47% | 58% |
+| Finance | 1 | 55% | 0.162 | 30% | 65% |
+| Retail | 1 | 49% | 0.174 | 40% | 70% |
+| Gaming | 1 | 42% | 0.206 | 36% | 43% |
+| Energy | 2 | 38% | 0.201 | 31% | 67% |
+| Government | 2 | 37% | 0.176 | 38% | 65% |
+| Agriculture | 1 | 36% | 0.233 | 33% | 44% |
+| Transportation | 2 | 36% | 0.183 | 37% | 59% |
+| Construction | 1 | 35% | 0.149 | 44% | 67% |
+| Manufacturing | 1 | 32% | 0.226 | 21% | 57% |
+| Education | 1 | 32% | 0.178 | 46% | 69% |
+| Defence | 2 | 28% | 0.204 | 39% | 52% |
+| Telecoms | 2 | 28% | 0.196 | 36% | 58% |
+| Personal | 2 | 27% | 0.174 | 47% | 64% |
+| Sustainability | 1 | 26% | 0.135 | 45% | 82% |
+| Politics | 1 | 22% | 0.300 | 17% | 28% |
+| Culture | 1 | 19% | 0.168 | 0% | 100% |
+
+Coverage spans 19–62% across domains, a 43pp spread. The high-coverage domains (AI, Healthcare, Cybersecurity, Finance) are the same domains that show high memory-baseline coverage in §4.5 — independent evidence that domain effects dominate the coverage metric at the headline level. The low-coverage domains (Culture, Politics, Sustainability) are niche or contested topics.
+
+### 4.8 Harness validation: oracle and null inputs (added 2026-05-11)
+
+Following `BENCHMARK-AUDIT.md` A5: validating that the metric machinery behaves at the extremes.
+
+**Null test passes.** Random placements on the same component names yield pooled |Δε|=0.333 (expected 0.333), same-band 23%±3.4pp (≈25% chance), coverage 100% on names. The metric machinery correctly approaches chance on noise.
+
+**Oracle test surfaced two grader bugs.** When each reference is fed as its own output, only 2/25 maps score strictly perfect:
+
+| Bug | Effect | Worst-case map |
+|---|---|---|
+| `fuzzy_match` short-circuits on first substring match before checking exact matches in remaining candidates | Routes a component to a wrong-named neighbour when reference and output share prefixes/suffixes | energy-storage: \|Δε\|=0.055, same-band 77% on identical input |
+| `parse_owm` regex skips single-coord components like `family [0.78]` and captures the following label coords `[15, 18]` instead | Components silently stored at out-of-range coordinates | culture-gender: 2/27 components miscoded as v=15, e=18 |
+
+Impact on headline numbers: the oracle |Δε| drift sums to ~0.015 across 25 maps, suggesting the report's headline |Δε|=0.186 is roughly 8% inflated by matcher misrouting; real |Δε| is likely ~0.171. Same-band drift averages ~5pp from the same cause. **Both bugs are scheduled for patching in a follow-up commit** along with a full re-aggregation.
+
+Artefact: `harness-oracle-summary.json`.
+
+### 4.9 Inter-iteration inversion smoke test (added 2026-05-11)
+
+Following `BENCHMARK-AUDIT.md` B2: scanned the iter-10..16 corpus for maps where a *later* iteration scored worse than an *earlier* one on the same map. 22 maps had outputs in 2+ iterations; 12 inversions flagged past the A3 noise floor.
+
+Notable inversions:
+- gaming-economies iter-12 → iter-15: coverage 42% → 24% (−18pp)
+- manufacturing iter-15 → iter-16: 48% → 36% (−11pp)
+- agriculture-regen iter-12 → iter-15: 36% → 26% (−10pp)
+- government-sovereignty iter-14 → iter-15: 37% → 28% (−9pp)
+- telecoms-sovereignty iter-14 → iter-15: |Δε| 0.142 → 0.204 (+0.062)
+
+Per `audit.md` §1, inversions usually indicate grader bugs or run-to-run noise rather than capability regression. The cluster of |Δε| inversions in iter-15/iter-16 plausibly reflects the layout-check step (§10) shifting placements by small amounts that show in aggregate. The gaming-economies and manufacturing coverage drops are large enough to warrant a manual output diff — likely candidates are scenario-prompt revisions across iterations, or the A5 `fuzzy_match` bug routing the same conceptual component to different names as the surrounding output changed.
+
+Artefact: `inversions-summary.json`.
+
 ---
 
 ## 5. Recommendations

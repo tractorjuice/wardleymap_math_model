@@ -251,6 +251,27 @@ for k, label in [("coverage","Coverage"), ("abs_eps","|Δε|"), ("abs_vis","|Δ�
     fmt = f"{avg*100:.0f}%" if k in ("coverage","same_stage","within_one_stage") else (f"{avg:+.3f}" if "bias" in k else f"{avg:.3f}")
     print(f"  {label}: {fmt}")
 
+# Per-domain breakdown (B1). Most domains have n=1, so these are descriptive
+# not statistical — they surface domain skew rather than support claims.
+from collections import defaultdict
+by_domain = defaultdict(list)
+for r in ok_results:
+    by_domain[r["domain"]].append(r)
+print(f"\nPer-domain breakdown ({len(by_domain)} domains, ok+no_timing only):")
+print(f"  {'Domain':<16} {'n':>2} {'Coverage':>9} {'|Δε|':>6} {'Same':>5} {'≤0.20':>6}")
+domain_summary = []
+for dom in sorted(by_domain):
+    rows = by_domain[dom]
+    n = len(rows)
+    cov = sum(r["coverage"] for r in rows) / n
+    eps = sum(r["abs_eps"] for r in rows) / n
+    same = sum(r["same_stage"] for r in rows) / n
+    de_pool = [d for r in rows for d in r["all_de"]]
+    le20 = sum(1 for d in de_pool if abs(d) <= 0.20) / max(len(de_pool), 1)
+    print(f"  {dom:<16} {n:>2} {cov*100:>8.0f}% {eps:>6.3f} {same*100:>4.0f}% {le20*100:>5.0f}%")
+    domain_summary.append({"domain": dom, "n": n, "coverage": cov,
+                           "abs_eps": eps, "same_stage": same, "close_020": le20})
+
 # Timing aggregates: only across runs that produced a timing.json
 timed = [r for r in results if r["status"] == "ok"]
 if timed:
@@ -286,6 +307,7 @@ summary = {
     "averages": {k: sum(r[k] for r in ok_results) / max(len(ok_results), 1) for k in
                  ["coverage","abs_eps","abs_vis","bias_eps","bias_vis","same_stage"]},
 }
+summary["by_domain"] = domain_summary
 if timed:
     summary["timing"] = {
         "n": len(timed),

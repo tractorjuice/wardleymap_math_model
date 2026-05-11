@@ -1,0 +1,118 @@
+{
+  "n_multi_iteration_maps": 20,
+  "n_inversions": 12,
+  "thresholds": {
+    "coverage_drop_pp": 5,
+    "abs_eps_rise": 0.04
+  },
+  "inversions": [
+    {
+      "map": "agriculture-regen",
+      "earlier": "iteration-12",
+      "later": "iteration-15",
+      "metric": "coverage",
+      "earlier_val": 0.36,
+      "later_val": 0.26,
+      "delta": -0.09999999999999998
+    },
+    {
+      "map": "agriculture-regen",
+      "earlier": "iteration-12",
+      "later": "iteration-16",
+      "metric": "coverage",
+      "earlier_val": 0.36,
+      "later_val": 0.28,
+      "delta": -0.07999999999999996
+    },
+    {
+      "map": "cybersecurity-risk",
+      "earlier": "iteration-12",
+      "later": "iteration-13",
+      "metric": "|\u0394\u03b5|",
+      "earlier_val": 0.1605555555555556,
+      "later_val": 0.20789473684210527,
+      "delta": 0.04733918128654968
+    },
+    {
+      "map": "defence-grey-zone",
+      "earlier": "iteration-14",
+      "later": "iteration-16",
+      "metric": "|\u0394\u03b5|",
+      "earlier_val": 0.19999999999999998,
+      "later_val": 0.2523076923076923,
+      "delta": 0.052307692307692305
+    },
+    {
+      "map": "defence-grey-zone",
+      "earlier": "iteration-15",
+      "later": "iteration-16",
+      "metric": "|\u0394\u03b5|",
+      "earlier_val": 0.19692307692307692,
+      "later_val": 0.2523076923076923,
+      "delta": 0.055384615384615365
+    },
+    {
+      "map": "energy-storage",
+      "earlier": "iteration-15",
+      "later": "iteration-16",
+      "metric": "|\u0394\u03b5|",
+      "earlier_val": 0.14066666666666666,
+      "later_val": 0.19714285714285712,
+      "delta": 0.05647619047619046
+    },
+    {
+      "map": "gaming-economies",
+      "earlier": "iteration-12",
+      "later": "iteration-15",
+      "metric": "coverage",
+      "earlier_val": 0.42424242424242425,
+      "later_val": 0.24242424242424243,
+      "delta": -0.18181818181818182
+    },
+    {
+      "map": "government-sovereignty",
+      "earlier": "iteration-14",
+      "later": "iteration-15",
+      "metric": "coverage",
+      "earlier_val": 0.3695652173913043,
+      "later_val": 0.2826086956521739,
+      "delta": -0.08695652173913043
+    },
+    {
+      "map": "manufacturing",
+      "earlier": "iteration-15",
+      "later": "iteration-16",
+      "metric": "coverage",
+      "earlier_val": 0.4772727272727273,
+      "later_val": 0.36363636363636365,
+      "delta": -0.11363636363636365
+    },
+    {
+      "map": "retail-journey",
+      "earlier": "iteration-10",
+      "later": "iteration-11",
+      "metric": "coverage",
+      "earlier_val": 0.5609756097560976,
+      "later_val": 0.4878048780487805,
+      "delta": -0.07317073170731714
+    },
+    {
+      "map": "retail-journey",
+      "earlier": "iteration-10",
+      "later": "iteration-15",
+      "metric": "|\u0394\u03b5|",
+      "earlier_val": 0.13782608695652174,
+      "later_val": 0.1781818181818182,
+      "delta": 0.040355731225296454
+    },
+    {
+      "map": "telecoms-sovereignty",
+      "earlier": "iteration-14",
+      "later": "iteration-15",
+      "metric": "|\u0394\u03b5|",
+      "earlier_val": 0.14166666666666666,
+      "later_val": 0.20400000000000001,
+      "delta": 0.06233333333333335
+    }
+  ]
+}
