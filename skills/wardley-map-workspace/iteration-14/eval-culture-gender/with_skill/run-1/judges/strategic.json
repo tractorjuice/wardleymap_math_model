@@ -1,0 +1,31 @@
+{
+  "gameplays": [
+    {"number": 1, "name": "Focus on user needs"},
+    {"number": 7, "name": "Education"},
+    {"number": 15, "name": "Open Approaches"},
+    {"number": 35, "name": "Defensive regulation"},
+    {"number": 36, "name": "Directed investment"},
+    {"number": 41, "name": "Alliances"},
+    {"number": 42, "name": "Co-creation"},
+    {"number": 50, "name": "Reinforcing inertia"},
+    {"number": 56, "name": "First mover"}
+  ],
+  "doctrine": [
+    {"number": 1, "name": "Focus on user needs"},
+    {"number": 2, "name": "Use a systematic mechanism of learning"},
+    {"number": 3, "name": "Use a common language"},
+    {"number": 10, "name": "Know your users"},
+    {"number": 13, "name": "Manage inertia"},
+    {"number": 33, "name": "There is no one culture"}
+  ],
+  "climatic": [
+    {"number": 1, "name": "Competitor actions will change the game"},
+    {"number": 7, "name": "Characteristics change as components evolve"},
+    {"number": 15, "name": "Past success breeds inertia"},
+    {"number": 16, "name": "Inertia increases with the success of the past model"},
+    {"number": 17, "name": "Inertia can kill an organisation"},
+    {"number": 18, "name": "You cannot measure evolution over time or adoption"},
+    {"number": 22, "name": "There are two different forms of disruption"},
+    {"number": 27, "name": "Shifts from product to utility demonstrate a punctuated equilibrium"}
+  ]
+}

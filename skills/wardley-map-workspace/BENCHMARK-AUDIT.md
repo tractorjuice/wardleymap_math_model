@@ -78,7 +78,7 @@ That means we cannot today answer "is iteration-14 worth its tokens vs. iteratio
 
 **Suggestion:** thread `timing.json` through `compare_all_25.py` and emit per-map `tokens_used`, `duration_s`, plus aggregate `tokens_per_map_p50`. This is the prerequisite for the model-sweep work in `sweep.md`.
 
-### A7. Prompt-grader misalignment
+### A7. Prompt-grader misalignment — *partly addressed 2026-05-11 (graph grader)*
 
 `audit.md` §4 *"Prompt-grader agreement"*: what the prompt asks for must be what the grader rewards.
 
@@ -301,3 +301,48 @@ These four together would move the benchmark from "informative point estimates w
   The interesting B3 update: the **|Δε| sensitivity to threshold dropped from 0.043 to 0.018** across τ ∈ {0.45, 0.55, 0.65}. The matcher is now more robust to loose thresholds because the substring bug isn't routing exact matches to wrong-named neighbours. The 0.55 default is still the right choice, but the criticism that loose thresholds catastrophically inflate placement metrics is weaker than B3 originally suggested.
 
   Net effect: the audit's biggest fear from A5 (significant inflation of headline numbers) didn't materialise. The bugs were real, the fixes are correct, and trust in the metric machinery is now warranted in a way it wasn't before. Inversion list (B2) is unchanged — the matcher bug wasn't the explanation for the gaming-economies / manufacturing / agriculture coverage drops.
+
+- **2026-05-11 — A7 dependency-graph grader.** Built `compare_graph.py` to extract directed edges from both reference and output OWM blocks, fuzzy-align nodes using the existing matcher, and compute edge precision / recall / F1 per map. No LLM cost; pure script over existing artefacts.
+
+  | Aggregate (n=25) | Value |
+  |---|---|
+  | Mean ref edges per map | 52 |
+  | Mean ours edges per map | **78** (50% more than reference) |
+  | Mean precision | **1%** |
+  | Mean recall | **2%** |
+  | Mean F1 | **2%** |
+  | F1 median | **0%** |
+  | F1 max | 10% (ai-trust) |
+
+  Where coverage shows 37% (we name the same components), edge F1 shows ~2% (we connect them differently). Direction sanity-check: reversing every ours edge does *not* improve scores, so the skill uses the same convention as Wardley (`a → b` means "a depends on b"); the structural disagreement is real, not a notation flip.
+
+  **Interpretation.** Two competent Wardley mappers would produce different-but-defensible dependency graphs for the same scenario; without a human-vs-human F1 baseline, "2% F1 is bad" is not the right reading. Edge F1 of ~2% means the skill's structural choices are essentially independent of Wardley's structural choices — close to what random edges drawn from the matched-node subgraph would produce. The skill is *creating dependencies* (78 per map, vs 52 in Wardley) without converging on Wardley's specific dependency choices.
+
+  **What this measures vs what it can't.** This grader scores edge identity over a fuzzy-aligned node set. It can't tell whether the skill is producing dependencies that are valid-but-different or wrong. The natural follow-up is the LLM-judge layer (cwc-workshops two-layer pattern) to score whether the dependency choices are *defensible*, not just whether they match Wardley.
+
+  Artefact: `graph-grader-summary.json`. Tracked: prose-axis judges (gameplays, doctrine, climatic, deep-placement reasoning) — the second half of A7 — still open.
+
+- **2026-05-11 — A7 LLM-judge prototype (n=3).** Per the cwc-workshops `eval-driven` two-layer pattern: spawned 3 parallel judge agents (one per map), each given the canonical 61-gameplay / 40-doctrine / 27-climatic catalogues as numbered lists and the rule "only count items the text explicitly names or cites by name/number". Returned strict JSON. ~82K tokens / ~25s wall-clock for 3 maps.
+
+  | Map | Coverage | Gameplays cited | Doctrine cited | Climatic cited |
+  |---|---|---|---|---|
+  | ai-trust | 62% | 8 / 61 | 6 / 40 | 8 / 27 |
+  | cybersecurity | 58% | 7 / 61 | 5 / 40 | 8 / 27 |
+  | culture-gender | 20% | **9 / 61** | 6 / 40 | 8 / 27 |
+
+  **Strategic-prose density is roughly constant across maps regardless of placement quality.** Culture-gender — the lowest-coverage map in the corpus — cites more gameplays than ai-trust (the highest). The skill always produces ~7-9 gameplays / 5-6 doctrine / 8 climatic per analysis. The strategic-prose axis is *not* conditioned on whether the skill understood the domain.
+
+  **The cited-items sets overlap substantially across very different maps:**
+  - **Doctrine** in all 3 maps: "Focus on user needs", "Use a systematic mechanism of learning", "Know your users", "Manage inertia".
+  - **Climatic** in all 3 maps: "Past success breeds inertia", "Inertia increases with the success of the past model", "Inertia can kill an organisation", "You cannot measure evolution over time or adoption", "Shifts from product to utility demonstrate a punctuated equilibrium", "Characteristics change as components evolve".
+  - **Gameplays** with high cross-map repeat: "Open Approaches", "Directed investment", "Focus on user needs".
+
+  About 60-70% of cited items are shared across the 3 maps. Plausible interpretations:
+  - **Template-driven citation**: the skill has a "standard playbook" it deploys regardless of context.
+  - **Genuinely universal items**: doctrine #1 ("Focus on user needs") and inertia-related climatics are nearly always applicable, so they should appear in most maps.
+
+  These are not mutually exclusive. The next step to disambiguate would be to check whether high-overlap items appear in *contexts* that justify them (boilerplate test): for each shared citation, manually verify whether the surrounding text references something map-specific that the citation explains. Out of scope for this commit.
+
+  **Comparison to memory baseline:** the bare-model memory baselines (A4) produced only OWM blocks, no strategic prose. So the *strategic-prose axis* is the one place the skill clearly adds value over a bare model — at ~7-9 gameplays per map, vs zero. Where coverage shows the skill barely lifts above a bare model (A4 mean +2.3pp), strategic-prose shows ~100% lift in absolute terms.
+
+  Artefact: `iteration-*/eval-*/with_skill/run-1/judges/strategic.json` per map. Full expansion to 25 maps would cost ~680K tokens / ~10 min parallel. Tracked: judge calibration against human labels (per `audit.md` §4 "Calibrated against human labels"), differentiator-vs-commodity coherence judge, boilerplate test.

@@ -443,6 +443,54 @@ Per `audit.md` §1, inversions usually indicate grader bugs or run-to-run noise 
 
 Artefact: `inversions-summary.json`.
 
+### 4.10 Dependency-graph reproduction (added 2026-05-11)
+
+Following `BENCHMARK-AUDIT.md` A7: the report's placement metrics measure where components sit, but say nothing about whether the *dependency structure* between them matches Wardley's. Added `compare_graph.py` to extract directed edges from each pair, fuzzy-align nodes, and report edge precision/recall/F1 per map.
+
+| Aggregate (n=25) | Value |
+|---|---|
+| Mean ref edges per map | 52 |
+| Mean ours edges per map | **78** (50% more than reference) |
+| Mean precision | 1% |
+| Mean recall | 2% |
+| Mean F1 | **2%** |
+| F1 median | 0% |
+| F1 max | 10% (ai-trust) |
+
+Where coverage shows 37% (we name the same components), edge F1 shows ~2% (we connect them very differently). Reversing edge direction does not improve scores, so the convention matches Wardley's `a → b` = "a depends on b". The structural disagreement is real, not a notation issue.
+
+**Interpretation.** Two competent Wardley mappers would produce different-but-defensible dependency graphs for the same scenario, so "F1 = 2% is bad" is not the right reading without a human-vs-human baseline. What the number does establish: the skill's structural choices are essentially independent of Wardley's. The skill is generating dependencies (notably more of them than Wardley does, 78 vs 52) but not converging on Wardley's specific structure.
+
+This grader scores edge identity over fuzzy-aligned nodes — it cannot tell whether ours-only edges are valid-but-different or wrong. The natural follow-up is an LLM-judge layer (cwc-workshops two-layer pattern) that scores whether dependency choices are defensible, not just whether they match.
+
+Artefact: `graph-grader-summary.json`.
+
+### 4.11 Strategic-prose LLM judge (n=3 prototype, added 2026-05-11)
+
+Following `BENCHMARK-AUDIT.md` A7: the scenario prompts ask for gameplays, doctrine, and climatic patterns; the placement metrics don't score any of these. Built an LLM-judge layer per the cwc-workshops `eval-driven` two-layer pattern: spawn a judge per map with the canonical 61-gameplay / 40-doctrine / 27-climatic catalogues, rule "only count items the text explicitly names or cites by name/number", strict JSON output.
+
+| Map | Coverage | Gameplays | Doctrine | Climatic |
+|---|---|---|---|---|
+| ai-trust | 62% | 8 / 61 | 6 / 40 | 8 / 27 |
+| cybersecurity | 58% | 7 / 61 | 5 / 40 | 8 / 27 |
+| culture-gender | 20% | 9 / 61 | 6 / 40 | 8 / 27 |
+
+**Strategic-prose density is roughly constant regardless of placement quality.** Culture-gender (lowest coverage in the corpus) cites more gameplays than ai-trust (highest). About 60-70% of cited items overlap across these 3 very different domains:
+
+- All 3 maps cite: "Focus on user needs" (doctrine), "Manage inertia" (doctrine), "Know your users" (doctrine), "Past success breeds inertia" (climatic), "Inertia can kill an organisation" (climatic), "Shifts from product to utility demonstrate a punctuated equilibrium" (climatic), "Open Approaches" (gameplay), "Directed investment" (gameplay).
+
+Two plausible interpretations, not mutually exclusive:
+1. **Template-driven**: the skill has a default strategic playbook it deploys regardless of context.
+2. **Genuinely universal**: items like doctrine #1 and the three inertia patterns are widely applicable, so high cross-map appearance is expected.
+
+The "boilerplate test" — manually checking whether each shared citation is grounded in map-specific text — would disambiguate. Out of scope for this prototype.
+
+**Comparison to memory baseline (§4.5):** the bare-model memory baselines produced only OWM blocks, no strategic prose. The strategic-prose axis is the one place the skill clearly contributes above a bare model: ~7-9 gameplays per map, vs zero. Where coverage shows the skill barely lifts above a bare model (mean +2.3pp), strategic-prose lifts by ~100% in absolute terms.
+
+This prototype was 3 maps; full corpus expansion costs ~680K tokens (~10 min parallel). Judge calibration against human labels, a coherence judge (do recommendations match placements?), and the boilerplate test are tracked follow-ups.
+
+Artefact: `iteration-*/eval-*/with_skill/run-1/judges/strategic.json` per map.
+
 ---
 
 ## 5. Recommendations

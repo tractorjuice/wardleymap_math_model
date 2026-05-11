@@ -1,0 +1,30 @@
+{
+  "gameplays": [
+    {"number": 15, "name": "Open Approaches"},
+    {"number": 36, "name": "Directed investment"},
+    {"number": 43, "name": "Sensing Engines (ILC)"},
+    {"number": 29, "name": "Harvesting"},
+    {"number": 16, "name": "Exploiting Network Effects"},
+    {"number": 56, "name": "First mover"},
+    {"number": 45, "name": "Two factor"},
+    {"number": 1, "name": "Focus on user needs"}
+  ],
+  "doctrine": [
+    {"number": 10, "name": "Know your users"},
+    {"number": 1, "name": "Focus on user needs"},
+    {"number": 2, "name": "Use a systematic mechanism of learning"},
+    {"number": 13, "name": "Manage inertia"},
+    {"number": 7, "name": "Use appropriate methods"},
+    {"number": 9, "name": "Think small (as in know the details)"}
+  ],
+  "climatic": [
+    {"number": 3, "name": "Everything evolves through supply and demand competition"},
+    {"number": 27, "name": "Shifts from product to utility demonstrate a punctuated equilibrium"},
+    {"number": 15, "name": "Past success breeds inertia"},
+    {"number": 16, "name": "Inertia increases with the success of the past model"},
+    {"number": 17, "name": "Inertia can kill an organisation"},
+    {"number": 22, "name": "There are two different forms of disruption"},
+    {"number": 7, "name": "Characteristics change as components evolve"},
+    {"number": 18, "name": "You cannot measure evolution over time or adoption"}
+  ]
+}
