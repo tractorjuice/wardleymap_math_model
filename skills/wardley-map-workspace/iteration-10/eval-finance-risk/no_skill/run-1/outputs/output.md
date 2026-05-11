@@ -1,0 +1,43 @@
+```owm
+anchor Public [1.00, 0.88]
+anchor Society [0.98, 0.72]
+anchor Corporations [0.97, 0.80]
+anchor Government [0.96, 0.55]
+
+component Retail Banking [0.86, 0.85]
+component Payments [0.84, 0.92]
+component Insurance Products [0.82, 0.78]
+component Investment Services [0.80, 0.70]
+component Lending [0.83, 0.80]
+component Pensions [0.78, 0.68]
+
+component Credit Scoring [0.68, 0.78]
+component Rating Agencies [0.66, 0.62]
+component Actuarial Pricing [0.64, 0.55]
+component Fraud Detection [0.62, 0.65]
+component KYC / AML Screening [0.60, 0.72]
+component Cyber Risk Scoring [0.58, 0.40]
+component ESG Scoring [0.56, 0.30]
+
+component Sovereign Risk [0.50, 0.55]
+component Territorial Risk [0.48, 0.35]
+component Economic Risk [0.52, 0.60]
+component Political Risk [0.46, 0.30]
+component Cybersecurity Risk [0.50, 0.45]
+component Perceived Risk [0.44, 0.20]
+
+component Regulatory Reporting [0.40, 0.70]
+component Basel III Capital Rules [0.38, 0.78]
+component Stress Testing [0.36, 0.55]
+component Risk Models (VaR / ES) [0.34, 0.60]
+component Monte Carlo Simulation [0.30, 0.82]
+component Market Data Feeds [0.32, 0.90]
+
+component Probability Theory [0.18, 0.95]
+component Stochastic Calculus [0.16, 0.88]
+component Statistics [0.20, 0.95]
+component Game Theory [0.14, 0.70]
+component Contract Law [0.12, 0.92]
+component Financial Regulation [0.22, 0.80]
+component Compute [0.10, 0.95]
+```

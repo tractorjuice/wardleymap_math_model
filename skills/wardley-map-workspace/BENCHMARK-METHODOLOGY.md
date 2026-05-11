@@ -115,7 +115,7 @@ Exit-code 0 if clean, 1 otherwise with human-readable violation list. The skill 
 
 ### 2(e) Comparison
 
-After all subagent runs complete, `compare_all_25.py` reads every `(reference, output)` pair and computes the metrics described in §3.
+After all subagent runs complete, `compare_all_25.py` reads every `(reference, output)` pair plus the per-run `timing.json`, assigns each pair a `status ∈ {ok, no_output, parse_failed, no_timing}`, and computes the metrics described in §3. Status counts and timing aggregates are reported alongside the placement metrics so an `ok` headline is not contaminated by silently absent or unparseable runs (`BENCHMARK-AUDIT.md` A2, A6).
 
 ---
 
@@ -183,6 +183,15 @@ For each matched pair, `Δε = ε_ours − ε_ref` (signed). Mean gives ε-bias.
 ### 3.6 Near-boundary miss
 
 A pair is a "near-boundary miss" if `|Δε| ≤ 0.10` but `stage_of(ε_ref) ≠ stage_of(ε_ours)`. This counts the strict-band failures that are actually close placements straddling a band line. Reported both as absolute count and as fraction of strict-band misses.
+
+### 3.7 Status and timing
+
+Each map's record carries:
+
+- `status` — one of `ok` (parsed output + timing present), `no_timing` (parsed output, timing.json absent), `parse_failed` (output exists but no components parsed), `no_output` (output file absent). Placement aggregates are computed over `ok + no_timing`; timing aggregates only over `ok`. Failed runs are listed separately, never silently dropped (`BENCHMARK-AUDIT.md` A2).
+- `tokens`, `duration_s` — read from `timing.json`. Aggregated as p50, min, max, and sum for the `ok` set (`BENCHMARK-AUDIT.md` A6).
+
+Richer statuses (`infra_error`, `validator_unconverged`) would need runtime instrumentation we don't currently capture — they'd require recording the subagent's exit reason and validator iteration count into `timing.json` at run time. Tracked as a follow-up.
 
 ---
 

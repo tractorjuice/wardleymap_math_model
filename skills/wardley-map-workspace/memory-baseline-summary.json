@@ -1,0 +1,700 @@
+[
+  {
+    "name": "ai-trust",
+    "profile": "high",
+    "skill_coverage": 0.62,
+    "skill_lift_pp": 7.945945945945944,
+    "ref_n": 37,
+    "ours_n": 43,
+    "match_n": 20,
+    "coverage": 0.5405405405405406,
+    "abs_eps": 0.2575,
+    "bias_eps": 0.00850000000000001,
+    "matches": [
+      [
+        "individuals",
+        "Individual User",
+        0.85
+      ],
+      [
+        "government",
+        "Government / Regulator",
+        0.9
+      ],
+      [
+        "business",
+        "Business Adopter",
+        0.9
+      ],
+      [
+        "Safety",
+        "Demonstrable Safety",
+        0.9
+      ],
+      [
+        "Competitive advantage",
+        "Competitive Advantage",
+        1.0
+      ],
+      [
+        "Reputation",
+        "Reputation",
+        1.0
+      ],
+      [
+        "Power",
+        "Energy / Power",
+        0.9
+      ],
+      [
+        "Regulations",
+        "Reputation",
+        0.76
+      ],
+      [
+        "OUTPUT",
+        "AI Forensics / Output Attribution",
+        0.9
+      ],
+      [
+        "Policy",
+        "Procurement Policy",
+        0.9
+      ],
+      [
+        "DATA",
+        "Human Preference Data",
+        0.9
+      ],
+      [
+        "Training",
+        "Constitutional AI Training",
+        0.9
+      ],
+      [
+        "Bias",
+        "Bias / Fairness Test",
+        0.9
+      ],
+      [
+        "Computation",
+        "Reputation",
+        0.76
+      ],
+      [
+        "Feedback Loop",
+        "RLHF Feedback Loop",
+        0.9
+      ],
+      [
+        "constitution",
+        "Constitutional Rules / Policy Spec",
+        0.9
+      ],
+      [
+        "Ranking (Reputation Engine / Trust Broker)",
+        "Reputation",
+        0.9
+      ],
+      [
+        "Forensics",
+        "AI Forensics / Output Attribution",
+        0.9
+      ],
+      [
+        "Benchmarks",
+        "Public Benchmark Suite",
+        0.62
+      ],
+      [
+        "Computation language",
+        "Competitive Advantage",
+        0.59
+      ]
+    ]
+  },
+  {
+    "name": "healthcare-clinical",
+    "profile": "med-high",
+    "skill_coverage": 0.6,
+    "skill_lift_pp": 0.0,
+    "ref_n": 40,
+    "ours_n": 38,
+    "match_n": 24,
+    "coverage": 0.6,
+    "abs_eps": 0.15666666666666665,
+    "bias_eps": -0.04583333333333333,
+    "matches": [
+      [
+        "REVIEWS",
+        "Systematic Reviews",
+        0.9
+      ],
+      [
+        "clinical trials",
+        "Clinical Metrics",
+        0.84
+      ],
+      [
+        "fairness",
+        "Equity and Fairness",
+        0.9
+      ],
+      [
+        "permissable treatment",
+        "Permissible Treatment",
+        0.95
+      ],
+      [
+        "medical practioner",
+        "Medical Ontologies",
+        0.61
+      ],
+      [
+        "medical institute",
+        "Medical Devices",
+        0.62
+      ],
+      [
+        "patient",
+        "Patient",
+        1.0
+      ],
+      [
+        "HEALTH",
+        "Patient Health Outcome",
+        0.9
+      ],
+      [
+        "TREATMENT OF AILMENT",
+        "Treatment Options",
+        0.7
+      ],
+      [
+        "assisted living",
+        "Assisted Living Care",
+        0.9
+      ],
+      [
+        "clinical_decision",
+        "Clinical Decision Support",
+        0.76
+      ],
+      [
+        "historical DATA",
+        "Historical Patient Data",
+        0.79
+      ],
+      [
+        "diagnosis",
+        "Diagnosis",
+        1.0
+      ],
+      [
+        "SETTINGS OF CARE",
+        "Assisted Living Care",
+        0.56
+      ],
+      [
+        "ER",
+        "Payer",
+        0.9
+      ],
+      [
+        "primary care",
+        "Primary Care Visit",
+        0.9
+      ],
+      [
+        "health outcome",
+        "Patient Health Outcome",
+        0.9
+      ],
+      [
+        "CLINICAL OUTCOME",
+        "Clinical Metrics",
+        0.69
+      ],
+      [
+        "virtual visits",
+        "Primary Care Visit",
+        0.56
+      ],
+      [
+        "national clinical guidelines",
+        "Clinical Guidelines",
+        0.9
+      ],
+      [
+        "DECISION SUPPORT",
+        "Clinical Decision Support",
+        0.9
+      ],
+      [
+        "intuition",
+        "Clinician",
+        0.56
+      ],
+      [
+        "DATA",
+        "Historical Patient Data",
+        0.9
+      ],
+      [
+        "PAYERS",
+        "Payer",
+        0.9
+      ]
+    ]
+  },
+  {
+    "name": "finance-risk",
+    "profile": "med-high",
+    "skill_coverage": 0.55,
+    "skill_lift_pp": -4.5238095238095255,
+    "ref_n": 42,
+    "ours_n": 36,
+    "match_n": 25,
+    "coverage": 0.5952380952380952,
+    "abs_eps": 0.1588,
+    "bias_eps": 0.06760000000000002,
+    "matches": [
+      [
+        "inclusion",
+        "Pensions",
+        0.59
+      ],
+      [
+        "exclusion",
+        "Pensions",
+        0.59
+      ],
+      [
+        "perceived risk",
+        "Perceived Risk",
+        1.0
+      ],
+      [
+        "gov",
+        "Government",
+        0.9
+      ],
+      [
+        "sovereignty",
+        "Sovereign Risk",
+        0.72
+      ],
+      [
+        "territorial",
+        "Territorial Risk",
+        0.9
+      ],
+      [
+        "economic",
+        "Economic Risk",
+        0.9
+      ],
+      [
+        "political",
+        "Political Risk",
+        0.9
+      ],
+      [
+        "expectations",
+        "Pensions",
+        0.6
+      ],
+      [
+        "rating agencies",
+        "Rating Agencies",
+        1.0
+      ],
+      [
+        "lending",
+        "Lending",
+        1.0
+      ],
+      [
+        "public",
+        "Public",
+        1.0
+      ],
+      [
+        "society",
+        "Society",
+        1.0
+      ],
+      [
+        "financial services",
+        "Investment Services",
+        0.65
+      ],
+      [
+        "corporation",
+        "Corporations",
+        0.9
+      ],
+      [
+        "insurance",
+        "Insurance Products",
+        0.9
+      ],
+      [
+        "retail banking",
+        "Retail Banking",
+        1.0
+      ],
+      [
+        "regulation",
+        "Financial Regulation",
+        0.9
+      ],
+      [
+        "risk",
+        "Cyber Risk Scoring",
+        0.9
+      ],
+      [
+        "cybersecurity",
+        "Cybersecurity Risk",
+        0.9
+      ],
+      [
+        "system risk",
+        "Economic Risk",
+        0.58
+      ],
+      [
+        "assets",
+        "Payments",
+        0.57
+      ],
+      [
+        "capital",
+        "Basel III Capital Rules",
+        0.9
+      ],
+      [
+        "governance",
+        "Government",
+        0.7
+      ],
+      [
+        "credit risk",
+        "Credit Scoring",
+        0.72
+      ]
+    ]
+  },
+  {
+    "name": "cybersecurity",
+    "profile": "med",
+    "skill_coverage": 0.58,
+    "skill_lift_pp": 15.575757575757578,
+    "ref_n": 33,
+    "ours_n": 39,
+    "match_n": 14,
+    "coverage": 0.42424242424242425,
+    "abs_eps": 0.1385714285714286,
+    "bias_eps": 0.031428571428571424,
+    "matches": [
+      [
+        "Compliance",
+        "Compliance & Regulatory Reporting",
+        0.9
+      ],
+      [
+        "Risk Identification Practice",
+        "Cyber Risk Quantification (FAIR)",
+        0.6
+      ],
+      [
+        "Cybersecurity Expertise",
+        "Security Operations Centre",
+        0.65
+      ],
+      [
+        "Security Testing",
+        "Security Awareness Training",
+        0.7
+      ],
+      [
+        "controls",
+        "Security Controls Framework",
+        0.9
+      ],
+      [
+        "Risk Frameworks",
+        "Security Controls Framework",
+        0.62
+      ],
+      [
+        "Compliance Frameworks",
+        "Compliance & Regulatory Reporting",
+        0.56
+      ],
+      [
+        "Risk Awareness",
+        "Security Awareness Training",
+        0.59
+      ],
+      [
+        "reporting",
+        "Board Risk Reporting",
+        0.9
+      ],
+      [
+        "RISK QUANTIFICATION",
+        "Cyber Risk Quantification (FAIR)",
+        0.9
+      ],
+      [
+        "cyber insurance",
+        "Cyber Insurance",
+        1.0
+      ],
+      [
+        "Security LLMs",
+        "Security Controls Framework",
+        0.55
+      ],
+      [
+        "Cloud Infrastructure",
+        "Cloud Infrastructure (IaaS)",
+        0.9
+      ],
+      [
+        "Incident Response",
+        "Incident Response Process",
+        0.9
+      ]
+    ]
+  },
+  {
+    "name": "construction-supply",
+    "profile": "low",
+    "skill_coverage": 0.35,
+    "skill_lift_pp": -3.461538461538467,
+    "ref_n": 52,
+    "ours_n": 38,
+    "match_n": 20,
+    "coverage": 0.38461538461538464,
+    "abs_eps": 0.12049999999999998,
+    "bias_eps": 0.06650000000000002,
+    "matches": [
+      [
+        "citizens",
+        "Client",
+        0.57
+      ],
+      [
+        "BUILDING INSPECTORS",
+        "Building Specification",
+        0.73
+      ],
+      [
+        "EQUIPMENT",
+        "Heavy Equipment Rental",
+        0.9
+      ],
+      [
+        "BUILDING MATERIALS",
+        "Building Occupants",
+        0.67
+      ],
+      [
+        "LABOUR",
+        "Skilled Labour",
+        0.9
+      ],
+      [
+        "unskilled",
+        "Skilled Labour",
+        0.61
+      ],
+      [
+        "skilled",
+        "Skilled Labour",
+        0.9
+      ],
+      [
+        "certification",
+        "Cost Estimation",
+        0.64
+      ],
+      [
+        "project management",
+        "Tender Management",
+        0.69
+      ],
+      [
+        "machinery",
+        "Architect",
+        0.56
+      ],
+      [
+        "EoL Inspection",
+        "Building Specification",
+        0.61
+      ],
+      [
+        "material supply chain",
+        "Material Sourcing",
+        0.74
+      ],
+      [
+        "building codes",
+        "Building Occupants",
+        0.69
+      ],
+      [
+        "construction",
+        "Construction Schedule",
+        0.9
+      ],
+      [
+        "MATERIALS",
+        "Material Sourcing",
+        0.69
+      ],
+      [
+        "standards",
+        "Standard Concrete",
+        0.62
+      ],
+      [
+        "waste materials",
+        "Material Sourcing",
+        0.56
+      ],
+      [
+        "LOGISTICS",
+        "Logistics & Delivery",
+        0.9
+      ],
+      [
+        "platform",
+        "Procore Platform",
+        0.9
+      ],
+      [
+        "locality",
+        "Client",
+        0.57
+      ]
+    ]
+  },
+  {
+    "name": "telecoms-sovereignty",
+    "profile": "low",
+    "skill_coverage": 0.24,
+    "skill_lift_pp": 1.5510204081632644,
+    "ref_n": 49,
+    "ours_n": 31,
+    "match_n": 11,
+    "coverage": 0.22448979591836735,
+    "abs_eps": 0.1881818181818182,
+    "bias_eps": 0.05909090909090911,
+    "matches": [
+      [
+        "corporation",
+        "OpenRAN",
+        0.56
+      ],
+      [
+        "SOVEREIGNTY",
+        "Nation-State Sovereignty",
+        0.9
+      ],
+      [
+        "satellite",
+        "LEO Satellite Backup (Starlink)",
+        0.9
+      ],
+      [
+        "cable",
+        "Subsea Cable Systems",
+        0.9
+      ],
+      [
+        "NETWORK EQPT",
+        "Network Equipment Supply Chain",
+        0.57
+      ],
+      [
+        "Fixed",
+        "Fixed Broadband Service",
+        0.9
+      ],
+      [
+        "Mobile",
+        "Mobile Voice & Data Service",
+        0.9
+      ],
+      [
+        "awareness of supply-chains",
+        "Network Equipment Supply Chain",
+        0.57
+      ],
+      [
+        "peering",
+        "OpenRAN",
+        0.57
+      ],
+      [
+        "information supply chain",
+        "Network Equipment Supply Chain",
+        0.67
+      ],
+      [
+        "NationStateFirewalls",
+        "Nation-State Sovereignty",
+        0.59
+      ]
+    ]
+  },
+  {
+    "name": "culture-gender",
+    "profile": "low",
+    "skill_coverage": 0.19,
+    "skill_lift_pp": -3.2222222222222214,
+    "ref_n": 27,
+    "ours_n": 39,
+    "match_n": 6,
+    "coverage": 0.2222222222222222,
+    "abs_eps": 0.09000000000000001,
+    "bias_eps": 0.02333333333333335,
+    "matches": [
+      [
+        "identity",
+        "Person Navigating Identity",
+        0.9
+      ],
+      [
+        "SEXUAL IDENTITY",
+        "Sense of Self / Identity",
+        0.62
+      ],
+      [
+        "lived experience",
+        "Daily Lived Experience",
+        0.9
+      ],
+      [
+        "gender identity",
+        "Sense of Self / Identity",
+        0.62
+      ],
+      [
+        "self",
+        "Sense of Self / Identity",
+        0.9
+      ],
+      [
+        "gender expression",
+        "Legal Gender Recognition",
+        0.59
+      ]
+    ]
+  }
+]

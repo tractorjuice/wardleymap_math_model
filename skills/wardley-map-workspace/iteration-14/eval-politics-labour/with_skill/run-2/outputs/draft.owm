@@ -1,0 +1,216 @@
+title UK Labour Party — Values, Policy & Positioning (Eve of 4 July 2024 GE)
+style wardley
+
+// --- Anchors (multiple user constituencies) ---
+anchor Electorate [0.97, 0.62]
+anchor Party Members [0.95, 0.45]
+anchor Affiliated Unions [0.93, 0.50]
+anchor Media & Press [0.91, 0.78]
+
+// --- Constituency segments (voter sub-groups Labour must reach) ---
+component Red Wall Voters [0.88, 0.55]
+component Middle-England Swing Voters [0.87, 0.60]
+component Public-Sector Professionals [0.86, 0.58]
+component Younger / Renting Voters [0.85, 0.45]
+component Ethnic-Minority & Muslim Voters [0.84, 0.55]
+component Scottish Voters [0.83, 0.53]
+
+// --- User-visible offers / "products" the stakeholders consume ---
+component Six Pledges / Missions [0.80, 0.62]
+component Change Slogan & Brand [0.78, 0.80]
+component Manifesto 2024 [0.76, 0.55]
+component Keir Starmer Leadership Persona [0.74, 0.58]
+component Shadow Cabinet Lineup [0.70, 0.55]
+component Local Candidates [0.68, 0.47]
+component Conference Set-Piece Speeches [0.66, 0.85]
+
+// --- Policy levers (the substance of the manifesto) ---
+component NHS Rescue Plan [0.62, 0.62]
+component Crime & Policing [0.60, 0.72]
+component Border / Migration Policy [0.58, 0.58]
+component Tax & Fiscal Rules [0.56, 0.60]
+component Economic Stability [0.55, 0.58]
+component Education / Childcare Reform [0.54, 0.52]
+component Housing Targets (1.5m homes) [0.52, 0.45]
+component Climate / GB Energy [0.50, 0.38]
+component New Deal for Working People [0.48, 0.44]
+component Industrial Strategy [0.46, 0.37]
+component Devolution / Take Back Control Bill [0.44, 0.32]
+
+// --- Core values (abstract foundations every policy appeals to) ---
+component Patriotism / National Renewal [0.40, 0.40]
+component Responsibility [0.38, 0.68]
+component Community [0.36, 0.78]
+component Opportunity [0.34, 0.72]
+component Equality [0.32, 0.78]
+component Fairness [0.30, 0.82]
+
+// --- Media relations layer (mid-chain operational) ---
+component Broadcast Bookings (BBC/Sky/ITV) [0.42, 0.78]
+component Tabloid Relationships (Sun/Mail) [0.40, 0.65]
+component Social Media Operation [0.38, 0.72]
+component Press Office / Rebuttal Unit [0.34, 0.68]
+
+// --- Party machinery (operational layer) ---
+component Campaign Operation (Southside HQ) [0.48, 0.55]
+component Constituency Labour Parties [0.32, 0.40]
+component Data & Targeting (Contact Creator) [0.30, 0.62]
+component National Executive Committee [0.28, 0.45]
+component Fundraising & Donor Network [0.26, 0.55]
+component Policy Forum / NPF Process [0.29, 0.42]
+component Trade Union Affiliation Fees [0.22, 0.65] inertia
+component Member Subscriptions [0.20, 0.70]
+
+// --- Deep infrastructure / commoditised foundations ---
+component Polling & Focus Groups [0.18, 0.78]
+component Voter Registration Data [0.14, 0.88]
+component Electoral Commission Rules [0.10, 0.92]
+component First-Past-The-Post System [0.07, 0.96]
+component Westminster Parliamentary Process [0.05, 0.94]
+
+// --- Dependencies (a depends on b) ---
+Electorate->Red Wall Voters
+Electorate->Middle-England Swing Voters
+Electorate->Public-Sector Professionals
+Electorate->Younger / Renting Voters
+Electorate->Ethnic-Minority & Muslim Voters
+Electorate->Scottish Voters
+Electorate->Six Pledges / Missions
+Electorate->Change Slogan & Brand
+Electorate->Manifesto 2024
+Electorate->Keir Starmer Leadership Persona
+Electorate->Local Candidates
+
+Party Members->Manifesto 2024
+Party Members->Keir Starmer Leadership Persona
+Party Members->Conference Set-Piece Speeches
+Party Members->Shadow Cabinet Lineup
+
+Affiliated Unions->Manifesto 2024
+Affiliated Unions->Shadow Cabinet Lineup
+Affiliated Unions->New Deal for Working People
+Affiliated Unions->Conference Set-Piece Speeches
+
+Media & Press->Change Slogan & Brand
+Media & Press->Shadow Cabinet Lineup
+Media & Press->Keir Starmer Leadership Persona
+Media & Press->Conference Set-Piece Speeches
+Media & Press->Broadcast Bookings (BBC/Sky/ITV)
+Media & Press->Tabloid Relationships (Sun/Mail)
+Media & Press->Social Media Operation
+
+// Constituency segments depend on the offers / persona they care about
+Red Wall Voters->NHS Rescue Plan
+Red Wall Voters->Crime & Policing
+Red Wall Voters->Border / Migration Policy
+Middle-England Swing Voters->Economic Stability
+Middle-England Swing Voters->Tax & Fiscal Rules
+Middle-England Swing Voters->Shadow Cabinet Lineup
+Public-Sector Professionals->NHS Rescue Plan
+Public-Sector Professionals->Education / Childcare Reform
+Public-Sector Professionals->New Deal for Working People
+Younger / Renting Voters->Housing Targets (1.5m homes)
+Younger / Renting Voters->Climate / GB Energy
+Younger / Renting Voters->Education / Childcare Reform
+Ethnic-Minority & Muslim Voters->Border / Migration Policy
+Ethnic-Minority & Muslim Voters->NHS Rescue Plan
+Scottish Voters->Devolution / Take Back Control Bill
+Scottish Voters->NHS Rescue Plan
+
+// Manifesto and pledges decompose into the policy levers
+Manifesto 2024->NHS Rescue Plan
+Manifesto 2024->Education / Childcare Reform
+Manifesto 2024->Housing Targets (1.5m homes)
+Manifesto 2024->Climate / GB Energy
+Manifesto 2024->New Deal for Working People
+Manifesto 2024->Border / Migration Policy
+Manifesto 2024->Tax & Fiscal Rules
+Manifesto 2024->Crime & Policing
+Manifesto 2024->Devolution / Take Back Control Bill
+Manifesto 2024->Industrial Strategy
+Manifesto 2024->Economic Stability
+
+Six Pledges / Missions->NHS Rescue Plan
+Six Pledges / Missions->Climate / GB Energy
+Six Pledges / Missions->Crime & Policing
+Six Pledges / Missions->Economic Stability
+Six Pledges / Missions->Border / Migration Policy
+Six Pledges / Missions->Education / Childcare Reform
+
+Change Slogan & Brand->Patriotism / National Renewal
+Change Slogan & Brand->Economic Stability
+Change Slogan & Brand->Responsibility
+
+Keir Starmer Leadership Persona->Responsibility
+Keir Starmer Leadership Persona->Economic Stability
+Keir Starmer Leadership Persona->Patriotism / National Renewal
+Keir Starmer Leadership Persona->Shadow Cabinet Lineup
+
+Shadow Cabinet Lineup->Campaign Operation (Southside HQ)
+Local Candidates->Constituency Labour Parties
+Local Candidates->Campaign Operation (Southside HQ)
+Conference Set-Piece Speeches->Campaign Operation (Southside HQ)
+
+// Policies appeal to values (values are deeper / more abstract)
+NHS Rescue Plan->Fairness
+NHS Rescue Plan->Community
+Education / Childcare Reform->Opportunity
+Education / Childcare Reform->Fairness
+Housing Targets (1.5m homes)->Opportunity
+Housing Targets (1.5m homes)->Fairness
+Climate / GB Energy->Responsibility
+Climate / GB Energy->Industrial Strategy
+New Deal for Working People->Fairness
+New Deal for Working People->Equality
+Border / Migration Policy->Responsibility
+Tax & Fiscal Rules->Economic Stability
+Tax & Fiscal Rules->Responsibility
+Crime & Policing->Community
+Crime & Policing->Responsibility
+Devolution / Take Back Control Bill->Community
+Industrial Strategy->Opportunity
+
+// Campaign operation depends on its sub-functions
+Campaign Operation (Southside HQ)->Data & Targeting (Contact Creator)
+Campaign Operation (Southside HQ)->Fundraising & Donor Network
+Campaign Operation (Southside HQ)->Polling & Focus Groups
+Campaign Operation (Southside HQ)->Press Office / Rebuttal Unit
+Campaign Operation (Southside HQ)->Social Media Operation
+Campaign Operation (Southside HQ)->Broadcast Bookings (BBC/Sky/ITV)
+Campaign Operation (Southside HQ)->Tabloid Relationships (Sun/Mail)
+
+Broadcast Bookings (BBC/Sky/ITV)->Press Office / Rebuttal Unit
+Tabloid Relationships (Sun/Mail)->Press Office / Rebuttal Unit
+Social Media Operation->Data & Targeting (Contact Creator)
+Press Office / Rebuttal Unit->Polling & Focus Groups
+
+// Governance / party-democracy spine
+Constituency Labour Parties->Member Subscriptions
+Constituency Labour Parties->National Executive Committee
+National Executive Committee->Trade Union Affiliation Fees
+Policy Forum / NPF Process->National Executive Committee
+Fundraising & Donor Network->Member Subscriptions
+Fundraising & Donor Network->Trade Union Affiliation Fees
+
+// Data depends on commodity foundations
+Data & Targeting (Contact Creator)->Voter Registration Data
+Data & Targeting (Contact Creator)->Polling & Focus Groups
+
+// Everyone ultimately depends on the rules of the game
+Campaign Operation (Southside HQ)->Electoral Commission Rules
+Local Candidates->First-Past-The-Post System
+Constituency Labour Parties->First-Past-The-Post System
+Manifesto 2024->Westminster Parliamentary Process
+Voter Registration Data->Electoral Commission Rules
+Electoral Commission Rules->Westminster Parliamentary Process
+
+// --- Evolution arrows: where the offer is likely to shift if Labour wins ---
+evolve Six Pledges / Missions 0.78
+evolve Climate / GB Energy 0.55
+evolve New Deal for Working People 0.60
+evolve Data & Targeting (Contact Creator) 0.80
+evolve Devolution / Take Back Control Bill 0.55
+
+note Differentiation zone (visible + immature) [0.78, 0.30]
+note Commodity / utility floor [0.12, 0.90]
+note Values: commoditised vocabulary all parties use [0.34, 0.85]

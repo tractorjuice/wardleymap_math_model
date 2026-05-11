@@ -330,6 +330,53 @@ From n=10 to n=25:
 
 Placement metrics are robust across 2.5× the corpus. Coverage is the corpus-composition-dependent metric.
 
+### 4.5 Memory-baseline lift (n=7, added 2026-05-11)
+
+Following `BENCHMARK-AUDIT.md` A4: how much of the skill's coverage is recoverable from a bare model with no skill, no WebSearch, no file reads — just the scenario prompt? Spawned one no-skill subagent per map across 7 maps spanning public-discussion profile, then compared its component output to Wardley's reference using the same fuzzy matcher as §3.
+
+| Map | Profile | Skill cov | Memory cov | Lift | Skill \|Δε\| | Memory \|Δε\| |
+|---|---|---|---|---|---|---|
+| ai-trust | high | 62% | 54% | +8pp | 0.153 | 0.258 |
+| healthcare-clinical | med-high | 60% | 60% | **0pp** | 0.179 | 0.157 |
+| finance-risk | med-high | 55% | 60% | **−5pp** | 0.162 | 0.159 |
+| cybersecurity | med | 58% | 42% | **+16pp** | 0.208 | 0.139 |
+| construction-supply | low | 35% | 38% | −3pp | 0.149 | 0.120 |
+| telecoms-sovereignty | low | 24% | 22% | +2pp | 0.142 | 0.188 |
+| culture-gender | low | 19% | 22% | −3pp | 0.168 | 0.090 |
+
+**Mean skill lift: +2.3pp**, range −5 to +16.
+
+- On 4 of 7 maps, skill coverage is within ±5pp of a bare model. The benchmark's headline coverage is partly measuring topical knowledge, not skill output.
+- |Δε| is comparable or better on the memory baseline for 5 of 7 maps — caveat that the matched-pair sets differ between columns. Cheat-sheet placement is not dramatically better than parametric priors for already-well-discussed topics.
+- **Cybersecurity is the clear positive outlier (+16pp).** Worth investigating whether deep-placement WebSearch on vendor landscape carries the lift, and whether the skill could shed mass elsewhere.
+- The skill's plausible value lives outside this benchmark: strategic-analysis prose, named gameplays, doctrine references, validator-enforced visibility, dependency-graph structure. The current metrics score none of these. The next step is a strategic-analysis grader (LLM-judge layer per the cwc-workshops `eval-driven` two-layer pattern).
+
+Memory baseline cost: ~18K tokens / ~30s per map (4× cheaper, 10× faster than skill runs). Artefacts under each `eval-<name>/no_skill/run-1/outputs/`.
+
+### 4.6 Fuzzy-threshold sensitivity (added 2026-05-11)
+
+Following `BENCHMARK-AUDIT.md` B3: how much do headline numbers move when the matcher's similarity threshold shifts? Reran §3 aggregates across thresholds {0.40 .. 0.70}.
+
+| τ | matches | coverage | \|Δε\| | same-band | ≤0.20 |
+|---|---|---|---|---|---|
+| 0.40 | 769 | 78% | 0.227 | 34% | 57% |
+| 0.45 | 598 | 61% | 0.226 | 34% | 58% |
+| 0.50 | 474 | 48% | 0.229 | 36% | 59% |
+| **0.55 (default)** | **358** | **36%** | **0.186** | **37%** | **61%** |
+| 0.60 | 298 | 30% | 0.185 | 36% | 62% |
+| 0.65 | 259 | 26% | 0.183 | 35% | 63% |
+| 0.70 | 241 | 24% | 0.183 | 35% | 63% |
+
+**Coverage is highly threshold-sensitive — the headline 37% could plausibly be reported as 30% or 61% by moving the matcher knob ±0.10.** Core-range spread (τ ∈ {0.45, 0.55, 0.65}) is 34.5pp on coverage.
+
+**|Δε| stabilises at τ ≥ 0.55.** Going τ=0.55 → 0.45 adds 240 matched pairs whose implied mean |Δε| is ≈ 0.286 — much worse than the tight-match population's 0.186. This is direct evidence that loose thresholds admit false-positive matches with bad placements. The 0.55 default is the transition point where false-positive noise stops contaminating placement metrics; tighter thresholds don't help |Δε| but lose coverage.
+
+**Same-band agreement and ≤0.20 ("strategic tolerance") are stable.** Spread <5pp across the core range. These metrics are robust to matcher choice.
+
+**Strategic implication**: the strategic-tolerance numbers ("61% within ≤0.20", "37% same-band") are robust; the coverage metric is brittle and should never be cited without its threshold context. Treat coverage as a range, not a point estimate.
+
+Sweep artefact: `threshold-sensitivity.json`.
+
 ---
 
 ## 5. Recommendations

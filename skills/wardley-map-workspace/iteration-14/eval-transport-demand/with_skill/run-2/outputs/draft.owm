@@ -1,0 +1,213 @@
+title Urban Mobility Landscape (May 2022)
+style wardley
+
+// ---------- Anchors (user types) ----------
+anchor City Dweller [0.97, 0.55]
+anchor Commuter [0.95, 0.60]
+anchor Municipality [0.93, 0.45]
+
+// ---------- Trip-level user-facing services ----------
+component Door-to-Door Trip [0.86, 0.55]
+component Multimodal Trip Planning [0.80, 0.55]
+component Fare Payment [0.78, 0.82]
+component Real-time Arrival Info [0.76, 0.78]
+component Safety & Personal Security [0.74, 0.40]
+component Sustainability Choice (low-carbon mode) [0.72, 0.38]
+
+// ---------- Modes consumed at the user surface ----------
+component Private Car Use [0.70, 0.90]
+component Ride-hail (Uber/Lyft/Bolt) [0.68, 0.68]
+component Taxi (licensed) [0.66, 0.88]
+component Mass Transit (bus/metro/rail) [0.64, 0.88]
+component Cycling (own bike) [0.62, 0.92]
+component Walking [0.60, 0.95]
+component Shared E-scooter [0.58, 0.58]
+component Shared E-bike [0.56, 0.52]
+component Car Sharing (Zipcar/Share Now) [0.54, 0.62]
+component Microtransit / On-demand Shuttle [0.52, 0.30]
+component Hybrid-work commute pattern [0.70, 0.35]
+
+// ---------- Platforms / aggregators ----------
+component MaaS Aggregator App [0.50, 0.32]
+component Operator App (per-mode) [0.50, 0.65]
+component Journey Planning Engine [0.46, 0.60]
+component Open Transit Data (GTFS / GTFS-RT) [0.36, 0.82]
+component Mapping & Routing (Google/Apple/HERE) [0.40, 0.85]
+
+// ---------- Vehicle supply / operator layer ----------
+component Ride-hail Driver Supply [0.48, 0.55]
+component Micromobility Fleet Ops (rebalancing/charging) [0.42, 0.42]
+component Transit Operator (PTA/PTO) [0.44, 0.72]
+component Vehicle Telematics / IoT [0.34, 0.65]
+component Fleet Management Software [0.36, 0.70]
+
+// ---------- Manufacturing / vehicles ----------
+component ICE Vehicle Manufacturing [0.28, 0.92]
+component EV Manufacturing (Tesla/BYD/legacy OEMs) [0.30, 0.58]
+component E-bike / E-scooter Hardware [0.26, 0.62]
+component Battery Pack [0.22, 0.58]
+component Lithium-ion Cells [0.18, 0.78]
+component Autonomous Driving Stack [0.30, 0.18]
+
+// ---------- Energy / fuel ----------
+component Public EV Charging Network [0.16, 0.45]
+component Home / Depot Charging [0.18, 0.65]
+component Electricity Grid [0.10, 0.95]
+component Petrol / Diesel Retail [0.16, 0.96]
+
+// ---------- Physical & digital infrastructure ----------
+component Roads & Streets [0.22, 0.92]
+component Cycle Lanes & Pedestrian Infra [0.24, 0.55]
+component Curb Space [0.20, 0.47]
+component Parking Infrastructure [0.18, 0.85]
+component Transit Stations / Stops [0.24, 0.88]
+component GPS / GNSS [0.08, 0.97]
+component Mobile Connectivity (4G/5G) [0.10, 0.92]
+component Cloud Compute [0.08, 0.94]
+
+// ---------- Regulation, data, money ----------
+component Municipal Mobility Policy [0.38, 0.30]
+component Curb / Permit Regulation [0.34, 0.35]
+component Congestion / Low-Emission Zones [0.32, 0.45]
+component Mobility Data Sharing (MDS) [0.30, 0.40]
+component Driver Licensing & Insurance [0.26, 0.90]
+component Public Transit Subsidy / Funding [0.30, 0.85]
+
+// ---------- Dependencies ----------
+// User → top-level needs
+City Dweller->Door-to-Door Trip
+City Dweller->Safety & Personal Security
+City Dweller->Sustainability Choice (low-carbon mode)
+Commuter->Door-to-Door Trip
+Commuter->Multimodal Trip Planning
+Commuter->Fare Payment
+Commuter->Real-time Arrival Info
+Commuter->Hybrid-work commute pattern
+Municipality->Sustainability Choice (low-carbon mode)
+Municipality->Safety & Personal Security
+Municipality->Mass Transit (bus/metro/rail)
+Municipality->Municipal Mobility Policy
+
+// Door-to-door composed of modes
+Door-to-Door Trip->Private Car Use
+Door-to-Door Trip->Ride-hail (Uber/Lyft/Bolt)
+Door-to-Door Trip->Taxi (licensed)
+Door-to-Door Trip->Mass Transit (bus/metro/rail)
+Door-to-Door Trip->Cycling (own bike)
+Door-to-Door Trip->Walking
+Door-to-Door Trip->Shared E-scooter
+Door-to-Door Trip->Shared E-bike
+Door-to-Door Trip->Car Sharing (Zipcar/Share Now)
+Door-to-Door Trip->Microtransit / On-demand Shuttle
+
+// Planning / info / payment
+Multimodal Trip Planning->MaaS Aggregator App
+Multimodal Trip Planning->Journey Planning Engine
+Multimodal Trip Planning->Mapping & Routing (Google/Apple/HERE)
+Real-time Arrival Info->Open Transit Data (GTFS / GTFS-RT)
+Real-time Arrival Info->Operator App (per-mode)
+Fare Payment->Operator App (per-mode)
+Fare Payment->MaaS Aggregator App
+
+// Ride-hail stack
+Ride-hail (Uber/Lyft/Bolt)->Operator App (per-mode)
+Ride-hail (Uber/Lyft/Bolt)->Ride-hail Driver Supply
+Ride-hail (Uber/Lyft/Bolt)->Mapping & Routing (Google/Apple/HERE)
+Ride-hail Driver Supply->Driver Licensing & Insurance
+
+// Taxi
+Taxi (licensed)->Driver Licensing & Insurance
+Taxi (licensed)->Roads & Streets
+
+// Transit stack
+Mass Transit (bus/metro/rail)->Transit Operator (PTA/PTO)
+Mass Transit (bus/metro/rail)->Transit Stations / Stops
+Mass Transit (bus/metro/rail)->Open Transit Data (GTFS / GTFS-RT)
+Transit Operator (PTA/PTO)->Public Transit Subsidy / Funding
+Transit Operator (PTA/PTO)->Fleet Management Software
+Transit Stations / Stops->Roads & Streets
+
+// Micromobility
+Shared E-scooter->Operator App (per-mode)
+Shared E-scooter->Micromobility Fleet Ops (rebalancing/charging)
+Shared E-scooter->E-bike / E-scooter Hardware
+Shared E-scooter->Curb Space
+Shared E-scooter->Curb / Permit Regulation
+Shared E-bike->Operator App (per-mode)
+Shared E-bike->Micromobility Fleet Ops (rebalancing/charging)
+Shared E-bike->E-bike / E-scooter Hardware
+Shared E-bike->Cycle Lanes & Pedestrian Infra
+Micromobility Fleet Ops (rebalancing/charging)->Vehicle Telematics / IoT
+Micromobility Fleet Ops (rebalancing/charging)->Mobility Data Sharing (MDS)
+
+// Car sharing & microtransit
+Car Sharing (Zipcar/Share Now)->Operator App (per-mode)
+Car Sharing (Zipcar/Share Now)->EV Manufacturing (Tesla/BYD/legacy OEMs)
+Car Sharing (Zipcar/Share Now)->Parking Infrastructure
+Microtransit / On-demand Shuttle->Journey Planning Engine
+Microtransit / On-demand Shuttle->Fleet Management Software
+Microtransit / On-demand Shuttle->Municipal Mobility Policy
+
+// Private cars / EVs
+Private Car Use->ICE Vehicle Manufacturing
+Private Car Use->EV Manufacturing (Tesla/BYD/legacy OEMs)
+Private Car Use->Petrol / Diesel Retail
+Private Car Use->Roads & Streets
+Private Car Use->Parking Infrastructure
+Private Car Use->Driver Licensing & Insurance
+EV Manufacturing (Tesla/BYD/legacy OEMs)->Battery Pack
+EV Manufacturing (Tesla/BYD/legacy OEMs)->Autonomous Driving Stack
+Battery Pack->Lithium-ion Cells
+Private Car Use->Public EV Charging Network
+Private Car Use->Home / Depot Charging
+Public EV Charging Network->Electricity Grid
+Home / Depot Charging->Electricity Grid
+E-bike / E-scooter Hardware->Battery Pack
+
+// Active modes
+Cycling (own bike)->Cycle Lanes & Pedestrian Infra
+Walking->Cycle Lanes & Pedestrian Infra
+
+// Cross-cutting infra
+Operator App (per-mode)->Mobile Connectivity (4G/5G)
+Operator App (per-mode)->Cloud Compute
+MaaS Aggregator App->Mobile Connectivity (4G/5G)
+MaaS Aggregator App->Cloud Compute
+MaaS Aggregator App->Open Transit Data (GTFS / GTFS-RT)
+Mapping & Routing (Google/Apple/HERE)->GPS / GNSS
+Mapping & Routing (Google/Apple/HERE)->Cloud Compute
+Journey Planning Engine->Mapping & Routing (Google/Apple/HERE)
+Journey Planning Engine->Open Transit Data (GTFS / GTFS-RT)
+Vehicle Telematics / IoT->Mobile Connectivity (4G/5G)
+Vehicle Telematics / IoT->GPS / GNSS
+Fleet Management Software->Cloud Compute
+Fleet Management Software->Vehicle Telematics / IoT
+
+// Policy / regulatory edges
+Municipal Mobility Policy->Curb / Permit Regulation
+Municipal Mobility Policy->Congestion / Low-Emission Zones
+Municipal Mobility Policy->Mobility Data Sharing (MDS)
+Municipal Mobility Policy->Cycle Lanes & Pedestrian Infra
+Curb / Permit Regulation->Curb Space
+Congestion / Low-Emission Zones->Roads & Streets
+Safety & Personal Security->Driver Licensing & Insurance
+Safety & Personal Security->Cycle Lanes & Pedestrian Infra
+
+// Hybrid-work effect
+Hybrid-work commute pattern->Mass Transit (bus/metro/rail)
+Hybrid-work commute pattern->Private Car Use
+Hybrid-work commute pattern->Cycling (own bike)
+
+// Sustainability path
+Sustainability Choice (low-carbon mode)->Mass Transit (bus/metro/rail)
+Sustainability Choice (low-carbon mode)->Cycling (own bike)
+Sustainability Choice (low-carbon mode)->Shared E-bike
+Sustainability Choice (low-carbon mode)->EV Manufacturing (Tesla/BYD/legacy OEMs)
+
+evolve Autonomous Driving Stack 0.40
+evolve MaaS Aggregator App 0.55
+evolve Public EV Charging Network 0.70
+evolve Mobility Data Sharing (MDS) 0.65
+
+note Differentiation zone [0.6, 0.25]
+note Utility commodity [0.12, 0.92]

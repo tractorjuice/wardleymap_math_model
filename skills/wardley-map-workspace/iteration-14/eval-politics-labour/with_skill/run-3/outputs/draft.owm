@@ -1,0 +1,185 @@
+title UK Labour Party - Values & Policy Landscape (May 2024, eve of GE)
+style wardley
+
+// Anchors: three user/stakeholder groups
+anchor Electorate (Swing & Base Voters) [0.96, 0.62]
+anchor Party Members & Affiliated Unions [0.93, 0.45]
+anchor Parliamentary Leadership [0.90, 0.55]
+
+// === CONSTITUENCIES (segments of the electorate the offer must reach) ===
+component Red Wall Voters [0.88, 0.55]
+component Traditional Labour Base [0.87, 0.70]
+component Middle-class Swing Voters [0.86, 0.60]
+component Young / First-time Voters [0.84, 0.55]
+component Ethnic Minority Voters [0.82, 0.65]
+component Scottish Voters (post-SNP) [0.83, 0.45]
+component Business & City Donors [0.80, 0.55]
+
+// === POLICY OFFER / "MISSIONS" (user-facing pitch) ===
+component Change Manifesto Narrative [0.74, 0.45]
+component Five Missions Framework [0.72, 0.40]
+component NHS Recovery Plan [0.70, 0.65]
+component Education Reform (VAT on private schools) [0.66, 0.55]
+component Housing & Planning Reform [0.65, 0.47]
+component Green Prosperity Plan (scaled-back) [0.62, 0.45]
+component New Deal for Working People [0.63, 0.53]
+component Industrial Strategy & GB Energy [0.58, 0.35]
+component Border Security & Migration Policy [0.68, 0.55]
+component Fiscal Rules & Tax Lock [0.70, 0.60]
+
+// === MEDIA RELATIONS (visible interface, between voters and policy) ===
+component Broadcast Media Relations (BBC/ITV/Sky) [0.82, 0.78]
+component Print Media Relations (Sun/Times/Mirror) [0.79, 0.82]
+component Manifesto Launch & Set Pieces [0.76, 0.70]
+component Leader Media Training & Debates [0.62, 0.55]
+component Social Media / Influencer Strategy [0.42, 0.45]
+
+// === CORE VALUES (Knowledge layer — what policies rest on) ===
+component Fairness [0.55, 0.82]
+component Equality [0.52, 0.80]
+component Opportunity [0.50, 0.72]
+component Community [0.48, 0.74]
+component Responsibility (Fiscal & Civic) [0.46, 0.58]
+component Security (Economic & National) [0.44, 0.53]
+
+// === PARTY MACHINERY (the apparatus delivering the offer) ===
+component Leader's Office (LOTO) [0.55, 0.42]
+component Shadow Cabinet Discipline [0.50, 0.45]
+component Candidate Selection (NEC) [0.42, 0.55]
+component Constituency Targeting (Battleground Seats) [0.52, 0.70]
+component Ground Campaign / GOTV [0.48, 0.78]
+component Digital Campaigning & Data Ops [0.45, 0.60]
+component Polling & Focus Groups [0.44, 0.78]
+component Conference & NEC Governance [0.36, 0.78]
+component Party Funding (Unions + Donors) [0.48, 0.70]
+component Affiliated Trade Unions [0.46, 0.65]
+component Membership Mobilisation [0.42, 0.62]
+
+// === DEEP MACHINERY / UTILITIES ===
+component Internal Polling Models [0.30, 0.55]
+component Voter ID / Canvassing Data (Contact Creator) [0.28, 0.78]
+component CCHQ Counter-ops Awareness [0.46, 0.55]
+component Electoral Commission Compliance [0.22, 0.88]
+component Royal Mail / Leaflet Distribution [0.16, 0.90]
+component Electoral Register (data utility) [0.12, 0.92]
+
+// === Dependencies ===
+
+// Electorate anchor — sees constituencies, narrative, policies, media
+Electorate (Swing & Base Voters)->Red Wall Voters
+Electorate (Swing & Base Voters)->Traditional Labour Base
+Electorate (Swing & Base Voters)->Middle-class Swing Voters
+Electorate (Swing & Base Voters)->Young / First-time Voters
+Electorate (Swing & Base Voters)->Ethnic Minority Voters
+Electorate (Swing & Base Voters)->Scottish Voters (post-SNP)
+Electorate (Swing & Base Voters)->Change Manifesto Narrative
+Electorate (Swing & Base Voters)->Broadcast Media Relations (BBC/ITV/Sky)
+Electorate (Swing & Base Voters)->Print Media Relations (Sun/Times/Mirror)
+
+// Members / Unions anchor
+Party Members & Affiliated Unions->Conference & NEC Governance
+Party Members & Affiliated Unions->Affiliated Trade Unions
+Party Members & Affiliated Unions->Membership Mobilisation
+Party Members & Affiliated Unions->New Deal for Working People
+Party Members & Affiliated Unions->Equality
+Party Members & Affiliated Unions->Fairness
+Party Members & Affiliated Unions->Community
+
+// Parliamentary Leadership anchor
+Parliamentary Leadership->Leader's Office (LOTO)
+Parliamentary Leadership->Shadow Cabinet Discipline
+Parliamentary Leadership->Five Missions Framework
+Parliamentary Leadership->Change Manifesto Narrative
+Parliamentary Leadership->Fiscal Rules & Tax Lock
+Parliamentary Leadership->Business & City Donors
+Parliamentary Leadership->Responsibility (Fiscal & Civic)
+Parliamentary Leadership->Security (Economic & National)
+
+// Constituencies depend on which policies/values land
+Red Wall Voters->NHS Recovery Plan
+Red Wall Voters->Border Security & Migration Policy
+Red Wall Voters->Housing & Planning Reform
+Traditional Labour Base->NHS Recovery Plan
+Traditional Labour Base->New Deal for Working People
+Traditional Labour Base->Equality
+Middle-class Swing Voters->Fiscal Rules & Tax Lock
+Middle-class Swing Voters->Education Reform (VAT on private schools)
+Middle-class Swing Voters->NHS Recovery Plan
+Young / First-time Voters->Housing & Planning Reform
+Young / First-time Voters->Green Prosperity Plan (scaled-back)
+Ethnic Minority Voters->Equality
+Ethnic Minority Voters->NHS Recovery Plan
+Scottish Voters (post-SNP)->NHS Recovery Plan
+Scottish Voters (post-SNP)->Change Manifesto Narrative
+Business & City Donors->Fiscal Rules & Tax Lock
+Business & City Donors->Industrial Strategy & GB Energy
+
+// Narrative & missions decompose
+Change Manifesto Narrative->Five Missions Framework
+Change Manifesto Narrative->Responsibility (Fiscal & Civic)
+Change Manifesto Narrative->Security (Economic & National)
+Five Missions Framework->NHS Recovery Plan
+Five Missions Framework->Education Reform (VAT on private schools)
+Five Missions Framework->Housing & Planning Reform
+Five Missions Framework->Green Prosperity Plan (scaled-back)
+Five Missions Framework->Industrial Strategy & GB Energy
+Five Missions Framework->Border Security & Migration Policy
+
+// Policies rest on values (now values are deeper)
+NHS Recovery Plan->Fairness
+NHS Recovery Plan->Community
+Education Reform (VAT on private schools)->Opportunity
+Education Reform (VAT on private schools)->Fairness
+Housing & Planning Reform->Opportunity
+Housing & Planning Reform->Community
+Green Prosperity Plan (scaled-back)->Responsibility (Fiscal & Civic)
+Green Prosperity Plan (scaled-back)->Industrial Strategy & GB Energy
+New Deal for Working People->Fairness
+New Deal for Working People->Equality
+Industrial Strategy & GB Energy->Responsibility (Fiscal & Civic)
+Border Security & Migration Policy->Security (Economic & National)
+Fiscal Rules & Tax Lock->Responsibility (Fiscal & Civic)
+
+// Media plumbing
+Broadcast Media Relations (BBC/ITV/Sky)->Manifesto Launch & Set Pieces
+Broadcast Media Relations (BBC/ITV/Sky)->Leader Media Training & Debates
+Print Media Relations (Sun/Times/Mirror)->Manifesto Launch & Set Pieces
+Manifesto Launch & Set Pieces->Five Missions Framework
+Manifesto Launch & Set Pieces->Change Manifesto Narrative
+Leader Media Training & Debates->Leader's Office (LOTO)
+Digital Campaigning & Data Ops->Social Media / Influencer Strategy
+
+// Machinery delivers the offer
+Leader's Office (LOTO)->Shadow Cabinet Discipline
+Leader's Office (LOTO)->Polling & Focus Groups
+Shadow Cabinet Discipline->Candidate Selection (NEC)
+Candidate Selection (NEC)->Conference & NEC Governance
+Constituency Targeting (Battleground Seats)->Polling & Focus Groups
+Constituency Targeting (Battleground Seats)->Internal Polling Models
+Constituency Targeting (Battleground Seats)->Voter ID / Canvassing Data (Contact Creator)
+Ground Campaign / GOTV->Voter ID / Canvassing Data (Contact Creator)
+Ground Campaign / GOTV->Royal Mail / Leaflet Distribution
+Ground Campaign / GOTV->Membership Mobilisation
+Digital Campaigning & Data Ops->Voter ID / Canvassing Data (Contact Creator)
+Polling & Focus Groups->Internal Polling Models
+Internal Polling Models->Voter ID / Canvassing Data (Contact Creator)
+Voter ID / Canvassing Data (Contact Creator)->Electoral Register (data utility)
+Party Funding (Unions + Donors)->Affiliated Trade Unions
+Party Funding (Unions + Donors)->Electoral Commission Compliance
+Affiliated Trade Unions->Membership Mobilisation
+Membership Mobilisation->Conference & NEC Governance
+CCHQ Counter-ops Awareness->Polling & Focus Groups
+
+// Compliance touches register
+Electoral Commission Compliance->Electoral Register (data utility)
+
+// Evolution arrows (scenario, not forecast)
+evolve Voter ID / Canvassing Data (Contact Creator) 0.88
+evolve Five Missions Framework 0.62
+evolve Green Prosperity Plan (scaled-back) 0.60
+evolve Digital Campaigning & Data Ops 0.78
+
+// Notes
+note Differentiation zone [0.75, 0.30]
+note Commodity / utility zone [0.18, 0.92]
+note Values = shared Knowledge layer [0.50, 0.78]
