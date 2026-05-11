@@ -57,8 +57,8 @@
       "later": "iteration-16",
       "metric": "|\u0394\u03b5|",
       "earlier_val": 0.14066666666666666,
-      "later_val": 0.19714285714285712,
-      "delta": 0.05647619047619046
+      "later_val": 0.2064285714285714,
+      "delta": 0.06576190476190474
     },
     {
       "map": "gaming-economies",
@@ -102,8 +102,8 @@
       "later": "iteration-15",
       "metric": "|\u0394\u03b5|",
       "earlier_val": 0.13782608695652174,
-      "later_val": 0.1781818181818182,
-      "delta": 0.040355731225296454
+      "later_val": 0.18181818181818182,
+      "delta": 0.043992094861660086
     },
     {
       "map": "telecoms-sovereignty",

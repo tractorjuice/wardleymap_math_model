@@ -25,21 +25,22 @@ ROOT = Path("/workspaces/wardleymap_math_model/skills/wardley-map-workspace")
 
 
 def fuzzy_match(name, candidates, threshold):
-    """Same scoring as iteration-10/compare.py, but threshold is required."""
+    """Same scoring as iteration-10/compare.py (post-A5 patch), but threshold is required."""
     best = (None, 0.0)
     nlow = name.lower()
     for c in candidates:
         clow = c.lower()
         if nlow == clow:
-            return c, 1.0
-        if nlow in clow or clow in nlow:
-            return c, 0.9
-        score = SequenceMatcher(None, nlow, clow).ratio()
-        nwords = set(re.findall(r"\w+", nlow))
-        cwords = set(re.findall(r"\w+", clow))
-        if nwords & cwords:
-            overlap = len(nwords & cwords) / max(len(nwords), len(cwords))
-            score = max(score, overlap)
+            score = 1.0
+        elif nlow in clow or clow in nlow:
+            score = 0.9
+        else:
+            score = SequenceMatcher(None, nlow, clow).ratio()
+            nwords = set(re.findall(r"\w+", nlow))
+            cwords = set(re.findall(r"\w+", clow))
+            if nwords & cwords:
+                overlap = len(nwords & cwords) / max(len(nwords), len(cwords))
+                score = max(score, overlap)
         if score > best[1]:
             best = (c, score)
     return best if best[1] >= threshold else (None, 0.0)

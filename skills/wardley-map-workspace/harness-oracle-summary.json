@@ -1,411 +1,157 @@
 {
   "oracle": {
     "n_maps": 25,
-    "n_pass": 2,
-    "failures": [
-      {
-        "map": "ai-trust",
-        "stats": {
-          "coverage": 1.0,
-          "abs_eps": 0.015945945945945946,
-          "abs_vis": 0.01972972972972973,
-          "same_band": 0.972972972972973
-        },
-        "ref_n": 37,
-        "parsed_n": 37
-      },
-      {
-        "map": "healthcare-clinical",
-        "stats": {
-          "coverage": 1.0,
-          "abs_eps": 0.015999999999999997,
-          "abs_vis": 0.049,
-          "same_band": 0.95
-        },
-        "ref_n": 40,
-        "parsed_n": 40
-      },
-      {
-        "map": "finance-risk",
-        "stats": {
-          "coverage": 1.0,
-          "abs_eps": 0.01904761904761905,
-          "abs_vis": 0.02142857142857143,
-          "same_band": 0.9285714285714286
-        },
-        "ref_n": 42,
-        "parsed_n": 42
-      },
-      {
-        "map": "retail-journey",
-        "stats": {
-          "coverage": 1.0,
-          "abs_eps": 0.002682926829268295,
-          "abs_vis": 0.018048780487804877,
-          "same_band": 1.0
-        },
-        "ref_n": 41,
-        "parsed_n": 41
-      },
-      {
-        "map": "manufacturing",
-        "stats": {
-          "coverage": 1.0,
-          "abs_eps": 0.011818181818181818,
-          "abs_vis": 0.025,
-          "same_band": 0.9090909090909091
-        },
-        "ref_n": 44,
-        "parsed_n": 44
-      },
-      {
-        "map": "agriculture",
-        "stats": {
-          "coverage": 1.0,
-          "abs_eps": 0.013199999999999998,
-          "abs_vis": 0.007199999999999999,
-          "same_band": 0.96
-        },
-        "ref_n": 50,
-        "parsed_n": 50
-      },
-      {
-        "map": "education",
-        "stats": {
-          "coverage": 1.0,
-          "abs_eps": 0.019,
-          "abs_vis": 0.021500000000000002,
-          "same_band": 0.95
-        },
-        "ref_n": 40,
-        "parsed_n": 40
-      },
-      {
-        "map": "gaming",
-        "stats": {
-          "coverage": 1.0,
-          "abs_eps": 0.04363636363636363,
-          "abs_vis": 0.05969696969696969,
-          "same_band": 0.8484848484848485
-        },
-        "ref_n": 33,
-        "parsed_n": 33
-      },
-      {
-        "map": "sustainability",
-        "stats": {
-          "coverage": 1.0,
-          "abs_eps": 0.0027906976744186034,
-          "abs_vis": 0.017674418604651167,
-          "same_band": 0.9767441860465116
-        },
-        "ref_n": 43,
-        "parsed_n": 43
-      },
-      {
-        "map": "cybersecurity",
-        "stats": {
-          "coverage": 1.0,
-          "abs_eps": 0.017878787878787883,
-          "abs_vis": 0.006969696969696971,
-          "same_band": 0.9696969696969697
-        },
-        "ref_n": 33,
-        "parsed_n": 33
-      },
-      {
-        "map": "construction-supply",
-        "stats": {
-          "coverage": 1.0,
-          "abs_eps": 0.004999999999999998,
-          "abs_vis": 0.020384615384615386,
-          "same_band": 1.0
-        },
-        "ref_n": 52,
-        "parsed_n": 52
-      },
-      {
-        "map": "culture-gender",
-        "stats": {
-          "coverage": 1.0,
-          "abs_eps": 0.026666666666666665,
-          "abs_vis": 0.027777777777777783,
-          "same_band": 0.8888888888888888
-        },
-        "ref_n": 27,
-        "parsed_n": 27
-      },
-      {
-        "map": "defence-intelligence",
-        "stats": {
-          "coverage": 1.0,
-          "abs_eps": 0.002619047619047619,
-          "abs_vis": 0.005714285714285714,
-          "same_band": 1.0
-        },
-        "ref_n": 42,
-        "parsed_n": 42
-      },
-      {
-        "map": "defence-grey-zone",
-        "stats": {
-          "coverage": 1.0,
-          "abs_eps": 0.015853658536585363,
-          "abs_vis": 0.026829268292682923,
-          "same_band": 0.9512195121951219
-        },
-        "ref_n": 41,
-        "parsed_n": 41
-      },
-      {
-        "map": "energy-disruption",
-        "stats": {
-          "coverage": 1.0,
-          "abs_eps": 0.00275,
-          "abs_vis": 0.006,
-          "same_band": 1.0
-        },
-        "ref_n": 40,
-        "parsed_n": 40
-      },
-      {
-        "map": "energy-storage",
-        "stats": {
-          "coverage": 1.0,
-          "abs_eps": 0.05466666666666667,
-          "abs_vis": 0.04600000000000001,
-          "same_band": 0.7666666666666667
-        },
-        "ref_n": 30,
-        "parsed_n": 30
-      },
-      {
-        "map": "government-digital-id",
-        "stats": {
-          "coverage": 1.0,
-          "abs_eps": 0.017567567567567565,
-          "abs_vis": 0.0654054054054054,
-          "same_band": 0.918918918918919
-        },
-        "ref_n": 37,
-        "parsed_n": 37
-      },
-      {
-        "map": "government-sovereignty",
-        "stats": {
-          "coverage": 1.0,
-          "abs_eps": 0.021956521739130434,
-          "abs_vis": 0.005217391304347827,
-          "same_band": 0.9565217391304348
-        },
-        "ref_n": 46,
-        "parsed_n": 46
-      },
-      {
-        "map": "personal-fin-inclusion",
-        "stats": {
-          "coverage": 1.0,
-          "abs_eps": 0.00697674418604651,
-          "abs_vis": 0.00046511627906976655,
-          "same_band": 1.0
-        },
-        "ref_n": 43,
-        "parsed_n": 43
-      },
-      {
-        "map": "personal-conversational",
-        "stats": {
-          "coverage": 1.0,
-          "abs_eps": 0.002380952380952383,
-          "abs_vis": 0.020476190476190478,
-          "same_band": 0.9523809523809523
-        },
-        "ref_n": 21,
-        "parsed_n": 21
-      },
-      {
-        "map": "telecoms-sovereignty",
-        "stats": {
-          "coverage": 1.0,
-          "abs_eps": 0.0024489795918367346,
-          "abs_vis": 0.01326530612244898,
-          "same_band": 0.9795918367346939
-        },
-        "ref_n": 49,
-        "parsed_n": 49
-      },
-      {
-        "map": "transport-logistics",
-        "stats": {
-          "coverage": 1.0,
-          "abs_eps": 0.01422222222222222,
-          "abs_vis": 0.001999999999999999,
-          "same_band": 0.9555555555555556
-        },
-        "ref_n": 45,
-        "parsed_n": 45
-      },
-      {
-        "map": "transport-demand",
-        "stats": {
-          "coverage": 1.0,
-          "abs_eps": 0.016216216216216217,
-          "abs_vis": 0.007297297297297297,
-          "same_band": 0.972972972972973
-        },
-        "ref_n": 37,
-        "parsed_n": 37
-      }
-    ]
+    "n_pass": 25,
+    "failures": []
   },
   "null": {
     "n_maps": 25,
     "n_seeds": 5,
     "pooled": {
       "coverage": 1.0,
-      "abs_eps": 0.33252043293120775,
-      "abs_vis": 0.37284095107941584,
-      "same_band": 0.23292251254663038
+      "abs_eps": 0.2846983134365756,
+      "abs_vis": 0.32698459758884235,
+      "same_band": 0.23137366913675422
     },
     "per_map": [
       {
         "map": "ai-trust",
         "coverage": 1.0,
-        "abs_eps": 0.32861784999970006,
-        "abs_vis": 0.3762942560745715,
-        "same_band": 0.24324324324324326
+        "abs_eps": 0.33679999671203703,
+        "abs_vis": 0.3643551679986874,
+        "same_band": 0.23783783783783785
       },
       {
         "map": "healthcare-clinical",
         "coverage": 1.0,
-        "abs_eps": 0.2901867427241402,
-        "abs_vis": 0.32495750910418747,
-        "same_band": 0.185
+        "abs_eps": 0.28541938982826154,
+        "abs_vis": 0.3154740266871422,
+        "same_band": 0.19
       },
       {
         "map": "finance-risk",
         "coverage": 1.0,
-        "abs_eps": 0.2939917059383414,
-        "abs_vis": 0.2996810083143771,
-        "same_band": 0.19523809523809524
+        "abs_eps": 0.2957028356978583,
+        "abs_vis": 0.3025617985011371,
+        "same_band": 0.17142857142857143
       },
       {
         "map": "retail-journey",
         "coverage": 1.0,
-        "abs_eps": 0.27665016228631345,
-        "abs_vis": 0.3130903868556837,
+        "abs_eps": 0.2771787777429648,
+        "abs_vis": 0.307263798339454,
         "same_band": 0.24390243902439024
       },
       {
         "map": "manufacturing",
         "coverage": 1.0,
-        "abs_eps": 0.2852718283571682,
-        "abs_vis": 0.2864633273797059,
-        "same_band": 0.21363636363636362
+        "abs_eps": 0.2902649017688536,
+        "abs_vis": 0.29070851613034476,
+        "same_band": 0.17727272727272728
       },
       {
         "map": "agriculture",
         "coverage": 1.0,
-        "abs_eps": 0.291847181341405,
-        "abs_vis": 0.3247746317786364,
-        "same_band": 0.256
+        "abs_eps": 0.2913372094325332,
+        "abs_vis": 0.32491452253973735,
+        "same_band": 0.264
       },
       {
         "map": "education",
         "coverage": 1.0,
-        "abs_eps": 0.2729720110588124,
-        "abs_vis": 0.32721423362204505,
-        "same_band": 0.24500000000000002
+        "abs_eps": 0.2740141537483334,
+        "abs_vis": 0.32271477890011857,
+        "same_band": 0.255
       },
       {
         "map": "gaming",
         "coverage": 1.0,
-        "abs_eps": 0.2689581987963814,
-        "abs_vis": 0.28503505458230016,
-        "same_band": 0.32727272727272727
+        "abs_eps": 0.2827353163192267,
+        "abs_vis": 0.2895226662316588,
+        "same_band": 0.2727272727272727
       },
       {
         "map": "sustainability",
         "coverage": 1.0,
-        "abs_eps": 0.2854227748512287,
-        "abs_vis": 0.30890271651635254,
-        "same_band": 0.2697674418604651
+        "abs_eps": 0.28162446273886793,
+        "abs_vis": 0.3069990304344048,
+        "same_band": 0.2744186046511628
       },
       {
         "map": "cybersecurity",
         "coverage": 1.0,
-        "abs_eps": 0.2715746671000776,
-        "abs_vis": 0.3226833513335531,
-        "same_band": 0.2545454545454545
+        "abs_eps": 0.2716879751909994,
+        "abs_vis": 0.3197228464893655,
+        "same_band": 0.24848484848484848
       },
       {
         "map": "construction-supply",
         "coverage": 1.0,
-        "abs_eps": 0.26852210912064256,
-        "abs_vis": 0.33680786911683064,
-        "same_band": 0.28076923076923077
+        "abs_eps": 0.274725618336325,
+        "abs_vis": 0.33639857073104107,
+        "same_band": 0.2653846153846154
       },
       {
         "map": "culture-gender",
         "coverage": 1.0,
-        "abs_eps": 1.4843762067114155,
-        "abs_vis": 1.4651447951634688,
-        "same_band": 0.2074074074074074
+        "abs_eps": 0.28516190626174276,
+        "abs_vis": 0.36265898629392274,
+        "same_band": 0.24800000000000003
       },
       {
         "map": "defence-intelligence",
         "coverage": 1.0,
-        "abs_eps": 0.2724274048068449,
-        "abs_vis": 0.3420076800043017,
+        "abs_eps": 0.2699867878282863,
+        "abs_vis": 0.34357214300983696,
         "same_band": 0.2238095238095238
       },
       {
         "map": "defence-grey-zone",
         "coverage": 1.0,
-        "abs_eps": 0.27686165608672236,
-        "abs_vis": 0.33468907305408496,
-        "same_band": 0.22439024390243903
+        "abs_eps": 0.27407540108129863,
+        "abs_vis": 0.3211514243137104,
+        "same_band": 0.23902439024390246
       },
       {
         "map": "energy-disruption",
         "coverage": 1.0,
-        "abs_eps": 0.2876205021153797,
-        "abs_vis": 0.3235122665330101,
-        "same_band": 0.22
+        "abs_eps": 0.2892985174833792,
+        "abs_vis": 0.321730636957338,
+        "same_band": 0.215
       },
       {
         "map": "energy-storage",
         "coverage": 1.0,
-        "abs_eps": 0.2920849821441838,
-        "abs_vis": 0.33651989567333146,
-        "same_band": 0.24
+        "abs_eps": 0.30314171833874676,
+        "abs_vis": 0.3275251794577743,
+        "same_band": 0.22666666666666666
       },
       {
         "map": "government-digital-id",
         "coverage": 1.0,
-        "abs_eps": 0.267130732873812,
-        "abs_vis": 0.36709347103164636,
-        "same_band": 0.24324324324324326
+        "abs_eps": 0.2630205138363812,
+        "abs_vis": 0.36548720984514066,
+        "same_band": 0.22702702702702704
       },
       {
         "map": "government-sovereignty",
         "coverage": 1.0,
-        "abs_eps": 0.29555513719171256,
-        "abs_vis": 0.34448328695188607,
-        "same_band": 0.1782608695652174
+        "abs_eps": 0.28135848566957555,
+        "abs_vis": 0.33114337388239673,
+        "same_band": 0.21304347826086956
       },
       {
         "map": "personal-fin-inclusion",
         "coverage": 1.0,
-        "abs_eps": 0.29561868637357314,
-        "abs_vis": 0.34283084684801013,
-        "same_band": 0.2
+        "abs_eps": 0.2852363053105966,
+        "abs_vis": 0.3434595970571427,
+        "same_band": 0.22380952380952382
       },
       {
         "map": "personal-conversational",
         "coverage": 1.0,
-        "abs_eps": 0.29497228548952054,
-        "abs_vis": 0.34420355891587967,
+        "abs_eps": 0.29023907780944624,
+        "abs_vis": 0.3514270181267563,
         "same_band": 0.19999999999999998
       },
       {
@@ -418,30 +164,30 @@
       {
         "map": "telecoms-sovereignty",
         "coverage": 1.0,
-        "abs_eps": 0.2948224988685532,
-        "abs_vis": 0.33715782911180847,
-        "same_band": 0.23265306122448978
+        "abs_eps": 0.2903830048892647,
+        "abs_vis": 0.33419694124458416,
+        "same_band": 0.24489795918367346
       },
       {
         "map": "telecoms-space",
         "coverage": 1.0,
-        "abs_eps": 0.27689218897333495,
-        "abs_vis": 0.32201521224348734,
-        "same_band": 0.22272727272727272
+        "abs_eps": 0.2792816780321661,
+        "abs_vis": 0.32311502418375054,
+        "same_band": 0.21818181818181817
       },
       {
         "map": "transport-logistics",
         "coverage": 1.0,
-        "abs_eps": 0.2855603371968607,
-        "abs_vis": 0.2835024160321379,
-        "same_band": 0.2533333333333333
+        "abs_eps": 0.27748948857331945,
+        "abs_vis": 0.2941774600708364,
+        "same_band": 0.2577777777777778
       },
       {
         "map": "transport-demand",
         "coverage": 1.0,
-        "abs_eps": 0.2560160179806133,
-        "abs_vis": 0.33334796573377634,
-        "same_band": 0.2702702702702703
+        "abs_eps": 0.26823735839046836,
+        "abs_vis": 0.33572308728445494,
+        "same_band": 0.25405405405405407
       }
     ]
   }

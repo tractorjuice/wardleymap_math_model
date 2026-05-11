@@ -56,7 +56,7 @@ Every reference is Simon Wardley's own public work, published on GitHub since 20
 
 **Suggestion:** establish a memory baseline. Pick 2-3 reference maps and feed the *scenario prompt only* (no skill, no references, no instructions) to a base model. If the base model already names half of Wardley's components, the benchmark is partly measuring memorisation.
 
-### A5. The harness has never been run on known-good or known-bad inputs — *measured 2026-05-11; found three real bugs*
+### A5. The harness has never been run on known-good or known-bad inputs — *measured + patched 2026-05-11*
 
 `audit.md` §2 *"Harness tested on known-good and known-bad"*: the harness should be run on (a) something that *should* score near 100% and (b) something that *should* score near chance.
 
@@ -278,3 +278,26 @@ These four together would move the benchmark from "informative point estimates w
   - **Caveat from A5**: the buggy `fuzzy_match` could route the same conceptual component differently across iterations if the surrounding output components changed, producing apparent inversions that are really matcher noise. The inversion list should be re-run after the matcher patch.
 
   Artefact: `inversions-summary.json`.
+
+- **2026-05-11 — A5 patches applied + re-aggregation.** Patched both bugs in `iteration-10/compare.py`:
+  - `fuzzy_match`: removed the `return c, 0.9` short-circuit on substring match; the loop now scores every candidate and returns the max. Exact matches (score 1.0) always beat substrings (score 0.9).
+  - `parse_owm`: changed name capture from `(.+?)` to `([^\[]+?)` so the name can't span past the first `[`; also rejects coords outside `[0, 1]` as a safety net. Lines like `component family [0.78] label [15, 18]` now correctly fail to match (rather than parse the label coords).
+
+  **Oracle test now passes 25/25 cleanly** — every map gets `|Δε|=0`, `same-band=100%` when fed its own reference. Confirms the metric machinery is now sound.
+
+  **Headline numbers at the default τ=0.55 are essentially unchanged.** My pre-patch estimate that headline |Δε| was "~8% inflated" turned out to be wrong. The bug's oracle drift (mean 0.015) applied to the pathological self-vs-self comparison where many near-duplicate names compete for the matcher; in real benchmark comparisons (skill output vs reference), name overlap is much sparser and the substring-before-exact bug rarely fired.
+
+  | Metric | Pre-patch | Post-patch | Δ |
+  |---|---|---|---|
+  | Coverage (τ=0.55) | 37% | 37% | 0 |
+  | \|Δε\| (τ=0.55) | 0.186 | 0.186 | 0 |
+  | Same-band (τ=0.55) | 37% | 36% | −1pp |
+  | Within-1-band (τ=0.55) | 92% | 92% | 0 |
+  | Oracle pass rate | 2/25 | **25/25** | +23 |
+  | \|Δε\| @ τ=0.45 | 0.226 | **0.197** | −0.029 |
+  | \|Δε\| @ τ=0.40 | 0.227 | **0.204** | −0.023 |
+  | culture-gender ref components | 27 | **25** | −2 (parse fix) |
+
+  The interesting B3 update: the **|Δε| sensitivity to threshold dropped from 0.043 to 0.018** across τ ∈ {0.45, 0.55, 0.65}. The matcher is now more robust to loose thresholds because the substring bug isn't routing exact matches to wrong-named neighbours. The 0.55 default is still the right choice, but the criticism that loose thresholds catastrophically inflate placement metrics is weaker than B3 originally suggested.
+
+  Net effect: the audit's biggest fear from A5 (significant inflation of headline numbers) didn't materialise. The bugs were real, the fixes are correct, and trust in the metric machinery is now warranted in a way it wasn't before. Inversion list (B2) is unchanged — the matcher bug wasn't the explanation for the gaming-economies / manufacturing / agriculture coverage drops.

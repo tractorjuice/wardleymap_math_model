@@ -2,8 +2,8 @@
   "n": 25,
   "status_counts": {
     "ok": 24,
-    "parse_failed": 0,
     "no_output": 0,
+    "parse_failed": 0,
     "no_timing": 1
   },
   "trial_counts": {
@@ -1169,7 +1169,7 @@
       "domain": "Culture",
       "n_trials": 1,
       "status": "ok",
-      "coverage": 0.18518518518518517,
+      "coverage": 0.2,
       "coverage_stdev": 0.0,
       "abs_eps": 0.16799999999999998,
       "abs_eps_stdev": 0.0,
@@ -1208,7 +1208,7 @@
         0.16000000000000003,
         0.10000000000000003
       ],
-      "ref": 27,
+      "ref": 25,
       "ours": 43.0,
       "match": 5.0,
       "per_trial": [
@@ -1216,10 +1216,10 @@
           "status": "ok",
           "tokens": 74285,
           "duration_s": 370.5,
-          "ref": 27,
+          "ref": 25,
           "ours": 43,
           "match": 5,
-          "coverage": 0.18518518518518517,
+          "coverage": 0.2,
           "abs_eps": 0.16799999999999998,
           "abs_vis": 0.172,
           "bias_eps": 0.08800000000000001,
@@ -1824,7 +1824,7 @@
       "domain": "Personal",
       "n_trials": 1,
       "status": "ok",
-      "coverage": 0.11627906976744186,
+      "coverage": 0.11904761904761904,
       "coverage_stdev": 0.0,
       "abs_eps": 0.13399999999999998,
       "abs_eps_stdev": 0.0,
@@ -1863,7 +1863,7 @@
         -0.039999999999999925,
         -0.020000000000000018
       ],
-      "ref": 43,
+      "ref": 42,
       "ours": 46.0,
       "match": 5.0,
       "per_trial": [
@@ -1871,10 +1871,10 @@
           "status": "ok",
           "tokens": 57106,
           "duration_s": 323.0,
-          "ref": 43,
+          "ref": 42,
           "ours": 46,
           "match": 5,
-          "coverage": 0.11627906976744186,
+          "coverage": 0.11904761904761904,
           "abs_eps": 0.13399999999999998,
           "abs_vis": 0.37,
           "bias_eps": -0.061999999999999965,
@@ -2642,7 +2642,7 @@
     }
   ],
   "averages": {
-    "coverage": 0.3663625196886253,
+    "coverage": 0.367065854252425,
     "abs_eps": 0.18961240197284954,
     "abs_vis": 0.26758601955462163,
     "bias_eps": 0.008174167872853435,
@@ -2677,7 +2677,7 @@
     {
       "domain": "Culture",
       "n": 1,
-      "coverage": 0.18518518518518517,
+      "coverage": 0.2,
       "abs_eps": 0.16799999999999998,
       "same_stage": 0.0,
       "close_020": 1.0
@@ -2757,7 +2757,7 @@
     {
       "domain": "Personal",
       "n": 2,
-      "coverage": 0.2724252491694352,
+      "coverage": 0.2738095238095238,
       "abs_eps": 0.17366666666666664,
       "same_stage": 0.4666666666666667,
       "close_020": 0.6428571428571429

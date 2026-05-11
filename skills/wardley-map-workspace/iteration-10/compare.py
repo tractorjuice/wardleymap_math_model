@@ -25,37 +25,50 @@ def parse_owm(text: str):
         line = line.strip()
         if not line or line.startswith("//"):
             continue
-        m = re.match(r"(anchor|component)\s+(.+?)\s*\[\s*([0-9.]+)\s*,\s*([0-9.]+)\s*\]", line)
+        # Name uses [^\[] (not lazy .+?) so the name can't span into a later
+        # bracket. Fixes BENCHMARK-AUDIT.md A5 bug #2: previously a line like
+        # `component foo [0.78] label [15, 18]` parsed the label coords as the
+        # component coords. The new regex now correctly fails to match
+        # single-coord components and they are skipped.
+        m = re.match(r"(anchor|component)\s+([^\[]+?)\s*\[\s*([0-9.]+)\s*,\s*([0-9.]+)\s*\]", line)
         if m:
             kind, name, v, e = m.groups()
-            target = anchors if kind == "anchor" else components
-            target[name.strip()] = (float(v), float(e))
+            vf, ef = float(v), float(e)
+            # Reject coordinates outside [0, 1] — they indicate a misparse
+            # (e.g. label offsets like [15, 18]) rather than a real placement.
+            if 0.0 <= vf <= 1.0 and 0.0 <= ef <= 1.0:
+                target = anchors if kind == "anchor" else components
+                target[name.strip()] = (vf, ef)
     return anchors, components
 
 
 def fuzzy_match(name, candidates, threshold=0.55):
-    """Find the closest name in candidates. Returns (matched_name, score) or (None, 0)."""
+    """Find the closest name in candidates. Returns (matched_name, score) or (None, 0).
+
+    BENCHMARK-AUDIT.md A5 bug #1 fix: scores every candidate and returns the
+    best, rather than short-circuiting on the first substring hit. The old
+    behaviour mis-routed components to wrong-named neighbours when names
+    shared prefixes/suffixes (e.g. `Apple` → `Pineapple` when `Apple` came
+    later in the iteration order).
+    """
     best = (None, 0.0)
     nlow = name.lower()
     for c in candidates:
         clow = c.lower()
-        # exact/substring
         if nlow == clow:
-            return c, 1.0
-        if nlow in clow or clow in nlow:
-            return c, 0.9
-        score = SequenceMatcher(None, nlow, clow).ratio()
-        # word-overlap boost
-        nwords = set(re.findall(r"\w+", nlow))
-        cwords = set(re.findall(r"\w+", clow))
-        if nwords & cwords:
-            overlap = len(nwords & cwords) / max(len(nwords), len(cwords))
-            score = max(score, overlap)
+            score = 1.0
+        elif nlow in clow or clow in nlow:
+            score = 0.9
+        else:
+            score = SequenceMatcher(None, nlow, clow).ratio()
+            nwords = set(re.findall(r"\w+", nlow))
+            cwords = set(re.findall(r"\w+", clow))
+            if nwords & cwords:
+                overlap = len(nwords & cwords) / max(len(nwords), len(cwords))
+                score = max(score, overlap)
         if score > best[1]:
             best = (c, score)
-    if best[1] >= threshold:
-        return best
-    return (None, 0.0)
+    return best if best[1] >= threshold else (None, 0.0)
 
 
 def main():

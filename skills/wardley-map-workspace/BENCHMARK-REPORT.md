@@ -342,9 +342,9 @@ Following `BENCHMARK-AUDIT.md` A4: how much of the skill's coverage is recoverab
 | cybersecurity | med | 58% | 42% | **+16pp** | 0.208 | 0.139 |
 | construction-supply | low | 35% | 38% | −3pp | 0.149 | 0.120 |
 | telecoms-sovereignty | low | 24% | 22% | +2pp | 0.142 | 0.188 |
-| culture-gender | low | 19% | 22% | −3pp | 0.168 | 0.090 |
+| culture-gender | low | 20% | 24% | −5pp | 0.168 | 0.090 |
 
-**Mean skill lift: +2.3pp**, range −5 to +16.
+**Mean skill lift: +1.7pp**, range −5 to +16. (Culture-gender numbers shifted by 1-2pp after the A5 `parse_owm` patch corrected the reference's component count from 27 to 25; the underlying matched-component sets are unchanged.)
 
 - On 4 of 7 maps, skill coverage is within ±5pp of a bare model. The benchmark's headline coverage is partly measuring topical knowledge, not skill output.
 - |Δε| is comparable or better on the memory baseline for 5 of 7 maps — caveat that the matched-pair sets differ between columns. Cheat-sheet placement is not dramatically better than parametric priors for already-well-discussed topics.
@@ -359,17 +359,17 @@ Following `BENCHMARK-AUDIT.md` B3: how much do headline numbers move when the ma
 
 | τ | matches | coverage | \|Δε\| | same-band | ≤0.20 |
 |---|---|---|---|---|---|
-| 0.40 | 769 | 78% | 0.227 | 34% | 57% |
-| 0.45 | 598 | 61% | 0.226 | 34% | 58% |
-| 0.50 | 474 | 48% | 0.229 | 36% | 59% |
+| 0.40 | 767 | 78% | 0.204 | 34% | 57% |
+| 0.45 | 597 | 61% | 0.197 | 34% | 58% |
+| 0.50 | 473 | 48% | 0.192 | 36% | 59% |
 | **0.55 (default)** | **358** | **36%** | **0.186** | **37%** | **61%** |
 | 0.60 | 298 | 30% | 0.185 | 36% | 62% |
 | 0.65 | 259 | 26% | 0.183 | 35% | 63% |
-| 0.70 | 241 | 24% | 0.183 | 35% | 63% |
+| 0.70 | 241 | 25% | 0.183 | 35% | 63% |
 
 **Coverage is highly threshold-sensitive — the headline 37% could plausibly be reported as 30% or 61% by moving the matcher knob ±0.10.** Core-range spread (τ ∈ {0.45, 0.55, 0.65}) is 34.5pp on coverage.
 
-**|Δε| stabilises at τ ≥ 0.55.** Going τ=0.55 → 0.45 adds 240 matched pairs whose implied mean |Δε| is ≈ 0.286 — much worse than the tight-match population's 0.186. This is direct evidence that loose thresholds admit false-positive matches with bad placements. The 0.55 default is the transition point where false-positive noise stops contaminating placement metrics; tighter thresholds don't help |Δε| but lose coverage.
+**|Δε| is now much more robust to threshold than originally measured.** Pre-patch core-range spread (τ ∈ {0.45, 0.55, 0.65}) was 0.043; post-`fuzzy_match` patch (see §4.8) it is **0.014**. The substring-before-exact bug was previously routing exact matches to wrong-named neighbours at loose thresholds; the patch removed that distortion. The 0.55 default is still the best choice, but the criticism that loose thresholds catastrophically inflate placement metrics is weaker than originally suggested.
 
 **Same-band agreement and ≤0.20 ("strategic tolerance") are stable.** Spread <5pp across the core range. These metrics are robust to matcher choice.
 
@@ -405,22 +405,28 @@ Following `BENCHMARK-AUDIT.md` B1: the 25-map corpus spans 19 domains, of which 
 
 Coverage spans 19–62% across domains, a 43pp spread. The high-coverage domains (AI, Healthcare, Cybersecurity, Finance) are the same domains that show high memory-baseline coverage in §4.5 — independent evidence that domain effects dominate the coverage metric at the headline level. The low-coverage domains (Culture, Politics, Sustainability) are niche or contested topics.
 
-### 4.8 Harness validation: oracle and null inputs (added 2026-05-11)
+### 4.8 Harness validation: oracle and null inputs (added 2026-05-11, patched 2026-05-11)
 
 Following `BENCHMARK-AUDIT.md` A5: validating that the metric machinery behaves at the extremes.
 
 **Null test passes.** Random placements on the same component names yield pooled |Δε|=0.333 (expected 0.333), same-band 23%±3.4pp (≈25% chance), coverage 100% on names. The metric machinery correctly approaches chance on noise.
 
-**Oracle test surfaced two grader bugs.** When each reference is fed as its own output, only 2/25 maps score strictly perfect:
+**Oracle test originally surfaced two grader bugs (now patched):**
 
-| Bug | Effect | Worst-case map |
+| Bug | Effect | Patch |
 |---|---|---|
-| `fuzzy_match` short-circuits on first substring match before checking exact matches in remaining candidates | Routes a component to a wrong-named neighbour when reference and output share prefixes/suffixes | energy-storage: \|Δε\|=0.055, same-band 77% on identical input |
-| `parse_owm` regex skips single-coord components like `family [0.78]` and captures the following label coords `[15, 18]` instead | Components silently stored at out-of-range coordinates | culture-gender: 2/27 components miscoded as v=15, e=18 |
+| `fuzzy_match` short-circuited on first substring match before checking remaining exact matches | Routed components to wrong-named neighbours when reference/output shared prefixes/suffixes | Loop now scores every candidate and returns the max; exact match (1.0) always beats substring (0.9) |
+| `parse_owm` regex with `(.+?)` name capture would skip single-coord components like `family [0.78]` and grab the following label coords `[15, 18]` | Out-of-range coordinates silently in the data | Changed name capture to `([^\[]+?)` so name can't span past first bracket; out-of-range coords are rejected as a safety net |
 
-Impact on headline numbers: the oracle |Δε| drift sums to ~0.015 across 25 maps, suggesting the report's headline |Δε|=0.186 is roughly 8% inflated by matcher misrouting; real |Δε| is likely ~0.171. Same-band drift averages ~5pp from the same cause. **Both bugs are scheduled for patching in a follow-up commit** along with a full re-aggregation.
+**Post-patch oracle test passes 25/25 cleanly.** Every map gets `|Δε|=0`, `same-band=100%` when fed its own reference. The metric machinery is now correctness-verified.
 
-Artefact: `harness-oracle-summary.json`.
+**Headline numbers at τ=0.55 are essentially unchanged by the patches.** Coverage 37% → 37%, |Δε| 0.186 → 0.186, same-band 37% → 36%, within-1-band 92% → 92%. The pre-patch estimate that headline |Δε| was "~8% inflated" turned out to be wrong: the bug's oracle drift applied to the pathological self-vs-self comparison; in real benchmark comparisons, name overlap is sparse enough that the substring-before-exact bug rarely fired.
+
+**The interesting change is at lower thresholds** — see §4.6 update. |Δε| at τ=0.45 dropped from 0.226 to 0.197 (−0.029), so the matcher is now substantially more robust to loose thresholds.
+
+**One data correction**: culture-gender's reference now parses as 25 components (was 27); 2 single-coord lines (`family [0.78]`, `rights [0.74]`) were previously miscoded at label-offset coordinates and are now correctly skipped. Skill coverage for culture-gender ticked up from 19% → 20% as a result.
+
+Artefact: `harness-oracle-summary.json` (post-patch).
 
 ### 4.9 Inter-iteration inversion smoke test (added 2026-05-11)
 
