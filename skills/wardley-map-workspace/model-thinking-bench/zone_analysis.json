@@ -1,0 +1,108 @@
+{
+  "reference_by_zone": {
+    "Genesis": [
+      "Asymmetrical",
+      "Audits",
+      "CONTROLS",
+      "Enforcement",
+      "Feedback Loop",
+      "Forensics",
+      "Lagging",
+      "Leading",
+      "Policy",
+      "Regulations",
+      "Technologists",
+      "Transparency",
+      "constitution"
+    ],
+    "Custom": [
+      "ACCESS",
+      "Benchmarks",
+      "Checks and balances (Guardrails)",
+      "Computation language",
+      "Defend (IP)",
+      "Quality",
+      "Ranking (Reputation Engine / Trust Broker)",
+      "Reputation",
+      "Safety"
+    ],
+    "Product": [
+      "Algorithm / Model",
+      "Believed",
+      "Bias",
+      "Competitive advantage",
+      "DATA",
+      "Input  DATA",
+      "OUTPUT",
+      "Source"
+    ],
+    "Commodity": [
+      "Computation",
+      "Objectively evaluatable",
+      "Power",
+      "Training"
+    ]
+  },
+  "matrix": [
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "thinking": "off",
+      "coverage_by_zone": {
+        "Genesis": 0.3076923076923077,
+        "Custom": 0.25925925925925924,
+        "Product": 0.5,
+        "Commodity": 0.25
+      }
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "thinking": "on",
+      "coverage_by_zone": {
+        "Genesis": 0.4358974358974359,
+        "Custom": 0.2962962962962963,
+        "Product": 0.4166666666666667,
+        "Commodity": 0.3333333333333333
+      }
+    },
+    {
+      "model": "claude-opus-4-7",
+      "thinking": "off",
+      "coverage_by_zone": {
+        "Genesis": 0.4102564102564103,
+        "Custom": 0.4074074074074074,
+        "Product": 0.5416666666666666,
+        "Commodity": 0.6666666666666666
+      }
+    },
+    {
+      "model": "claude-opus-4-7",
+      "thinking": "on",
+      "coverage_by_zone": {
+        "Genesis": 0.5641025641025641,
+        "Custom": 0.37037037037037035,
+        "Product": 0.5,
+        "Commodity": 0.4166666666666667
+      }
+    },
+    {
+      "model": "claude-sonnet-4-6",
+      "thinking": "off",
+      "coverage_by_zone": {
+        "Genesis": 0.42307692307692313,
+        "Custom": 0.3333333333333333,
+        "Product": 0.5625,
+        "Commodity": 0.25
+      }
+    },
+    {
+      "model": "claude-sonnet-4-6",
+      "thinking": "on",
+      "coverage_by_zone": {
+        "Genesis": 0.38461538461538464,
+        "Custom": 0.4814814814814815,
+        "Product": 0.5416666666666666,
+        "Commodity": 0.4166666666666667
+      }
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+wardley-beta
+title Model x thinking benchmark - value chain
+size [1100, 800]
+
+anchor "Benchmark Researcher" [0.96, 0.45]
+
+component "Hero Chart" [0.86, 0.50]
+component "Summary Article" [0.85, 0.42]
+component "Benchmark Report" [0.80, 0.40]
+
+component "Matrix Summary" [0.70, 0.55]
+component "Per-cell Metrics" [0.62, 0.55]
+
+component "Per-cell OWM Output" [0.55, 0.42]
+component "Aggregator Script" [0.55, 0.62]
+component "OWM Validator" [0.38, 0.68]
+
+component "SDK Harness" [0.45, 0.50]
+
+component "Skill Content" [0.38, 0.50]
+
+component "Anthropic API" [0.33, 0.85]
+component "Web Search Tool" [0.31, 0.78]
+component "Prompt Caching" [0.18, 0.82]
+
+component "Opus 4.7" [0.26, 0.30]
+component "Sonnet 4.6" [0.23, 0.52]
+component "Haiku 4.5" [0.20, 0.66]
+
+component "Compute" [0.10, 0.92]
+
+"Benchmark Researcher" -> "Hero Chart"
+"Benchmark Researcher" -> "Summary Article"
+"Benchmark Researcher" -> "Benchmark Report"
+
+"Hero Chart" -> "Matrix Summary"
+"Summary Article" -> "Matrix Summary"
+"Summary Article" -> "Benchmark Report"
+"Benchmark Report" -> "Matrix Summary"
+
+"Matrix Summary" -> "Per-cell Metrics"
+"Per-cell Metrics" -> "Aggregator Script"
+"Per-cell Metrics" -> "Per-cell OWM Output"
+
+"Aggregator Script" -> "OWM Validator"
+"Per-cell OWM Output" -> "SDK Harness"
+
+"SDK Harness" -> "Skill Content"
+"SDK Harness" -> "OWM Validator"
+"SDK Harness" -> "Anthropic API"
+"SDK Harness" -> "Web Search Tool"
+
+"Anthropic API" -> "Opus 4.7"
+"Anthropic API" -> "Sonnet 4.6"
+"Anthropic API" -> "Haiku 4.5"
+"Anthropic API" -> "Prompt Caching"
+
+"Opus 4.7" -> "Compute"
+"Sonnet 4.6" -> "Compute"
+"Haiku 4.5" -> "Compute"
+"Prompt Caching" -> "Compute"
+"Web Search Tool" -> "Compute"
+

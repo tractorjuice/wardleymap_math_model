@@ -53,11 +53,119 @@ If you're picking a model to run the skill day-to-day:
 | Avoid | **Sonnet 4.6, thinking off** | Sparse maps, breaks the validator one run in three. |
 | Avoid | **Sonnet 4.6, thinking on** | 518s/run — the slowest cell in the matrix, doesn't beat Opus on any metric. |
 
+## Per-zone routing: a strategic move
+
+The map raises an interesting strategic question: should we **route different evolution zones to different models**? The intuitive hypothesis: **Opus for Genesis** — those components are novel, unlikely to be well-represented in training data, and need genuine reasoning from cheat-sheet rules. **Haiku for Commodity** — those components are well-known, every model has them memorised, why pay for big-model recall.
+
+To test it I broke each cell's matches down by Wardley's own zone classification.
+
+![Per-zone coverage heatmap](zone-heatmap.png)
+
+**The data partly refutes the intuition** — and the inversion is interesting.
+
+| Zone | Best cell | What it tells us |
+|---|---|---|
+| **Genesis** (n=13) | Opus 4.7 · on (56%) | The frontier model with deep thinking still wins, but Haiku-on (44%) is genuinely competitive at ~10× lower cost. Thinking lifts Haiku +13pp here — the biggest thinking-lift in any zone. |
+| **Custom Built** (n=9) | Sonnet 4.6 · on (48%) | The hardest zone — bespoke things being industrialised. The model that *thinks the most about it* wins, not the biggest one. |
+| **Product** (n=8) | Sonnet 4.6 · off (56%) | Roughly flat 42-56% across the matrix. Standard middle-zone components live in everyone's training data. **Model choice doesn't matter much here.** |
+| **Commodity** (n=4) | **Opus 4.7 · off (67%)** | The surprise. Opus-without-thinking wins Commodity by 25pp over its nearest rival. Big-model *recall* of standard furniture is where Opus actually pays. Turning thinking on **hurts** Commodity coverage on Opus (67% → 42%). |
+
+The original hypothesis — *use Opus where the components are novel* — gets the direction roughly right (Opus does win Genesis) but **misses where Opus is actually most differentiated** (Commodity, by a wide margin). Frontier model strength reads, on this map, as "remembers the boring furniture better," not "reasons about the novel stuff better."
+
+**A plausible per-zone routing policy** if you wanted to extract maximum quality per dollar:
+
+1. **Genesis components** → **Haiku-with-thinking**. Within 12pp of Opus-on at ~10× lower cost. Spend your reasoning budget on something else.
+2. **Custom components** → **Sonnet-with-thinking**. The judgement-heavy zone rewards the mid-tier model that thinks.
+3. **Product components** → **Haiku** (off or on). Flat across models; pick the cheapest.
+4. **Commodity components** → **Opus-without-thinking**. The one zone where the frontier model is uniquely strong, and thinking actively hurts here. Don't spend the thinking budget.
+
+Counter-intuitive read: **the expensive frontier model is best at the cheap, boring components**, not the novel ones. And **thinking budgets are most worth it on the smallest model**, not the biggest.
+
+**Practical implementation caveat.** You don't know a component's zone until *after* you've placed it. So per-zone routing isn't a single-pass strategy — it's a two-pass one: first pass to identify candidate components (any model), second pass to place them with the zone-appropriate model. The two-pass overhead may eat the savings unless you're running the skill on many maps. For one-shot use, Opus-thinking-off (47% coverage, validator-clean, 225s) remains the simplest default.
+
+**N=3, single map.** Don't bet a roadmap on this table — the Commodity column has only 4 reference components, so a single match swings 25pp. The Genesis lead for Opus-on is more robust (n=13). The Sonnet-on win on Custom is one component apart from Opus-off. All of this needs replicating on a low-leakage scenario (see follow-ups).
+
 ## Caveats
 
 This is a **pilot**: one scenario, three replicates per cell. `ai-trust` is the highest-public-discussion map in our corpus, which means training-data overlap is high — a bare model with no skill recovers 20/37 of Wardley's components on this map (per `BENCHMARK-AUDIT.md` A4). Coverage numbers should be read as *relative* between cells, not as ground-truth model quality. The follow-up is to repeat on a low-leakage scenario (`agriculture-regen` or `culture-gender`).
 
 Also: Opus 4.7 uses the new `thinking.type.adaptive` + `output_config.effort` interface; Sonnet 4.6 and Haiku 4.5 still use legacy `thinking.type.enabled` with a `budget_tokens=10000` budget. The thinking-on cells aren't directly comparable across models in terms of compute envelope — only within-model deltas are clean.
+
+## The benchmark as a Wardley map
+
+Where do the three models actually sit on the value chain we built to compare them? The anchor is the *benchmark researcher* — someone trying to decide which Claude to run the skill on. The dependency chain runs from the report they read down through the matrix, the aggregator, the SDK harness, the Anthropic API, into the models themselves and the compute under them.
+
+![Where the three models sit on the benchmark value chain](benchmark-map.png)
+
+> Source: [`benchmark.owm`](benchmark.owm) (validated against the same `validate_owm.mjs` the skill uses); Mermaid version in [`benchmark.mmd`](benchmark.mmd).
+
+```mermaid
+wardley-beta
+title Model x thinking benchmark - value chain
+size [1100, 800]
+
+anchor "Benchmark Researcher" [0.96, 0.45]
+
+component "Hero Chart" [0.86, 0.50]
+component "Summary Article" [0.85, 0.42]
+component "Benchmark Report" [0.80, 0.40]
+
+component "Matrix Summary" [0.70, 0.55]
+component "Per-cell Metrics" [0.62, 0.55]
+
+component "Per-cell OWM Output" [0.55, 0.42]
+component "Aggregator Script" [0.55, 0.62]
+component "OWM Validator" [0.38, 0.68]
+
+component "SDK Harness" [0.45, 0.50]
+component "Skill Content" [0.38, 0.50]
+
+component "Anthropic API" [0.33, 0.85]
+component "Web Search Tool" [0.31, 0.78]
+component "Prompt Caching" [0.18, 0.82]
+
+component "Opus 4.7" [0.26, 0.30]
+component "Sonnet 4.6" [0.23, 0.52]
+component "Haiku 4.5" [0.20, 0.66]
+
+component "Compute" [0.10, 0.92]
+
+"Benchmark Researcher" -> "Hero Chart"
+"Benchmark Researcher" -> "Summary Article"
+"Benchmark Researcher" -> "Benchmark Report"
+"Hero Chart" -> "Matrix Summary"
+"Summary Article" -> "Matrix Summary"
+"Summary Article" -> "Benchmark Report"
+"Benchmark Report" -> "Matrix Summary"
+"Matrix Summary" -> "Per-cell Metrics"
+"Per-cell Metrics" -> "Aggregator Script"
+"Per-cell Metrics" -> "Per-cell OWM Output"
+"Aggregator Script" -> "OWM Validator"
+"Per-cell OWM Output" -> "SDK Harness"
+"SDK Harness" -> "Skill Content"
+"SDK Harness" -> "OWM Validator"
+"SDK Harness" -> "Anthropic API"
+"SDK Harness" -> "Web Search Tool"
+"Anthropic API" -> "Opus 4.7"
+"Anthropic API" -> "Sonnet 4.6"
+"Anthropic API" -> "Haiku 4.5"
+"Anthropic API" -> "Prompt Caching"
+"Opus 4.7" -> "Compute"
+"Sonnet 4.6" -> "Compute"
+"Haiku 4.5" -> "Compute"
+"Prompt Caching" -> "Compute"
+"Web Search Tool" -> "Compute"
+```
+
+**What it shows.** The three models are positioned at the same depth in the value chain (every cell calls one of them) but staggered along the evolution axis:
+
+- **Opus 4.7** sits in **Custom Built** (ε ≈ 0.30). It's the frontier — newest release, just shipped the breaking `thinking.type.adaptive` interface that broke our first run. Bespoke, expensive, evolving rapidly.
+- **Sonnet 4.6** is **Product** (ε ≈ 0.52). Established, broadly used, predictable pricing.
+- **Haiku 4.5** sits at the **Product → Commodity** edge (ε ≈ 0.66). Cheap, fast, and (per the benchmark) the right pick once thinking is turned on.
+
+Around them, the rest of the stack tells its own story. The skill content, validator, and SDK harness are all **Custom Built** — they're the bespoke work that wrapped the standardised infrastructure. The Anthropic API, web search tool, prompt caching, and the compute layer are all **Commodity** — the same boring building blocks every Claude project rests on. The benchmark itself is **Custom Built** at the top: there's no off-the-shelf "Wardley-map skill quality scorer" yet.
+
+The strategic question the map asks: **as Haiku-class intelligence slides further into Commodity, does the skill still need Opus at the bottom?** The placement-ceiling finding (§3.3) says probably not for placement, only for density.
 
 ## Full report
 
