@@ -72,14 +72,29 @@ To test it I broke each cell's matches down by Wardley's own zone classification
 
 The original hypothesis — *use Opus where the components are novel* — gets the direction roughly right (Opus does win Genesis) but **misses where Opus is actually most differentiated** (Commodity, by a wide margin). Frontier model strength reads, on this map, as "remembers the boring furniture better," not "reasons about the novel stuff better."
 
-**A plausible per-zone routing policy** if you wanted to extract maximum quality per dollar:
+**Two routing policies, depending on what you're optimising for** — absolute coverage or cost-adjusted coverage:
 
-![Per-zone routing policy](routing-chart.png)
+<table>
+<tr><td width="50%">
 
-1. **Genesis components** → **Haiku-with-thinking**. Within 12pp of Opus-on at ~10× lower cost. Spend your reasoning budget on something else.
-2. **Custom components** → **Sonnet-with-thinking**. The judgement-heavy zone rewards the mid-tier model that thinks.
-3. **Product components** → **Haiku** (off or on). Flat across models; pick the cheapest.
-4. **Commodity components** → **Opus-without-thinking**. The one zone where the frontier model is uniquely strong, and thinking actively hurts here. Don't spend the thinking budget.
+![Per-zone empirical best](routing-empirical.png)
+
+</td><td width="50%">
+
+![Per-zone cost-aware routing](routing-cost-aware.png)
+
+</td></tr>
+<tr><td><em>Left: who literally wins per zone, no cost weighting.</em></td>
+<td><em>Right: cheapest model that's competitive, gap-vs-best in the notes.</em></td></tr>
+</table>
+
+**Two zones agree across both framings**: Custom Built → Sonnet+thinking (no cheaper option is competitive); Commodity → Opus-no-thinking (the empirical lead is 25pp and no cheaper model gets close, so cost-aware also picks Opus).
+
+**Two zones differ**: 
+- **Genesis** — empirical best is Opus+thinking at 56%; cost-aware drops to Haiku+thinking at 44%. The 12pp gap costs ~18× more per cell. Whether that's worth paying is a volume question, not a "best model" question.
+- **Product** — empirical best is Sonnet-no-thinking at 56%; cost-aware drops to Haiku-no-thinking at 50%. The zone is the flattest (range 42-56%), so dropping a tier costs 6pp for ~4× savings.
+
+The earlier draft of this article collapsed both readings into one chart and silently used the cost-aware version — readers reasonably objected. The empirical-best chart is the honest answer to "which is the strongest"; the cost-aware chart is the honest answer to "how would you actually deploy this at volume."
 
 Counter-intuitive read: **the expensive frontier model is best at the cheap, boring components**, not the novel ones. And **thinking budgets are most worth it on the smallest model**, not the biggest.
 
@@ -97,7 +112,7 @@ Also: Opus 4.7 uses the new `thinking.type.adaptive` + `output_config.effort` in
 
 Where do the three models actually sit on the value chain we built to compare them? The anchor is the *benchmark researcher* — someone trying to decide which Claude to run the skill on. The dependency chain runs from the report they read down through the matrix, the aggregator, the SDK harness, the Anthropic API, into the models themselves and the compute under them.
 
-**Reading note.** The X-axis position of each model in this map is *the model's own commoditisation stage as a product offering* — Opus 4.7 in Custom Built because it's the brand-new frontier release with a breaking API surface, Sonnet 4.6 in Product because it's stable and broadly used, Haiku 4.5 at the Product→Commodity edge because it's cheap and utility-grade. **This is a separate question from "which evolution zone of the *output map* is each model best at producing"** — that question is answered by the routing chart further down.
+**Reading note.** The X-axis position of each model in this map is *the model's own commoditisation stage as a product offering* — Opus 4.7 in Custom Built because it's the brand-new frontier release with a breaking API surface, Sonnet 4.6 in Product because it's stable and broadly used, Haiku 4.5 at the Product→Commodity edge because it's cheap and utility-grade. **This is a separate question from "which evolution zone of the *output map* is each model best at producing"** — that question is answered by the two routing charts further down.
 
 ![Where the three models sit on the benchmark value chain](benchmark-map.png)
 
