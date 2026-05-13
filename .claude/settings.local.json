@@ -62,7 +62,13 @@
       "Bash(python3 skills/wardley-map-workspace/competitor-compare/compare_competitor.py mathmodel)",
       "Bash(python3 skills/wardley-map-workspace/competitor-compare/compare_competitor.py arc-kit)",
       "Bash(python3 skills/wardley-map-workspace/competitor-compare/compare_competitor.py haberlah)",
-      "Bash(python3 skills/wardley-map-workspace/competitor-compare/compare_competitor.py prompt-baseline --output-subdir with_prompt-mathmodel)"
+      "Bash(python3 skills/wardley-map-workspace/competitor-compare/compare_competitor.py prompt-baseline --output-subdir with_prompt-mathmodel)",
+      "Bash(gh repo *)",
+      "Bash(gh label *)",
+      "Bash(gh issue *)",
+      "Bash(node *)",
+      "Bash(grep -c '```owm' /workspaces/wardleymap_math_model/skills/wardley-map-workspace/iteration-10/eval-ai-trust/with_skill/run-1/outputs/output.md)",
+      "Bash(grep -n '```' /workspaces/wardleymap_math_model/skills/wardley-map-workspace/iteration-10/eval-ai-trust/with_skill/run-1/outputs/output.md)"
     ]
   }
 }

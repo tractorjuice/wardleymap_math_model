@@ -1,0 +1,23 @@
+{
+  "scenario": "ai-trust",
+  "skill": "arckit-wardley",
+  "skill_path": "/workspaces/wardleymap_math_model/skills/wardley-map-workspace/competitor-compare/arckit-wardley/skill/SKILL.md",
+  "mode": "full-orchestrator (value chain + evolution + strategic analysis in single pass)",
+  "run": 1,
+  "blind": true,
+  "validator_iterations": 0,
+  "start_iso": "2026-04-23T13:44:00.778Z",
+  "draft_owm_written_iso": "2026-04-23T13:44:30.375Z",
+  "output_md_written_iso": "2026-04-23T13:46:55.830Z",
+  "elapsed_seconds": 175.05,
+  "outputs": {
+    "markdown": "outputs/output.md",
+    "owm": "outputs/draft.owm"
+  },
+  "notes": [
+    "First complete pass, no validator iteration.",
+    "UK Government procurement framing (PRIN/REQ/TCoP/AIPB) warned then skipped per prompt instruction.",
+    "Pinecone MCP not available; Wardley book corpus search skipped.",
+    "No .arckit/references/ directory; doctrine/gameplay/climatic sections generated from in-skill knowledge."
+  ]
+}

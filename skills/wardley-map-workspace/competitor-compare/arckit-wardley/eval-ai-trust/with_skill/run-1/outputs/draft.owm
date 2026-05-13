@@ -1,0 +1,121 @@
+title AI Trust Landscape - June 2023
+
+anchor Individuals [0.97, 0.55]
+anchor Government [0.96, 0.50]
+anchor Business [0.95, 0.45]
+
+component Trust in AI Systems [0.90, 0.18]
+component Safety Outcomes [0.84, 0.22]
+component Reputation [0.82, 0.40]
+component Competitive Advantage [0.80, 0.28]
+component Regulatory Compliance [0.86, 0.30]
+
+component AI Governance Framework [0.74, 0.20]
+component AI Regulations [0.72, 0.18]
+component AI Policy [0.70, 0.22]
+component Ethics Review Board [0.68, 0.32]
+component Third-Party Audits [0.66, 0.28]
+
+component Model Constitution [0.62, 0.15]
+component Human Feedback Loops [0.60, 0.35]
+component Red Teaming [0.58, 0.30]
+component AI Forensics [0.56, 0.12]
+component Bias Testing [0.54, 0.38]
+component Explainability Tooling [0.52, 0.25]
+component Model Cards [0.50, 0.45]
+
+component Safety Benchmarks [0.48, 0.22]
+component Capability Benchmarks [0.46, 0.58]
+component Evaluation Harnesses [0.44, 0.42]
+
+component Foundation Models [0.40, 0.48]
+component Fine-Tuning [0.38, 0.55]
+component RLHF [0.36, 0.35]
+component Prompt Engineering [0.34, 0.62]
+component Guardrails [0.32, 0.40]
+
+component Model Algorithms [0.28, 0.55]
+component Training Data [0.24, 0.52]
+component Data Provenance [0.22, 0.20]
+component Data Labeling [0.20, 0.78]
+
+component GPU Compute [0.14, 0.68]
+component Cloud Infrastructure [0.10, 0.92]
+
+Individuals -> Trust in AI Systems
+Government -> Trust in AI Systems
+Business -> Trust in AI Systems
+Government -> Regulatory Compliance
+Business -> Reputation
+Business -> Competitive Advantage
+Individuals -> Safety Outcomes
+
+Trust in AI Systems -> Safety Outcomes
+Trust in AI Systems -> AI Governance Framework
+Trust in AI Systems -> Third-Party Audits
+Trust in AI Systems -> Explainability Tooling
+Safety Outcomes -> Red Teaming
+Safety Outcomes -> Bias Testing
+Safety Outcomes -> Safety Benchmarks
+Reputation -> Model Cards
+Reputation -> Third-Party Audits
+Competitive Advantage -> Foundation Models
+Competitive Advantage -> Fine-Tuning
+Regulatory Compliance -> AI Regulations
+Regulatory Compliance -> AI Policy
+
+AI Governance Framework -> AI Regulations
+AI Governance Framework -> AI Policy
+AI Governance Framework -> Ethics Review Board
+AI Regulations -> AI Policy
+Ethics Review Board -> Bias Testing
+Third-Party Audits -> Evaluation Harnesses
+Third-Party Audits -> Model Cards
+
+Model Constitution -> Foundation Models
+Human Feedback Loops -> RLHF
+Red Teaming -> Foundation Models
+AI Forensics -> Data Provenance
+AI Forensics -> Training Data
+Bias Testing -> Evaluation Harnesses
+Explainability Tooling -> Foundation Models
+Model Cards -> Foundation Models
+
+Safety Benchmarks -> Evaluation Harnesses
+Capability Benchmarks -> Evaluation Harnesses
+Evaluation Harnesses -> Foundation Models
+
+Foundation Models -> Model Algorithms
+Foundation Models -> Training Data
+Foundation Models -> GPU Compute
+Fine-Tuning -> Foundation Models
+Fine-Tuning -> Training Data
+RLHF -> Fine-Tuning
+RLHF -> Human Feedback Loops
+Prompt Engineering -> Foundation Models
+Guardrails -> Foundation Models
+
+Model Algorithms -> GPU Compute
+Training Data -> Data Provenance
+Training Data -> Data Labeling
+GPU Compute -> Cloud Infrastructure
+
+evolve Foundation Models 0.72 label Commoditizing fast
+evolve RLHF 0.60 label Standardizing
+evolve Model Cards 0.70 label Becoming standard practice
+evolve AI Regulations 0.45 label EU AI Act incoming
+evolve Safety Benchmarks 0.48 label Emerging standards
+evolve AI Forensics 0.35 label Early R&D
+evolve Explainability Tooling 0.50 label Tooling maturing
+
+annotation 1 [0.62, 0.15] Trust-fragile: constitutional AI is pre-paradigmatic
+annotation 2 [0.56, 0.12] Trust-fragile: forensics barely exists
+annotation 3 [0.72, 0.18] Trust-fragile: regulation lagging tech
+annotation 4 [0.40, 0.48] Differentiating: foundation model quality
+annotation 5 [0.20, 0.78] Commoditising: data labeling marketplaces
+annotation 6 [0.10, 0.92] Commoditised: cloud compute
+
+note Fragile trust zone: novel governance + novel tech [0.75, 0.08]
+note Commoditising stack: build on top, don't rebuild [0.15, 0.85]
+
+style wardley
