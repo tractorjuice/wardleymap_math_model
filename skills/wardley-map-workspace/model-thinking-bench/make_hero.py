@@ -1,102 +1,196 @@
 #!/usr/bin/env python3
-"""Generate the hero PNG for the model x thinking pilot article.
+"""Hero PNG — which Claude to use, indexed by the kind of map you're drawing.
 
-Two-panel grouped bar chart:
-  Left  — coverage % (with stdev error bars)
-  Right — wall-clock duration (s)
-Both grouped by model with thinking-off / thinking-on side by side.
+Two stacked sections:
+  - Top: three decision rules, colour-coded by the *kind of work* they apply
+    to (red = new / Genesis, blue = standard / Product, green = utility / cost).
+  - Bottom: the per-zone empirical evidence the rules are built from, with
+    each zone shaded in its Wardley-convention colour.
+
+Colours encode evolution stage / strategic intent — not model identity.
+Model names appear in dark text within their zone's colour band so the eye
+links a recommendation to the band of the output map it applies to.
 """
-import json
+from __future__ import annotations
 from pathlib import Path
+
 import matplotlib.pyplot as plt
-import matplotlib.ticker as mtick
+from matplotlib.patches import FancyBboxPatch, Rectangle
 
 ROOT = Path(__file__).parent
-data = json.loads((ROOT / "matrix_summary.json").read_text())
+OUT = ROOT / "hero.png"
 
-MODELS = [
-    ("claude-haiku-4-5-20251001", "Haiku 4.5"),
-    ("claude-sonnet-4-6", "Sonnet 4.6"),
-    ("claude-opus-4-7", "Opus 4.7"),
+# Zone palette — rare-to-mature spectrum:
+# Genesis = purple (rare/exotic/novel); Custom = orange (industrialising);
+# Product = blue (stable, well-understood); Commodity = green (utility, mature).
+# Red intentionally avoided — it reads as warning/error in most UIs.
+GENESIS_C  = "#8e44ad"
+CUSTOM_C   = "#e67e22"
+PRODUCT_C  = "#2980b9"
+COMMODITY_C = "#16a085"
+
+INK = "#111"
+SUBINK = "#555"
+DARK_ON_TINT = "#1a1a1a"
+
+# --- Top: three decision rules. Colour follows the zone the rule targets. ---
+RULES = [
+    {
+        "tag": "WORKING ON SOMETHING",
+        "kind": "NEW & NOVEL",
+        "subkind": "(emerging tech, fresh regulation, new market)",
+        "verdict": "Opus 4.7  +  thinking",
+        "color": GENESIS_C,
+        "support": "Thinking lifts Opus +15pp on Genesis\n(41% → 56%) — the zone the model\n"
+                   "hasn't memorised. Reasoning earns\nits keep here.",
+    },
+    {
+        "tag": "WORKING ON A",
+        "kind": "STANDARD / WELL-KNOWN LANDSCAPE",
+        "subkind": "(mature industry, familiar stack, standard architecture)",
+        "verdict": "Opus 4.7  —  no thinking",
+        "color": PRODUCT_C,
+        "support": "47% overall, 225s, validator-clean.\nDominates Commodity +25pp.\n"
+                   "Thinking actively HURTS Commodity\n(67% → 42%) — don't pay for it.",
+    },
+    {
+        "tag": "OR IF YOU'RE",
+        "kind": "COST-SENSITIVE AT VOLUME",
+        "subkind": "(many maps, batch use, prototyping)",
+        "verdict": "Haiku 4.5  +  thinking",
+        "color": COMMODITY_C,
+        "support": "38% overall, ~18× cheaper than Opus.\nWithin 12pp of Opus-on on Genesis.\n"
+                   "Drops a tier overall; eats almost\nno quality on Product.",
+    },
 ]
 
-def row(model_id, thinking):
-    for r in data:
-        if r["model"] == model_id and r["thinking"] == thinking:
-            return r
-    raise KeyError(f"{model_id} / {thinking}")
+# --- Bottom: per-zone evidence. Colour = zone, not model. ----------------
+ZONES = [
+    ("Genesis",      13, "Opus 4.7",   "thinking ON",  56, GENESIS_C),
+    ("Custom Built",  9, "Sonnet 4.6", "thinking ON",  48, CUSTOM_C),
+    ("Product",       8, "Sonnet 4.6", "no thinking",  56, PRODUCT_C),
+    ("Commodity",     4, "Opus 4.7",   "no thinking",  67, COMMODITY_C),
+]
 
-OFF_COLOR = "#9ecae1"
-ON_COLOR = "#08519c"
-ANNOT_KW = dict(ha="center", va="bottom", fontsize=9, color="#222")
 
-fig, (ax_cov, ax_dur) = plt.subplots(
-    1, 2, figsize=(11.5, 5.0), dpi=160, gridspec_kw=dict(wspace=0.28)
-)
+def draw_rule_card(ax, x, y, w, h, rule):
+    color = rule["color"]
+    body = FancyBboxPatch(
+        (x, y), w, h,
+        boxstyle="round,pad=0.005,rounding_size=0.015",
+        linewidth=1.6, edgecolor=color, facecolor=color, alpha=0.08,
+    )
+    ax.add_patch(body)
+    band = Rectangle((x, y + h - 0.075), w, 0.075, facecolor=color, alpha=0.92)
+    ax.add_patch(band)
+    cx = x + w / 2
+    ax.text(cx, y + h - 0.038, rule["tag"],
+            fontsize=12, fontweight="bold", color="white",
+            ha="center", va="center", alpha=0.95)
 
-# ---------- Coverage panel ----------
-x = list(range(len(MODELS)))
-w = 0.36
-cov_off = [100 * row(m[0], "off")["coverage_mean"] for m in MODELS]
-cov_on  = [100 * row(m[0], "on")["coverage_mean"]  for m in MODELS]
-err_off = [100 * row(m[0], "off")["coverage_stdev"] for m in MODELS]
-err_on  = [100 * row(m[0], "on")["coverage_stdev"]  for m in MODELS]
+    ax.text(cx, y + h - 0.125, rule["kind"],
+            fontsize=19, fontweight="bold", color=color,
+            ha="center", va="center")
+    ax.text(cx, y + h - 0.165, rule["subkind"],
+            fontsize=12, color=SUBINK, ha="center", va="center", style="italic")
 
-b1 = ax_cov.bar([xi - w/2 for xi in x], cov_off, w, yerr=err_off,
-                color=OFF_COLOR, label="thinking off",
-                error_kw=dict(ecolor="#444", capsize=4, elinewidth=1))
-b2 = ax_cov.bar([xi + w/2 for xi in x], cov_on,  w, yerr=err_on,
-                color=ON_COLOR,  label="thinking on",
-                error_kw=dict(ecolor="#444", capsize=4, elinewidth=1))
+    ax.text(cx, y + h - 0.235, "USE",
+            fontsize=12, fontweight="bold", color="#888",
+            ha="center", va="center")
+    ax.text(cx, y + h - 0.295, rule["verdict"],
+            fontsize=22, fontweight="bold", color=DARK_ON_TINT,
+            ha="center", va="center")
 
-for xi, v in zip(x, cov_off):
-    ax_cov.text(xi - w/2, v + 1.2, f"{v:.1f}%", **ANNOT_KW)
-for xi, v in zip(x, cov_on):
-    ax_cov.text(xi + w/2, v + 1.2, f"{v:.1f}%", **ANNOT_KW, fontweight="bold")
+    ax.text(cx, y + 0.025, rule["support"],
+            fontsize=13, color=INK, ha="center", va="bottom",
+            linespacing=1.4)
 
-ax_cov.set_xticks(x)
-ax_cov.set_xticklabels([m[1] for m in MODELS], fontsize=11)
-ax_cov.set_ylabel("Coverage of Wardley's components (%)", fontsize=10)
-ax_cov.set_ylim(0, 60)
-ax_cov.yaxis.set_major_formatter(mtick.PercentFormatter(decimals=0))
-ax_cov.set_title("Coverage", fontsize=12, pad=10, loc="left", color="#222")
-ax_cov.legend(frameon=False, loc="upper left", fontsize=9)
-ax_cov.grid(axis="y", linestyle="--", alpha=0.4)
-ax_cov.spines[["top", "right"]].set_visible(False)
 
-# ---------- Duration panel ----------
-dur_off = [row(m[0], "off")["duration_sec_mean"] for m in MODELS]
-dur_on  = [row(m[0], "on")["duration_sec_mean"]  for m in MODELS]
+def draw_zone_pill(ax, x, y, w, h, zone, n, model, state, cov, color):
+    body = FancyBboxPatch(
+        (x, y), w, h,
+        boxstyle="round,pad=0.004,rounding_size=0.012",
+        linewidth=1.0, edgecolor=color, facecolor=color, alpha=0.10,
+    )
+    ax.add_patch(body)
+    band = Rectangle((x, y + h - 0.060), w, 0.060, facecolor=color, alpha=0.92)
+    ax.add_patch(band)
+    cx = x + w / 2
+    ax.text(cx, y + h - 0.030, f"{zone.upper()}   (n={n})",
+            fontsize=19, fontweight="bold", color="white", ha="center", va="center")
 
-ax_dur.bar([xi - w/2 for xi in x], dur_off, w, color=OFF_COLOR, label="thinking off")
-ax_dur.bar([xi + w/2 for xi in x], dur_on,  w, color=ON_COLOR,  label="thinking on")
+    ax.text(cx, y + h - 0.115, model,
+            fontsize=24, fontweight="bold", color=DARK_ON_TINT,
+            ha="center", va="center")
+    ax.text(cx, y + h - 0.160, state,
+            fontsize=17, color=DARK_ON_TINT, ha="center", va="center", style="italic")
+    ax.text(cx, y + 0.030, f"{cov}%",
+            fontsize=46, fontweight="bold", color=color,
+            ha="center", va="center")
 
-for xi, v in zip(x, dur_off):
-    ax_dur.text(xi - w/2, v + 10, f"{v:.0f}s", **ANNOT_KW)
-for xi, v in zip(x, dur_on):
-    ax_dur.text(xi + w/2, v + 10, f"{v:.0f}s", **ANNOT_KW, fontweight="bold")
 
-ax_dur.set_xticks(x)
-ax_dur.set_xticklabels([m[1] for m in MODELS], fontsize=11)
-ax_dur.set_ylabel("Wall-clock per map (s)", fontsize=10)
-ax_dur.set_ylim(0, max(dur_on) * 1.18)
-ax_dur.set_title("Latency", fontsize=12, pad=10, loc="left", color="#222")
-ax_dur.grid(axis="y", linestyle="--", alpha=0.4)
-ax_dur.spines[["top", "right"]].set_visible(False)
+def main():
+    fig = plt.figure(figsize=(15.0, 10.0), dpi=160)
+    fig.patch.set_facecolor("white")
+    ax = fig.add_axes([0.03, 0.02, 0.94, 0.78])
+    ax.set_xlim(0, 1)
+    ax.set_ylim(0, 1)
+    ax.axis("off")
 
-# ---------- Top-line title ----------
-fig.suptitle(
-    "Bigger model > more thinking — and the gap widens on coverage",
-    fontsize=14, fontweight="bold", y=1.02, x=0.07, ha="left", color="#111"
-)
-fig.text(
-    0.07, 0.965,
-    "ai-trust pilot — 3 models × 2 thinking states × 3 replicates. "
-    "Opus 4.7 leads coverage regardless of thinking; "
-    "thinking lifts Haiku +5pp but Opus only +1pp.",
-    fontsize=9.5, color="#444", ha="left",
-)
+    fig.text(0.03, 0.955,
+             "Which Claude should you use? Pick by the kind of Wardley map you're drawing.",
+             fontsize=28, fontweight="bold", color=INK)
+    fig.text(0.03, 0.905,
+             "ai-trust pilot — model recommendations above, per-zone evidence below. "
+             "Colour = evolution stage.",
+             fontsize=17, color=SUBINK)
 
-out = ROOT / "hero.png"
-plt.savefig(out, bbox_inches="tight", facecolor="white")
-print(f"wrote {out}")
+    # Step labels
+    ax.text(0.005, 0.985,
+            "STEP 1 — What kind of landscape is the map about?",
+            fontsize=15, fontweight="bold", color="#888",
+            ha="left", va="top", transform=ax.transAxes)
+
+    # ----- Top: three decision rules -----
+    n = len(RULES)
+    card_w = 0.30
+    card_h = 0.50
+    gap = (1.0 - n * card_w) / (n + 1)
+    y_top_card = 0.94 - card_h
+    for i, rule in enumerate(RULES):
+        x = gap + i * (card_w + gap)
+        draw_rule_card(ax, x, y_top_card, card_w, card_h, rule)
+
+    # ----- Divider -----
+    div_y = 0.395
+    ax.plot([0.005, 0.995], [div_y, div_y], color="#ddd", lw=1.0)
+    ax.text(0.005, div_y - 0.02,
+            "STEP 2 — Want to dial it in per zone? Here's who wins each band of the output map.",
+            fontsize=15, fontweight="bold", color="#888", ha="left", va="top")
+
+    # ----- Bottom: per-zone evidence strip -----
+    nz = len(ZONES)
+    z_w = 0.225
+    z_gap = (1.0 - nz * z_w) / (nz + 1)
+    z_y = 0.05
+    z_h = 0.30
+    for i, (zone, count, model, state, cov, color) in enumerate(ZONES):
+        x = z_gap + i * (z_w + z_gap)
+        draw_zone_pill(ax, x, z_y, z_w, z_h, zone, count, model, state, cov, color)
+
+    # Evolution-axis cue
+    arrow_y = 0.015
+    ax.annotate("", xy=(0.995, arrow_y), xytext=(0.005, arrow_y),
+                arrowprops=dict(arrowstyle="-|>", color="#aaa",
+                                lw=1.2, mutation_scale=14))
+    ax.text(0.0, arrow_y + 0.011, "less evolved", fontsize=12,
+            color="#888", ha="left", va="bottom", style="italic")
+    ax.text(1.0, arrow_y + 0.011, "more evolved", fontsize=12,
+            color="#888", ha="right", va="bottom", style="italic")
+
+    plt.savefig(OUT, bbox_inches="tight", facecolor="white")
+    print(f"wrote {OUT}")
+
+
+if __name__ == "__main__":
+    main()
