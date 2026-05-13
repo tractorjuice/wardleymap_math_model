@@ -45,19 +45,23 @@ def main():
     anchors, components, edges = parse_owm(OWM.read_text())
     summary = {(r["model"], r["thinking"]): r for r in json.loads(SUMMARY.read_text())}
 
-    # Performance call-outs for each model (thinking off — the practical default)
+    # Per-zone routing finding from zone_analysis.json — what each model is best at.
+    # Opus appears for both Genesis-on and Commodity-off; the model_strength
+    # caption captures the headline cell.
     perf_lines = {
         "Opus 4.7": _perf("claude-opus-4-7", summary),
         "Sonnet 4.6": _perf("claude-sonnet-4-6", summary),
         "Haiku 4.5": _perf("claude-haiku-4-5-20251001", summary),
     }
-    model_colors = {
-        "Opus 4.7": "#d62728",
-        "Sonnet 4.6": "#ff7f0e",
-        "Haiku 4.5": "#2ca02c",
+    model_strength = {
+        "Opus 4.7":   ("best: Commodity 67% (off)  ·  Genesis 56% (on)", "#d62728"),
+        "Sonnet 4.6": ("best: Custom 48% (on)", "#ff7f0e"),
+        "Haiku 4.5":  ("competitive Genesis 44% (on), 10x cheaper than Opus", "#2ca02c"),
     }
+    model_colors = {name: color for name, (_, color) in model_strength.items()}
 
-    fig, ax = plt.subplots(figsize=(15.0, 9.5), dpi=140)
+    fig, ax = plt.subplots(figsize=(15.0, 11.5), dpi=140)
+    plt.subplots_adjust(bottom=0.22)  # reserve space for the routing panel
 
     # Evolution zone backgrounds
     zones = [
@@ -99,14 +103,13 @@ def main():
         ax.annotate(name, (e, v), xytext=(8, 4), textcoords="offset points",
                     fontsize=9.5, color="#222", zorder=4)
 
-    # Highlighted: the three models
+    # Highlighted: the three models, each with a zone-strength badge.
     for name, color in model_colors.items():
         if name not in components:
             continue
         v, e = components[name]
         ax.scatter([e], [v], s=320, color=color, edgecolor="#111",
                    linewidth=1.8, zorder=5)
-        # Model name + perf line
         ax.annotate(
             name,
             (e, v),
@@ -124,6 +127,40 @@ def main():
                 ha="center", va="top",
                 fontsize=9, color="#333", zorder=6,
             )
+        strength_text, _ = model_strength.get(name, ("", ""))
+        if strength_text:
+            ax.annotate(
+                strength_text,
+                (e, v),
+                xytext=(0, -60),
+                textcoords="offset points",
+                ha="center", va="top",
+                fontsize=8.5, color=color, fontstyle="italic", zorder=6,
+            )
+
+    # Per-zone routing policy panel (top-right)
+    routing_lines = [
+        ("Per-zone routing policy", "#111", True),
+        ("(empirical from zone_analysis.json — N=3, single map)", "#777", False),
+        ("", "#000", False),
+        ("Genesis   →  Haiku 4.5 + thinking   (44%, ~10x cheaper than Opus)", "#2ca02c", False),
+        ("Custom    →  Sonnet 4.6 + thinking  (48%, judgement zone)", "#ff7f0e", False),
+        ("Product   →  Haiku 4.5  (flat across models, pick cheapest)", "#2ca02c", False),
+        ("Commodity →  Opus 4.7 (off)  (67%, +25pp over next best)", "#d62728", False),
+    ]
+    # Routing panel rendered in figure coordinates below the axes — keeps
+    # the value-chain area unobstructed.
+    panel_top_y = 0.18   # in figure coordinates
+    panel_left_x = 0.07
+    line_step = 0.022
+    for i, (text, color, bold) in enumerate(routing_lines):
+        fig.text(
+            panel_left_x, panel_top_y - i * line_step, text,
+            fontsize=10.5 if bold else 9.5,
+            fontweight="bold" if bold else "normal",
+            color=color, family="monospace",
+            ha="left", va="top",
+        )
 
     ax.set_xlim(-0.02, 1.02)
     ax.set_ylim(-0.02, 1.06)
@@ -146,7 +183,6 @@ def main():
         fontsize=10, color="#444", ha="left",
     )
 
-    plt.tight_layout(rect=[0, 0, 1, 0.93])
     plt.savefig(OUT, bbox_inches="tight", facecolor="white")
     print(f"wrote {OUT}")
 
