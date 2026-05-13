@@ -74,6 +74,8 @@ The original hypothesis — *use Opus where the components are novel* — gets t
 
 **A plausible per-zone routing policy** if you wanted to extract maximum quality per dollar:
 
+![Per-zone routing policy](routing-chart.png)
+
 1. **Genesis components** → **Haiku-with-thinking**. Within 12pp of Opus-on at ~10× lower cost. Spend your reasoning budget on something else.
 2. **Custom components** → **Sonnet-with-thinking**. The judgement-heavy zone rewards the mid-tier model that thinks.
 3. **Product components** → **Haiku** (off or on). Flat across models; pick the cheapest.
@@ -94,6 +96,8 @@ Also: Opus 4.7 uses the new `thinking.type.adaptive` + `output_config.effort` in
 ## The benchmark as a Wardley map
 
 Where do the three models actually sit on the value chain we built to compare them? The anchor is the *benchmark researcher* — someone trying to decide which Claude to run the skill on. The dependency chain runs from the report they read down through the matrix, the aggregator, the SDK harness, the Anthropic API, into the models themselves and the compute under them.
+
+**Reading note.** The X-axis position of each model in this map is *the model's own commoditisation stage as a product offering* — Opus 4.7 in Custom Built because it's the brand-new frontier release with a breaking API surface, Sonnet 4.6 in Product because it's stable and broadly used, Haiku 4.5 at the Product→Commodity edge because it's cheap and utility-grade. **This is a separate question from "which evolution zone of the *output map* is each model best at producing"** — that question is answered by the routing chart further down.
 
 ![Where the three models sit on the benchmark value chain](benchmark-map.png)
 
