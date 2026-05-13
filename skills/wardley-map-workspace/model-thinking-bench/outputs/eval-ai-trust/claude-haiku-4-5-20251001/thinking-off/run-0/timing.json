@@ -1,0 +1,149 @@
+{
+  "model": "claude-haiku-4-5-20251001",
+  "thinking": "off",
+  "replicate": 0,
+  "duration_sec": 132.87,
+  "last_stop": "end_turn",
+  "error": null,
+  "usage_totals": {
+    "input_tokens": 60544,
+    "output_tokens": 16380,
+    "cache_creation_input_tokens": 77729,
+    "cache_read_input_tokens": 310658
+  },
+  "agent_turns": 8,
+  "transcript": [
+    {
+      "turn": 0,
+      "stop_reason": "tool_use",
+      "usage": {
+        "input": 417,
+        "output": 1662,
+        "cache_creation": 34318,
+        "cache_read": 0
+      },
+      "blocks": [
+        "text",
+        "tool_use"
+      ]
+    },
+    {
+      "turn": 1,
+      "stop_reason": "tool_use",
+      "usage": {
+        "input": 3229,
+        "output": 90,
+        "cache_creation": 415,
+        "cache_read": 34318
+      },
+      "blocks": [
+        "text",
+        "tool_use"
+      ]
+    },
+    {
+      "turn": 2,
+      "stop_reason": "tool_use",
+      "usage": {
+        "input": 3606,
+        "output": 1656,
+        "cache_creation": 415,
+        "cache_read": 34318
+      },
+      "blocks": [
+        "text",
+        "tool_use"
+      ]
+    },
+    {
+      "turn": 3,
+      "stop_reason": "tool_use",
+      "usage": {
+        "input": 2238,
+        "output": 1658,
+        "cache_creation": 1568,
+        "cache_read": 36389
+      },
+      "blocks": [
+        "text",
+        "tool_use"
+      ]
+    },
+    {
+      "turn": 4,
+      "stop_reason": "tool_use",
+      "usage": {
+        "input": 3674,
+        "output": 1595,
+        "cache_creation": 290,
+        "cache_read": 38044
+      },
+      "blocks": [
+        "tool_use"
+      ]
+    },
+    {
+      "turn": 5,
+      "stop_reason": "tool_use",
+      "usage": {
+        "input": 3569,
+        "output": 1595,
+        "cache_creation": 203,
+        "cache_read": 39987
+      },
+      "blocks": [
+        "tool_use"
+      ]
+    },
+    {
+      "turn": 6,
+      "stop_reason": "tool_use",
+      "usage": {
+        "input": 3398,
+        "output": 313,
+        "cache_creation": 38769,
+        "cache_read": 85599
+      },
+      "blocks": [
+        "text",
+        "server_tool_use",
+        "server_tool_use",
+        "server_tool_use",
+        "web_search_tool_result",
+        "web_search_tool_result",
+        "web_search_tool_result",
+        "text",
+        "tool_use"
+      ]
+    },
+    {
+      "turn": 7,
+      "stop_reason": "end_turn",
+      "usage": {
+        "input": 40413,
+        "output": 7811,
+        "cache_creation": 1751,
+        "cache_read": 42003
+      },
+      "blocks": [
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text"
+      ]
+    }
+  ]
+}

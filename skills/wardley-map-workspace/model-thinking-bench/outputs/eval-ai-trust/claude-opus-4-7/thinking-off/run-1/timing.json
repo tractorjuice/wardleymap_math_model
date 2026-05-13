@@ -1,0 +1,226 @@
+{
+  "model": "claude-opus-4-7",
+  "thinking": "off",
+  "replicate": 1,
+  "duration_sec": 228.44,
+  "last_stop": "end_turn",
+  "error": null,
+  "usage_totals": {
+    "input_tokens": 140700,
+    "output_tokens": 20065,
+    "cache_creation_input_tokens": 68497,
+    "cache_read_input_tokens": 1216213
+  },
+  "agent_turns": 12,
+  "transcript": [
+    {
+      "turn": 0,
+      "stop_reason": "tool_use",
+      "usage": {
+        "input": 6,
+        "output": 158,
+        "cache_creation": 0,
+        "cache_read": 48660
+      },
+      "blocks": [
+        "text",
+        "tool_use"
+      ]
+    },
+    {
+      "turn": 1,
+      "stop_reason": "tool_use",
+      "usage": {
+        "input": 215,
+        "output": 4162,
+        "cache_creation": 58334,
+        "cache_read": 176795
+      },
+      "blocks": [
+        "text",
+        "server_tool_use",
+        "server_tool_use",
+        "web_search_tool_result",
+        "web_search_tool_result",
+        "text",
+        "server_tool_use",
+        "server_tool_use",
+        "web_search_tool_result",
+        "web_search_tool_result",
+        "text",
+        "tool_use"
+      ]
+    },
+    {
+      "turn": 2,
+      "stop_reason": "tool_use",
+      "usage": {
+        "input": 62031,
+        "output": 575,
+        "cache_creation": 658,
+        "cache_read": 48082
+      },
+      "blocks": [
+        "text",
+        "tool_use"
+      ]
+    },
+    {
+      "turn": 3,
+      "stop_reason": "tool_use",
+      "usage": {
+        "input": 62528,
+        "output": 144,
+        "cache_creation": 194,
+        "cache_read": 48824
+      },
+      "blocks": [
+        "tool_use"
+      ]
+    },
+    {
+      "turn": 4,
+      "stop_reason": "tool_use",
+      "usage": {
+        "input": 1322,
+        "output": 95,
+        "cache_creation": 4287,
+        "cache_read": 106500
+      },
+      "blocks": [
+        "text",
+        "tool_use"
+      ]
+    },
+    {
+      "turn": 5,
+      "stop_reason": "tool_use",
+      "usage": {
+        "input": 677,
+        "output": 210,
+        "cache_creation": 344,
+        "cache_read": 111346
+      },
+      "blocks": [
+        "tool_use"
+      ]
+    },
+    {
+      "turn": 6,
+      "stop_reason": "tool_use",
+      "usage": {
+        "input": 615,
+        "output": 94,
+        "cache_creation": 583,
+        "cache_read": 111545
+      },
+      "blocks": [
+        "text",
+        "tool_use"
+      ]
+    },
+    {
+      "turn": 7,
+      "stop_reason": "tool_use",
+      "usage": {
+        "input": 702,
+        "output": 304,
+        "cache_creation": 373,
+        "cache_read": 112204
+      },
+      "blocks": [
+        "tool_use"
+      ]
+    },
+    {
+      "turn": 8,
+      "stop_reason": "tool_use",
+      "usage": {
+        "input": 905,
+        "output": 116,
+        "cache_creation": 389,
+        "cache_read": 112366
+      },
+      "blocks": [
+        "text",
+        "tool_use"
+      ]
+    },
+    {
+      "turn": 9,
+      "stop_reason": "tool_use",
+      "usage": {
+        "input": 2236,
+        "output": 145,
+        "cache_creation": 746,
+        "cache_read": 112837
+      },
+      "blocks": [
+        "tool_use"
+      ]
+    },
+    {
+      "turn": 10,
+      "stop_reason": "tool_use",
+      "usage": {
+        "input": 4192,
+        "output": 166,
+        "cache_creation": 401,
+        "cache_read": 113278
+      },
+      "blocks": [
+        "text",
+        "tool_use"
+      ]
+    },
+    {
+      "turn": 11,
+      "stop_reason": "end_turn",
+      "usage": {
+        "input": 5271,
+        "output": 13896,
+        "cache_creation": 2188,
+        "cache_read": 113776
+      },
+      "blocks": [
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text"
+      ]
+    }
+  ]
+}

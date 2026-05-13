@@ -1,0 +1,191 @@
+{
+  "model": "claude-sonnet-4-6",
+  "thinking": "off",
+  "replicate": 2,
+  "duration_sec": 272.05,
+  "last_stop": "end_turn",
+  "error": null,
+  "usage_totals": {
+    "input_tokens": 100175,
+    "output_tokens": 17436,
+    "cache_creation_input_tokens": 75101,
+    "cache_read_input_tokens": 896459
+  },
+  "agent_turns": 12,
+  "transcript": [
+    {
+      "turn": 0,
+      "stop_reason": "tool_use",
+      "usage": {
+        "input": 3,
+        "output": 119,
+        "cache_creation": 0,
+        "cache_read": 34733
+      },
+      "blocks": [
+        "tool_use",
+        "server_tool_use"
+      ]
+    },
+    {
+      "turn": 1,
+      "stop_reason": "tool_use",
+      "usage": {
+        "input": 2,
+        "output": 2324,
+        "cache_creation": 49440,
+        "cache_read": 83013
+      },
+      "blocks": [
+        "web_search_tool_result",
+        "server_tool_use",
+        "server_tool_use",
+        "web_search_tool_result",
+        "web_search_tool_result",
+        "text",
+        "tool_use"
+      ]
+    },
+    {
+      "turn": 2,
+      "stop_reason": "tool_use",
+      "usage": {
+        "input": 51548,
+        "output": 65,
+        "cache_creation": 122,
+        "cache_read": 34733
+      },
+      "blocks": [
+        "tool_use"
+      ]
+    },
+    {
+      "turn": 3,
+      "stop_reason": "tool_use",
+      "usage": {
+        "input": 38531,
+        "output": 2110,
+        "cache_creation": 13013,
+        "cache_read": 35332
+      },
+      "blocks": [
+        "tool_use"
+      ]
+    },
+    {
+      "turn": 4,
+      "stop_reason": "tool_use",
+      "usage": {
+        "input": 2546,
+        "output": 65,
+        "cache_creation": 2295,
+        "cache_read": 84173
+      },
+      "blocks": [
+        "tool_use"
+      ]
+    },
+    {
+      "turn": 5,
+      "stop_reason": "tool_use",
+      "usage": {
+        "input": 399,
+        "output": 594,
+        "cache_creation": 2584,
+        "cache_read": 86402
+      },
+      "blocks": [
+        "tool_use"
+      ]
+    },
+    {
+      "turn": 6,
+      "stop_reason": "tool_use",
+      "usage": {
+        "input": 945,
+        "output": 64,
+        "cache_creation": 2204,
+        "cache_read": 86875
+      },
+      "blocks": [
+        "tool_use"
+      ]
+    },
+    {
+      "turn": 7,
+      "stop_reason": "tool_use",
+      "usage": {
+        "input": 865,
+        "output": 1068,
+        "cache_creation": 966,
+        "cache_read": 89013
+      },
+      "blocks": [
+        "tool_use"
+      ]
+    },
+    {
+      "turn": 8,
+      "stop_reason": "tool_use",
+      "usage": {
+        "input": 1848,
+        "output": 80,
+        "cache_creation": 704,
+        "cache_read": 89384
+      },
+      "blocks": [
+        "tool_use"
+      ]
+    },
+    {
+      "turn": 9,
+      "stop_reason": "tool_use",
+      "usage": {
+        "input": 406,
+        "output": 328,
+        "cache_creation": 1889,
+        "cache_read": 90023
+      },
+      "blocks": [
+        "tool_use"
+      ]
+    },
+    {
+      "turn": 10,
+      "stop_reason": "tool_use",
+      "usage": {
+        "input": 693,
+        "output": 94,
+        "cache_creation": 1173,
+        "cache_read": 90843
+      },
+      "blocks": [
+        "text",
+        "tool_use"
+      ]
+    },
+    {
+      "turn": 11,
+      "stop_reason": "end_turn",
+      "usage": {
+        "input": 2389,
+        "output": 10525,
+        "cache_creation": 711,
+        "cache_read": 91935
+      },
+      "blocks": [
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text"
+      ]
+    }
+  ]
+}

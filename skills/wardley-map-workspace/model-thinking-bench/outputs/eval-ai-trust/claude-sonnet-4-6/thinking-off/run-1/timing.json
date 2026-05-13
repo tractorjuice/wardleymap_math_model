@@ -1,0 +1,210 @@
+{
+  "model": "claude-sonnet-4-6",
+  "thinking": "off",
+  "replicate": 1,
+  "duration_sec": 252.84,
+  "last_stop": "end_turn",
+  "error": null,
+  "usage_totals": {
+    "input_tokens": 88384,
+    "output_tokens": 15780,
+    "cache_creation_input_tokens": 64671,
+    "cache_read_input_tokens": 914106
+  },
+  "agent_turns": 13,
+  "transcript": [
+    {
+      "turn": 0,
+      "stop_reason": "tool_use",
+      "usage": {
+        "input": 417,
+        "output": 106,
+        "cache_creation": 0,
+        "cache_read": 34319
+      },
+      "blocks": [
+        "tool_use",
+        "server_tool_use"
+      ]
+    },
+    {
+      "turn": 1,
+      "stop_reason": "tool_use",
+      "usage": {
+        "input": 2,
+        "output": 2299,
+        "cache_creation": 42638,
+        "cache_read": 82913
+      },
+      "blocks": [
+        "web_search_tool_result",
+        "server_tool_use",
+        "server_tool_use",
+        "web_search_tool_result",
+        "web_search_tool_result",
+        "text",
+        "tool_use"
+      ]
+    },
+    {
+      "turn": 2,
+      "stop_reason": "tool_use",
+      "usage": {
+        "input": 44790,
+        "output": 65,
+        "cache_creation": 471,
+        "cache_read": 34319
+      },
+      "blocks": [
+        "tool_use"
+      ]
+    },
+    {
+      "turn": 3,
+      "stop_reason": "tool_use",
+      "usage": {
+        "input": 31738,
+        "output": 565,
+        "cache_creation": 13398,
+        "cache_read": 34842
+      },
+      "blocks": [
+        "tool_use"
+      ]
+    },
+    {
+      "turn": 4,
+      "stop_reason": "tool_use",
+      "usage": {
+        "input": 1196,
+        "output": 65,
+        "cache_creation": 2274,
+        "cache_read": 77371
+      },
+      "blocks": [
+        "tool_use"
+      ]
+    },
+    {
+      "turn": 5,
+      "stop_reason": "tool_use",
+      "usage": {
+        "input": 404,
+        "output": 64,
+        "cache_creation": 964,
+        "cache_read": 79579
+      },
+      "blocks": [
+        "tool_use"
+      ]
+    },
+    {
+      "turn": 6,
+      "stop_reason": "tool_use",
+      "usage": {
+        "input": 599,
+        "output": 167,
+        "cache_creation": 929,
+        "cache_read": 79977
+      },
+      "blocks": [
+        "tool_use"
+      ]
+    },
+    {
+      "turn": 7,
+      "stop_reason": "tool_use",
+      "usage": {
+        "input": 848,
+        "output": 615,
+        "cache_creation": 171,
+        "cache_read": 80840
+      },
+      "blocks": [
+        "tool_use"
+      ]
+    },
+    {
+      "turn": 8,
+      "stop_reason": "tool_use",
+      "usage": {
+        "input": 835,
+        "output": 403,
+        "cache_creation": 726,
+        "cache_read": 80946
+      },
+      "blocks": [
+        "tool_use"
+      ]
+    },
+    {
+      "turn": 9,
+      "stop_reason": "tool_use",
+      "usage": {
+        "input": 659,
+        "output": 160,
+        "cache_creation": 970,
+        "cache_read": 81504
+      },
+      "blocks": [
+        "tool_use"
+      ]
+    },
+    {
+      "turn": 10,
+      "stop_reason": "tool_use",
+      "usage": {
+        "input": 444,
+        "output": 69,
+        "cache_creation": 1052,
+        "cache_read": 81858
+      },
+      "blocks": [
+        "tool_use"
+      ]
+    },
+    {
+      "turn": 11,
+      "stop_reason": "tool_use",
+      "usage": {
+        "input": 2223,
+        "output": 73,
+        "cache_creation": 787,
+        "cache_read": 82506
+      },
+      "blocks": [
+        "text",
+        "tool_use"
+      ]
+    },
+    {
+      "turn": 12,
+      "stop_reason": "end_turn",
+      "usage": {
+        "input": 4229,
+        "output": 11129,
+        "cache_creation": 291,
+        "cache_read": 83132
+      },
+      "blocks": [
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text"
+      ]
+    }
+  ]
+}

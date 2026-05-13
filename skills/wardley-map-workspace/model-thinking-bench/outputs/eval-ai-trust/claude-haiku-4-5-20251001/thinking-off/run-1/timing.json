@@ -1,0 +1,271 @@
+{
+  "model": "claude-haiku-4-5-20251001",
+  "thinking": "off",
+  "replicate": 1,
+  "duration_sec": 261.47,
+  "last_stop": "end_turn",
+  "error": null,
+  "usage_totals": {
+    "input_tokens": 66311,
+    "output_tokens": 34198,
+    "cache_creation_input_tokens": 84237,
+    "cache_read_input_tokens": 825583
+  },
+  "agent_turns": 17,
+  "transcript": [
+    {
+      "turn": 0,
+      "stop_reason": "tool_use",
+      "usage": {
+        "input": 417,
+        "output": 2324,
+        "cache_creation": 34318,
+        "cache_read": 0
+      },
+      "blocks": [
+        "text",
+        "tool_use"
+      ]
+    },
+    {
+      "turn": 1,
+      "stop_reason": "tool_use",
+      "usage": {
+        "input": 4258,
+        "output": 104,
+        "cache_creation": 415,
+        "cache_read": 34318
+      },
+      "blocks": [
+        "text",
+        "tool_use"
+      ]
+    },
+    {
+      "turn": 2,
+      "stop_reason": "tool_use",
+      "usage": {
+        "input": 4631,
+        "output": 91,
+        "cache_creation": 415,
+        "cache_read": 34318
+      },
+      "blocks": [
+        "text",
+        "tool_use"
+      ]
+    },
+    {
+      "turn": 3,
+      "stop_reason": "tool_use",
+      "usage": {
+        "input": 527,
+        "output": 72,
+        "cache_creation": 1935,
+        "cache_read": 37051
+      },
+      "blocks": [
+        "tool_use"
+      ]
+    },
+    {
+      "turn": 4,
+      "stop_reason": "tool_use",
+      "usage": {
+        "input": 1033,
+        "output": 2045,
+        "cache_creation": 272,
+        "cache_read": 39087
+      },
+      "blocks": [
+        "text",
+        "tool_use"
+      ]
+    },
+    {
+      "turn": 5,
+      "stop_reason": "tool_use",
+      "usage": {
+        "input": 3785,
+        "output": 2097,
+        "cache_creation": 61,
+        "cache_read": 39447
+      },
+      "blocks": [
+        "text",
+        "tool_use"
+      ]
+    },
+    {
+      "turn": 6,
+      "stop_reason": "tool_use",
+      "usage": {
+        "input": 5665,
+        "output": 2016,
+        "cache_creation": 879,
+        "cache_read": 39508
+      },
+      "blocks": [
+        "text",
+        "tool_use"
+      ]
+    },
+    {
+      "turn": 7,
+      "stop_reason": "tool_use",
+      "usage": {
+        "input": 5395,
+        "output": 2039,
+        "cache_creation": 859,
+        "cache_read": 42429
+      },
+      "blocks": [
+        "text",
+        "tool_use"
+      ]
+    },
+    {
+      "turn": 8,
+      "stop_reason": "tool_use",
+      "usage": {
+        "input": 5145,
+        "output": 2028,
+        "cache_creation": 665,
+        "cache_read": 45382
+      },
+      "blocks": [
+        "text",
+        "tool_use"
+      ]
+    },
+    {
+      "turn": 9,
+      "stop_reason": "tool_use",
+      "usage": {
+        "input": 4887,
+        "output": 2020,
+        "cache_creation": 618,
+        "cache_read": 48060
+      },
+      "blocks": [
+        "text",
+        "tool_use"
+      ]
+    },
+    {
+      "turn": 10,
+      "stop_reason": "tool_use",
+      "usage": {
+        "input": 4560,
+        "output": 2014,
+        "cache_creation": 473,
+        "cache_read": 50714
+      },
+      "blocks": [
+        "text",
+        "tool_use"
+      ]
+    },
+    {
+      "turn": 11,
+      "stop_reason": "tool_use",
+      "usage": {
+        "input": 4360,
+        "output": 2009,
+        "cache_creation": 348,
+        "cache_read": 53212
+      },
+      "blocks": [
+        "tool_use"
+      ]
+    },
+    {
+      "turn": 12,
+      "stop_reason": "tool_use",
+      "usage": {
+        "input": 4349,
+        "output": 2017,
+        "cache_creation": 165,
+        "cache_read": 55577
+      },
+      "blocks": [
+        "text",
+        "tool_use"
+      ]
+    },
+    {
+      "turn": 13,
+      "stop_reason": "tool_use",
+      "usage": {
+        "input": 4352,
+        "output": 2009,
+        "cache_creation": 162,
+        "cache_read": 57753
+      },
+      "blocks": [
+        "tool_use"
+      ]
+    },
+    {
+      "turn": 14,
+      "stop_reason": "tool_use",
+      "usage": {
+        "input": 4352,
+        "output": 2020,
+        "cache_creation": 2171,
+        "cache_read": 57915
+      },
+      "blocks": [
+        "text",
+        "tool_use"
+      ]
+    },
+    {
+      "turn": 15,
+      "stop_reason": "tool_use",
+      "usage": {
+        "input": 4355,
+        "output": 2009,
+        "cache_creation": 162,
+        "cache_read": 62100
+      },
+      "blocks": [
+        "tool_use"
+      ]
+    },
+    {
+      "turn": 16,
+      "stop_reason": "end_turn",
+      "usage": {
+        "input": 4240,
+        "output": 7284,
+        "cache_creation": 40319,
+        "cache_read": 128712
+      },
+      "blocks": [
+        "text",
+        "server_tool_use",
+        "server_tool_use",
+        "server_tool_use",
+        "web_search_tool_result",
+        "web_search_tool_result",
+        "web_search_tool_result",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,74 @@
+{
+  "model": "claude-opus-4-7",
+  "thinking": "on",
+  "replicate": 1,
+  "duration_sec": 312.76,
+  "last_stop": "end_turn",
+  "error": null,
+  "usage_totals": {
+    "input_tokens": 8859,
+    "output_tokens": 35547,
+    "cache_creation_input_tokens": 38697,
+    "cache_read_input_tokens": 214760
+  },
+  "agent_turns": 4,
+  "transcript": [
+    {
+      "turn": 0,
+      "stop_reason": "tool_use",
+      "usage": {
+        "input": 584,
+        "output": 21847,
+        "cache_creation": 0,
+        "cache_read": 48082
+      },
+      "blocks": [
+        "thinking",
+        "text",
+        "tool_use"
+      ]
+    },
+    {
+      "turn": 1,
+      "stop_reason": "tool_use",
+      "usage": {
+        "input": 3224,
+        "output": 137,
+        "cache_creation": 19256,
+        "cache_read": 48082
+      },
+      "blocks": [
+        "thinking",
+        "tool_use"
+      ]
+    },
+    {
+      "turn": 2,
+      "stop_reason": "tool_use",
+      "usage": {
+        "input": 3811,
+        "output": 714,
+        "cache_creation": 19256,
+        "cache_read": 48082
+      },
+      "blocks": [
+        "thinking",
+        "tool_use"
+      ]
+    },
+    {
+      "turn": 3,
+      "stop_reason": "end_turn",
+      "usage": {
+        "input": 1240,
+        "output": 12849,
+        "cache_creation": 185,
+        "cache_read": 70514
+      },
+      "blocks": [
+        "thinking",
+        "text"
+      ]
+    }
+  ]
+}

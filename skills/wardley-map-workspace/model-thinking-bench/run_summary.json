@@ -1,0 +1,184 @@
+[
+  {
+    "model": "claude-opus-4-7",
+    "thinking": "off",
+    "rep": 0,
+    "status": "skipped",
+    "cell": "outputs/eval-ai-trust/claude-opus-4-7/thinking-off/run-0"
+  },
+  {
+    "model": "claude-opus-4-7",
+    "thinking": "off",
+    "rep": 1,
+    "status": "skipped",
+    "cell": "outputs/eval-ai-trust/claude-opus-4-7/thinking-off/run-1"
+  },
+  {
+    "model": "claude-opus-4-7",
+    "thinking": "off",
+    "rep": 2,
+    "status": "skipped",
+    "cell": "outputs/eval-ai-trust/claude-opus-4-7/thinking-off/run-2"
+  },
+  {
+    "model": "claude-opus-4-7",
+    "thinking": "on",
+    "rep": 0,
+    "status": "skipped",
+    "cell": "outputs/eval-ai-trust/claude-opus-4-7/thinking-on/run-0"
+  },
+  {
+    "model": "claude-opus-4-7",
+    "thinking": "on",
+    "rep": 1,
+    "status": "ok",
+    "cell": "outputs/eval-ai-trust/claude-opus-4-7/thinking-on/run-1",
+    "duration_sec": 312.76,
+    "usage": {
+      "input_tokens": 8859,
+      "output_tokens": 35547,
+      "cache_creation_input_tokens": 38697,
+      "cache_read_input_tokens": 214760
+    },
+    "error": null
+  },
+  {
+    "model": "claude-opus-4-7",
+    "thinking": "on",
+    "rep": 2,
+    "status": "ok",
+    "cell": "outputs/eval-ai-trust/claude-opus-4-7/thinking-on/run-2",
+    "duration_sec": 256.05,
+    "usage": {
+      "input_tokens": 27858,
+      "output_tokens": 27160,
+      "cache_creation_input_tokens": 25126,
+      "cache_read_input_tokens": 502536
+    },
+    "error": null
+  },
+  {
+    "model": "claude-sonnet-4-6",
+    "thinking": "off",
+    "rep": 0,
+    "status": "skipped",
+    "cell": "outputs/eval-ai-trust/claude-sonnet-4-6/thinking-off/run-0"
+  },
+  {
+    "model": "claude-sonnet-4-6",
+    "thinking": "off",
+    "rep": 1,
+    "status": "skipped",
+    "cell": "outputs/eval-ai-trust/claude-sonnet-4-6/thinking-off/run-1"
+  },
+  {
+    "model": "claude-sonnet-4-6",
+    "thinking": "off",
+    "rep": 2,
+    "status": "skipped",
+    "cell": "outputs/eval-ai-trust/claude-sonnet-4-6/thinking-off/run-2"
+  },
+  {
+    "model": "claude-sonnet-4-6",
+    "thinking": "on",
+    "rep": 0,
+    "status": "skipped",
+    "cell": "outputs/eval-ai-trust/claude-sonnet-4-6/thinking-on/run-0"
+  },
+  {
+    "model": "claude-sonnet-4-6",
+    "thinking": "on",
+    "rep": 1,
+    "status": "skipped",
+    "cell": "outputs/eval-ai-trust/claude-sonnet-4-6/thinking-on/run-1"
+  },
+  {
+    "model": "claude-sonnet-4-6",
+    "thinking": "on",
+    "rep": 2,
+    "status": "ok",
+    "cell": "outputs/eval-ai-trust/claude-sonnet-4-6/thinking-on/run-2",
+    "duration_sec": 517.24,
+    "usage": {
+      "input_tokens": 99534,
+      "output_tokens": 36679,
+      "cache_creation_input_tokens": 87776,
+      "cache_read_input_tokens": 332220
+    },
+    "error": null
+  },
+  {
+    "model": "claude-haiku-4-5-20251001",
+    "thinking": "off",
+    "rep": 0,
+    "status": "skipped",
+    "cell": "outputs/eval-ai-trust/claude-haiku-4-5-20251001/thinking-off/run-0"
+  },
+  {
+    "model": "claude-haiku-4-5-20251001",
+    "thinking": "off",
+    "rep": 1,
+    "status": "ok",
+    "cell": "outputs/eval-ai-trust/claude-haiku-4-5-20251001/thinking-off/run-1",
+    "duration_sec": 261.47,
+    "usage": {
+      "input_tokens": 66311,
+      "output_tokens": 34198,
+      "cache_creation_input_tokens": 84237,
+      "cache_read_input_tokens": 825583
+    },
+    "error": null
+  },
+  {
+    "model": "claude-haiku-4-5-20251001",
+    "thinking": "off",
+    "rep": 2,
+    "status": "ok",
+    "cell": "outputs/eval-ai-trust/claude-haiku-4-5-20251001/thinking-off/run-2",
+    "duration_sec": 143.93,
+    "usage": {
+      "input_tokens": 65359,
+      "output_tokens": 17340,
+      "cache_creation_input_tokens": 57042,
+      "cache_read_input_tokens": 530204
+    },
+    "error": null
+  },
+  {
+    "model": "claude-haiku-4-5-20251001",
+    "thinking": "on",
+    "rep": 0,
+    "status": "skipped",
+    "cell": "outputs/eval-ai-trust/claude-haiku-4-5-20251001/thinking-on/run-0"
+  },
+  {
+    "model": "claude-haiku-4-5-20251001",
+    "thinking": "on",
+    "rep": 1,
+    "status": "ok",
+    "cell": "outputs/eval-ai-trust/claude-haiku-4-5-20251001/thinking-on/run-1",
+    "duration_sec": 230.9,
+    "usage": {
+      "input_tokens": 42959,
+      "output_tokens": 28317,
+      "cache_creation_input_tokens": 4838,
+      "cache_read_input_tokens": 436330
+    },
+    "error": null
+  },
+  {
+    "model": "claude-haiku-4-5-20251001",
+    "thinking": "on",
+    "rep": 2,
+    "status": "ok",
+    "cell": "outputs/eval-ai-trust/claude-haiku-4-5-20251001/thinking-on/run-2",
+    "duration_sec": 236.54,
+    "usage": {
+      "input_tokens": 48290,
+      "output_tokens": 29663,
+      "cache_creation_input_tokens": 8776,
+      "cache_read_input_tokens": 426300
+    },
+    "error": null
+  }
+]

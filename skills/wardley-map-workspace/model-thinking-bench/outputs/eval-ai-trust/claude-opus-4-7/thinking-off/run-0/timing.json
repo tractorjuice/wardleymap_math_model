@@ -1,0 +1,187 @@
+{
+  "model": "claude-opus-4-7",
+  "thinking": "off",
+  "replicate": 0,
+  "duration_sec": 216.3,
+  "last_stop": "end_turn",
+  "error": null,
+  "usage_totals": {
+    "input_tokens": 137456,
+    "output_tokens": 21513,
+    "cache_creation_input_tokens": 115486,
+    "cache_read_input_tokens": 893117
+  },
+  "agent_turns": 9,
+  "transcript": [
+    {
+      "turn": 0,
+      "stop_reason": "tool_use",
+      "usage": {
+        "input": 586,
+        "output": 4822,
+        "cache_creation": 106705,
+        "cache_read": 124190
+      },
+      "blocks": [
+        "text",
+        "server_tool_use",
+        "server_tool_use",
+        "web_search_tool_result",
+        "web_search_tool_result",
+        "text",
+        "server_tool_use",
+        "server_tool_use",
+        "web_search_tool_result",
+        "web_search_tool_result",
+        "text",
+        "tool_use"
+      ]
+    },
+    {
+      "turn": 1,
+      "stop_reason": "tool_use",
+      "usage": {
+        "input": 63744,
+        "output": 507,
+        "cache_creation": 0,
+        "cache_read": 48082
+      },
+      "blocks": [
+        "text",
+        "tool_use"
+      ]
+    },
+    {
+      "turn": 2,
+      "stop_reason": "tool_use",
+      "usage": {
+        "input": 63904,
+        "output": 257,
+        "cache_creation": 639,
+        "cache_read": 48082
+      },
+      "blocks": [
+        "text",
+        "tool_use"
+      ]
+    },
+    {
+      "turn": 3,
+      "stop_reason": "tool_use",
+      "usage": {
+        "input": 1310,
+        "output": 210,
+        "cache_creation": 5139,
+        "cache_read": 106705
+      },
+      "blocks": [
+        "tool_use"
+      ]
+    },
+    {
+      "turn": 4,
+      "stop_reason": "tool_use",
+      "usage": {
+        "input": 736,
+        "output": 107,
+        "cache_creation": 343,
+        "cache_read": 112333
+      },
+      "blocks": [
+        "text",
+        "tool_use"
+      ]
+    },
+    {
+      "turn": 5,
+      "stop_reason": "tool_use",
+      "usage": {
+        "input": 808,
+        "output": 444,
+        "cache_creation": 482,
+        "cache_read": 112882
+      },
+      "blocks": [
+        "tool_use"
+      ]
+    },
+    {
+      "turn": 6,
+      "stop_reason": "tool_use",
+      "usage": {
+        "input": 1390,
+        "output": 161,
+        "cache_creation": 274,
+        "cache_read": 113153
+      },
+      "blocks": [
+        "tool_use"
+      ]
+    },
+    {
+      "turn": 7,
+      "stop_reason": "tool_use",
+      "usage": {
+        "input": 441,
+        "output": 123,
+        "cache_creation": 1097,
+        "cache_read": 113519
+      },
+      "blocks": [
+        "text",
+        "tool_use"
+      ]
+    },
+    {
+      "turn": 8,
+      "stop_reason": "end_turn",
+      "usage": {
+        "input": 4537,
+        "output": 14882,
+        "cache_creation": 807,
+        "cache_read": 114171
+      },
+      "blocks": [
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text"
+      ]
+    }
+  ]
+}

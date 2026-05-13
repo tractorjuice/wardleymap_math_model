@@ -1,0 +1,144 @@
+{
+  "model": "claude-haiku-4-5-20251001",
+  "thinking": "off",
+  "replicate": 2,
+  "duration_sec": 143.93,
+  "last_stop": "end_turn",
+  "error": null,
+  "usage_totals": {
+    "input_tokens": 65359,
+    "output_tokens": 17340,
+    "cache_creation_input_tokens": 57042,
+    "cache_read_input_tokens": 530204
+  },
+  "agent_turns": 7,
+  "transcript": [
+    {
+      "turn": 0,
+      "stop_reason": "tool_use",
+      "usage": {
+        "input": 423,
+        "output": 5324,
+        "cache_creation": 47623,
+        "cache_read": 69051
+      },
+      "blocks": [
+        "text",
+        "server_tool_use",
+        "server_tool_use",
+        "server_tool_use",
+        "web_search_tool_result",
+        "web_search_tool_result",
+        "web_search_tool_result",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "tool_use"
+      ]
+    },
+    {
+      "turn": 1,
+      "stop_reason": "tool_use",
+      "usage": {
+        "input": 51468,
+        "output": 73,
+        "cache_creation": 0,
+        "cache_read": 34318
+      },
+      "blocks": [
+        "text",
+        "tool_use"
+      ]
+    },
+    {
+      "turn": 2,
+      "stop_reason": "tool_use",
+      "usage": {
+        "input": 667,
+        "output": 1573,
+        "cache_creation": 3425,
+        "cache_read": 82356
+      },
+      "blocks": [
+        "text",
+        "tool_use"
+      ]
+    },
+    {
+      "turn": 3,
+      "stop_reason": "tool_use",
+      "usage": {
+        "input": 2483,
+        "output": 1535,
+        "cache_creation": 3425,
+        "cache_read": 82356
+      },
+      "blocks": [
+        "tool_use"
+      ]
+    },
+    {
+      "turn": 4,
+      "stop_reason": "tool_use",
+      "usage": {
+        "input": 3552,
+        "output": 1535,
+        "cache_creation": 592,
+        "cache_read": 85851
+      },
+      "blocks": [
+        "tool_use"
+      ]
+    },
+    {
+      "turn": 5,
+      "stop_reason": "tool_use",
+      "usage": {
+        "input": 3425,
+        "output": 1606,
+        "cache_creation": 246,
+        "cache_read": 88013
+      },
+      "blocks": [
+        "tool_use"
+      ]
+    },
+    {
+      "turn": 6,
+      "stop_reason": "end_turn",
+      "usage": {
+        "input": 3341,
+        "output": 5694,
+        "cache_creation": 1731,
+        "cache_read": 88259
+      },
+      "blocks": [
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text"
+      ]
+    }
+  ]
+}
