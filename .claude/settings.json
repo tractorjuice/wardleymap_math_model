@@ -2,5 +2,13 @@
   "enabledPlugins": {
     "skill-creator@claude-plugins-official": true,
     "marketing@knowledge-work-plugins": true
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [{ "type": "command", "command": "node tools/tidy-hook.mjs" }]
+      }
+    ]
   }
 }

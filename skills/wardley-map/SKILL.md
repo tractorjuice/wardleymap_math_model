@@ -282,6 +282,8 @@ node "${CLAUDE_SKILL_DIR}/scripts/owm_to_mermaid.mjs" ./draft.owm
 
 Include the Mermaid block *after* the OWM block in your final output, wrapped in a ```` ```mermaid ```` fence. Both blocks describe the same map — the OWM is canonical, the Mermaid is a rendering target.
 
+> **Auto-tidy:** when a `.md` file containing a fenced `mermaid` `wardley-beta` block is written, the `tidy-hook` (`PostToolUse`, see `tools/tidy-hook.mjs`) rewrites that block's `label [x, y]` offsets so labels don't overlap. Only the Mermaid block is touched — the OWM block and prose are left exactly as written.
+
 The converter always double-quotes component/anchor/edge names. Mermaid 11.15 supports unquoted hyphenated names, but quoted `STRING` names remain the safest form for slashes, punctuation, reserved-keyword prefixes (e.g. a component called "labelling" can collide with the `label` keyword), and numeric labels.
 
 If the Mermaid render surfaces a parse error, it's almost always one of: a stray unquoted name in text you added manually (quote it), an edge whose endpoint was never declared as an anchor/component (declare it or drop the edge), or a pipeline declaration that doesn't map cleanly to Mermaid's block form (drop the pipeline and emit its children as regular components).
