@@ -74,15 +74,15 @@ All docs live under [`docs/`](docs/) organised by role.
 | [Part 2 — Evolution, Not Maturity](docs/core/part-2-evolution-not-maturity.md) | Refining the evolution axis interpretation |
 | [Part 3 — The Tea Shop Worked Example](docs/core/part-3-tea-shop-example.md) | Applying the model to a classic Wardley Map |
 | [Part 4 — Single-Component Evolution](docs/core/part-4-single-component-evolution.md) | Methods for computing evolution scores |
-| [Part 5 — Layer Visibility & Sigmoid Evolution](docs/core/part-5-layer-visibility-sigmoid.md) | Discrete dependency layers for visibility and a sigmoid logistic curve for evolution |
-| [Part 6 — Cheat-Sheet Evolution Scoring](docs/core/part-6-cheat-sheet-scoring.md) | Wardley's canonical 19-row cheat sheet with a formal scoring procedure that produces $\varepsilon(v)$ with uncertainty |
+| [Part 5 — Layer Visibility & Sigmoid Seeds](docs/core/part-5-layer-visibility-sigmoid.md) | Explicit layering rules, stable visibility seeds, and optional sigmoid scoring; adoption is separate |
+| [Part 6 — Cheat-Sheet Evolution Scoring](docs/core/part-6-cheat-sheet-scoring.md) | Wardley's cheat sheet with a proposed plotting score; row disagreement and evidence uncertainty are distinct |
 | [Mathematical Framework](docs/core/mathematical-framework.md) | Long encyclopedic reference (1200+ lines). Browse for specific techniques, don't read front-to-back |
 
 ### Extensions — additions to the Part-1 tuple (`docs/extensions/`)
 | Document | Description |
 |----------|-------------|
 | [Inertia](docs/extensions/inertia.md) | Wardley's 17 forms of inertia (14 consumer + 3 supplier) with a structured drag term $c_v(t) = \sum \lambda_i \iota_i$ replacing the single scalar |
-| [Multi-Wave Evolution](docs/extensions/multi-wave-evolution.md) | Replaces single-logistic dynamics with multiple diffusion curves per component (generations + chasms) |
+| [Multi-Wave Adoption & Evolution Assessment](docs/extensions/multi-wave-evolution.md) | Separate adoption dynamics, introduction events and composition summaries from assessed evolution |
 | [Component Types](docs/extensions/component-types.md) | Extends the tuple with $\tau: V \to \{A, P, D, K\}$ (Activities, Practices, Data, Knowledge) and type-dependent evolution rates |
 
 ### Catalogues — reference tables Wardley published (`docs/catalogues/`)
@@ -106,6 +106,17 @@ All docs live under [`docs/`](docs/) organised by role.
 |----------|-------------|
 | [Wardley Map Generator Prompt](prompts/wardley_map_generator.md) | AI prompt for generating Wardley Maps in OWM format compatible with [create.wardleymaps.ai](https://create.wardleymaps.ai) |
 | [`wardley-map` Claude Code skill](skills/wardley-map/) | Portable skill package — copy to `~/.claude/skills/` and invoke `/wardley-map <scenario>`. `SKILL.md` + `references/` (7 files: climatic-patterns, doctrine, evolution-stages, gameplay-patterns, inertia, mapping-examples, mathematical-models) |
+
+## Validation and Evaluation
+
+The core definitions are in Parts 1 and 6. Visibility projection uses explicit edge constraints; adoption trajectories are separate scenarios, and scoring-row agreement does not establish confidence.
+
+```bash
+node --test tools/validate-owm.test.mjs tools/tidy-hook.test.mjs
+PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tools -p 'test_compare_decisions.py'
+```
+
+The [Decision Evaluation Protocol](skills/wardley-map-workspace/DECISION-EVALUATION.md) defines reference action labels, repeated trials, and a new evaluation corpus. `python3 tools/compare_decisions.py decisions.json` grades labeled recommendation agreement without inferring actions from coordinates.
 
 ## Key Formulas
 

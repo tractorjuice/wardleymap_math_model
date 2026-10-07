@@ -2,7 +2,7 @@
 
 The earlier parts placed components on the evolution axis using a small bag of signals (ubiquity, certainty, publication mix) or a single logistic score. That is a **seed**, not the canonical placement. Simon Wardley's actual method is the **evolution cheat sheet** — a 19-row characteristic table where each row has a distinct descriptor for each of the four stages. You score a component row by row, and the cheat sheet tells you where it sits.
 
-Part 4's $(\mathrm{ubiq} + \mathrm{cert})/2$ formula uses 2 of the 19 rows. This part uses all of them, and gives a formal scoring procedure that produces $\varepsilon(v) \in [0,1]$ with an uncertainty estimate.
+Part 4's $(\mathrm{ubiq} + \mathrm{cert})/2$ formula uses 2 of the 19 rows. This part defines this repository's numerical aggregation convention over applicable characteristics, with a disagreement diagnostic. The cheat sheet is Wardley's; the arithmetic aggregation and probability representation are proposed extensions, not his canonical calculation.
 
 ---
 
@@ -42,6 +42,8 @@ Note on row 19: the "Heritage / culture" at Genesis and "Previous experience" at
 
 For each row $r$ in the cheat sheet, the mapper picks the stage $s_r(v) \in \{1, 2, 3, 4\}$ that best describes component $v$ in that dimension.
 
+If evidence genuinely straddles stages, record the alternatives and their rationale. An explicit midpoint interpolation may be used for plotting (e.g., III–IV gives 0.750), but it adds an assumption rather than resolving the uncertainty.
+
 Convert each stage to its band midpoint:
 
 $$m(s) = \frac{s - \tfrac{1}{2}}{4}$$
@@ -50,29 +52,35 @@ So stage I → 0.125, II → 0.375, III → 0.625, IV → 0.875 (the midpoints o
 
 ### 2.2 Aggregate to $\varepsilon(v)$
 
-Let $R$ be the set of rows you use (all 19, or a subset — see §3). The cheat-sheet evolution score is the (optionally weighted) mean of the per-row midpoints:
+Let $R$ be the nonempty set of applicable rows you use (see §3). The proposed evolution score is the (optionally weighted) mean of the per-row midpoints:
 
-$$\varepsilon(v) = \sum_{r \in R} w_r \cdot m(s_r(v)), \quad \text{with } \sum_{r \in R} w_r = 1$$
+$$\varepsilon(v) = \sum_{r \in R} w_r \cdot m(s_r(v)), \quad w_r\ge0,\quad \sum_{r \in R} w_r = 1$$
 
 The unweighted case $w_r = 1/|R|$ is the sensible default.
 
-### 2.3 Uncertainty from row disagreement
+Stages are ordinal. Equal band widths and averaging assume equal numerical spacing; they do not establish a measurable interval scale. Report the characteristic profile and stage interpretation alongside the plotting coordinate. With midpoint scores alone, the aggregate lies in $[0.125,0.875]$; placements outside that interval need a separately documented adjustment.
 
-If the 19 rows all point to the same stage, the mapper is confident. If they scatter across stages, the component is in transition — or the mapper is uncertain. Measure this with the variance of the per-row scores:
+### 2.3 Row disagreement and evidence uncertainty
 
-$$\mathrm{Var}(\varepsilon(v)) = \sum_{r \in R} w_r \cdot \bigl(m(s_r(v)) - \varepsilon(v)\bigr)^2$$
+Measure dispersion across the selected characteristics as:
 
-Feed $\varepsilon(v) \pm \sqrt{\mathrm{Var}(\varepsilon(v))}$ into Part 1 §6's Beta-distribution uncertainty representation. High variance → wide Beta prior → "we disagree on where it is" honestly plotted.
+$$H(v) = \sum_{r \in R} w_r \cdot \bigl(m(s_r(v)) - \varepsilon(v)\bigr)^2.$$
+
+$H$ describes row disagreement, not $\mathrm{Var}(\varepsilon)$ or estimator precision. High $H$ can indicate a mixed characteristic profile, a transition, or conflicting assessments. Low $H$ can reflect consistent but weak or duplicated evidence. Neither establishes confidence by itself.
+
+Record three distinct items: the characteristic profile and $H$; source provenance, applicability and missing evidence; and disagreement across independent mappers or repeated assessments. Rows sharing a source are correlated, so do not divide $H$ by the number of rows to manufacture a standard error. Missing rows remain missing; do not impute Commodity or zero uncertainty.
+
+Use stage alternatives or an explicitly elicited range when confidence is unmeasured. If using Part 1 §6's Beta approximation, justify its variance independently and check its moment bounds. Row agreement must not automatically yield a zero-width distribution.
 
 ---
 
 ## 3. Which rows to use
 
-All 19 rows is the canonical answer, but some rows are hard to score for a specific component. Common practical subsets:
+Consult the full sheet, but score only applicable, supported characteristics. Rows 1–4 describe alternative component types; select the relevant type vocabulary rather than counting all four as independent evidence. Common practical subsets:
 
 - **Quick-look (4 rows)**: Ubiquity, Certainty, User Perception, Publication Types. These four cover the forces Wardley emphasises most in prose and are usually the easiest to assess from external evidence.
 - **Activity-focused (7 rows)**: rows 5–11 (Ubiquity through User Perception). Drops the "Activities/Practices/Data/Knowledge" header rows which mostly restate stage labels, and drops the later rows about organisational decision-making that matter more for doctrine than placement.
-- **Full sheet (19 rows)**: use when you want the most defensible placement and have time for a workshop.
+- **Full-sheet assessment**: examine all 19 rows in a workshop; exclude inapplicable type rows and record missing evidence. More rows do not automatically produce more confidence.
 
 Whichever subset you pick, document it. A score computed against 4 rows and a score computed against 19 rows are not directly comparable.
 
@@ -96,11 +104,11 @@ Unweighted mean:
 
 $$\varepsilon(\text{K8s}) = \frac{0.875 + 0.625 + 0.750 + 0.625 + 0.625 + 0.625 + 0.625}{7} \approx 0.679$$
 
-Variance across the 7 rows:
+Disagreement across the 7 rows, using the unrounded mean $\bar m$:
 
-$$\mathrm{Var} = \tfrac{1}{7}\bigl[(0.875-0.679)^2 + 6(0.625-0.679)^2 + \ldots\bigr] \approx 0.008$$
+$$H = \tfrac{1}{7}\bigl[(0.875-\bar m)^2 + (0.750-\bar m)^2 + 5(0.625-\bar m)^2\bigr] \approx 0.008291.$$
 
-So $\varepsilon \approx 0.68 \pm 0.09$ — mid-Product, very slightly skewed toward Commodity, low disagreement across rows. The mapper would plot managed K8s at $x \approx 0.68$ with a narrow Beta prior, knowing the score rests on tight agreement.
+Thus the plotting seed is approximately 0.679 and the row standard deviation is approximately 0.091. This describes the characteristic spread; it is not a confidence interval or a justified narrow Beta prior. The example is an illustrative 2025 assessment, not a current market measurement; its source quality and mapper agreement would need separate assessment.
 
 ---
 
@@ -112,6 +120,6 @@ So $\varepsilon \approx 0.68 \pm 0.09$ — mid-Product, very slightly skewed tow
 
 3. **Not a forecast.** The cheat sheet tells you *where a component is now*, not where it is going. For movement, see Part 1 §5 (dynamics) — but remember the climatic pattern *"you cannot measure evolution over time or adoption."*
 
-4. **Disagreement is signal, not noise.** High variance across rows often means the component is mid-transition (e.g., ubiquity has jumped but certainty hasn't caught up). Don't collapse the uncertainty — plot it.
+4. **Disagreement is a diagnostic.** A mixed profile may indicate transition or conflicting evidence. Preserve that profile, and assess confidence separately.
 
 5. **The mapper still owns the result.** Cheat-sheet scoring is more disciplined than a gut call, but it's still a judgment. The table is a prompt to think across 19 dimensions, not a calculator that removes the mapper.

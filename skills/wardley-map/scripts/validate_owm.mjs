@@ -1,124 +1,127 @@
 #!/usr/bin/env node
 /**
- * Validate an OWM (Online Wardley Maps) block against structural rules.
- *
- * Usage:
- *   node validate_owm.mjs < map.owm
- *   node validate_owm.mjs map.owm
- *
- * Exit codes:
- *   0 — no violations
- *   1 — violations found (printed to stdout)
- *
- * Extract your OWM block from the draft (everything between ```owm and ```)
- * and pipe it to this script. If it exits non-zero, fix the reported
- * violations and re-run until clean.
+ * Validate the skill's OWM subset: named anchors/components with two coordinates
+ * [visibility, evolution], and depends-on edges. Other OWM directives are ignored.
+ * Malformed node declarations fail validation rather than disappearing.
+ * Usage: node validate_owm.mjs [map.owm] (otherwise reads stdin).
+ * Exit 0: no violations; exit 1: violations or unreadable input.
+ * Unreachable components are advisory warnings, not hard errors.
  */
 import { readFileSync } from 'node:fs';
+import { pathToFileURL } from 'node:url';
 import process from 'node:process';
 
-function parseOwm(text) {
-  const coords = new Map(); // name → [v, e]
-  const edges = [];         // [src, tgt]
+const NUMBER = '[+-]?(?:\\d+(?:\\.\\d*)?|\\.\\d+)(?:[eE][+-]?\\d+)?';
+const NODE = new RegExp(
+  `^(anchor|component)\\s+(.+?)\\s*\\[\\s*(${NUMBER})\\s*,\\s*(${NUMBER})\\s*\\](?:\\s+.*)?$`
+);
 
-  for (const rawLine of text.split('\n')) {
-    const line = rawLine.trim();
+function nameOf(text) {
+  const name = text.trim();
+  if ((name.startsWith('"') && name.endsWith('"')) ||
+      (name.startsWith("'") && name.endsWith("'"))) {
+    return name.slice(1, -1).trim();
+  }
+  return name;
+}
+
+export function validateOwm(text) {
+  // Accept a pasted Markdown draft, but validate only its canonical OWM block.
+  const fence = text.match(/```owm\s*\n([\s\S]*?)\n```/);
+  if (fence) text = fence[1];
+  const coords = new Map();
+  const anchors = new Set();
+  const edges = [];
+  const violations = [];
+  const warnings = [];
+
+  for (const [index, rawLine] of text.split('\n').entries()) {
+    const line = rawLine.replace(/\s+\/\/.*$/, '').trim();
     if (!line || line.startsWith('//') || line.startsWith('#')) continue;
 
-    // anchor or component line
-    const node = line.match(
-      /^(?:anchor|component)\s+(.+?)\s*\[\s*([0-9.]+)\s*,\s*([0-9.]+)\s*\](?:\s+.*)?$/
-    );
-    if (node) {
-      const name = node[1].trim();
-      const v = parseFloat(node[2]);
-      const e = parseFloat(node[3]);
-      if (!Number.isNaN(v) && !Number.isNaN(e)) {
-        coords.set(name, [v, e]);
+    if (/^(anchor|component)(?:\s|$)/.test(line)) {
+      const node = line.match(NODE);
+      if (!node || !nameOf(node[2])) {
+        violations.push(`MALFORMED NODE at line ${index + 1}: ${line}`);
+        continue;
+      }
+      const [, kind, rawName, visibility, evolution] = node;
+      const name = nameOf(rawName);
+      if (coords.has(name)) {
+        violations.push(`DUPLICATE NODE at line ${index + 1}: '${name}'`);
+        continue;
+      }
+      const v = Number(visibility);
+      const e = Number(evolution);
+      coords.set(name, [v, e]);
+      if (kind === 'anchor') anchors.add(name);
+      for (const [axis, value] of [['visibility', v], ['evolution', e]]) {
+        if (!Number.isFinite(value) || value < 0 || value > 1) {
+          violations.push(`COORD OUT OF RANGE: '${name}' ${axis}=${value} (must be finite and in [0,1])`);
+        }
       }
       continue;
     }
 
-    // dependency edge: "A->B" (but not "evolve X N")
-    if (line.includes('->') && !line.startsWith('evolve')) {
+    if (line.includes('->') && !/^evolve(?:\s|$)/.test(line)) {
       const edge = line.match(/^(.+?)->(.+)$/);
-      if (edge) edges.push([edge[1].trim(), edge[2].trim()]);
-    }
-  }
-  return { coords, edges };
-}
-
-function validate(coords, edges) {
-  const violations = [];
-
-  // 1. Coords in [0, 1]
-  for (const [name, [v, e]] of coords) {
-    if (!(v >= 0 && v <= 1)) {
-      violations.push(`COORD OUT OF RANGE: '${name}' visibility=${v} (must be in [0,1])`);
-    }
-    if (!(e >= 0 && e <= 1)) {
-      violations.push(`COORD OUT OF RANGE: '${name}' evolution=${e} (must be in [0,1])`);
-    }
-  }
-
-  // 2. Every edge endpoint should exist as a component/anchor
-  for (const [src, tgt] of edges) {
-    if (!coords.has(src)) {
-      violations.push(`UNKNOWN SOURCE: edge '${src}->${tgt}' — '${src}' not declared`);
-    }
-    if (!coords.has(tgt)) {
-      violations.push(`UNKNOWN TARGET: edge '${src}->${tgt}' — '${tgt}' not declared`);
-    }
-  }
-
-  // 3. Visibility constraint: for every edge a->b, ν(a) >= ν(b)
-  for (const [src, tgt] of edges) {
-    if (coords.has(src) && coords.has(tgt)) {
-      const vSrc = coords.get(src)[0];
-      const vTgt = coords.get(tgt)[0];
-      if (vSrc < vTgt) {
-        violations.push(
-          `VISIBILITY VIOLATION: ${src}(ν=${vSrc}) -> ${tgt}(ν=${vTgt})` +
-          ` — source must be at or above target`
-        );
+      if (!edge || !nameOf(edge[1]) || !nameOf(edge[2])) {
+        violations.push(`MALFORMED EDGE at line ${index + 1}: ${line}`);
+      } else {
+        edges.push([nameOf(edge[1]), nameOf(edge[2])]);
       }
     }
   }
-  return violations;
+
+  if (coords.size === 0) violations.push('EMPTY MAP: declare at least one anchor.');
+  if (anchors.size === 0) violations.push('MISSING ANCHOR: declare at least one user-need anchor.');
+
+  const dependencies = new Map();
+  for (const [src, tgt] of edges) {
+    if (!coords.has(src)) violations.push(`UNKNOWN SOURCE: edge '${src}->${tgt}' — '${src}' not declared`);
+    if (!coords.has(tgt)) violations.push(`UNKNOWN TARGET: edge '${src}->${tgt}' — '${tgt}' not declared`);
+    if (!coords.has(src) || !coords.has(tgt)) continue;
+    if (coords.get(src)[0] < coords.get(tgt)[0]) {
+      violations.push(`VISIBILITY VIOLATION: ${src}(ν=${coords.get(src)[0]}) -> ${tgt}(ν=${coords.get(tgt)[0]}) — source must be at or above target`);
+    }
+    if (!dependencies.has(src)) dependencies.set(src, []);
+    dependencies.get(src).push(tgt);
+  }
+
+  if (anchors.size > 0) {
+    const reached = new Set(anchors);
+    const queue = [...anchors];
+    for (let i = 0; i < queue.length; i++) {
+      for (const target of dependencies.get(queue[i]) || []) {
+        if (reached.has(target)) continue;
+        reached.add(target);
+        queue.push(target);
+      }
+    }
+    for (const name of coords.keys()) {
+      if (!reached.has(name)) warnings.push(`UNREACHABLE COMPONENT: '${name}' has no dependency path from any anchor; review its scope or missing edges.`);
+    }
+  }
+  return { coords, anchors, edges, violations, warnings };
 }
 
 function main() {
-  let text;
-  if (process.argv.length > 2) {
-    text = readFileSync(process.argv[2], 'utf8');
-  } else {
-    text = readFileSync(0, 'utf8'); // stdin
+  let result;
+  try {
+    result = validateOwm(readFileSync(process.argv[2] || 0, 'utf8'));
+  } catch (error) {
+    console.error(`FAIL: unable to read input: ${error.message}`);
+    process.exitCode = 1;
+    return;
   }
-
-  // Strip ```owm fences if the caller pasted them
-  const fence = text.match(/```owm\s*\n([\s\S]*?)\n```/);
-  if (fence) text = fence[1];
-
-  const { coords, edges } = parseOwm(text);
-  const violations = validate(coords, edges);
-
-  if (violations.length === 0) {
-    console.log(`OK: ${coords.size} components/anchors, ${edges.length} edges — no violations.`);
-    process.exit(0);
+  const { coords, edges, violations, warnings } = result;
+  console.log(`${violations.length ? 'FAIL' : 'OK'}: ${coords.size} components/anchors, ${edges.length} edges — ${violations.length} violation(s).`);
+  for (const violation of violations) console.log(`  - ${violation}`);
+  for (const warning of warnings) console.log(`  WARNING: ${warning}`);
+  if (violations.length) {
+    console.log('Fix the declarations or constraints and re-run; visibility adjustments can cascade.');
+    process.exitCode = 1;
   }
-
-  console.log(
-    `FAIL: ${violations.length} violation(s) found in map with ` +
-    `${coords.size} components/anchors and ${edges.length} edges.`
-  );
-  console.log();
-  for (const v of violations) console.log(`  - ${v}`);
-  console.log();
-  console.log('Fix each violation and re-run. For visibility violations, either:');
-  console.log('  (a) raise the source\'s visibility to be >= target\'s, or');
-  console.log('  (b) lower the target\'s visibility to be <= source\'s.');
-  console.log('After fixing, re-run this script because adjustments can cascade.');
-  process.exit(1);
 }
 
-main();
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) main();

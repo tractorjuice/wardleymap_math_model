@@ -56,7 +56,12 @@ node skills/wardley-map/scripts/check_layout.mjs [--strict] path/to/map.owm
 node skills/wardley-map/scripts/owm_to_mermaid.mjs path/to/map.owm > out.mermaid
 
 # Tests for the tidy hook (pass the file; `node --test tools/` fails on Node 23)
-node --test tools/tidy-hook.test.mjs
+node --test tools/tidy-hook.test.mjs tools/validate-owm.test.mjs
+
+# Decision grader tests (stdlib; no writes to committed benchmark summaries)
+PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tools -p 'test_compare_decisions.py'
+python3 tools/compare_decisions.py decisions.json
+
 node --test --test-name-pattern='non-wardley' tools/tidy-hook.test.mjs   # single test
 
 # Benchmark a competitor skill against the 25 Wardley reference maps (run from competitor-compare/)
@@ -103,6 +108,14 @@ python3 compare_competitor.py prompt-baseline --output-subdir with_prompt-mathmo
 - In a benchmark run, a subagent gets only a scenario prompt and must **not** read `wardley-reference.owm` (the blind contract in `BENCHMARK-METHODOLOGY.md` §2a).
 - **Paths:** the scripts resolve paths from `Path(__file__)`, so they run from any checkout and any working directory. The repo was originally developed in a Codespace at `/workspaces/wardleymap_math_model/`, and that path still appears in historical run outputs. Don't reintroduce it in scripts or symlinks.
 - **Comparators overwrite committed results.** `compare_all_25.py` writes `benchmark-25-summary.json` and `compare_competitor.py` writes `competitor-compare/<name>/competitor-summary-<name>.json`. Some committed summaries predate the A5 grader fixes in `compare.py`, so a re-run changes them. Check `git diff` afterwards and only commit the regenerated numbers on purpose.
+
+## Model and evaluation authority
+
+Parts 1 and 6 define the current formal model and proposed scoring convention. Visibility projection must include bounds, anchor values and explicit edge inequalities; edge penalties alone are insufficient. With zero separation cycles force equal visibility; positive separation makes them infeasible. Row disagreement `H` is distinct from evidence confidence and is not estimator variance. Keep adoption trajectories and composition index `C` separate from evolution coordinates.
+
+The validator rejects malformed declarations, duplicate names, empty maps and missing anchors as well as coordinate/edge errors. It supports the skill's named, two-coordinate OWM subset; unreachable nodes produce advisory warnings.
+
+Coordinate tolerances do not establish unchanged recommendations. Follow `skills/wardley-map-workspace/DECISION-EVALUATION.md` for explicit reference action labels, repeated trials and a fresh evaluation corpus after tuning. Historical summaries have not been regenerated under the revised validator.
 
 ## Key mathematical concepts
 

@@ -105,9 +105,9 @@ Then override where judgment disagrees:
 
 Alternative seeds (use when the default doesn't fit):
 - **Reciprocal decay** `ν(v) = 1 / (1 + d(v))` — gentler; caps deep components at ~0.2. Use for shallow maps where you don't want deep values.
-- **Constraint optimisation** — solve for a full layout that respects every edge constraint, useful when distances violate the hard rule due to shortcuts.
+- **Constraint optimisation** — project estimates by minimizing `Σ w_v (ν(v) − ν_hat(v))²`, with positive weights, coordinate bounds, anchors fixed at 1, and explicit `ν(a) ≥ ν(b)` constraints. Cycles require equal visibility; strict positive gaps are infeasible around cycles. See `references/mathematical-models.md`; no numerical solver is bundled. Review unreachable nodes before using a distance seed.
 
-**Hard rule:** for every edge `(a, b) ∈ E`, require `ν(a) ≥ ν(b)`. Enforced by the validator in Step 5.5.
+**Hard rule:** for every edge `(a, b) ∈ E`, require `ν(a) ≥ ν(b)`. Enforced by the validator in Step 5.5. Emit unique node names, at least one explicit user-need anchor, and two finite coordinates per declaration. Review unreachable-component warnings for missing dependencies or scope; the validator checks this subset, not all OWM syntax.
 
 ### Step 4 — Evolution ε (X-axis)
 
@@ -115,7 +115,7 @@ Alternative seeds (use when the default doesn't fit):
 
 **4a. Concrete indicator checklists (fast path).** Read the "Stage indicators — concrete checklists" section of `references/evolution-stages.md`. For each component, check the four indicators (ubiquity / certainty / market / failure-mode) against the four stages. If all four dimensions point to the same stage, record that stage pick and use its band midpoint — skip the 4-row cheat sheet for this component.
 
-**4b. 4-row cheat sheet (fallback when checklists disagree).** When the indicator checklists pick different stages for a component, run the 4-row cheat-sheet subset (full 19-row table in `cheat-sheet.md`):
+**4b. 4-row cheat sheet (fallback when checklists disagree).** When the indicator checklists pick different stages for a component, run the 4-row cheat-sheet subset (full characteristic table in `references/evolution-stages.md`):
 
 | Row | Stage I (Genesis) | Stage II (Custom Built) | Stage III (Product +rental) | Stage IV (Commodity +utility) |
 |---|---|---|---|---|
@@ -129,7 +129,7 @@ Map stage picks to band midpoints:
 
 `ε(v) = mean of the four row picks`.
 
-Flag components where rows disagree strongly as "in transition" and report the range.
+Record row disagreement as `H = mean((row midpoint − ε)²)`. A mixed profile may reflect transition or conflicting assessments. Record sources, market/date, applicable type, missing evidence and evidence confidence separately; low H does not imply high confidence. The midpoint average is a plotting convention, not a calibrated measurement.
 
 **Record evidence as you score.** For each component, capture a one-line evidence citation — the observable signal that justifies the stage (vendor count, publication style, standards activity, recent regulation, market shakeout, etc.). Example: `AI Diagnostic Assistant — Stage II → "several startups (Aidoc, Viz.ai), FDA clearances trickling, no dominant vendor, clinician-led pilots dominate the literature"`. This becomes the rationale column in the output table (§3.2) and is the difference between a defensible map and an opinion.
 
@@ -139,7 +139,7 @@ After the initial cheat-sheet pass, **do not research every component** — that
 
 **A component should be flagged for deep placement when any of:**
 
-1. **Cheat-sheet rows disagree.** If `Var(ε) > 0.03` across the 4 (or 19) rows you scored, the rows are pointing at different stages — usually a sign of in-transition or of the mapper's priors being shaky.
+1. **Cheat-sheet rows disagree.** If row disagreement `H > 0.03` across the applicable rows you scored, the rows are pointing at different stages — usually a sign of in-transition or of the mapper's priors being shaky.
 2. **Strategically critical.** Top 3 by D (differentiation pressure), top 3 by K (commodity leverage), top 3 by R (dependency risk), or any component with an `evolve` target. Your whole strategy hinges on these placements being right.
 3. **Specialised or recent domain.** Components in regulated industries (health, finance, defence), in markets that formed in the last 2-3 years, or in geographies the model's priors may not cover well.
 4. **User disputes the placement.** If the user's scenario hints at a different stage than the cheat sheet suggests, research before overriding.
@@ -155,7 +155,7 @@ After the initial cheat-sheet pass, **do not research every component** — that
 
 - If evidence confirms the cheat-sheet placement: note "deep placement confirms Stage X for [component]" — move on.
 - If evidence contradicts: update `ε(v)`. In your strategic analysis, explicitly note what you found and how it shifted the placement (e.g., "initial cheat-sheet score put this at 0.55; vendor-landscape search showed 40+ active vendors and recent CNCF incubation, moving it to 0.72").
-- If evidence is sparse or conflicting: widen the uncertainty range on that component. Plot as a range, not a point.
+- If evidence is sparse or conflicting: report stage alternatives or an explicitly elicited range, label confidence as unmeasured, and preserve the evidence gaps. Do not infer a confidence interval or a Beta variance from row disagreement.
 
 **Budget:** 3-5 deep placements per map is typical. Don't research every single component — that's both expensive and noise. The map's credibility depends on the key placements being defensible; obvious commodities can stay obvious.
 
@@ -189,7 +189,7 @@ Mental edge-walking fails on maps with more than ~20 edges. Past evals show that
 
    (The `CLAUDE_SKILL_DIR` variable resolves to this skill's root directory. If it isn't set, use the absolute path to the skill's `scripts/validate_owm.mjs`. Node.js is guaranteed available in every Claude Code install.)
 
-3. If the validator exits 0, you're done — include the "OK: N components, M edges — no violations" line in your output section g.
+3. If the validator exits 0, review any unreachable-component warnings for missing edges or scope and include its actual OK summary in output section g. Report unresolved advisory warnings rather than silently hiding them.
 
 4. If it reports violations, fix them (either raise source `ν` or lower target `ν` per the validator's suggestion). **Rerun the validator after every fix** — adjustments cascade and can break neighbouring edges.
 
@@ -197,10 +197,13 @@ Mental edge-walking fails on maps with more than ~20 edges. Past evals show that
 
 **Do not submit a map that hasn't been validated.** The validator is fast (< 1 second); running it is not optional. Claiming "I audited all edges" without having run the script has, in past evals, left real violations in the output.
 
-**What the validator checks:**
-- Every component/anchor has coordinates in `[0, 1]`.
+**What the validator checks (named, two-coordinate OWM subset):**
+- Node declarations are well formed and have unique names.
+- The map is nonempty and declares at least one user-need anchor.
+- Every component/anchor has finite coordinates in `[0, 1]`.
 - Every edge endpoint exists as a declared component/anchor (catches typos).
 - For every edge `a->b`, `ν(a) ≥ ν(b)` (the hard rule).
+- Components unreachable from all anchors are flagged for review as advisory warnings.
 
 **2. Canonical stage naming in prose.** When you write strategic analysis text and the words "Product" or "Commodity" appear, they should be "Product (+rental)" and "Commodity (+utility)". Scan your analysis before submitting. The bare forms lose the meaning of the stages (Stage III isn't only products — it's products and the rental/licensing business models that share its characteristics; Stage IV covers commodities and utility services).
 

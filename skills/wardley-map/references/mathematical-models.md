@@ -35,7 +35,7 @@ Three seed options:
 |---|---|---|
 | **Exponential decay (default)** | $\nu(v) = e^{-\alpha d(v)}$ with $\alpha = 0.6$ | Default — lets deep infrastructure reach $\nu < 0.1$, matching Wardley's own maps. Seeds: d=1→0.55, d=2→0.30, d=3→0.17, d=4→0.09, d=5→0.05. |
 | Reciprocal decay | $\nu(v) = 1/(1 + d(v))$ | Alternative — gentler; caps at $\nu \approx 0.2$ for d=4. Use for shallow maps. |
-| Constraint optimisation | Solve $\min \sum_{(a,b)} (\nu(a) - \nu(b) - \delta)^2$ subject to $0 \le \nu \le 1$ | Graphs with shortcuts that violate the depth rule. |
+| Constraint optimisation | Project estimates: $\min \sum_v w_v(\nu(v)-\hat\nu(v))^2$, $w_v>0$, subject to bounds, anchors at 1 and $\nu(a)\ge\nu(b)+\delta$ on every edge | Shortcuts; check feasibility first. Default $\delta=0$. |
 
 Default changed from reciprocal to exponential ($\alpha = 0.6$) in response to benchmark testing against Wardley's own published maps (`ai/TRUST`, `retail/connected journey`, etc.). Reciprocal decay systematically compressed deep-infrastructure components to $\nu \ge 0.2$, whereas Wardley routinely places components at $\nu = 0.04 \text{ to } 0.10$. Exponential decay produces the correct depth spread at minimal cost.
 
@@ -45,7 +45,7 @@ For every edge `(a, b) ∈ E`:
 
 $$\nu(a) \ge \nu(b)$$
 
-Components must sit above their dependencies. If the seed violates this, move to constraint optimisation or adjust by hand.
+Components must sit at or above their dependencies. If the seed violates this, use the constrained projection or adjust by hand. With $\delta=0$, cycles force equal visibility; positive separation makes cycles infeasible. A path of $L$ edges requires $L\delta\le1$. Report unreachable nodes for scope/dependency review; a zero-valued seed for an unreachable node is not evidence of invisibility. The repository specifies the projection but supplies no numerical solver.
 
 ### Override
 
@@ -72,7 +72,7 @@ The parenthesised suffixes matter: Stage III covers *products AND rental/licensi
 
 ### Scoring
 
-**Canonical method: the cheat sheet** (see `evolution-stages.md`). For each of 19 rows, pick the stage (1–4) that best describes the component. Convert via band midpoints:
+**Placement reference: Wardley's cheat sheet** (see `evolution-stages.md`). Select supported, applicable characteristics; rows 1–4 are alternative type vocabularies, not four independent observations. This repository proposes a numerical seed using band midpoints:
 
 $$m(s) = \frac{s - \tfrac{1}{2}}{4}$$
 
@@ -83,17 +83,19 @@ $$m(s) = \frac{s - \tfrac{1}{2}}{4}$$
 
 Aggregate:
 
-$$\varepsilon(v) = \sum_{r \in R} w_r \cdot m(s_r(v)), \quad \sum_r w_r = 1$$
+$$\varepsilon(v) = \sum_{r \in R} w_r \cdot m(s_r(v)), \quad w_r\ge0,\quad \sum_r w_r = 1$$
 
-Default: unweighted mean over all 19 rows (or a quick 4-row subset).
+Default: unweighted mean over the chosen applicable rows (often a quick 4-row subset). Record excluded/missing rows, sources, market and date. Equal spacing is an ordinal plotting convention, not a validated interval scale; midpoint-only means lie in [0.125,0.875].
 
 ### Uncertainty
 
-Variance across rows = uncertainty:
+Row disagreement is a separate diagnostic:
 
-$$\mathrm{Var}(\varepsilon) = \sum_r w_r \cdot (m(s_r) - \varepsilon)^2$$
+$$H(v) = \sum_r w_r \cdot (m(s_r) - \varepsilon)^2.$$
 
-High variance means the component is in transition (e.g., ubiquity has jumped but certainty hasn't caught up). Plot as a Beta-distributed region, not a point.
+It can indicate a mixed profile or conflicting assessments, not estimator variance. Record evidence quality, source dependence, missing observations and independent mapper disagreement separately. Agreement across weak or correlated rows does not imply confidence. Elicit stage alternatives or ranges if confidence is unmeasured.
+
+A Beta approximation needs independently justified mean $\mu\in(0,1)$ and variance $0<s^2<\mu(1-\mu)$. Set $\kappa=\mu(1-\mu)/s^2-1$, $\alpha=\mu\kappa$, $\beta=(1-\mu)\kappa$. Zero variance has no finite Beta parameters; endpoints need a different representation. Label elicited distributions and use their quantiles, not an assumed confidence interval from row spread.
 
 ---
 
@@ -105,25 +107,27 @@ High variance means the component is in transition (e.g., ubiquity has jumped bu
 
 $$\frac{d\varepsilon_v}{dt} = r_v(t) \cdot \varepsilon_v(t) \cdot (1 - \varepsilon_v(t))$$
 
-Slow at extremes, fast in the middle. Produces the canonical S-shape.
+For constant positive rate and an interior initial value, this produces a logistic S-shape. Time-varying rates need not have that calendar-time shape. This scenario equation does not measure adoption or calibrate an evolution forecast.
 
 ### Strategy decomposition
 
-$$r_v(t) = r_{0,v} + u_v(t) - c_v(t)$$
+$$r_v(t) = \max(0,r_{0,v} + u_v(t) - c_v(t))$$
 
 - `r₀`: baseline market pressure
 - `u(t)`: strategic actions (named gameplays — see `gameplay-patterns.md`)
 - `c(t)`: inertia (17 structured forms — see `inertia.md`)
 
-Clamp `r_v(t) ≥ 0` — evolution is monotonic-forward per the climatic patterns.
+Nonnegative rates impose monotonic drift as a scenario assumption. Rate terms use inverse-time units. Logistic trajectories at exactly 0 or 1 remain there; specify interior initial values for growth scenarios.
 
-### Multi-wave evolution
+### Multiple adoption waves
 
-A component often has multiple generations (e.g., compute: mainframe → minicomputer → PC → server → VM → cloud). Each has its own S-curve. Aggregate evolution:
+Keep adoption $A_g(t)$ separate from independently assessed generation scores $\varepsilon_g(t)$. Adoption can follow logistic diffusion, with a positive seed $A_g(t_g^{\mathrm{start}})=a_{0,g}\in(0,1)$ at introduction; a start-time indicator cannot make a zero-initialized trajectory grow.
 
-$$\varepsilon(v, t) = \frac{\sum_g A_g(t) \cdot \varepsilon_g}{\sum_g A_g(t)}$$
+A descriptive composition index is
 
-where $A_g(t)$ is the adoption fraction of generation $g$ and $\varepsilon_g$ is the stage it tops out at. Chasms appear between generations — periods where the old gen is saturating but the new gen hasn't taken off.
+$$C(v,t)=\frac{\sum_g A_g(t)\varepsilon_g(t)}{\sum_g A_g(t)},\qquad \sum_g A_g(t)>0.$$
+
+$C$ summarizes adopted implementations, not the underlying act's evolution placement. Specify whether penetrations overlap; these dynamics do not conserve exclusive market shares. If no generation is adopted, $C$ is undefined. With one generation, adoption cancels and $C=\varepsilon_g$; this does not recover Part 1's evolution logistic. Assess evolution and competitive phases from market evidence, not adoption quartiles.
 
 ---
 
@@ -135,9 +139,11 @@ where $A_g(t)$ is the adoption fraction of generation $g$ and $\varepsilon_g$ is
 |---|---|---|
 | Differentiation pressure | $D(v) = \nu(v) \cdot (1 - \varepsilon(v))$ | Visible + immature = advantage zone |
 | Commodity leverage | $K(v) = (1 - \nu(v)) \cdot \varepsilon(v)$ | Deep + mature = outsource / utility |
-| Dependency risk | $R(a,b) = \nu(a) \cdot (1 - \varepsilon(b))$ | Visible component on fragile foundation |
+| Dependency exposure prompt | $R(a,b) = \nu(a) \cdot (1 - \varepsilon(b))$ | Visible component relying on a less-evolved dependency |
 
 ---
+
+Actual risk requires failure likelihood, impact, substitutes and recovery evidence; lower evolution alone is not fragility. Build/buy/utility decisions also require costs and capabilities. Test ranking sensitivity to coordinate conventions before acting on D, K or R.
 
 ## 6. Inertia as structured drag
 
@@ -155,11 +161,11 @@ One of Wardley's climatic patterns: **practices co-evolve with activities**. For
 
 $$\forall p \text{ with } \tau(p) = P : \exists\, a \text{ with } \tau(a) = A, \, (a, p) \in E, \, \mathrm{corr}(\varepsilon_a(t), \varepsilon_p(t)) > 0$$
 
-Type-dependent evolution rates (typical ordering):
+Type-dependent evolution rates (unvalidated scenario hypothesis):
 
 $$r_A > r_P > r_D > r_K$$
 
-Activities evolve fastest (direct customer demand). Knowledge slowest (careers-timescale acceptance cycles).
+This ordering is a scenario assumption requiring domain evidence, not a canonical rule or a measured rate hierarchy. The correlation expression also needs observed time series; it is undefined for constant trajectories and does not establish causation.
 
 ---
 

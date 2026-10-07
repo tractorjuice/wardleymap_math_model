@@ -19,7 +19,7 @@ This document describes how the benchmark actually works — end-to-end — in e
 3. **Placement closeness** — continuous `|Δε|` distribution regardless of band
 4. **Directional bias** — mean signed Δε and Δν (are we systematically higher/lower than Wardley?)
 
-Each measures something different. None is "the" agreement number.
+Each measures something different. None is "the" agreement number. These are placement comparisons, not measurements of recommendation agreement. The [Decision Evaluation Protocol](DECISION-EVALUATION.md) specifies explicit action labels, independent judgments, a fresh evaluation corpus and repeated trials, with a separate grader.
 
 ---
 
@@ -107,11 +107,12 @@ This is the skill's 7-step procedure, briefly:
 
 `skills/wardley-map/scripts/validate_owm.mjs` is a Node (ESM) script that parses an OWM block and checks three invariants:
 
-- Every component and anchor has coordinates in [0, 1]
+- Node declarations have valid finite numeric coordinates in [0, 1]; malformed declarations and duplicate names fail instead of being silently dropped
+- At least one node and a user-need anchor are declared
 - Every edge endpoint is declared as a component or anchor (no typos)
 - For every edge `(a, b)`, `ν(a) ≥ ν(b)` (the visibility hard rule)
 
-Exit-code 0 if clean, 1 otherwise with human-readable violation list. The skill instructs the subagent to iterate until clean. Across the 25-map benchmark, initial drafts had 1-13 violations; all fixed in 1-4 iterations.
+The validator supports the skill's named, two-coordinate OWM subset; it is not a complete OWM grammar checker. Components unreachable from all anchors produce advisory warnings. Exit-code 0 if there are no hard violations, 1 otherwise with a human-readable violation list. The skill instructs the subagent to iterate until clean. Across the 25-map benchmark, initial drafts had 1-13 violations; all fixed in 1-4 iterations.
 
 ### 2(e) Comparison
 
@@ -172,8 +173,8 @@ Across all matched pairs across all benchmarks (the pooled set — 358 pairs for
 The useful thresholds have interpretations:
 
 - **0.05** — fine-grained precision match
-- **0.10** — within scoring-method noise (see §4)
-- **0.20** — within strategic tolerance (build/buy/utility call doesn't change)
+- **0.10** — chosen coordinate tolerance; scoring sensitivity is discussed in §4
+- **0.20** — chosen wider coordinate tolerance; does not guarantee the same recommendation
 - **0.25** — within one band-width
 
 ### 3.5 Directional bias
@@ -195,27 +196,13 @@ Richer statuses (`infra_error`, `validator_unconverged`) would need runtime inst
 
 ---
 
-## 4. The noise floor of cheat-sheet scoring
+## 4. Scoring resolution is not a measured noise floor
 
-This matters for interpreting the metrics but isn't usually explicit.
+In the four-row midpoint convention, changing one row by one stage shifts the mean by 0.0625. Changing two rows by one stage shifts it by 0.125. These describe sensitivity to a chosen representation, not the probability of rescoring errors or a measured repeatability limit. Identical judgments can reproduce exactly; a small coordinate difference may still matter near a boundary.
 
-The 4-row cheat-sheet method produces ε as the average of 4 row picks, each of which can be 1/2/3/4 (mapped to band midpoints 0.125 / 0.375 / 0.625 / 0.875).
+Report the chosen 0.10 and 0.20 tolerances as descriptive thresholds, alongside stage transitions and continuous errors. Neither proves unchanged build/buy/utility advice. The 19-row calculation has a nominal single-row increment of 0.25/19 only if all 19 rows are used, but applicable type rows and missing evidence change the denominator. More correlated rows do not automatically yield more confidence.
 
-Sensitivity of the mean:
-
-- **One row changing by one stage** (e.g., picking Stage III instead of Stage II for one row): shifts the mean by `(0.625 - 0.375) / 4 = 0.0625`.
-- **Two rows changing by one stage each**: shifts by `~0.125`.
-- **One row changing by two stages** (rare): shifts by `0.125`.
-
-A `|Δε|` of ~0.10 corresponds to **one row's worth of disagreement** on the 4-row method. That's the level of disagreement you'd get if the same mapper scored the same component twice on different days, or if two careful mappers read the evidence slightly differently on one of the four dimensions.
-
-Implications:
-
-- **|Δε| ≤ 0.10 is effectively noise.** Treating it as meaningful agreement or disagreement is over-reading the data.
-- **|Δε| ≈ 0.15-0.25 is genuine but small** — within one band-width and within two rows' worth of disagreement.
-- **|Δε| > 0.25 is large** — beyond band-width, beyond noise, and typically beyond strategic tolerance.
-
-The full 19-row method (used when the scenario warrants depth) has finer resolution: one row's shift is ~0.013. But most runs use the 4-row subset, so noise floor ~0.10 is the working assumption.
+Measure repeatability from independent trials and mapper assessments. The audit contains a two-map multi-trial pilot; that pilot does not establish a universal noise floor. Follow [DECISION-EVALUATION.md](DECISION-EVALUATION.md) for explicit recommendation scoring and replication across a fresh corpus.
 
 ---
 
@@ -224,7 +211,7 @@ The full 19-row method (used when the scenario warrants depth) has finer resolut
 Knowing what's out of scope is as important as knowing what's in scope.
 
 1. **Strategic quality.** The maps produce prose analyses with named gameplays and doctrine references. The benchmark does not compare these to Wardley's own analyses. A map can score well on placement and still give bad strategic advice, or vice versa.
-2. **Dependency structure.** The benchmark compares component placements but not which edges exist between them. Two maps can have identical ν/ε placements for every component and entirely different dependency graphs.
+2. **Dependency structure in these placement metrics.** The later audit adds a separate graph grader; coordinate agreement itself does not assess edges. Two maps can have identical placements and different dependency graphs. Report graph metrics separately.
 3. **Deep placement quality.** The skill's WebSearch-driven placement adjustments are not evaluated. We know they happen (self-reported by subagents); we don't know if each individual adjustment was correct.
 4. **Narrative coherence.** The strategic-analysis sections read well or badly. No metric captures this.
 5. **Real-world usefulness.** Nothing here tests whether the maps actually drive good decisions. This would require user studies.
@@ -237,8 +224,8 @@ Knowing what's out of scope is as important as knowing what's in scope.
 2. **Fuzzy matching biases.** False positives inflate disagreement (matched components that aren't really equivalent show large placement deltas). False negatives understate coverage.
 3. **Time-pinning is imperfect.** Subagents have 2026 priors and can't fully suppress them even when instructed to pin to 2022-2023. This shows up as ε-drift on dated scenarios.
 4. **Scenario-derivation variance.** The scenario prompt is written by a human; different prompts produce different maps. The benchmark could be more rigorous by using multiple prompt variants per reference map.
-5. **Small n.** 25 maps in 18 domains. Aggregate metrics have ±3-5pp noise. Per-benchmark numbers are much noisier.
-6. **No replication.** Each benchmark is run once. The skill uses deep placement which involves stochastic LLM choices; a second run would produce a somewhat different map. We do not estimate run-to-run variance.
+5. **Small n.** 25 maps in 18 domains. Report sample sizes; uncertainty requires a grouped analysis accounting for maps and repeated trials. Do not assume an unmeasured ±3–5pp interval.
+6. **Limited replication.** The initial report used one run per case. The later audit adds a two-map multi-trial pilot; full-corpus repeatability remains unmeasured. Extend trials under the decision evaluation protocol. Maps used for seed or procedure tuning are development data and cannot also establish an untouched final evaluation.
 7. **Chance baselines are rough.** The "random placement" baselines cited in the report use the observed ε distribution but don't account for correlated placements (e.g., infrastructure always commodity). True chance baselines would need Monte Carlo simulation.
 
 ---
@@ -347,6 +334,6 @@ Looking at the report and not believing the headline? Here's what to check:
 - **Are the fuzzy matches actually equivalent?** Open any `output.md` alongside its `wardley-reference.owm` and scan the `MATCHES` list in the comparison output. If many are loose, the placement metrics are unreliable.
 - **Did the subagent peek at the reference?** Read the subagent's completion summary; it usually reports which files it read. A peek would inflate agreement dramatically.
 - **Is the scenario prompt fair?** A prompt that implicitly nudges the skill toward Wardley's framing (e.g., mentioning "constitution" for AI trust) would inflate coverage. The prompts in this benchmark were written blind — check them.
-- **Is `|Δε|` the right unit?** Wardley doesn't publish uncertainties on his placements. If you think `|Δε| = 0.15` is large, then strict agreement is what matters. If you think it's within noise, then strategic tolerance (`≤ 0.20`) is what matters. The report reports both.
+- **Is the threshold appropriate?** Coordinate tolerances and stage agreement answer different questions. State the threshold, inspect near-boundary cases and estimate repeatability from grouped trials. Recommendation agreement requires explicit action labels; it cannot be inferred from `|Δε|`.
 
 The benchmark is designed to be inspectable all the way down. The comparison script is 200 lines of Python with no ML; the metrics are arithmetic on parsed coordinates; the outputs are plain text. Any conclusion should be verifiable from the artefacts without taking the numbers on trust.

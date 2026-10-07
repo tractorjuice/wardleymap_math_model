@@ -176,7 +176,7 @@ def main():
 
     # Stats block
     stats = [
-        ("61%", "within strategic tolerance"),
+        ("61%", "within coordinate tolerance"),
         ("92%", "in Wardley's band or adjacent"),
         ("37%", "strict same-band match"),
         ("25/25", "validator-clean on ship"),

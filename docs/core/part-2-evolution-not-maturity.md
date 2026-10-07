@@ -1,5 +1,7 @@
 # Revised Wardley Map Model: "Map Evolution, Not Maturity"
 
+> **Historical seed formulation.** Parts [1](part-1-core-model.md) and [6](part-6-cheat-sheet-scoring.md) define the current model. The two-factor average below is an illustrative seed, not Wardley's canonical calculation. Maximum-distance normalization is unstable across scope changes and undefined for an anchor-only graph; use Part 5's explicit layering rules or Part 1's constrained projection. Shortest distances alone do not enforce every edge constraint.
+
 Below is an **updated** mathematical model that reflects the insight from
 ["Map Evolution, Not Maturity"](https://medium.com/mappingpractice/map-evolution-not-maturity-bae6ea1a2743).
 In other words, **Evolution** isn't merely "age" or "time in market," but rather how **competition** (supply & demand) drives a component from a novel idea to a widely available commodity.

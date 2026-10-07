@@ -2,11 +2,13 @@
 
 **Dates:** initial 25-map report 2026-04-18; v2 addendum 2026-04-19
 **Skill version under test:** v1 — exponential-seed default (α=0.6), validator script, density guidance, deep placement, stage-first prose. The report body below reflects v1. **§9 documents the v2 update** (concrete stage-indicator checklists) and its 6-map re-validation; the live skill on `main` is v2.
-**Test corpus:** 25 maps held out from [swardley/WARDLEY-MAP-REPOSITORY](https://github.com/swardley/WARDLEY-MAP-REPOSITORY) (Simon Wardley's own published maps), spanning 18 distinct domains
+**Test corpus:** 25 reference maps sampled from [swardley/WARDLEY-MAP-REPOSITORY](https://github.com/swardley/WARDLEY-MAP-REPOSITORY) (Simon Wardley's own published maps), spanning 18 distinct domains
 **Test mode:** blind — subagents could not access the reference `.owm` files
 **Companion:** `BENCHMARK-METHODOLOGY.md` describes the test harness in detail
 
 ---
+
+> **Interpretation correction.** Coordinate tolerances below are descriptive placement thresholds, not measured decision agreement or a universal noise floor. The 25-map corpus has also informed seed/procedure changes, so it is development/regression data for subsequent versions. Historical numeric results are retained; they have not been regenerated under the revised validator. See [DECISION-EVALUATION.md](DECISION-EVALUATION.md) for independent recommendation labels, repeated trials and a fresh evaluation protocol.
 
 ## Contents
 
@@ -30,8 +32,8 @@
 
 Across 25 blind benchmarks, 358 matched component pairs:
 
-- **61% of matched components land within strategic tolerance** of Wardley's placement (`|Δε| ≤ 0.20` — close enough that the build / buy / utility call doesn't change)
-- **28% are near-identical** (`|Δε| ≤ 0.10` — within the cheat-sheet method's inherent scoring noise)
+- **61% of matched components land within the chosen coordinate tolerance** of Wardley's placement (`|Δε| ≤ 0.20`); recommendation agreement was not measured
+- **28% are within the narrower coordinate tolerance** (`|Δε| ≤ 0.10`); this threshold is not an empirically measured noise floor
 - **92% are in Wardley's band or an adjacent one** (stage-neighbourhood agreement)
 - **37% are in exactly the same stage band** (strict band match)
 - **25% are genuine disagreements** (`|Δε| > 0.25`), some fraction of which is time drift (see §4.3) not skill error
@@ -40,7 +42,7 @@ Across 25 blind benchmarks, 358 matched component pairs:
 - **ν-bias: +0.079** (down from +0.22 before the exponential seed)
 - **Structural validity: 25/25** maps passed the validator
 
-**The right interpretation.** The skill is a *coarse-map generator*, not a *precision-map generator*. For strategic framing — "is this a differentiator or a commodity? where to build vs buy?" — the skill reaches the same answer as Wardley about 60% of the time. For exact coordinate agreement (fine-grained ε) it's much weaker, but the cheat-sheet method's quantisation noise makes fine-grained agreement an unrealistic target anyway.
+**The right interpretation.** The skill is a coarse-map generator with limited exact coordinate agreement. These results measure similarity to reference placements, not whether recommendations match or improve decisions. Scoring quantization describes sensitivity to row changes; it does not establish an accuracy ceiling or measured noise floor.
 
 ---
 
@@ -108,7 +110,7 @@ where `m(s) = (s − 0.5)/4` maps stage picks {1, 2, 3, 4} to band midpoints {0.
 
 ### 2.1 Design
 
-Held-out blind comparison. For each test case:
+Blind generation comparison against sampled references. Subsequent seed/procedure tuning on these maps makes them development/regression cases rather than untouched final evaluation data. For each test case:
 
 1. Fetch a Wardley map `.owm` file from the repository
 2. Derive a realistic scenario prompt from the title and topic **without exposing Wardley's placements or component names**
@@ -125,11 +127,13 @@ Four complementary views of placement agreement:
 3. **`|Δε|` cumulative distribution** — fraction within {0.05, 0.10, 0.15, 0.20, 0.25, 0.30} of each other regardless of band. The continuous view.
 4. **Directional biases** — mean signed Δε and Δν (positive = we place higher than Wardley).
 
-**Noise floor.** The 4-row cheat-sheet method has inherent quantisation. Each row gives one of 4 stage values; one row flipping by one stage shifts mean ε by 0.0625. Useful thresholds:
+**Scoring sensitivity.** One four-row midpoint pick changing by one stage shifts mean ε by 0.0625. This is resolution under the chosen representation, not a measured noise floor. Report descriptive thresholds:
 
-- `|Δε| ≤ 0.10` — within scoring noise (effectively identical): roughly two rows flipping by one stage, or one row flipping by almost two — the kind of disagreement the method itself produces on re-scoring
-- `|Δε| ≤ 0.20` — within strategic tolerance (build/buy/utility call doesn't change): on the order of three rows flipping by one stage, or one row flipping by three (Genesis → Commodity). Beyond that, most of the four cheat-sheet rows have to materially disagree, which usually reflects real judgment difference rather than scoring variance
-- `|Δε| > 0.25` — genuine disagreement, beyond both noise and one band-width. The 0.25 threshold lines up with the band width itself; beyond one band-width is unambiguously a different stage call.
+- `|Δε| ≤ 0.10`: narrower coordinate tolerance.
+- `|Δε| ≤ 0.20`: wider coordinate tolerance; no guarantee of unchanged recommendations.
+- `|Δε| > 0.25`: more than one conventional band-width of separation.
+
+For instance, 0.49 and 0.51 cross a stage boundary despite a difference of only 0.02. Recommendation agreement requires explicit action judgments and context; see the decision evaluation protocol.
 
 ### 2.3 Time pinning
 
@@ -201,7 +205,7 @@ Several maps carry explicit dates (2022-2024). The subagent is pinned to that da
 | transport-logistics | Transportation | 45 | 51 | 11 | 24% | 0.176 | 0.218 | +0.145 | +0.044 | 45% | 100% | 55% |
 | transport-demand | Transportation | 37 | 52 | 18 | 49% | 0.173 | 0.300 | +0.127 | +0.042 | 22% | 94% | 67% |
 
-The last column (`≤ 0.20`) is the strategic-tolerance agreement — fraction of matches where `|Δε| ≤ 0.20`, the threshold beyond which build/buy/utility recommendations start to change.
+The last column (`≤ 0.20`) is the fraction of matched placements within the chosen coordinate tolerance. It does not measure when build/buy/utility recommendations change.
 
 ### 3.2 Aggregate statistics
 
@@ -222,16 +226,16 @@ Across all 358 matched pairs:
 | `|Δε|` ≤ | % | Interpretation |
 |---:|---:|---|
 | 0.05 | 15% | Near-identical, precision match |
-| 0.10 | **28%** | Within scoring noise — effectively identical |
+| 0.10 | **28%** | Within narrower coordinate tolerance |
 | 0.15 | 42% | |
-| 0.20 | **61%** | Within strategic tolerance — same recommendation |
+| 0.20 | **61%** | Within wider coordinate tolerance |
 | 0.25 | 75% | Within one band-width |
 | 0.30 | 83% | |
 | 0.40 | 93% | |
 | 0.50 | 97% | |
 
-- **61%** of matches are close enough that no strategic call changes
-- **28%** are within the cheat-sheet method's scoring noise
+- **61%** of matches satisfy the chosen coordinate tolerance; strategic-call agreement is unmeasured
+- **28%** satisfy the narrower coordinate tolerance
 - **25%** are genuine disagreements (`|Δε| > 0.25`) — but see §4.3: a fraction of these is time drift, not skill error
 - **Boundary-crossing artefact.** 22 of 358 pairs (6%) are `|Δε| ≤ 0.10` but cross a band boundary — real but small, accounting for 10% of strict-band misses.
 
@@ -241,7 +245,7 @@ Across all 358 matched pairs:
 
 ### 4.1 What the skill does well
 
-**1. Strategic-tolerance agreement is high.** 61% of placements are within strategic tolerance (`|Δε| ≤ 0.20`). 92% are in Wardley's band or an adjacent one. Only 3% are catastrophically off.
+**1. Wider-tolerance placement agreement.** 61% of placements satisfy the chosen coordinate tolerance (`|Δε| ≤ 0.20`). 92% are in Wardley's band or an adjacent one. Only 3% are catastrophically off.
 
 **2. Near-zero ε-bias.** +0.009 across 25 maps — the skill doesn't systematically over- or under-industrialise in aggregate. (§4.3 unpacks this: the aggregate is partly coincidental cancellation between forward-drift and overshoot maps, and per-map bias is substantial in both directions.)
 
@@ -260,7 +264,7 @@ Across all 358 matched pairs:
 - *Abstract philosophical nodes* — "Asymmetrical", "Believed", "Bias", "Quality", "OUTPUT", "ACCESS", "perceived risk", "profit", "sovereignty", "territorial". Wardley uses these as first-class map nodes; the skill reaches for operational equivalents instead.
 - *Domain-idiosyncratic shorthand* — "Dr Google", "constitution", "sovereign" — Wardley's stylistic fingerprints.
 
-**2. Fine-grained placement is unreliable.** Only 15% of matches are within 0.05 ε. This is close to the ceiling of what the 4-row cheat-sheet method can deliver (scoring noise is ~0.10); expecting tighter agreement is expecting less than the method can produce. Stage-neighbourhood is reliable; specific coordinates aren't.
+**2. Fine-grained placement agreement is limited.** Only 15% of matches are within 0.05 ε. The scoring convention alone cannot establish an accuracy ceiling. Use repeated trials and independent mapper assessments to estimate variability before judging improvements.
 
 **3. Visibility compression — softened but persistent.** Exponential seed reduced ν-bias from +0.22 to +0.08, but bias remains positive in most benchmarks.
 
@@ -371,9 +375,9 @@ Following `BENCHMARK-AUDIT.md` B3: how much do headline numbers move when the ma
 
 **|Δε| is now much more robust to threshold than originally measured.** Pre-patch core-range spread (τ ∈ {0.45, 0.55, 0.65}) was 0.043; post-`fuzzy_match` patch (see §4.8) it is **0.014**. The substring-before-exact bug was previously routing exact matches to wrong-named neighbours at loose thresholds; the patch removed that distortion. The 0.55 default is still the best choice, but the criticism that loose thresholds catastrophically inflate placement metrics is weaker than originally suggested.
 
-**Same-band agreement and ≤0.20 ("strategic tolerance") are stable.** Spread <5pp across the core range. These metrics are robust to matcher choice.
+**Same-band agreement and ≤0.20 ("coordinate tolerance") are stable.** Spread <5pp across the core range. These metrics are robust to matcher choice.
 
-**Strategic implication**: the strategic-tolerance numbers ("61% within ≤0.20", "37% same-band") are robust; the coverage metric is brittle and should never be cited without its threshold context. Treat coverage as a range, not a point estimate.
+**Strategic implication**: the coordinate-tolerance numbers ("61% within ≤0.20", "37% same-band") are robust; the coverage metric is brittle and should never be cited without its threshold context. Treat coverage as a range, not a point estimate.
 
 Sweep artefact: `threshold-sensitivity.json`.
 
@@ -541,13 +545,13 @@ Artefact: `iteration-*/eval-*/with_skill/run-1/judges/strategic.json` per map.
 Across 25 blind benchmarks covering 18 domains, the skill:
 
 - Produces **structurally valid** Wardley Maps (validator-clean, 25/25)
-- Reaches **strategic agreement** with Wardley on 61% of matched components (`|Δε| ≤ 0.20`; build / buy / utility call unchanged)
+- Reaches the **chosen coordinate tolerance** on 61% of matched components (`|Δε| ≤ 0.20`); build/buy/utility agreement is unmeasured
 - Reaches **neighbourhood agreement** (adjacent band) on 92%
-- Is within **scoring noise** (`|Δε| ≤ 0.10`) on 28%
+- Reaches the **narrower coordinate tolerance** (`|Δε| ≤ 0.10`) on 28%
 - Exhibits negligible aggregate ε-bias and small residual ν-bias
 - Captures about **1 in 3** of Wardley's components by name (the missing two-thirds are mostly abstract/philosophical nodes the skill doesn't reach for)
 
-**The skill is a coarse-map generator, not a precision-map generator.** That's the right shape for a practitioner tool: Wardley himself treats maps as thinking tools rather than measurement instruments. Strict-band agreement (37%) and precision agreement (15%) are below what you'd want if replicating Wardley's placement down to the decimal — but some of that "disagreement" is time drift (§4.3), and the meaningful number is the 61% within strategic tolerance: most of the time, the skill and Wardley would recommend the same thing.
+**The skill is a coarse-map generator, not a precision-map generator.** That's the right shape for a practitioner tool: Wardley himself treats maps as thinking tools rather than measurement instruments. Strict-band agreement (37%) and precision agreement (15%) are below what you'd want if replicating Wardley's placement down to the decimal — but some of that "disagreement" is time drift (§4.3), and 61% satisfy the chosen wider coordinate tolerance. That result supplies no measured recommendation agreement.
 
 For practitioner use — mapping a business, product, or policy scenario and deriving strategic recommendations — the skill is production-useful. For archival-grade fidelity to Wardley's personal style, the vocabulary opportunity (recommendation 1) is the biggest remaining gap.
 

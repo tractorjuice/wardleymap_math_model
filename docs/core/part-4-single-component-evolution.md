@@ -1,5 +1,7 @@
 # Working Out the "Evolution" Value for a Single Component
 
+> **Historical seed example.** The two-factor average below is superseded as the repository's primary scoring procedure by [Part 6](part-6-cheat-sheet-scoring.md). It illustrates an explicitly assumed scale; it does not establish a measurement of evolution or an adoption forecast. Record the market, date and evidence, and assess applicable cheat-sheet characteristics before accepting the seed.
+
 ---
 
 ## 1. Model Recap

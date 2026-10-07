@@ -4,6 +4,8 @@
 
 ## Introduction to Mathematical Wardley Mapping
 
+For operational definitions, defer to [Part 1](part-1-core-model.md) and [Part 6](part-6-cheat-sheet-scoring.md). Forecasting language and stochastic techniques surveyed below are exploratory, not evidence of prediction accuracy. Random walks that permit backward movement are alternative scenario assumptions, not implementations of the core model's nonnegative drift. Diffusion and evolution must remain separate; row disagreement is not estimator uncertainty.
+
 ### Foundations and Prerequisites
 
 #### Core Concepts of Wardley Mapping
@@ -1295,5 +1297,4 @@ The integration of decision trees with Wardley Mapping particularly excels in ha
 Advanced applications incorporate temporal dynamics by using time-series decision trees, where splitting criteria consider not just current component positions but also their historical evolution patterns and predicted future states. This enables more sophisticated strategic planning that accounts for the dynamic nature of value chain evolution.
 
 > The mathematical rigour brought by decision tree analysis to Wardley Mapping has enabled us to justify strategic investments with unprecedented clarity and confidence, explains a chief strategy officer at a major public sector organisation.
-
 

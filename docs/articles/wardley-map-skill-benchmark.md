@@ -1,6 +1,8 @@
 # The Wardley Map Skill: What It Is, How We Tested It, What the Benchmark Found
 
-![Wardley Map skill hero: from a prompt, benchmarked against Wardley. 61% within strategic tolerance, 92% ±1 band, 37% strict same-band match, 25/25 validator-clean on ship.](hero.png)
+![Wardley Map skill hero: from a prompt, benchmarked against Wardley. 61% within coordinate tolerance, 92% ±1 band, 37% strict same-band match, 25/25 validator-clean on ship.](hero.png)
+
+*Historical figure: “strategic tolerance” in the embedded image means the chosen coordinate tolerance. It does not report recommendation agreement; validator results refer to the original implementation.*
 
 We built a Claude Code skill that generates a Wardley Map from a plain-English scenario description, and then we benchmarked it blind against 25 of Simon Wardley's own published maps. This article walks through the skill's architecture, the test methodology, and what the benchmark actually shows.
 
@@ -28,7 +30,7 @@ The benchmark question was narrow: when the skill is given a free-form scenario,
 
 **Corpus.** 25 maps from [swardley/WARDLEY-MAP-REPOSITORY](https://github.com/swardley/WARDLEY-MAP-REPOSITORY), CC-BY-SA, spanning 18 domains (AI governance, retail, healthcare, finance, manufacturing, cybersecurity, agriculture, education, gaming, sustainability, construction, culture, defence, energy, government, personal, politics, telecoms, transportation).
 
-**Held-out blind design.** For each map, a human wrote a natural-language scenario prompt that stated the topic, named the stakeholders, and hinted at scope. The prompt did not expose Wardley's component names or placements. A subagent was then spawned with the scenario and the skill path, and explicitly instructed not to read the reference file. The subagent ran the full 7-step procedure. Only after it emitted a validator-clean map was the output compared to Wardley's reference.
+**Blind generation design.** For each map, a human wrote a natural-language scenario prompt that stated the topic, named the stakeholders, and hinted at scope. The prompt did not expose Wardley's component names or placements. A subagent was then spawned with the scenario and the skill path, and explicitly instructed not to read the reference file. The subagent ran the full 7-step procedure. Only after it emitted a validator-clean map was the output compared to Wardley's reference.
 
 **Metrics.** Placement agreement has no single number; we report four complementary views.
 
@@ -39,21 +41,21 @@ The benchmark question was narrow: when the skill is given a free-form scenario,
 
 Fuzzy name matching links components between the two maps: exact, substring, Jaccard word-overlap, or difflib ratio above 0.55. This is a lower bound on coverage; some semantically equivalent components do not match, and a handful of false positives inflate disagreement artificially.
 
-**Noise floor.** The 4-row cheat-sheet method has inherent quantisation. Each row flipping one stage shifts mean ε by 0.0625, so a `|Δε|` of roughly 0.10 is within the method's own resolution. Tighter agreement than 0.10 is not what the scoring method can reliably deliver.
+**Scoring sensitivity.** One four-row midpoint pick changing by a stage shifts the mean by 0.0625. This describes the scoring convention, not a measured noise floor or accuracy ceiling. The 0.10 and 0.20 thresholds below are chosen coordinate tolerances; neither establishes unchanged recommendations.
 
 ## What the benchmark found
 
 Across 25 maps, 358 matched component pairs:
 
-- **61% of matched components land within strategic tolerance** (`|Δε| ≤ 0.20`). The build / buy / utility call doesn't change.
+- **61% of matched components land within the chosen coordinate tolerance** (`|Δε| ≤ 0.20`). Build/buy/utility agreement was not measured.
 - **92% are in Wardley's band or an adjacent one**.
 - **37% are in exactly the same stage band**.
-- **28% are within scoring noise** (`|Δε| ≤ 0.10`).
+- **28% are within the narrower coordinate tolerance** (`|Δε| ≤ 0.10`).
 - **ε-bias: +0.009 across 25 domains**. Effectively zero. The skill does not systematically over- or under-industrialise in aggregate.
 - **ν-bias: +0.079**. Down from +0.22 before the visibility seed was changed from reciprocal to exponential. Small residual positive bias.
 - **Structural validity: 25 of 25**. Every first-draft map had at least one validator violation on first pass; iterative fix-and-rerun produced 25 validator-clean shipped maps.
 
-The short version: the skill is a **coarse-map generator, not a precision-map generator**. Strategic framing agrees with Wardley the majority of the time. Fine-grained coordinate agreement does not, but the cheat-sheet method has inherent 0.10 resolution so expecting tighter is unrealistic.
+The results characterize a coarse-map generator with limited fine-grained coordinate agreement. They measure resemblance to reference placements; they do not measure recommendation agreement. A small coordinate change can cross a stage boundary, and sourcing decisions require additional context.
 
 **The weak spot.** Coverage sits at 37%. The skill names about 1 in 3 of Wardley's components. The missing two-thirds are disproportionately Wardley's distinctive vocabulary: abstract nouns like "Perceived Risk", "Asymmetric Access", "Believed", "Sovereignty", "OUTPUT", "ACCESS". The skill reaches for operational equivalents instead. For archival-grade fidelity to Wardley's style this is the biggest gap; for practitioner use it mostly does not matter.
 
@@ -69,8 +71,8 @@ The short version: the skill is a **coarse-map generator, not a precision-map ge
 
 ## What this means
 
-The evidence is narrow. 25 maps by a single author, single-run, the last re-run on 20 of them. Error bars are in the ±3-5 percentage-point range for aggregate metrics and wider per map. The corpus measures faithfulness to Wardley, not to ground truth.
+The evidence is narrow: 25 maps by a single author, initially one run per case, followed by reruns and a two-map replication pilot. The corpus has informed tuning, so later versions need a new evaluation corpus. Uncertainty needs grouped analysis across maps and trials; an assumed ±3–5 percentage-point interval is not justified. The corpus measures reference agreement, not ground truth.
 
-Within those limits, the skill reaches the same strategic call as Wardley about 60% of the time on matched components, stays within one evolution band 92% of the time, and ships validator-clean. That is coarse mapping, which is what Wardley says maps are for: a thinking tool, not a measurement instrument. For practitioner use in build-vs-buy, commoditisation, and doctrine-check reasoning, the skill is useful. For precision-placement audits against Wardley's personal style, it's not.
+Within those limits, 61% of matched placements satisfy the wider coordinate tolerance and 92% stay within one evolution band. The original outputs passed the then-current validator; those historical results have not been regenerated under the stricter validator. Recommendation agreement requires the [decision evaluation protocol](../../skills/wardley-map-workspace/DECISION-EVALUATION.md), with explicit reference labels and repeated trials. That is coarse mapping, which is what Wardley says maps are for: a thinking tool, not a measurement instrument. For practitioner use in build-vs-buy, commoditisation, and doctrine-check reasoning, the skill is useful. For precision-placement audits against Wardley's personal style, it's not.
 
 The skill, the benchmark, the 25 reference maps, every iteration's output, the validator and converter scripts, and the full methodology are in [tractorjuice/wardleymap_math_model](https://github.com/tractorjuice/wardleymap_math_model). `BENCHMARK-REPORT.md` is the primary document; `BENCHMARK-METHODOLOGY.md` describes the test harness in detail.

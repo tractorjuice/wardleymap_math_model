@@ -82,7 +82,7 @@ Fully standardised. Feature differentiation barely matters; customers care about
 
 ## Stage indicators — concrete checklists
 
-Before running the 19-row cheat sheet, use these four-dimension checklists to get a sharp single-stage pick. If all four dimensions land on the same stage, you're done — record the pick and skip the cheat sheet for this component. If they diverge, run the 19-row aggregate to compute ε with variance.
+Before running the 19-row cheat sheet, use these four-dimension checklists to get a sharp single-stage pick. If all four dimensions land on the same stage, you're done — record the pick and skip the cheat sheet for this component. If they diverge, assess additional applicable characteristics and record row disagreement separately from evidence confidence. Agreement alone does not establish confidence.
 
 Adapted from arc-kit's `evolution-stages.md`.
 
@@ -163,7 +163,7 @@ You don't always need all 19 rows. Common subsets:
 
 - **Quick (4 rows):** #5 Ubiquity, #6 Certainty, #11 User Perception, #7 Publication Types. Covers the dimensions Wardley emphasises most.
 - **Activity-focused (7 rows):** rows 5–11. Drops the type-label rows (Activities/Practices/Data/Knowledge) and the organisational-decision rows at the bottom.
-- **Full (19 rows):** use when precision matters, e.g., workshop-grade placement of a strategically important component.
+- **Full-sheet assessment:** examine all 19 rows in a workshop; score only applicable, supported characteristics. Rows 1–4 are alternative type vocabularies; do not count all four as independent evidence.
 
 ---
 
@@ -171,7 +171,7 @@ You don't always need all 19 rows. Common subsets:
 
 ### Per-row
 
-For each row `r` you use, pick the stage `s_r ∈ {1, 2, 3, 4}` that best describes the component.
+For each applicable row `r`, pick the stage `s_r ∈ {1, 2, 3, 4}` that best describes the component. Record missing evidence rather than inventing a score. If stages straddle, document alternatives; midpoint interpolation is an explicit plotting assumption.
 
 Convert to band midpoint:
 
@@ -196,20 +196,20 @@ Unweighted mean:
 Or weighted:
 
 ```
-ε(v) = Σ w_r · m(s_r),   Σ w_r = 1
+ε(v) = Σ w_r · m(s_r),   w_r ≥ 0,   Σ w_r = 1
 ```
 
-The unweighted case is the sensible default. Weight only if you have domain reason (e.g., for a B2C consumer product, weight #11 User Perception more heavily).
+The unweighted case is the default over the selected nonempty row set. Weight only with a documented domain reason. Midpoint averaging is this repository's ordinal plotting convention, not Wardley's canonical arithmetic or a measured interval scale. Preserve the profile and stage interpretation alongside the mean.
 
 ### Uncertainty
 
-Variance across rows:
+Row disagreement:
 
 ```
-Var(ε) = (1 / |R|) · Σ (m(s_r) - ε)²
+H(v) = (1 / |R|) · Σ (m(s_r) - ε)²
 ```
 
-High variance means the rows disagree — the component is either in transition (e.g., ubiquity has jumped but certainty hasn't caught up) or the mapper is uncertain. Plot as a range, not a point.
+H measures the characteristic spread, not uncertainty of the mean. A mixed profile may indicate transition or conflicting evidence. Record source quality, shared sources, missing observations and independent mapper disagreement separately. Elicit stage alternatives or ranges when confidence is unmeasured; do not turn H=0 into zero uncertainty or directly use H as a Beta variance.
 
 ---
 
@@ -226,7 +226,7 @@ Quick 4-row scoring:
 | User Perception | IV | Expected; disappointed if missing | 0.875 |
 | Publication Types | IV | Focused on use (integrations, best practice) | 0.875 |
 
-Unweighted mean: **ε = 0.875** (solidly Commodity/utility). Variance: 0 — all rows agree.
+Unweighted mean: **ε = 0.875** (solidly Commodity/utility). Row disagreement H: 0 — all rows agree; evidence confidence is still unmeasured.
 
 Placement: top-right-ish, well into Stage IV. Build/buy: definitely **buy** (Stripe, Adyen, etc.).
 
@@ -244,9 +244,9 @@ Placement: top-right-ish, well into Stage IV. Build/buy: definitely **buy** (Str
 | User Perception | II | Leading-edge; cautiously excited | 0.375 |
 | Perception in Industry | II | Competitive advantage | 0.375 |
 
-Mean: **ε ≈ 0.393** (mid Custom Built). Variance: low except for Certainty which straddles II/III — flag as "in transition".
+Mean: **ε ≈ 0.393** (mid Custom Built). Row disagreement H: low except for Certainty which straddles II/III — retain that mixed profile and assess evidence confidence separately.
 
-Placement: left-of-centre. Build/buy: **build** (it's still where you can differentiate). Expect this to move to Stage III in 2–3 years as vendors mature.
+Placement: left-of-centre. Build/buy: **build** (it's still where you can differentiate). A possible scenario is movement toward Stage III as vendors industrialize; the score supplies no timescale or forecast.
 
 ### Example C: "Cup of Tea" (Tea Shop map)
 
@@ -259,7 +259,7 @@ Quick 4-row scoring:
 | User Perception | III | Common; expected | 0.625 |
 | Publication Types | III–IV | Recipes, guides, lifestyle | 0.750 |
 
-Mean: **ε ≈ 0.72** (late Product, edging toward Commodity). Variance: low.
+Mean: **ε ≈ 0.72** (late Product, edging toward Commodity). Row disagreement H: low; confidence requires a separate evidence assessment.
 
 Placement: the cup of tea itself is near-commodity; the *experience* (service, hospitality) is where differentiation lives — that's a separate Stage II–III component.
 

@@ -41,7 +41,7 @@ Ask for "render this on GitHub" or "emit a Mermaid block" and Claude will also r
 
 - `SKILL.md` — the skill body (procedure + OWM output format + when to consult each reference).
 - `evals/evals.json` — test cases with assertions used to validate the skill.
-- `scripts/validate_owm.mjs` — deterministic OWM validator. Checks coordinate ranges, edge endpoint existence, and the `ν(a) ≥ ν(b)` visibility constraint. Called by Step 5.5 before submitting any map.
+- `scripts/validate_owm.mjs` — deterministic validator for named anchors/components with two-coordinate OWM placements. Rejects malformed declarations, duplicate names, empty maps, missing anchors, out-of-range coordinates, unknown endpoints and `ν(a) < ν(b)` dependencies. Unreachable components produce advisory warnings. Other OWM directives are ignored; this is not a full grammar checker. Called by Step 5.5 before submitting any map.
 - `scripts/check_layout.mjs` — advisory layout checker (Step 5.6). Catches near-duplicate coordinates that render on top of each other, components landing on stage boundaries, canvas-edge clipping, and stage-distribution imbalance. Exits 0 by default; pass `--strict` to hard-fail on warnings.
 - `scripts/owm_to_mermaid.mjs` — optional post-step converter that emits a Mermaid `wardley-beta` block from a validated OWM draft. See SKILL.md §3.1. Always double-quotes names to sidestep bare-name edge cases such as slashes, punctuation, reserved-keyword prefixes, and numeric labels.
 - `references/` — bundled reference material the skill loads on demand:
@@ -60,13 +60,24 @@ The skill is self-contained; you don't need the parent repository to use it.
 | Aspect | Implementation |
 |---|---|
 | Tuple | `M = (V, E, U, ν, ε, t)` — anchor *set* `U ⊆ V`, optional time |
-| Visibility | Judgment primitive seeded by `1/(1+d(v))`; hard rule `ν(a) ≥ ν(b)` for edges |
-| Evolution | Cheat-sheet scoring (4-row quick; 19-row full in `cheat-sheet.md`) |
+| Visibility | Judgment primitive seeded by `exp(−0.6 d(v))`; constrained projection or mapper overrides preserve `ν(a) ≥ ν(b)` |
+| Evolution | Proposed midpoint seed over applicable cheat-sheet characteristics in `references/evolution-stages.md`; evidence confidence is separate from row disagreement |
 | Stages | Genesis / Custom Built / Product (+rental) / Commodity (+utility) |
-| Dynamics | Logistic S-curve `dε/dt = rε(1-ε)` — labeled as scenario, not forecast |
-| Strategic moves | Named from the 61-play catalogue in `gameplays.md` |
+| Dynamics | Stylized evolution scenarios; adoption waves and composition indices remain separate from evolution assessments |
+| Strategic moves | Named from the 61-play catalogue in `references/gameplay-patterns.md` |
 | Doctrine check | Flags violations against the 40 principles in `doctrine.md` |
 | Inertia | 17 structured forms in `inertia.md` |
+
+## Development checks
+
+From the parent repository root:
+
+```bash
+node --test tools/validate-owm.test.mjs tools/tidy-hook.test.mjs
+PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tools -p 'test_compare_decisions.py'
+```
+
+Recommendation evaluation uses explicit labels, not stage-derived actions; see the workspace's `DECISION-EVALUATION.md`.
 
 ## Caveats
 

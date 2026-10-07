@@ -56,7 +56,7 @@ Knowledge ($K$) typically sits below and supports Data, Practices, and Activitie
 
 $$\text{Activity} \to \text{Practice} \to \text{Data} \to \text{Knowledge}$$
 
-with each arrow a "depends on" edge. The visibility order $\nu(A) > \nu(P) > \nu(D) > \nu(K)$ is typical but not mandatory — a Practice built around user-visible interaction (e.g., customer research practices) can sit higher than the Activity it supports.
+with each arrow a "depends on" edge. Type alone does not require this hierarchy, but every declared edge must satisfy Part 1's $\nu(a)\ge\nu(b)$ rule. A user-visible Practice can sit higher than an unrelated Activity; it cannot sit above an Activity that directly depends on it under this edge convention. Review the relation or component decomposition when those judgments conflict.
 
 ### 3.3 Type-respecting edges
 
@@ -96,7 +96,7 @@ Reasoning (informal):
 - Data evolves slower still because format and schema standardisation requires cross-organisational agreement.
 - Knowledge evolves slowest — theories become "Accepted" on the timescale of careers or generations.
 
-These defaults can be overridden per component when domain evidence warrants.
+This rate ordering is an unvalidated scenario hypothesis, not a canonical Wardley law or an empirical default. Override it using component-specific evidence. All rate and inertia terms must share inverse-time units; keep adoption rates separate from assessed evolution.
 
 ### 4.1 Type-specific inertia weights
 

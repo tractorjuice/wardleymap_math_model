@@ -31,6 +31,8 @@ Where:
 
 This is the minimum structure needed to make a Wardley Map machine-usable: a graph + two placement functions.
 
+Parts 1 and 6 define the current model and scoring convention. Earlier two-factor and sigmoid treatments are exploratory seeds, not competing definitions. Record the applicable market, observation date, component type, evidence sources, and mapper confidence alongside every placement.
+
 ---
 
 ## 2) Dependencies: the value chain is a directed graph
@@ -66,6 +68,8 @@ Interpretation:
 - Things directly supporting a user need have $d=1$
 - Deeper dependencies have larger $d$
 
+If no anchor reaches $v$, set $d(v)=\infty$. A decay seed then tends to zero, but this is not evidence that the component is invisible: flag it for review of scope or missing dependencies before assigning a placement.
+
 ### 3.2 Map distance to a [0,1] visibility seed
 Two simple choices:
 
@@ -90,11 +94,17 @@ $$\nu(a) \ge \nu(b) + \delta$$
 
 Where $\delta \ge 0$ is a minimum vertical separation.
 
-If raw distances violate this (because real graphs have shortcuts), compute $\nu$ by optimization:
+If raw distances violate this (because real graphs have shortcuts), project the mapper's estimates $\hat\nu(v)$ onto the feasible placements:
 
-$$\min_{\nu:V\to[0,1]} \sum_{(a,b)\in E} \left(\nu(a) - \nu(b) - \delta\right)^2 \quad \text{s.t. } 0\le \nu(v)\le 1$$
+$$\min_{\nu} \sum_{v\in V} w_v\left(\nu(v)-\hat\nu(v)\right)^2, \qquad w_v>0$$
 
-This gives a consistent vertical layout even in messy graphs.
+subject to
+
+$$0\le\nu(v)\le1,\qquad \nu(u)=1\ (u\in U),\qquad \nu(a)\ge\nu(b)+\delta\ ((a,b)\in E).$$
+
+Weights express how strongly to preserve each estimate; they are not calibrated probabilities. The explicit inequalities enforce the edge rule. Penalizing edge differences alone does not: with $\delta=0$, an all-equal layout has zero loss and discards the estimates.
+
+Use $\delta=0$ by default, matching the production validator. Every directed cycle then forces its nodes to equal visibility; collapse strongly connected components for layering, or review whether feedback edges belong in a separate relation. With $\delta>0$, cycles are infeasible. On an anchor-reachable DAG, a path of $L$ edges requires $L\delta\le1$. Check feasibility before solving; report conflicting fixed placements rather than silently relaxing them. The repository specifies this optimization but does not ship a numerical solver.
 
 ### 3.4 Which option should I use?
 
@@ -102,7 +112,7 @@ This gives a consistent vertical layout even in messy graphs.
 |---|---|---|
 | **A. Reciprocal decay** | $\nu(v) = \frac{1}{1+d(v)}$ | Default choice. Simple, smooth, parameter-free. Works well for tree-like value chains where distances are small. |
 | **B. Exponential decay** | $\nu(v) = e^{-\alpha d(v)}$ | Deep graphs where you want to tune the vertical spread. Larger $\alpha$ pushes deep nodes closer to 0; smaller $\alpha$ keeps the chain visible. |
-| **C. Constraint optimization** | minimize the quadratic above | Graphs with cross-links or shortcuts that break the "deeper = lower" rule. Produces a layout that respects every edge constraint even when raw distances don't. |
+| **C. Constraint optimization** | Project estimates with the constrained quadratic above | Graphs with cross-links or shortcuts. Preserves estimates while enforcing edge constraints, provided the constraints are feasible. |
 
 Default to A unless you have a specific reason to switch. If the resulting map violates $\nu(a) \ge \nu(b)$ for some edge $(a,b)$ (a "shortcut" above its dependency), move to C.
 
@@ -115,7 +125,7 @@ Whichever option produces the seed, the mapper may adjust any $\nu(v)$ by hand t
 - A component is technically a deep dependency but the user *thinks* about it (e.g., a branded payment widget) — raise its $\nu$.
 - A component is reachable directly from the user but is architecturally invisible (e.g., a CDN) — lower its $\nu$.
 
-The only hard rule is the edge constraint $\nu(a) \ge \nu(b)$ for every dependency $(a,b)$. Within that, $\nu$ is a judgment call that the math seeds but does not dictate.
+Overrides must respect $\nu(a) \ge \nu(b)$ for every dependency $(a,b)$ and the coordinate bounds. The projection convention fixes anchors at 1; a drawing may use a consistent inset for rendering. Within those conventions, $\nu$ is a judgment call that the math seeds but does not dictate.
 
 ---
 
@@ -158,23 +168,25 @@ $$\frac{d\varepsilon_v}{dt} = r_v(t)\,\varepsilon_v(t)\,(1-\varepsilon_v(t)), \q
 
 Interpretation:
 - Movement is slow at both extremes (nothing to spread from near 0, saturated near 1).
-- Movement is fastest near the middle, where adoption momentum peaks.
+- For a fixed rate, the drift factor is greatest at $\varepsilon=0.5$.
 
-This produces the canonical S-shape. If you want a simpler "bounded drift right" instead — monotone approach to 1 with no inflection — drop the $\varepsilon_v$ factor:
+With constant positive $r_v$ and an interior initial value, this produces a logistic S-shape. Time-varying rates need not produce that shape in calendar time. If you want a simpler "bounded drift right" instead, drop the $\varepsilon_v$ factor:
 
 $$\frac{d\varepsilon_v}{dt} = r_v(t)\,(1-\varepsilon_v(t))$$
 
-(This is exponential approach to 1, not an S-curve. Use it when you don't want the slow-start phase.)
+(With constant positive rate this is exponential approach to 1, not an S-curve. Use it when you don't want the slow-start phase.)
 
 Let strategy act through the rate:
 
-$$r_v(t)=r_{0,v} + u_v(t) - c_v(t)$$
+$$r_v(t)=\max\left(0,\; r_{0,v} + u_v(t) - c_v(t)\right)$$
 
 - $r_{0,v}$: baseline evolutionary pressure (market forces)
 - $u_v(t)$: your actions (standardize, productize, platformize, outsource, open-source) — see the [Gameplay Catalogue](../catalogues/gameplay.md) for a richer action vector
 - $c_v(t)$: inertia (see the [Inertia doc](../extensions/inertia.md) for Wardley's 17 forms, which this scalar flattens)
 
 Now your "plays" become levers — but remember the caveat: this simulates a plausible path, it does not predict evolution.
+
+Rates have units of inverse time; action and inertia terms must use the same units. Logistic dynamics initialized exactly at 0 or 1 remain there. Specify an interior initial value when exploring growth; do not interpret elapsed time or adoption as an observed evolution score. Adoption dynamics and present-day evolution assessment remain separate in the [multi-wave extension](../extensions/multi-wave-evolution.md).
 
 ---
 
@@ -184,8 +196,16 @@ Mapping is about revealing assumptions. So model coordinates as probability dist
 
 $$\varepsilon(v)\sim \text{Beta}(\alpha_v,\beta_v) \quad,\quad \nu(v)\sim \text{Beta}(\gamma_v,\delta_v)$$
 
-- Mean = plotted coordinate
-- Variance = how confident you are
+- Mean = plotted coordinate under this representation
+- Variance = specified uncertainty about that coordinate, supported by evidence or explicitly elicited judgment
+
+Row disagreement in Part 6 is a separate diagnostic; it is not the variance of the coordinate estimate. Record source quality, missing evidence, and independent mapper disagreement even when all characteristic rows agree. Do not treat correlated rows as independent observations.
+
+If a Beta approximation is appropriate, choose a mean $\mu\in(0,1)$ and an independently justified variance $s^2$ with $0<s^2<\mu(1-\mu)$. Moment matching gives:
+
+$$\kappa=\frac{\mu(1-\mu)}{s^2}-1,\qquad \alpha=\mu\kappa,\qquad \beta=(1-\mu)\kappa.$$
+
+Zero variance has no finite Beta parameters. Endpoint placements need a point mass, a different distribution, or a stated interior approximation. A mean plus/minus one standard deviation is not a calibrated confidence interval; use quantiles of the specified distribution and label whether it is an elicited prior or an empirically assessed posterior. Independent visibility draws can violate edge ordering: use a joint constrained representation or report that limitation.
 
 This supports "error bars" on a map and makes debate concrete:
 - "We disagree on where it is."
@@ -217,14 +237,16 @@ High $K$ suggests:
 - mature and standardized,
 - strong candidate for buying, outsourcing, automating, or treating as a utility.
 
-### 7.3 Dependency risk (visible depends on immature)
+### 7.3 Dependency risk (an exposure heuristic)
 For edge $(a,b)$:
 
 $$R(a,b)=\nu(a)\,(1-\varepsilon(b))$$
 
 High $R$ suggests:
-- top-of-chain value depends on fragile foundations,
-- likely reliability, cost, or delivery risk.
+- visible value relies on a less-evolved component,
+- the dependency merits an evidence-based review of reliability, cost and delivery exposure.
+
+Here $R$ is an exposure prompt, not a failure probability or expected loss: low evolution does not establish fragility. Assess operational risk using failure likelihood, impact, substitutability, and recovery evidence. Likewise, build/buy/utility decisions require costs, capabilities, constraints, and market options. Products of ordinal coordinate conventions can change rank under another scale; test sensitivity before using $D,K,R$ to prioritize investments.
 
 ---
 
@@ -239,11 +261,13 @@ Suppose we have:
 - Cloud Compute (D)
 
 Dependencies:
+- User Need $u$ depends on Online Purchase (A)
 - A depends on B and C
 - B depends on D
 - C depends on D
 
 Edges:
+- (u,A)
 - (A,B), (A,C), (B,D), (C,D)
 
 ### 8.1 Visibility via distance
