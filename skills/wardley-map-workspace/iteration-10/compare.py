@@ -10,8 +10,9 @@ import re, sys
 from pathlib import Path
 from difflib import SequenceMatcher
 
-REFERENCE = Path("/workspaces/wardleymap_math_model/skills/wardley-map-workspace/iteration-10/eval-ai-trust/wardley-reference.owm")
-OURS = Path("/workspaces/wardleymap_math_model/skills/wardley-map-workspace/iteration-10/eval-ai-trust/with_skill/run-1/outputs/output.md")
+HERE = Path(__file__).resolve().parent
+REFERENCE = HERE / "eval-ai-trust/wardley-reference.owm"
+OURS = HERE / "eval-ai-trust/with_skill/run-1/outputs/output.md"
 
 
 def parse_owm(text: str):

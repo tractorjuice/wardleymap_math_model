@@ -8,7 +8,7 @@ import json
 import re
 from pathlib import Path
 
-ITERATION = Path("/workspaces/wardleymap_math_model/skills/wardley-map-workspace/iteration-1")
+ITERATION = Path(__file__).resolve().parent / "iteration-1"
 
 # Known Wardley gameplay names from the 61-play catalogue
 GAMEPLAY_NAMES = [

@@ -7,10 +7,10 @@ same parser and fuzzy matcher as compare_all_25.py. The headline finding is
 """
 import sys, json
 from pathlib import Path
-sys.path.insert(0, "/workspaces/wardleymap_math_model/skills/wardley-map-workspace/iteration-10")
+ROOT = Path(__file__).resolve().parent
+sys.path.insert(0, str(ROOT / "iteration-10"))
 from compare import parse_owm, fuzzy_match
 
-ROOT = Path("/workspaces/wardleymap_math_model/skills/wardley-map-workspace")
 
 # (name, ref_path, no_skill_path, skill_coverage_pct, profile)
 # profile = rough estimate of how publicly discussed Wardley's specific map is.

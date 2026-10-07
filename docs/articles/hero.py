@@ -25,7 +25,7 @@ NODE_DIM = (191, 104, 73)        # darker clay
 EDGE = (207, 201, 190)           # warm gray-beige
 LABEL = (58, 58, 58)             # readable dark charcoal
 
-IMG_PATH = "/workspaces/wardleymap_math_model/docs/articles/hero.png"
+IMG_PATH = Path(__file__).resolve().parent / "hero.png"
 
 
 def load_font(size, bold=False):

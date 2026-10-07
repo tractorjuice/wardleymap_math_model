@@ -18,10 +18,10 @@ Both are run on every reference in the 25-map corpus.
 import sys, random, json, re
 from pathlib import Path
 from statistics import mean, stdev
-sys.path.insert(0, "/workspaces/wardleymap_math_model/skills/wardley-map-workspace/iteration-10")
+ROOT = Path(__file__).resolve().parent
+sys.path.insert(0, str(ROOT / "iteration-10"))
 from compare import parse_owm, fuzzy_match
 
-ROOT = Path("/workspaces/wardleymap_math_model/skills/wardley-map-workspace")
 
 # Reuse the 25-map list from compare_all_25.py.
 exec(open(ROOT / "compare_all_25.py").read().split("def stage_of")[0])

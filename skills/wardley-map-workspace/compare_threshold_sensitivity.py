@@ -14,14 +14,14 @@ from pathlib import Path
 from difflib import SequenceMatcher
 from statistics import median
 
-sys.path.insert(0, "/workspaces/wardleymap_math_model/skills/wardley-map-workspace/iteration-10")
+ROOT = Path(__file__).resolve().parent
+sys.path.insert(0, str(ROOT / "iteration-10"))
 from compare import parse_owm  # parser is threshold-independent
 
 # Import the 25-map list directly from compare_all_25 by re-execing only the
 # BENCHMARKS literal. Simpler than maintaining a duplicate.
-exec(open("/workspaces/wardleymap_math_model/skills/wardley-map-workspace/compare_all_25.py").read().split("def stage_of")[0])
+exec((ROOT / "compare_all_25.py").read_text().split("def stage_of")[0])
 
-ROOT = Path("/workspaces/wardleymap_math_model/skills/wardley-map-workspace")
 
 
 def fuzzy_match(name, candidates, threshold):
@@ -130,7 +130,7 @@ for k, label in [("coverage", "Coverage"), ("abs_eps", "|Δε|"),
     fmt = f"{spread*100:.1f}{unit}" if unit == "pp" else f"{spread:.3f}{unit}"
     print(f"  {label:<12}  max−min = {fmt}")
 
-Path("/workspaces/wardleymap_math_model/skills/wardley-map-workspace/threshold-sensitivity.json").write_text(
+(ROOT / "threshold-sensitivity.json").write_text(
     json.dumps(rows, indent=2)
 )
 print("\nSaved threshold-sensitivity.json")

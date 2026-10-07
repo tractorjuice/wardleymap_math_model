@@ -7,11 +7,12 @@ results are apples-to-apples with the 25-map benchmark.
 import json, sys
 from pathlib import Path
 
-sys.path.insert(0, "/workspaces/wardleymap_math_model/skills/wardley-map-workspace/iteration-10")
+ROOT = Path(__file__).resolve().parent
+WORKSPACE = ROOT.parent
+sys.path.insert(0, str(WORKSPACE / "iteration-10"))
 from compare import parse_owm, fuzzy_match  # noqa: E402
 
-ROOT = Path("/workspaces/wardleymap_math_model/skills/wardley-map-workspace/arc-kit-compare")
-OUR_SUMMARY = Path("/workspaces/wardleymap_math_model/skills/wardley-map-workspace/benchmark-25-summary.json")
+OUR_SUMMARY = WORKSPACE / "benchmark-25-summary.json"
 
 BENCHMARKS = [
     ("ai-trust",             "eval-ai-trust",             "ai-trust"),

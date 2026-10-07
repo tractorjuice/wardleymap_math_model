@@ -15,10 +15,10 @@ Thresholds for flagging (chosen to exceed A3 noise floor):
 """
 import sys, json
 from pathlib import Path
-sys.path.insert(0, "/workspaces/wardleymap_math_model/skills/wardley-map-workspace/iteration-10")
+ROOT = Path(__file__).resolve().parent
+sys.path.insert(0, str(ROOT / "iteration-10"))
 from compare import parse_owm, fuzzy_match
 
-ROOT = Path("/workspaces/wardleymap_math_model/skills/wardley-map-workspace")
 
 
 def stage_of(eps):

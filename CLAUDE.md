@@ -101,7 +101,7 @@ python3 compare_competitor.py prompt-baseline --output-subdir with_prompt-mathmo
 
 - Iterations 10–14 hold the 25 `(wardley-reference.owm, with_skill/run-1/outputs/output.md)` pairs drawn from `swardley/WARDLEY-MAP-REPOSITORY`. Every comparator imports `parse_owm` and `fuzzy_match` from `iteration-10/compare.py`, so a parser change there moves every benchmark number.
 - In a benchmark run, a subagent gets only a scenario prompt and must **not** read `wardley-reference.owm` (the blind contract in `BENCHMARK-METHODOLOGY.md` §2a).
-- **Hardcoded paths:** `compare_all_25.py`, `compare_all_*.py`, `grade.py`, `compare_graph.py`, `compare_inversions.py`, `iteration-10/compare.py`, `arc-kit-compare/*.py` and a few others use `/workspaces/wardleymap_math_model/…` (a Codespace/devcontainer path), so they fail in a local checkout unless you patch them or symlink that path. `competitor-compare/compare_competitor.py` resolves paths relative to itself and runs anywhere.
+- **Paths:** the scripts resolve paths from `Path(__file__)`, so they run from any checkout and any working directory. The repo was originally developed in a Codespace at `/workspaces/wardleymap_math_model/`, and that path still appears in historical run outputs. Don't reintroduce it in scripts or symlinks.
 - **Comparators overwrite committed results.** `compare_all_25.py` writes `benchmark-25-summary.json` and `compare_competitor.py` writes `competitor-compare/<name>/competitor-summary-<name>.json`. Some committed summaries predate the A5 grader fixes in `compare.py`, so a re-run changes them. Check `git diff` afterwards and only commit the regenerated numbers on purpose.
 
 ## Key mathematical concepts

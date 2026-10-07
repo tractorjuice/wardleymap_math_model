@@ -2,10 +2,10 @@
 """Run comparison across all 10 benchmark maps."""
 import sys
 from pathlib import Path
-sys.path.insert(0, "/workspaces/wardleymap_math_model/skills/wardley-map-workspace/iteration-10")
+ROOT = Path(__file__).resolve().parent
+sys.path.insert(0, str(ROOT / "iteration-10"))
 from compare import parse_owm, fuzzy_match
 
-ROOT = Path("/workspaces/wardleymap_math_model/skills/wardley-map-workspace")
 
 BENCHMARKS = [
     # (name, reference_path, ours_path, domain)
