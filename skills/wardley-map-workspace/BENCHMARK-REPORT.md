@@ -768,16 +768,18 @@ Comparing each v3 run against the same-map v1 run from `benchmark-25-summary.jso
 
 | Metric | v1 (2026-04-18) | v3 (current) | Δ |
 |---|---:|---:|---|
-| Coverage | 38.4% | **39.8%** | +1.4pp |
+| Coverage | 38.5% | **39.9%** | +1.4pp |
 | `|Δε|` | 0.186 | **0.179** | **−4%** |
-| `|Δν|` | 0.263 | **0.229** | **−13%** |
+| `|Δν|` | 0.263 | **0.230** | **−13%** |
 | ε-bias | −0.004 | −0.011 | ≈ tied |
-| ν-bias | +0.091 | **+0.069** | **−25%** |
+| ν-bias | +0.091 | **+0.070** | **−23%** |
 | Same-band | 36.1% | **40.2%** | **+4.1pp** |
 | ±1 band | 91.9% | 92.3% | ≈ tied |
 | ≤0.20 | 62.9% | 63.0% | ≈ tied |
 
 v3 improves on v1 on 5 of 8 metrics; 3 are essentially tied.
+
+Regenerated 2026-10-08 under the A5 grader fix (culture-gender reference parse). No figure moved by more than 0.1pp or 0.001. The ν-bias reduction, previously given as −25%, is −23%.
 
 ### 10.5 Compared to the v2 n=6 subset result
 

@@ -107,6 +107,12 @@ All docs live under [`docs/`](docs/) organised by role.
 | [Wardley Map Generator Prompt](prompts/wardley_map_generator.md) | AI prompt for generating Wardley Maps in OWM format compatible with [create.wardleymaps.ai](https://create.wardleymaps.ai) |
 | [`wardley-map` Claude Code skill](skills/wardley-map/) | Portable skill package — copy to `~/.claude/skills/` and invoke `/wardley-map <scenario>`. `SKILL.md` + `references/` (7 files: climatic-patterns, doctrine, evolution-stages, gameplay-patterns, inertia, mapping-examples, mathematical-models) |
 
+### Articles (`docs/articles/`)
+| Document | Description |
+|----------|-------------|
+| [The Wardley Map Skill: What It Is, How We Tested It, What the Benchmark Found](docs/articles/wardley-map-skill-benchmark.md) | Narrative write-up of the skill's architecture, the blind benchmark against 25 of Wardley's own maps, and its results and caveats |
+| [The Leaf Node Problem](docs/articles/leaf-node-problem.md) | Why AI pilots tied to team KPIs miss enterprise outcomes, shown as a two-anchor Wardley Map with three inertia points |
+
 ## Validation and Evaluation
 
 The core definitions are in Parts 1 and 6. Visibility projection uses explicit edge constraints; adoption trajectories are separate scenarios, and scoring-row agreement does not establish confidence.

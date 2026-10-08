@@ -24,20 +24,21 @@ There is no build system, `package.json` or Python requirements file. The script
 │   ├── catalogues/                        # Wardley's doctrine (40) + gameplay (61) tables
 │   ├── strategy/                          # strategy cycle, weak signals, older gameplay treatments
 │   ├── examples/wardley-maps/             # 5 Wardley reference maps rendered as Mermaid wardley-beta
-│   └── articles/                          # published write-ups of the benchmark
+│   └── articles/                          # published articles: benchmark write-up, leaf-node problem
 ├── prompts/
 │   └── wardley_map_generator.md           # standalone LLM prompt (also benchmarked as "prompt-baseline")
 ├── scripts/owm_to_mermaid.mjs             # identical copy of the skill's converter — keep both in sync
-├── tools/tidy-hook.mjs                    # PostToolUse hook (see below) + tidy-hook.test.mjs
+├── tools/                                 # tidy-hook.mjs PostToolUse hook (see below), compare_decisions.py, tests
 └── skills/
     ├── wardley-map/                       # production skill: SKILL.md + references/ + scripts/*.mjs + evals/
     └── wardley-map-workspace/
         ├── BENCHMARK-REPORT.md            # primary report
         ├── BENCHMARK-METHODOLOGY.md       # how the benchmark works
-        ├── BENCHMARK-AUDIT.md             # known grader bugs (A1-A6) and their fixes
+        ├── BENCHMARK-AUDIT.md             # audit findings (A1-A7, B1-B6), grader bugs and fixes
         ├── benchmark-25-summary.json      # machine-readable aggregate
         ├── compare_all_25.py              # aggregator
-        ├── iteration-1/ … iteration-14/   # 10-14 are the active benchmark corpus; 1-9 are dev history
+        ├── iteration-1/ … iteration-14/   # 10-14 are the 25-map benchmark corpus; 1-9 are dev history
+        ├── iteration-15/, iteration-16/   # v3 re-run (20 maps) and layout-check run (5 maps)
         ├── arc-kit-compare/               # older head-to-head vs tractorjuice/arc-kit
         ├── competitor-compare/            # N-way comparison: mathmodel, arc-kit, haberlah, prompt-baseline, …
         └── model-thinking-bench/          # model × thinking-mode matrix (calls the Anthropic API)
@@ -55,14 +56,13 @@ node skills/wardley-map/scripts/check_layout.mjs [--strict] path/to/map.owm
 # OWM -> Mermaid wardley-beta
 node skills/wardley-map/scripts/owm_to_mermaid.mjs path/to/map.owm > out.mermaid
 
-# Tests for the tidy hook (pass the file; `node --test tools/` fails on Node 23)
+# Tests for the tidy hook and validator (pass the files; `node --test tools/` fails on Node 23)
 node --test tools/tidy-hook.test.mjs tools/validate-owm.test.mjs
+node --test --test-name-pattern='non-wardley' tools/tidy-hook.test.mjs   # single test
 
 # Decision grader tests (stdlib; no writes to committed benchmark summaries)
 PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tools -p 'test_compare_decisions.py'
 python3 tools/compare_decisions.py decisions.json
-
-node --test --test-name-pattern='non-wardley' tools/tidy-hook.test.mjs   # single test
 
 # Benchmark a competitor skill against the 25 Wardley reference maps (run from competitor-compare/)
 cd skills/wardley-map-workspace/competitor-compare && python3 compare_competitor.py mathmodel
@@ -107,7 +107,7 @@ python3 compare_competitor.py prompt-baseline --output-subdir with_prompt-mathmo
 - Iterations 10–14 hold the 25 `(wardley-reference.owm, with_skill/run-1/outputs/output.md)` pairs drawn from `swardley/WARDLEY-MAP-REPOSITORY`. Every comparator imports `parse_owm` and `fuzzy_match` from `iteration-10/compare.py`, so a parser change there moves every benchmark number.
 - In a benchmark run, a subagent gets only a scenario prompt and must **not** read `wardley-reference.owm` (the blind contract in `BENCHMARK-METHODOLOGY.md` §2a).
 - **Paths:** the scripts resolve paths from `Path(__file__)`, so they run from any checkout and any working directory. The repo was originally developed in a Codespace at `/workspaces/wardleymap_math_model/`, and that path still appears in historical run outputs. Don't reintroduce it in scripts or symlinks.
-- **Comparators overwrite committed results.** `compare_all_25.py` writes `benchmark-25-summary.json` and `compare_competitor.py` writes `competitor-compare/<name>/competitor-summary-<name>.json`. A re-run can differ from the committed file in the last digits of some floats even when nothing changed, and `iteration-15/benchmark-20-v3-summary.json` still predates the A5 grader fixes in `compare.py`. Check `git diff` afterwards and only commit the regenerated numbers on purpose.
+- **Comparators overwrite committed results.** `compare_all_25.py` writes `benchmark-25-summary.json` and `compare_competitor.py` writes `competitor-compare/<name>/competitor-summary-<name>.json`. A re-run can differ from the committed file in the last digits of some floats even when nothing changed. Check `git diff` afterwards and only commit the regenerated numbers on purpose.
 
 ## Model and evaluation authority
 
