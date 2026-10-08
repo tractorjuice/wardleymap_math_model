@@ -78,7 +78,7 @@ def stage_of(eps):
 # Statuses richer than these (infra_error, validator_unconverged) need runtime
 # instrumentation we don't currently capture — they'd require recording the
 # subagent's exit reason and validator iteration count into timing.json at run time.
-STATUSES = {"ok", "no_output", "parse_failed", "no_timing"}
+STATUSES = ("ok", "no_output", "parse_failed", "no_timing")  # tuple, so summary key order is stable
 
 
 def load_timing(ours_path):

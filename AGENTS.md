@@ -29,7 +29,7 @@ Keep both `owm_to_mermaid.mjs` copies synchronized. OWM coordinates are `[visibi
 
 ## Testing Guidelines
 
-Hook tests use `node:test` and strict assertions; follow the `*.test.mjs` naming pattern with descriptive test names. No numeric coverage threshold is configured. Revalidate maps after layout changes and inspect rendered diagrams. Check placement changes against the 25-map benchmark, following `BENCHMARK-METHODOLOGY.md`; map generation must remain blind to reference maps. Some comparators hardcode `/workspaces/wardleymap_math_model` and overwrite committed summaries; review regenerated diffs deliberately.
+Hook tests use `node:test` and strict assertions; follow the `*.test.mjs` naming pattern with descriptive test names. No numeric coverage threshold is configured. Revalidate maps after layout changes and inspect rendered diagrams. Check placement changes against the 25-map benchmark, following `BENCHMARK-METHODOLOGY.md`; map generation must remain blind to reference maps. Comparators overwrite committed summaries; review regenerated diffs deliberately.
 
 ## Commit & Pull Request Guidelines
 

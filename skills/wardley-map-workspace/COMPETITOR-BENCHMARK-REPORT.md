@@ -2,6 +2,8 @@
 
 **Companion to:** `COMPETITOR-BENCHMARK-PLAN.md` (execution plan), `BENCHMARK-METHODOLOGY.md` (how the benchmark works), `BENCHMARK-REPORT.md` (the `mathmodel` skill on its original scenarios).
 
+> **Regenerated 2026-10-08.** The six competitor summaries, and every placement number in this report, were recomputed with the current grader. The April numbers predated the A5 parser fix (`BENCHMARK-AUDIT.md`), which stopped `parse_owm` reading the label offsets on two culture-gender components (`family [0.78] label [15, 18]` and `rights [0.74] label [17, 16]`) as their coordinates. That bug added 0.03–0.05 to every generator's mean \|Δε\| and pushed its ε-bias left by the same amount. The original headline that `mathmodel v2` had the tightest \|Δε\| came from v2 matching only one of the two miscoded components. Without culture-gender, the April numbers already put v2, v1 and the prompt baseline within 0.005 of each other. Validator pass rates (§4.2) are from the validator as it stood in April and haven't been re-run under the revised one. Every figure is a single run on what is now development data, and coordinate agreement is not recommendation agreement; see [DECISION-EVALUATION.md](DECISION-EVALUATION.md).
+
 **TL;DR.** Six Wardley-Map generators benchmarked blind on the same 25 Wardley references, same scenarios, same comparison code:
 
 - `mathmodel v2` (this repo's `skills/wardley-map/`, updated with haberlah-inspired additions)
@@ -13,12 +15,12 @@
 
 Headline:
 
-1. **`mathmodel v2` leads the field on legitimate tightness** — tightest \|Δε\| (0.201) and \|Δν\| (0.217) among generators that actually try to place ε, while keeping 100% structural-validator pass rate.
-2. **Placement agreement (same-band) is still a wash across the five ε-placing generators** — everyone sits at 40–43% on strict-band and 88–93% on within-1-band, inside the benchmark's documented ±3–5pp noise floor.
-3. **`arckit-value-chain` appears to "win" on same-band (61.8%) by gaming the metric** — it places every component at ε=0.50, which falls in the Product band where most of Wardley's components cluster. This is a pathological finding about the *metric*, not a strategic win — see §6. Treat value-chain's ε metrics as diagnostic of the benchmark, not of the skill.
+1. **No generator is clearly tightest on evolution.** Among the five that place ε, mean \|Δε\| runs from 0.170 (prompt baseline) to 0.175 (haberlah), with arc-kit behind at 0.189. `mathmodel v2` has the tightest \|Δν\| (0.193, against 0.197–0.211 for the others) and a 100% structural-validator pass rate.
+2. **Placement agreement (same-band) is still a wash across the five ε-placing generators** — everyone sits at 40–43% on strict-band and 88–92% on within-1-band. With one run per map, the benchmark can't say whether gaps this small would survive a re-run.
+3. **`arckit-value-chain` appears to "win" on same-band (62.0%) by gaming the metric** — it places every component at ε=0.50, which falls in the Product band where most of Wardley's components cluster. This is a pathological finding about the *metric*, not a strategic win — see §5.2. Treat value-chain's ε metrics as diagnostic of the benchmark, not of the skill.
 4. **Well-formedness separates the field.** `mathmodel` (v1 and v2) pass the validator on 25/25 maps. `arckit-value-chain` manages 21/25 (visibility-only discipline is easier to satisfy). `haberlah` 16/25. The full `arc-kit` skill 6/25. The prompt baseline 5/25.
 
-If you're choosing a generator: the scaffold buys you well-formedness and — after the v2 update — tightest placement. On band-agreement alone, a careful prompt is within noise of everything else at 3× lower cost. If you want *only* a value-chain decomposition (no evolution placement), `arckit-value-chain` does that and passes the ν invariant.
+If you're choosing a generator: the scaffold buys you well-formedness and — after the v2 update — the tightest visibility placement. On evolution placement and band agreement, a careful prompt scores as well as the scaffolds at about a third of the token cost. If you want *only* a value-chain decomposition (no evolution placement), `arckit-value-chain` does that and passes the ν invariant.
 
 ---
 
@@ -95,30 +97,30 @@ The aggregator tries `draft.owm` first, then falls back to `output.md`.
 
 | Metric | **mathmodel v2** | mathmodel v1 | arc-kit | arckit-value-chain† | haberlah | prompt |
 |---|---|---|---|---|---|---|
-| mean coverage | 77.9% | 79.0% | **79.3%** | 72.9% | 72.0% | 78.7% |
-| mean same-band | 40.8% | 41.3% | 40.8% | **61.8%†** | 39.9% | 42.8% |
-| mean within-1-band | 91.8% | 90.9% | 88.0% | **96.0%†** | 90.0% | 92.5% |
-| **mean \|Δε\|** (tightness) | 0.201 | 0.223 | 0.239 | **0.198†** | 0.214 | 0.219 |
-| **mean \|Δν\|** (tightness) | 0.217 | 0.259 | 0.249 | 0.247 | **0.231** | 0.255 |
-| mean ε-bias (signed) | −0.032 | −0.041 | −0.032 | **−0.113†** | −0.057 | −0.058 |
-| mean ν-bias (signed) | +0.047 | +0.039 | +0.029 | **+0.018** | +0.021 | +0.061 |
-| pooled \|Δε\| ≤ 0.10 | 33.0% | 32.5% | 31.4% | **35.6%†** | 32.9% | 34.2% |
-| pooled \|Δε\| ≤ 0.15 | **50.5%** | 48.6% | 46.0% | 49.3% | 49.6% | 49.9% |
-| pooled \|Δε\| ≤ 0.20 | 65.1% | 64.1% | 59.8% | **76.4%†** | 63.5% | 66.0% |
-| pooled \|Δε\| ≤ 0.25 | 75.2% | 77.1% | 71.6% | **91.2%†** | 73.2% | 75.9% |
+| mean coverage | 78.1% | 79.1% | **79.4%** | 72.9% | 72.1% | 78.8% |
+| mean same-band | 40.5% | 41.2% | 40.5% | **62.0%†** | 39.7% | 42.6% |
+| mean within-1-band | 91.9% | 91.1% | 88.1% | **95.9%†** | 90.2% | 92.4% |
+| **mean \|Δε\|** (tightness) | 0.173 | 0.173 | 0.189 | **0.148†** | 0.175 | 0.170 |
+| **mean \|Δν\|** (tightness) | **0.193** | 0.211 | 0.202 | 0.200 | 0.197 | 0.207 |
+| mean ε-bias (signed) | **−0.006** | +0.009 | +0.017 | −0.062† | −0.019 | −0.009 |
+| mean ν-bias (signed) | +0.068 | +0.085 | +0.076 | +0.064 | **+0.050** | +0.108 |
+| pooled \|Δε\| ≤ 0.10 | 33.1% | 32.7% | 31.5% | **35.7%†** | 33.1% | 34.3% |
+| pooled \|Δε\| ≤ 0.15 | **50.8%** | 49.0% | 46.4% | 49.4% | 49.9% | 49.9% |
+| pooled \|Δε\| ≤ 0.20 | 65.5% | 64.4% | 60.1% | **76.6%†** | 64.0% | 66.3% |
+| pooled \|Δε\| ≤ 0.25 | 75.5% | 77.1% | 71.9% | **91.4%†** | 73.5% | 76.4% |
 
-Bold = per-metric leader.
-† = value-chain's ε-based metrics are **not comparable** to the others. The skill places every component at the static placeholder ε=0.50, which coincidentally sits in the Product band where most of Wardley's components cluster. That inflates same-band, pooled-closeness, and \|Δε\| *without* the skill actually placing anything on the evolution axis. See §4.6. The signed ε-bias (−0.113) — the largest in the table — is the tell: static 0.50 is systematically to the left of Wardley's mean ε.
+Bold = per-metric leader; for the signed biases, the value closest to zero.
+† = value-chain's ε-based metrics are **not comparable** to the others. The skill places every component at the static placeholder ε=0.50, which coincidentally sits in the Product band where most of Wardley's components cluster. That inflates same-band, pooled-closeness, and \|Δε\| *without* the skill actually placing anything on the evolution axis. See §5.2. The signed ε-bias (−0.062) — the largest in the table — is the tell: static 0.50 is systematically to the left of Wardley's mean ε.
 
 **Legitimate (non-pathological) per-metric leaders:**
 
-- `mathmodel v2`: \|Δε\| (0.201), pooled ≤0.15 (50.5%)
+- `mathmodel v2`: \|Δν\| (0.193), pooled ≤0.15 (50.8%), ε-bias closest to zero (−0.006)
 - `mathmodel v1`: pooled ≤0.25 (77.1% among ε-placing generators)
-- `arc-kit`: coverage (79.3%)
-- `haberlah`: \|Δν\| (0.231)
-- `prompt`: same-band (42.8%), within-1-band (92.5%), pooled ≤0.10 (34.2%), pooled ≤0.20 (66.0%)
+- `arc-kit`: coverage (79.4%)
+- `haberlah`: ν-bias closest to zero (+0.050)
+- `prompt`: \|Δε\| (0.170), same-band (42.6%), within-1-band (92.4%), pooled ≤0.10 (34.3%), pooled ≤0.20 (66.3%)
 
-The prompt-baseline's wins are all within ±3pp of next-best (inside the documented noise floor). v2's lead on \|Δε\| (0.201 vs 0.214) is outside the noise floor at n=25.
+Most of these leads are a point or two, or a few thousandths on \|Δε\|. These are single runs, and the benchmark has no estimate of run-to-run variation, so read them as a description of this run rather than a ranking.
 
 ### 3.2 Map size and shape
 
@@ -135,18 +137,18 @@ Wardley's own published maps average ~40 components. Only `mathmodel` (both vers
 
 ### 3.3 Same-band by benchmark (top and bottom)
 
-All five generators mostly agree on which maps are easy and which are hard:
+The five ε-placing generators agree more on the hardest maps than on the easiest:
 
-- **Easy (everyone >55% same-band):** telecoms-sovereignty, transport-logistics, personal-conversational, cybersecurity-risk.
-- **Hard (everyone <30% same-band):** culture-gender, politics-labour, telecoms-space, finance-risk.
+- **Hardest:** gaming-economies and personal-fin-inclusion, where every generator scores 33% same-band or less (means 25% and 24%). politics-labour (mean 30%) and sustainability-supply (31%) come next.
+- **Easiest:** retail-journey (mean 52%) and healthcare-clinical (51%). No map clears 55% for every generator, and on a typical map the best and worst generators are 15–35 points apart.
 
-"Hard" maps are generally ones where Wardley's own placements are idiosyncratic — cultural concepts stretched across the axes; political machinery placed by domain intuition rather than cheat-sheet evidence.
+An earlier version of this section listed telecoms-sovereignty, transport-logistics, personal-conversational and cybersecurity-risk as easy for everyone, and culture-gender, politics-labour, telecoms-space and finance-risk as hard for everyone. The per-map summaries didn't support that list under either grader. This report doesn't examine why some maps are harder than others.
 
 ### 3.4 Placement-bias pattern
 
-All five generators systematically under-place ε relative to Wardley (signed bias −0.03 to −0.06): components end up further left (less evolved) than Wardley positioned them. Haberlah's stricter stage boundaries (`Genesis 0.00–0.17, Custom 0.18–0.39, Product 0.40–0.69, Commodity 0.70–1.00` vs the canonical `0.25/0.50/0.75`) amplify this.
+None of the five ε-placing generators shows a material ε-bias: signed means run from −0.019 (haberlah) to +0.017 (arc-kit). The April version of this section reported systematic under-placement of ε (−0.03 to −0.06); that came from the culture-gender parse bug described at the top. Haberlah is still the most leftward, which fits its stricter stage boundaries (`Genesis 0.00–0.17, Custom 0.18–0.39, Product 0.40–0.69, Commodity 0.70–1.00` vs the canonical `0.25/0.50/0.75`), but the effect is small.
 
-All five also over-place ν (+0.02 to +0.06). Arc-kit has the smallest ν-bias (+0.029); haberlah's close (+0.021). `mathmodel v2`'s ν-bias (+0.047) is slightly larger than v1's (+0.039) — a minor regression; may be worth investigating if we want to keep closing the visibility gap.
+All five over-place ν (+0.05 to +0.11). Haberlah has the smallest ν-bias (+0.050) and the prompt baseline the largest (+0.108). `mathmodel v2`'s ν-bias (+0.068) is smaller than v1's (+0.085).
 
 ---
 
@@ -162,7 +164,7 @@ Four materially different approaches produce same-band metrics within 3pp:
 - **haberlah:** 7-step procedure with a characteristics-framework scoring method, own validator, hard component cap.
 - **prompt-baseline:** single-shot LLM response to a prompt that describes the math model. No iteration. No WebSearch. No references bundle.
 
-The prompt baseline matches or slightly leads on same-band (42.8%), within-1-band (92.5%), and pooled ≤0.10. It costs about **3× fewer tokens** per run (~30k vs the skills' 60-100k). So on cost-per-band-agreement, the prompt is clearly ahead.
+The prompt baseline matches or slightly leads on same-band (42.6%), within-1-band (92.4%), pooled ≤0.10 and \|Δε\| (0.170). It costs about **3× fewer tokens** per run (~30k vs the skills' 60-100k). So on cost-per-band-agreement, the prompt is clearly ahead.
 
 ### 4.2 Where the scaffolds *do* differ from the prompt baseline
 
@@ -181,7 +183,7 @@ The prompt baseline matches or slightly leads on same-band (42.8%), within-1-ban
 
   This is where the math-model scaffold earns its token budget. The placement-agreement numbers in §3.1 are averaged over all 25 draft maps regardless of well-formedness; the bottom three generators are "matching Wardley" using maps that wouldn't load in OnlineWardleyMaps without fixing.
 
-- **Placement tightness (§3.1 \|Δε\| / \|Δν\|).** After the §5 update, v2 commits to components more precisely than anything else: mean \|Δε\| of 0.201 against haberlah's 0.214 and v1's 0.223. For a strategist reading the map, this means v2's coordinates are on average within ~0.10 of where Wardley placed the component (given noise floor ~0.06), rather than ~0.12–0.13 for the other generators.
+- **Visibility tightness (§3.1 \|Δν\|).** After the §5 update, v2 has the lowest mean \|Δν\| (0.193, against 0.197–0.211 for the others). It has no lead on evolution: v1 and v2 both score 0.173 on \|Δε\|, and the prompt baseline scores 0.170.
 
 - **Map density.** Only `mathmodel` matches Wardley's own ~40-component target on multi-stakeholder landscapes. Haberlah lands at half that by design; arc-kit at about two-thirds.
 
@@ -195,7 +197,7 @@ Published `mathmodel` numbers (terse scenarios, `benchmark-25-summary.json`):
 - coverage 36.7%, same-band 36.6%, pooled ≤0.20 61.9%.
 
 `mathmodel v1` rerun numbers (new, more-detailed scenarios):
-- coverage 79.0%, same-band 41.3%, pooled ≤0.20 64.1%.
+- coverage 79.1%, same-band 41.2%, pooled ≤0.20 64.4%.
 
 Coverage jumped 42 percentage points with the same skill. Same-band and placement metrics barely moved. This tells us:
 
@@ -206,15 +208,13 @@ Coverage jumped 42 percentage points with the same skill. Same-band and placemen
 
 ### 4.4 Haberlah's distinct choices show up in the metrics
 
-- **Non-canonical band boundaries** (`0.17 / 0.39 / 0.69` vs Wardley's `0.25 / 0.50 / 0.75`) — haberlah's ε-bias is −0.057 (most leftward), consistent with a systematic shift.
+- **Non-canonical band boundaries** (`0.17 / 0.39 / 0.69` vs Wardley's `0.25 / 0.50 / 0.75`) — haberlah's ε-bias is −0.019, the most leftward of the ε-placing generators, though small.
 - **Component cap.** Lower coverage (72% vs 78–79%) is the skill's design preference for readability over comprehensiveness.
-- **Tight placement** (\|Δε\| = 0.214 pre-v2, second-tightest overall). When haberlah commits to a component, it places it close to Wardley on average — an artefact of the characteristics-framework producing lower within-skill variance at the cost of missing more components.
-
-This was the observation that triggered the v2 update. See §5.
+- **Placement tightness.** Under the April grader haberlah looked second-tightest on \|Δε\| (0.214, against v1's 0.223). That was the observation that triggered the v2 update (§5). Under the current grader haberlah scores 0.175 against v1's 0.173: its apparent lead came from the culture-gender parse bug, where, like v2, it matched only one of the two miscoded components.
 
 ### 4.5 ν-bias is skill-independent
 
-All five generators over-place ν (+0.02 to +0.06). Prompt-baseline without explicit visibility reasoning also shows it. The bias is roughly constant across scaffold choice, which suggests it's a property of *how LLMs reason about "user-visible"* rather than a specific scaffold choice.
+All five generators over-place ν (+0.05 to +0.11). Prompt-baseline without explicit visibility reasoning also shows it. Every generator shows it, which suggests it's a property of *how LLMs reason about "user-visible"* rather than a specific scaffold choice.
 
 ---
 
@@ -244,20 +244,18 @@ Full 25-map benchmark, same scenarios, same harness:
 
 | Metric | v1 | v2 | Δ |
 |---|---|---|---|
-| coverage | 79.0% | 77.9% | −1.1pp |
-| same-band | 41.3% | 40.8% | −0.5pp |
-| within-1-band | 90.9% | 91.8% | +0.9pp |
-| **\|Δε\|** | **0.223** | **0.201** | **−0.022 tighter** |
-| **\|Δν\|** | **0.259** | **0.217** | **−0.042 tighter** |
-| pooled ≤0.15 | 48.6% | 50.5% | +1.9pp |
-| pooled ≤0.20 | 64.1% | 65.1% | +1.0pp |
-| pooled ≤0.25 | 77.1% | 75.2% | −1.9pp |
+| coverage | 79.1% | 78.1% | −0.9pp |
+| same-band | 41.2% | 40.5% | −0.7pp |
+| within-1-band | 91.1% | 91.9% | +0.9pp |
+| \|Δε\| | 0.173 | 0.173 | 0.000 |
+| **\|Δν\|** | **0.211** | **0.193** | **−0.019 tighter** |
+| pooled ≤0.15 | 49.0% | 50.8% | +1.8pp |
+| pooled ≤0.20 | 64.4% | 65.5% | +1.0pp |
+| pooled ≤0.25 | 77.1% | 75.5% | −1.6pp |
 | validator pass | 100% | 100% | unchanged |
 | avg components | 42 | 41 | −1 |
 
-**Interpretation:** the evidence-table requirement forces each placement to be justifiable with concrete signal (specific vendor, standard, or regulation). When placements can't be justified, they get moved — the result is tighter \|Δε\| and \|Δν\|, without losing density or validator pass rate. Same-band agreement doesn't move because band membership is a coarser signal than coordinate tightness; the same component ends up in the same band either way.
-
-The small coverage drop (−1.1pp) is within run-to-run noise and isn't load-bearing; the tightness gain (0.022 on \|Δε\|, 0.042 on \|Δν\|) is outside noise at n=25.
+**Interpretation:** the additions left evolution placement unchanged (\|Δε\| 0.173 for both) and tightened visibility placement by 0.019, without losing density or validator pass rate. The April write-up credited the evidence table with tightening both axes (\|Δε\| 0.223 → 0.201); the evolution half of that came from the culture-gender parse bug described at the top. With one run per map there is no estimate of run-to-run variation, so this run can't show whether the \|Δν\| gain is stable.
 
 ### 5.2 The value-chain sub-skill finding: a metric-exposing result
 
@@ -268,10 +266,10 @@ Running it through the benchmark aggregator without modification produces these 
 | Metric | value-chain | meaning |
 |---|---|---|
 | coverage | 72.9% | legit — about matches haberlah, slightly below mathmodel |
-| same-band | **61.8%** | **pathological** — ε=0.50 lands in the Product band, which is the modal band in Wardley's maps |
-| within-1-band | **96.0%** | **pathological** — almost everything Wardley places is within ±1 band of Product |
-| \|Δε\| | **0.198** | **pathological** — Wardley's components cluster near ε=0.50, so static-0.50 has small average error |
-| ε-bias | **−0.113** | the tell — largest leftward bias of any competitor, because static 0.50 is systematically left of Wardley's mean ε |
+| same-band | **62.0%** | **pathological** — ε=0.50 lands in the Product band, which is the modal band in Wardley's maps |
+| within-1-band | **95.9%** | **pathological** — almost everything Wardley places is within ±1 band of Product |
+| \|Δε\| | **0.148** | **pathological** — Wardley's components cluster near ε=0.50, so static-0.50 has small average error |
+| ε-bias | **−0.062** | the tell — largest leftward bias of any competitor, because static 0.50 is systematically left of Wardley's mean ε |
 | validator pass | 21/25 (84%) | legit — ν-only discipline is easier to satisfy than full ε+ν |
 
 **What this exposes about the benchmark metrics:**
@@ -280,11 +278,11 @@ Running it through the benchmark aggregator without modification produces these 
 
 **What this doesn't affect:**
 
-- *\|Δν\|* and *ν-bias* are still informative — the value-chain skill places ν meaningfully (second-lowest ν-bias at +0.018, close to arc-kit's +0.029).
+- *\|Δν\|* and *ν-bias* are still informative — the value-chain skill places ν meaningfully (second-lowest ν-bias at +0.064, after haberlah's +0.050).
 - *Coverage* is unaffected by the ε placeholder.
 - *Validator pass* is unaffected — it checks ν invariants and edge endpoints, not ε values.
 
-So for the value-chain skill *specifically*, the interpretable metrics are coverage (72.9%), \|Δν\| (0.247), ν-bias (+0.018), and validator pass (84%). On those four, it's comparable to haberlah but with a narrower scope.
+So for the value-chain skill *specifically*, the interpretable metrics are coverage (72.9%), \|Δν\| (0.200), ν-bias (+0.064), and validator pass (84%). On those four, it's comparable to haberlah but with a narrower scope.
 
 **What we learned about the other generators via this:** their same-band numbers (40–43%) aren't just "a statistical tie with the prompt baseline." They're *below* the floor a null strategy achieves by predicting the modal band. This doesn't mean those generators are bad — they're spending effort placing components on ε, and that effort results in a distribution of placements rather than clustering at 0.50. The benchmark currently rewards the cluster-at-median strategy more than the distribute-by-evidence strategy. If we wanted to reward real placement more, we'd need a metric that penalises static outputs — e.g., weighted by the *variance* of the skill's ε placements, or normalised against a "always predict median" baseline.
 
@@ -292,9 +290,9 @@ Deferred to future work: a baseline-adjusted same-band metric that subtracts the
 
 ### 5.3 What this means more broadly
 
-The haberlah-inspired additions are structural: they force the skill to justify every placement with observable evidence. That's not a model-level improvement, it's a prompt-discipline improvement. The prompt baseline got the same \|Δε\| as v1 without any structural scaffolding, because a single pass of a capable LLM on the math-model prompt already does roughly what v1's procedure was doing. What v2 adds is the *citation requirement* — a discipline haberlah's SKILL.md already had, that `mathmodel`'s did not.
+The haberlah-inspired additions are structural: they force the skill to justify every placement with observable evidence. That's not a model-level improvement, it's a prompt-discipline improvement. The prompt baseline got about the same \|Δε\| as v1 and v2 (0.170 against 0.173) without any structural scaffolding, because a single pass of a capable LLM on the math-model prompt already does roughly what the skill's procedure does for evolution placement. What v2 adds is the *citation requirement* — a discipline haberlah's SKILL.md already had, that `mathmodel`'s did not. In this run it moved visibility placement but not evolution placement.
 
-Reasonable next step: see if more evidence-required discipline (e.g., required citation for every evolve arrow, every inertia flag) continues to tighten placement, or if 0.201 is the floor for this scenario set.
+Reasonable next step: repeat runs to see whether v2's \|Δν\| gain holds, before testing whether more evidence-required discipline (e.g., required citation for every evolve arrow, every inertia flag) moves placement at all.
 
 ---
 
@@ -302,13 +300,13 @@ Reasonable next step: see if more evidence-required discipline (e.g., required c
 
 1. **Validator doesn't run inside subagents.** Every skill subagent reported that `node scripts/validate_owm.mjs` was denied by the Claude Code permission allowlist (which only whitelists iteration-16 paths). They walked the three validator rules manually. Post-hoc we re-ran the real validator across all 125 draft files — see §4.2 for the actual pass/fail numbers. The mathmodel manual walk-through held up (25/25 pass on both v1 and v2). Recommended fix: add a wildcard `Bash(node skills/wardley-map/scripts/validate_owm.mjs *)` to `.claude/settings.local.json` so future runs exercise the validator in-loop.
 2. **Fuzzy matching imperfection.** The 0.55 threshold admits some loose matches and misses some legitimate synonyms (`BENCHMARK-METHODOLOGY.md §3.2`). Affects all generators equally.
-3. **Same-as-Wardley ≠ correct.** Wardley himself published these references; agreeing with him isn't the same as being right. Different Wardley mappers would disagree on 15–25% of placements per the cheat-sheet noise floor.
-4. **Single run per map per competitor.** LLM stochasticity not estimated. The ±3–5pp differences between generators would fluctuate run-to-run.
+3. **Same-as-Wardley ≠ correct.** Wardley himself published these references; agreeing with him isn't the same as being right. Different mappers would disagree on some placements; this benchmark doesn't measure how often.
+4. **Single run per map per competitor.** LLM stochasticity not estimated. Differences of a few points between generators may not survive a re-run.
 5. **Deep-placement quality not measured.** The mathmodel skill does vendor-landscape research; we know it happens but don't score the adjustments.
 6. **wtg2 and ChatGPT GPTs not benchmarked.** In the plan, deferrable.
 7. **Rate limit partially affected arc-kit.** Three arc-kit subagents (defence-intelligence, defence-grey-zone, telecoms-space) hit the rate limit before writing strategic prose; their `draft.owm` completed and feeds the placement numbers, but the `output.md` for those three is empty.
 8. **Scenario inflation (§4.3).** New-scenarios coverage is higher than old-scenarios coverage by ~40pp, the dominant source of variance between our rerun and the published `BENCHMARK-REPORT.md` numbers.
-9. **arc-kit: only 1 of 5 harness variants tested.** `tractorjuice/arc-kit` ships the wardley-mapping skill in five harness-specific copies (`arckit-claude`, `arckit-copilot`, `arckit-opencode`, `arckit-paperclip`, `arckit-codex`). Our benchmark covers only `arckit-claude`. The others differ — we diffed `arckit-copilot`'s `SKILL.md` against `arckit-claude`'s and confirmed they are not identical — so the arc-kit numbers in this report (including the 24% validator pass rate and 79.3% coverage) are variant-specific, not arc-kit-generic. Additionally, `arckit-codex/` ships a composable architecture (`arckit-wardley` + four sub-skills: `.value-chain`, `.climate`, `.doctrine`, `.gameplay`) intended to be orchestrated across multiple skill invocations per map. That architecture was not tested — the benchmark harness spawns one subagent per map and doesn't orchestrate composed sub-skills. Testing these fairly would require (a) ~2M additional tokens for the 4 untested harness variants and (b) harness changes plus another ~2M tokens for the composable architecture.
+9. **arc-kit: only 1 of 5 harness variants tested.** `tractorjuice/arc-kit` ships the wardley-mapping skill in five harness-specific copies (`arckit-claude`, `arckit-copilot`, `arckit-opencode`, `arckit-paperclip`, `arckit-codex`). Our benchmark covers only `arckit-claude`. The others differ — we diffed `arckit-copilot`'s `SKILL.md` against `arckit-claude`'s and confirmed they are not identical — so the arc-kit numbers in this report (including the 24% validator pass rate and 79.4% coverage) are variant-specific, not arc-kit-generic. Additionally, `arckit-codex/` ships a composable architecture (`arckit-wardley` + four sub-skills: `.value-chain`, `.climate`, `.doctrine`, `.gameplay`) intended to be orchestrated across multiple skill invocations per map. That architecture was not tested — the benchmark harness spawns one subagent per map and doesn't orchestrate composed sub-skills. Testing these fairly would require (a) ~2M additional tokens for the 4 untested harness variants and (b) harness changes plus another ~2M tokens for the composable architecture.
 
 ---
 
@@ -328,7 +326,7 @@ python3 skills/wardley-map-workspace/competitor-compare/compare_competitor.py pr
 #   competitor-compare/<name>/competitor-summary-<name>.json
 ```
 
-The 125 `output.md` / `draft.owm` files, `scenarios.json`, and five summary JSONs are the full artefact set. The comparison is arithmetic on parsed coordinates; any reader can check or extend without calling the LLM.
+The 125 `output.md` / `draft.owm` files, `scenarios.json`, and six summary JSONs are the full artefact set. The comparison is arithmetic on parsed coordinates; any reader can check or extend without calling the LLM.
 
 ---
 
@@ -337,7 +335,7 @@ The 125 `output.md` / `draft.owm` files, `scenarios.json`, and five summary JSON
 Choose a Wardley-map generator on what you need from the output:
 
 - **Valid OWM by construction** → `mathmodel v2` or `v1` (100%). `arckit-value-chain` (84%) is decent for partial maps. Haberlah at 64% is acceptable if you'll patch ~1/3 of outputs. Everything else requires a fix-up pass.
-- **Tightest placement agreement with Wardley on the axes** → `mathmodel v2` (tightest \|Δε\| among generators that genuinely place ε).
+- **Tightest visibility placement** → `mathmodel v2` (lowest \|Δν\|). On evolution placement no generator is clearly ahead: the prompt baseline, v1, v2 and haberlah are within 0.005 of each other on \|Δε\|.
 - **Rich strategic prose with 61-play / 40-doctrine citations by number, build-vs-buy table, evidence-per-component** → `mathmodel v2`.
 - **Build-vs-buy tables and React artifacts** → `haberlah` (or `mathmodel v2` for the table, which picked up the haberlah feature).
 - **Structured YAML with quantitative D/K/R inline** → `arc-kit`.
@@ -347,8 +345,8 @@ Choose a Wardley-map generator on what you need from the output:
 
 **What the benchmark actually proved:**
 
-1. The skill scaffold's moat over a careful prompt is *not* placement agreement — those are within noise. The moat is validator pass rate (100% vs 20%) and, after the v2 update, placement tightness (0.201 vs 0.219).
-2. Adding three structural disciplines from haberlah — up-front strategic context, per-component evidence citations, structured build/buy table — measurably tightened `mathmodel`'s placements without sacrificing density or validator pass rate. The additions worked.
-3. The benchmark was worth doing. Before it, we didn't know that (a) a naive prompt gets same-band agreement within 3pp of the scaffold at 3× lower cost, (b) haberlah's tighter-placement pattern was importable, or (c) arc-kit would fail the validator 19/25 times despite being a published Claude Code skill.
+1. The skill scaffold's moat over a careful prompt is *not* placement agreement — the differences there are small and come from a single run. The moat is validator pass rate (100% vs 20%) and, after the v2 update, possibly visibility tightness (\|Δν\| 0.193 vs 0.207), pending repeat runs.
+2. Adding three structural disciplines from haberlah — up-front strategic context, per-component evidence citations, structured build/buy table — tightened `mathmodel`'s visibility placement (\|Δν\| 0.211 → 0.193) without sacrificing density or validator pass rate. Evolution placement didn't change (\|Δε\| 0.173 for both).
+3. The benchmark was worth doing. Before it, we didn't know that (a) a naive prompt gets same-band agreement within 3pp of the scaffold at 3× lower cost, (b) haberlah's evidence-citation discipline could be imported without losing density or validator pass rate, or (c) arc-kit would fail the validator 19/25 times despite being a published Claude Code skill.
 
-If the workstream continues, the next experiments worth running are: (i) the remaining 4 arc-kit harness variants (`arckit-copilot`, `arckit-opencode`, `arckit-paperclip`, `arckit-codex`) to see whether the 24% validator pass rate is variant-specific or a property of the arc-kit procedure; (ii) the composable `arckit-wardley.*` architecture, which requires harness changes to orchestrate 5 sub-skills per map; (iii) the `wtg2` comparison with a DSL converter; (iv) a strict validator-required subagent loop to see if `mathmodel`'s 100% pass rate holds under machine validation instead of manual edge-walking; and (v) variance estimation — 3 runs per map per generator to establish the run-to-run noise floor, so we can tell what matters from what's coincidence.
+If the workstream continues, the next experiments worth running are: (i) the remaining 4 arc-kit harness variants (`arckit-copilot`, `arckit-opencode`, `arckit-paperclip`, `arckit-codex`) to see whether the 24% validator pass rate is variant-specific or a property of the arc-kit procedure; (ii) the composable `arckit-wardley.*` architecture, which requires harness changes to orchestrate 5 sub-skills per map; (iii) the `wtg2` comparison with a DSL converter; (iv) a strict validator-required subagent loop to see if `mathmodel`'s 100% pass rate holds under machine validation instead of manual edge-walking; and (v) variance estimation — 3 runs per map per generator, following [DECISION-EVALUATION.md](DECISION-EVALUATION.md), so we can tell what matters from what's coincidence.
